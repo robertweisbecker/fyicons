@@ -1,0 +1,6 @@
+src/data/catalog.json
+src/data/README.txt
+node_modules
+dist
+test-results
+package-lock.json
