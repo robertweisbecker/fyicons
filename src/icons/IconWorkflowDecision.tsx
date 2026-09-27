@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconWorkflowDecision = React.forwardRef<SVGSVGElement, IconProps>(function IconWorkflowDecision(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M7.52637 1.27173C7.82094 1.03144 8.25567 1.04891 8.53027 1.32349L10.6768 3.46997C10.9695 3.76287 10.9696 4.23768 10.6768 4.53052L8.53027 6.677C8.52075 6.68652 8.50989 6.69447 8.5 6.70337V6.97974C8.50016 7.53189 8.94781 7.97974 9.5 7.97974H10C11.1045 7.97974 11.9999 8.87521 12 9.97974V10.0002H13C13.5523 10.0002 14 10.448 14 11.0002V14.0002C13.9998 14.5524 13.5522 15.0002 13 15.0002H10C9.44781 15.0002 9.00016 14.5524 9 14.0002V11.0002C9 10.448 9.44772 10.0002 10 10.0002H11V9.97974C10.9999 9.4275 10.5523 8.97974 10 8.97974H9.5C8.9015 8.97974 8.36652 8.7147 8 8.2981C7.63348 8.7147 7.0985 8.97974 6.5 8.97974H6C5.44775 8.97974 5.00005 9.4275 5 9.97974V10.0002H6C6.55228 10.0002 7 10.448 7 11.0002V14.0002C6.99984 14.5524 6.55219 15.0002 6 15.0002H3C2.44781 15.0002 2.00016 14.5524 2 14.0002V11.0002C2 10.448 2.44772 10.0002 3 10.0002H4V9.97974C4.00005 8.87521 4.89546 7.97974 6 7.97974H6.5C7.05219 7.97974 7.49984 7.53189 7.5 6.97974V6.70337C7.49011 6.69447 7.47925 6.68652 7.46973 6.677L5.32324 4.53052C5.03042 4.23768 5.03052 3.76287 5.32324 3.46997L7.46973 1.32349L7.52637 1.27173ZM3 14.0002H6V11.0002H3V14.0002ZM10 14.0002H13V11.0002H10V14.0002ZM6.20703 4.00024L8 5.79321L9.79297 4.00024L8 2.20728L6.20703 4.00024Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconWorkflowDecision;

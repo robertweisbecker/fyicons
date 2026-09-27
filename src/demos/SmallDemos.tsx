@@ -29,7 +29,7 @@ function Card({
 }
 export function SmallDemos({ notify }: { notify: (message: string) => void }) {
   return (
-    <div className={cn('grid gap-x-7 gap-y-9 xl:grid-cols-2')}>
+    <div className={cn('grid grid-cols-1 gap-x-7 gap-y-9 xl:grid-cols-2')}>
       <Card title="Orbit" type="AI workspace">
         <Orbit />
       </Card>

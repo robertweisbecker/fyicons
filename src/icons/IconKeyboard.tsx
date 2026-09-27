@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconKeyboard = React.forwardRef<SVGSVGElement, IconProps>(function IconKeyboard(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13 4C14.1046 4 15 4.89543 15 6V11C15 12.1046 14.1046 13 13 13H3C1.89543 13 1 12.1046 1 11V6C1 4.89543 1.89543 4 3 4H13ZM3 5C2.44772 5 2 5.44772 2 6V11C2 11.5523 2.44772 12 3 12H13C13.5523 12 14 11.5523 14 11V6C14 5.44772 13.5523 5 13 5H3ZM3.75 10C3.88807 10 4 10.1119 4 10.25V10.75C4 10.8881 3.88807 11 3.75 11H3.25C3.11193 11 3 10.8881 3 10.75V10.25C3 10.1119 3.11193 10 3.25 10H3.75ZM10.75 10C10.8881 10 11 10.1119 11 10.25V10.75C11 10.8881 10.8881 11 10.75 11H5.25C5.11193 11 5 10.8881 5 10.75V10.25C5 10.1119 5.11193 10 5.25 10H10.75ZM12.75 10C12.8881 10 13 10.1119 13 10.25V10.75C13 10.8881 12.8881 11 12.75 11H12.25C12.1119 11 12 10.8881 12 10.75V10.25C12 10.1119 12.1119 10 12.25 10H12.75ZM3.75 8C3.88807 8 4 8.11193 4 8.25V8.75C4 8.88807 3.88807 9 3.75 9H3.25C3.11193 9 3 8.88807 3 8.75V8.25C3 8.11193 3.11193 8 3.25 8H3.75ZM6.75 8C6.88807 8 7 8.11193 7 8.25V8.75C7 8.88807 6.88807 9 6.75 9H6.25C6.11193 9 6 8.88807 6 8.75V8.25C6 8.11193 6.11193 8 6.25 8H6.75ZM9.75 8C9.88807 8 10 8.11193 10 8.25V8.75C10 8.88807 9.88807 9 9.75 9H9.25C9.11193 9 9 8.88807 9 8.75V8.25C9 8.11193 9.11193 8 9.25 8H9.75ZM12.75 8C12.8881 8 13 8.11193 13 8.25V8.75C13 8.88807 12.8881 9 12.75 9H12.25C12.1119 9 12 8.88807 12 8.75V8.25C12 8.11193 12.1119 8 12.25 8H12.75ZM3.75 6C3.88807 6 4 6.11193 4 6.25V6.75C4 6.88807 3.88807 7 3.75 7H3.25C3.11193 7 3 6.88807 3 6.75V6.25C3 6.11193 3.11193 6 3.25 6H3.75ZM6.75 6C6.88807 6 7 6.11193 7 6.25V6.75C7 6.88807 6.88807 7 6.75 7H6.25C6.11193 7 6 6.88807 6 6.75V6.25C6 6.11193 6.11193 6 6.25 6H6.75ZM9.75 6C9.88807 6 10 6.11193 10 6.25V6.75C10 6.88807 9.88807 7 9.75 7H9.25C9.11193 7 9 6.88807 9 6.75V6.25C9 6.11193 9.11193 6 9.25 6H9.75ZM12.75 6C12.8881 6 13 6.11193 13 6.25V6.75C13 6.88807 12.8881 7 12.75 7H12.25C12.1119 7 12 6.88807 12 6.75V6.25C12 6.11193 12.1119 6 12.25 6H12.75Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconKeyboard;

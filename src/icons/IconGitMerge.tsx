@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconGitMerge = React.forwardRef<SVGSVGElement, IconProps>(function IconGitMerge(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M5 1C6.10457 1 7 1.89543 7 3C7 3.93162 6.3622 4.71129 5.5 4.93359V5C5.5 6.93299 7.06703 8.49998 9 8.5H9.06543C9.28765 7.63768 10.0683 7 11 7C12.1046 7 13 7.89543 13 9C13 10.1046 12.1046 11 11 11C10.0683 11 9.28765 10.3623 9.06543 9.5H9C7.58595 9.49998 6.32497 8.84717 5.5 7.82715V11.0654C6.36232 11.2877 7 12.0683 7 13C7 14.1046 6.10457 15 5 15C3.89543 15 3 14.1046 3 13C3 12.0683 3.63768 11.2877 4.5 11.0654V4.93359C3.6378 4.71129 3 3.93162 3 3C3 1.89543 3.89543 1 5 1ZM5 12C4.44772 12 4 12.4477 4 13C4 13.5523 4.44772 14 5 14C5.55228 14 6 13.5523 6 13C6 12.4477 5.55228 12 5 12ZM11 8C10.4477 8 10 8.44772 10 9C10 9.55228 10.4477 10 11 10C11.5523 10 12 9.55228 12 9C12 8.44772 11.5523 8 11 8ZM5 2C4.44772 2 4 2.44772 4 3C4 3.55228 4.44772 4 5 4C5.55228 4 6 3.55228 6 3C6 2.44772 5.55228 2 5 2Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconGitMerge;

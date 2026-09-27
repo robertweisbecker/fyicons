@@ -1,188 +1,192 @@
+import { Field } from '@base-ui/react/field';
 import { Slider, SliderControl } from '../components/ui/slider';
 import { cn } from '../lib/utils';
 import { useState, type CSSProperties } from 'react';
 import { Icon } from '../components/Icon';
-import { Button, IconButton, SwitchControl } from '../components/ui';
+import { ToggleIcon } from '@/components/ToggleIcon';
+import { Toggle } from '@/components/ui/toggle';
+import { ToggleGroup } from '@/components/ui/toggle-group';
+import { Switch } from '@/components/ui/switch';
 
 export function Forma() {
   const [tool, setTool] = useState('Select');
   const [align, setAlign] = useState('center');
   const [radius, setRadius] = useState(12);
+  // Native color inputs use an RGB hex value; this is editable document content.
   const [color, setColor] = useState('#c5b5fa');
   const [grid, setGrid] = useState(true);
   const [border, setBorder] = useState(false);
   const [shadow, setShadow] = useState(true);
   return (
-    <div
-      className={cn(
-        'demo-card flex h-115 flex-col overflow-hidden rounded-xl border border-[#dfe1dd] bg-[#f8f7fa] text-[#716180] scheme-light shadow-[0_12px_30px_-26px_#243c263b] max-[680px]:h-117.5',
-      )}
-    >
-      <div
-        className={cn(
-          'flex h-14 shrink-0 items-center justify-between border-b border-[#e2dfea] bg-white px-5',
-        )}
-      >
-        <strong className={cn('flex items-center gap-2')}>
+    <div className="demo-card flex h-115 flex-col overflow-hidden rounded-xl border border-violet-200 bg-violet-50 text-violet-900 scheme-light [--control-accent:var(--color-violet-500)] max-[680px]:h-117.5">
+      <div className="flex h-14 shrink-0 items-center justify-between border-b border-violet-200 bg-white px-5">
+        <strong className="flex items-center gap-2">
           <Icon name="component" />
           forma
         </strong>
-        <span className={cn('flex items-center gap-1 text-xs')}>
-          <Icon name="check-sm" />
+        <span className="flex items-center gap-1 text-xs">
+          <Icon name="save" />
           Saved
         </span>
       </div>
-      <div className={cn('flex min-h-0 flex-1')}>
+      <div className="flex min-h-0 flex-1">
         <div
           className={cn(
-            'forma-canvas relative flex min-w-0 flex-1 items-center justify-center bg-[#eae6f1] bg-[radial-gradient(#ccc4d9_.7px,transparent_.7px)] bg-size-[12px_12px] [&.no-grid]:bg-none',
-            grid ? '' : 'no-grid',
+            'forma-canvas relative flex min-w-0 flex-1 flex-col items-center justify-center bg-violet-100 bg-[radial-gradient(var(--color-violet-400)_.7px,transparent_.7px)] bg-size-[12px_12px]',
+            !grid && 'bg-none',
           )}
         >
-          <div
-            className={cn(
-              'absolute top-4 left-1/2 flex -translate-x-1/2 rounded-lg border border-[#ddd6e8] bg-white p-1 shadow-sm',
-            )}
+          <ToggleGroup
+            aria-label="Design tools"
+            className="relative mb-4 w-fit max-w-[calc(100%-0.5rem)] flex-wrap justify-center gap-0 rounded-xl bg-white p-1 shadow-sm outline outline-violet-400/20 sm:absolute sm:top-4 sm:left-1/2 sm:mb-0 sm:max-w-none sm:-translate-x-1/2 sm:gap-1"
+            value={[tool]}
+            onValueChange={(values) => {
+              if (values[0]) setTool(values[0]);
+            }}
           >
-            {['Select', 'Frame', 'Pen', 'Text'].map((name, i) => (
-              <Button
+            {['Select', 'Frame', 'Pen', 'Text', 'Draw'].map((name, i) => (
+              <Toggle
+                size="icon-sm"
                 key={name}
-                className={cn(
-                  'grid size-8 place-items-center rounded-md',
-                  tool === name ? 'bg-[#eee7fa]' : '',
-                )}
+                value={name}
                 aria-label={name + ' tool'}
-                aria-pressed={tool === name}
-                onClick={() => setTool(name)}
               >
-                <Icon
-                  name={['cursor-arrow-fill', 'frame', 'pen-tool', 'text'][i]}
-                />
-              </Button>
+                {i === 0 ? (
+                  <ToggleIcon
+                    icon="cursor-arrow"
+                    activeIcon="cursor-arrow-fill"
+                  />
+                ) : (
+                  <Icon
+                    name={
+                      ['cursor-arrow', 'frame', 'pen-tool', 'text', 'drawing'][
+                        i
+                      ]
+                    }
+                  />
+                )}
+              </Toggle>
             ))}
-          </div>
+          </ToggleGroup>
           <div
             className={cn(
-              'forma-object flex h-54 w-45 max-w-[calc(100%-32px)] flex-col items-center justify-center p-5 text-[#594377] outline outline-offset-5 outline-[#a184c7] max-[680px]:h-48.5 max-[680px]:p-3',
+              'forma-object flex h-54 w-45 max-w-[calc(100%-2rem)] flex-col items-center justify-center border p-5 text-violet-950 outline outline-offset-5 outline-violet-400 max-[680px]:h-48 max-[680px]:p-3',
+              border ? 'border-violet-500' : 'border-transparent',
+              shadow && 'shadow-lg shadow-violet-900/15',
             )}
             style={
               {
                 borderRadius: radius,
                 background: color,
-                border: border ? '1px solid #8662bd' : '1px solid transparent',
-                boxShadow: shadow ? '0 10px 22px #61547b26' : 'none',
                 textAlign: align,
               } as CSSProperties
             }
           >
             <Icon name="asterisk-star" />
-            <strong
-              className={cn(
-                'mt-5 mb-5 w-full font-serif text-xl leading-tight',
-              )}
-            >
+            <strong className="my-5 w-full font-serif text-xl leading-tight">
               Project
               <br />
               overview
             </strong>
           </div>
-          <span className={cn('absolute bottom-3 left-3 text-xs')}>{tool}</span>
-          <span className={cn('absolute right-3 bottom-3 text-xs')}>100%</span>
+          <span className="absolute bottom-3 left-3 text-xs">{tool}</span>
+          <span className="absolute right-3 bottom-3 text-xs">100%</span>
         </div>
-        <aside
-          className={cn(
-            'w-39 shrink-0 border-l border-[#e2dfea] bg-white sm:w-46',
-          )}
-        >
-          <div
-            className={cn('border-b border-[#e9e5ef] p-4 text-xs font-medium')}
-          >
+        <aside className="w-44 shrink-0 overflow-y-auto border-l border-violet-200 bg-white sm:w-52">
+          <div className="border-b border-violet-100 p-4 text-xs font-medium">
             Design
           </div>
-          <div className={cn('border-b border-[#e9e5ef] p-3')}>
-            <h5 className={cn('mb-3 text-xs font-medium')}>Layout</h5>
-            <div className={cn('flex items-center justify-between')}>
-              {['left', 'center', 'right'].map((value, i) => (
-                <IconButton
-                  key={value}
-                  icon={
-                    ['text-align-start', 'text-align-center', 'text-align-end'][
-                      i
-                    ]
-                  }
-                  label={'Align ' + value}
-                  aria-pressed={align === value}
-                  onClick={() => setAlign(value)}
-                />
-              ))}
-              <IconButton
-                icon="grid"
-                label="Toggle canvas grid"
-                aria-pressed={grid}
-                onClick={() => setGrid(!grid)}
-              />
+          <div className="border-b border-violet-100 p-3">
+            <h5 className="mb-3 text-xs font-medium">Layout</h5>
+            <div className="flex flex-wrap items-center justify-between gap-1">
+              <ToggleGroup
+                aria-label="Text alignment"
+                value={[align]}
+                onValueChange={(values) => {
+                  if (values[0]) setAlign(values[0]);
+                }}
+              >
+                {['left', 'center', 'right'].map((value, i) => (
+                  <Toggle
+                    size="icon-sm"
+                    key={value}
+                    value={value}
+                    aria-label={'Align ' + value}
+                  >
+                    <Icon
+                      name={
+                        [
+                          'text-align-start',
+                          'text-align-center',
+                          'text-align-end',
+                        ][i]
+                      }
+                    />
+                  </Toggle>
+                ))}
+              </ToggleGroup>
+              <Toggle
+                size="icon-sm"
+                aria-label="Toggle canvas grid"
+                pressed={grid}
+                onPressedChange={setGrid}
+              >
+                <Icon name="grid" />
+              </Toggle>
             </div>
-            <div className={cn('mt-3 flex gap-2 text-xs')}>
-              <span className={cn('rounded border border-[#ece9f1] p-2')}>
+            <div className="mt-3 flex gap-2 text-xs">
+              <span className="rounded border border-violet-100 p-2">
                 W 180
               </span>
-              <span className={cn('rounded border border-[#ece9f1] p-2')}>
+              <span className="rounded border border-violet-100 p-2">
                 H 216
               </span>
             </div>
           </div>
-          <div className={cn('space-y-4 p-3 text-xs')}>
-            <h5 className={cn('font-medium')}>Appearance</h5>
+          <div className="flex flex-col gap-4 p-3 text-xs">
+            <h5 className="font-medium">Appearance</h5>
             <Slider.Root
               min={0}
               max={40}
               value={radius}
               onValueChange={setRadius}
             >
-              <div className={cn('flex items-center gap-2')}>
+              <div className="flex items-center gap-2">
                 <Icon name="border-radius" />
                 <Slider.Label>Corner radius</Slider.Label>
-                <Slider.Value className={cn('ml-auto tabular-nums')} />
+                <Slider.Value className="ml-auto tabular-nums" />
               </div>
-              <div className={cn('text-[#aa91d0]')}>
+              <div className="text-violet-500">
                 <SliderControl
                   getAriaValueText={(_, value) => `${value} pixels`}
                 />
               </div>
             </Slider.Root>
-            <label className={cn('flex items-center gap-2')}>
+            <label className="flex items-center gap-2">
               <Icon name="paint-bucket" />
               Fill
               <input
                 type="color"
                 aria-label="Card fill color"
-                className={cn('ml-auto h-5 w-7')}
+                className="ml-auto h-5 w-7"
                 value={color}
                 onChange={(event) => setColor(event.target.value)}
               />
             </label>
-            <div className={cn('flex items-center justify-between')}>
-              <span className={cn('flex items-center gap-2')}>
+            <Field.Root className="flex min-h-7 items-center justify-between">
+              <Field.Label className="flex items-center gap-2">
                 <Icon name="border" />
                 Border
-              </span>
-              <SwitchControl
-                label="Card border"
-                checked={border}
-                onChange={setBorder}
-              />
-            </div>
-            <div className={cn('flex items-center justify-between')}>
-              <span className={cn('flex items-center gap-2')}>
+              </Field.Label>
+              <Switch size="sm" checked={border} onCheckedChange={setBorder} />
+            </Field.Root>
+            <Field.Root className="flex min-h-7 items-center justify-between">
+              <Field.Label className="flex items-center gap-2">
                 <Icon name="box-shadow" />
                 Shadow
-              </span>
-              <SwitchControl
-                label="Card shadow"
-                checked={shadow}
-                onChange={setShadow}
-              />
-            </div>
+              </Field.Label>
+              <Switch size="sm" checked={shadow} onCheckedChange={setShadow} />
+            </Field.Root>
           </div>
         </aside>
       </div>

@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconSwatch = React.forwardRef<SVGSVGElement, IconProps>(function IconSwatch(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M5 2C5.72675 2 6.36073 2.38897 6.71094 2.96875C7.25952 2.58952 7.99831 2.53415 8.61426 2.88965L9.66992 3.49902C10.2993 3.8624 10.6536 4.51613 10.667 5.19336C11.3317 5.13906 11.9996 5.46038 12.3555 6.07617L12.9648 7.13184C13.3467 7.79331 13.3073 8.58203 12.9307 9.18848C13.5629 9.49383 14 10.1397 14 10.8887V12C14 13.1046 13.1046 14 12 14H4.5C3.11929 14 2 12.8807 2 11.5V4C2 2.89543 2.89543 2 4 2H5ZM4 3C3.44772 3 3 3.44772 3 4V11.5C3 12.3284 3.67157 13 4.5 13C5.32843 13 6 12.3284 6 11.5V4C6 3.44772 5.55228 3 5 3H4ZM12.1113 10C12.0377 10.0001 11.9653 10.0193 11.9014 10.0557L9.79492 11.2715L6.8457 12.9746C6.83969 12.9827 6.83379 12.9914 6.82715 13H12C12.5523 13 13 12.5523 13 12V10.8887C13 10.3981 12.6019 10 12.1113 10ZM4.5 11C4.77614 11 5 11.2239 5 11.5C5 11.7761 4.77614 12 4.5 12C4.22386 12 4 11.7761 4 11.5C4 11.2239 4.22386 11 4.5 11ZM11.4893 6.57617C11.2734 6.20302 10.7963 6.07552 10.4229 6.29102C10.3691 6.32207 10.3241 6.36713 10.293 6.4209L7.3418 11.5312L10.6445 9.62695L11.7334 8.99805C12.2115 8.72183 12.3747 8.11004 12.0986 7.63184L11.4893 6.57617ZM8.11426 3.75586C7.7408 3.54035 7.2637 3.66781 7.04785 4.04102C7.01678 4.09483 7.00099 4.15661 7.00098 4.21875L7 10.124L9.53613 5.73047C9.812 5.25223 9.6481 4.64131 9.16992 4.36523L8.11426 3.75586Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconSwatch;

@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconAlignTop = React.forwardRef<SVGSVGElement, IconProps>(function IconAlignTop(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11.3535 7.64648C11.5488 7.84175 11.5488 8.15825 11.3535 8.35352C11.1583 8.54878 10.8417 8.54878 10.6465 8.35352L8.5 6.20703V13.5C8.5 13.7761 8.27614 14 8 14C7.72386 14 7.5 13.7761 7.5 13.5V6.20703L5.35352 8.35352C5.15825 8.54878 4.84175 8.54878 4.64648 8.35352C4.45122 8.15825 4.45122 7.84175 4.64648 7.64648L8 4.29297L11.3535 7.64648ZM13.5 2C13.7761 2 14 2.22386 14 2.5C14 2.77614 13.7761 3 13.5 3H2.5C2.22386 3 2 2.77614 2 2.5C2 2.22386 2.22386 2 2.5 2H13.5Z" fill="currentColor" fillOpacity={1} style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconAlignTop;

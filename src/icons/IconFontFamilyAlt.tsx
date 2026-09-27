@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconFontFamilyAlt = React.forwardRef<SVGSVGElement, IconProps>(function IconFontFamilyAlt(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M5 3C5.20605 3.00001 5.39098 3.12642 5.46582 3.31836L8.96582 12.3184C9.06584 12.5756 8.93871 12.8656 8.68164 12.9658C8.42442 13.0659 8.13442 12.9387 8.03418 12.6816L6.99121 10H3.00879L1.96582 12.6816C1.86558 12.9387 1.57558 13.0658 1.31836 12.9658C1.06128 12.8656 0.934148 12.5756 1.03418 12.3184L4.53418 3.31836L4.56738 3.25C4.6557 3.09707 4.81961 3 5 3ZM11.8818 6.15137C13.4625 5.7482 14.9998 6.943 15 8.57422V12.5C14.9999 12.776 14.776 13 14.5 13C14.2239 13 14.0001 12.776 14 12.5V12.2559C13.3889 12.7331 12.6311 13 11.8418 13H11.7705C10.5347 12.9999 9.59468 11.8899 9.79785 10.6709C9.95869 9.70673 10.793 9.00009 11.7705 9H12.7002C13.1377 8.99997 13.5732 8.94919 14 8.85449V8.57422C13.9998 7.59555 13.0772 6.87922 12.1289 7.12109L11.9551 7.16504C11.557 7.2666 11.2174 7.52733 11.0166 7.88574L10.9365 8.03027C10.8015 8.27097 10.4967 8.35647 10.2559 8.22168C10.015 8.08677 9.92872 7.7819 10.0635 7.54102L10.1445 7.39746C10.4792 6.80004 11.0445 6.36557 11.708 6.19629L11.8818 6.15137ZM14 9.87695C13.5717 9.95793 13.1367 9.99997 12.7002 10H11.7705C11.2817 10.0001 10.8645 10.3538 10.7842 10.8359C10.6828 11.4453 11.1528 11.9999 11.7705 12H11.8418C12.5857 12 13.2913 11.6691 13.7676 11.0977C13.9176 10.9175 13.9999 10.6905 14 10.4561V9.87695ZM3.39746 9H6.60254L5 4.87891L3.39746 9Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconFontFamilyAlt;

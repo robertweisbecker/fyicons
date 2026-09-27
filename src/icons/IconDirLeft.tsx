@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconDirLeft = React.forwardRef<SVGSVGElement, IconProps>(function IconDirLeft(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M6.14648 4.14685C6.34175 3.95159 6.65825 3.95159 6.85352 4.14685C7.04867 4.34212 7.04874 4.65865 6.85352 4.85388L4.20703 7.50037H12.5C12.7761 7.50037 13 7.72422 13 8.00037C12.9998 8.27632 12.776 8.50037 12.5 8.50037H4.20703L6.85352 11.1469C7.04867 11.3421 7.04874 11.6587 6.85352 11.8539C6.65826 12.0488 6.34165 12.0489 6.14648 11.8539L2.64648 8.35388L2.58398 8.27771C2.5297 8.19629 2.50008 8.09966 2.5 8.00037C2.5 7.8679 2.5529 7.74059 2.64648 7.64685L6.14648 4.14685Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconDirLeft;

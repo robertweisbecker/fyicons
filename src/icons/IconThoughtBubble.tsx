@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconThoughtBubble = React.forwardRef<SVGSVGElement, IconProps>(function IconThoughtBubble(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M2.5 12C3.32843 12 4 12.6716 4 13.5C4 14.3284 3.32843 15 2.5 15C1.67157 15 1 14.3284 1 13.5C1 12.6716 1.67157 12 2.5 12ZM2.5 13C2.22386 13 2 13.2239 2 13.5C2 13.7761 2.22386 14 2.5 14C2.77614 14 3 13.7761 3 13.5C3 13.2239 2.77614 13 2.5 13ZM8.5 1C9.47387 1 10.3537 1.39926 10.9873 2.04004C11.1536 2.01486 11.3246 2 11.5 2C13.433 2 15 3.567 15 5.5C15 6.4869 14.5891 7.37568 13.9336 8.01074C13.976 8.25077 14 8.49759 14 8.75C14 11.0972 12.0972 13 9.75 13C8.57944 13 7.52003 12.5255 6.75195 11.7607C6.4505 11.9118 6.11107 12 5.75 12C4.50736 12 3.5 10.9926 3.5 9.75C3.5 9.53936 3.52862 9.33516 3.58301 9.1416C2.64183 8.636 2 7.64465 2 6.5C2 4.84315 3.34315 3.5 5 3.5C5.04917 3.5 5.098 3.5015 5.14648 3.50391C5.57591 2.0564 6.91314 1 8.5 1ZM8.5 2C7.24494 2 6.20451 2.92542 6.02637 4.13086C6.00608 4.2677 5.93017 4.39004 5.81641 4.46875C5.70261 4.54741 5.56098 4.57522 5.42578 4.5459C5.28746 4.51593 5.14515 4.5 5 4.5C3.89543 4.5 3 5.39543 3 6.5C3 7.38917 3.58091 8.14382 4.38574 8.40332C4.52937 8.44963 4.64487 8.55844 4.69922 8.69922C4.75333 8.83978 4.74103 8.99732 4.66602 9.12793C4.56062 9.31115 4.5 9.52309 4.5 9.75C4.5 10.4404 5.05964 11 5.75 11C6.04394 11 6.31322 10.8975 6.52832 10.7256C6.74263 10.5542 7.05525 10.588 7.22852 10.8008C7.82528 11.5335 8.73301 12 9.75 12C11.5449 12 13 10.5449 13 8.75C13 8.47529 12.9657 8.20847 12.9014 7.95312C12.8538 7.76428 12.92 7.56496 13.0713 7.44238C13.6386 6.9828 14 6.28395 14 5.5C14 4.11929 12.8807 3 11.5 3C11.3036 3 11.1106 3.02466 10.9219 3.06934C10.7372 3.11307 10.5433 3.04824 10.4219 2.90234C9.96229 2.35022 9.27236 2 8.5 2Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconThoughtBubble;

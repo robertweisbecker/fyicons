@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconHandPalm = React.forwardRef<SVGSVGElement, IconProps>(function IconHandPalm(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M5.5 8.75C5.5 8.75 6.5 9.5 6.5 10.5M5.5 8.75V3.5C5.5 2.94772 5.94772 2.5 6.5 2.5C7.05228 2.5 7.5 2.94772 7.5 3.5V7.5V2.5C7.5 1.94772 7.94772 1.5 8.5 1.5C9.05228 1.5 9.5 1.94772 9.5 2.5V7.5V3.5C9.5 2.94772 9.94772 2.5 10.5 2.5C11.0523 2.5 11.5 2.94772 11.5 3.5V7.5V5.5C11.5 4.94772 11.9477 4.5 12.5 4.5C13.0523 4.5 13.5 4.94772 13.5 5.5V8.5C13.5 10.089 13.2626 11.2953 12.9514 12.1939C12.3637 13.8912 10.5375 14.5 8.74133 14.5H8.65951C7.5823 14.5 6.53416 14.1506 5.6724 13.5043C5.22967 13.1723 4.86629 12.7459 4.60854 12.2562L2.5 8.25C2.87822 7.49356 3.87134 7.3023 4.50344 7.86417L5.5 8.75Z" stroke="currentColor" style={{
+      stroke: "currentColor",
+      strokeOpacity: 1
+    }} strokeLinecap="round" strokeLinejoin="round" /></svg>;
+});
+export default IconHandPalm;

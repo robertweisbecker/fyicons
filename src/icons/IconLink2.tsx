@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconLink2 = React.forwardRef<SVGSVGElement, IconProps>(function IconLink2(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M5.14648 6.14624C6.44623 4.8465 8.55366 4.84667 9.85352 6.14624C10.0488 6.3415 10.0488 6.65801 9.85352 6.85327C9.65825 7.04853 9.34175 7.04853 9.14648 6.85327C8.23716 5.94423 6.76273 5.94405 5.85352 6.85327L3.85352 8.85327C2.9443 9.76249 2.94447 11.2369 3.85352 12.1462C4.76282 13.0555 6.23718 13.0555 7.14648 12.1462C7.34166 11.9511 7.65823 11.9512 7.85352 12.1462C8.04878 12.3415 8.04878 12.658 7.85352 12.8533C6.55368 14.1531 4.44632 14.1531 3.14648 12.8533C1.84692 11.5534 1.84674 9.44598 3.14648 8.14624L5.14648 6.14624ZM8.14648 3.14624C9.44623 1.8465 11.5537 1.84667 12.8535 3.14624C14.1533 4.44607 14.1533 6.55344 12.8535 7.85327L10.8535 9.85327C9.55368 11.1531 7.44632 11.1531 6.14648 9.85327C5.95149 9.65799 5.95131 9.34141 6.14648 9.14624C6.34166 8.95107 6.65823 8.95124 6.85352 9.14624C7.76282 10.0555 9.23718 10.0555 10.1465 9.14624L12.1465 7.14624C13.0558 6.23693 13.0558 4.76258 12.1465 3.85327C11.2372 2.94423 9.76274 2.94405 8.85352 3.85327C8.65825 4.04853 8.34175 4.04853 8.14648 3.85327C7.95149 3.65799 7.95131 3.34141 8.14648 3.14624Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconLink2;

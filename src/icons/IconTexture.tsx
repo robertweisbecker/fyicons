@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconTexture = React.forwardRef<SVGSVGElement, IconProps>(function IconTexture(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11 2C12.6569 2 14 3.34315 14 5V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V5C2 3.34315 3.34315 2 5 2H11ZM5 3C3.89543 3 3 3.89543 3 5V11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V5C13 3.89543 12.1046 3 11 3H5ZM11.1465 7.14648C11.3417 6.95122 11.6583 6.95122 11.8535 7.14648C12.0488 7.34175 12.0488 7.65825 11.8535 7.85352L7.85352 11.8535C7.65825 12.0488 7.34175 12.0488 7.14648 11.8535C6.95122 11.6583 6.95122 11.3417 7.14648 11.1465L11.1465 7.14648ZM11.1465 10.1465C11.3417 9.95122 11.6583 9.95122 11.8535 10.1465C12.0488 10.3417 12.0488 10.6583 11.8535 10.8535L10.8535 11.8535C10.6583 12.0488 10.3417 12.0488 10.1465 11.8535C9.95122 11.6583 9.95122 11.3417 10.1465 11.1465L11.1465 10.1465ZM10.6465 4.64648C10.8417 4.45122 11.1583 4.45122 11.3535 4.64648C11.5488 4.84175 11.5488 5.15825 11.3535 5.35352L5.35352 11.3535C5.15825 11.5488 4.84175 11.5488 4.64648 11.3535C4.45122 11.1583 4.45122 10.8417 4.64648 10.6465L10.6465 4.64648ZM8.14648 4.14648C8.34175 3.95122 8.65825 3.95122 8.85352 4.14648C9.04878 4.34175 9.04878 4.65825 8.85352 4.85352L4.85352 8.85352C4.65825 9.04878 4.34175 9.04878 4.14648 8.85352C3.95122 8.65825 3.95122 8.34175 4.14648 8.14648L8.14648 4.14648ZM5.14648 4.14648C5.34175 3.95122 5.65825 3.95122 5.85352 4.14648C6.04878 4.34175 6.04878 4.65825 5.85352 4.85352L4.85352 5.85352C4.65825 6.04878 4.34175 6.04878 4.14648 5.85352C3.95122 5.65825 3.95122 5.34175 4.14648 5.14648L5.14648 4.14648Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconTexture;

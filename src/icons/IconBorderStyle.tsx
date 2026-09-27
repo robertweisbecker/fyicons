@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconBorderStyle = React.forwardRef<SVGSVGElement, IconProps>(function IconBorderStyle(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M4 12C4.27614 12 4.5 12.2239 4.5 12.5C4.5 12.7761 4.27614 13 4 13C3.72386 13 3.5 12.7761 3.5 12.5C3.5 12.2239 3.72386 12 4 12ZM6 12C6.27614 12 6.5 12.2239 6.5 12.5C6.5 12.7761 6.27614 13 6 13C5.72386 13 5.5 12.7761 5.5 12.5C5.5 12.2239 5.72386 12 6 12ZM8 12C8.27614 12 8.5 12.2239 8.5 12.5C8.5 12.7761 8.27614 13 8 13C7.72386 13 7.5 12.7761 7.5 12.5C7.5 12.2239 7.72386 12 8 12ZM10 12C10.2761 12 10.5 12.2239 10.5 12.5C10.5 12.7761 10.2761 13 10 13C9.72386 13 9.5 12.7761 9.5 12.5C9.5 12.2239 9.72386 12 10 12ZM12 12C12.2761 12 12.5 12.2239 12.5 12.5C12.5 12.7761 12.2761 13 12 13C11.7239 13 11.5 12.7761 11.5 12.5C11.5 12.2239 11.7239 12 12 12ZM4.5 7.5C4.77614 7.5 5 7.72386 5 8C5 8.27614 4.77614 8.5 4.5 8.5H3.5C3.22386 8.5 3 8.27614 3 8C3 7.72386 3.22386 7.5 3.5 7.5H4.5ZM8.5 7.5C8.77614 7.5 9 7.72386 9 8C9 8.27614 8.77614 8.5 8.5 8.5H7.5C7.22386 8.5 7 8.27614 7 8C7 7.72386 7.22386 7.5 7.5 7.5H8.5ZM12.5 7.5C12.7761 7.5 13 7.72386 13 8C13 8.27614 12.7761 8.5 12.5 8.5H11.5C11.2239 8.5 11 8.27614 11 8C11 7.72386 11.2239 7.5 11.5 7.5H12.5ZM12.5 3C12.7761 3 13 3.22386 13 3.5C13 3.77614 12.7761 4 12.5 4H3.5C3.22386 4 3 3.77614 3 3.5C3 3.22386 3.22386 3 3.5 3H12.5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconBorderStyle;

@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconSortUp = React.forwardRef<SVGSVGElement, IconProps>(function IconSortUp(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M3.31923 2.67738C3.41685 2.5798 3.57512 2.57978 3.67274 2.67738L5.56923 4.57386C5.72617 4.73132 5.61482 5.00035 5.39247 5.00062H3.99989V12.5006C3.99951 12.7763 3.77564 13.0004 3.49989 13.0006C3.22398 13.0006 3.00027 12.7764 2.99989 12.5006V5.00062H1.60048C1.37797 5.00062 1.26595 4.73142 1.42274 4.57386L3.31923 2.67738ZM14.4999 11.9996C14.7759 11.9996 14.9997 12.2236 14.9999 12.4996C14.9999 12.7758 14.776 12.9996 14.4999 12.9996H6.49989C6.22393 12.9994 5.99989 12.7757 5.99989 12.4996C6.00005 12.2238 6.22403 11.9999 6.49989 11.9996H14.4999ZM11.4999 8.99964C11.7759 8.99964 11.9997 9.22364 11.9999 9.49964C11.9999 9.77579 11.776 9.99964 11.4999 9.99964H6.49989C6.22393 9.99943 5.99989 9.77565 5.99989 9.49964C6.00005 9.22377 6.22403 8.99986 6.49989 8.99964H11.4999ZM9.49989 5.99964C9.77593 5.99964 9.99973 6.22364 9.99989 6.49964C9.99989 6.77579 9.77603 6.99964 9.49989 6.99964H6.49989C6.22393 6.99943 5.99989 6.77565 5.99989 6.49964C6.00005 6.22377 6.22403 5.99986 6.49989 5.99964H9.49989Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconSortUp;

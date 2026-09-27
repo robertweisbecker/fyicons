@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconArrowRepeatOne = React.forwardRef<SVGSVGElement, IconProps>(function IconArrowRepeatOne(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M12.5002 8.0003C12.7764 8.0003 13.0002 8.22416 13.0002 8.5003C13.0001 10.4332 11.4331 12.0003 9.50023 12.0003H5.00023V13.5794C4.99996 13.794 4.74675 13.9083 4.5852 13.7669L2.21508 11.6927C2.10158 11.593 2.10138 11.4162 2.21508 11.3167L4.5852 9.24249C4.74684 9.10105 5.00023 9.21618 5.00023 9.43097V11.0003H9.50023C10.8808 11.0003 12.0001 9.88087 12.0002 8.5003C12.0002 8.22416 12.2241 8.0003 12.5002 8.0003ZM8.1184 6.40851C8.37923 6.13054 8.87523 6.30627 8.87523 6.71417V9.5003C8.87507 9.70726 8.70723 9.8753 8.50023 9.8753C8.29323 9.8753 8.1254 9.70727 8.12523 9.5003V7.53839C7.98459 7.65306 7.83184 7.75341 7.6682 7.83526C7.4832 7.92768 7.25807 7.85301 7.16527 7.66827C7.07274 7.4832 7.1474 7.25812 7.33227 7.16534C7.6014 7.03078 7.83131 6.82776 7.99828 6.57745L8.06957 6.47003L8.1184 6.40851ZM11.0002 2.42608C11.0002 2.21129 11.2536 2.09617 11.4153 2.23761L13.7854 4.31183C13.899 4.41136 13.8989 4.58818 13.7854 4.6878L11.4153 6.76202C11.2537 6.90336 11.0006 6.78901 11.0002 6.57452V4.9964H6.50023C5.11954 4.9964 4.00026 6.11571 4.00023 7.4964C4.00023 7.77254 3.77638 7.9964 3.50023 7.9964C3.22409 7.9964 3.00023 7.77254 3.00023 7.4964C3.00026 5.56342 4.56725 3.9964 6.50023 3.9964H11.0002V2.42608Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconArrowRepeatOne;

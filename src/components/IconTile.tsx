@@ -1,6 +1,6 @@
 import { Icon } from './Icon';
-import { Button } from './ui';
-import { SelectionCheckbox } from './SelectionCheckbox';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '../lib/utils';
 import type { IconRecord } from '../lib/catalog';
 
@@ -25,6 +25,8 @@ export function IconTile({
       )}
     >
       <Button
+        variant="unstyled"
+        size="unstyled"
         className={cn(
           'icon-tile flex h-28 w-full min-w-0 scroll-mt-18 flex-col items-center justify-center gap-4 rounded-lg px-2 pt-3 group-[.large]/grid:h-36 [&>svg]:size-(--preview-size)',
         )}
@@ -43,10 +45,10 @@ export function IconTile({
           {icon.name}
         </span>
       </Button>
-      <SelectionCheckbox
+      <Checkbox
         checked={selected}
-        label={'Select ' + icon.name}
-        onChange={toggleSelection}
+        aria-label={'Select ' + icon.name}
+        onCheckedChange={toggleSelection}
         className={cn(
           'absolute top-0 right-0 opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 data-checked:opacity-100 [@media(hover:none)]:opacity-100',
         )}

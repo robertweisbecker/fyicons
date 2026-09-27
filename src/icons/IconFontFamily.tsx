@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconFontFamily = React.forwardRef<SVGSVGElement, IconProps>(function IconFontFamily(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M14.4988 6.99974C14.7747 6.99987 14.9986 7.2238 14.9988 7.49974V12.4997C14.9988 12.7758 14.7748 12.9996 14.4988 12.9997C14.2229 12.9995 13.9988 12.7757 13.9988 12.4997V12.0564C13.9988 11.981 13.8967 11.9502 13.8513 12.0105C13.3943 12.6176 12.7343 12.9997 11.9988 12.9997C10.6183 12.9994 9.49879 11.6564 9.49879 9.99974C9.4989 8.3432 10.6184 7.00005 11.9988 6.99974C12.7342 6.99983 13.3943 7.38218 13.8513 7.989C13.8967 8.04921 13.9988 8.01848 13.9988 7.9431V7.49974C13.9989 7.22388 14.223 7 14.4988 6.99974ZM4.34839 3.3474C4.62972 2.84747 5.36892 2.84736 5.65015 3.3474L5.70289 3.46263L8.96851 12.3191C9.06381 12.5779 8.9312 12.8649 8.67261 12.9607C8.41357 13.0562 8.1256 12.9238 8.03004 12.6648L7.03785 9.9724H2.95972L1.96753 12.6648C1.87202 12.9238 1.58497 13.0561 1.32593 12.9607C1.06701 12.865 0.934528 12.5781 1.03003 12.3191L4.29566 3.46263L4.34839 3.3474ZM12.1658 8.09056C11.2456 8.09086 10.4989 8.94568 10.4988 9.99974C10.4988 11.0539 11.2455 11.9086 12.1658 11.9089C13.0861 11.9087 13.8328 11.054 13.8328 9.99974C13.8326 8.94562 13.086 8.09076 12.1658 8.09056ZM3.32886 8.9724H6.66871L4.99879 4.4431L3.32886 8.9724Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconFontFamily;

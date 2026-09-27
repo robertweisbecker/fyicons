@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconStop = React.forwardRef<SVGSVGElement, IconProps>(function IconStop(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11.7705 3.00195C12.0958 3.00705 12.2936 3.0276 12.4541 3.10938C12.6421 3.20522 12.7948 3.35793 12.8906 3.5459C12.9996 3.75976 13 4.03982 13 4.59961V11.4004L12.998 11.7705C12.9929 12.0958 12.9724 12.2936 12.8906 12.4541L12.8086 12.5879C12.7163 12.7148 12.5952 12.8187 12.4541 12.8906L12.3701 12.9268C12.2239 12.9789 12.0416 12.9938 11.7705 12.998L11.4004 13H4.59961C4.03982 13 3.75976 12.9996 3.5459 12.8906C3.40484 12.8187 3.28366 12.7148 3.19141 12.5879L3.10938 12.4541C3.0276 12.2936 3.00705 12.0958 3.00195 11.7705L3 11.4004V4.59961C3 4.10985 3.00026 3.83438 3.07324 3.62988L3.10938 3.5459C3.1813 3.40484 3.28523 3.28366 3.41211 3.19141L3.5459 3.10938C3.75976 3.00041 4.03982 3 4.59961 3H11.4004L11.7705 3.00195ZM4.59961 4C4.30333 4 4.14095 4.00122 4.02441 4.01074C4.01996 4.01111 4.01572 4.01135 4.01172 4.01172C4.01135 4.01572 4.01111 4.01996 4.01074 4.02441C4.00122 4.14095 4 4.30333 4 4.59961V11.4004C4 11.6967 4.00122 11.8591 4.01074 11.9756C4.01108 11.9797 4.01138 11.9836 4.01172 11.9873C4.01575 11.9877 4.01992 11.9889 4.02441 11.9893C4.14095 11.9988 4.30333 12 4.59961 12H11.4004C11.6967 12 11.8591 11.9988 11.9756 11.9893C11.9797 11.9889 11.9836 11.9876 11.9873 11.9873C11.9876 11.9836 11.9889 11.9797 11.9893 11.9756C11.9988 11.8591 12 11.6967 12 11.4004V4.59961C12 4.30333 11.9988 4.14095 11.9893 4.02441C11.9889 4.01992 11.9877 4.01575 11.9873 4.01172C11.9836 4.01138 11.9797 4.01108 11.9756 4.01074C11.8591 4.00122 11.6967 4 11.4004 4H4.59961Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconStop;

@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconListTaskDone = React.forwardRef<SVGSVGElement, IconProps>(function IconListTaskDone(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M5.05252 9.27598C5.17605 9.02934 5.4766 8.92917 5.72342 9.05235C5.97029 9.17578 6.07029 9.47632 5.94705 9.72325L3.94705 13.7232C3.87517 13.8669 3.73846 13.967 3.57986 13.9928C3.42132 14.0184 3.25985 13.9667 3.14627 13.8531L1.64627 12.3531C1.45135 12.1579 1.45114 11.8413 1.64627 11.6461C1.84142 11.4511 2.15806 11.4512 2.3533 11.6461L3.36209 12.6549L5.05252 9.27598ZM13.4998 10.9996C13.7758 10.9996 13.9996 11.2237 13.9998 11.4996C13.9998 11.7758 13.7759 11.9996 13.4998 11.9996H8.49978C8.22364 11.9996 7.99978 11.7758 7.99978 11.4996C8.00002 11.2237 8.22378 10.9996 8.49978 10.9996H13.4998ZM5.0535 2.27598C5.17713 2.02937 5.47757 1.92896 5.72439 2.05235C5.97114 2.17578 6.0711 2.47638 5.94803 2.72325L3.94803 6.72325C3.87626 6.86659 3.73999 6.96681 3.58182 6.99278C3.42328 7.01853 3.26187 6.9666 3.14822 6.85313L1.64725 5.35313C1.45207 5.15789 1.45206 4.84136 1.64725 4.6461C1.84249 4.45127 2.15913 4.45108 2.35428 4.6461L3.36404 5.65586L5.0535 2.27598ZM13.4998 3.99961C13.7758 3.99961 13.9996 4.22367 13.9998 4.49961C13.9998 4.77576 13.7759 4.99961 13.4998 4.99961H8.49978C8.22364 4.99961 7.99978 4.77576 7.99978 4.49961C8.00002 4.22367 8.22378 3.99961 8.49978 3.99961H13.4998Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconListTaskDone;

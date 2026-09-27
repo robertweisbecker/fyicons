@@ -1,5 +1,6 @@
 import { Icon } from './Icon';
-import { Button, IconButton } from './ui';
+import { Button } from '@/components/ui/button';
+import { IconButton } from '@/components/IconButton';
 import { cn } from '../lib/utils';
 import type { MouseEvent } from 'react';
 import { pageHref, type Page } from '../lib/navigation';
@@ -68,7 +69,7 @@ export function SiteHeader({
             className="pointer-coarse:size-11"
           />
           <Button
-            variant="primary"
+            variant="default"
             disabled={packing}
             onClick={download}
             aria-label={packing ? 'Preparing download' : 'Download'}

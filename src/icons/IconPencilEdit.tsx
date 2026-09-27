@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconPencilEdit = React.forwardRef<SVGSVGElement, IconProps>(function IconPencilEdit(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M6.5 1.99999C6.77613 1.99999 6.99998 2.22387 7 2.49999C7 2.77613 6.77614 2.99999 6.5 2.99999H5C3.89544 2.99999 3.00002 3.89544 3 4.99999V11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V9.49999C13 9.22387 13.2239 8.99999 13.5 8.99999C13.7761 8.99999 14 9.22387 14 9.49999V11C14 12.6568 12.6569 14 11 14H5C3.34315 14 2 12.6568 2 11V4.99999C2.00002 3.34316 3.34316 1.99999 5 1.99999H6.5ZM11.1465 2.14648C11.894 1.39893 13.106 1.39893 13.8535 2.14648C14.6011 2.89402 14.6011 4.10596 13.8535 4.85351L8.77051 9.93651C8.44132 10.2656 8.0402 10.5139 7.59863 10.6611L6.10645 11.1582C5.32493 11.4184 4.58159 10.6751 4.8418 9.89355L5.33887 8.40136C5.48611 7.95979 5.73439 7.55867 6.06348 7.22948L11.1465 2.14648ZM13.1465 2.85351C12.7895 2.49648 12.2105 2.49648 11.8535 2.85351L6.77051 7.93651C6.5512 8.15593 6.38624 8.42348 6.28809 8.71776L5.79102 10.209L7.28223 9.71191C7.57651 9.61375 7.84407 9.44879 8.06348 9.22948L13.1465 4.14648C13.5035 3.78945 13.5035 3.21053 13.1465 2.85351Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconPencilEdit;

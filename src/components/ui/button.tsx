@@ -1,56 +1,55 @@
 import { Button as ButtonPrimitive } from '@base-ui/react/button';
-import { Icon } from '../Icon';
-import { cn } from '../../lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
 
-type Variant = 'outline' | 'primary' | 'text' | 'icon' | 'unstyled';
-type ButtonProps = Omit<ButtonPrimitive.Props, 'className'> & {
-  className?: string;
-  variant?: Variant;
-};
+export const buttonVariants = cva(
+  'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-muted disabled:pointer-events-none disabled:opacity-40 gap-1.5',
+  {
+    variants: {
+      variant: {
+        default:
+          'rounded-lg border border-transparent bg-ink text-canvas hover:opacity-90',
+        outline: 'rounded-lg border border-line bg-surface hover:bg-hover',
+        ghost: 'rounded-lg hover:bg-current/5 aria-pressed:bg-current/15',
+        text: 'text-muted hover:text-ink',
+        unstyled: '',
+      },
+      size: {
+        default: 'min-h-9 px-3',
+        sm: 'min-h-8 px-2',
+        lg: 'min-h-10 px-4',
+        icon: 'size-9 p-0',
+        'icon-sm': 'size-8 p-0',
+        unstyled: '',
+      },
+    },
+    compoundVariants: [
+      {
+        variant: ['default', 'outline', 'ghost', 'text'],
+        className:
+          'inline-flex shrink-0 items-center justify-center text-xs font-medium whitespace-nowrap',
+      },
+    ],
+    defaultVariants: { variant: 'default', size: 'default' },
+  },
+);
 
-export function buttonStyles(variant: Variant = 'outline') {
-  return cn(
-    variant !== 'unstyled' &&
-      'inline-flex shrink-0 items-center justify-center gap-2 text-xs font-medium disabled:opacity-40',
-    (variant === 'outline' || variant === 'primary') &&
-      'min-h-9 rounded-lg border px-3 whitespace-nowrap',
-    variant === 'outline' && 'border-line bg-surface hover:bg-hover',
-    variant === 'primary' &&
-      'border-transparent bg-ink text-canvas hover:opacity-90',
-    variant === 'text' && 'min-h-9 text-muted hover:text-ink',
-    variant === 'icon' &&
-      'size-9 rounded-lg hover:bg-hover aria-pressed:bg-selection',
-  );
-}
+export type ButtonProps = Omit<ButtonPrimitive.Props, 'className'> &
+  VariantProps<typeof buttonVariants> & { className?: string };
 
 export function Button({
   className,
-  variant = 'unstyled',
+  variant = 'default',
+  size = 'default',
   ...props
 }: ButtonProps) {
   return (
     <ButtonPrimitive
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
       {...props}
-      className={cn(buttonStyles(variant), className)}
+      className={cn(buttonVariants({ variant, size }), className)}
     />
-  );
-}
-
-export function IconButton({
-  icon,
-  label,
-  className,
-  ...props
-}: Omit<ButtonProps, 'variant'> & { icon: string; label: string }) {
-  return (
-    <Button
-      {...props}
-      variant="icon"
-      className={cn('icon-button', className)}
-      aria-label={label}
-      title={label}
-    >
-      <Icon name={icon} />
-    </Button>
   );
 }

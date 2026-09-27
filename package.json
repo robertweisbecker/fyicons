@@ -4,10 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "tsc -b && vite build && node scripts/measure-build.mjs",
+    "dev": "npm run generate:icons && vite --host 127.0.0.1",
+    "build": "npm run generate:icons && tsc -b && vite build && node scripts/measure-build.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "sync-icons": "node scripts/sync-icons.mjs",
+    "generate:icons": "node scripts/generate-icons.mjs",
+    "check:icons": "node scripts/generate-icons.mjs --check",
+    "test:icons": "node --test tests/icons-source.test.mjs tests/react-icons.test.mjs",
     "test": "playwright test",
     "format": "prettier --write src tests *.ts *.json README.md .github/workflows/*.yml"
   },
@@ -16,6 +19,7 @@
   },
   "dependencies": {
     "@base-ui/react": "1.8.0",
+    "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "fflate": "0.8.3",
     "react": "19.3.0",
@@ -24,6 +28,8 @@
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
+    "@svgr/core": "8.1.0",
+    "@svgr/plugin-jsx": "8.1.0",
     "@tailwindcss/vite": "4.3.3",
     "@types/node": "26.6.3",
     "@types/react": "19.3.0",

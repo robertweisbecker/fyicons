@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconBug1 = React.forwardRef<SVGSVGElement, IconProps>(function IconBug1(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M10.5 1C10.7761 1 11 1.22386 11 1.5C11 2.10905 10.7377 2.67732 10.2979 3.07324C10.7355 3.59458 11 4.26609 11 5V5.08691C11.4283 5.23848 11.7657 5.57843 11.915 6.00781C11.9427 6.00307 11.971 6 12 6C12.5523 6 13 5.55228 13 5V3.5C13 3.22386 13.2239 3 13.5 3C13.7761 3 14 3.22386 14 3.5V5C14 6.10457 13.1046 7 12 7V9H13.5C13.7761 9 14 9.22386 14 9.5C14 9.77614 13.7761 10 13.5 10H12C11.979 10 11.9588 9.99567 11.9385 9.99316C11.8848 10.401 11.7962 10.7762 11.6787 11.1201C12.4489 11.3982 13 12.1339 13 13V14.5C13 14.7761 12.7761 15 12.5 15C12.2239 15 12 14.7761 12 14.5V13C12 12.5377 11.686 12.1496 11.2598 12.0352C10.4722 13.3606 9.18005 14 8 14C6.81983 14 5.52677 13.3608 4.73926 12.0352C4.31352 12.1499 4 12.538 4 13V14.5C4 14.7761 3.77614 15 3.5 15C3.22387 15 3 14.7761 3 14.5V13C3 12.1343 3.5506 11.3985 4.32031 11.1201C4.2029 10.7762 4.11425 10.4009 4.06055 9.99316C4.04058 9.99559 4.02063 10 4 10H2.5C2.22386 10 2 9.77614 2 9.5C2 9.22386 2.22386 9 2.5 9H4V7C2.89543 7 2 6.10457 2 5V3.5C2 3.22386 2.22386 3 2.5 3C2.77614 3 3 3.22386 3 3.5V5C3 5.55228 3.44772 6 4 6C4.02867 6 4.05664 6.00318 4.08398 6.00781C4.23326 5.57829 4.57157 5.23851 5 5.08691V5C5 4.26632 5.26381 3.59451 5.70117 3.07324C5.26168 2.67734 5 2.1088 5 1.5C5 1.22386 5.22386 1 5.5 1C5.77614 1 6 1.22386 6 1.5C6 1.86875 6.18152 2.20992 6.47852 2.41699C6.9249 2.15349 7.44411 2 8 2C8.55558 2 9.07429 2.15375 9.52051 2.41699C9.81789 2.20997 10 1.86902 10 1.5C10 1.22386 10.2239 1 10.5 1ZM5.5 6C5.22386 6 5 6.22386 5 6.5V9.05566C5.00004 11.919 6.74818 13 8 13C9.25182 13 11 11.919 11 9.05566V6.5C11 6.22386 10.7761 6 10.5 6H5.5ZM8 3C6.89543 3 6 3.89543 6 5H10C10 3.89543 9.10457 3 8 3Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconBug1;

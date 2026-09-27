@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconArrowUndo = React.forwardRef<SVGSVGElement, IconProps>(function IconArrowUndo(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M4.62598 3.00533C4.56526 3.01657 4.50959 3.04468 4.46582 3.08541L2.0918 5.29439C2.06283 5.32136 2.03915 5.35293 2.02344 5.38814C2.0077 5.42348 2 5.4622 2 5.50045C2.00006 5.53854 2.00777 5.57658 2.02344 5.61178C2.03914 5.647 2.06283 5.67855 2.0918 5.70553L4.46582 7.91451C4.50959 7.95524 4.56526 7.98335 4.62598 7.99459C4.68661 8.0058 4.74951 7.99996 4.80664 7.97799C4.86383 7.95594 4.91288 7.91846 4.94727 7.87056C4.98165 7.82267 5.00001 7.76605 5 7.70846V6.00045H10C11.6569 6.00045 13 7.34359 13 9.00045C12.9998 10.6571 11.6567 12.0004 10 12.0004H7.5C7.22386 12.0004 7 12.2243 7 12.5004C7.00024 12.7764 7.22401 13.0004 7.5 13.0004H10C12.209 13.0004 13.9998 11.2094 14 9.00045C14 6.79131 12.2091 5.00045 10 5.00045H5V3.29146C5.00001 3.23387 4.98165 3.17725 4.94727 3.12935C4.91288 3.08149 4.86381 3.04397 4.80664 3.02193C4.74953 2.99997 4.68659 2.99412 4.62598 3.00533Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconArrowUndo;

@@ -1,8 +1,10 @@
 import { cn } from '../lib/utils';
 import { useRef, useState } from 'react';
-import { IconToggle as Toggle } from '../components/ui/icon-toggle';
+import { ToggleIcon } from '@/components/ToggleIcon';
+import { ToggleGroup } from '@/components/ui/toggle-group';
+import { Toggle } from '@/components/ui/toggle';
 import { Icon } from '../components/Icon';
-import { IconButton } from '../components/ui';
+import { IconButton } from '@/components/IconButton';
 import { copy } from '../lib/downloads';
 import { readPreference } from '../lib/preferences';
 
@@ -26,29 +28,29 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
   return (
     <div
       className={cn(
-        'demo-card flex h-115 flex-col overflow-hidden rounded-xl border border-[#dfe1dd] bg-[#fcfaf6] text-[#6d5845] scheme-light shadow-[0_12px_30px_-26px_#243c263b] max-[680px]:h-117.5',
+        'demo-card flex h-115 flex-col overflow-hidden rounded-xl border border-neutral-200 bg-taupe-50 text-olive-600 scheme-light shadow-sm max-[680px]:h-117.5',
       )}
     >
       <div
         className={cn(
-          'flex h-14 items-center justify-between border-b border-[#e7dfd5] px-5',
+          'flex h-14 items-center justify-between border-b border-taupe-200 px-5',
         )}
       >
         <strong className={cn('flex items-center gap-2')}>
           <Icon name="book-open" />
           margin
         </strong>
-        <span className={cn('flex items-center gap-2 text-xs text-[#a19381]')}>
+        <span className={cn('flex items-center gap-2 text-xs text-stone-500')}>
           <Icon name="cloud" />
           Saved locally
         </span>
-        <Toggle aria-label="Bookmark this document">
-          <Icon name="bookmark" />
+        <Toggle size="icon" aria-label="Bookmark this document">
+          <ToggleIcon icon="bookmark" activeIcon="bookmark-fill" />
         </Toggle>
       </div>
       <div
         className={cn(
-          'flex items-center gap-2 border-b border-[#ede5da] px-5 py-3 text-xs text-[#aa9b88]',
+          'flex items-center gap-2 border-b border-olive-200 px-5 py-3 text-xs text-stone-500',
         )}
       >
         <Icon name="library" />
@@ -58,33 +60,33 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
       </div>
       <div
         className={cn(
-          'flex items-center gap-1 border-b border-[#ede5da] px-4 py-1',
+          'flex flex-wrap items-center gap-1 border-b border-olive-200 px-4 py-1',
         )}
         role="toolbar"
         aria-label="Document formatting"
       >
-        {[
-          ['bold', 'text-bold', 'Bold'],
-          ['italic', 'italic', 'Italic'],
-          ['underline', 'text-underline', 'Underline'],
-          ['list', 'list-bullet', 'Toggle list'],
-          ['quote', 'quote-outline', 'Toggle quote'],
-        ].map(([value, icon, label]) => (
-          <Toggle
-            key={value}
-            aria-label={label}
-            pressed={formats.includes(value)}
-            onPressedChange={(pressed) =>
-              setFormats(
-                pressed
-                  ? [...formats, value]
-                  : formats.filter((item) => item !== value),
-              )
-            }
-          >
-            <Icon name={icon} />
-          </Toggle>
-        ))}
+        <ToggleGroup
+          multiple
+          value={formats}
+          onValueChange={setFormats}
+          aria-label="Text styles"
+        >
+          {[
+            ['bold', 'text-bold', 'Bold'],
+            ['italic', 'italic', 'Italic'],
+            ['underline', 'text-underline', 'Underline'],
+            ['list', 'list-bullet', 'Toggle list'],
+            ['quote', 'quote-outline', 'Toggle quote'],
+          ].map(([value, icon, label]) => (
+            <Toggle size="icon" key={value} aria-label={label} value={value}>
+              {value === 'quote' ? (
+                <ToggleIcon icon="quote-outline" activeIcon="quote-default" />
+              ) : (
+                <Icon name={icon} />
+              )}
+            </Toggle>
+          ))}
+        </ToggleGroup>
         <IconButton
           icon="arrow-undo"
           label="Restore original text"
@@ -107,7 +109,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
       <div className={cn('min-h-0 flex-1 overflow-auto px-7 py-5')}>
         <div
           className={cn(
-            'mb-3 flex items-center gap-2 text-xs tracking-normal text-[#b5a58c]',
+            'mb-3 flex items-center gap-2 text-xs tracking-normal text-olive-500',
           )}
         >
           <Icon name="sun" />
@@ -127,23 +129,19 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
           onInput={(event) => save(event.currentTarget.textContent ?? '')}
           className={cn(
             'min-h-22 text-sm leading-relaxed whitespace-pre-wrap outline-none',
-            formats.includes('quote') ? 'border-l-2 border-[#b7a384] pl-3' : '',
+            formats.includes('bold') && 'font-bold',
+            formats.includes('italic') && 'italic',
+            formats.includes('underline') && 'underline',
+            formats.includes('quote') ? 'border-l-2 border-olive-400 pl-3' : '',
             formats.includes('list')
               ? "list-treatment relative pl-4 before:absolute before:left-0 before:content-['•']"
               : '',
           )}
-          style={{
-            fontWeight: formats.includes('bold') ? 700 : 400,
-            fontStyle: formats.includes('italic') ? 'italic' : 'normal',
-            textDecoration: formats.includes('underline')
-              ? 'underline'
-              : 'none',
-          }}
         >
           {initial.current}
         </div>
         <p
-          className={cn('mt-5 flex items-center gap-2 text-xs text-[#af9c7f]')}
+          className={cn('mt-5 flex items-center gap-2 text-xs text-stone-500')}
         >
           <Icon name="lightbulb" />
           Next review: Friday
@@ -151,7 +149,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
       </div>
       <div
         className={cn(
-          'flex items-center justify-between border-t border-[#ede5da] px-5 py-3 text-xs text-[#ac9a85]',
+          'flex items-center justify-between border-t border-olive-200 px-5 py-3 text-xs text-stone-500',
         )}
       >
         <span className={cn('flex items-center gap-2')}>

@@ -6,6 +6,7 @@ on:
     paths:
       [
         'src/**',
+        'icons/**',
         'public/**',
         'scripts/**',
         'tests/**',
@@ -20,6 +21,7 @@ on:
     paths:
       [
         'src/**',
+        'icons/**',
         'public/**',
         'scripts/**',
         'tests/**',
@@ -50,6 +52,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - run: npm run check:icons
+      - run: npm run test:icons
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm test

@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconSwirl = React.forwardRef<SVGSVGElement, IconProps>(function IconSwirl(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M7.44561 1.02124C9.01745 0.896531 10.5858 1.30673 11.8958 2.18433C13.2056 3.06191 14.1808 4.35627 14.6634 5.85718C15.1459 7.35809 15.1078 8.97841 14.555 10.4548C13.8805 12.2553 12.4302 13.4264 10.8685 13.7107C9.28738 13.9984 7.63351 13.3661 6.65069 11.6638C5.97192 10.488 6.13575 9.03996 6.75127 7.91187C7.368 6.78187 8.50064 5.85837 9.89874 5.81617C10.1746 5.80786 10.4049 6.02468 10.4134 6.30054C10.4217 6.57651 10.205 6.80678 9.92901 6.81519C8.97715 6.84392 8.1247 7.48337 7.6292 8.39136C7.1327 9.30141 7.05736 10.3677 7.5169 11.1638C8.28401 12.4924 9.51458 12.9399 10.6888 12.7263C11.8823 12.5091 13.0594 11.5967 13.6185 10.1043C14.0923 8.83882 14.1247 7.45026 13.7112 6.16382C13.2976 4.87733 12.4618 3.76762 11.3392 3.01539C10.2163 2.26316 8.872 1.91142 7.52471 2.01831C6.17744 2.12522 4.90549 2.68438 3.91534 3.60425C2.9253 4.52412 2.27426 5.75197 2.06866 7.08765C1.86325 8.42326 2.11491 9.78972 2.78252 10.9646C3.18314 11.6695 3.7202 12.2805 4.35577 12.7664C4.57506 12.934 4.61694 13.2482 4.44952 13.4675C4.28182 13.6869 3.96774 13.729 3.74834 13.5613C3.00686 12.9945 2.3808 12.2812 1.91338 11.4587C1.13443 10.0879 0.840632 8.49363 1.08038 6.93531C1.32023 5.37703 2.07967 3.94501 3.23467 2.87183C4.38986 1.79864 5.87378 1.14596 7.44561 1.02124Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconSwirl;

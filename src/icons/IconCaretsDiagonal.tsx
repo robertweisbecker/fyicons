@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconCaretsDiagonal = React.forwardRef<SVGSVGElement, IconProps>(function IconCaretsDiagonal(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M6.29289 13.0001C6.73835 13.0001 6.96143 12.4615 6.64645 12.1465L3.85355 9.35361C3.53857 9.03863 3 9.26172 3 9.70717L3 12.5001C3 12.7762 3.22386 13.0001 3.5 13.0001H6.29289ZM13 6.29298C13 6.73843 12.4614 6.96152 12.1464 6.64653L9.35355 3.85361C9.03857 3.53863 9.26165 3.00006 9.7071 3.00006H12.5C12.7761 3.00006 13 3.22392 13 3.50006V6.29298Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconCaretsDiagonal;

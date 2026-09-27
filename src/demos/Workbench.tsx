@@ -1,9 +1,19 @@
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
 import { Avatar, AvatarFallback } from '../components/ui/avatar';
+import { Toggle } from '@/components/ui/toggle';
+import { ToggleIcon } from '@/components/ToggleIcon';
 import { cn } from '../lib/utils';
 import { useRef, useState } from 'react';
 import { Tabs } from '@base-ui/react/tabs';
 import { Icon } from '../components/Icon';
-import { Button, IconButton } from '../components/ui';
+import { Button } from '@/components/ui/button';
+import { IconButton } from '@/components/IconButton';
 import { copy } from '../lib/downloads';
 
 const sessions = [
@@ -31,18 +41,18 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
   return (
     <div
       className={cn(
-        'study-window demo-surface workbench-window flex h-190 overflow-hidden rounded-[13px] border border-[#d8dadd] bg-white font-sans text-sm font-normal tracking-normal text-[#28292b] antialiased scheme-light shadow-[0_2px_5px_#10182803,0_16px_48px_-24px_#27334638] [--app-blue:#007aff] [--app-line:#e9e9e5] [--hover:#eceef0] [--muted:#777a80] [--text:#28292b] max-[850px]:h-205 max-[680px]:h-197.5 max-[680px]:rounded-[10px] [&_button]:focus-visible:outline-[#777] [&_input]:focus-visible:outline-[#777] [&_textarea]:focus-visible:outline-[#777]',
+        'study-window demo-surface workbench-window flex h-190 overflow-hidden rounded-[13px] border border-mist-300 bg-white font-sans text-sm font-normal tracking-normal text-zinc-800 antialiased scheme-light shadow-xl shadow-slate-900/10 [--app-blue:var(--color-blue-500)] [--app-line:var(--color-olive-200)] [--hover:var(--color-mauve-100)] [--muted:var(--color-neutral-500)] [--text:var(--color-zinc-800)] max-[850px]:h-205 max-[680px]:h-197.5 max-[680px]:rounded-[10px] [&_button]:focus-visible:outline-neutral-500 [&_input]:focus-visible:outline-neutral-500 [&_textarea]:focus-visible:outline-neutral-500',
       )}
       id="workbench-window"
     >
       <aside
         className={cn(
-          'study-sidebar workbench-sidebar flex shrink-0 basis-56.5 flex-col border-r border-(--app-line) bg-[#f5f5f2] px-3 pt-5 pb-3 max-[1240px]:basis-52 max-[1050px]:basis-46 max-[850px]:basis-49 max-[680px]:hidden',
+          'study-sidebar workbench-sidebar flex shrink-0 basis-56.5 flex-col border-r border-(--app-line) bg-stone-100 px-3 pt-5 pb-3 max-[1240px]:basis-52 max-[1050px]:basis-46 max-[850px]:basis-49 max-[680px]:hidden',
         )}
       >
         <div
           className={cn(
-            'window-controls mb-6 flex h-4 items-center gap-2 px-2 [&_i]:size-2.75 [&_i]:rounded-full [&_i]:bg-[#ff5f57] [&_i]:shadow-[inset_0_0_0_1px_#0000000d] [&_i:nth-child(2)]:bg-[#febc2e] [&_i:nth-child(3)]:bg-[#28c840]',
+            'window-controls mb-6 flex h-4 items-center gap-2 px-2 [&_i]:size-2.75 [&_i]:rounded-full [&_i]:bg-red-400 [&_i]:shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--color-black)_5%,transparent)] [&_i:nth-child(2)]:bg-amber-400 [&_i:nth-child(3)]:bg-green-500',
           )}
           aria-hidden="true"
         >
@@ -52,12 +62,12 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         </div>
         <div
           className={cn(
-            'workspace-identity mt-1 mb-6 flex items-center gap-2.5 px-2 [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:font-normal [&_small]:text-[#8a8b87] [&>span:nth-child(2)]:flex-1 [&>span:nth-child(2)]:text-sm [&>span:nth-child(2)]:font-semibold [&>svg]:text-[#8a8b87]',
+            'workspace-identity mt-1 mb-6 flex items-center gap-2.5 px-2 [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:font-normal [&_small]:text-olive-500 [&>span:nth-child(2)]:flex-1 [&>span:nth-child(2)]:text-sm [&>span:nth-child(2)]:font-semibold [&>svg]:text-olive-500',
           )}
         >
           <span
             className={cn(
-              'workspace-avatar grid size-8 place-items-center rounded-lg bg-[#303734] text-base font-semibold text-white',
+              'workspace-avatar grid size-8 place-items-center rounded-lg bg-neutral-700 text-base font-semibold text-white',
             )}
           >
             FY
@@ -68,8 +78,10 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           <Icon name="chevrons-up-down-sm" />
         </div>
         <Button
+          variant="unstyled"
+          size="unstyled"
           className={cn(
-            'app-nav-item new-task my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#303632] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+            'app-nav-item new-task my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-olive-800 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
           )}
           onClick={() => {
             setTitle('New task');
@@ -81,15 +93,17 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           New task
           <span
             className={cn(
-              'key-hint ml-auto text-xs text-[#969a9d] tabular-nums',
+              'key-hint ml-auto text-xs text-zinc-500 tabular-nums',
             )}
           >
             ⌘ N
           </span>
         </Button>
         <Button
+          variant="unstyled"
+          size="unstyled"
           className={cn(
-            'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+            'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
           )}
           onClick={() => input.current?.focus()}
         >
@@ -97,7 +111,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           Find a task
           <span
             className={cn(
-              'key-hint ml-auto text-xs text-[#969a9d] tabular-nums',
+              'key-hint ml-auto text-xs text-zinc-500 tabular-nums',
             )}
           >
             ⌘ K
@@ -105,16 +119,18 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         </Button>
         <div
           className={cn(
-            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-[#999b9d]',
+            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-neutral-500',
           )}
         >
           Workspace
         </div>
         {['Projects', 'Automations', 'Saved context'].map((label, i) => (
           <Button
+            variant="unstyled"
+            size="unstyled"
             key={label}
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
             )}
             onClick={() => setTitle(label)}
           >
@@ -124,7 +140,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         ))}
         <div
           className={cn(
-            'app-nav-label recent-label mt-8 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-[#999b9d]',
+            'app-nav-label recent-label mt-8 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-neutral-500',
           )}
         >
           Recent tasks
@@ -132,9 +148,11 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         </div>
         {sessions.map((session) => (
           <Button
+            variant="unstyled"
+            size="unstyled"
             key={session}
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
               title === session ? 'selected' : '',
             )}
             onClick={() => setTitle(session)}
@@ -146,26 +164,28 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         <div className={cn('sidebar-bottom mt-auto')}>
           <div
             className={cn(
-              'local-indicator mx-2.5 my-5 flex items-center gap-2 text-xs text-[#8b8f8a]',
+              'local-indicator mx-2.5 my-5 flex items-center gap-2 text-xs text-neutral-500',
             )}
           >
             <span
               className={cn(
-                'status-point size-1.25 shrink-0 rounded-full bg-[#799380]',
+                'status-point size-1.25 shrink-0 rounded-full bg-olive-500',
               )}
             />
             Everything up to date
           </div>
           <Button
+            variant="unstyled"
+            size="unstyled"
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
             )}
             onClick={() => notify('Jamie Davis · Personal workspace')}
           >
             <Avatar
               aria-label="Jamie Davis"
               className={cn(
-                'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-xs font-semibold tracking-normal text-[#687267]',
+                'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-olive-300 text-xs font-semibold tracking-normal text-neutral-500',
               )}
             >
               <AvatarFallback>JD</AvatarFallback>
@@ -176,9 +196,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         </div>
       </aside>
       <div
-        className={cn(
-          'workbench-main flex min-w-0 flex-1 flex-col bg-[#fefefd]',
-        )}
+        className={cn('workbench-main flex min-w-0 flex-1 flex-col bg-white')}
       >
         <header
           className={cn(
@@ -187,14 +205,14 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         >
           <div
             className={cn(
-              'app-breadcrumb flex min-w-0 items-center gap-2 text-xs whitespace-nowrap text-[#999c9d] max-[680px]:gap-1.5 max-[680px]:text-[0px] [&_strong]:truncate [&_strong]:font-medium [&_strong]:text-[#555b58] max-[680px]:[&_strong]:max-w-44 max-[680px]:[&_strong]:text-xs max-[680px]:[&>svg]:hidden',
+              'app-breadcrumb flex min-w-0 items-center gap-2 text-xs whitespace-nowrap text-neutral-500 max-[680px]:gap-1.5 max-[680px]:text-[0px] [&_strong]:truncate [&_strong]:font-medium [&_strong]:text-mist-600 max-[680px]:[&_strong]:max-w-44 max-[680px]:[&_strong]:text-xs max-[680px]:[&>svg]:hidden',
             )}
           >
             <Icon name="folder" />
             Interface kit
             <span
               className={cn(
-                'breadcrumb-slash px-1 text-[#c5c8c6] max-[680px]:hidden',
+                'breadcrumb-slash px-1 text-mauve-300 max-[680px]:hidden',
               )}
             >
               /
@@ -202,24 +220,25 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
             <strong>{title}</strong>
           </div>
           <div className={cn('titlebar-actions flex gap-2 max-[680px]:gap-1')}>
-            <IconButton
-              className={cn(
-                'app-icon-button inline-flex size-8 shrink-0 items-center justify-center rounded-md text-[#757980] hover:bg-[#f0f1f3] pointer-coarse:min-h-11 pointer-coarse:min-w-11',
-              )}
-              icon="terminal-square"
-              label="Toggle terminal"
-              aria-pressed={terminal}
-              onClick={() => setTerminal(!terminal)}
-            />
-            <IconButton
-              className={cn(
-                'app-icon-button inline-flex size-8 shrink-0 items-center justify-center rounded-md text-[#757980] hover:bg-[#f0f1f3] pointer-coarse:min-h-11 pointer-coarse:min-w-11',
-              )}
-              icon="panel-right"
-              label="Toggle changes panel"
-              aria-pressed={review}
-              onClick={() => setReview(!review)}
-            />
+            <Toggle
+              size="icon-sm"
+              aria-label="Toggle terminal"
+              pressed={terminal}
+              onPressedChange={setTerminal}
+            >
+              <Icon name="terminal-square" />
+            </Toggle>
+            <Toggle
+              size="icon-sm"
+              aria-label="Toggle changes panel"
+              pressed={review}
+              onPressedChange={setReview}
+            >
+              <ToggleIcon
+                icon="panel-right-closed"
+                activeIcon="panel-right-open"
+              />
+            </Toggle>
           </div>
         </header>
         <div className={cn('workbench-split flex min-h-0 flex-1')}>
@@ -233,20 +252,20 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
             >
               <div
                 className={cn(
-                  'conversation-meta mb-5 flex items-center justify-center gap-2 text-xs text-[#a7a9a6]',
+                  'conversation-meta mb-5 flex items-center justify-center gap-2 text-xs text-mist-500',
                 )}
               >
                 Today, 10:42 AM
               </div>
               <div
                 className={cn(
-                  'user-message mb-6 flex items-start gap-3 [&_p]:mt-1 [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-[#5c6359] [&_strong]:text-xs [&_strong]:text-[#8c9585] max-[680px]:[&>.person-avatar]:hidden [&>div]:min-w-0 [&>div]:flex-1 [&>div]:rounded-xl [&>div]:bg-[#f1f2ee] [&>div]:px-4 [&>div]:py-3',
+                  'user-message mb-6 flex items-start gap-3 [&_p]:mt-1 [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-olive-600 [&_strong]:text-xs [&_strong]:text-neutral-500 max-[680px]:[&>.person-avatar]:hidden [&>div]:min-w-0 [&>div]:flex-1 [&>div]:rounded-xl [&>div]:bg-taupe-100 [&>div]:px-4 [&>div]:py-3',
                 )}
               >
                 <Avatar
                   aria-label="Jamie Davis"
                   className={cn(
-                    'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-xs font-semibold tracking-normal text-[#687267]',
+                    'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-olive-300 text-xs font-semibold tracking-normal text-neutral-500',
                   )}
                 >
                   <AvatarFallback>JD</AvatarFallback>
@@ -266,19 +285,19 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               >
                 <div
                   className={cn(
-                    'assistant-mark grid size-6.25 place-items-center rounded-[7px] bg-[#e9ede5] text-[#5c7454] max-[680px]:mb-3',
+                    'assistant-mark grid size-6.25 place-items-center rounded-[7px] bg-olive-200 text-olive-600 max-[680px]:mb-3',
                   )}
                 >
                   <Icon name="asterisk-star" />
                 </div>
                 <div
                   className={cn(
-                    'assistant-content [&_h2]:mb-4 [&_h2]:text-2xl [&_h2]:leading-tight [&_h2]:font-semibold [&_h2]:tracking-normal max-[1050px]:[&_h2]:text-2xl max-[680px]:[&_h2]:text-2xl [&>p]:mb-4 [&>p]:text-sm [&>p]:leading-relaxed [&>p]:text-[#626b5d]',
+                    'assistant-content [&_h2]:mb-4 [&_h2]:text-2xl [&_h2]:leading-tight [&_h2]:font-semibold [&_h2]:tracking-normal max-[1050px]:[&_h2]:text-2xl max-[680px]:[&_h2]:text-2xl [&>p]:mb-4 [&>p]:text-sm [&>p]:leading-relaxed [&>p]:text-stone-500',
                   )}
                 >
                   <div
                     className={cn(
-                      'assistant-meta mt-1 mb-4.5 flex flex-wrap items-center gap-2.5 text-xs [&>span]:text-xs [&>span]:text-[#a1a69e]',
+                      'assistant-meta mt-1 mb-4.5 flex flex-wrap items-center gap-2.5 text-xs [&>span]:text-xs [&>span]:text-neutral-500',
                     )}
                   >
                     <strong>Assistant</strong>
@@ -290,7 +309,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   </p>
                   <div
                     className={cn(
-                      'work-done [&>div]:flex [&>div]:min-h-7.5 [&>div]:items-center [&>div]:gap-2 [&>div]:text-xs [&>div]:text-[#6d7964]',
+                      'work-done [&>div]:flex [&>div]:min-h-7.5 [&>div]:items-center [&>div]:gap-2 [&>div]:text-xs [&>div]:text-olive-500',
                     )}
                   >
                     <div>
@@ -307,8 +326,10 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                     </div>
                   </div>
                   <Button
+                    variant="unstyled"
+                    size="unstyled"
                     className={cn(
-                      'change-summary mt-5 mb-2.5 flex w-full items-center gap-4 rounded-lg border border-[#e1e5dc] bg-[#fbfcf9] p-3 text-left [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:text-[#a0a992] [&_strong]:block [&_strong]:text-xs [&>span:nth-child(2)]:min-w-0 [&>span:nth-child(2)]:flex-1 [&>svg]:text-[#a5ab9e]',
+                      'change-summary mt-5 mb-2.5 flex w-full items-center gap-4 rounded-lg border border-neutral-200 bg-olive-50 p-3 text-left [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:text-olive-500 [&_strong]:block [&_strong]:text-xs [&>span:nth-child(2)]:min-w-0 [&>span:nth-child(2)]:flex-1 [&>svg]:text-olive-500',
                     )}
                     onClick={() => setReview(true)}
                   >
@@ -321,7 +342,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                     </span>
                     <span
                       className={cn(
-                        'diff-count inline-flex gap-2 text-xs tabular-nums [&_b]:font-medium [&_b]:text-[#54866a] [&_i]:text-[#b47e72] [&_i]:not-italic',
+                        'diff-count inline-flex gap-2 text-xs tabular-nums [&_b]:font-medium [&_b]:text-emerald-600 [&_i]:text-red-500 [&_i]:not-italic',
                       )}
                     >
                       <b>+28</b>
@@ -334,13 +355,12 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   </p>
                   <div
                     className={cn(
-                      'message-actions flex items-center gap-2 text-xs text-[#9ba093] [&>span]:ml-auto',
+                      'message-actions flex items-center gap-2 text-xs text-stone-500 [&>span]:ml-auto',
                     )}
                   >
                     <IconButton
-                      className={cn(
-                        'app-icon-button inline-flex size-8 shrink-0 items-center justify-center rounded-md text-[#757980] hover:bg-[#f0f1f3] pointer-coarse:min-h-11 pointer-coarse:min-w-11',
-                      )}
+                      size="icon-sm"
+                      className="text-mist-500"
                       icon="copy"
                       label="Copy summary"
                       onClick={async () =>
@@ -362,13 +382,13 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                 <div
                   key={i}
                   className={cn(
-                    'user-message mb-6 flex items-start gap-3 [&_p]:mt-1 [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-[#5c6359] [&_strong]:text-xs [&_strong]:text-[#8c9585] max-[680px]:[&>.person-avatar]:hidden [&>div]:min-w-0 [&>div]:flex-1 [&>div]:rounded-xl [&>div]:bg-[#f1f2ee] [&>div]:px-4 [&>div]:py-3',
+                    'user-message mb-6 flex items-start gap-3 [&_p]:mt-1 [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-olive-600 [&_strong]:text-xs [&_strong]:text-neutral-500 max-[680px]:[&>.person-avatar]:hidden [&>div]:min-w-0 [&>div]:flex-1 [&>div]:rounded-xl [&>div]:bg-taupe-100 [&>div]:px-4 [&>div]:py-3',
                   )}
                 >
                   <Avatar
                     aria-label="Jamie Davis"
                     className={cn(
-                      'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-xs font-semibold tracking-normal text-[#687267]',
+                      'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-olive-300 text-xs font-semibold tracking-normal text-neutral-500',
                     )}
                   >
                     <AvatarFallback>JD</AvatarFallback>
@@ -379,7 +399,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
             </div>
             <form
               className={cn(
-                'refined-composer mx-5.5 mt-3 mb-4 shrink-0 rounded-[11px] border border-[#dcdfd6] bg-white px-3 pt-3 pb-2 shadow-xs focus-within:border-[#a0aa98] max-[680px]:mx-3.5 [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:border-0 [&_textarea]:bg-transparent [&_textarea]:px-0.5 [&_textarea]:text-sm [&_textarea]:leading-normal [&_textarea]:text-[#5e6657] [&_textarea]:outline-none [&_textarea]:placeholder:text-[#a1a79a] max-[680px]:[&_textarea]:text-base',
+                'refined-composer mx-5.5 mt-3 mb-4 shrink-0 rounded-[11px] border border-olive-300 bg-white px-3 pt-3 pb-2 shadow-xs focus-within:border-olive-400 max-[680px]:mx-3.5 [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:border-0 [&_textarea]:bg-transparent [&_textarea]:px-0.5 [&_textarea]:text-sm [&_textarea]:leading-normal [&_textarea]:text-olive-600 [&_textarea]:outline-none [&_textarea]:placeholder:text-olive-500 max-[680px]:[&_textarea]:text-base',
               )}
               onSubmit={(event) => {
                 event.preventDefault();
@@ -392,7 +412,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               {attached && (
                 <div
                   className={cn(
-                    'composer-attachment flex items-center gap-1.5 py-1 text-xs text-[#89917f] [&_button]:ml-auto',
+                    'composer-attachment flex items-center gap-1.5 py-1 text-xs text-olive-500 [&_button]:ml-auto',
                   )}
                 >
                   <Icon name="file-text" />
@@ -427,29 +447,36 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               >
                 <div>
                   <IconButton
-                    className={cn(
-                      'app-icon-button inline-flex size-8 shrink-0 items-center justify-center rounded-md text-[#757980] hover:bg-[#f0f1f3] pointer-coarse:min-h-11 pointer-coarse:min-w-11',
-                    )}
+                    size="icon-sm"
+                    className="text-mist-500"
                     icon="plus"
                     label="Attach context"
                     onClick={() => setAttached(!attached)}
                   />
-                  <Button
-                    className={cn(
-                      'composer-mode flex items-center gap-1.5 px-1 py-1.5 text-xs text-[#737a6b]',
-                    )}
-                    onClick={() =>
-                      setMode(mode === 'Thoughtful' ? 'Quick' : 'Thoughtful')
-                    }
+                  <Select
+                    value={mode}
+                    onValueChange={(value) => {
+                      if (value) setMode(value);
+                    }}
                   >
-                    {mode}
-                    <Icon name="chevron-down-sm" />
-                  </Button>
+                    <SelectTrigger
+                      aria-label="Response mode"
+                      className="min-h-8 gap-1.5 border-transparent bg-transparent px-2 text-xs text-olive-600 hover:bg-current/5"
+                    >
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="border-olive-200 bg-white text-olive-700 [--hover:var(--color-olive-100)]">
+                      <SelectItem value="Thoughtful">Thoughtful</SelectItem>
+                      <SelectItem value="Quick">Quick</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <Button
+                  variant="unstyled"
+                  size="unstyled"
                   type="submit"
                   className={cn(
-                    'composer-submit grid size-7.25 place-items-center rounded-[7px] bg-[#596751] text-white',
+                    'composer-submit grid size-7.25 place-items-center rounded-[7px] bg-olive-600 text-white',
                   )}
                   aria-label="Send follow-up"
                 >
@@ -461,7 +488,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           {review && (
             <aside
               className={cn(
-                'changes-pane flex min-w-0 shrink-0 basis-69.5 flex-col border-l border-(--app-line) bg-[#fbfbfa] max-[1240px]:basis-62 max-[1050px]:basis-56 max-[850px]:hidden',
+                'changes-pane flex min-w-0 shrink-0 basis-69.5 flex-col border-l border-(--app-line) bg-olive-50 max-[1240px]:basis-62 max-[1050px]:basis-56 max-[850px]:hidden',
               )}
             >
               <div
@@ -483,7 +510,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   <Tabs.Tab
                     value="component"
                     className={cn(
-                      'changed-file flex w-full items-center gap-2 px-4 py-2.5 text-left text-xs text-[#83897e] data-active:bg-[#eef1e9] data-active:text-[#68765d] [&>span:last-child]:ml-auto [&>span:last-child]:text-xs [&>span:last-child]:whitespace-nowrap',
+                      'changed-file flex w-full items-center gap-2 px-4 py-2.5 text-left text-xs text-olive-500 data-active:bg-taupe-100 data-active:text-olive-500 [&>span:last-child]:ml-auto [&>span:last-child]:text-xs [&>span:last-child]:whitespace-nowrap',
                       file === 'component' ? 'active' : '',
                     )}
                   >
@@ -493,7 +520,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   <Tabs.Tab
                     value="styles"
                     className={cn(
-                      'changed-file flex w-full items-center gap-2 px-4 py-2.5 text-left text-xs text-[#83897e] data-active:bg-[#eef1e9] data-active:text-[#68765d] [&>span:last-child]:ml-auto [&>span:last-child]:text-xs [&>span:last-child]:whitespace-nowrap',
+                      'changed-file flex w-full items-center gap-2 px-4 py-2.5 text-left text-xs text-olive-500 data-active:bg-taupe-100 data-active:text-olive-500 [&>span:last-child]:ml-auto [&>span:last-child]:text-xs [&>span:last-child]:whitespace-nowrap',
                       file === 'styles' ? 'active' : '',
                     )}
                   >
@@ -503,7 +530,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                 </Tabs.List>
                 <div
                   className={cn(
-                    'code-caption mt-5 flex justify-between gap-3 border-y border-(--app-line) px-3.5 py-3 text-xs text-[#9da296]',
+                    'code-caption mt-5 flex justify-between gap-3 border-y border-(--app-line) px-3.5 py-3 text-xs text-stone-500',
                   )}
                 >
                   <Icon name="code" />
@@ -515,7 +542,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                 </div>
                 <pre
                   className={cn(
-                    'code-preview m-0 flex-1 overflow-auto py-4 font-mono text-xs leading-6 text-[#62695f] max-[1240px]:text-xs max-[1050px]:text-xs',
+                    'code-preview m-0 flex-1 overflow-auto py-4 font-mono text-xs leading-6 text-taupe-500 max-[1240px]:text-xs max-[1050px]:text-xs',
                   )}
                 >
                   {(file === 'styles' ? css : code)
@@ -524,8 +551,8 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                       <span
                         key={i}
                         className={cn(
-                          'code-line block pr-3 whitespace-pre [&_i]:inline-block [&_i]:w-8 [&_i]:pr-2.5 [&_i]:text-right [&_i]:text-[#b1b6ac] [&_i]:not-italic [&_i]:select-none',
-                          i > 3 && i < 9 ? 'added bg-[#edf4e8]' : '',
+                          'code-line block pr-3 whitespace-pre [&_i]:inline-block [&_i]:w-8 [&_i]:pr-2.5 [&_i]:text-right [&_i]:text-olive-500 [&_i]:not-italic [&_i]:select-none',
+                          i > 3 && i < 9 ? 'added bg-olive-100' : '',
                         )}
                       >
                         <i>{i + 1}</i>
@@ -537,7 +564,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               {terminal && (
                 <div
                   className={cn(
-                    'wb-terminal border-t border-(--app-line) px-4 py-3.5 text-xs leading-relaxed text-[#71845e] [&>div]:mb-2 [&>div]:flex [&>div]:gap-2',
+                    'wb-terminal border-t border-(--app-line) px-4 py-3.5 text-xs leading-relaxed text-olive-500 [&>div]:mb-2 [&>div]:flex [&>div]:gap-2',
                   )}
                 >
                   <div>
@@ -553,7 +580,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               )}
               <div
                 className={cn(
-                  'review-bottom mt-auto flex flex-col gap-3 border-t border-(--app-line) p-4 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:text-xs [&>span]:text-[#8e9b80]',
+                  'review-bottom mt-auto flex flex-col gap-3 border-t border-(--app-line) p-4 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:text-xs [&>span]:text-stone-500',
                 )}
               >
                 <span>
@@ -561,8 +588,10 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   {accepted ? 'Accepted in this demo' : 'Ready to review'}
                 </span>
                 <Button
+                  variant="unstyled"
+                  size="unstyled"
                   className={cn(
-                    'app-primary inline-flex min-h-8 items-center justify-center gap-2 rounded-md bg-[#596751] px-3 py-2 text-xs whitespace-nowrap text-white shadow-[inset_0_0_0_1px_#00000005] pointer-coarse:min-h-11',
+                    'app-primary inline-flex min-h-8 items-center justify-center gap-2 rounded-md bg-olive-600 px-3 py-2 text-xs whitespace-nowrap text-white shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--color-black)_2%,transparent)] pointer-coarse:min-h-11',
                   )}
                   disabled={accepted}
                   onClick={() => setAccepted(true)}

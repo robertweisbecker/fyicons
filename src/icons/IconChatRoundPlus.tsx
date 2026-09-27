@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconChatRoundPlus = React.forwardRef<SVGSVGElement, IconProps>(function IconChatRoundPlus(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M7.99902 1C11.8648 1.00022 14.999 4.13414 14.999 8C14.999 11.8659 11.8648 14.9998 7.99902 15C7.02079 14.9999 6.08847 14.7981 5.24219 14.4346C5.0125 14.3359 4.7028 14.3593 4.40723 14.5098C3.69787 14.871 2.83916 15 1.91309 15C1.44417 15 1.13535 14.6773 1.03613 14.3291C0.940691 13.9937 1.01878 13.5875 1.31836 13.3057L1.41895 13.1963C1.52161 13.0701 1.62935 12.8943 1.72852 12.6797C1.85777 12.3999 1.95835 12.0854 2.01465 11.7949C2.0272 11.73 2.01427 11.6308 1.94141 11.5049C1.34359 10.4742 0.999023 9.27685 0.999023 8C0.999023 4.13412 4.1333 1.00026 7.99902 1ZM7.99902 2C4.68548 2.00024 1.99902 4.68649 1.99902 8C1.99902 9.09489 2.29334 10.1197 2.80566 11.0029C2.95705 11.264 3.06961 11.6108 2.99707 11.9854C2.92537 12.3552 2.79873 12.7469 2.63574 13.0996C2.48329 13.4295 2.28329 13.7553 2.04004 13.9971C2.82985 13.9854 3.46753 13.8655 3.95312 13.6182C4.43632 13.3722 5.0635 13.2693 5.63672 13.5156C6.36114 13.8268 7.1594 13.9999 7.99902 14C11.3125 13.9998 13.999 11.3136 13.999 8C13.999 4.68643 11.3125 2.00022 7.99902 2ZM8 5.5C8.27603 5.50013 8.5 5.72394 8.5 6V7.49512H10.0049C10.2809 7.49525 10.5049 7.71906 10.5049 7.99512C10.5048 8.27113 10.2809 8.49499 10.0049 8.49512H8.5V10C8.5 10.2761 8.27603 10.4999 8 10.5C7.72386 10.5 7.5 10.2761 7.5 10V8.49512H6.00488C5.72878 8.49512 5.50494 8.27121 5.50488 7.99512C5.50488 7.71898 5.72874 7.49512 6.00488 7.49512H7.5V6C7.5 5.72386 7.72386 5.5 8 5.5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconChatRoundPlus;

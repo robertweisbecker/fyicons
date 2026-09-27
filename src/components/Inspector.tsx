@@ -1,11 +1,21 @@
+import { Field } from '@base-ui/react/field';
 import { cn } from '../lib/utils';
 import { useRef, useState } from 'react';
-import { Dialog } from '@base-ui/react/dialog';
-import { Toggle } from '@base-ui/react/toggle';
+import { Toggle } from '@/components/ui/toggle';
+import { ToggleGroup } from '@/components/ui/toggle-group';
+import { ToggleIcon } from '@/components/ToggleIcon';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTitle,
+  SheetDescription,
+} from '@/components/ui/sheet';
 import { Icon } from './Icon';
-import { SelectionCheckbox } from './SelectionCheckbox';
-import { Button, IconButton } from './ui';
-import { copy, download } from '../lib/downloads';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/button';
+import { IconButton } from '@/components/IconButton';
+import { IconUsage } from './IconUsage';
 import { icons, type IconRecord } from '../lib/catalog';
 import { useMobile } from '../lib/preferences';
 
@@ -19,6 +29,8 @@ type Props = {
   toggleSelection: (id: string) => void;
   notify: (message: string) => void;
   finalFocus: () => HTMLElement | false;
+  docked: boolean;
+  onDockedChange: (docked: boolean) => void;
 };
 export function Inspector({
   item,
@@ -30,36 +42,54 @@ export function Inspector({
   toggleSelection,
   notify,
   finalFocus,
+  docked,
+  onDockedChange,
 }: Props) {
   const mobile = useMobile();
   const popup = useRef<HTMLDivElement>(null);
+  const portalContainer = useRef<HTMLDivElement>(null);
   const [grid, setGrid] = useState(true);
+  const inLayout = docked && !mobile && !!item;
   const index = visible.findIndex((icon) => icon.id === item?.id);
+  const variants = item?.duplicate
+    ? icons.filter((icon) => icon.baseName === item.baseName)
+    : [];
   return (
-    <Dialog.Root
-      open={!!item}
-      onOpenChange={(open) => {
-        if (!open) close();
-      }}
-      modal={mobile}
-      disablePointerDismissal
-    >
-      <Dialog.Portal>
-        <Dialog.Popup
+    <>
+      <div
+        ref={portalContainer}
+        className={cn(
+          inLayout
+            ? 'sticky top-14 w-(--inspector-width) shrink-0 self-start'
+            : 'contents',
+        )}
+      />
+      <Sheet
+        open={!!item}
+        onOpenChange={(open) => {
+          if (!open) close();
+        }}
+        modal={mobile}
+        disablePointerDismissal
+      >
+        <SheetContent
           id="inspector"
           ref={popup}
           initialFocus={popup}
           finalFocus={finalFocus}
-          className={cn(
-            'inspector fixed top-14 right-0 bottom-0 z-50 flex h-[calc(100dvh-56px)] w-(--inspector-width) max-w-full flex-col overflow-y-auto border-l border-line bg-surface text-ink outline-none max-[760px]:top-0 max-[760px]:h-dvh max-[760px]:w-screen max-[760px]:border-l-0',
-          )}
+          variant="inspector"
+          presentation={inLayout ? 'docked' : 'overlay'}
+          container={portalContainer}
+          data-docked={docked && !mobile ? '' : undefined}
+          backdrop={false}
           onKeyDown={(event) => {
-            // Dialog contains keyboard events, so handle navigation inside the popup.
             if (
               event.defaultPrevented ||
               event.metaKey ||
               event.ctrlKey ||
-              event.altKey
+              event.altKey ||
+              (event.target instanceof HTMLElement &&
+                event.target.closest('[data-slot="toggle-group"]'))
             )
               return;
             if (
@@ -76,183 +106,133 @@ export function Inspector({
         >
           {item && (
             <>
-              <div
-                className={cn(
-                  'inspector-toolbar sticky top-0 z-10 flex min-h-15 shrink-0 items-center justify-between border-b border-line bg-surface px-4 py-2 [&_button]:size-8 max-[760px]:[&_button]:size-10',
+              <header className="flex shrink-0 items-start gap-3 border-b border-line p-5">
+                <div className="min-w-0 flex-1">
+                  <SheetTitle className="text-lg font-semibold break-words">
+                    {item.name}
+                  </SheetTitle>
+                  <SheetDescription className="mt-1 text-sm text-muted">
+                    {item.category}
+                  </SheetDescription>
+                </div>
+                {!mobile && (
+                  <Toggle
+                    size="icon-sm"
+                    aria-label="Dock inspector"
+                    title={docked ? 'Undock inspector' : 'Dock inspector'}
+                    pressed={docked}
+                    onPressedChange={onDockedChange}
+                  >
+                    <ToggleIcon
+                      icon="panel-right"
+                      activeIcon="panel-right-open"
+                    />
+                  </Toggle>
                 )}
+                <SheetClose
+                  render={<Button variant="ghost" size="icon-sm" />}
+                  aria-label="Close icon details"
+                >
+                  <Icon name="xmark" />
+                </SheetClose>
+              </header>
+              <div className="min-h-0 flex-1 overflow-y-auto">
+                <div
+                  className={cn(
+                    'inspector-preview group/preview flex h-64 items-center justify-center overflow-hidden bg-canvas',
+                    !grid && 'no-grid',
+                  )}
+                >
+                  <span className="preview-canvas relative block size-32 shrink-0 before:pointer-events-none before:absolute before:-inset-128 before:bg-[linear-gradient(var(--grid)_1px,transparent_1px),linear-gradient(90deg,var(--grid)_1px,transparent_1px)] before:bg-size-[8px_8px] before:content-[''] group-[.no-grid]/preview:before:hidden after:pointer-events-none after:absolute after:inset-0 after:outline after:outline-control-accent after:content-[''] group-[.no-grid]/preview:after:hidden [&>svg]:relative [&>svg]:size-full">
+                    <Icon name={item.id} />
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 border-y border-line px-5 py-3">
+                  <Icon name={item.id} />
+                  <span className="text-xs text-muted">16 × 16</span>
+                  <Toggle
+                    size="sm"
+                    className="ml-auto"
+                    aria-label="Grid and bounds"
+                    title={
+                      grid ? 'Hide grid and bounds' : 'Show grid and bounds'
+                    }
+                    pressed={grid}
+                    onPressedChange={setGrid}
+                  >
+                    <ToggleIcon icon="eye-closed" activeIcon="eye-open" />
+                    Grid
+                  </Toggle>
+                </div>
+                <div className="flex flex-col gap-5 p-5">
+                  <IconUsage item={item} notify={notify} />
+                  <Field.Root className="flex items-center gap-2 text-sm">
+                    <Checkbox
+                      size="sm"
+                      checked={selectedIds.includes(item.id)}
+                      onCheckedChange={() => toggleSelection(item.id)}
+                    />
+                    <Field.Label>Include in selection</Field.Label>
+                  </Field.Root>
+                  {variants.length > 1 && (
+                    <section>
+                      <h3 className="mb-2 text-sm font-medium">Variants</h3>
+                      <ToggleGroup
+                        aria-label="Icon variants"
+                        className="flex-wrap"
+                        value={[item.id]}
+                        onValueChange={(values) => {
+                          const variant = variants.find(
+                            (icon) => icon.id === values[0],
+                          );
+                          if (variant) select(variant);
+                        }}
+                      >
+                        {variants.map((icon, index) => (
+                          <Toggle
+                            key={icon.id}
+                            value={icon.id}
+                            variant="outline"
+                            aria-label={'Compare variant ' + icon.id}
+                          >
+                            <Icon name={icon.id} />
+                            {index + 1}
+                          </Toggle>
+                        ))}
+                      </ToggleGroup>
+                    </section>
+                  )}
+                </div>
+              </div>
+              <footer
+                aria-label="Icon pagination"
+                className="flex shrink-0 items-center justify-between gap-3 border-t border-line px-5 py-3"
               >
-                <strong className={cn('text-xs font-semibold')}>
-                  Inspector
-                </strong>
-                <div className={cn('flex items-center gap-1')}>
+                <span
+                  aria-live="polite"
+                  className="text-xs text-muted tabular-nums"
+                >
+                  {index + 1} of {visible.length}
+                </span>
+                <div className="flex gap-1">
                   <IconButton
                     icon="chevron-left-sm"
                     label="Previous icon"
                     disabled={index <= 0}
                     onClick={() => navigate(-1)}
                   />
-                  <span
-                    className={cn(
-                      'min-w-15 text-center text-xs text-muted tabular-nums',
-                    )}
-                    aria-live="polite"
-                  >
-                    {index + 1} / {visible.length}
-                  </span>
                   <IconButton
                     icon="chevron-right-sm"
                     label="Next icon"
                     disabled={index < 0 || index >= visible.length - 1}
                     onClick={() => navigate(1)}
                   />
-                  <Dialog.Close
-                    className={cn(
-                      'icon-button ml-1 inline-flex size-9 shrink-0 items-center justify-center rounded-lg hover:bg-hover aria-pressed:bg-selection',
-                    )}
-                    aria-label="Close icon details"
-                  >
-                    <Icon name="xmark" />
-                  </Dialog.Close>
                 </div>
-              </div>
-              <div
-                className={cn(
-                  'inspector-preview group/preview flex h-58 shrink-0 items-center justify-center overflow-hidden bg-canvas',
-                  grid ? '' : 'no-grid',
-                )}
-              >
-                <span
-                  className={cn(
-                    "preview-canvas relative block size-32 shrink-0 before:pointer-events-none before:absolute before:-inset-128 before:bg-[linear-gradient(var(--grid)_1px,transparent_1px),linear-gradient(90deg,var(--grid)_1px,transparent_1px)] before:bg-size-[8px_8px] before:content-[''] group-[.no-grid]/preview:before:hidden after:pointer-events-none after:absolute after:inset-0 after:outline after:outline-blue-400 after:content-[''] group-[.no-grid]/preview:after:hidden [&>svg]:relative [&>svg]:size-full",
-                  )}
-                >
-                  <Icon name={item.id} />
-                </span>
-              </div>
-              <div
-                className={cn(
-                  'flex items-center gap-2 border-y border-line px-5 py-2',
-                )}
-              >
-                <Icon name={item.id} />
-                <span className={cn('text-xs text-muted')}>16px display</span>
-                <Toggle
-                  className={cn(
-                    'ml-auto inline-flex min-h-9 items-center justify-center gap-2 text-xs text-muted hover:text-ink',
-                  )}
-                  aria-label="Grid and bounds"
-                  title={grid ? 'Hide grid and bounds' : 'Show grid and bounds'}
-                  pressed={grid}
-                  onPressedChange={setGrid}
-                >
-                  <Icon name={grid ? 'eye-open' : 'eye-closed'} />
-                  Grid
-                </Toggle>
-              </div>
-              <div className={cn('p-5 pt-6')}>
-                <Dialog.Title
-                  className={cn(
-                    'text-xl font-semibold tracking-normal break-words',
-                  )}
-                >
-                  {item.name}
-                </Dialog.Title>
-                <Dialog.Description
-                  className={cn('mt-1.5 mb-6 text-xs text-muted')}
-                >
-                  {item.category}
-                </Dialog.Description>
-                <dl className={cn('space-y-3 text-xs')}>
-                  {[
-                    ['Figma name', item.originalName],
-                    ['Node', item.id],
-                    ['Source canvas', '16 × 16px'],
-                    ['Filename', item.filename],
-                  ].map(([label, value]) => (
-                    <div
-                      key={label}
-                      className={cn('grid grid-cols-[86px_1fr] gap-4')}
-                    >
-                      <dt className={cn('text-muted')}>{label}</dt>
-                      <dd className={cn('font-mono leading-relaxed break-all')}>
-                        {value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                {item.duplicate && (
-                  <div className={cn('my-5')}>
-                    <p className={cn('mb-2 text-xs text-muted')}>
-                      Variants with the same Figma name
-                    </p>
-                    <div className={cn('flex flex-wrap gap-2')}>
-                      {icons
-                        .filter((icon) => icon.baseName === item.baseName)
-                        .map((icon) => (
-                          <Button
-                            key={icon.id}
-                            variant="outline"
-                            className={cn('text-xs')}
-                            aria-pressed={icon.id === item.id}
-                            aria-label={'Compare variant ' + icon.id}
-                            onClick={() => select(icon)}
-                          >
-                            <Icon name={icon.id} />
-                            {icon.id}
-                          </Button>
-                        ))}
-                    </div>
-                  </div>
-                )}
-                <div className={cn('mt-7 flex flex-wrap items-center gap-2')}>
-                  <Button
-                    variant="primary"
-                    onClick={async () =>
-                      notify(
-                        (await copy(item.svg))
-                          ? 'SVG copied'
-                          : 'Clipboard unavailable. Use Download SVG.',
-                      )
-                    }
-                  >
-                    <Icon name="copy" />
-                    Copy SVG
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() =>
-                      download(item.svg, item.filename, 'image/svg+xml')
-                    }
-                  >
-                    <Icon name="download-square" />
-                    Download SVG
-                  </Button>
-                  <SelectionCheckbox
-                    checked={selectedIds.includes(item.id)}
-                    label={'Select ' + item.name}
-                    onChange={() => toggleSelection(item.id)}
-                    className="ml-auto"
-                  />
-                </div>
-                <a
-                  className={cn(
-                    'mt-6 flex items-center gap-2 text-xs text-muted hover:text-ink',
-                  )}
-                  href={item.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Open component in Figma
-                  <Icon name="external-link" />
-                </a>
-                <p className={cn('mt-7 text-xs text-muted')}>
-                  ← → Previous / next · Esc Close
-                </p>
-              </div>
+              </footer>
             </>
           )}
-        </Dialog.Popup>
-      </Dialog.Portal>
-    </Dialog.Root>
+        </SheetContent>
+      </Sheet>
+    </>
   );
 }

@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconKey = React.forwardRef<SVGSVGElement, IconProps>(function IconKey(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M6.5 2C8.98528 2 11 4.01472 11 6.5C11 6.94118 10.9331 7.36635 10.8145 7.76855L13.8721 11.165C13.9547 11.2569 14 11.3765 14 11.5V13.5C14 13.7761 13.7761 14 13.5 14H11.75C11.6595 14 11.5708 13.9752 11.4932 13.9287L10.2432 13.1787C10.0926 13.0883 10 12.9256 10 12.75V11.8262L8.82031 11.9951C8.57707 12.0297 8.34495 11.8822 8.27246 11.6475L7.99316 10.7422C7.5259 10.9073 7.02392 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2ZM6.5 3C4.567 3 3 4.567 3 6.5C3 8.433 4.567 10 6.5 10C7.06955 10 7.60626 9.8628 8.08203 9.62109L8.18457 9.58203C8.28977 9.5551 8.40211 9.56329 8.50391 9.60645C8.63948 9.66401 8.74268 9.77822 8.78613 9.91895L9.10156 10.9443L10.4297 10.7549C10.5729 10.7345 10.7178 10.7774 10.8271 10.8721C10.9366 10.967 11 11.1051 11 11.25V12.4668L11.8877 13H13V11.6924L9.87793 8.22461C9.75354 8.08642 9.71662 7.89015 9.78125 7.71582C9.92193 7.33633 10 6.92734 10 6.5C10 4.567 8.433 3 6.5 3ZM5.75 5C6.16421 5 6.5 5.33579 6.5 5.75C6.5 6.16421 6.16421 6.5 5.75 6.5C5.33579 6.5 5 6.16421 5 5.75C5 5.33579 5.33579 5 5.75 5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconKey;

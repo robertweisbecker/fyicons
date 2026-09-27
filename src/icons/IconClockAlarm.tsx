@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconClockAlarm = React.forwardRef<SVGSVGElement, IconProps>(function IconClockAlarm(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M10.3877 2.49522C11.2714 1.71645 12.6184 1.74741 13.4629 2.5919C14.3142 3.44386 14.3379 4.80661 13.5381 5.68956C13.8351 6.40067 14 7.1813 14 8.0001C13.9999 9.76195 13.2397 11.3459 12.0303 12.4435L12.9473 14.2765C13.0707 14.5234 12.9706 14.8239 12.7236 14.9474C12.4767 15.0708 12.1762 14.9707 12.0527 14.7237L11.2207 13.0597C10.2899 13.6534 9.18584 14.0001 8 14.0001C6.81392 14.0001 5.70923 13.6536 4.77832 13.0597L3.94727 14.7237C3.82374 14.9707 3.52332 15.0708 3.27637 14.9474C3.02941 14.8239 2.92932 14.5234 3.05273 14.2765L3.96875 12.4435C2.75951 11.3459 2.00013 9.76176 2 8.0001C2.00005 7.16035 2.1728 6.36052 2.48438 5.63487C1.81714 4.75324 1.88369 3.49353 2.6875 2.68956C3.49107 1.8861 4.75016 1.8193 5.63184 2.48546C6.35832 2.17307 7.15905 2.00012 8 2.0001C8.84859 2.00013 9.65598 2.17745 10.3877 2.49522ZM8 3.0001C5.23876 3.00017 3.0002 5.23889 3 8.0001C3.00025 10.7613 5.23879 13 8 13.0001C10.7612 13 12.9997 10.7613 13 8.0001C12.9998 5.2389 10.7612 3.00019 8 3.0001ZM8.5 5.5001C8.77614 5.5001 9 5.72396 9 6.0001V8.5001C8.99997 8.63268 8.94726 8.75987 8.85352 8.85362C8.75975 8.94734 8.63257 9.0001 8.5 9.0001H6C5.72391 9.00008 5.50005 8.77618 5.5 8.5001C5.5 8.22398 5.72388 8.00013 6 8.0001H8V6.0001C8 5.72398 8.22388 5.50013 8.5 5.5001Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconClockAlarm;

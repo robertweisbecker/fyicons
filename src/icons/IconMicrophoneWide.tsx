@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconMicrophoneWide = React.forwardRef<SVGSVGElement, IconProps>(function IconMicrophoneWide(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13.4429 7.94043C13.7093 8.01201 13.8676 8.28619 13.7964 8.55273C13.4545 9.82852 12.7007 10.9557 11.6528 11.7598C10.7378 12.4619 9.64286 12.8829 8.50048 12.9785V14.5C8.50048 14.7761 8.27662 15 8.00048 15C7.72433 15 7.50048 14.7761 7.50048 14.5V12.9785C6.35809 12.8829 5.26318 12.4619 4.34813 11.7598C3.30028 10.9557 2.54642 9.82852 2.20458 8.55273C2.1333 8.28619 2.29164 8.01201 2.55809 7.94043C2.82474 7.86898 3.09882 8.02737 3.1704 8.29395C3.45526 9.35708 4.08335 10.2968 4.95653 10.9668C5.82975 11.6368 6.89981 12 8.00048 12C9.10115 12 10.1712 11.6368 11.0444 10.9668C11.9176 10.2968 12.5457 9.35708 12.8306 8.29395C12.9021 8.02737 13.1762 7.86898 13.4429 7.94043ZM8.00048 1C9.65733 1 11.0005 2.34315 11.0005 4V7C11.0005 8.65685 9.65733 10 8.00048 10C6.34362 10 5.00048 8.65685 5.00048 7V4C5.00048 2.34315 6.34362 1 8.00048 1ZM8.00048 2C6.89591 2 6.00048 2.89543 6.00048 4V7C6.00048 8.10457 6.89591 9 8.00048 9C9.10505 9 10.0005 8.10457 10.0005 7V4C10.0005 2.89543 9.10505 2 8.00048 2Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconMicrophoneWide;

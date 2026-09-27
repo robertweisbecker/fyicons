@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconTextBlock = React.forwardRef<SVGSVGElement, IconProps>(function IconTextBlock(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M12 1.99954C13.1044 1.99954 13.9998 2.89518 14 3.99954V11.9995C14 13.1041 13.1046 13.9995 12 13.9995H4C2.8956 13.9993 2 13.104 2 11.9995V8.49954C2.00025 8.22373 2.22418 7.99974 2.5 7.99954C2.77599 7.99954 2.99975 8.22361 3 8.49954V11.9995C3 12.5517 3.44789 12.9993 4 12.9995H12C12.5523 12.9995 13 12.5518 13 11.9995V3.99954C12.9998 3.44747 12.5521 2.99954 12 2.99954H8.5C8.22403 2.99934 8 2.77556 8 2.49954C8.00025 2.22373 8.22418 1.99974 8.5 1.99954H12ZM6.50098 2.00051C6.77712 2.00051 7.00098 2.22437 7.00098 2.50051V3.50051C7.00071 3.77643 6.77696 4.00051 6.50098 4.00051C6.225 4.00051 6.00124 3.77643 6.00098 3.50051V3.00051H5.00098V6.00051H5.50098C5.77712 6.00051 6.00098 6.22437 6.00098 6.50051C6.00071 6.77643 5.77696 7.00051 5.50098 7.00051H3.50098C3.225 7.00051 3.00124 6.77643 3.00098 6.50051C3.00098 6.22437 3.22483 6.00051 3.50098 6.00051H4.00098V3.00051H3.00098V3.50051C3.00071 3.77643 2.77696 4.00051 2.50098 4.00051C2.225 4.00051 2.00124 3.77643 2.00098 3.50051V2.50051C2.00098 2.22437 2.22483 2.00051 2.50098 2.00051H6.50098Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconTextBlock;

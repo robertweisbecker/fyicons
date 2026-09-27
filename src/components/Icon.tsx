@@ -1,66 +1,59 @@
+import { forwardRef, memo } from 'react';
 import { cn } from '../lib/utils';
-import { memo, useId } from 'react';
 import { byId, byName } from '../lib/catalog';
+import { iconBySourceId } from '../icons/registry';
+import type { IconProps as GeneratedIconProps } from '../icons/types';
 
-const templates = new Map<string, string>();
-const darkPaint = new Set([
-  'black',
-  '#000',
-  '#000000',
-  '#18181b',
-  '#090909',
-  '#191919',
-  '#171717',
-  '#040404',
-]);
-
-/** Display paint follows the UI. The original SVG remains untouched for downloads. */
-export const Icon = memo(function Icon({
-  name,
-  className = '',
-}: {
+export type IconProps = GeneratedIconProps & {
   name: string;
-  className?: string;
-}) {
-  const prefix = useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const item = byId.get(name) ?? byName.get(name);
-  if (!item) throw new Error('Unknown FYIcon: ' + name);
-  if (!templates.has(item.id)) {
-    const svg = new DOMParser().parseFromString(
-      item.svg,
-      'image/svg+xml',
-    ).documentElement;
-    for (const element of [svg, ...svg.querySelectorAll('*')]) {
-      if (element.closest('defs, mask, clipPath')) continue;
-      for (const paint of ['fill', 'stroke']) {
-        if (darkPaint.has(element.getAttribute(paint)?.toLowerCase() ?? '')) {
-          element.setAttribute(paint, 'currentColor');
-          if (element.hasAttribute('style'))
-            (element as SVGElement).style.setProperty(paint, 'currentColor');
+};
+
+/** Catalog lookup wrapper. Use named exports from src/icons for static imports. */
+export const Icon = memo(
+  forwardRef<SVGSVGElement, IconProps>(function Icon(
+    { name, className = '', title, size, style, ...props },
+    ref,
+  ) {
+    const item = byId.get(name) ?? byName.get(name);
+    if (!item) throw new Error('Unknown FYIcon: ' + name);
+    const Component = iconBySourceId[item.id];
+    if (!Component) throw new Error('Missing generated FYIcon: ' + item.id);
+
+    return (
+      <Component
+        {...props}
+        ref={ref}
+        size={size}
+        width={props.width ?? size ?? 16}
+        height={props.height ?? size ?? 16}
+        viewBox={props.viewBox ?? '0 0 16 16'}
+        fill={props.fill ?? 'none'}
+        aria-hidden={
+          props['aria-hidden'] ??
+          (title || props['aria-label'] || props['aria-labelledby']
+            ? undefined
+            : true)
         }
-      }
-    }
-    templates.set(item.id, svg.innerHTML);
-  }
-  let markup = templates.get(item.id)!;
-  const ids = [...markup.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
-  for (const id of ids) {
-    markup = markup
-      .replaceAll('id="' + id + '"', 'id="' + prefix + id + '"')
-      .replaceAll('url(#' + id + ')', 'url(#' + prefix + id + ')')
-      .replaceAll('href="#' + id + '"', 'href="#' + prefix + id + '"');
-  }
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden="true"
-      focusable="false"
-      data-source-id={item.id}
-      className={cn('icon block size-4 shrink-0', className)}
-      dangerouslySetInnerHTML={{ __html: markup }}
-    />
-  );
-});
+        aria-label={props['aria-label'] ?? title}
+        role={title || props['aria-label'] ? (props.role ?? 'img') : props.role}
+        focusable={props.focusable ?? false}
+        data-source-id={item.id}
+        className={cn(
+          'icon block shrink-0',
+          size == null ? 'size-4' : '',
+          className,
+        )}
+        style={
+          size == null
+            ? style
+            : {
+                width: props.width ?? size,
+                height: props.height ?? size,
+                ...style,
+              }
+        }
+        title={title}
+      />
+    );
+  }),
+);

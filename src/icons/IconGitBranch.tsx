@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconGitBranch = React.forwardRef<SVGSVGElement, IconProps>(function IconGitBranch(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11 1C12.1046 1 13 1.89543 13 3C13 3.96566 12.3155 4.7706 11.4053 4.95801C11.1812 6.63983 9.7431 7.9375 8 7.9375C6.58477 7.9375 5.4375 9.08477 5.4375 10.5V11.0488C6.33156 11.2484 7 12.0458 7 13C7 14.1046 6.10457 15 5 15C3.89543 15 3 14.1046 3 13C3 12.0458 3.66844 11.2484 4.5625 11.0488V4.9502C3.66855 4.75052 3 3.95415 3 3C3 1.89543 3.89543 1 5 1C6.10457 1 7 1.89543 7 3C7 3.95415 6.33145 4.75052 5.4375 4.9502V8.20801C6.06693 7.50477 6.98194 7.0625 8 7.0625C9.26519 7.0625 10.3128 6.14501 10.5215 4.93945C9.64834 4.72475 9 3.9394 9 3C9 1.89543 9.89543 1 11 1ZM5 12C4.44772 12 4 12.4477 4 13C4 13.5523 4.44772 14 5 14C5.55228 14 6 13.5523 6 13C6 12.4477 5.55228 12 5 12ZM5 2C4.44772 2 4 2.44772 4 3C4 3.55228 4.44772 4 5 4C5.55228 4 6 3.55228 6 3C6 2.44772 5.55228 2 5 2ZM11 2C10.4477 2 10 2.44772 10 3C10 3.55228 10.4477 4 11 4C11.5523 4 12 3.55228 12 3C12 2.44772 11.5523 2 11 2Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconGitBranch;

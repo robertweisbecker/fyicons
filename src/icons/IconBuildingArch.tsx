@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconBuildingArch = React.forwardRef<SVGSVGElement, IconProps>(function IconBuildingArch(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M14.5 2C14.7761 2 15 2.22386 15 2.5C15 2.77614 14.7761 3 14.5 3H14V5C14.2761 5 14.5 5.22386 14.5 5.5C14.5 5.77614 14.2761 6 14 6V13H14.5C14.7761 13 15 13.2239 15 13.5C15 13.7761 14.7761 14 14.5 14H9.5V9C9.5 8.17157 8.82843 7.5 8 7.5C7.17157 7.5 6.5 8.17157 6.5 9V14H1.5C1.22386 14 1 13.7761 1 13.5C1 13.2239 1.22386 13 1.5 13H2V6C1.72386 6 1.5 5.77614 1.5 5.5C1.5 5.22386 1.72386 5 2 5V3H1.5C1.22386 3 1 2.77614 1 2.5C1 2.22386 1.22386 2 1.5 2H14.5ZM8 5C7.29785 5 6.60808 5.18506 6 5.53613C5.392 5.88718 4.88718 6.392 4.53613 7C4.39806 7.23915 4.09169 7.32069 3.85254 7.18262C3.61373 7.04443 3.53193 6.739 3.66992 6.5C3.77037 6.32602 3.88211 6.15971 4.00195 6H3V13H5.5V9C5.5 7.61929 6.61929 6.5 8 6.5C9.38071 6.5 10.5 7.61929 10.5 9V13H13V6H11.998C12.1179 6.15971 12.2296 6.32602 12.3301 6.5C12.4681 6.739 12.3863 7.04443 12.1475 7.18262C11.9083 7.32069 11.6019 7.23915 11.4639 7C11.1128 6.392 10.608 5.88718 10 5.53613C9.39192 5.18506 8.70215 5 8 5ZM3 5H5.00195C5.161 4.88079 5.32682 4.76991 5.5 4.66992C6.2601 4.23108 7.12232 4 8 4C8.87768 4 9.7399 4.23108 10.5 4.66992C10.673 4.76978 10.8382 4.88097 10.9971 5H13V3H3V5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconBuildingArch;

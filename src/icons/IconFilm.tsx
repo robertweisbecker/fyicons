@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconFilm = React.forwardRef<SVGSVGElement, IconProps>(function IconFilm(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13.5 3C14.3284 3 15 3.67157 15 4.5V11.5C15 12.3284 14.3284 13 13.5 13H2.5C1.67157 13 1 12.3284 1 11.5V4.5C1 3.67157 1.67157 3 2.5 3H13.5ZM2.5 10C2.22386 10 2 10.2239 2 10.5V11.5C2 11.7761 2.22386 12 2.5 12H3.5C3.77614 12 4 11.7761 4 11.5V10.5C4 10.2239 3.77614 10 3.5 10H2.5ZM12.5 10C12.2239 10 12 10.2239 12 10.5V11.5C12 11.7761 12.2239 12 12.5 12H13.5C13.7761 12 14 11.7761 14 11.5V10.5C14 10.2239 13.7761 10 13.5 10H12.5ZM5 12H11V8.5H5V12ZM2.5 7C2.22386 7 2 7.22386 2 7.5V8.5C2 8.77614 2.22386 9 2.5 9H3.5C3.77614 9 4 8.77614 4 8.5V7.5C4 7.22386 3.77614 7 3.5 7H2.5ZM12.5 7C12.2239 7 12 7.22386 12 7.5V8.5C12 8.77614 12.2239 9 12.5 9H13.5C13.7761 9 14 8.77614 14 8.5V7.5C14 7.22386 13.7761 7 13.5 7H12.5ZM5 7.5H11V4H5V7.5ZM2.5 4C2.22386 4 2 4.22386 2 4.5V5.5C2 5.77614 2.22386 6 2.5 6H3.5C3.77614 6 4 5.77614 4 5.5V4.5C4 4.22386 3.77614 4 3.5 4H2.5ZM12.5 4C12.2239 4 12 4.22386 12 4.5V5.5C12 5.77614 12.2239 6 12.5 6H13.5C13.7761 6 14 5.77614 14 5.5V4.5C14 4.22386 13.7761 4 13.5 4H12.5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconFilm;

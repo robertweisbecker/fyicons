@@ -26,10 +26,10 @@ export function usePreference<T>(key: string, fallback: T) {
 }
 export function useMobile() {
   const [mobile, setMobile] = useState(
-    () => matchMedia('(max-width: 760px)').matches,
+    () => matchMedia('(width < 768px)').matches,
   );
   useEffect(() => {
-    const query = matchMedia('(max-width: 760px)');
+    const query = matchMedia('(width < 768px)');
     const change = () => setMobile(query.matches);
     query.addEventListener('change', change);
     return () => query.removeEventListener('change', change);

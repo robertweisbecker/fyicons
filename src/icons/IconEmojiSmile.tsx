@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconEmojiSmile = React.forwardRef<SVGSVGElement, IconProps>(function IconEmojiSmile(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM10.5957 9.5C10.7338 9.26103 11.0402 9.17943 11.2793 9.31738C11.5182 9.4555 11.5998 9.76098 11.4619 10C11.1109 10.608 10.606 11.1128 9.99805 11.4639C9.38997 11.8149 8.70019 12 7.99805 12C7.2959 12 6.60612 11.8149 5.99805 11.4639C5.3901 11.1128 4.88521 10.608 4.53418 10C4.39631 9.76098 4.47794 9.4555 4.7168 9.31738C4.95587 9.17943 5.26229 9.26103 5.40039 9.5C5.66364 9.95588 6.04218 10.3344 6.49805 10.5977C6.9541 10.861 7.47144 11 7.99805 11C8.52466 11 9.04199 10.861 9.49805 10.5977C9.95392 10.3344 10.3325 9.95588 10.5957 9.5ZM5.875 6C6.35818 6 6.74989 6.44783 6.75 7C6.75 7.55228 6.35825 8 5.875 8C5.39175 8 5 7.55228 5 7C5.00011 6.44783 5.39182 6 5.875 6ZM10.125 6C10.6082 6 10.9999 6.44783 11 7C11 7.55228 10.6082 8 10.125 8C9.64175 8 9.25 7.55228 9.25 7C9.25011 6.44783 9.64182 6 10.125 6Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconEmojiSmile;

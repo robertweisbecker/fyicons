@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconSettingsSmallOn = React.forwardRef<SVGSVGElement, IconProps>(function IconSettingsSmallOn(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8.40628 2C8.772 2.00021 9.10907 2.2004 9.28421 2.52148L9.90433 3.65918C10.0836 3.9878 10.4314 4.18849 10.8057 4.17969L12.1026 4.14941C12.4681 4.14076 12.8103 4.33184 12.9932 4.64844L13.3994 5.35254C13.582 5.66927 13.5771 6.06089 13.3868 6.37305L12.7119 7.47949C12.517 7.79917 12.517 8.20083 12.7119 8.52051L13.3868 9.62695C13.5771 9.93911 13.582 10.3307 13.3994 10.6475L12.9932 11.3516C12.8103 11.6682 12.4681 11.8602 12.1026 11.8516L10.8067 11.8193C10.432 11.8101 10.0838 12.0117 9.90433 12.3408L9.28421 13.4785C9.10907 13.7996 8.772 13.9998 8.40628 14H7.59378C7.22803 13.9999 6.89108 13.7996 6.71585 13.4785L6.09476 12.3408C5.9154 12.0123 5.56755 11.8115 5.19339 11.8203L3.89847 11.8516C3.53297 11.8604 3.19094 11.6689 3.00784 11.3525L2.60159 10.6484C2.41866 10.3316 2.4238 9.94028 2.61429 9.62793L3.28909 8.52051C3.48386 8.20086 3.48395 7.79909 3.28909 7.47949L2.61429 6.37305C2.42369 6.06066 2.41862 5.66848 2.60159 5.35156L3.00784 4.64746C3.19094 4.33107 3.53297 4.13957 3.89847 4.14844L5.19339 4.17871C5.56751 4.18754 5.91539 3.98663 6.09476 3.6582L6.71585 2.52148C6.89108 2.20044 7.22803 2.00009 7.59378 2H8.40628ZM8.00003 6.25C7.03353 6.25 6.25003 7.0335 6.25003 8C6.25003 8.9665 7.03353 9.75 8.00003 9.75C8.96645 9.7499 9.75003 8.96644 9.75003 8C9.75003 7.03356 8.96645 6.2501 8.00003 6.25Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconSettingsSmallOn;
