@@ -38,9 +38,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
           <Icon name="book-open" />
           margin
         </strong>
-        <span
-          className={cn('flex items-center gap-2 text-[10px] text-[#a19381]')}
-        >
+        <span className={cn('flex items-center gap-2 text-xs text-[#a19381]')}>
           <Icon name="cloud" />
           Saved locally
         </span>
@@ -50,7 +48,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
       </div>
       <div
         className={cn(
-          'flex items-center gap-2 border-b border-[#ede5da] px-5 py-3 text-[10px] text-[#aa9b88]',
+          'flex items-center gap-2 border-b border-[#ede5da] px-5 py-3 text-xs text-[#aa9b88]',
         )}
       >
         <Icon name="library" />
@@ -109,13 +107,13 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
       <div className={cn('min-h-0 flex-1 overflow-auto px-7 py-5')}>
         <div
           className={cn(
-            'mb-3 flex items-center gap-2 text-[9px] tracking-wider text-[#b5a58c]',
+            'mb-3 flex items-center gap-2 text-xs tracking-normal text-[#b5a58c]',
           )}
         >
           <Icon name="sun" />
-          PROJECT NOTES
+          Project notes
         </div>
-        <h4 className={cn('mb-4 font-serif text-[29px] tracking-tight')}>
+        <h4 className={cn('mb-4 font-serif text-3xl tracking-normal')}>
           Review notes
         </h4>
         <div
@@ -128,7 +126,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
           spellCheck={false}
           onInput={(event) => save(event.currentTarget.textContent ?? '')}
           className={cn(
-            'min-h-22 text-[13px] leading-relaxed whitespace-pre-wrap outline-none',
+            'min-h-22 text-sm leading-relaxed whitespace-pre-wrap outline-none',
             formats.includes('quote') ? 'border-l-2 border-[#b7a384] pl-3' : '',
             formats.includes('list')
               ? "list-treatment relative pl-4 before:absolute before:left-0 before:content-['•']"
@@ -145,9 +143,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
           {initial.current}
         </div>
         <p
-          className={cn(
-            'mt-5 flex items-center gap-2 text-[10px] text-[#af9c7f]',
-          )}
+          className={cn('mt-5 flex items-center gap-2 text-xs text-[#af9c7f]')}
         >
           <Icon name="lightbulb" />
           Next review: Friday
@@ -155,7 +151,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
       </div>
       <div
         className={cn(
-          'flex items-center justify-between border-t border-[#ede5da] px-5 py-3 text-[10px] text-[#ac9a85]',
+          'flex items-center justify-between border-t border-[#ede5da] px-5 py-3 text-xs text-[#ac9a85]',
         )}
       >
         <span className={cn('flex items-center gap-2')}>

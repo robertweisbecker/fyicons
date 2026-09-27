@@ -1,3 +1,4 @@
+import { Slider, SliderControl } from '../components/ui/slider';
 import { cn } from '../lib/utils';
 import { useEffect, useState } from 'react';
 import { IconToggle as Toggle } from '../components/ui/icon-toggle';
@@ -52,37 +53,37 @@ export function Current() {
       <div className={cn('my-7 flex min-w-0 items-center gap-5')}>
         <div
           className={cn(
-            "record-art relative flex aspect-square w-[43%] max-w-47.5 shrink-0 flex-col justify-between overflow-hidden rounded bg-[#c4d0e2] p-4 before:absolute before:top-[19%] before:left-[30%] before:size-[85%] before:rounded-full before:border-14 before:border-[#edf1f3] before:shadow-[0_0_0_14px_#adc0dd,0_0_0_28px_#e1e9f0] before:content-[''] max-[680px]:p-3 [&_small]:relative [&_small]:text-[7px] [&_small]:tracking-[1px] [&>span]:relative [&>span]:text-2xl [&>span]:leading-tight [&>span]:font-semibold [&>span]:tracking-tight max-[680px]:[&>span]:text-[21px]",
+            "record-art relative flex aspect-square w-[43%] max-w-47.5 shrink-0 flex-col justify-between overflow-hidden rounded bg-[#c4d0e2] p-4 before:absolute before:top-[19%] before:left-[30%] before:size-[85%] before:rounded-full before:border-14 before:border-[#edf1f3] before:shadow-[0_0_0_14px_#adc0dd,0_0_0_28px_#e1e9f0] before:content-[''] max-[680px]:p-3 [&_small]:relative [&_small]:text-xs [&_small]:tracking-normal [&>span]:relative [&>span]:text-2xl [&>span]:leading-tight [&>span]:font-semibold [&>span]:tracking-normal max-[680px]:[&>span]:text-xl",
           )}
           role="img"
           aria-label="Blue and cream circular album artwork"
         >
           <span>
-            AFTER
+            After
             <br />
-            HOURS
+            hours
           </span>
-          <small>VOL. 04</small>
+          <small>Vol. 4</small>
         </div>
         <div className={cn('min-w-0 flex-1')}>
-          <span className={cn('text-[9px] tracking-wider text-[#93a4bf]')}>
-            NOW PLAYING
+          <span className={cn('text-xs tracking-normal text-[#93a4bf]')}>
+            Now playing
           </span>
           <h4
             className={cn(
-              'mt-2 text-2xl leading-tight font-medium tracking-tight',
+              'mt-2 text-2xl leading-tight font-medium tracking-normal',
             )}
           >
             {tracks[track]}
           </h4>
           <p className={cn('mt-2 text-xs text-[#8c9bb4]')}>The Quiet Hours</p>
-          <span className={cn('mt-4 flex items-center gap-2 text-[10px]')}>
+          <span className={cn('mt-4 flex items-center gap-2 text-xs')}>
             <Icon name="headphones" />
             Evening essentials
           </span>
           <div
             className={cn(
-              'mt-5 flex items-center gap-2 text-[10px] text-[#91a0b9]',
+              'mt-5 flex items-center gap-2 text-xs text-[#91a0b9]',
             )}
           >
             <Icon name="list-bullet" />
@@ -135,44 +136,48 @@ export function Current() {
           <Icon name="arrow-repeat" />
         </Toggle>
       </div>
-      <div
-        className={cn('my-5 flex items-center gap-3 text-[10px] tabular-nums')}
-      >
+      <div className={cn('my-2 flex items-center gap-3 text-xs tabular-nums')}>
         <span>
           {Math.floor(position / 60)}:{String(position % 60).padStart(2, '0')}
         </span>
-        <input
-          className={cn('h-1 min-w-0 flex-1 accent-[#8099bf]')}
-          type="range"
-          aria-label="Playback position"
+        <Slider.Root
+          className={cn('flex min-w-0 flex-1 text-[#8099bf]')}
           min={0}
           max={222}
           value={position}
-          onChange={(event) => setPosition(Number(event.target.value))}
-        />
+          onValueChange={setPosition}
+        >
+          <Slider.Label className="sr-only">Playback position</Slider.Label>
+          <SliderControl
+            getAriaValueText={(_, value) =>
+              `${Math.floor(value / 60)} minutes ${value % 60} seconds`
+            }
+          />
+        </Slider.Root>
         <span>3:42</span>
       </div>
       <div
         className={cn(
-          'flex items-center justify-between border-t border-[#dbe2ee] pt-3 text-[10px]',
+          'flex items-center justify-between border-t border-[#dbe2ee] pt-3 text-xs',
         )}
       >
         <span className={cn('flex items-center gap-2')}>
           <Icon name="device-laptop" />
           This device
         </span>
-        <label className={cn('flex items-center gap-2')}>
+        <div className={cn('flex items-center gap-2')}>
           <Icon name="volume-high" />
-          <input
-            type="range"
-            aria-label="Volume"
-            className={cn('h-1 w-18 accent-[#8099bf]')}
+          <Slider.Root
+            className={cn('flex w-20 text-[#8099bf]')}
             min={0}
             max={100}
             value={volume}
-            onChange={(event) => setVolume(Number(event.target.value))}
-          />
-        </label>
+            onValueChange={setVolume}
+          >
+            <Slider.Label className="sr-only">Volume</Slider.Label>
+            <SliderControl getAriaValueText={(_, value) => `${value}%`} />
+          </Slider.Root>
+        </div>
       </div>
     </div>
   );

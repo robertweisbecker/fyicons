@@ -34,7 +34,7 @@ export function Orbit() {
             key={name}
             aria-label={name}
             className={cn(
-              'mb-1 flex min-h-9 items-center gap-2 rounded-md px-2 text-left text-[11px]',
+              'mb-1 flex min-h-9 items-center gap-2 rounded-md px-2 text-left text-xs',
               tab === name ? 'bg-white/60' : '',
             )}
             onClick={() => setTab(name)}
@@ -47,7 +47,7 @@ export function Orbit() {
             <span className={cn('hidden sm:inline')}>{name}</span>
           </Button>
         ))}
-        <span className={cn('mt-auto hidden text-[10px] sm:block')}>
+        <span className={cn('mt-auto hidden text-xs sm:block')}>
           Personal workspace
         </span>
       </aside>
@@ -71,13 +71,13 @@ export function Orbit() {
         <div className={cn('min-h-0 flex-1 overflow-auto px-5 pt-5')}>
           <div
             className={cn(
-              'mb-3 flex items-center gap-2 text-[10px] tracking-wider text-[#8b9a7c]',
+              'mb-3 flex items-center gap-2 text-xs tracking-normal text-[#8b9a7c]',
             )}
           >
             <Icon name="agent-clank" />
-            ASSISTANT
+            Assistant
           </div>
-          <h4 className={cn('text-[25px] font-medium tracking-tight')}>
+          <h4 className={cn('text-2xl font-medium tracking-normal')}>
             New task
           </h4>
           <p className={cn('mt-1 text-xs text-[#859278]')}>
@@ -92,13 +92,11 @@ export function Orbit() {
               <Icon name="git-pull-request" />
               <strong>Refine the navigation</strong>
             </div>
-            <p className={cn('my-3 text-[11px] text-[#809071]')}>
+            <p className={cn('my-3 text-xs text-[#809071]')}>
               Three navigation changes are ready.
             </p>
             <div
-              className={cn(
-                'flex items-center justify-between gap-2 text-[10px]',
-              )}
+              className={cn('flex items-center justify-between gap-2 text-xs')}
             >
               <span className={cn('flex items-center gap-1')}>
                 <Icon name="git-branch" />
@@ -146,7 +144,6 @@ export function Orbit() {
             <span className={cn('flex items-center gap-2 text-[#94a485]')}>
               <Icon name="paperclip" />
               <Icon name="globe-simple" />
-              <small>Local demo</small>
             </span>
             <Button
               type="submit"

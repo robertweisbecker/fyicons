@@ -16,7 +16,7 @@ export function SwitchControl({
       checked={checked}
       onCheckedChange={onChange}
       className={cn(
-        'switch group/switch relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full bg-[#b8babe] p-0.5 data-checked:bg-(--pref-accent,#007aff)',
+        'switch group/switch relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full bg-zinc-400 p-0.5 data-checked:bg-[var(--pref-accent,var(--color-blue-500))]',
       )}
     >
       <Switch.Thumb

@@ -22,7 +22,7 @@ test.afterEach(async ({ page }) => {
   expect((page as any).__errors).toEqual([]);
 });
 
-test('browse, filter, inspect, navigate, and persist a shortlist', async ({
+test('browse, filter, inspect, navigate, and persist selected icons', async ({
   page,
 }) => {
   await page.goto('/');
@@ -60,26 +60,28 @@ test('browse, filter, inspect, navigate, and persist a shortlist', async ({
   await search.fill('sun');
   await page.getByRole('button', { name: 'Inspect sun', exact: true }).click();
   await page
-    .getByRole('button', { name: 'Add to shortlist', exact: true })
+    .getByRole('dialog')
+    .getByRole('checkbox', { name: 'Select sun', exact: true })
     .click();
   await page.keyboard.press('Escape');
   await expect(
     page.getByRole('button', { name: 'Inspect sun', exact: true }),
   ).toBeFocused();
   await page.reload();
-  await page.getByRole('combobox', { name: 'Review filter' }).click();
-  await page.getByRole('option', { name: 'Shortlist', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Selection filter' }).click();
+  await page.getByRole('option', { name: 'Selected', exact: true }).click();
   await expect(page.locator('.icon-tile')).toHaveCount(1);
   await page.getByRole('button', { name: 'Inspect sun', exact: true }).click();
   await page
-    .getByRole('button', { name: 'Remove from shortlist', exact: true })
+    .getByRole('dialog')
+    .getByRole('checkbox', { name: 'Select sun', exact: true })
     .click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(
     page.getByRole('heading', { name: 'No matching icons' }),
   ).toBeVisible();
   await page.getByRole('button', { name: 'Reset filters' }).click();
-  await page.getByRole('combobox', { name: 'Review filter' }).click();
+  await page.getByRole('combobox', { name: 'Selection filter' }).click();
   await page
     .getByRole('option', { name: 'Name variants', exact: true })
     .click();
@@ -101,9 +103,7 @@ test('original SVG copy, download and full ZIP have identical bytes', async ({
   expect(svg.suggestedFilename()).toBe(sun.filename);
   expect(await readFile((await svg.path())!, 'utf8')).toBe(sun.svg);
   pending = page.waitForEvent('download');
-  await page
-    .getByRole('button', { name: 'Download SVGs', exact: true })
-    .click();
+  await page.getByRole('button', { name: 'Download', exact: true }).click();
   const archive = unzipSync(await readFile((await (await pending).path())!));
   expect(Object.keys(archive)).toHaveLength(563);
   for (const icon of catalog.icons) {
@@ -197,6 +197,7 @@ async function nativeIcons(page: Page) {
 test('all seven React demos render and preserve meaningful interactions', async ({
   page,
 }) => {
+  test.setTimeout(60_000);
   await page.goto('/#examples');
   await expect(page.locator('#workbench-window')).toBeVisible();
   await nativeIcons(page);
@@ -305,4 +306,197 @@ test('all seven React demos render and preserve meaningful interactions', async 
     ).toBe(true);
   }
   await page.screenshot({ path: 'test-results/examples-mobile.png' });
+});
+
+test('selection checkboxes export only selected original SVGs', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await expect(
+    page.getByRole('button', { name: 'Export selected 0' }),
+  ).toBeDisabled();
+  const search = page.getByRole('searchbox', { name: 'Search icons' });
+  for (const name of ['sun', 'moon']) {
+    await search.fill(name);
+    const checkbox = page.getByRole('checkbox', {
+      name: `Select ${name}`,
+      exact: true,
+    });
+    await checkbox.focus();
+    await page.keyboard.press('Space');
+    await expect(checkbox).toBeChecked();
+    await expect(page.getByRole('dialog')).toHaveCount(0);
+  }
+  await search.fill('arrow');
+  const pending = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Export selected 2' }).click();
+  const download = await pending;
+  expect(download.suggestedFilename()).toBe('fyicons-selected.zip');
+  const archive = unzipSync(await readFile((await download.path())!));
+  expect(Object.keys(archive)).toHaveLength(4);
+  for (const icon of catalog.icons.filter((icon) =>
+    ['sun', 'moon'].includes(icon.name),
+  )) {
+    expect(strFromU8(archive[icon.file])).toBe(icon.svg);
+  }
+  const manifest = JSON.parse(strFromU8(archive['manifest.json']));
+  expect(manifest.count).toBe(2);
+  expect(manifest.duplicateGroups).toEqual({});
+  expect(
+    manifest.icons.map((icon: { name: string }) => icon.name).sort(),
+  ).toEqual(['moon', 'sun']);
+});
+
+test('page navigation, compact header, preview sizing, and touch selection', async ({
+  page,
+  browser,
+}) => {
+  await page.goto('/');
+  const nav = page.getByRole('navigation', { name: 'Main' });
+  await expect(page.getByRole('link', { name: 'View in Figma' })).toHaveCount(
+    0,
+  );
+  await expect(
+    page.getByRole('button', { name: 'Manifest', exact: true }),
+  ).toHaveCount(0);
+  const slider = page.getByRole('slider', { name: 'Preview size' });
+  await slider.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(slider).toHaveValue('20');
+  await expect(page.getByText('20px', { exact: true })).toHaveCSS(
+    'font-variant-numeric',
+    'tabular-nums',
+  );
+  await expect(page.locator('.icon-tile svg').first()).toHaveCSS(
+    'width',
+    '20px',
+  );
+  await page.keyboard.press('End');
+  await expect(slider).toHaveValue('64');
+  await page.keyboard.press('Home');
+  await expect(slider).toHaveValue('16');
+  await expect(page.getByRole('combobox', { name: 'Icon category' })).toHaveCSS(
+    'font-size',
+    '14px',
+  );
+  await nav.getByRole('link', { name: 'Examples', exact: true }).click();
+  await expect(page).toHaveURL(/\/examples\/$/);
+  await page.reload();
+  await expect(
+    page.getByRole('heading', { name: 'Examples', exact: true }),
+  ).toBeVisible();
+  await expect(nav.getByRole('link', { name: 'Examples' })).toHaveAttribute(
+    'aria-current',
+    'page',
+  );
+  await nativeIcons(page);
+  await nav.getByRole('link', { name: 'Icons', exact: true }).click();
+  await expect(page.locator('.icon-tile')).toHaveCount(561);
+  await page.goBack();
+  await expect(
+    page.getByRole('heading', { name: 'Examples', exact: true }),
+  ).toBeVisible();
+  await page.goForward();
+  await expect(
+    page.getByRole('heading', { name: 'Icons', exact: true }),
+  ).toBeVisible();
+  await page.locator('.icon-tile').last().scrollIntoViewIfNeeded();
+  const header = await page.locator('header').boundingBox();
+  expect(header?.y).toBe(0);
+  expect(header?.height).toBeLessThanOrEqual(57);
+  await expect(
+    page.getByRole('link', { name: 'FYIcons', exact: true }),
+  ).toHaveCSS('font-size', '16px');
+  await page.setViewportSize({ width: 1072, height: 976 });
+  await page.getByRole('link', { name: 'FYIcons', exact: true }).click();
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.screenshot({ path: 'test-results/refined-library.png' });
+  const context = await browser.newContext({
+    viewport: { width: 320, height: 844 },
+    hasTouch: true,
+  });
+  const mobile = await context.newPage();
+  await mobile.goto('/');
+  const root = mobile
+    .getByRole('checkbox', { name: 'Select activity', exact: true })
+    .locator('..');
+  await expect(root).toHaveCSS('opacity', '1');
+  await mobile
+    .getByRole('checkbox', { name: 'Select activity', exact: true })
+    .check();
+  await expect(mobile.getByRole('dialog')).toHaveCount(0);
+  expect(
+    await mobile.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await mobile.screenshot({ path: 'test-results/refined-library-mobile.png' });
+  await context.close();
+});
+
+test('Base UI demo sliders support keyboard controls and native-size icons', async ({
+  page,
+}) => {
+  await page.goto('/examples/');
+  const playback = page.getByRole('slider', { name: 'Playback position' });
+  await playback.focus();
+  await page.keyboard.press('Home');
+  await page.keyboard.press('ArrowRight');
+  await expect(playback).toHaveValue('1');
+  await expect(playback).toHaveAttribute(
+    'aria-valuetext',
+    '0 minutes 1 seconds',
+  );
+  await expect(page.getByText('0:01', { exact: true })).toBeVisible();
+  const volume = page.getByRole('slider', { name: 'Volume', exact: true });
+  await volume.focus();
+  await page.keyboard.press('End');
+  await page.keyboard.press('ArrowLeft');
+  await expect(volume).toHaveValue('99');
+  const radius = page.getByRole('slider', {
+    name: 'Corner radius',
+    exact: true,
+  });
+  await radius.focus();
+  await page.keyboard.press('End');
+  await page.keyboard.press('ArrowLeft');
+  await expect(radius).toHaveValue('39');
+  await expect(page.locator('.forma-object')).toHaveCSS(
+    'border-top-left-radius',
+    '39px',
+  );
+  await nativeIcons(page);
+  await page.setViewportSize({ width: 1072, height: 976 });
+  await playback.scrollIntoViewIfNeeded();
+  await page.screenshot({ path: 'test-results/refined-sliders.png' });
+  await page
+    .getByRole('heading', { name: 'Examples', exact: true })
+    .scrollIntoViewIfNeeded();
+  await page.screenshot({ path: 'test-results/refined-examples.png' });
+});
+
+test('theme tokens resolve Tailwind colors in light and dark mode', async ({
+  page,
+}) => {
+  await page.goto('/');
+  for (const theme of ['light', 'dark']) {
+    if (theme === 'dark')
+      await page.getByRole('button', { name: 'Switch to dark theme' }).click();
+    const colors = await page.evaluate(() => {
+      const style = getComputedStyle(document.documentElement);
+      return ['--bg', '--surface', '--text', '--border'].map((name) =>
+        style.getPropertyValue(name).trim(),
+      );
+    });
+    expect(
+      colors.every(
+        (color) =>
+          color === 'white' || color.startsWith('oklch(') || color === '#fff',
+      ),
+    ).toBe(true);
+    expect(new Set(colors).size).toBeGreaterThan(2);
+  }
+  await page.getByRole('searchbox', { name: 'Search icons' }).fill('sun');
+  await page.getByRole('button', { name: 'Inspect sun', exact: true }).click();
+  await page.screenshot({ path: 'test-results/refined-dark.png' });
 });

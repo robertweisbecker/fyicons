@@ -1,3 +1,4 @@
+import { Slider, SliderControl } from '../components/ui/slider';
 import { cn } from '../lib/utils';
 import { useState, type CSSProperties } from 'react';
 import { Icon } from '../components/Icon';
@@ -26,7 +27,7 @@ export function Forma() {
           <Icon name="component" />
           forma
         </strong>
-        <span className={cn('flex items-center gap-1 text-[10px]')}>
+        <span className={cn('flex items-center gap-1 text-xs')}>
           <Icon name="check-sm" />
           Saved
         </span>
@@ -77,23 +78,16 @@ export function Forma() {
             <Icon name="asterisk-star" />
             <strong
               className={cn(
-                'mt-5 mb-5 w-full font-serif text-[22px] leading-tight',
+                'mt-5 mb-5 w-full font-serif text-xl leading-tight',
               )}
             >
               Project
               <br />
               overview
             </strong>
-            <small className={cn('text-[8px] tracking-wider')}>
-              DESIGN SAMPLE
-            </small>
           </div>
-          <span className={cn('absolute bottom-3 left-3 text-[10px]')}>
-            {tool}
-          </span>
-          <span className={cn('absolute right-3 bottom-3 text-[10px]')}>
-            100%
-          </span>
+          <span className={cn('absolute bottom-3 left-3 text-xs')}>{tool}</span>
+          <span className={cn('absolute right-3 bottom-3 text-xs')}>100%</span>
         </div>
         <aside
           className={cn(
@@ -106,7 +100,7 @@ export function Forma() {
             Design
           </div>
           <div className={cn('border-b border-[#e9e5ef] p-3')}>
-            <h5 className={cn('mb-3 text-[11px] font-medium')}>Layout</h5>
+            <h5 className={cn('mb-3 text-xs font-medium')}>Layout</h5>
             <div className={cn('flex items-center justify-between')}>
               {['left', 'center', 'right'].map((value, i) => (
                 <IconButton
@@ -128,7 +122,7 @@ export function Forma() {
                 onClick={() => setGrid(!grid)}
               />
             </div>
-            <div className={cn('mt-3 flex gap-2 text-[10px]')}>
+            <div className={cn('mt-3 flex gap-2 text-xs')}>
               <span className={cn('rounded border border-[#ece9f1] p-2')}>
                 W 180
               </span>
@@ -137,23 +131,25 @@ export function Forma() {
               </span>
             </div>
           </div>
-          <div className={cn('space-y-4 p-3 text-[11px]')}>
+          <div className={cn('space-y-4 p-3 text-xs')}>
             <h5 className={cn('font-medium')}>Appearance</h5>
-            <label className={cn('block')}>
-              <span className={cn('mb-3 flex items-center gap-2')}>
+            <Slider.Root
+              min={0}
+              max={40}
+              value={radius}
+              onValueChange={setRadius}
+            >
+              <div className={cn('flex items-center gap-2')}>
                 <Icon name="border-radius" />
-                Corner radius<output className={cn('ml-auto')}>{radius}</output>
-              </span>
-              <input
-                className={cn('h-1 w-full accent-[#aa91d0]')}
-                type="range"
-                aria-label="Corner radius"
-                min={0}
-                max={40}
-                value={radius}
-                onChange={(event) => setRadius(Number(event.target.value))}
-              />
-            </label>
+                <Slider.Label>Corner radius</Slider.Label>
+                <Slider.Value className={cn('ml-auto tabular-nums')} />
+              </div>
+              <div className={cn('text-[#aa91d0]')}>
+                <SliderControl
+                  getAriaValueText={(_, value) => `${value} pixels`}
+                />
+              </div>
+            </Slider.Root>
             <label className={cn('flex items-center gap-2')}>
               <Icon name="paint-bucket" />
               Fill

@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Dialog } from '@base-ui/react/dialog';
 import { Toggle } from '@base-ui/react/toggle';
 import { Icon } from './Icon';
+import { SelectionCheckbox } from './SelectionCheckbox';
 import { Button, IconButton } from './ui';
 import { copy, download } from '../lib/downloads';
 import { icons, type IconRecord } from '../lib/catalog';
@@ -11,22 +12,22 @@ import { useMobile } from '../lib/preferences';
 type Props = {
   item: IconRecord | null;
   visible: IconRecord[];
-  saved: string[];
+  selectedIds: string[];
   select: (icon: IconRecord) => void;
   navigate: (step: number) => void;
   close: () => void;
-  toggleSaved: (id: string) => void;
+  toggleSelection: (id: string) => void;
   notify: (message: string) => void;
   finalFocus: () => HTMLElement | false;
 };
 export function Inspector({
   item,
   visible,
-  saved,
+  selectedIds,
   select,
   navigate,
   close,
-  toggleSaved,
+  toggleSelection,
   notify,
   finalFocus,
 }: Props) {
@@ -50,7 +51,7 @@ export function Inspector({
           initialFocus={popup}
           finalFocus={finalFocus}
           className={cn(
-            'inspector fixed inset-y-0 right-0 z-50 flex h-dvh w-(--inspector-width) max-w-full flex-col overflow-y-auto border-l border-line bg-surface text-ink outline-none max-[760px]:w-screen max-[760px]:border-l-0',
+            'inspector fixed top-14 right-0 bottom-0 z-50 flex h-[calc(100dvh-56px)] w-(--inspector-width) max-w-full flex-col overflow-y-auto border-l border-line bg-surface text-ink outline-none max-[760px]:top-0 max-[760px]:h-dvh max-[760px]:w-screen max-[760px]:border-l-0',
           )}
           onKeyDown={(event) => {
             // Dialog contains keyboard events, so handle navigation inside the popup.
@@ -92,7 +93,7 @@ export function Inspector({
                   />
                   <span
                     className={cn(
-                      'min-w-15 text-center text-[11px] text-muted tabular-nums',
+                      'min-w-15 text-center text-xs text-muted tabular-nums',
                     )}
                     aria-live="polite"
                   >
@@ -122,7 +123,7 @@ export function Inspector({
               >
                 <span
                   className={cn(
-                    "preview-canvas relative block size-32 shrink-0 before:pointer-events-none before:absolute before:-inset-128 before:bg-[linear-gradient(var(--grid)_1px,transparent_1px),linear-gradient(90deg,var(--grid)_1px,transparent_1px)] before:bg-size-[8px_8px] before:content-[''] group-[.no-grid]/preview:before:hidden after:pointer-events-none after:absolute after:inset-0 after:outline after:outline-[#638bac] after:content-[''] group-[.no-grid]/preview:after:hidden [&>svg]:relative [&>svg]:size-full",
+                    "preview-canvas relative block size-32 shrink-0 before:pointer-events-none before:absolute before:-inset-128 before:bg-[linear-gradient(var(--grid)_1px,transparent_1px),linear-gradient(90deg,var(--grid)_1px,transparent_1px)] before:bg-size-[8px_8px] before:content-[''] group-[.no-grid]/preview:before:hidden after:pointer-events-none after:absolute after:inset-0 after:outline after:outline-blue-400 after:content-[''] group-[.no-grid]/preview:after:hidden [&>svg]:relative [&>svg]:size-full",
                   )}
                 >
                   <Icon name={item.id} />
@@ -134,9 +135,7 @@ export function Inspector({
                 )}
               >
                 <Icon name={item.id} />
-                <span className={cn('text-[11px] text-muted')}>
-                  16px display
-                </span>
+                <span className={cn('text-xs text-muted')}>16px display</span>
                 <Toggle
                   className={cn(
                     'ml-auto inline-flex min-h-9 items-center justify-center gap-2 text-xs text-muted hover:text-ink',
@@ -153,7 +152,7 @@ export function Inspector({
               <div className={cn('p-5 pt-6')}>
                 <Dialog.Title
                   className={cn(
-                    'text-xl font-semibold tracking-tight break-words',
+                    'text-xl font-semibold tracking-normal break-words',
                   )}
                 >
                   {item.name}
@@ -163,7 +162,7 @@ export function Inspector({
                 >
                   {item.category}
                 </Dialog.Description>
-                <dl className={cn('space-y-3 text-[11px]')}>
+                <dl className={cn('space-y-3 text-xs')}>
                   {[
                     ['Figma name', item.originalName],
                     ['Node', item.id],
@@ -228,28 +227,16 @@ export function Inspector({
                     <Icon name="download-square" />
                     Download SVG
                   </Button>
-                  <Toggle
-                    className={cn(
-                      'icon-button ml-auto inline-flex size-9 shrink-0 items-center justify-center rounded-lg hover:bg-hover aria-pressed:bg-selection',
-                    )}
-                    aria-label={
-                      saved.includes(item.id)
-                        ? 'Remove from shortlist'
-                        : 'Add to shortlist'
-                    }
-                    pressed={saved.includes(item.id)}
-                    onPressedChange={() => toggleSaved(item.id)}
-                  >
-                    <Icon
-                      name={
-                        saved.includes(item.id) ? 'bookmark-fill' : 'bookmark'
-                      }
-                    />
-                  </Toggle>
+                  <SelectionCheckbox
+                    checked={selectedIds.includes(item.id)}
+                    label={'Select ' + item.name}
+                    onChange={() => toggleSelection(item.id)}
+                    className="ml-auto"
+                  />
                 </div>
                 <a
                   className={cn(
-                    'mt-6 flex items-center gap-2 text-[11px] text-muted hover:text-ink',
+                    'mt-6 flex items-center gap-2 text-xs text-muted hover:text-ink',
                   )}
                   href={item.sourceUrl}
                   target="_blank"
@@ -258,7 +245,7 @@ export function Inspector({
                   Open component in Figma
                   <Icon name="external-link" />
                 </a>
-                <p className={cn('mt-7 text-[11px] text-muted')}>
+                <p className={cn('mt-7 text-xs text-muted')}>
                   ← → Previous / next · Esc Close
                 </p>
               </div>

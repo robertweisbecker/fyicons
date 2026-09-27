@@ -13,5 +13,4 @@ const icons = await Promise.all(manifest.icons.map(async icon => {
 }));
 if (new Set(icons.map(icon => icon.id)).size !== icons.length || new Set(icons.map(icon => icon.filename)).size !== icons.length) throw new Error('Duplicate IDs or filenames.');
 await writeFile('src/data/catalog.json', JSON.stringify({ ...manifest, icons }) + '\n');
-await writeFile('src/data/README.txt', await readFile(path.join(source, 'README.md')));
 console.log('Imported ' + icons.length + ' original SVGs. Build and commit the updated data files.');

@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback } from '../components/ui/avatar';
 import { cn } from '../lib/utils';
 import { useState, type CSSProperties } from 'react';
 import { ToggleGroup } from '@base-ui/react/toggle-group';
@@ -105,7 +106,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
   return (
     <div
       className={cn(
-        'study-window demo-surface preferences-window group/preferences flex h-190 overflow-hidden rounded-[13px] border border-[#d8dadd] bg-white font-sans text-[13px] font-normal tracking-[-.1px] text-[#28292b] antialiased scheme-light shadow-[0_2px_5px_#10182803,0_16px_48px_-24px_#27334638] [--app-blue:#007aff] [--app-line:#e7e8ea] [--hover:#eceef0] [--muted:#777a80] [--pref-card:#fff] [--pref-line:#ececf1] [--pref-muted:#7c7e8a] [--pref-page:#fbfbfd] [--pref-text:#303139] [--text:#28292b] max-[850px]:h-205 max-[680px]:h-197.5 max-[680px]:rounded-[10px] [&_button]:focus-visible:outline-[#777] [&_input]:focus-visible:outline-[#777] [&_textarea]:focus-visible:outline-[#777]',
+        'study-window demo-surface preferences-window group/preferences flex h-190 overflow-hidden rounded-[13px] border border-[#d8dadd] bg-white font-sans text-sm font-normal tracking-normal text-[#28292b] antialiased scheme-light shadow-[0_2px_5px_#10182803,0_16px_48px_-24px_#27334638] [--app-blue:#007aff] [--app-line:#e7e8ea] [--hover:#eceef0] [--muted:#777a80] [--pref-card:#fff] [--pref-line:#ececf1] [--pref-muted:#7c7e8a] [--pref-page:#fbfbfd] [--pref-text:#303139] [--text:#28292b] max-[850px]:h-205 max-[680px]:h-197.5 max-[680px]:rounded-[10px] [&_button]:focus-visible:outline-[#777] [&_input]:focus-visible:outline-[#777] [&_textarea]:focus-visible:outline-[#777]',
         dark
           ? 'appearance-dark [--pref-card:#2e3038] [--pref-line:#3d3f4a] [--pref-muted:#9295a6] [--pref-page:#25262d] [--pref-text:#d9dbe4]'
           : '',
@@ -134,22 +135,23 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
         </div>
         <div
           className={cn(
-            'preferences-profile mb-2 flex flex-col items-start px-3.5 [&_strong]:text-base [&_strong]:font-semibold [&_strong]:tracking-tight [&>span:last-child]:mt-1 [&>span:last-child]:text-[11px] [&>span:last-child]:text-[#9a9dac]',
+            'preferences-profile mb-2 flex flex-col items-start px-3.5 [&_strong]:text-base [&_strong]:font-semibold [&_strong]:tracking-normal [&>span:last-child]:mt-1 [&>span:last-child]:text-xs [&>span:last-child]:text-[#9a9dac]',
           )}
         >
-          <span
+          <Avatar
+            aria-label="Jamie Davis"
             className={cn(
-              'profile-monogram mb-3.5 grid size-12 place-items-center rounded-full bg-linear-145 from-[#bfcbdf] to-[#aeb8d0] text-[15px] font-medium text-white',
+              'profile-monogram mb-3.5 grid size-12 place-items-center rounded-full bg-linear-145 from-[#bfcbdf] to-[#aeb8d0] text-base font-medium text-white',
             )}
           >
-            JD
-          </span>
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
           <strong>Jamie Davis</strong>
           <span>Personal workspace</span>
         </div>
         <div
           className={cn(
-            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-[11px] font-medium text-[#999b9d]',
+            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-[#999b9d]',
           )}
         >
           Preferences
@@ -158,7 +160,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
           <Button
             key={name}
             className={cn(
-              'app-nav-item my-0.5 flex min-h-10 w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#62656b] group-[.compact-labels]/sidebar:justify-center group-[.compact-labels]/sidebar:gap-0 group-[.compact-labels]/sidebar:text-[0px] hover:bg-[#e9ebed] max-[1050px]:text-xs max-[850px]:gap-2 max-[850px]:text-[11px] pointer-coarse:min-h-11 [&.selected]:bg-[#e7e7ed] [&.selected]:text-[#4d4b5b]',
+              'app-nav-item my-0.5 flex min-h-10 w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] group-[.compact-labels]/sidebar:justify-center group-[.compact-labels]/sidebar:gap-0 group-[.compact-labels]/sidebar:text-[0px] hover:bg-[#e9ebed] max-[1050px]:text-xs max-[850px]:gap-2 max-[850px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e7e7ed] [&.selected]:text-[#4d4b5b]',
               section === name ? 'selected' : '',
             )}
             aria-label={name}
@@ -187,7 +189,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
         <div className={cn('sidebar-bottom mt-auto')}>
           <Button
             className={cn(
-              'app-nav-item my-0.5 flex min-h-10 w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#62656b] group-[.compact-labels]/sidebar:justify-center group-[.compact-labels]/sidebar:gap-0 group-[.compact-labels]/sidebar:text-[0px] hover:bg-[#e9ebed] max-[1050px]:text-xs max-[850px]:gap-2 max-[850px]:text-[11px] pointer-coarse:min-h-11 [&.selected]:bg-[#e7e7ed] [&.selected]:text-[#4d4b5b]',
+              'app-nav-item my-0.5 flex min-h-10 w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] group-[.compact-labels]/sidebar:justify-center group-[.compact-labels]/sidebar:gap-0 group-[.compact-labels]/sidebar:text-[0px] hover:bg-[#e9ebed] max-[1050px]:text-xs max-[850px]:gap-2 max-[850px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e7e7ed] [&.selected]:text-[#4d4b5b]',
             )}
             onClick={() =>
               notify(
@@ -198,13 +200,6 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
             <Icon name="info" />
             Help & feedback
           </Button>
-          <div
-            className={cn(
-              'preference-version px-2.5 py-2 text-[10px] text-[#b0b3be]',
-            )}
-          >
-            FYIcons · Local demo
-          </div>
         </div>
       </aside>
       <section
@@ -214,7 +209,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
       >
         <header
           className={cn(
-            'preferences-titlebar flex min-h-14 items-center justify-between gap-5 border-b border-(--pref-line) px-6 text-(--pref-muted) max-[680px]:min-h-13 max-[680px]:gap-2.5 max-[680px]:px-4 [&>div]:flex [&>div]:items-center [&>div]:gap-3.5 [&>div]:text-xs max-[680px]:[&>div]:gap-2 max-[680px]:[&>div]:text-[11px]',
+            'preferences-titlebar flex min-h-14 items-center justify-between gap-5 border-b border-(--pref-line) px-6 text-(--pref-muted) max-[680px]:min-h-13 max-[680px]:gap-2.5 max-[680px]:px-4 [&>div]:flex [&>div]:items-center [&>div]:gap-3.5 [&>div]:text-xs max-[680px]:[&>div]:gap-2 max-[680px]:[&>div]:text-xs',
           )}
         >
           <div>
@@ -223,7 +218,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
           </div>
           <label
             className={cn(
-              'preference-search flex items-center gap-2 text-[#b1b1bd] [&_input]:w-32 [&_input]:border-0 [&_input]:bg-transparent [&_input]:text-[11px] [&_input]:text-(--pref-muted) [&_input]:placeholder:text-[#b1b1bd] max-[680px]:[&_input]:w-28 max-[680px]:[&_input]:text-base max-[680px]:[&_input]:placeholder:text-[11px]',
+              'preference-search flex items-center gap-2 text-[#b1b1bd] [&_input]:w-32 [&_input]:border-0 [&_input]:bg-transparent [&_input]:text-xs [&_input]:text-(--pref-muted) [&_input]:placeholder:text-[#b1b1bd] max-[680px]:[&_input]:w-28 max-[680px]:[&_input]:text-base max-[680px]:[&_input]:placeholder:text-xs',
             )}
           >
             <Icon name="search-1" />
@@ -246,17 +241,10 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
           <div className={cn('preferences-content mx-auto max-w-181.5')}>
             <div
               className={cn(
-                'preferences-heading mb-6.5 flex items-center justify-between gap-5 max-[680px]:gap-2.5 [&_h2]:my-2 [&_h2]:text-3xl [&_h2]:leading-tight [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-(--pref-text) max-[680px]:[&_h2]:text-[29px] [&_p]:text-[13px] [&_p]:text-(--pref-muted) max-[680px]:[&_p]:text-xs',
+                'preferences-heading mb-6.5 flex items-center justify-between gap-5 max-[680px]:gap-2.5 [&_h2]:my-2 [&_h2]:text-3xl [&_h2]:leading-tight [&_h2]:font-semibold [&_h2]:tracking-normal [&_h2]:text-(--pref-text) max-[680px]:[&_h2]:text-3xl [&_p]:text-sm [&_p]:text-(--pref-muted) max-[680px]:[&_p]:text-xs',
               )}
             >
               <div>
-                <span
-                  className={cn(
-                    'section-kicker text-[9px] font-medium tracking-[1.3px] text-[#aeacbb] max-[680px]:text-[8px] max-[680px]:tracking-[1px]',
-                  )}
-                >
-                  PERSONALIZE YOUR WORKSPACE
-                </span>
                 <h2>{section}</h2>
                 <p>
                   {section === 'Appearance'
@@ -266,7 +254,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
               </div>
               <span
                 className={cn(
-                  'saved-indicator flex items-center gap-1.5 text-[11px] text-[#8ca79a] max-[680px]:text-[10px]',
+                  'saved-indicator flex items-center gap-1.5 text-xs text-[#8ca79a] max-[680px]:text-xs',
                 )}
               >
                 <Icon name="circle-check-fill" />
@@ -279,7 +267,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
                   <>
                     <div
                       className={cn(
-                        'setting-section-heading mb-3 flex items-baseline justify-between gap-4 max-[850px]:block [&_h3]:text-[13px] [&_h3]:font-semibold [&_h3]:text-(--pref-text) [&_p]:text-[11px] [&_p]:text-(--pref-muted) max-[850px]:[&_p]:mt-1.5',
+                        'setting-section-heading mb-3 flex items-baseline justify-between gap-4 max-[850px]:block [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:text-(--pref-text) [&_p]:text-xs [&_p]:text-(--pref-muted) max-[850px]:[&_p]:mt-1.5',
                       )}
                     >
                       <h3>Appearance</h3>
@@ -343,7 +331,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
                           </span>
                           <span
                             className={cn(
-                              'theme-option-label mt-2.5 flex items-center justify-between px-0.5 text-xs text-(--pref-muted) group-data-pressed/theme:text-(--pref-text) max-[680px]:text-[10px] [&>span:first-child]:flex [&>span:first-child]:items-center [&>span:first-child]:gap-2 max-[680px]:[&>span:first-child]:gap-1.25',
+                              'theme-option-label mt-2.5 flex items-center justify-between px-0.5 text-xs text-(--pref-muted) group-data-pressed/theme:text-(--pref-text) max-[680px]:text-xs [&>span:first-child]:flex [&>span:first-child]:items-center [&>span:first-child]:gap-2 max-[680px]:[&>span:first-child]:gap-1.25',
                             )}
                           >
                             <span>
@@ -383,7 +371,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
                       </span>
                       <div
                         className={cn(
-                          'setting-description min-w-0 flex-1 [&_strong]:block [&_strong]:text-[13px] [&_strong]:leading-snug [&_strong]:font-normal [&_strong]:text-(--pref-text) max-[680px]:[&_strong]:text-xs [&>span]:mt-1 [&>span]:block [&>span]:text-[11px] [&>span]:leading-snug [&>span]:text-(--pref-muted) max-[1050px]:[&>span]:text-[10px] max-[850px]:[&>span]:max-w-58 max-[680px]:[&>span]:leading-normal',
+                          'setting-description min-w-0 flex-1 [&_strong]:block [&_strong]:text-sm [&_strong]:leading-snug [&_strong]:font-normal [&_strong]:text-(--pref-text) max-[680px]:[&_strong]:text-xs [&>span]:mt-1 [&>span]:block [&>span]:text-xs [&>span]:leading-snug [&>span]:text-(--pref-muted) max-[1050px]:[&>span]:text-xs max-[850px]:[&>span]:max-w-58 max-[680px]:[&>span]:leading-normal',
                         )}
                       >
                         <strong>Accent color</strong>
@@ -437,7 +425,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
                         </span>
                         <div
                           className={cn(
-                            'setting-description min-w-0 flex-1 [&_strong]:block [&_strong]:text-[13px] [&_strong]:leading-snug [&_strong]:font-normal [&_strong]:text-(--pref-text) max-[680px]:[&_strong]:text-xs [&>span]:mt-1 [&>span]:block [&>span]:text-[11px] [&>span]:leading-snug [&>span]:text-(--pref-muted) max-[1050px]:[&>span]:text-[10px] max-[850px]:[&>span]:max-w-58 max-[680px]:[&>span]:leading-normal',
+                            'setting-description min-w-0 flex-1 [&_strong]:block [&_strong]:text-sm [&_strong]:leading-snug [&_strong]:font-normal [&_strong]:text-(--pref-text) max-[680px]:[&_strong]:text-xs [&>span]:mt-1 [&>span]:block [&>span]:text-xs [&>span]:leading-snug [&>span]:text-(--pref-muted) max-[1050px]:[&>span]:text-xs max-[850px]:[&>span]:max-w-58 max-[680px]:[&>span]:leading-normal',
                           )}
                         >
                           <strong>{row.title}</strong>
@@ -488,7 +476,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
                     </span>
                     <div
                       className={cn(
-                        'setting-description min-w-0 flex-1 [&_strong]:block [&_strong]:text-[13px] [&_strong]:leading-snug [&_strong]:font-normal [&_strong]:text-(--pref-text) max-[680px]:[&_strong]:text-xs [&>span]:mt-1 [&>span]:block [&>span]:text-[11px] [&>span]:leading-snug [&>span]:text-(--pref-muted) max-[1050px]:[&>span]:text-[10px] max-[850px]:[&>span]:max-w-58 max-[680px]:[&>span]:leading-normal',
+                        'setting-description min-w-0 flex-1 [&_strong]:block [&_strong]:text-sm [&_strong]:leading-snug [&_strong]:font-normal [&_strong]:text-(--pref-text) max-[680px]:[&_strong]:text-xs [&>span]:mt-1 [&>span]:block [&>span]:text-xs [&>span]:leading-snug [&>span]:text-(--pref-muted) max-[1050px]:[&>span]:text-xs max-[850px]:[&>span]:max-w-58 max-[680px]:[&>span]:leading-normal',
                       )}
                     >
                       <strong>{title}</strong>
@@ -501,7 +489,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
             )}
             <p
               className={cn(
-                'settings-bottom-note mt-5 flex items-center justify-center gap-2 text-[11px] text-[#aaadba] max-[680px]:mt-4 max-[680px]:gap-1.25 max-[680px]:text-[9px]',
+                'settings-bottom-note mt-5 flex items-center justify-center gap-2 text-xs text-[#aaadba] max-[680px]:mt-4 max-[680px]:gap-1.25 max-[680px]:text-xs',
               )}
             >
               <Icon name="lock" />

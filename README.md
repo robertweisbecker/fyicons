@@ -31,9 +31,11 @@ Component styles live beside their JSX as Tailwind utilities. `cn` combines `cls
 
 Use `npm run format` to format code and sort Tailwind utilities. Keep conditional class names complete so Tailwind can detect them.
 
+The fixed 56px header links to the library and `/examples/`. Both routes have static HTML entry points for GitHub Pages reloads; old `#examples` links still work. The library slider previews icons at 16–64px in 4px steps, while the demos keep their native 16px size. Selection controls are hover-enhanced on desktop and always visible on touch screens.
+
 ## Icons and exports
 
-`src/data/catalog.json` contains the current Figma component exports, including the updated sun. Duplicate names retain unique filenames and Figma IDs. Copying or downloading exports the original SVG bytes. The UI adapts ink to the current theme without changing the source exports. Shortlists and preferences stay in the browser.
+`src/data/catalog.json` contains the current Figma component exports, including the updated sun. Duplicate names retain unique filenames and Figma IDs. Copying or downloading exports the original SVG bytes. The UI adapts ink to the current theme without changing the source exports. Selections and preferences stay in the browser.
 
 To import a fresh catalog from the existing FYIcons export process:
 
@@ -42,6 +44,8 @@ npm run sync-icons -- /absolute/path/to/outputs/fyicons
 ```
 
 The importer validates 16px canvases, unique names and IDs, and SVG hashes before replacing the catalog. No Figma credentials or external workspace are required to build this repository.
+
+Export selected downloads a ZIP containing only the selected SVGs and their manifest. Existing shortlists are retained as selections.
 
 The seven examples use local simulated state. The mail, AI, player, and document examples do not connect to external services.
 

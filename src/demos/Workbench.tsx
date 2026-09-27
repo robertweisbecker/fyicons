@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback } from '../components/ui/avatar';
 import { cn } from '../lib/utils';
 import { useRef, useState } from 'react';
 import { Tabs } from '@base-ui/react/tabs';
@@ -30,7 +31,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
   return (
     <div
       className={cn(
-        'study-window demo-surface workbench-window flex h-190 overflow-hidden rounded-[13px] border border-[#d8dadd] bg-white font-sans text-[13px] font-normal tracking-[-.1px] text-[#28292b] antialiased scheme-light shadow-[0_2px_5px_#10182803,0_16px_48px_-24px_#27334638] [--app-blue:#007aff] [--app-line:#e9e9e5] [--hover:#eceef0] [--muted:#777a80] [--text:#28292b] max-[850px]:h-205 max-[680px]:h-197.5 max-[680px]:rounded-[10px] [&_button]:focus-visible:outline-[#777] [&_input]:focus-visible:outline-[#777] [&_textarea]:focus-visible:outline-[#777]',
+        'study-window demo-surface workbench-window flex h-190 overflow-hidden rounded-[13px] border border-[#d8dadd] bg-white font-sans text-sm font-normal tracking-normal text-[#28292b] antialiased scheme-light shadow-[0_2px_5px_#10182803,0_16px_48px_-24px_#27334638] [--app-blue:#007aff] [--app-line:#e9e9e5] [--hover:#eceef0] [--muted:#777a80] [--text:#28292b] max-[850px]:h-205 max-[680px]:h-197.5 max-[680px]:rounded-[10px] [&_button]:focus-visible:outline-[#777] [&_input]:focus-visible:outline-[#777] [&_textarea]:focus-visible:outline-[#777]',
       )}
       id="workbench-window"
     >
@@ -51,7 +52,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         </div>
         <div
           className={cn(
-            'workspace-identity mt-1 mb-6 flex items-center gap-2.5 px-2 [&_small]:mt-1 [&_small]:block [&_small]:text-[11px] [&_small]:font-normal [&_small]:text-[#8a8b87] [&>span:nth-child(2)]:flex-1 [&>span:nth-child(2)]:text-[13px] [&>span:nth-child(2)]:font-semibold [&>svg]:text-[#8a8b87]',
+            'workspace-identity mt-1 mb-6 flex items-center gap-2.5 px-2 [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:font-normal [&_small]:text-[#8a8b87] [&>span:nth-child(2)]:flex-1 [&>span:nth-child(2)]:text-sm [&>span:nth-child(2)]:font-semibold [&>svg]:text-[#8a8b87]',
           )}
         >
           <span
@@ -68,7 +69,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         </div>
         <Button
           className={cn(
-            'app-nav-item new-task my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#303632] hover:bg-[#eceee7] max-[1050px]:text-[11px] pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+            'app-nav-item new-task my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#303632] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
           )}
           onClick={() => {
             setTitle('New task');
@@ -80,7 +81,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           New task
           <span
             className={cn(
-              'key-hint ml-auto text-[11px] text-[#969a9d] tabular-nums',
+              'key-hint ml-auto text-xs text-[#969a9d] tabular-nums',
             )}
           >
             ⌘ N
@@ -88,7 +89,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         </Button>
         <Button
           className={cn(
-            'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-[11px] pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+            'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
           )}
           onClick={() => input.current?.focus()}
         >
@@ -96,7 +97,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           Find a task
           <span
             className={cn(
-              'key-hint ml-auto text-[11px] text-[#969a9d] tabular-nums',
+              'key-hint ml-auto text-xs text-[#969a9d] tabular-nums',
             )}
           >
             ⌘ K
@@ -104,7 +105,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         </Button>
         <div
           className={cn(
-            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-[11px] font-medium text-[#999b9d]',
+            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-[#999b9d]',
           )}
         >
           Workspace
@@ -113,7 +114,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           <Button
             key={label}
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-[11px] pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
             )}
             onClick={() => setTitle(label)}
           >
@@ -123,7 +124,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         ))}
         <div
           className={cn(
-            'app-nav-label recent-label mt-8 mb-2 flex items-center justify-between px-2.5 text-[11px] font-medium text-[#999b9d]',
+            'app-nav-label recent-label mt-8 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-[#999b9d]',
           )}
         >
           Recent tasks
@@ -133,7 +134,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           <Button
             key={session}
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-[11px] pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
               title === session ? 'selected' : '',
             )}
             onClick={() => setTitle(session)}
@@ -145,7 +146,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         <div className={cn('sidebar-bottom mt-auto')}>
           <div
             className={cn(
-              'local-indicator mx-2.5 my-5 flex items-center gap-2 text-[11px] text-[#8b8f8a]',
+              'local-indicator mx-2.5 my-5 flex items-center gap-2 text-xs text-[#8b8f8a]',
             )}
           >
             <span
@@ -157,17 +158,18 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           </div>
           <Button
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-[11px] pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
+              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#eceee7] max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-[#e9ebe6] [&.selected]:text-[#333b32]',
             )}
             onClick={() => notify('Jamie Davis · Personal workspace')}
           >
-            <span
+            <Avatar
+              aria-label="Jamie Davis"
               className={cn(
-                'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-[9px] font-semibold tracking-normal text-[#687267]',
+                'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-xs font-semibold tracking-normal text-[#687267]',
               )}
             >
-              JD
-            </span>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
             Jamie Davis
             <Icon name="settings" />
           </Button>
@@ -185,7 +187,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
         >
           <div
             className={cn(
-              'app-breadcrumb flex min-w-0 items-center gap-2 text-xs whitespace-nowrap text-[#999c9d] max-[680px]:gap-1.5 max-[680px]:text-[0px] [&_strong]:truncate [&_strong]:font-medium [&_strong]:text-[#555b58] max-[680px]:[&_strong]:max-w-44 max-[680px]:[&_strong]:text-[11px] max-[680px]:[&>svg]:hidden',
+              'app-breadcrumb flex min-w-0 items-center gap-2 text-xs whitespace-nowrap text-[#999c9d] max-[680px]:gap-1.5 max-[680px]:text-[0px] [&_strong]:truncate [&_strong]:font-medium [&_strong]:text-[#555b58] max-[680px]:[&_strong]:max-w-44 max-[680px]:[&_strong]:text-xs max-[680px]:[&>svg]:hidden',
             )}
           >
             <Icon name="folder" />
@@ -231,23 +233,24 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
             >
               <div
                 className={cn(
-                  'conversation-meta mb-5 flex items-center justify-center gap-2 text-[10px] text-[#a7a9a6]',
+                  'conversation-meta mb-5 flex items-center justify-center gap-2 text-xs text-[#a7a9a6]',
                 )}
               >
-                TODAY, 10:42 AM
+                Today, 10:42 AM
               </div>
               <div
                 className={cn(
-                  'user-message mb-6 flex items-start gap-3 [&_p]:mt-1 [&_p]:text-[13px] [&_p]:leading-relaxed [&_p]:text-[#5c6359] [&_strong]:text-[11px] [&_strong]:text-[#8c9585] max-[680px]:[&>.person-avatar]:hidden [&>div]:min-w-0 [&>div]:flex-1 [&>div]:rounded-xl [&>div]:bg-[#f1f2ee] [&>div]:px-4 [&>div]:py-3',
+                  'user-message mb-6 flex items-start gap-3 [&_p]:mt-1 [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-[#5c6359] [&_strong]:text-xs [&_strong]:text-[#8c9585] max-[680px]:[&>.person-avatar]:hidden [&>div]:min-w-0 [&>div]:flex-1 [&>div]:rounded-xl [&>div]:bg-[#f1f2ee] [&>div]:px-4 [&>div]:py-3',
                 )}
               >
-                <span
+                <Avatar
+                  aria-label="Jamie Davis"
                   className={cn(
-                    'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-[9px] font-semibold tracking-normal text-[#687267]',
+                    'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-xs font-semibold tracking-normal text-[#687267]',
                   )}
                 >
-                  JD
-                </span>
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
                 <div>
                   <strong>Jamie Davis</strong>
                   <p>
@@ -270,16 +273,15 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                 </div>
                 <div
                   className={cn(
-                    'assistant-content [&_h2]:mb-4 [&_h2]:text-[26px] [&_h2]:leading-tight [&_h2]:font-semibold [&_h2]:tracking-[-.8px] max-[1050px]:[&_h2]:text-2xl max-[680px]:[&_h2]:text-[25px] [&>p]:mb-4 [&>p]:text-sm [&>p]:leading-relaxed [&>p]:text-[#626b5d]',
+                    'assistant-content [&_h2]:mb-4 [&_h2]:text-2xl [&_h2]:leading-tight [&_h2]:font-semibold [&_h2]:tracking-normal max-[1050px]:[&_h2]:text-2xl max-[680px]:[&_h2]:text-2xl [&>p]:mb-4 [&>p]:text-sm [&>p]:leading-relaxed [&>p]:text-[#626b5d]',
                   )}
                 >
                   <div
                     className={cn(
-                      'assistant-meta mt-1 mb-4.5 flex flex-wrap items-center gap-2.5 text-xs [&>span]:text-[10px] [&>span]:text-[#a1a69e]',
+                      'assistant-meta mt-1 mb-4.5 flex flex-wrap items-center gap-2.5 text-xs [&>span]:text-xs [&>span]:text-[#a1a69e]',
                     )}
                   >
                     <strong>Assistant</strong>
-                    <span>Completed in 24 seconds</span>
                   </div>
                   <h2>Command menu updated</h2>
                   <p>
@@ -306,7 +308,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   </div>
                   <Button
                     className={cn(
-                      'change-summary mt-5 mb-2.5 flex w-full items-center gap-4 rounded-lg border border-[#e1e5dc] bg-[#fbfcf9] p-3 text-left [&_small]:mt-1 [&_small]:block [&_small]:text-[10px] [&_small]:text-[#a0a992] [&_strong]:block [&_strong]:text-xs [&>span:nth-child(2)]:min-w-0 [&>span:nth-child(2)]:flex-1 [&>svg]:text-[#a5ab9e]',
+                      'change-summary mt-5 mb-2.5 flex w-full items-center gap-4 rounded-lg border border-[#e1e5dc] bg-[#fbfcf9] p-3 text-left [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:text-[#a0a992] [&_strong]:block [&_strong]:text-xs [&>span:nth-child(2)]:min-w-0 [&>span:nth-child(2)]:flex-1 [&>svg]:text-[#a5ab9e]',
                     )}
                     onClick={() => setReview(true)}
                   >
@@ -319,7 +321,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                     </span>
                     <span
                       className={cn(
-                        'diff-count inline-flex gap-2 text-[11px] tabular-nums [&_b]:font-medium [&_b]:text-[#54866a] [&_i]:text-[#b47e72] [&_i]:not-italic',
+                        'diff-count inline-flex gap-2 text-xs tabular-nums [&_b]:font-medium [&_b]:text-[#54866a] [&_i]:text-[#b47e72] [&_i]:not-italic',
                       )}
                     >
                       <b>+28</b>
@@ -332,7 +334,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   </p>
                   <div
                     className={cn(
-                      'message-actions flex items-center gap-2 text-[10px] text-[#9ba093] [&>span]:ml-auto',
+                      'message-actions flex items-center gap-2 text-xs text-[#9ba093] [&>span]:ml-auto',
                     )}
                   >
                     <IconButton
@@ -360,23 +362,24 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                 <div
                   key={i}
                   className={cn(
-                    'user-message mb-6 flex items-start gap-3 [&_p]:mt-1 [&_p]:text-[13px] [&_p]:leading-relaxed [&_p]:text-[#5c6359] [&_strong]:text-[11px] [&_strong]:text-[#8c9585] max-[680px]:[&>.person-avatar]:hidden [&>div]:min-w-0 [&>div]:flex-1 [&>div]:rounded-xl [&>div]:bg-[#f1f2ee] [&>div]:px-4 [&>div]:py-3',
+                    'user-message mb-6 flex items-start gap-3 [&_p]:mt-1 [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-[#5c6359] [&_strong]:text-xs [&_strong]:text-[#8c9585] max-[680px]:[&>.person-avatar]:hidden [&>div]:min-w-0 [&>div]:flex-1 [&>div]:rounded-xl [&>div]:bg-[#f1f2ee] [&>div]:px-4 [&>div]:py-3',
                   )}
                 >
-                  <span
+                  <Avatar
+                    aria-label="Jamie Davis"
                     className={cn(
-                      'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-[9px] font-semibold tracking-normal text-[#687267]',
+                      'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-xs font-semibold tracking-normal text-[#687267]',
                     )}
                   >
-                    JD
-                  </span>
+                    <AvatarFallback>JD</AvatarFallback>
+                  </Avatar>
                   <p>{message}</p>
                 </div>
               ))}
             </div>
             <form
               className={cn(
-                'refined-composer mx-5.5 mt-3 shrink-0 rounded-[11px] border border-[#dcdfd6] bg-white px-3 pt-3 pb-2 shadow-xs focus-within:border-[#a0aa98] max-[680px]:mx-3.5 [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:border-0 [&_textarea]:bg-transparent [&_textarea]:px-0.5 [&_textarea]:text-[13px] [&_textarea]:leading-normal [&_textarea]:text-[#5e6657] [&_textarea]:outline-none [&_textarea]:placeholder:text-[#a1a79a] max-[680px]:[&_textarea]:text-base',
+                'refined-composer mx-5.5 mt-3 mb-4 shrink-0 rounded-[11px] border border-[#dcdfd6] bg-white px-3 pt-3 pb-2 shadow-xs focus-within:border-[#a0aa98] max-[680px]:mx-3.5 [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:border-0 [&_textarea]:bg-transparent [&_textarea]:px-0.5 [&_textarea]:text-sm [&_textarea]:leading-normal [&_textarea]:text-[#5e6657] [&_textarea]:outline-none [&_textarea]:placeholder:text-[#a1a79a] max-[680px]:[&_textarea]:text-base',
               )}
               onSubmit={(event) => {
                 event.preventDefault();
@@ -389,7 +392,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               {attached && (
                 <div
                   className={cn(
-                    'composer-attachment flex items-center gap-1.5 py-1 text-[11px] text-[#89917f] [&_button]:ml-auto',
+                    'composer-attachment flex items-center gap-1.5 py-1 text-xs text-[#89917f] [&_button]:ml-auto',
                   )}
                 >
                   <Icon name="file-text" />
@@ -433,7 +436,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   />
                   <Button
                     className={cn(
-                      'composer-mode flex items-center gap-1.5 px-1 py-1.5 text-[11px] text-[#737a6b]',
+                      'composer-mode flex items-center gap-1.5 px-1 py-1.5 text-xs text-[#737a6b]',
                     )}
                     onClick={() =>
                       setMode(mode === 'Thoughtful' ? 'Quick' : 'Thoughtful')
@@ -454,14 +457,6 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                 </Button>
               </div>
             </form>
-            <div
-              className={cn(
-                'composer-caption mx-6.5 mt-2.5 mb-4 flex items-center gap-1.5 text-[10px] text-[#a9afa2] max-[680px]:ml-4.5 max-[680px]:text-[9px]',
-              )}
-            >
-              <Icon name="lock" />
-              Local demo · messages stay in this browser
-            </div>
           </section>
           {review && (
             <aside
@@ -488,7 +483,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   <Tabs.Tab
                     value="component"
                     className={cn(
-                      'changed-file flex w-full items-center gap-2 px-4 py-2.5 text-left text-[11px] text-[#83897e] data-active:bg-[#eef1e9] data-active:text-[#68765d] [&>span:last-child]:ml-auto [&>span:last-child]:text-[9px] [&>span:last-child]:whitespace-nowrap',
+                      'changed-file flex w-full items-center gap-2 px-4 py-2.5 text-left text-xs text-[#83897e] data-active:bg-[#eef1e9] data-active:text-[#68765d] [&>span:last-child]:ml-auto [&>span:last-child]:text-xs [&>span:last-child]:whitespace-nowrap',
                       file === 'component' ? 'active' : '',
                     )}
                   >
@@ -498,7 +493,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   <Tabs.Tab
                     value="styles"
                     className={cn(
-                      'changed-file flex w-full items-center gap-2 px-4 py-2.5 text-left text-[11px] text-[#83897e] data-active:bg-[#eef1e9] data-active:text-[#68765d] [&>span:last-child]:ml-auto [&>span:last-child]:text-[9px] [&>span:last-child]:whitespace-nowrap',
+                      'changed-file flex w-full items-center gap-2 px-4 py-2.5 text-left text-xs text-[#83897e] data-active:bg-[#eef1e9] data-active:text-[#68765d] [&>span:last-child]:ml-auto [&>span:last-child]:text-xs [&>span:last-child]:whitespace-nowrap',
                       file === 'styles' ? 'active' : '',
                     )}
                   >
@@ -508,7 +503,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                 </Tabs.List>
                 <div
                   className={cn(
-                    'code-caption mt-5 flex justify-between gap-3 border-y border-(--app-line) px-3.5 py-3 text-[10px] text-[#9da296]',
+                    'code-caption mt-5 flex justify-between gap-3 border-y border-(--app-line) px-3.5 py-3 text-xs text-[#9da296]',
                   )}
                 >
                   <Icon name="code" />
@@ -520,7 +515,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                 </div>
                 <pre
                   className={cn(
-                    'code-preview m-0 flex-1 overflow-auto py-4 font-mono text-[11px] leading-6 text-[#62695f] max-[1240px]:text-[9px] max-[1050px]:text-[8px]',
+                    'code-preview m-0 flex-1 overflow-auto py-4 font-mono text-xs leading-6 text-[#62695f] max-[1240px]:text-xs max-[1050px]:text-xs',
                   )}
                 >
                   {(file === 'styles' ? css : code)
@@ -542,7 +537,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               {terminal && (
                 <div
                   className={cn(
-                    'wb-terminal border-t border-(--app-line) px-4 py-3.5 text-[10px] leading-relaxed text-[#71845e] [&>div]:mb-2 [&>div]:flex [&>div]:gap-2',
+                    'wb-terminal border-t border-(--app-line) px-4 py-3.5 text-xs leading-relaxed text-[#71845e] [&>div]:mb-2 [&>div]:flex [&>div]:gap-2',
                   )}
                 >
                   <div>
@@ -558,7 +553,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               )}
               <div
                 className={cn(
-                  'review-bottom mt-auto flex flex-col gap-3 border-t border-(--app-line) p-4 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:text-[11px] [&>span]:text-[#8e9b80]',
+                  'review-bottom mt-auto flex flex-col gap-3 border-t border-(--app-line) p-4 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:text-xs [&>span]:text-[#8e9b80]',
                 )}
               >
                 <span>

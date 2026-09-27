@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback } from '../components/ui/avatar';
 import { cn } from '../lib/utils';
 import { useState } from 'react';
 import { Icon } from '../components/Icon';
@@ -126,7 +127,7 @@ export function Post() {
   return (
     <div
       className={cn(
-        'study-window demo-surface post-window flex h-190 overflow-hidden rounded-[13px] border border-[#d8dadd] bg-white font-sans text-[13px] font-normal tracking-[-.1px] text-[#28292b] antialiased scheme-light shadow-[0_2px_5px_#10182803,0_16px_48px_-24px_#27334638] [--app-blue:#007aff] [--app-line:#e7e8ea] [--hover:#eceef0] [--muted:#777a80] [--text:#28292b] max-[850px]:h-205 max-[680px]:h-197.5 max-[680px]:flex-col max-[680px]:rounded-[10px] [&_button]:focus-visible:outline-[#777] [&_input]:focus-visible:outline-[#777] [&_textarea]:focus-visible:outline-[#777]',
+        'study-window demo-surface post-window flex h-190 overflow-hidden rounded-[13px] border border-[#d8dadd] bg-white font-sans text-sm font-normal tracking-normal text-[#28292b] antialiased scheme-light shadow-[0_2px_5px_#10182803,0_16px_48px_-24px_#27334638] [--app-blue:#007aff] [--app-line:#e7e8ea] [--hover:#eceef0] [--muted:#777a80] [--text:#28292b] max-[850px]:h-205 max-[680px]:h-197.5 max-[680px]:flex-col max-[680px]:rounded-[10px] [&_button]:focus-visible:outline-[#777] [&_input]:focus-visible:outline-[#777] [&_textarea]:focus-visible:outline-[#777]',
       )}
       id="post-window"
     >
@@ -147,7 +148,7 @@ export function Post() {
         </div>
         <div
           className={cn(
-            'mail-brand mx-2.5 mb-6 flex items-center gap-2 text-[25px] font-semibold tracking-[-.8px]',
+            'mail-brand mx-2.5 mb-6 flex items-center gap-2 text-2xl font-semibold tracking-normal',
           )}
         >
           <Icon name="envelope" />
@@ -155,7 +156,7 @@ export function Post() {
         </div>
         <Button
           className={cn(
-            'app-primary compose-button inline-flex min-h-8 items-center justify-center gap-2 rounded-md bg-(--app-blue,#007aff) px-3 py-2 text-[13px] whitespace-nowrap text-white shadow-[inset_0_0_0_1px_#00000005] pointer-coarse:min-h-11',
+            'app-primary compose-button inline-flex min-h-8 items-center justify-center gap-2 rounded-md bg-(--app-blue,#007aff) px-3 py-2 text-sm whitespace-nowrap text-white shadow-[inset_0_0_0_1px_#00000005] pointer-coarse:min-h-11',
           )}
           onClick={() => setCompose('New message')}
         >
@@ -164,7 +165,7 @@ export function Post() {
         </Button>
         <div
           className={cn(
-            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-[11px] font-medium text-[#999b9d]',
+            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-[#999b9d]',
           )}
         >
           Mailboxes
@@ -173,7 +174,7 @@ export function Post() {
           <Button
             key={name}
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#62656b] hover:bg-[#e6edf5] pointer-coarse:min-h-11 [&.selected]:bg-[#e1ebf8] [&.selected]:text-[#3474ba] [&.selected_.nav-count]:text-[#6a97c6]',
+              'app-nav-item my-px flex min-h-9 w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#e6edf5] pointer-coarse:min-h-11 [&.selected]:bg-[#e1ebf8] [&.selected]:text-[#3474ba] [&.selected_.nav-count]:text-[#6a97c6]',
               folder === name ? 'selected' : '',
             )}
             onClick={() => setFolder(name)}
@@ -183,7 +184,7 @@ export function Post() {
             {name === 'Inbox' && (
               <span
                 className={cn(
-                  'nav-count ml-auto text-[11px] text-[#969a9d] tabular-nums',
+                  'nav-count ml-auto text-xs text-[#969a9d] tabular-nums',
                 )}
               >
                 {messages.length -
@@ -195,7 +196,7 @@ export function Post() {
         ))}
         <div
           className={cn(
-            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-[11px] font-medium text-[#999b9d]',
+            'app-nav-label mt-7 mb-2 flex items-center justify-between px-2.5 text-xs font-medium text-[#999b9d]',
           )}
         >
           Collections
@@ -204,7 +205,7 @@ export function Post() {
           <Button
             key={name}
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-[13px] whitespace-nowrap text-[#62656b] hover:bg-[#e6edf5] pointer-coarse:min-h-11 [&.selected]:bg-[#e1ebf8] [&.selected]:text-[#3474ba] [&.selected_.nav-count]:text-[#6a97c6]',
+              'app-nav-item my-px flex min-h-9 w-full items-center gap-2.5 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-[#62656b] hover:bg-[#e6edf5] pointer-coarse:min-h-11 [&.selected]:bg-[#e1ebf8] [&.selected]:text-[#3474ba] [&.selected_.nav-count]:text-[#6a97c6]',
               folder === name ? 'selected' : '',
             )}
             onClick={() => setFolder(name)}
@@ -221,7 +222,7 @@ export function Post() {
         <div className={cn('sidebar-bottom mt-auto')}>
           <div
             className={cn(
-              'mail-storage flex items-center gap-2 px-2.5 py-3.5 text-[11px] text-[#969fac]',
+              'mail-storage flex items-center gap-2 px-2.5 py-3.5 text-xs text-[#969fac]',
             )}
           >
             <Icon name="cloud" />
@@ -229,16 +230,17 @@ export function Post() {
           </div>
           <div
             className={cn(
-              'mail-profile flex items-center gap-2 border-t border-[#e1e6eb] px-1 pt-4 pb-1 [&_small]:mt-1 [&_small]:block [&_small]:text-[10px] [&_small]:text-[#9ba6b3] max-[1050px]:[&_small]:hidden [&>span:nth-child(2)]:flex-1 [&>span:nth-child(2)]:text-xs [&>span:nth-child(2)]:text-[#657183] [&>svg]:text-[#9ca8b6]',
+              'mail-profile flex items-center gap-2 border-t border-[#e1e6eb] px-1 pt-4 pb-1 [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:text-[#9ba6b3] max-[1050px]:[&_small]:hidden [&>span:nth-child(2)]:flex-1 [&>span:nth-child(2)]:text-xs [&>span:nth-child(2)]:text-[#657183] [&>svg]:text-[#9ca8b6]',
             )}
           >
-            <span
+            <Avatar
+              aria-label="Jamie Davis"
               className={cn(
-                'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-[9px] font-semibold tracking-normal text-[#687267]',
+                'person-avatar grid size-6.5 shrink-0 place-items-center rounded-full bg-[#d9ded9] text-xs font-semibold tracking-normal text-[#687267]',
               )}
             >
-              JD
-            </span>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
             <span>
               Jamie Davis<small>Personal account</small>
             </span>
@@ -253,7 +255,7 @@ export function Post() {
       >
         <div
           className={cn(
-            'mail-list-title flex items-center justify-between px-5 pt-5.5 pb-3 max-[680px]:px-4 max-[680px]:pt-3 max-[680px]:pb-2 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight max-[680px]:[&_h2]:text-[22px]',
+            'mail-list-title flex items-center justify-between px-5 pt-5.5 pb-3 max-[680px]:px-4 max-[680px]:pt-3 max-[680px]:pb-2 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-normal max-[680px]:[&_h2]:text-xl',
           )}
         >
           <h2>{folder}</h2>
@@ -282,7 +284,7 @@ export function Post() {
         </label>
         <div
           className={cn(
-            'mail-list-meta flex items-center justify-between px-5 pt-4.5 pb-3 text-[10px] text-[#a1a9b2] max-[680px]:px-4 max-[680px]:py-2',
+            'mail-list-meta flex items-center justify-between px-5 pt-4.5 pb-3 text-xs text-[#a1a9b2] max-[680px]:px-4 max-[680px]:py-2',
           )}
         >
           <span>{visible.length} messages</span>
@@ -297,7 +299,7 @@ export function Post() {
             <Button
               key={message.id}
               className={cn(
-                "mail-row relative block w-full rounded-[7px] px-3 py-3.5 text-left after:absolute after:right-3 after:bottom-0 after:left-3 after:h-px after:bg-[#edeff2] after:content-[''] last:after:hidden hover:bg-[#f1f5fa] max-[680px]:shrink-0 max-[680px]:basis-51 max-[680px]:border max-[680px]:border-[#edf0f4] max-[680px]:py-2.5 max-[680px]:after:hidden [&_strong]:text-xs [&_strong]:font-semibold [&_strong]:text-[#4d596a] [&_time]:text-[10px] [&_time]:text-[#a1abba] [&_time]:tabular-nums [&.selected]:bg-[#eaf2fc] [&.selected]:after:hidden [&.selected_strong]:text-[#386fa7] [&.selected>b]:text-[#648bb4] [&.selected>p]:text-[#7594b6] [&>b]:mb-1 [&>b]:block [&>b]:truncate [&>b]:text-xs [&>b]:font-normal [&>b]:text-[#727f91] max-[680px]:[&>b]:mb-0 max-[680px]:[&>b]:text-[10px] [&>p]:line-clamp-2 [&>p]:text-[11px] [&>p]:leading-snug [&>p]:text-[#8290a0] max-[680px]:[&>p]:hidden",
+                "mail-row relative block w-full rounded-[7px] px-3 py-3.5 text-left after:absolute after:right-3 after:bottom-0 after:left-3 after:h-px after:bg-[#edeff2] after:content-[''] last:after:hidden hover:bg-[#f1f5fa] max-[680px]:shrink-0 max-[680px]:basis-51 max-[680px]:border max-[680px]:border-[#edf0f4] max-[680px]:py-2.5 max-[680px]:after:hidden [&_strong]:text-xs [&_strong]:font-semibold [&_strong]:text-[#4d596a] [&_time]:text-xs [&_time]:text-[#a1abba] [&_time]:tabular-nums [&.selected]:bg-[#eaf2fc] [&.selected]:after:hidden [&.selected_strong]:text-[#386fa7] [&.selected>b]:text-[#648bb4] [&.selected>p]:text-[#7594b6] [&>b]:mb-1 [&>b]:block [&>b]:truncate [&>b]:text-xs [&>b]:font-normal [&>b]:text-[#727f91] max-[680px]:[&>b]:mb-0 max-[680px]:[&>b]:text-xs [&>p]:line-clamp-2 [&>p]:text-xs [&>p]:leading-snug [&>p]:text-[#8290a0] max-[680px]:[&>p]:hidden",
                 current?.id === message.id ? 'selected' : '',
               )}
               aria-label={message.sender + ': ' + message.subject}
@@ -342,7 +344,7 @@ export function Post() {
         </div>
         <div
           className={cn(
-            'mail-list-footer flex items-center justify-center gap-2 border-t border-[#edf0f3] p-4 text-[10px] text-[#aab3bd] max-[680px]:hidden',
+            'mail-list-footer flex items-center justify-center gap-2 border-t border-[#edf0f3] p-4 text-xs text-[#aab3bd] max-[680px]:hidden',
           )}
         >
           <Icon name="check-sm" />
@@ -447,13 +449,13 @@ export function Post() {
             <>
               <div
                 className={cn(
-                  'mail-subject-row [&_h2]:mb-3 [&_h2]:text-[26px] [&_h2]:leading-tight [&_h2]:font-semibold [&_h2]:tracking-[-.8px] max-[1050px]:[&_h2]:text-2xl max-[850px]:[&_h2]:text-[22px] max-[680px]:[&_h2]:text-[25px]',
+                  'mail-subject-row [&_h2]:mb-3 [&_h2]:text-2xl [&_h2]:leading-tight [&_h2]:font-semibold [&_h2]:tracking-normal max-[1050px]:[&_h2]:text-2xl max-[850px]:[&_h2]:text-xl max-[680px]:[&_h2]:text-2xl',
                 )}
               >
                 <h2>{current.subject}</h2>
                 <span
                   className={cn(
-                    'mail-label inline-block rounded bg-[#f0f4f8] px-2 py-1 text-[9px] tracking-wider text-[#92a5b7]',
+                    'mail-label inline-block rounded bg-[#f0f4f8] px-2 py-1 text-xs tracking-normal text-[#92a5b7]',
                   )}
                 >
                   {current.collection.toUpperCase()}
@@ -461,16 +463,17 @@ export function Post() {
               </div>
               <div
                 className={cn(
-                  'sender-detail my-6 flex items-center gap-3 [&_p]:mt-1 [&_p]:text-[10px] [&_p]:text-[#98a4b1] [&_strong]:text-xs [&_strong]:font-semibold [&_time]:text-[10px] [&_time]:whitespace-nowrap [&_time]:text-[#98a4b1] [&>div]:min-w-0 [&>div]:flex-1',
+                  'sender-detail my-6 flex items-center gap-3 [&_p]:mt-1 [&_p]:text-xs [&_p]:text-[#98a4b1] [&_strong]:text-xs [&_strong]:font-semibold [&_time]:text-xs [&_time]:whitespace-nowrap [&_time]:text-[#98a4b1] [&>div]:min-w-0 [&>div]:flex-1',
                 )}
               >
-                <span
+                <Avatar
+                  aria-label={current.sender}
                   className={cn(
-                    'sender-avatar grid size-8.5 shrink-0 place-items-center rounded-full bg-[#e5edf4] text-[11px] text-[#8399ad]',
+                    'sender-avatar grid size-8.5 shrink-0 place-items-center rounded-full bg-[#e5edf4] text-xs text-[#8399ad]',
                   )}
                 >
-                  {initials(current.sender)}
-                </span>
+                  <AvatarFallback>{initials(current.sender)}</AvatarFallback>
+                </Avatar>
                 <div>
                   <strong>{current.sender}</strong>
                   <p>
@@ -482,7 +485,7 @@ export function Post() {
               </div>
               <div
                 className={cn(
-                  'mail-message-body text-[15px] leading-relaxed text-[#596573] max-[1050px]:text-[13px] max-[850px]:text-xs max-[680px]:text-sm [&_li]:mb-1 [&_li]:pl-1 [&_p]:mb-4 [&_ul]:mt-0.5 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5',
+                  'mail-message-body text-base leading-relaxed text-[#596573] max-[1050px]:text-sm max-[850px]:text-xs max-[680px]:text-sm [&_li]:mb-1 [&_li]:pl-1 [&_p]:mb-4 [&_ul]:mt-0.5 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-5',
                 )}
               >
                 <p>Hey Jamie,</p>
@@ -503,7 +506,7 @@ export function Post() {
               {current.id === 1 && (
                 <Button
                   className={cn(
-                    'mail-attachment mt-4.5 mb-5.5 flex w-full items-center gap-3 rounded-lg border border-[#e5e9ee] bg-[#fbfcfe] p-3 text-left [&_small]:mt-1 [&_small]:block [&_small]:text-[11px] [&_small]:text-[#a9b4c0] [&_strong]:text-xs [&_strong]:font-medium [&_strong]:text-[#77879a] max-[850px]:[&_strong]:text-[11px] [&>span:nth-child(2)]:min-w-0 [&>span:nth-child(2)]:flex-1 [&>svg]:text-[#a2b2c2]',
+                    'mail-attachment mt-4.5 mb-5.5 flex w-full items-center gap-3 rounded-lg border border-[#e5e9ee] bg-[#fbfcfe] p-3 text-left [&_small]:mt-1 [&_small]:block [&_small]:text-xs [&_small]:text-[#a9b4c0] [&_strong]:text-xs [&_strong]:font-medium [&_strong]:text-[#77879a] max-[850px]:[&_strong]:text-xs [&>span:nth-child(2)]:min-w-0 [&>span:nth-child(2)]:flex-1 [&>svg]:text-[#a2b2c2]',
                   )}
                   onClick={() =>
                     setFeedback(
@@ -554,7 +557,7 @@ export function Post() {
           {compose && (
             <form
               className={cn(
-                'mail-inline-compose mt-4.5 rounded-lg border border-[#dee5ef] bg-[#f8faff] p-4 [&_label]:mb-2.5 [&_label]:block [&_label]:text-[11px] [&_label]:text-[#8697ae] [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:border-0 [&_textarea]:bg-transparent [&_textarea]:text-[13px] [&_textarea]:leading-normal [&_textarea]:text-[#6e819a] max-[680px]:[&_textarea]:text-base [&>div]:mt-2.5 [&>div]:flex [&>div]:items-center [&>div]:justify-between [&>div]:gap-2.5 [&>div>span]:text-[10px] [&>div>span]:text-[#a3afbd]',
+                'mail-inline-compose mt-4.5 rounded-lg border border-[#dee5ef] bg-[#f8faff] p-4 [&_label]:mb-2.5 [&_label]:block [&_label]:text-xs [&_label]:text-[#8697ae] [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:border-0 [&_textarea]:bg-transparent [&_textarea]:text-sm [&_textarea]:leading-normal [&_textarea]:text-[#6e819a] max-[680px]:[&_textarea]:text-base [&>div]:mt-2.5 [&>div]:flex [&>div]:items-center [&>div]:justify-between [&>div]:gap-2.5 [&>div>span]:text-xs [&>div>span]:text-[#a3afbd]',
               )}
               onSubmit={(event) => {
                 event.preventDefault();
@@ -580,11 +583,10 @@ export function Post() {
                   }
                 }}
               />
-              <div>
-                <span>Local demo only</span>
+              <div className={cn('justify-end!')}>
                 <Button
                   className={cn(
-                    'app-primary inline-flex min-h-8 items-center justify-center gap-2 rounded-md bg-(--app-blue,#007aff) px-3 py-2 text-[13px] whitespace-nowrap text-white shadow-[inset_0_0_0_1px_#00000005] pointer-coarse:min-h-11',
+                    'app-primary inline-flex min-h-8 items-center justify-center gap-2 rounded-md bg-(--app-blue,#007aff) px-3 py-2 text-sm whitespace-nowrap text-white shadow-[inset_0_0_0_1px_#00000005] pointer-coarse:min-h-11',
                   )}
                   type="submit"
                 >

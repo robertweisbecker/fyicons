@@ -23,7 +23,7 @@ export function Choice({
     >
       <Select.Trigger
         className={cn(
-          'choice flex min-h-10 items-center justify-between gap-4 rounded-lg border border-line bg-surface px-3 text-xs group-[.has-inspector]/app:flex-1 hover:bg-hover max-[760px]:flex-1',
+          'choice flex min-h-10 items-center justify-between gap-4 rounded-lg border border-line bg-surface px-3 text-sm group-[.has-inspector]/app:flex-1 hover:bg-hover max-[760px]:flex-1',
         )}
         aria-label={label}
       >
@@ -49,7 +49,7 @@ export function Choice({
                   key={option.value}
                   value={option.value}
                   className={cn(
-                    'select-item relative flex min-h-9 cursor-default items-center rounded-md py-2 pr-4 pl-8 text-xs outline-none data-highlighted:bg-hover',
+                    'select-item relative flex min-h-9 cursor-default items-center rounded-md py-2 pr-4 pl-8 text-sm outline-none data-highlighted:bg-hover',
                   )}
                 >
                   <Select.ItemIndicator className={cn('absolute left-2')}>
