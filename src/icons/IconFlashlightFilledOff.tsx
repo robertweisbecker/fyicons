@@ -1,0 +1,22 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconFlashlightFilledOff = React.forwardRef<SVGSVGElement, IconProps>(function IconFlashlightFilledOff(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11 6.02832C10.9999 6.3385 10.9277 6.64441 10.7891 6.92188L10.2109 8.07812C10.0723 8.35559 10.0001 8.6615 10 8.97168V13.5732C9.99989 14.1413 9.6791 14.6694 9.13281 14.8252C8.79749 14.9208 8.39871 15 8 15C7.60129 15 7.20251 14.9208 6.86719 14.8252C6.3209 14.6694 6.00011 14.1413 6 13.5732V8.97168C5.99993 8.6615 5.92771 8.35559 5.78906 8.07812L5.21094 6.92188C5.07229 6.64441 5.00007 6.3385 5 6.02832V4.5C5 4.5 6 5 8 5C10 5 11 4.5 11 4.5V6.02832ZM8 8C7.44772 8 7 8.44772 7 9V12C7 12.5523 7.44772 13 8 13C8.55228 13 9 12.5523 9 12V9C9 8.44772 8.55228 8 8 8Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /><rect x={7} y={10} width={2} height={2} rx={1} fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /><path d="M10 1.5C10.5523 1.5 11 1.94772 11 2.5V3.5C10.9997 3.50013 9.99975 4 8 4C6.00025 4 5.00025 3.50013 5 3.5V2.5C5 1.94772 5.44772 1.5 6 1.5H6.42773C6.16022 1.68801 6 1.88343 6 2C6 2.27614 6.89543 2.5 8 2.5C9.10457 2.5 10 2.27614 10 2C10 1.88343 9.83978 1.68801 9.57227 1.5H10Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconFlashlightFilledOff;

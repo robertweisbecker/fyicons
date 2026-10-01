@@ -1,4 +1,15 @@
-import data from '../data/catalog.json';
+import compact from '../data/catalog-runtime.json';
+
+const data = {
+  ...compact,
+  icons: compact.icons.map((icon) => ({
+    ...icon,
+    width: 16,
+    height: 16,
+    file: `icons/${icon.filename}`,
+    sourceUrl: `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
+  })),
+};
 
 export type IconRecord = (typeof data.icons)[number];
 export const catalog = data;

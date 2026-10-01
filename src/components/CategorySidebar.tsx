@@ -30,6 +30,7 @@ function CategoryList({
     <ToggleGroup
       orientation="vertical"
       aria-label="Icon categories"
+      className="gap-px"
       value={[value]}
       onValueChange={(values) => {
         if (values[0]) onValueChange(values[0]);
@@ -40,13 +41,14 @@ function CategoryList({
           key={option.value}
           value={option.value}
           aria-label={option.label}
+
           onClick={onSelect}
-          className="h-auto min-h-10 justify-start text-left text-sm whitespace-normal"
+          className="justify-start rounded-lg text-left text-xs font-normal"
         >
-          <span className="flex-1">{option.label}</span>
+          <span className="flex-1 truncate">{option.label}</span>
           <span
             aria-hidden="true"
-            className="text-xs text-current/50 tabular-nums"
+            className="text-2xs text-current/50 tabular-nums"
           >
             {option.count}
           </span>

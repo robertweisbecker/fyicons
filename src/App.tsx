@@ -331,10 +331,10 @@ export function App() {
                       onClick={() => exportIcons(true)}
                     >
                       <Icon name="download-square" />
-                      Export selected
+                      Download selected
                       <span
                         className={cn(
-                          'rounded bg-hover px-1.5 py-0.5 text-xs font-medium text-muted tabular-nums',
+                          'rounded-md bg-hover px-1 text-xs font-medium text-muted tabular-nums',
                         )}
                       >
                         {selectedIds.filter((id) => byId.has(id)).length}

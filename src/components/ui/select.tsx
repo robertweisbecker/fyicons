@@ -79,12 +79,12 @@ export function SelectItem({ className, children, ...props }: SelectItemProps) {
       data-slot="select-item"
       {...props}
       className={cn(
-        'relative flex min-h-9 cursor-default items-center rounded-md py-2 pr-4 pl-8 text-sm outline-none data-disabled:pointer-events-none data-disabled:opacity-40 data-highlighted:bg-hover',
+        'relative flex min-h-8 cursor-default items-center rounded-md py-1.5 pr-4 pl-8 text-sm outline-none data-disabled:pointer-events-none data-disabled:opacity-40 data-highlighted:bg-hover',
         className,
       )}
     >
       <SelectPrimitive.ItemIndicator className={cn('absolute left-2')}>
-        <Icon name="check-md" />
+        <Icon name="check-lg" />
       </SelectPrimitive.ItemIndicator>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>

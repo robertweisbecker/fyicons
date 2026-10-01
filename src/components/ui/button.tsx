@@ -3,23 +3,23 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 export const buttonVariants = cva(
-  'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-muted disabled:pointer-events-none disabled:opacity-40 gap-1.5',
+  'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-muted disabled:pointer-events-none disabled:opacity-40 gap-1.5 rounded-lg',
   {
     variants: {
       variant: {
         default:
-          'rounded-lg border border-transparent bg-ink text-canvas hover:opacity-90',
-        outline: 'rounded-lg border border-line bg-surface hover:bg-hover',
-        ghost: 'rounded-lg hover:bg-current/5 aria-pressed:bg-current/15',
+          'border border-transparent bg-ink text-canvas hover:opacity-90',
+        outline: 'border border-line bg-surface hover:bg-hover',
+        ghost: 'hover:bg-current/5 aria-pressed:bg-current/15',
         text: 'text-muted hover:text-ink',
         unstyled: '',
       },
       size: {
-        default: 'min-h-9 px-3',
-        sm: 'min-h-8 px-2',
-        lg: 'min-h-10 px-4',
-        icon: 'size-9 p-0',
-        'icon-sm': 'size-8 p-0',
+        default: 'h-8 px-3 gap-1.5 text-sm',
+        sm: 'h-7 px-2 gap-1 text-xs',
+        lg: 'h-9 px-4 gap-2 text-base',
+        icon: 'size-8 p-0',
+        'icon-sm': 'size-7 p-0',
         unstyled: '',
       },
     },
@@ -27,7 +27,7 @@ export const buttonVariants = cva(
       {
         variant: ['default', 'outline', 'ghost', 'text'],
         className:
-          'inline-flex shrink-0 items-center justify-center text-xs font-medium whitespace-nowrap',
+          'inline-flex shrink-0 items-center justify-center font-medium whitespace-nowrap',
       },
     ],
     defaultVariants: { variant: 'default', size: 'default' },

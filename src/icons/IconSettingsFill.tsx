@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconSettingsFill = React.forwardRef<SVGSVGElement, IconProps>(function IconSettingsFill(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8.41797 1C9.06346 1 9.63652 1.41309 9.84082 2.02539L10.1436 2.93359C10.562 3.11091 10.9537 3.33899 11.3115 3.60938L12.252 3.41699C12.8844 3.2874 13.5296 3.57771 13.8525 4.13672L14.2715 4.8623C14.5939 5.42113 14.5225 6.1235 14.0947 6.60645L13.4561 7.32617C13.4831 7.5471 13.499 7.77178 13.499 8C13.499 8.22756 13.4829 8.45156 13.4561 8.67188L14.0947 9.39062C14.5232 9.87358 14.5951 10.5775 14.2725 11.1367L13.8535 11.8623C13.5307 12.4212 12.8863 12.7103 12.2539 12.5811L11.3125 12.3887C10.9545 12.6593 10.5632 12.8879 10.1445 13.0654L9.84277 13.9736C9.63877 14.5862 9.06552 14.9998 8.41992 15H7.58203C6.93658 15 6.36347 14.5869 6.15918 13.9746L5.85547 13.0654C5.4367 12.888 5.0446 12.6603 4.68652 12.3896L3.74805 12.583C3.11559 12.7126 2.47042 12.4223 2.14746 11.8633L1.72852 11.1377C1.40615 10.5789 1.47754 9.87649 1.90527 9.39355L2.54102 8.6748C2.51395 8.45363 2.49902 8.22848 2.49902 8C2.49902 7.77152 2.51395 7.54637 2.54102 7.3252L1.90527 6.60938C1.47676 6.12642 1.4049 5.4225 1.72754 4.86328L2.14648 4.1377C2.46924 3.5788 3.11375 3.28978 3.74609 3.41895L4.68555 3.61035C5.04366 3.33958 5.43566 3.11113 5.85449 2.93359L6.15723 2.02637C6.36122 1.41379 6.93446 1.0002 7.58008 1H8.41797ZM7.99805 6C6.89348 6 5.99805 6.89543 5.99805 8C5.99805 9.10457 6.89348 10 7.99805 10C9.10253 9.9999 9.99805 9.10451 9.99805 8C9.99805 6.89549 9.10253 6.0001 7.99805 6Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconSettingsFill;

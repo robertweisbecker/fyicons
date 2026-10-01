@@ -1,0 +1,21 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconHighlighterTip = React.forwardRef<SVGSVGElement, IconProps>(function IconHighlighterTip(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M9.22266 1.08381C9.37608 0.981526 9.57375 0.972387 9.73633 1.0594C9.89862 1.14648 10 1.31562 10 1.49983V6.02717C10.5657 6.1349 11.031 6.56094 11.1748 7.13557L11.9854 10.3787C11.9952 10.4183 12 10.459 12 10.4998V14.4998C12 14.776 11.7761 14.9998 11.5 14.9998H4.5C4.22387 14.9998 4.00002 14.776 4 14.4998V10.4998C4 10.459 4.00478 10.4183 4.01465 10.3787L4.8252 7.13557C4.96899 6.56094 5.43435 6.1349 6 6.02717V3.49983C6 3.33266 6.08357 3.17654 6.22266 3.08381L9.22266 1.08381ZM5 10.8748V13.9998H11V10.8748H5ZM6.28125 6.99983C6.05182 6.99983 5.85154 7.15615 5.7959 7.37873L5.10938 10.1248H10.8906L10.2041 7.37873C10.1485 7.15615 9.94818 6.99983 9.71875 6.99983H6.28125ZM7 3.7674V5.99983H9V2.43342L7 3.7674Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /><path opacity={0.5} d="M9.5 1.5V6.5H6.5V3.5L9.5 1.5Z" fill="currentColor" stroke="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1,
+      stroke: "currentColor",
+      strokeOpacity: 1
+    }} strokeLinecap="round" strokeLinejoin="round" /></svg>;
+});
+export default IconHighlighterTip;

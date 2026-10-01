@@ -33,6 +33,7 @@ for (const icon of imported.icons) {
 }
 const reserved = new Set([
   ...groups.keys(),
+  ...imported.icons.map((icon) => icon.name),
   ...currentManifest.icons.map((icon) => icon.name),
 ]);
 const pascal = (text) =>
@@ -44,27 +45,17 @@ const pascal = (text) =>
 const normalized = [];
 for (const [baseName, group] of groups) {
   group.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
-  for (const [index, icon] of group.entries()) {
+  for (const icon of group) {
     const existing = currentById.get(icon.id);
-    let name = existing?.name || baseName;
-    if (!existing && group.length > 1) {
-      let suffix = 1;
-      while (
-        reserved.has(`${baseName}-${suffix}`) ||
-        takenNames.has(`${baseName}-${suffix}`)
-      )
-        suffix++;
-      name = `${baseName}-${suffix}`;
-      reserved.add(name);
-    }
+    let name = existing?.name || icon.name;
     if (!existing && takenNames.has(name)) {
       let suffix = 1;
       while (
-        reserved.has(`${baseName}-${suffix}`) ||
-        takenNames.has(`${baseName}-${suffix}`)
+        reserved.has(`${icon.name}-${suffix}`) ||
+        takenNames.has(`${icon.name}-${suffix}`)
       )
         suffix++;
-      name = `${baseName}-${suffix}`;
+      name = `${icon.name}-${suffix}`;
       reserved.add(name);
     }
     takenNames.add(name);
@@ -90,7 +81,7 @@ for (const [baseName, group] of groups) {
       ...metadata,
       id: icon.id,
       name,
-      baseName: existing?.baseName || baseName,
+      baseName: icon.baseName || existing?.baseName || baseName,
       filename,
       componentName: existing?.componentName || `Icon${pascal(name)}`,
       aliases: [

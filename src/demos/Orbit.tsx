@@ -20,10 +20,10 @@ export function Orbit() {
     >
       <aside
         className={cn(
-          'flex w-12 shrink-0 flex-col border-r border-neutral-200 bg-olive-200 p-2 sm:w-38 sm:p-4',
+          'flex w-12 shrink-0 flex-col border-r border-neutral-200 bg-olive-200 px-1 py-2 sm:w-38',
         )}
       >
-        <strong className={cn('mb-6 flex items-center gap-2 text-base')}>
+        <strong className={cn('mb-6 flex items-center gap-2 ps-1.5 text-base')}>
           <Icon name="atom-simple" />
           <span className={cn('hidden sm:inline')}>orbit</span>
         </strong>
@@ -47,7 +47,7 @@ export function Orbit() {
               key={name}
               value={name}
               aria-label={name}
-              className="min-h-9 justify-start px-2 text-left text-xs pointer-coarse:min-h-11"
+              className="min-h-7 justify-start ps-1.5 pe-2 text-left text-xs pointer-coarse:min-h-11"
             >
               {i === 0 ? (
                 <ToggleIcon icon="home" activeIcon="home-fill" />
@@ -105,9 +105,9 @@ export function Orbit() {
               'mt-5 rounded-lg border border-olive-300 bg-white/60 p-3',
             )}
           >
-            <div className={cn('flex items-center gap-2 text-xs')}>
-              <Icon name="git-pull-request" />
-              <strong>Refine the navigation</strong>
+            <div className={cn('flex items-center gap-1 text-sm font-medium')}>
+              <Icon name="sparkles" />
+              Refine the navigation
             </div>
             <p className={cn('my-3 text-xs text-olive-500')}>
               Three navigation changes are ready.
@@ -131,7 +131,7 @@ export function Orbit() {
                   );
                 }}
               >
-                <Icon name={complete ? 'check-sm' : 'play-filled'} />
+                <Icon name={complete ? 'circle-check-fill' : 'circle-play'} />
                 {complete ? 'Complete' : 'Run task'}
               </Button>
             </div>

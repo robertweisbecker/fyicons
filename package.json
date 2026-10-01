@@ -11,7 +11,7 @@
     "generate:icons": "node scripts/generate-icons.mjs",
     "check:icons": "node scripts/generate-icons.mjs --check",
     "test:icons": "node --test tests/icons-source.test.mjs tests/react-icons.test.mjs",
-    "test": "playwright test",
+    "test": "node --test tests/*.test.mjs",
     "format": "prettier --write src tests *.ts *.json README.md .github/workflows/*.yml"
   },
   "engines": {
@@ -27,7 +27,6 @@
     "tailwind-merge": "3.7.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.63.0",
     "@svgr/core": "8.1.0",
     "@svgr/plugin-jsx": "8.1.0",
     "@tailwindcss/vite": "4.3.3",

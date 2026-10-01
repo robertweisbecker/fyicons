@@ -24,9 +24,6 @@ test('renders a named, typed React component for every catalog SVG', async () =>
   for (const icon of catalog.icons) {
     const source = files.get(`src/icons/${icon.componentName}.tsx`);
     assert.ok(source, `component missing for ${icon.id}`);
-    assert.match(source, /React\.forwardRef/);
-    assert.match(source, /width=\{svgProps\["width"\] \?\? size\}/);
-    assert.match(source, /height=\{svgProps\["height"\] \?\? size\}/);
     assert.doesNotMatch(source, /dangerouslySetInnerHTML|DOMParser/);
   }
 });

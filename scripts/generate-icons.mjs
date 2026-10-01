@@ -99,6 +99,16 @@ const expected = new Map(
   [...reactFiles].map(([file, content]) => [path.join(root, file), content]),
 );
 expected.set(path.join(root, 'src/data/catalog.json'), catalogText);
+// These fields are deterministic from the component ID, filename, and canvas.
+// Reconstruct them at runtime instead of repeating them for every catalog entry.
+const compactIcons = icons.map(
+  ({ sourceUrl, file, width, height, ...icon }) => icon,
+);
+expected.set(
+  path.join(root, 'src/data/catalog-runtime.json'),
+  JSON.stringify({ ...generatedManifest, icons: compactIcons }, null, 2) + '\n',
+);
+
 const iconOutput = path.join(root, 'src/icons');
 const generatedComponentPattern = /^Icon[A-Za-z0-9]+\.tsx$/;
 const obsoleteComponents = (await readdir(iconOutput).catch(() => [])).filter(

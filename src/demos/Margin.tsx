@@ -28,21 +28,25 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
   return (
     <div
       className={cn(
-        'demo-card flex h-115 flex-col overflow-hidden rounded-xl border border-neutral-200 bg-taupe-50 text-olive-600 scheme-light shadow-sm max-[680px]:h-117.5',
+        'demo-card flex h-115 flex-col overflow-hidden rounded-xl border border-neutral-200 bg-olive-50 text-olive-600 scheme-light shadow-sm max-[680px]:h-117.5',
       )}
     >
       <div
         className={cn(
-          'flex h-14 items-center justify-between border-b border-taupe-200 px-5',
+          'flex h-14 items-center justify-between border-b border-olive-200 px-5',
         )}
       >
         <strong className={cn('flex items-center gap-2')}>
           <Icon name="book-open" />
           margin
         </strong>
-        <span className={cn('flex items-center gap-2 text-xs text-stone-500')}>
-          <Icon name="cloud" />
-          Saved locally
+        <span
+          className={cn(
+            'flex items-center gap-1 rounded-md border border-olive-200 bg-white px-1 text-xs text-olive-600',
+          )}
+        >
+          <Icon name="cloud" className="text-olive-400" />
+          Synced
         </span>
         <Toggle size="icon" aria-label="Bookmark this document">
           <ToggleIcon icon="bookmark" activeIcon="bookmark-fill" />
@@ -50,17 +54,25 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
       </div>
       <div
         className={cn(
-          'flex items-center gap-2 border-b border-olive-200 px-5 py-3 text-xs text-stone-500',
+          'flex items-center gap-2 border-b border-olive-200 px-5 py-3 text-xs text-olive-500',
         )}
       >
         <Icon name="library" />
-        Personal library
+        Library
         <Icon name="chevron-right-sm" />
-        Review notes
+        <Icon name="notebook-open" />
+        Meeting notes
+        <Icon name="chevron-right-sm" />
+        <span
+          className={cn('flex items-center gap-1 font-medium text-olive-700')}
+        >
+          <Icon name="sticky-note" />
+          Note
+        </span>
       </div>
       <div
         className={cn(
-          'flex flex-wrap items-center gap-1 border-b border-olive-200 px-4 py-1',
+          'flex flex-wrap items-center gap-1 border-b border-olive-200 bg-olive-100 px-3 py-1',
         )}
         role="toolbar"
         aria-label="Document formatting"
@@ -107,14 +119,6 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
         />
       </div>
       <div className={cn('min-h-0 flex-1 overflow-auto px-7 py-5')}>
-        <div
-          className={cn(
-            'mb-3 flex items-center gap-2 text-xs tracking-normal text-olive-500',
-          )}
-        >
-          <Icon name="sun" />
-          Project notes
-        </div>
         <h4 className={cn('mb-4 font-serif text-3xl tracking-normal')}>
           Review notes
         </h4>
@@ -132,7 +136,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
             formats.includes('bold') && 'font-bold',
             formats.includes('italic') && 'italic',
             formats.includes('underline') && 'underline',
-            formats.includes('quote') ? 'border-l-2 border-olive-400 pl-3' : '',
+            formats.includes('quote') ? 'border-l-2 border-rose-400 pl-3' : '',
             formats.includes('list')
               ? "list-treatment relative pl-4 before:absolute before:left-0 before:content-['•']"
               : '',
@@ -141,9 +145,11 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
           {initial.current}
         </div>
         <p
-          className={cn('mt-5 flex items-center gap-2 text-xs text-stone-500')}
+          className={cn(
+            'mt-5 flex items-center gap-2 rounded-md bg-amber-500/10 p-2 text-xs text-amber-700',
+          )}
         >
-          <Icon name="lightbulb" />
+          <Icon name="lightbulb" className="text-amber-500" />
           Next review: Friday
         </p>
       </div>
@@ -152,12 +158,12 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
           'flex items-center justify-between border-t border-olive-200 px-5 py-3 text-xs text-stone-500',
         )}
       >
-        <span className={cn('flex items-center gap-2')}>
-          <Icon name="file-text" />
+        <span className={cn('flex items-center gap-1')}>
+          <Icon name="pen" />
           {text.trim().split(/\s+/).filter(Boolean).length} words
         </span>
-        <span className={cn('flex items-center gap-2')}>
-          <Icon name="lock" />
+        <span className={cn('flex items-center gap-1')}>
+          <Icon name="eye-open" />
           Only you
         </span>
       </div>

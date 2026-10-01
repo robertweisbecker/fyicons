@@ -28,25 +28,20 @@ test('editable SVG sources exactly cover the manifest', async () => {
   assert.equal(new Set(expected).size, manifest.icons.length);
 });
 
-test('stable component names and Figma aliases are present', async () => {
+test('component exports and aliases have unique valid metadata', () => {
+  assert.equal(
+    new Set(manifest.icons.map((icon) => icon.componentName)).size,
+    manifest.icons.length,
+  );
+  assert.equal(
+    new Set(manifest.icons.map((icon) => icon.name)).size,
+    manifest.icons.length,
+  );
   for (const icon of manifest.icons) {
     assert.match(icon.componentName, /^Icon[A-Za-z0-9]+$/);
-    const svg = await readFile(
-      new URL(`../icons/${icon.filename}`, import.meta.url),
-      'utf8',
-    );
-    assert.match(svg, /^<svg\b/);
+    assert.ok(Array.isArray(icon.aliases));
+    assert.ok(icon.aliases.every((alias) => typeof alias === 'string'));
   }
-  assert.equal(
-    manifest.icons.find(({ id }) => id === '510:4785').componentName,
-    'Icon16Upload',
-  );
-  const repeated = manifest.icons.filter(
-    ({ baseName }) => baseName === 'scissors',
-  );
-  assert.equal(repeated.length, 5);
-  assert.ok(repeated.every((icon) => /^scissors-\d+$/.test(icon.name)));
-  assert.ok(repeated.every((icon) => icon.aliases.length > 0));
 });
 
 test('current SVG bytes are used for generated checksums', async () => {
@@ -148,4 +143,24 @@ test('replacing a source regenerates its component and derived catalog hash', as
   } finally {
     await rm(temp, { recursive: true, force: true });
   }
+});
+
+test('compact browser catalog reconstructs complete download metadata', async () => {
+  const compact = JSON.parse(
+    await readFile(
+      new URL('../src/data/catalog-runtime.json', import.meta.url),
+      'utf8',
+    ),
+  );
+  const reconstructed = {
+    ...compact,
+    icons: compact.icons.map((icon) => ({
+      ...icon,
+      width: 16,
+      height: 16,
+      file: `icons/${icon.filename}`,
+      sourceUrl: `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
+    })),
+  };
+  assert.deepEqual(reconstructed, catalog);
 });

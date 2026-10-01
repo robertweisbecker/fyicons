@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconBeaker = React.forwardRef<SVGSVGElement, IconProps>(function IconBeaker(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M10.4995 1.99963C10.7755 1.99963 10.9993 2.22366 10.9995 2.49963C10.9995 2.77578 10.7757 2.99963 10.4995 2.99963H10.2212L10.0103 6.56799L13.2417 10.1412C13.7102 10.6591 13.9218 11.3263 13.8179 11.9489C13.7111 12.5879 13.2764 13.1352 12.562 13.3658C11.5101 13.7054 10.0161 13.9996 7.99953 13.9996C5.98298 13.9996 4.48888 13.7054 3.43703 13.3658C2.72293 13.1351 2.28789 12.5878 2.18117 11.9489C2.07736 11.3264 2.28893 10.659 2.75734 10.1412L5.98781 6.56799L5.77785 2.99963H5.49953C5.22355 2.99944 4.99953 2.77566 4.99953 2.49963C4.99973 2.22378 5.22367 1.99983 5.49953 1.99963H10.4995ZM11.7525 9.99963H4.25246C4.24655 9.99963 4.24074 9.99788 4.23488 9.99768L3.49855 10.8121C3.21242 11.1285 3.11949 11.4949 3.1675 11.7838C3.21302 12.0563 3.38745 12.2994 3.74367 12.4147C4.69102 12.7205 6.08149 12.9996 7.99953 12.9996C9.9176 12.9996 11.308 12.7205 12.2554 12.4147C12.612 12.2995 12.786 12.0565 12.8316 11.7838C12.8796 11.4948 12.7867 11.1286 12.5005 10.8121L11.7642 9.99768C11.7603 9.99777 11.7564 9.99963 11.7525 9.99963ZM6.99855 6.72034C7.00641 6.85422 6.9606 6.98612 6.87062 7.08557L5.1382 8.99963H10.8609L9.12844 7.08557C9.03872 6.98617 8.99266 6.85402 9.00051 6.72034L9.21926 2.99963H6.7798L6.99855 6.72034Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconBeaker;

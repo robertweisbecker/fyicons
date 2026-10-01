@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconWorld = React.forwardRef<SVGSVGElement, IconProps>(function IconWorld(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8 2C11.3137 2 14 4.68629 14 8C14 11.3137 11.3137 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2ZM8 3C7.66578 3 7.3393 3.03316 7.02344 3.0957C7.14461 3.19852 7.23928 3.33679 7.28711 3.50391C7.40744 3.92506 7.18356 4.36867 6.77344 4.52246L5.50879 4.99707C4.96974 5.19938 4.724 5.82384 4.98145 6.33887C5.14576 6.66751 5.48218 6.875 5.84961 6.875H5.92383C6.21278 6.87507 6.49001 6.99001 6.69434 7.19434L7.29492 7.79492C7.42905 7.92905 7.59723 8.02431 7.78125 8.07031C8.41535 8.22885 8.75079 8.92349 8.48047 9.51855L7.4873 11.7021C7.3116 12.088 6.80473 12.1797 6.50488 11.8799C6.42017 11.7951 6.36237 11.6869 6.33887 11.5693L6.15625 10.6562C6.05882 10.1691 5.72198 9.76366 5.26074 9.5791L5.00293 9.47656C4.49428 9.2731 4.20329 8.73543 4.31055 8.19824L4.32324 8.13574C4.42533 7.62511 4.14188 7.11546 3.6543 6.93262C3.46734 6.86251 3.31316 6.74635 3.19824 6.60254C3.06939 7.04605 3 7.51492 3 8C3 10.7614 5.23858 13 8 13C9.79583 13 11.3693 12.0525 12.251 10.6309L11.7451 8.8584C11.5997 8.3503 11.135 8 10.6064 8C10.1582 7.99986 9.74842 7.7466 9.54785 7.3457L9.4248 7.09961C9.04409 6.33817 9.31395 5.41163 10.0439 4.97363L10.0732 4.95605C10.4285 4.74307 10.8507 4.66974 11.2568 4.75098L11.9062 4.88086C11.3387 4.17103 10.5827 3.61894 9.71289 3.30176C9.69 3.48553 9.58403 3.66038 9.38184 3.75488C9.21979 3.8305 9.03203 3.82798 8.87207 3.74805L8.73242 3.67871C8.5183 3.57155 8.3952 3.34111 8.4248 3.10352C8.42838 3.0749 8.43582 3.0474 8.44336 3.02051C8.29725 3.00767 8.14944 3 8 3Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconWorld;

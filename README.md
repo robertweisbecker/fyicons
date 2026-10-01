@@ -1,6 +1,6 @@
 # FYIcons
 
-567 icons at 16px, with a searchable library, an inspector, SVG downloads, and seven interactive UI examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
+704 icons at 16px, with a searchable library, an inspector, SVG downloads, and seven interactive UI examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
 
 ## Development
 
@@ -13,12 +13,11 @@ npm run dev
 
 ```sh
 npm run build
-npx playwright install chromium
 npm test
 npm run preview
 ```
 
-The browser tests exercise filtering, keyboard and focus behavior, the mobile inspector, grid alignment, demo interactions, and native 16px icon rendering. Every SVG in the downloaded ZIP is checked against its source SHA-256.
+Tests cover source SVG and manifest integrity, generated React components, regeneration, instance-safe SVG definitions, and byte-exact full and selected ZIP exports. UI styling, layout, copy, and demo interactions are outside the test contract.
 
 ## Components and styling
 
@@ -65,7 +64,7 @@ The editable source is [`icons/`](icons/): one SVG per icon, with names and cate
 npm run generate:icons
 ```
 
-This rebuilds `src/icons/` and `src/data/catalog.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and `src/data/catalog.json` are generated; edit the standalone SVGs instead.
+This rebuilds `src/icons/`, `src/data/catalog.json`, and the compact browser catalog `src/data/catalog-runtime.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and both catalog JSON files are generated; edit the standalone SVGs instead.
 
 `npm run dev` and `npm run build` generate automatically at startup. While the dev server is running, run `npm run generate:icons` after an SVG edit; Vite picks up the generated changes. `npm run check:icons` detects stale or obsolete generated components without changing files. `npm run test:icons` checks generation and React behavior. CI checks freshness before building.
 
@@ -121,6 +120,6 @@ The apex `bob.fyi` records do not need to change. With Actions-based publishing,
 
 ## Deployment size
 
-This is a static client application with no server functions, image processing, or runtime API requests. The current production output is approximately **2.57 MiB**, including the full icon catalog. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 3 MiB output budget.
+This is a static client application with no server functions, image processing, or runtime API requests. The current production output is approximately **2.97 MiB**, including the full icon catalog. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 3 MiB output budget.
 
 GitHub Pages does not consume Vercel deployment storage or bandwidth. An optional `vercel.json` makes the same source deployable as a Vite site, but connecting it to Vercel would consume Vercel storage and transfer for retained deployments. This repository does not create or configure a Vercel project.

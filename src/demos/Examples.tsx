@@ -6,6 +6,10 @@ import { Post } from './Post';
 import { Preferences } from './Preferences';
 import { SmallDemos } from './SmallDemos';
 
+const tabClass = cn(
+  'flex h-9 items-center gap-1.5 rounded-full ps-2.5 pe-4 text-sm font-medium text-muted hover:text-ink data-active:bg-surface data-active:text-ink',
+);
+
 export default function Examples({
   notify,
 }: {
@@ -32,19 +36,19 @@ export default function Examples({
           >
             <Tabs.List
               className={cn(
-                'study-tabs flex gap-1 rounded-lg bg-hover p-1 max-[680px]:w-full [&_[data-active]]:bg-surface [&_[data-active]]:text-ink [&_[data-active]]:shadow-sm [&_button]:flex [&_button]:h-9 [&_button]:items-center [&_button]:gap-2 [&_button]:rounded-md [&_button]:px-3.5 [&_button]:text-xs [&_button]:font-medium [&_button]:text-muted [&_button]:hover:text-ink max-[680px]:[&_button]:h-9.5 max-[680px]:[&_button]:flex-1 max-[680px]:[&_button]:justify-center max-[680px]:[&_button]:gap-1.5 max-[680px]:[&_button]:px-2 max-[680px]:[&_button]:text-xs pointer-coarse:[&_button]:min-h-11',
+                'study-tabs flex gap-1 rounded-full bg-hover p-px max-[680px]:w-full',
               )}
               aria-label="App examples"
             >
-              <Tabs.Tab value="workbench">
+              <Tabs.Tab value="workbench" className={tabClass}>
                 <Icon name="terminal-square" />
                 Workbench
               </Tabs.Tab>
-              <Tabs.Tab value="post">
+              <Tabs.Tab value="post" className={tabClass}>
                 <Icon name="envelope" />
                 Post
               </Tabs.Tab>
-              <Tabs.Tab value="settings">
+              <Tabs.Tab value="settings" className={tabClass}>
                 <Icon name="sliders" />
                 Preferences
               </Tabs.Tab>

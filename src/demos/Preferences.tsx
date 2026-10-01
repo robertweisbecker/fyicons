@@ -145,7 +145,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
           <Avatar
             aria-label="Jamie Davis"
             className={cn(
-              'profile-monogram mb-3.5 grid size-12 place-items-center rounded-full bg-linear-145 from-slate-300 to-mist-400 text-base font-medium text-white',
+              'profile-monogram mb-3.5 grid size-12 place-items-center rounded-full bg-linear-145 from-slate-300 to-mist-400 text-xl font-medium text-white',
             )}
           >
             <AvatarFallback>JD</AvatarFallback>

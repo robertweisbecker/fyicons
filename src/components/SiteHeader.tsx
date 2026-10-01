@@ -33,13 +33,13 @@ export function SiteHeader({
       >
         <a
           className={cn(
-            'flex shrink-0 items-center gap-2 text-base font-semibold tracking-normal',
+            'flex shrink-0 items-center gap-2 text-sm font-semibold tracking-normal',
           )}
           href={pageHref('library')}
           onClick={(event) => navigate('library', event)}
         >
-          <Icon name="asterisk-star" className="hidden min-[400px]:block" />
-          FYIcons
+          <Icon name="asterisk-6" />
+          fyicons
         </a>
         <nav
           className={cn('flex flex-1 items-center sm:gap-1')}
@@ -52,10 +52,10 @@ export function SiteHeader({
               onClick={(event) => navigate(item, event)}
               aria-current={page === item ? 'page' : undefined}
               className={cn(
-                'inline-flex min-h-9 items-center rounded-md px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink sm:px-3 pointer-coarse:min-h-11',
+                'inline-flex min-h-7 items-center rounded-full px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink sm:px-3 pointer-coarse:min-h-8',
               )}
             >
-              {item === 'library' ? 'Icons' : 'Examples'}
+              {item === 'library' ? 'Library' : 'Examples'}
             </a>
           ))}
         </nav>

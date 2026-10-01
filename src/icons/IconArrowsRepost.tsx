@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconArrowsRepost = React.forwardRef<SVGSVGElement, IconProps>(function IconArrowsRepost(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M3.22461 3.08191C3.41863 2.95396 3.68273 2.97565 3.85352 3.14636L5.85352 5.14636C6.04865 5.34155 6.04853 5.65813 5.85352 5.85339C5.65827 6.04864 5.34175 6.0486 5.14648 5.85339L4 4.70691V10.4999C4 11.3283 4.67157 11.9999 5.5 11.9999H8.5C8.77596 12 8.99986 12.2239 9 12.4999C9 12.776 8.77605 12.9998 8.5 12.9999H5.5C4.11929 12.9999 3 11.8806 3 10.4999L3 4.70691L1.85352 5.85339C1.65827 6.04864 1.34175 6.0486 1.14648 5.85339C0.951307 5.65812 0.95125 5.3416 1.14648 5.14636L3.14648 3.14636L3.22461 3.08191ZM10.5 2.99988C11.8806 2.99992 12.9999 4.11924 13 5.49988V11.2928L14.1465 10.1464C14.3417 9.9512 14.6583 9.95115 14.8535 10.1464C15.0487 10.3416 15.0487 10.6581 14.8535 10.8534L12.8535 12.8534C12.6583 13.0487 12.3417 13.0487 12.1465 12.8534L10.1465 10.8534C9.95124 10.6581 9.95123 10.3416 10.1465 10.1464C10.3417 9.9512 10.6583 9.95115 10.8535 10.1464L12 11.2928V5.49988C11.9999 4.67153 11.3284 3.99992 10.5 3.99988H7.5C7.22386 3.99988 7 3.77602 7 3.49988C7.00006 3.22379 7.2239 2.99988 7.5 2.99988H10.5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconArrowsRepost;

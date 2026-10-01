@@ -81,7 +81,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           variant="unstyled"
           size="unstyled"
           className={cn(
-            'app-nav-item new-task my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-olive-800 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
+            'app-nav-item new-task my-px flex min-h-8 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-olive-800 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
           )}
           onClick={() => {
             setTitle('New task');
@@ -103,7 +103,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           variant="unstyled"
           size="unstyled"
           className={cn(
-            'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
+            'app-nav-item my-px flex min-h-8 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
           )}
           onClick={() => input.current?.focus()}
         >
@@ -130,7 +130,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
             size="unstyled"
             key={label}
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
+              'app-nav-item my-px flex min-h-8 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
             )}
             onClick={() => setTitle(label)}
           >
@@ -152,7 +152,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
             size="unstyled"
             key={session}
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
+              'app-nav-item my-px flex min-h-8 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
               title === session ? 'selected' : '',
             )}
             onClick={() => setTitle(session)}
@@ -178,7 +178,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
             variant="unstyled"
             size="unstyled"
             className={cn(
-              'app-nav-item my-px flex min-h-9 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
+              'app-nav-item my-px flex min-h-8 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm whitespace-nowrap text-zinc-500 hover:bg-olive-200 max-[1050px]:text-xs pointer-coarse:min-h-11 [&.selected]:bg-olive-200 [&.selected]:text-neutral-700',
             )}
             onClick={() => notify('Jamie Davis · Personal workspace')}
           >
@@ -302,7 +302,9 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   >
                     <strong>Assistant</strong>
                   </div>
-                  <h2>Command menu updated</h2>
+                  <h3 className="text-lg leading-tight font-medium tracking-normal">
+                    Command menu updated
+                  </h3>
                   <p>
                     The menu has a clearer hierarchy, consistent spacing, and a
                     dedicated column for keyboard shortcuts.
@@ -334,10 +336,12 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                     onClick={() => setReview(true)}
                   >
                     <span className={cn('change-summary-icon')}>
-                      <Icon name="code" />
+                      <Icon name="files" className="size-6" />
                     </span>
                     <span>
-                      <strong>2 files changed</strong>
+                      <p className="text-sm/none font-medium">
+                        2 files changed
+                      </p>
                       <small>command-menu.tsx · command-menu.css</small>
                     </span>
                     <span
@@ -374,7 +378,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                       }
                     />
                     <span>All checks passed</span>
-                    <Icon name="check-sm" />
+                    <Icon name="shield-check" />
                   </div>
                 </div>
               </div>
@@ -596,7 +600,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   disabled={accepted}
                   onClick={() => setAccepted(true)}
                 >
-                  <Icon name="check-sm" />
+                  <Icon name="check-lg" />
                   {accepted ? 'Changes accepted' : 'Accept changes'}
                 </Button>
               </div>

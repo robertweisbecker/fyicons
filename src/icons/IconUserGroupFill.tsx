@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconUserGroupFill = React.forwardRef<SVGSVGElement, IconProps>(function IconUserGroupFill(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11 9C12.0381 9.00003 12.8002 9.32392 13.3418 9.80762C13.8735 10.2825 14.1564 10.8786 14.3086 11.3701C14.4455 11.8124 14.3248 12.238 14.0576 12.5391C13.798 12.8315 13.4095 13 12.999 13H9.67188C9.60503 13.1425 9.51913 13.2751 9.41406 13.3916C9.07065 13.7721 8.55032 13.9999 8.00195 14H3.00195C2.45355 14 1.93332 13.7721 1.58984 13.3916C1.23684 13.0002 1.07157 12.4413 1.28223 11.8584C1.90181 10.1443 3.48819 9.00003 5.50195 9C6.67285 9.00008 7.69771 9.38897 8.47363 10.0498C8.46312 10.0409 8.45299 10.0313 8.44238 10.0225C8.50955 9.94904 8.58089 9.87662 8.6582 9.80762C9.20003 9.32416 9.9621 9.00002 11 9ZM5.5 3C6.88071 3 8 4.11929 8 5.5C8 6.88071 6.88071 8 5.5 8C4.1194 7.99987 3 6.88063 3 5.5C3 4.11937 4.1194 3.00013 5.5 3ZM10.9951 4C12.0996 4.00006 12.9951 4.89547 12.9951 6C12.9951 7.10453 12.0996 7.99994 10.9951 8C9.89063 7.9999 8.99512 7.10451 8.99512 6C8.99512 4.89549 9.89063 4.0001 10.9951 4Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconUserGroupFill;

@@ -1,0 +1,19 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconDuplicateCheck = React.forwardRef<SVGSVGElement, IconProps>(function IconDuplicateCheck(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M9 1.99991C10.1045 1.99991 11 2.89538 11 3.99991V4.99991H12C13.1045 4.99991 14 5.89538 14 6.99991V11.9999C14 13.1045 13.1046 13.9999 12 13.9999H7C5.89543 13.9999 5 13.1045 5 11.9999V10.9999H4C2.89543 10.9999 2 10.1045 2 8.99991V3.99991C2.00005 2.89538 2.89546 1.99991 4 1.99991H9ZM7 5.99991C6.44775 5.99991 6.00005 6.44767 6 6.99991V11.9999C6 12.5522 6.44772 12.9999 7 12.9999H12C12.5523 12.9999 13 12.5522 13 11.9999V6.99991C13 6.44767 12.5523 5.99991 12 5.99991H7ZM4 2.99991C3.44775 2.99991 3.00005 3.44767 3 3.99991V8.99991C3 9.55219 3.44772 9.99991 4 9.99991H5V6.99991C5.00005 5.89538 5.89546 4.99991 7 4.99991H10V3.99991C9.99995 3.44767 9.55225 2.99991 9 2.99991H4Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /><path d="M10.8086 7.51425C10.9386 7.2709 11.2418 7.17845 11.4854 7.3082C11.7289 7.43808 11.8211 7.74136 11.6914 7.98495L9.69141 11.735C9.61371 11.8806 9.46879 11.9786 9.30469 11.9967C9.1405 12.0147 8.97761 11.9502 8.87012 11.8248L7.37012 10.0748C7.19083 9.86513 7.21529 9.5493 7.4248 9.36972C7.6344 9.1905 7.95027 9.21509 8.12988 9.42441L9.15234 10.6178L10.8086 7.51425Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconDuplicateCheck;

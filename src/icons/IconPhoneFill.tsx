@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconPhoneFill = React.forwardRef<SVGSVGElement, IconProps>(function IconPhoneFill(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M3.70161 2.43261C4.4376 1.81929 5.57637 2.03239 6.01313 2.90526L6.85786 4.59569C7.30743 5.49484 6.94353 6.5885 6.04438 7.03808C5.94672 7.08693 5.9253 7.21665 6.00239 7.29393L6.85102 8.14257C6.85251 8.14401 6.85444 8.14501 6.85591 8.14647L8.70844 9.99901C8.78557 10.0761 8.91558 10.0546 8.9643 9.95702C9.41352 9.05807 10.5068 8.69324 11.4057 9.14257L13.0971 9.98827C13.9699 10.4248 14.184 11.5636 13.5707 12.2998C12.4332 13.6653 10.5776 14.2559 8.86176 13.7656C8.12694 13.5556 7.45787 13.1615 6.91743 12.6211L5.16059 10.8642C5.15656 10.8605 5.15182 10.8574 5.1479 10.8535L3.38032 9.08593C2.83985 8.54535 2.44579 7.87562 2.23579 7.14061C1.74579 5.42498 2.33665 3.5702 3.70161 2.43261Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconPhoneFill;

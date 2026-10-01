@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconGraduationCap = React.forwardRef<SVGSVGElement, IconProps>(function IconGraduationCap(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M7.8938 3.01171C7.99893 2.98886 8.10976 3.00008 8.20923 3.04589L14.7102 6.04589C14.8869 6.12773 15.0002 6.30518 15.0002 6.49999C15.0002 6.69478 14.887 6.87232 14.7102 6.95409L12.6223 7.91698C12.864 8.30594 13.0002 8.76071 13.0002 9.23632V13.5C13.0001 13.7759 12.7762 13.9999 12.5002 14C12.2242 14 12.0004 13.776 12.0002 13.5V11.6377C11.8946 11.7206 11.7808 11.8069 11.6565 11.8916C10.8412 12.4469 9.61985 12.9999 8.00024 13C5.46221 13 3.91049 11.6453 3.34888 11.0469C3.10094 10.7826 3.0003 10.4443 3.00024 10.1289V7.74315L1.29028 6.95409C1.11346 6.87233 1.00033 6.69481 1.00024 6.49999C1.00024 6.30508 1.11339 6.12768 1.29028 6.04589L7.79028 3.04589L7.8938 3.01171ZM4.00024 10.1289C4.0003 10.2389 4.03518 10.3162 4.07837 10.3623C4.53892 10.8531 5.84505 12 8.00024 12C9.38024 11.9999 10.4093 11.5318 11.094 11.0654C11.4373 10.8316 11.6932 10.5978 11.8616 10.4258C11.9185 10.3676 11.9637 10.3149 12.0002 10.2734V9.23632C12.0002 8.90726 11.8898 8.59612 11.7004 8.34179L8.20923 9.95409C8.07646 10.0152 7.92304 10.0153 7.79028 9.95409L4.00024 8.20409V10.1289ZM2.6936 6.49999L7.99927 8.94823L10.7444 7.68065L9.27661 6.94726C9.02965 6.82378 8.92955 6.52333 9.05298 6.27636C9.17647 6.02937 9.47689 5.92923 9.72388 6.05272L11.6184 6.99999C11.7112 7.04643 11.8 7.09867 11.885 7.15526L13.3059 6.49999L7.99927 4.05077L2.6936 6.49999Z" fill="#FF0000" style={{
+      fill: "color(display-p3 1.0000 0.0000 0.0000)",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconGraduationCap;

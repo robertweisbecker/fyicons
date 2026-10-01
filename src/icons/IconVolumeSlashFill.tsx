@@ -8,9 +8,12 @@ const IconVolumeSlashFill = React.forwardRef<SVGSVGElement, IconProps>(function 
     title,
     ...svgProps
   } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M2.14638 2.14681C2.34164 1.95155 2.65815 1.95155 2.85341 2.14681L13.8534 13.1468C14.0484 13.3421 14.0486 13.6587 13.8534 13.8538C13.6582 14.0489 13.3416 14.0488 13.1464 13.8538L2.14638 2.85384C1.95116 2.65863 1.95125 2.34209 2.14638 2.14681ZM9.99989 12.1214V12.266C9.99942 12.9227 9.21474 13.2617 8.73622 12.8119L5.74989 10.0013H3.99989C3.44765 10.0013 2.99996 9.55354 2.99989 9.00131V7.00131C2.99997 6.48771 3.38717 6.06383 3.88563 6.00716L9.99989 12.1214ZM8.73622 3.19076C9.21477 2.7408 9.99952 3.07982 9.99989 3.73666V7.87923L6.97157 4.85091L8.73622 3.19076Z" fill="currentColor" style={{
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M10.9775 12.3919C10.836 13.0948 9.97987 13.4462 9.37988 12.973L6.25 10.5013H4.5C3.6717 10.5013 3.00019 9.82957 3 9.00129V7.00129C3.00012 6.29969 3.48201 5.71099 4.13281 5.54719L10.9775 12.3919ZM9.37988 3.02961C10.0356 2.51197 10.9999 2.9794 11 3.81477V9.58625L6.62109 5.20735L9.37988 3.02961Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /><path d="M2.5 2.5L13.5 13.5" stroke="currentColor" style={{
+      stroke: "currentColor",
+      strokeOpacity: 1
+    }} strokeLinecap="round" /></svg>;
 });
 export default IconVolumeSlashFill;

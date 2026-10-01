@@ -38,13 +38,13 @@ export function Forma() {
         >
           <ToggleGroup
             aria-label="Design tools"
-            className="relative mb-4 w-fit max-w-[calc(100%-0.5rem)] flex-wrap justify-center gap-0 rounded-xl bg-white p-1 shadow-sm outline outline-violet-400/20 sm:absolute sm:top-4 sm:left-1/2 sm:mb-0 sm:max-w-none sm:-translate-x-1/2 sm:gap-1"
+            className="relative mb-4 w-fit max-w-[calc(100%-0.5rem)] flex-wrap justify-center gap-0 rounded-lg bg-white p-1 shadow-sm outline outline-violet-400/20 sm:absolute sm:top-4 sm:left-1/2 sm:mb-0 sm:max-w-none sm:-translate-x-1/2"
             value={[tool]}
             onValueChange={(values) => {
               if (values[0]) setTool(values[0]);
             }}
           >
-            {['Select', 'Frame', 'Pen', 'Text', 'Draw'].map((name, i) => (
+            {['Select', 'Frame', 'Pen', 'Draw', 'Text'].map((name, i) => (
               <Toggle
                 size="icon-sm"
                 key={name}
@@ -59,7 +59,7 @@ export function Forma() {
                 ) : (
                   <Icon
                     name={
-                      ['cursor-arrow', 'frame', 'pen-tool', 'text', 'drawing'][
+                      ['cursor-arrow', 'frame', 'pen-tool', 'drawing', 'text'][
                         i
                       ]
                     }
@@ -153,7 +153,7 @@ export function Forma() {
             >
               <div className="flex items-center gap-2">
                 <Icon name="border-radius" />
-                <Slider.Label>Corner radius</Slider.Label>
+                <Slider.Label>Radius</Slider.Label>
                 <Slider.Value className="ml-auto tabular-nums" />
               </div>
               <div className="text-violet-500">
