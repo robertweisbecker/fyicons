@@ -49,7 +49,7 @@ export function Current() {
           current
         </strong>
         <Toggle size="icon" aria-label="Like this track">
-          <ToggleIcon icon="heart" activeIcon="heart-filled" />
+          <ToggleIcon icon="heart-alt" activeIcon="heart-alt-fill" />
         </Toggle>
       </div>
       <div className={cn('my-7 flex min-w-0 items-center gap-5')}>
@@ -119,7 +119,7 @@ export function Current() {
           title="Previous track"
           onClick={() => next(-1)}
         >
-          <Icon name="fast-backward-fill" />
+          <Icon name="skip-backward-fill" />
         </Button>
         <Toggle
           variant="unstyled"
@@ -135,12 +135,12 @@ export function Current() {
           }}
         >
           <Icon
-            name={playing ? 'pause-filled' : 'play-filled'}
+            name={playing ? 'pause-fill' : 'play-fill'}
             className="size-6"
           />
         </Toggle>
         <IconButton
-          icon="fast-forward-fill"
+          icon="skip-forward-fill"
           label="Next track"
           onClick={() => next(1)}
         />
@@ -179,7 +179,7 @@ export function Current() {
         )}
       >
         <span className={cn('flex items-center gap-2')}>
-          <Icon name="device-laptop" />
+          <Icon name="laptop" />
           This device
         </span>
         <div className={cn('flex items-center gap-2')}>
@@ -189,9 +189,9 @@ export function Current() {
                 volume === 0
                   ? 'volume-slash'
                   : volume <= 33
-                    ? 'volume-low'
+                    ? 'volume-none'
                     : volume <= 66
-                      ? 'volume-med'
+                      ? 'volume-low'
                       : 'volume-high'
               }
             />

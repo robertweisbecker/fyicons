@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconLinkAlt = React.forwardRef<SVGSVGElement, IconProps>(function IconLinkAlt(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M4.64464 6.64764C5.94441 5.34786 8.05182 5.34798 9.35167 6.64764C9.54693 6.8429 9.54693 7.15941 9.35167 7.35467C9.1564 7.54979 8.83985 7.54988 8.64464 7.35467C7.73532 6.44554 6.26092 6.44542 5.35167 7.35467L3.35167 9.35467C2.44256 10.2639 2.44259 11.7384 3.35167 12.6476C4.26093 13.5569 5.73532 13.5568 6.64464 12.6476L7.14464 12.1476C7.33984 11.9524 7.65639 11.9526 7.85167 12.1476C8.04693 12.3429 8.04693 12.6594 7.85167 12.8547L7.35167 13.3547C6.05183 14.6544 3.94442 14.6545 2.64464 13.3547C1.34503 12.0549 1.345 9.94742 2.64464 8.64764L4.64464 6.64764ZM8.64464 2.64764C9.94441 1.34786 12.0518 1.34798 13.3517 2.64764C14.6515 3.94747 14.6515 6.05484 13.3517 7.35467L11.3517 9.35467C10.0518 10.6544 7.94442 10.6545 6.64464 9.35467C6.4496 9.15944 6.44957 8.84285 6.64464 8.64764C6.83984 8.45243 7.15639 8.45255 7.35167 8.64764C8.26093 9.5569 9.73532 9.55681 10.6446 8.64764L12.6446 6.64764C13.5539 5.73833 13.5539 4.26397 12.6446 3.35467C11.7353 2.44554 10.2609 2.44542 9.35167 3.35467L8.85167 3.85467C8.6564 4.04979 8.33985 4.04988 8.14464 3.85467C7.9496 3.65944 7.94957 3.34285 8.14464 3.14764L8.64464 2.64764Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconLinkAlt;

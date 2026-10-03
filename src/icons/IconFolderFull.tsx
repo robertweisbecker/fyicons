@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconFolderFull = React.forwardRef<SVGSVGElement, IconProps>(function IconFolderFull(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M9.18945 0.776017C9.98964 0.561487 10.8128 1.0364 11.0273 1.83656L11.3389 2.99965H11.5098C12.1774 2.99981 12.7431 3.43659 12.9375 4.03969C14.1094 4.24668 14.9999 5.26836 15 6.49965V11.4996C15 12.8804 13.8807 13.9996 12.5 13.9996H3.5C2.11929 13.9996 1 12.8804 1 11.4996V4.49965C1.00009 3.11901 2.11934 1.99965 3.5 1.99965H4.62598L9.18945 0.776017ZM2 11.4996C2 12.3281 2.67157 12.9996 3.5 12.9996H12.5C13.3284 12.9996 14 12.3281 14 11.4996V7.99965H2V11.4996ZM3.5 2.99965C2.67163 2.99965 2.00009 3.6713 2 4.49965V6.99965H4.37793L3.53223 3.84535C3.4548 3.5563 3.46837 3.26486 3.55371 2.99965H3.5ZM13.0088 6.99965H14V6.49965C13.9999 5.85004 13.5865 5.29796 13.0088 5.08949V6.99965ZM7.5 3.99965C7.22432 4.00008 7.00015 4.2239 7 4.49965V6.99965H12.0088L12.0098 4.49965C12.0097 4.22371 11.7857 3.99985 11.5098 3.99965H7.5ZM9.44824 1.74184L4.85156 2.97426C4.58512 3.04588 4.42673 3.32002 4.49805 3.58656L5.41309 6.99965H6V4.49965C6.00017 3.67162 6.67205 3.00008 7.5 2.99965H10.3037L10.0615 2.09535C9.99001 1.82865 9.71496 1.67033 9.44824 1.74184Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconFolderFull;

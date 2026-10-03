@@ -47,9 +47,9 @@ const secondary: Record<string, string[][]> = {
     ['moon', 'Quiet hours', 'Every evening, 8 PM to 8 AM.'],
   ],
   Keyboard: [
-    ['command', 'Command menu', '⌘ K'],
+    ['kbd-command', 'Command menu', '⌘ K'],
     ['pencil-edit', 'New task', '⌘ N'],
-    ['search-1', 'Find anything', '⌘ F'],
+    ['search', 'Find anything', '⌘ F'],
   ],
   Privacy: [
     ['shield-check', 'Local workspace', 'Your projects stay on this device.'],
@@ -59,7 +59,7 @@ const secondary: Record<string, string[][]> = {
   'Connected apps': [
     ['git-branch', 'GitHub', 'Connected to FYIcons'],
     ['component', 'Figma', 'Connected to the icon library.'],
-    ['calendar-1', 'Calendar', 'View calendar events.'],
+    ['calendar', 'Calendar', 'View calendar events.'],
   ],
 };
 export function Preferences({ notify }: { notify: (message: string) => void }) {
@@ -229,7 +229,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
               'preference-search flex items-center gap-2 text-mist-500 [&_input]:w-32 [&_input]:border-0 [&_input]:bg-transparent [&_input]:text-xs [&_input]:text-(--pref-muted) [&_input]:placeholder:text-mist-500 max-[680px]:[&_input]:w-28 max-[680px]:[&_input]:text-base max-[680px]:[&_input]:placeholder:text-xs',
             )}
           >
-            <Icon name="search-1" />
+            <Icon name="search" />
             <input
               aria-label="Search preferences"
               placeholder="Search settings"
@@ -344,9 +344,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
                             )}
                           >
                             <span>
-                              <Icon
-                                name={['sun', 'moon', 'device-laptop'][i]}
-                              />
+                              <Icon name={['sun', 'moon', 'laptop'][i]} />
                               {name}
                             </span>
                             <Icon
@@ -405,7 +403,7 @@ export function Preferences({ notify }: { notify: (message: string) => void }) {
                             aria-label={name + ' accent'}
                             style={{ '--swatch': value } as CSSProperties}
                           >
-                            {accent === value && <Icon name="check-sm" />}
+                            {accent === value && <Icon name="check-thick-sm" />}
                           </Toggle>
                         ))}
                       </ToggleGroup>

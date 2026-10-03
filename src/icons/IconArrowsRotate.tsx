@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconArrowsRotate = React.forwardRef<SVGSVGElement, IconProps>(function IconArrowsRotate(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13.5225 8.00789C13.7973 8.03342 14 8.27695 13.9746 8.55184C13.8655 9.73342 13.4083 10.8566 12.6611 11.7784C11.914 12.7002 10.9097 13.3792 9.77637 13.7306C8.64303 14.0819 7.43051 14.0895 6.29297 13.752C5.33222 13.4669 4.46138 12.9459 3.75684 12.2413L2.42676 13.5723C2.26927 13.7298 2 13.6183 2 13.3956V10.2501C2 10.112 2.11193 10.0001 2.25 10.0001H5.39648C5.61919 10.0001 5.73072 10.2694 5.57324 10.4268L4.46582 11.5333C5.05294 12.1203 5.77757 12.5555 6.57812 12.7931C7.52604 13.0742 8.53607 13.0682 9.48047 12.7755C10.4249 12.4826 11.2621 11.9167 11.8848 11.1485C12.5073 10.3804 12.8875 9.44454 12.9785 8.46004C13.0039 8.18514 13.2476 7.98263 13.5225 8.00789ZM6.22363 2.26961C7.35692 1.91831 8.56953 1.91072 9.70703 2.24813C10.6673 2.53311 11.5378 3.05386 12.2422 3.7579L13.5732 2.42684C13.7307 2.26941 13.9999 2.38093 14 2.6036V5.75008C14 5.88815 13.8881 6.00008 13.75 6.00008H10.6035C10.3808 6.00005 10.2693 5.73081 10.4268 5.57332L11.5332 4.4659C10.9463 3.87942 10.2219 3.4445 9.42188 3.20711C8.474 2.92601 7.46388 2.93193 6.51953 3.22469C5.57512 3.51755 4.73784 4.0835 4.11523 4.85165C3.49275 5.61974 3.11247 6.55565 3.02148 7.54012C2.9961 7.81502 2.75242 8.01754 2.47754 7.99227C2.20278 7.96667 2.00001 7.72316 2.02539 7.44832C2.13454 6.26677 2.59173 5.14359 3.33887 4.22176C4.086 3.30006 5.09037 2.62101 6.22363 2.26961Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconArrowsRotate;

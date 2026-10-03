@@ -1,6 +1,6 @@
 # FYIcons
 
-704 icons at 16px, with a searchable library, an inspector, SVG downloads, and seven interactive UI examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
+740 icons at 16px, with a searchable library, an inspector, SVG downloads, and seven interactive UI examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
 
 ## Development
 
@@ -64,7 +64,7 @@ The editable source is [`icons/`](icons/): one SVG per icon, with names and cate
 npm run generate:icons
 ```
 
-This rebuilds `src/icons/`, `src/data/catalog.json`, and the compact browser catalog `src/data/catalog-runtime.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and both catalog JSON files are generated; edit the standalone SVGs instead.
+This rebuilds `src/icons/`, `src/data/catalog.json`, and the compact browser catalog `src/data/catalog-runtime.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. The browser catalog compresses the SVG payload and stores metadata field names once; it reconstructs the exact original SVG bytes and full metadata at runtime. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and both catalog JSON files are generated; edit the standalone SVGs instead.
 
 `npm run dev` and `npm run build` generate automatically at startup. While the dev server is running, run `npm run generate:icons` after an SVG edit; Vite picks up the generated changes. `npm run check:icons` detects stale or obsolete generated components without changing files. `npm run test:icons` checks generation and React behavior. CI checks freshness before building.
 
@@ -81,7 +81,7 @@ import { IconSun, IconArrowUpRight1 } from '@/icons';
 
 Components default to 16px, inherit `currentColor`, and accept `size`, `color`, `className`, `style`, `width`, `height`, accessibility attributes, event handlers, and SVG refs. Decorative icons are hidden from assistive technology by default; use `title` or an accessible label for meaningful standalone icons. A `strokeWidth` prop cannot change shapes drawn as filled contours.
 
-The barrel exports named components; the site uses a separate registry for dynamic lookup. Duplicate names now use stable numbers, such as `arrow-up-right-1` and `arrow-up-right-2`. Figma IDs remain in metadata, and old names remain aliases for the site's `Icon` lookup. To add an icon, add an SVG and a manifest entry with a unique name, ID, filename, and component name before generating.
+The barrel exports named components; the site uses a separate registry for dynamic lookup. Names follow the Figma components, with filled variants named from their component set. Duplicate names receive numeric suffixes. Figma IDs remain in metadata, and previous names remain lookup aliases for compatibility. To add an icon, add an SVG and a manifest entry with a unique name, ID, filename, and component name before generating.
 
 See [the SVG optimization assessment](docs/svg-optimization-assessment.md) for the next step on selective stroke conversion and optimized outputs.
 

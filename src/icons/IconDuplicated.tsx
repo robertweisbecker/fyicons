@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconDuplicated = React.forwardRef<SVGSVGElement, IconProps>(function IconDuplicated(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M9 2C10.1046 2 11 2.89543 11 4V5H12C13.1046 5 14 5.89543 14 7V12C13.9999 13.1044 13.1046 14 12 14H7C5.89543 14 5.00009 13.1044 5 12V11H4C2.89543 11 2.00009 10.1044 2 9V4C2 2.89543 2.89543 2 4 2H9ZM4 3C3.44772 3 3 3.44772 3 4V9L3.00488 9.10254C3.05627 9.60667 3.48241 10 4 10H5.5C5.77614 10 6 10.2239 6 10.5V12L6.00488 12.1025C6.05627 12.6067 6.48241 13 7 13H12C12.5176 13 12.9437 12.6067 12.9951 12.1025L13 12V7C13 6.44772 12.5523 6 12 6H10.5C10.2239 6 10 5.77614 10 5.5V4C10 3.44772 9.55228 3 9 3H4ZM10.8154 7.50195C10.9525 7.26255 11.2584 7.17877 11.498 7.31543C11.7375 7.45238 11.8211 7.75842 11.6846 7.99805L9.68457 11.498C9.60728 11.6332 9.47071 11.7244 9.31641 11.7451C9.16202 11.7658 9.00667 11.7136 8.89648 11.6035L7.39648 10.1035C7.20142 9.90826 7.20134 9.59169 7.39648 9.39648C7.5917 9.2015 7.90831 9.20147 8.10352 9.39648L9.13965 10.4326L10.8154 7.50195Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconDuplicated;

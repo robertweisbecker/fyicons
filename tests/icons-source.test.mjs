@@ -1,3 +1,4 @@
+import { inflateSync } from 'node:zlib';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -152,15 +153,27 @@ test('compact browser catalog reconstructs complete download metadata', async ()
       'utf8',
     ),
   );
+  const { iconFields, icons: rows, svgArchive, ...metadata } = compact;
+  const sourceSvgs = JSON.parse(
+    inflateSync(Buffer.from(svgArchive, 'base64')).toString(),
+  );
   const reconstructed = {
-    ...compact,
-    icons: compact.icons.map((icon) => ({
-      ...icon,
-      width: 16,
-      height: 16,
-      file: `icons/${icon.filename}`,
-      sourceUrl: `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
-    })),
+    ...metadata,
+    icons: rows.map((row, index) => {
+      const icon = Object.fromEntries(
+        iconFields.flatMap((field, index) =>
+          row[index] === null ? [] : [[field, row[index]]],
+        ),
+      );
+      return {
+        ...icon,
+        svg: sourceSvgs[index],
+        width: 16,
+        height: 16,
+        file: `icons/${icon.filename}`,
+        sourceUrl: `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
+      };
+    }),
   };
   assert.deepEqual(reconstructed, catalog);
 });

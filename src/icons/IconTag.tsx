@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconTag = React.forwardRef<SVGSVGElement, IconProps>(function IconTag(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13 3C14.1046 3 15 3.89543 15 5V11C15 12.1046 14.1046 13 13 13H5.39648C4.68369 12.9999 4.00453 12.6952 3.53027 12.1631L1.37988 9.75098C1.13518 9.47627 1.00002 9.12082 1 8.75293V6.97461C1.00001 6.58262 1.15368 6.20604 1.42773 5.92578L3.55469 3.75195C4.02491 3.27134 4.66942 3.0001 5.3418 3H13ZM5.3418 4C4.93846 4.0001 4.55162 4.16289 4.26953 4.45117L2.14258 6.625C2.05132 6.7184 2.00001 6.84402 2 6.97461V8.75293C2.00002 8.8755 2.04546 8.9944 2.12695 9.08594L4.27637 11.498C4.56088 11.8173 4.96888 11.9999 5.39648 12H13C13.5523 12 14 11.5523 14 11V5C14 4.44772 13.5523 4 13 4H5.3418ZM6 6.75C6.69036 6.75 7.25 7.30964 7.25 8C7.25 8.69036 6.69036 9.25 6 9.25C5.30964 9.25 4.75 8.69036 4.75 8C4.75 7.30964 5.30964 6.75 6 6.75Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconTag;

@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconWarningFill = React.forwardRef<SVGSVGElement, IconProps>(function IconWarningFill(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M6.70149 1.75237C7.27873 0.751814 8.7219 0.751815 9.29914 1.75237L14.8519 11.3754C15.5245 12.5419 14.6828 14.0002 13.3363 14.0004H2.66438C1.3177 14.0003 0.476012 12.542 1.14875 11.3754L6.70149 1.75237ZM8.00032 10.2504C7.5861 10.2504 7.25032 10.5862 7.25032 11.0004C7.25056 11.4144 7.58625 11.7504 8.00032 11.7504C8.41432 11.7503 8.75007 11.4144 8.75032 11.0004C8.75032 10.5862 8.41447 10.2505 8.00032 10.2504ZM8.00032 5.12542C7.82705 5.12542 7.66133 5.19099 7.54426 5.30803C7.42703 5.42523 7.36768 5.58473 7.37532 5.75042C7.37739 5.7961 7.3791 5.84243 7.38118 5.88811C7.41866 6.71284 7.45697 7.53799 7.49446 8.36272C7.49653 8.4084 7.49824 8.45474 7.50032 8.50042C7.50627 8.62696 7.564 8.74881 7.65754 8.83831C7.75137 8.92773 7.87368 8.97796 8.00032 8.97796C8.12697 8.97792 8.24928 8.92778 8.34309 8.83831C8.43664 8.74881 8.49436 8.62696 8.50032 8.50042C8.50239 8.45473 8.5041 8.40841 8.50618 8.36272C8.54366 7.53799 8.58197 6.71284 8.61946 5.88811C8.62153 5.84243 8.62324 5.7961 8.62532 5.75042C8.63295 5.58479 8.57351 5.42522 8.45637 5.30803C8.33933 5.19102 8.17354 5.12545 8.00032 5.12542Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconWarningFill;

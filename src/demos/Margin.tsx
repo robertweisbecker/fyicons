@@ -88,11 +88,11 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
             ['italic', 'italic', 'Italic'],
             ['underline', 'text-underline', 'Underline'],
             ['list', 'list-bullet', 'Toggle list'],
-            ['quote', 'quote-outline', 'Toggle quote'],
+            ['quote', 'quote-alt', 'Toggle quote'],
           ].map(([value, icon, label]) => (
             <Toggle size="icon" key={value} aria-label={label} value={value}>
               {value === 'quote' ? (
-                <ToggleIcon icon="quote-outline" activeIcon="quote-default" />
+                <ToggleIcon icon="quote-alt" activeIcon="quotes" />
               ) : (
                 <Icon name={icon} />
               )}
@@ -109,7 +109,7 @@ export function Margin({ notify }: { notify: (message: string) => void }) {
           }}
         />
         <IconButton
-          icon="copy"
+          icon="copy-lg"
           label="Copy document text"
           onClick={async () =>
             notify(

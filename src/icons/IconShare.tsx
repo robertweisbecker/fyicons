@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconShare = React.forwardRef<SVGSVGElement, IconProps>(function IconShare(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M5.5 5.00049C5.77614 5.00049 6 5.22435 6 5.50049C5.99974 5.77641 5.77598 6.00049 5.5 6.00049H5C4.44772 6.00049 4 6.4482 4 7.00049V12.0005C4.00026 12.5525 4.44788 13.0005 5 13.0005H11C11.5521 13.0005 11.9997 12.5525 12 12.0005V7.00049C12 6.4482 11.5523 6.00049 11 6.00049H10.5C10.224 6.00049 10.0003 5.77641 10 5.50049C10 5.22435 10.2239 5.00049 10.5 5.00049H11C12.1046 5.00049 13 5.89592 13 7.00049V12.0005C12.9997 13.1048 12.1044 14.0005 11 14.0005H5C3.89559 14.0005 3.00026 13.1048 3 12.0005V7.00049C3 5.89592 3.89543 5.00049 5 5.00049H5.5ZM8.02441 0.501465C8.04276 0.50238 8.06093 0.504401 8.0791 0.507324C8.08996 0.509054 8.10071 0.510766 8.11133 0.513184C8.13459 0.518504 8.15723 0.525993 8.17969 0.534668C8.18586 0.537051 8.1922 0.538886 8.19824 0.541504C8.20239 0.543301 8.20683 0.544472 8.21094 0.546387L8.2793 0.585449L8.28125 0.586426C8.30664 0.603745 8.33098 0.623493 8.35352 0.645996L10.8535 3.14697C11.0485 3.34225 11.0487 3.65883 10.8535 3.854C10.6583 4.04893 10.3417 4.04893 10.1465 3.854L8.5 2.20752V8.50049C8.49974 8.77641 8.27598 9.00049 8 9.00049C7.72402 9.00049 7.50026 8.77641 7.5 8.50049V2.20752L5.85352 3.854C5.65832 4.04893 5.34168 4.04893 5.14648 3.854C4.95131 3.65883 4.95148 3.34225 5.14648 3.14697L7.6416 0.650879C7.66581 0.626034 7.69277 0.603871 7.72168 0.584473L7.72461 0.58252C7.77657 0.548208 7.83373 0.525044 7.89258 0.512207C7.90222 0.510093 7.91203 0.508873 7.92188 0.507324C7.94103 0.504325 7.96015 0.502232 7.97949 0.501465C7.98631 0.501189 7.99312 0.499512 8 0.499512C8.0082 0.499512 8.01631 0.501075 8.02441 0.501465Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconShare;

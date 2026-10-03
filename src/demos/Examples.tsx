@@ -5,6 +5,7 @@ import { Workbench } from './Workbench';
 import { Post } from './Post';
 import { Preferences } from './Preferences';
 import { SmallDemos } from './SmallDemos';
+import { StatefulToggles } from './StatefulToggles';
 
 const tabClass = cn(
   'flex h-9 items-center gap-1.5 rounded-full ps-2.5 pe-4 text-sm font-medium text-muted hover:text-ink data-active:bg-surface data-active:text-ink',
@@ -24,6 +25,11 @@ export default function Examples({
           </h1>
         </div>
       </div>
+
+      <StatefulToggles />
+      <h2 className="mb-6 text-xl font-semibold">Interface examples</h2>
+      <SmallDemos notify={notify} />
+      <h2 className="mt-10 mb-4 text-xl font-semibold">App examples</h2>
       <section
         className={cn('app-studies mt-0.5 mb-13 max-[680px]:mb-9')}
         aria-label="App examples"
@@ -41,7 +47,7 @@ export default function Examples({
               aria-label="App examples"
             >
               <Tabs.Tab value="workbench" className={tabClass}>
-                <Icon name="terminal-square" />
+                <Icon name="terminal-rectangle" />
                 Workbench
               </Tabs.Tab>
               <Tabs.Tab value="post" className={tabClass}>
@@ -65,14 +71,6 @@ export default function Examples({
           </Tabs.Panel>
         </Tabs.Root>
       </section>
-      <div
-        className={cn(
-          'earlier-examples-heading mb-6 flex items-baseline justify-between gap-4 border-t border-line pt-7 max-[680px]:flex-col max-[680px]:gap-2 [&_h2]:m-0 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-normal [&>span]:text-xs [&>span]:text-muted',
-        )}
-      >
-        <h2>More interface examples</h2>
-      </div>
-      <SmallDemos notify={notify} />
       <p className={cn('mt-6 text-xs leading-relaxed text-muted')}>
         Messages, playback, and saves in these examples are simulated.
       </p>

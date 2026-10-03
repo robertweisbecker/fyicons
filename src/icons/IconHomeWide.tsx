@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconHomeWide = React.forwardRef<SVGSVGElement, IconProps>(function IconHomeWide(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M7.10794 2.41754C7.63816 2.02501 8.3637 2.02476 8.89407 2.41754L14.1284 6.29547H14.1294C15.0553 6.98263 14.8539 8.29239 14.0025 8.79547V12.0005C14.002 13.0355 13.2147 13.8872 12.2066 13.9898L12.0025 14.0005H9.99856C9.44646 14.0005 8.99886 13.5526 8.99856 13.0005V11.0005C8.99852 10.4486 8.55055 10.001 7.99856 10.0005C7.44639 10.0005 6.9986 10.4482 6.99856 11.0005V13.0005C6.99826 13.5524 6.55043 14.0003 5.99856 14.0005H4.00247C2.89811 14.0004 2.00294 13.1044 2.00247 12.0005V8.79645C1.14828 8.29463 0.945251 6.98327 1.87259 6.29547L7.10794 2.41754ZM8.29934 3.22125C8.12263 3.09035 7.88042 3.09047 7.70364 3.22125L2.46829 7.09918C2.10573 7.36827 2.26135 7.92416 2.67923 7.99274L2.76614 8.00055H3.00247V12.0005C3.00291 12.5178 3.39612 12.9433 3.89993 12.9947L4.00247 13.0005H5.99856V11.0005C5.99864 9.89604 6.89404 9.00055 7.99856 9.00055L8.20266 9.01031C9.21098 9.11292 9.99849 9.96521 9.99856 11.0005V13.0005H12.0025L12.105 12.9947C12.5751 12.9464 12.9498 12.5724 12.9976 12.1021L13.0025 12.0005V8.00055H13.2359L13.3228 7.99274C13.7124 7.9283 13.8741 7.43937 13.5991 7.15582L13.5337 7.09918L8.29934 3.22125Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconHomeWide;

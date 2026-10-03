@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { deflateSync } from 'node:zlib';
 import { readFile, writeFile, mkdir, readdir, unlink } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -102,11 +103,31 @@ expected.set(path.join(root, 'src/data/catalog.json'), catalogText);
 // These fields are deterministic from the component ID, filename, and canvas.
 // Reconstruct them at runtime instead of repeating them for every catalog entry.
 const compactIcons = icons.map(
-  ({ sourceUrl, file, width, height, ...icon }) => icon,
+  ({ sourceUrl, file, width, height, svg, ...icon }) => icon,
 );
+// Store field names once rather than repeating every metadata key per icon.
+// Null marks an absent optional field; icon metadata does not contain null values.
+const iconFields = [
+  ...new Set(compactIcons.flatMap((icon) => Object.keys(icon))),
+];
+if (compactIcons.some((icon) => Object.values(icon).includes(null)))
+  throw new Error('Icon metadata cannot contain null values.');
 expected.set(
   path.join(root, 'src/data/catalog-runtime.json'),
-  JSON.stringify({ ...generatedManifest, icons: compactIcons }, null, 2) + '\n',
+  JSON.stringify(
+    {
+      ...generatedManifest,
+      svgArchive: deflateSync(
+        Buffer.from(JSON.stringify(icons.map((icon) => icon.svg))),
+      ).toString('base64'),
+      iconFields,
+      icons: compactIcons.map((icon) =>
+        iconFields.map((field) => icon[field] ?? null),
+      ),
+    },
+    null,
+    2,
+  ) + '\n',
 );
 
 const iconOutput = path.join(root, 'src/icons');

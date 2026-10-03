@@ -9,6 +9,7 @@ if (!source)
     'Usage: npm run sync-icons -- /path/to/FYIcons-export (replaces editable icons/ sources)',
   );
 const root = process.cwd();
+const useSourceNames = process.argv.includes('--use-source-names');
 const imported = JSON.parse(
   await readFile(path.join(source, 'manifest.json'), 'utf8'),
 );
@@ -18,7 +19,9 @@ const currentManifest = JSON.parse(
 const currentById = new Map(
   currentManifest.icons.map((icon) => [icon.id, icon]),
 );
-const takenNames = new Set(currentManifest.icons.map((icon) => icon.name));
+const takenNames = new Set(
+  useSourceNames ? [] : currentManifest.icons.map((icon) => icon.name),
+);
 if (
   imported.name !== 'FYIcons' ||
   !Array.isArray(imported.icons) ||
@@ -34,7 +37,7 @@ for (const icon of imported.icons) {
 const reserved = new Set([
   ...groups.keys(),
   ...imported.icons.map((icon) => icon.name),
-  ...currentManifest.icons.map((icon) => icon.name),
+  ...(useSourceNames ? [] : currentManifest.icons.map((icon) => icon.name)),
 ]);
 const pascal = (text) =>
   text
@@ -47,8 +50,8 @@ for (const [baseName, group] of groups) {
   group.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
   for (const icon of group) {
     const existing = currentById.get(icon.id);
-    let name = existing?.name || icon.name;
-    if (!existing && takenNames.has(name)) {
+    let name = useSourceNames ? icon.name : existing?.name || icon.name;
+    if ((useSourceNames || !existing) && takenNames.has(name)) {
       let suffix = 1;
       while (
         reserved.has(`${icon.name}-${suffix}`) ||
@@ -83,11 +86,14 @@ for (const [baseName, group] of groups) {
       name,
       baseName: icon.baseName || existing?.baseName || baseName,
       filename,
-      componentName: existing?.componentName || `Icon${pascal(name)}`,
+      componentName: useSourceNames
+        ? `Icon${pascal(name)}`
+        : existing?.componentName || `Icon${pascal(name)}`,
       aliases: [
         ...new Set(
           [
             ...(existing?.aliases || []),
+            ...(existing ? [existing.name, existing.filename] : []),
             ...(icon.aliases || []),
             icon.name,
             originalFilename,
@@ -138,5 +144,5 @@ await promisify(execFile)('node', ['scripts/generate-icons.mjs'], {
   cwd: root,
 });
 console.log(
-  `Imported ${finalRecords.length} SVGs, preserving names for known IDs and generating site output.`,
+  `Imported ${finalRecords.length} SVGs, ${useSourceNames ? 'using Figma source names' : 'preserving names for known IDs'} and generating site output.`,
 );

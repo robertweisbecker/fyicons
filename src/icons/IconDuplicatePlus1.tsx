@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconDuplicatePlus1 = React.forwardRef<SVGSVGElement, IconProps>(function IconDuplicatePlus1(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M2.5 8C2.77614 8 3 8.22386 3 8.5C3.00007 9.32837 3.67161 10 4.5 10H5.5C5.53443 10 5.56811 10.0031 5.60059 10.0098C5.79611 10.0497 5.95037 10.2039 5.99023 10.3994C5.99686 10.4319 6 10.4656 6 10.5V11.5C6 12.3284 6.67157 13 7.5 13C7.77614 13 8 13.2239 8 13.5C8 13.7761 7.77614 14 7.5 14C6.11929 14 5 12.8807 5 11.5V11H4.5C3.11933 11 2.00007 9.88066 2 8.5C2 8.22386 2.22386 8 2.5 8ZM13.5 10.5C13.7761 10.5 14 10.7239 14 11V11.5C14 12.8807 12.8807 14 11.5 14C11.2239 14 11 13.7761 11 13.5C11 13.2239 11.2239 13 11.5 13C12.3284 13 13 12.3284 13 11.5V11C13 10.7239 13.2239 10.5 13.5 10.5ZM9.49512 7C9.77115 7.00013 9.99512 7.22394 9.99512 7.5V8.99512H11.5C11.776 8.99525 12 9.21906 12 9.49512C11.9999 9.77113 11.776 9.99499 11.5 9.99512H9.99512V11.5C9.99512 11.7761 9.77115 11.9999 9.49512 12C9.21897 12 8.99512 11.7761 8.99512 11.5V9.99512H7.5C7.2239 9.99512 7.00006 9.77121 7 9.49512C7 9.21898 7.22386 8.99512 7.5 8.99512H8.99512V7.5C8.99512 7.22386 9.21897 7 9.49512 7ZM8.5 2C9.88071 2 11 3.11929 11 4.5V5H11.5C12.8807 5 14 6.11929 14 7.5V8.5C14 8.77614 13.7761 9 13.5 9C13.2239 9 13 8.77614 13 8.5V7.5C13 6.67157 12.3284 6 11.5 6H10.5C10.4656 6 10.4319 5.99686 10.3994 5.99023C10.3344 5.97697 10.2739 5.95088 10.2207 5.91504C10.1672 5.87898 10.121 5.83278 10.085 5.7793C10.0491 5.72613 10.0231 5.66562 10.0098 5.60059C10.0031 5.56811 10 5.53443 10 5.5V4.5C10 3.67157 9.32843 3 8.5 3C8.2239 3 8.00007 2.77609 8 2.5C8 2.22386 8.22386 2 8.5 2ZM4.5 2C4.77614 2 5 2.22386 5 2.5C4.99993 2.77609 4.7761 3 4.5 3C3.67157 3 3 3.67157 3 4.5V5.5C2.99993 5.77609 2.7761 6 2.5 6C2.2239 6 2.00007 5.77609 2 5.5V4.5C2 3.11929 3.11929 2 4.5 2Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconDuplicatePlus1;

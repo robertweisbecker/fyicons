@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconMarkdown = React.forwardRef<SVGSVGElement, IconProps>(function IconMarkdown(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13.25 3C14.2165 3 15 3.7835 15 4.75V11.25C15 12.2165 14.2165 13 13.25 13H2.75C1.7835 13 1 12.2165 1 11.25V4.75C1 3.7835 1.7835 3 2.75 3H13.25ZM11.248 5.50098C10.9719 5.50098 10.748 5.72483 10.748 6.00098V8.50098H9.64941C9.42041 8.50108 9.31224 8.78326 9.48242 8.93652L11.3311 10.6006C11.426 10.6853 11.5702 10.6856 11.665 10.6006L13.5137 8.93652C13.6837 8.78335 13.5754 8.50141 13.3467 8.50098H12.25V6.00098C12.25 5.72497 12.026 5.5012 11.75 5.50098H11.248ZM7.66992 5.5293C7.47196 5.4579 7.24981 5.51888 7.11523 5.68066L5.5 7.625L3.88477 5.68066C3.75019 5.51888 3.52804 5.4579 3.33008 5.5293C3.13215 5.60082 3.0002 5.78957 3 6V10C3.00016 10.276 3.22396 10.5 3.5 10.5C3.77604 10.5 3.99984 10.276 4 10V7.38379L5.11523 8.72754C5.21023 8.84177 5.35142 8.9082 5.5 8.9082C5.64858 8.9082 5.78977 8.84177 5.88477 8.72754L7 7.38379V10C7.00016 10.276 7.22396 10.5 7.5 10.5C7.77604 10.5 7.99984 10.276 8 10V6C7.9998 5.78957 7.86785 5.60082 7.66992 5.5293Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconMarkdown;

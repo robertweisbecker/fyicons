@@ -186,7 +186,11 @@ export function Post() {
             )}
             onClick={() => setFolder(name)}
           >
-            <Icon name={['inbox', 'star', 'send', 'file-text', 'archive'][i]} />
+            <Icon
+              name={
+                ['inbox', 'star', 'send-straight', 'file-text', 'archive'][i]
+              }
+            />
             {name}
             {name === 'Inbox' && (
               <span
@@ -234,7 +238,7 @@ export function Post() {
               'mail-storage flex items-center gap-2 px-2.5 py-3.5 text-xs text-gray-500',
             )}
           >
-            <Icon name="cloud" />
+            <Icon name="cloud-check" />
             Everything synced
           </div>
           <div
@@ -282,7 +286,7 @@ export function Post() {
             'mail-search mx-5 flex items-center gap-2 rounded-[7px] border border-mauve-100 bg-gray-100 px-2.5 py-2 text-gray-500 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-mist-400 max-[680px]:mx-4 [&_input]:w-full [&_input]:min-w-0 [&_input]:border-0 [&_input]:bg-transparent [&_input]:text-xs [&_input]:text-gray-500 [&_input]:outline-none [&_input]:placeholder:text-gray-500 max-[680px]:[&_input]:text-base',
           )}
         >
-          <Icon name="search-1" />
+          <Icon name="search" />
           <input
             aria-label="Search mail"
             placeholder="Search mail"
@@ -357,7 +361,7 @@ export function Post() {
             'mail-list-footer flex items-center justify-center gap-2 border-t border-mauve-100 p-4 text-xs text-mist-500 max-[680px]:hidden',
           )}
         >
-          <Icon name="check-sm" />
+          <Icon name="check-thick-sm" />
           Updated just now
         </div>
       </section>
@@ -422,7 +426,7 @@ export function Post() {
                   );
               }}
             >
-              <ToggleIcon icon="heart" activeIcon="heart-filled" />
+              <ToggleIcon icon="heart-alt" activeIcon="heart-alt-fill" />
             </Toggle>
           </div>
           <div>
@@ -602,7 +606,7 @@ export function Post() {
                   )}
                   type="submit"
                 >
-                  <Icon name="send" />
+                  <Icon name="send-straight" />
                   Send
                 </Button>
               </div>

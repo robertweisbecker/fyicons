@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconOffice = React.forwardRef<SVGSVGElement, IconProps>(function IconOffice(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8.5 2C9.32843 2 10 2.67157 10 3.5V6H12.5C13.3284 6 14 6.67157 14 7.5V14H2V3.5C2 2.67157 2.67157 2 3.5 2H8.5ZM3.5 3C3.22386 3 3 3.22386 3 3.5V13H5V11C5 10.4477 5.44772 10 6 10C6.55228 10 7 10.4477 7 11V13H9V3.5C9 3.22386 8.77614 3 8.5 3H3.5ZM10 13H11V12.5C11 12.2239 11.2239 12 11.5 12C11.7761 12 12 12.2239 12 12.5V13H13V7.5C13 7.22386 12.7761 7 12.5 7H10V13ZM11.75 10C11.8881 10 12 10.1119 12 10.25V10.75C12 10.8881 11.8881 11 11.75 11H11.25C11.1119 11 11 10.8881 11 10.75V10.25C11 10.1119 11.1119 10 11.25 10H11.75ZM5 8C5.13807 8 5.25 8.11193 5.25 8.25V9C5.25 9.13807 5.13807 9.25 5 9.25H4.25C4.11193 9.25 4 9.13807 4 9V8.25C4 8.11193 4.11193 8 4.25 8H5ZM7.75 8C7.88807 8 8 8.11193 8 8.25V9C8 9.13807 7.88807 9.25 7.75 9.25H7C6.86193 9.25 6.75 9.13807 6.75 9V8.25C6.75 8.11193 6.86193 8 7 8H7.75ZM11.75 8C11.8881 8 12 8.11193 12 8.25V8.75C12 8.88807 11.8881 9 11.75 9H11.25C11.1119 9 11 8.88807 11 8.75V8.25C11 8.11193 11.1119 8 11.25 8H11.75ZM5 6C5.13807 6 5.25 6.11193 5.25 6.25V7C5.25 7.13807 5.13807 7.25 5 7.25H4.25C4.11193 7.25 4 7.13807 4 7V6.25C4 6.11193 4.11193 6 4.25 6H5ZM7.75 6C7.88807 6 8 6.11193 8 6.25V7C8 7.13807 7.88807 7.25 7.75 7.25H7C6.86193 7.25 6.75 7.13807 6.75 7V6.25C6.75 6.11193 6.86193 6 7 6H7.75ZM5 4C5.13807 4 5.25 4.11193 5.25 4.25V5C5.25 5.13807 5.13807 5.25 5 5.25H4.25C4.11193 5.25 4 5.13807 4 5V4.25C4 4.11193 4.11193 4 4.25 4H5ZM7.75 4C7.88807 4 8 4.11193 8 4.25V5C8 5.13807 7.88807 5.25 7.75 5.25H7C6.86193 5.25 6.75 5.13807 6.75 5V4.25C6.75 4.11193 6.86193 4 7 4H7.75Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconOffice;

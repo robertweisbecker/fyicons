@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconCloudSlash = React.forwardRef<SVGSVGElement, IconProps>(function IconCloudSlash(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M1.14648 1.14632C1.34172 0.951225 1.65828 0.951225 1.85352 1.14632L4.40332 3.69613C4.98764 3.25838 5.71373 2.99984 6.5 2.99984C7.49041 2.99984 8.38275 3.4134 9.01758 4.07308L9.0459 4.09554C9.07808 4.11413 9.11971 4.1204 9.1582 4.11019C9.42647 4.03831 9.709 3.99984 10 3.99984C11.7949 3.99984 13.2498 5.45513 13.25 7.24984C13.25 7.53899 13.21 7.81869 13.1387 8.0848C14.2096 8.36734 14.9999 9.34033 15 10.4998C14.9999 11.5254 14.3817 12.4054 13.498 12.7909L14.8535 14.1463C15.0487 14.3415 15.0487 14.6581 14.8535 14.8534C14.6583 15.0486 14.3417 15.0486 14.1465 14.8534L12.293 12.9998H4.5C2.60893 12.9998 1.00014 11.5847 1 9.74984C1.00013 8.42789 1.84254 7.32101 3.01465 6.80941C3.00557 6.70755 3.00001 6.60419 3 6.49984C3.00007 5.71375 3.25869 4.98746 3.69629 4.40316L1.14648 1.85336C0.951344 1.65808 0.951263 1.34155 1.14648 1.14632ZM4.41406 5.12093C4.15233 5.51613 4.00005 5.99037 4 6.49984C4.00002 6.68156 4.01953 6.85942 4.05664 7.03109C4.11159 7.28604 3.96172 7.54014 3.71191 7.61507C2.69223 7.92031 2.00012 8.78098 2 9.74984C2.00014 10.9523 3.07754 11.9998 4.5 11.9998H11.293L4.41406 5.12093ZM6.5 3.99984C5.9904 3.99984 5.51635 4.15203 5.12109 4.4139L12.6924 11.9852C13.4297 11.8906 13.9999 11.2629 14 10.4998C13.9999 9.67145 13.3283 8.99984 12.5 8.99984H12.4473C12.2732 8.99984 12.1114 8.90903 12.0205 8.76058C11.9299 8.61222 11.9229 8.42715 12.002 8.2723C12.1597 7.96412 12.25 7.61735 12.25 7.24984C12.2499 6.00726 11.2425 4.99984 10 4.99984C9.79861 4.99984 9.60378 5.02723 9.41797 5.07699C9.07022 5.17018 8.69433 5.09286 8.41211 4.87093L8.29688 4.76644C7.84164 4.29341 7.2059 3.99984 6.5 3.99984Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconCloudSlash;

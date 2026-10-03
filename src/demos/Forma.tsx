@@ -52,16 +52,11 @@ export function Forma() {
                 aria-label={name + ' tool'}
               >
                 {i === 0 ? (
-                  <ToggleIcon
-                    icon="cursor-arrow"
-                    activeIcon="cursor-arrow-fill"
-                  />
+                  <ToggleIcon icon="pointer" activeIcon="pointer-fill" />
                 ) : (
                   <Icon
                     name={
-                      ['cursor-arrow', 'frame', 'pen-tool', 'drawing', 'text'][
-                        i
-                      ]
+                      ['pointer', 'frame', 'pen-tool', 'drawing', 'text'][i]
                     }
                   />
                 )}
@@ -82,7 +77,7 @@ export function Forma() {
               } as CSSProperties
             }
           >
-            <Icon name="asterisk-star" />
+            <Icon name="asterisk-simple" />
             <strong className="my-5 w-full font-serif text-xl leading-tight">
               Project
               <br />
@@ -182,7 +177,7 @@ export function Forma() {
             </Field.Root>
             <Field.Root className="flex min-h-7 items-center justify-between">
               <Field.Label className="flex items-center gap-2">
-                <Icon name="box-shadow" />
+                <Icon name="shadow-ball" />
                 Shadow
               </Field.Label>
               <Switch size="sm" checked={shadow} onCheckedChange={setShadow} />

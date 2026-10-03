@@ -50,13 +50,19 @@ export function Orbit() {
               className="min-h-7 justify-start ps-1.5 pe-2 text-left text-xs pointer-coarse:min-h-11"
             >
               {i === 0 ? (
-                <ToggleIcon icon="home" activeIcon="home-fill" />
+                <ToggleIcon icon="home-simple" activeIcon="home-simple-fill" />
               ) : i === 3 ? (
                 <ToggleIcon icon="folder" activeIcon="folder-open" />
               ) : (
                 <Icon
                   name={
-                    ['home', 'chat-round', 'workflow', 'folder', 'component'][i]
+                    [
+                      'home-simple',
+                      'chat-round',
+                      'workflow',
+                      'folder',
+                      'component',
+                    ][i]
                   }
                 />
               )}
@@ -76,7 +82,7 @@ export function Orbit() {
         >
           <strong>{tab}</strong>
           <IconButton
-            icon="chat-plus"
+            icon="chat-round-plus-1"
             label="New conversation"
             onClick={() => {
               setPrompt('');
@@ -161,7 +167,7 @@ export function Orbit() {
           />
           <div className={cn('mt-3 flex items-center justify-between')}>
             <span className={cn('flex items-center gap-2 text-stone-500')}>
-              <Icon name="paperclip" />
+              <Icon name="paperclip-wide" />
               <Icon name="globe-simple" />
             </span>
             <Button
@@ -173,7 +179,7 @@ export function Orbit() {
               )}
               aria-label="Send message"
             >
-              <Icon name="arrow-up" />
+              <Icon name="send-fill" />
             </Button>
           </div>
         </form>

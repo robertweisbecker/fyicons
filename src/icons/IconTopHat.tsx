@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-const IconTopHat = React.forwardRef<SVGSVGElement, IconProps>(function IconTopHat(props, ref) {
+const IconTophat = React.forwardRef<SVGSVGElement, IconProps>(function IconTophat(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
   const {
     size = 16,
@@ -13,4 +13,4 @@ const IconTopHat = React.forwardRef<SVGSVGElement, IconProps>(function IconTopHa
       fillOpacity: 1
     }} /></svg>;
 });
-export default IconTopHat;
+export default IconTophat;

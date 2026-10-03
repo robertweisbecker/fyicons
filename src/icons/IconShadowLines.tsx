@@ -1,0 +1,19 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+const IconShadowLines = React.forwardRef<SVGSVGElement, IconProps>(function IconShadowLines(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const {
+    size = 16,
+    color,
+    title,
+    ...svgProps
+  } = props;
+  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<rect x={3.5} y={2.5} width={10} height={9} rx={1.5} stroke="currentColor" style={{
+      stroke: "currentColor",
+      strokeOpacity: 1
+    }} strokeLinecap="round" strokeLinejoin="round" /><path d="M2.14645 13.1464C1.95118 13.3417 1.95118 13.6583 2.14645 13.8536C2.34171 14.0488 2.65829 14.0488 2.85355 13.8536L2.5 13.5L2.14645 13.1464ZM4.14645 13.1464C3.95118 13.3417 3.95118 13.6583 4.14645 13.8536C4.34171 14.0488 4.65829 14.0488 4.85355 13.8536L4.5 13.5L4.14645 13.1464ZM6.14645 13.1464C5.95118 13.3417 5.95118 13.6583 6.14645 13.8536C6.34171 14.0488 6.65829 14.0488 6.85355 13.8536L6.5 13.5L6.14645 13.1464ZM8.14645 13.1464C7.95118 13.3417 7.95118 13.6583 8.14645 13.8536C8.34171 14.0488 8.65829 14.0488 8.85355 13.8536L8.5 13.5L8.14645 13.1464ZM12.8536 11.8536C13.0488 11.6583 13.0488 11.3417 12.8536 11.1464C12.6583 10.9512 12.3417 10.9512 12.1464 11.1464L12.5 11.5L12.8536 11.8536ZM10.1464 13.1464C9.95118 13.3417 9.95118 13.6583 10.1464 13.8536C10.3417 14.0488 10.6583 14.0488 10.8536 13.8536L10.5 13.5L10.1464 13.1464ZM4.5 11.5L4.14645 11.1464L2.14645 13.1464L2.5 13.5L2.85355 13.8536L4.85355 11.8536L4.5 11.5ZM6.5 11.5L6.14645 11.1464L4.14645 13.1464L4.5 13.5L4.85355 13.8536L6.85355 11.8536L6.5 11.5ZM8.5 11.5L8.14645 11.1464L6.14645 13.1464L6.5 13.5L6.85355 13.8536L8.85355 11.8536L8.5 11.5ZM10.5 11.5L10.1464 11.1464L8.14645 13.1464L8.5 13.5L8.85355 13.8536L10.8536 11.8536L10.5 11.5ZM12.5 11.5L12.1464 11.1464L10.1464 13.1464L10.5 13.5L10.8536 13.8536L12.8536 11.8536L12.5 11.5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></svg>;
+});
+export default IconShadowLines;

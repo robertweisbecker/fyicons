@@ -107,7 +107,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
           )}
           onClick={() => input.current?.focus()}
         >
-          <Icon name="search-1" />
+          <Icon name="search" />
           Find a task
           <span
             className={cn(
@@ -226,7 +226,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               pressed={terminal}
               onPressedChange={setTerminal}
             >
-              <Icon name="terminal-square" />
+              <Icon name="terminal-rectangle" />
             </Toggle>
             <Toggle
               size="icon-sm"
@@ -235,7 +235,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
               onPressedChange={setReview}
             >
               <ToggleIcon
-                icon="panel-right-closed"
+                icon="panel-right-docked"
                 activeIcon="panel-right-open"
               />
             </Toggle>
@@ -288,7 +288,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                     'assistant-mark grid size-6.25 place-items-center rounded-[7px] bg-olive-200 text-olive-600 max-[680px]:mb-3',
                   )}
                 >
-                  <Icon name="asterisk-star" />
+                  <Icon name="asterisk-simple" />
                 </div>
                 <div
                   className={cn(
@@ -365,7 +365,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                     <IconButton
                       size="icon-sm"
                       className="text-mist-500"
-                      icon="copy"
+                      icon="copy-sm"
                       label="Copy summary"
                       onClick={async () =>
                         notify(
@@ -484,7 +484,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   )}
                   aria-label="Send follow-up"
                 >
-                  <Icon name="arrow-up" />
+                  <Icon name="send-fill" />
                 </Button>
               </div>
             </form>
@@ -572,7 +572,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   )}
                 >
                   <div>
-                    <Icon name="terminal-square" />
+                    <Icon name="terminal-rectangle" />
                     Terminal
                   </div>
                   <p>
@@ -600,7 +600,7 @@ export function Workbench({ notify }: { notify: (message: string) => void }) {
                   disabled={accepted}
                   onClick={() => setAccepted(true)}
                 >
-                  <Icon name="check-lg" />
+                  <Icon name="check" />
                   {accepted ? 'Changes accepted' : 'Accept changes'}
                 </Button>
               </div>
