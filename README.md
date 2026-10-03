@@ -1,6 +1,6 @@
 # FYIcons
 
-740 icons at 16px, with a searchable library, an inspector, SVG downloads, and seven interactive UI examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
+740 icons at 16px, with a searchable library, an inspector, SVG downloads, and fourteen standalone component demos. Built with React, TypeScript, Tailwind CSS, and Base UI.
 
 ## Development
 
@@ -97,7 +97,7 @@ This is an explicit full import: it replaces the editable SVG source files and m
 
 Export selected downloads a ZIP containing only the selected SVGs and their manifest. Existing shortlists are retained as selections.
 
-The seven examples use local simulated state. The mail, AI, player, and document examples do not connect to external services.
+The Examples page uses a responsive bento grid of standalone navigation, composer, editor, playback, settings, and feedback demos. Interactions use local simulated state and do not connect to external services.
 
 ## GitHub Pages
 

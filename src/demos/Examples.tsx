@@ -1,15 +1,26 @@
-import { cn } from '../lib/utils';
-import { Tabs } from '@base-ui/react/tabs';
-import { Icon } from '../components/Icon';
-import { Workbench } from './Workbench';
-import { Post } from './Post';
-import { Preferences } from './Preferences';
-import { SmallDemos } from './SmallDemos';
-import { StatefulToggles } from './StatefulToggles';
-
-const tabClass = cn(
-  'flex h-9 items-center gap-1.5 rounded-full ps-2.5 pe-4 text-sm font-medium text-muted hover:text-ink data-active:bg-surface data-active:text-ink',
-);
+import { DemoCard } from './components/DemoCard';
+import {
+  FileExplorerDemo,
+  SidebarDemo,
+  BreadcrumbsDemo,
+} from './components/NavigationDemos';
+import {
+  ComposerDemo,
+  EditorDemo,
+  SearchDemo,
+} from './components/CreationDemos';
+import {
+  StateDemo,
+  PlaybackDemo,
+  AppearanceDemo,
+  SettingsDemo,
+} from './components/ControlDemos';
+import {
+  AlertsDemo,
+  BadgesDemo,
+  TasksDemo,
+  SharingDemo,
+} from './components/FeedbackDemos';
 
 export default function Examples({
   notify,
@@ -18,62 +29,57 @@ export default function Examples({
 }) {
   return (
     <>
-      <div className={cn('flex items-end justify-between gap-5 py-7')}>
-        <div>
-          <h1 className={cn('text-3xl font-semibold tracking-normal')}>
-            Examples
-          </h1>
-        </div>
+      <div className="py-8">
+        <h1 className="text-3xl font-semibold tracking-tight">Examples</h1>
       </div>
-
-      <StatefulToggles />
-      <h2 className="mb-6 text-xl font-semibold">Interface examples</h2>
-      <SmallDemos notify={notify} />
-      <h2 className="mt-10 mb-4 text-xl font-semibold">App examples</h2>
-      <section
-        className={cn('app-studies mt-0.5 mb-13 max-[680px]:mb-9')}
-        aria-label="App examples"
-      >
-        <Tabs.Root defaultValue="workbench">
-          <div
-            className={cn(
-              'study-bar mb-4 flex items-center justify-between gap-5 max-[680px]:flex-col max-[680px]:items-start max-[680px]:gap-3',
-            )}
-          >
-            <Tabs.List
-              className={cn(
-                'study-tabs flex gap-1 rounded-full bg-hover p-px max-[680px]:w-full',
-              )}
-              aria-label="App examples"
-            >
-              <Tabs.Tab value="workbench" className={tabClass}>
-                <Icon name="terminal-rectangle" />
-                Workbench
-              </Tabs.Tab>
-              <Tabs.Tab value="post" className={tabClass}>
-                <Icon name="envelope" />
-                Post
-              </Tabs.Tab>
-              <Tabs.Tab value="settings" className={tabClass}>
-                <Icon name="sliders" />
-                Preferences
-              </Tabs.Tab>
-            </Tabs.List>
-          </div>
-          <Tabs.Panel value="workbench" keepMounted>
-            <Workbench notify={notify} />
-          </Tabs.Panel>
-          <Tabs.Panel value="post" keepMounted>
-            <Post />
-          </Tabs.Panel>
-          <Tabs.Panel value="settings" keepMounted>
-            <Preferences notify={notify} />
-          </Tabs.Panel>
-        </Tabs.Root>
-      </section>
-      <p className={cn('mt-6 text-xs leading-relaxed text-muted')}>
-        Messages, playback, and saves in these examples are simulated.
-      </p>
+      <div className="grid grid-cols-1 items-stretch gap-4 pb-10 md:grid-cols-2 xl:grid-cols-12">
+        <DemoCard title="Stateful icons" tone="lilac" className="xl:col-span-4">
+          <StateDemo />
+        </DemoCard>
+        <DemoCard title="Chat input" tone="neutral" className="xl:col-span-8">
+          <ComposerDemo />
+        </DemoCard>
+        <DemoCard title="File explorer" tone="dark" className="xl:col-span-4">
+          <FileExplorerDemo />
+        </DemoCard>
+        <DemoCard
+          title="Rich text editor"
+          tone="warm"
+          className="xl:col-span-8"
+        >
+          <EditorDemo notify={notify} />
+        </DemoCard>
+        <DemoCard title="Sidebar" tone="mint" className="xl:col-span-4">
+          <SidebarDemo />
+        </DemoCard>
+        <DemoCard title="Playback" tone="blue" className="xl:col-span-4">
+          <PlaybackDemo />
+        </DemoCard>
+        <DemoCard title="Appearance" tone="lilac" className="xl:col-span-4">
+          <AppearanceDemo />
+        </DemoCard>
+        <DemoCard title="Breadcrumbs" className="md:col-span-2 xl:col-span-8">
+          <BreadcrumbsDemo />
+        </DemoCard>
+        <DemoCard title="Badges" tone="mint" className="xl:col-span-4">
+          <BadgesDemo />
+        </DemoCard>
+        <DemoCard title="Command search" tone="dark" className="xl:col-span-4">
+          <SearchDemo />
+        </DemoCard>
+        <DemoCard title="Alerts" tone="blue" className="xl:col-span-4">
+          <AlertsDemo />
+        </DemoCard>
+        <DemoCard title="Settings" className="xl:col-span-4">
+          <SettingsDemo />
+        </DemoCard>
+        <DemoCard title="Checklist" tone="warm" className="xl:col-span-6">
+          <TasksDemo />
+        </DemoCard>
+        <DemoCard title="Sharing" tone="lilac" className="xl:col-span-6">
+          <SharingDemo />
+        </DemoCard>
+      </div>
     </>
   );
 }
