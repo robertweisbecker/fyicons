@@ -12,6 +12,7 @@ export function SiteHeader({
   toggleTheme,
   packing,
   download,
+  search,
 }: {
   page: Page;
   navigate: (page: Page, event: MouseEvent<HTMLAnchorElement>) => void;
@@ -19,6 +20,7 @@ export function SiteHeader({
   toggleTheme: () => void;
   packing: boolean;
   download: () => void;
+  search: () => void;
 }) {
   return (
     <header
@@ -60,6 +62,12 @@ export function SiteHeader({
           ))}
         </nav>
         <div className={cn('flex shrink-0 items-center gap-1 sm:gap-2')}>
+          <IconButton
+            icon="search-1"
+            label="Search all icons"
+            onClick={search}
+            className="pointer-coarse:size-11"
+          />
           <IconButton
             icon={theme === 'dark' ? 'sun' : 'moon'}
             label={

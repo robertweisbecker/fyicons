@@ -14,7 +14,7 @@ const sheetVariants = cva(
     variants: {
       side: { left: 'left-0 border-r', right: 'right-0 border-l' },
       presentation: {
-        overlay: 'fixed inset-y-0 z-50 shadow-xl',
+        overlay: 'fixed inset-y-0 z-50 shadow-xl transition-[translate,opacity] duration-240 ease-out data-starting-style:translate-x-6 data-starting-style:opacity-0 data-ending-style:translate-x-6 data-ending-style:opacity-0',
         docked: 'relative z-20 h-[calc(100dvh-3.5rem)]',
       },
       variant: {

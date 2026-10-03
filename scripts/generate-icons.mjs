@@ -132,7 +132,8 @@ expected.set(
 
 const iconOutput = path.join(root, 'src/icons');
 const generatedComponentPattern = /^Icon[A-Za-z0-9]+\.tsx$/;
-const obsoleteComponents = (await readdir(iconOutput).catch(() => [])).filter(
+const componentFiles = await readdir(iconOutput).catch(() => []);
+const obsoleteComponents = componentFiles.filter(
   (file) =>
     generatedComponentPattern.test(file) &&
     !expected.has(path.join(iconOutput, file)),
@@ -142,7 +143,12 @@ const changed = new Map();
 for (const [file, content] of expected) {
   let current;
   try {
-    current = await readFile(file, 'utf8');
+    // readFile alone hides case-only renames on macOS. Require exact directory casing.
+    current =
+      path.dirname(file) === iconOutput &&
+      !componentFiles.includes(path.basename(file))
+        ? null
+        : await readFile(file, 'utf8');
   } catch {
     current = null;
   }

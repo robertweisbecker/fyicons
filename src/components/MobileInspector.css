@@ -1,0 +1,85 @@
+/* Base UI owns snap/gesture offsets; the frame stays fixed so measuring it never
+   feeds back into snap resolution. Only its visible inner content changes height. */
+.mobile-inspector {
+  --drawer-frame: calc(100dvh - max(1rem, env(safe-area-inset-top)));
+  --visible-height: clamp(
+    0px,
+    calc(
+      var(--drawer-frame) - var(--drawer-snap-point-offset, 0px) -
+        var(--drawer-swipe-movement-y, 0px)
+    ),
+    var(--drawer-frame)
+  );
+  height: var(--drawer-frame);
+  transform: translateY(
+    calc(
+      var(--drawer-snap-point-offset, 0px) + var(--drawer-swipe-movement-y, 0px)
+    )
+  );
+  transition: transform calc(320ms * var(--drawer-swipe-strength, 1))
+    cubic-bezier(0.32, 0.72, 0, 1);
+}
+.mobile-inspector[data-starting-style],
+.mobile-inspector[data-ending-style] {
+  transform: translateY(100%);
+}
+.mobile-inspector[data-swiping] {
+  transition: none;
+  user-select: none;
+}
+.mobile-inspector-frame {
+  height: calc(var(--visible-height) - 2px);
+  transition: height 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.mobile-inspector-hero {
+  /* Length interpolation works without CSS typed division, including older Safari. */
+  --growth: max(0px, calc(var(--visible-height) - 192px));
+  position: relative;
+  height: clamp(88px, calc(88px + var(--growth) * 0.65), 256px);
+  flex-shrink: 0;
+  transition: height 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.mobile-inspector-art {
+  position: absolute;
+  top: 12px;
+  left: clamp(16px, calc(16px + var(--growth) * 0.6), calc(50% - 72px));
+  width: clamp(48px, calc(48px + var(--growth) * 0.5), 144px);
+  height: clamp(48px, calc(48px + var(--growth) * 0.5), 144px);
+  transition:
+    left 320ms cubic-bezier(0.32, 0.72, 0, 1),
+    width 320ms cubic-bezier(0.32, 0.72, 0, 1),
+    height 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.mobile-inspector-metadata {
+  position: absolute;
+  left: max(16px, calc(80px - var(--growth) * 0.4));
+  top: clamp(12px, calc(12px + var(--growth) * 0.75), 172px);
+  width: calc(100% - clamp(32px, calc(180px - var(--growth)), 180px));
+  transition:
+    left 320ms cubic-bezier(0.32, 0.72, 0, 1),
+    top 320ms cubic-bezier(0.32, 0.72, 0, 1),
+    width 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.mobile-inspector[data-swiping] .mobile-inspector-frame,
+.mobile-inspector[data-swiping] .mobile-inspector-hero,
+.mobile-inspector[data-swiping] .mobile-inspector-art,
+.mobile-inspector[data-swiping] .mobile-inspector-metadata {
+  transition: none;
+}
+.inspector-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-inspector,
+  .mobile-inspector * {
+    transition-duration: 0ms;
+  }
+}
+
+.inspector-compact-details {
+  visibility: hidden;
+}
+.mobile-inspector[data-swiping] .inspector-compact-details {
+  visibility: visible;
+}

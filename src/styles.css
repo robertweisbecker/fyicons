@@ -44,6 +44,7 @@
 }
 @layer base {
   body {
+    position: relative;
     @apply m-0 bg-canvas font-sans text-ink antialiased;
   }
   #root {

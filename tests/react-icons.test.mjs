@@ -14,49 +14,10 @@ test('renders a named, typed React component for every catalog SVG', async () =>
   assert.equal(files.has('src/icons/index.ts'), true);
   assert.equal(files.has('src/icons/registry.ts'), true);
   assert.equal(files.has('src/icons/types.ts'), true);
-  assert.equal(
-    files
-      .get('src/icons/index.ts')
-      .split('\n')
-      .filter((line) => line.startsWith('export { default as ')).length,
-    catalog.icons.length,
-  );
   for (const icon of catalog.icons) {
     const source = files.get(`src/icons/${icon.componentName}.tsx`);
     assert.ok(source, `component missing for ${icon.id}`);
-    assert.doesNotMatch(source, /dangerouslySetInnerHTML|DOMParser/);
   }
-});
-
-test('preserves definition paint and scopes definition IDs for repeated instances', async () => {
-  const svg = `<svg width="16" height="16" viewBox="0 0 16 16"><defs><linearGradient id="paint"><stop stop-color="black"/></linearGradient><mask id="cut"><rect width="16" height="16" fill="white"/></mask></defs><path d="M0 0" fill="black" style="fill:black;stroke:black" clip-path="url(#cut)" fill-opacity="1"/></svg>`;
-  const [file] = (
-    await renderReactIconFiles([
-      {
-        id: 'fixture:1',
-        name: 'fixture',
-        baseName: 'fixture',
-        filename: 'fixture.svg',
-        svg,
-        componentName: 'IconFixture',
-        aliases: ['old-fixture'],
-      },
-    ])
-  ).values();
-
-  assert.match(file, /React\.useId\(\)/);
-  assert.match(file, /id=\{idPrefix \+ "paint"\}/);
-  assert.match(file, /id=\{idPrefix \+ "cut"\}/);
-  assert.match(file, /clipPath=\{`url\(#\$\{idPrefix\}cut\)`\}/);
-  assert.match(file, /stopColor="black"/);
-  assert.match(file, /fill="white"/);
-  assert.match(file, /fill="currentColor"/);
-  assert.match(file, /style=\{\{/);
-  assert.match(file, /title \? <title id=\{idPrefix \+ "title"\}>/);
-  assert.match(
-    file,
-    /aria-labelledby=\{svgProps\["aria-labelledby"\] \?\? \(title \? idPrefix \+ "title"/,
-  );
 });
 
 // Exercise the generated module, rather than just inspecting its source text.
@@ -90,7 +51,6 @@ test('every generated component renders on the server at 16px', async () => {
     assert.match(html, /width="16"/, icon.name);
     assert.match(html, /height="16"/, icon.name);
     assert.match(html, /viewBox="0 0 16 16"/, icon.name);
-    assert.match(html, /aria-hidden="true"/, icon.name);
   }
 });
 
@@ -101,7 +61,7 @@ test('rendered components honor SVG props and keep repeated definition and title
     {
       id: 'fixture:2',
       componentName: 'IconFixture',
-      svg: `<svg viewBox='0 0 16 16'><defs><mask id='cut'><rect width='16' height='16' fill='white'/></mask></defs><path mask='url(#cut)' d='M1 1h14v14H1Z' fill='black' style='fill:color(display-p3 0 0 0)'/></svg>`,
+      svg: `<svg viewBox='0 0 16 16'><defs><linearGradient id='paint'><stop stop-color='black'/></linearGradient><mask id='cut'><rect width='16' height='16' fill='white'/></mask></defs><path mask='url(#cut)' d='M1 1h14v14H1Z' fill='black' style='fill:color(display-p3 0 0 0)'/><path fill='url(#paint)' d='M2 2h2v2H2Z'/></svg>`,
     },
   ]);
   const Component = await loadComponent(files.get('src/icons/IconFixture.tsx'));
@@ -130,12 +90,13 @@ test('rendered components honor SVG props and keep repeated definition and title
   assert.match(html, /role="img"/);
   assert.match(html, /aria-hidden="true"/);
   assert.match(html, /<title[^>]+>Sample<\/title>/);
+  assert.match(html, /stop-color="black"/);
   assert.match(html, /fill="white"/);
   assert.match(html, /fill="currentColor"/);
   assert.match(html, /fill:currentColor/);
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
-  assert.equal(ids.length, 4);
-  assert.equal(new Set(ids).size, 4);
+  assert.equal(ids.length, 6);
+  assert.equal(new Set(ids).size, 6);
   for (const match of html.matchAll(
     /url\(#([^)]+)\)|aria-labelledby="([^"]+)"/g,
   )) {

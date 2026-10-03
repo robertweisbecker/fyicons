@@ -12,6 +12,7 @@ import {
 import { Icon } from './components/Icon';
 import { Button } from '@/components/ui/button';
 import { FilterSelect } from '@/components/FilterSelect';
+import { GlobalSearch, IconSearch } from './components/IconSearch';
 import { IconTile } from './components/IconTile';
 import { SiteHeader } from './components/SiteHeader';
 import { PreviewSizeControl } from './components/PreviewSizeControl';
@@ -34,6 +35,7 @@ const editable = (target: EventTarget | null) =>
 export function App() {
   const [view, setView] = useState(pageFromLocation);
   const [query, setQuery] = useState('');
+  const [searchOpen, setSearchOpen] = useState(false);
   const [category, setCategory] = useState('all');
   const [review, setReview] = useState('all');
   const [previewSize, setPreviewSize] = useState(16);
@@ -51,27 +53,34 @@ export function App() {
   const lastSelected = useRef<string | null>(null);
   const visible = useMemo(() => {
     const words = query.toLowerCase().trim().split(/\s+/);
-    return icons.filter(
-      (icon) =>
-        (category === 'all' || icon.category === category) &&
-        (review === 'all' ||
-          (review === 'duplicates'
-            ? icon.duplicate
-            : selectedIds.includes(icon.id))) &&
-        words.every((word) =>
-          (
-            icon.name +
-            ' ' +
-            icon.originalName +
-            ' ' +
-            icon.category +
-            ' ' +
-            icon.id
-          )
-            .toLowerCase()
-            .includes(word),
-        ),
-    );
+    return icons
+      .filter(
+        (icon) =>
+          (category === 'all' || icon.category === category) &&
+          (review === 'all' ||
+            (review === 'duplicates'
+              ? icon.duplicate
+              : selectedIds.includes(icon.id))) &&
+          words.every((word) =>
+            (
+              icon.name +
+              ' ' +
+              icon.originalName +
+              ' ' +
+              icon.category +
+              ' ' +
+              icon.id
+            )
+              .toLowerCase()
+              .includes(word),
+          ),
+      )
+      .sort((a, b) =>
+        a.name.localeCompare(b.name, 'en', {
+          numeric: true,
+          sensitivity: 'base',
+        }),
+      );
   }, [query, category, review, selectedIds]);
   const current = byId.get(inspectedId ?? '') ?? null;
   // Keep the inspected tile (or the first visible tile) in place when columns reflow.
@@ -126,9 +135,10 @@ export function App() {
       visible[visible.findIndex((icon) => icon.id === inspectedId) + step];
     if (next) {
       select(next);
-      document
-        .querySelector<HTMLElement>('[data-id="' + next.id + '"]')
-        ?.scrollIntoView({ block: 'nearest' });
+      if (matchMedia('(min-width: 768px)').matches)
+        document
+          .querySelector<HTMLElement>('[data-id="' + next.id + '"]')
+          ?.scrollIntoView({ block: 'nearest' });
     }
   }
   function toggleSelection(id: string) {
@@ -203,6 +213,15 @@ export function App() {
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
       if (
+        !editable(event.target) &&
+        (event.metaKey || event.ctrlKey) &&
+        event.key.toLowerCase() === 'k'
+      ) {
+        event.preventDefault();
+        setSearchOpen((open) => !open);
+        return;
+      }
+      if (
         event.defaultPrevented ||
         event.metaKey ||
         event.ctrlKey ||
@@ -210,9 +229,10 @@ export function App() {
         editable(event.target)
       )
         return;
-      if (event.key === '/' && view === 'library') {
+      if (event.key === '/') {
         event.preventDefault();
-        search.current?.focus();
+        if (view === 'library') search.current?.focus();
+        else setSearchOpen(true);
       }
       if (
         inspectedId &&
@@ -232,6 +252,7 @@ export function App() {
     <div
       className={cn(
         'group/app pt-14',
+        current && 'max-md:pb-[calc(12rem+env(safe-area-inset-bottom))]',
         current && inspectorDocked && 'has-docked-inspector',
       )}
     >
@@ -242,6 +263,21 @@ export function App() {
         toggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         packing={packing}
         download={() => exportIcons()}
+        search={() => setSearchOpen(true)}
+      />
+      <GlobalSearch
+        open={searchOpen}
+        onOpenChange={setSearchOpen}
+        select={(icon) => {
+          if (view !== 'library') {
+            history.pushState(null, '', pageHref('library'));
+            setView('library');
+          }
+          setQuery('');
+          setCategory('all');
+          setReview('all');
+          select(icon);
+        }}
       />
       <div className="flex items-start">
         <div className="min-w-0 flex-1">
@@ -281,25 +317,15 @@ export function App() {
                       'library-tools flex flex-wrap items-center gap-2',
                     )}
                   >
-                    <label
-                      className={cn(
-                        'search-field flex min-h-10 min-w-56 flex-1 items-center gap-3 rounded-lg border border-line bg-surface px-3 focus-within:ring-2 focus-within:ring-muted max-md:basis-full md:group-[.has-docked-inspector]/app:basis-full',
-                      )}
-                    >
-                      <Icon name="search-1" />
-                      <input
-                        ref={search}
-                        type="search"
-                        aria-label="Search icons"
-                        placeholder="Search icons…"
+                    <div className="min-w-56 flex-1 max-md:basis-full md:group-[.has-docked-inspector]/app:basis-full">
+                      <IconSearch
                         value={query}
-                        onChange={(event) => setQuery(event.target.value)}
-                        className={cn(
-                          'min-w-0 flex-1 bg-transparent py-2 text-base outline-none placeholder:text-muted sm:text-sm',
-                        )}
+                        onValueChange={setQuery}
+                        inputRef={search}
+                        items={visible}
+                        select={select}
                       />
-                      <kbd>/</kbd>
-                    </label>
+                    </div>
                     <FilterSelect
                       label="Selection filter"
                       value={review}

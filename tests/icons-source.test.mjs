@@ -141,6 +141,28 @@ test('replacing a source regenerates its component and derived catalog hash', as
     );
     assert.notEqual(nextCatalog.icons[0].sha256, firstCatalog.icons[0].sha256);
     assert.notEqual(nextComponent, firstComponent);
+    // Case-only Figma renames must produce the same filenames on macOS and Linux.
+    record.componentName = 'Icon16upload';
+    await writeFile(
+      path.join(temp, 'icons/manifest.json'),
+      JSON.stringify({
+        name: 'FYIcons',
+        categories: ['Files'],
+        icons: [record],
+      }),
+    );
+    await assert.rejects(
+      run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
+        cwd: temp,
+      }),
+    );
+    await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: temp });
+    const componentFiles = await readdir(path.join(temp, 'src/icons'));
+    assert.ok(componentFiles.includes('Icon16upload.tsx'));
+    assert.ok(!componentFiles.includes('Icon16Upload.tsx'));
+    await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
+      cwd: temp,
+    });
   } finally {
     await rm(temp, { recursive: true, force: true });
   }
