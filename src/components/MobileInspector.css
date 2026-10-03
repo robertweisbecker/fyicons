@@ -1,23 +1,27 @@
-/* Base UI owns snap/gesture offsets; the frame stays fixed so measuring it never
-   feeds back into snap resolution. Only its visible inner content changes height. */
+@property --inspector-progress {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/* Base UI owns the sheet offset. One presentation value controls its contents,
+   so the art, header and scroll region settle together and reverse in place. */
 .mobile-inspector {
   --drawer-frame: calc(100dvh - max(1rem, env(safe-area-inset-top)));
-  --visible-height: clamp(
-    0px,
-    calc(
-      var(--drawer-frame) - var(--drawer-snap-point-offset, 0px) -
-        var(--drawer-swipe-movement-y, 0px)
-    ),
-    var(--drawer-frame)
-  );
+  --inspector-progress: 0;
+  --inspector-duration: 360ms;
+  --inspector-ease: cubic-bezier(0.32, 0.72, 0, 1);
   height: var(--drawer-frame);
   transform: translateY(
     calc(
-      var(--drawer-snap-point-offset, 0px) + var(--drawer-swipe-movement-y, 0px)
+      var(--drawer-snap-point-offset, calc(var(--drawer-frame) - 192px)) +
+        var(--drawer-swipe-movement-y, 0px)
     )
   );
-  transition: transform calc(320ms * var(--drawer-swipe-strength, 1))
-    cubic-bezier(0.32, 0.72, 0, 1);
+  transition:
+    transform calc(var(--inspector-duration) * var(--drawer-swipe-strength, 1))
+      var(--inspector-ease),
+    --inspector-progress var(--inspector-duration) var(--inspector-ease);
 }
 .mobile-inspector[data-starting-style],
 .mobile-inspector[data-ending-style] {
@@ -28,58 +32,84 @@
   user-select: none;
 }
 .mobile-inspector-frame {
-  height: calc(var(--visible-height) - 2px);
-  transition: height 320ms cubic-bezier(0.32, 0.72, 0, 1);
+  position: relative;
+  height: calc(
+    190px + (var(--drawer-frame) - 192px) * var(--inspector-progress)
+  );
 }
 .mobile-inspector-hero {
-  /* Length interpolation works without CSS typed division, including older Safari. */
-  --growth: max(0px, calc(var(--visible-height) - 192px));
   position: relative;
-  height: clamp(88px, calc(88px + var(--growth) * 0.65), 256px);
+  container-type: inline-size;
+  height: calc(88px + 184px * var(--inspector-progress));
   flex-shrink: 0;
-  transition: height 320ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 .mobile-inspector-art {
   position: absolute;
   top: 12px;
-  left: clamp(16px, calc(16px + var(--growth) * 0.6), calc(50% - 72px));
-  width: clamp(48px, calc(48px + var(--growth) * 0.5), 144px);
-  height: clamp(48px, calc(48px + var(--growth) * 0.5), 144px);
-  transition:
-    left 320ms cubic-bezier(0.32, 0.72, 0, 1),
-    width 320ms cubic-bezier(0.32, 0.72, 0, 1),
-    height 320ms cubic-bezier(0.32, 0.72, 0, 1);
+  left: 16px;
+  width: 144px;
+  height: 144px;
+  --art-progress: clamp(
+    0,
+    calc((var(--inspector-progress) - 0.14) * 1.162791),
+    1
+  );
+  --center-progress: clamp(
+    0,
+    calc((var(--inspector-progress) - 0.14) * 5.555556),
+    1
+  );
+  transform-origin: top left;
+  transform: translate3d(
+      calc(
+        ((100cqw - (48px + 96px * var(--art-progress))) * 0.5 - 16px) *
+          var(--center-progress)
+      ),
+      calc(64px * clamp(0, calc(var(--inspector-progress) * 6), 1)),
+      0
+    )
+    scale(calc(0.333333 + 0.666667 * var(--art-progress)));
+  border-width: calc(3px - 2px * var(--art-progress));
+  border-radius: calc(24px - 12px * var(--art-progress));
 }
+/* Distinct text lanes avoid sending the label through the growing preview.
+   The compact label leaves before the centered header arrives. */
 .mobile-inspector-metadata {
   position: absolute;
-  left: max(16px, calc(80px - var(--growth) * 0.4));
-  top: clamp(12px, calc(12px + var(--growth) * 0.75), 172px);
-  width: calc(100% - clamp(32px, calc(180px - var(--growth)), 180px));
-  transition:
-    left 320ms cubic-bezier(0.32, 0.72, 0, 1),
-    top 320ms cubic-bezier(0.32, 0.72, 0, 1),
-    width 320ms cubic-bezier(0.32, 0.72, 0, 1);
+  left: 80px;
+  top: 12px;
+  width: calc(100% - 180px);
+  opacity: clamp(0, calc(1 - var(--inspector-progress) * 10), 1);
+  transform: translateY(calc(-8px * var(--inspector-progress)));
 }
-.mobile-inspector[data-swiping] .mobile-inspector-frame,
-.mobile-inspector[data-swiping] .mobile-inspector-hero,
-.mobile-inspector[data-swiping] .mobile-inspector-art,
-.mobile-inspector[data-swiping] .mobile-inspector-metadata {
-  transition: none;
+.mobile-inspector-header-metadata {
+  position: absolute;
+  top: 30px;
+  left: 56px;
+  right: 56px;
+  opacity: clamp(0, calc((var(--inspector-progress) - 0.2) * 5), 1);
+  transform: translateY(calc(8px * (1 - var(--inspector-progress))));
+}
+.mobile-inspector-actions {
+  transform: translateY(calc(44px * var(--inspector-progress)));
 }
 .inspector-scroll {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
 }
-@media (prefers-reduced-motion: reduce) {
-  .mobile-inspector,
-  .mobile-inspector * {
-    transition-duration: 0ms;
-  }
-}
-
 .inspector-compact-details {
   visibility: hidden;
 }
 .mobile-inspector[data-swiping] .inspector-compact-details {
   visibility: visible;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-inspector {
+    --inspector-duration: 0ms;
+  }
+}
+
+.mobile-inspector-art .preview-canvas > span:first-child,
+.mobile-inspector-art .preview-canvas > span:last-child::after {
+  opacity: clamp(0, calc((var(--inspector-progress) - 0.2) * 3), 1);
 }

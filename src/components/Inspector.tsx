@@ -1,6 +1,6 @@
 import { Field } from '@base-ui/react/field';
 import { motion, useReducedMotion } from 'motion/react';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup } from '@/components/ui/toggle-group';
@@ -27,6 +27,7 @@ import { IconButton } from '@/components/IconButton';
 import { IconUsage } from './IconUsage';
 import { icons, type IconRecord } from '@/lib/catalog';
 import { useMobile } from '@/lib/preferences';
+import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
 import { copy } from '@/lib/downloads';
 import './MobileInspector.css';
 
@@ -190,6 +191,11 @@ export function Inspector(props: Props) {
   const mobile = useMobile();
   const popup = useRef<HTMLDivElement>(null);
   const portalContainer = useRef<HTMLDivElement>(null);
+  const [mobilePopup, setMobilePopup] = useState<HTMLDivElement | null>(null);
+  const mobilePopupRef = useCallback((element: HTMLDivElement | null) => {
+    popup.current = element;
+    setMobilePopup(element);
+  }, []);
   const [grid, setGrid] = useState(true);
   const [snapPoint, setSnapPoint] = useState<string | number | null>(
     snapPoints[0],
@@ -197,6 +203,7 @@ export function Inspector(props: Props) {
   const reducedMotion = useReducedMotion();
   const inLayout = docked && !mobile && !!item;
   const expanded = snapPoint !== snapPoints[0];
+  useDrawerPresentation(mobilePopup, mobile && !!item, expanded);
   const details = item && (
     <Details
       item={item}
@@ -253,7 +260,7 @@ export function Inspector(props: Props) {
       >
         <DrawerContent
           id="inspector"
-          ref={popup}
+          ref={mobilePopupRef}
           expanded={expanded}
           initialFocus={false}
           finalFocus={finalFocus}
@@ -283,6 +290,14 @@ export function Inspector(props: Props) {
                   }
                 />
               </div>
+              <div className="mobile-inspector-header-metadata pointer-events-none text-center">
+                <DrawerTitle className="truncate text-base font-semibold">
+                  {item.name}
+                </DrawerTitle>
+                <DrawerDescription className="mt-0.5 truncate text-xs text-muted">
+                  {item.category}
+                </DrawerDescription>
+              </div>
               <header className="mobile-inspector-hero">
                 <Button
                   variant="unstyled"
@@ -291,18 +306,21 @@ export function Inspector(props: Props) {
                   onClick={() => setSnapPoint(expanded ? snapPoints[0] : 1)}
                   className="mobile-inspector-art overflow-hidden rounded-xl border border-line bg-canvas"
                 >
-                  <IconPreview item={item} grid={grid && expanded} />
+                  <IconPreview item={item} grid={grid} />
                 </Button>
-                <div className="mobile-inspector-metadata pointer-events-none pr-2">
-                  <DrawerTitle className="truncate text-sm font-semibold">
+                <div
+                  className="mobile-inspector-metadata pointer-events-none pr-2"
+                  aria-hidden="true"
+                >
+                  <div className="truncate text-sm font-semibold">
                     {item.name}
-                  </DrawerTitle>
-                  <DrawerDescription className="mt-1 truncate text-xs text-muted">
+                  </div>
+                  <div className="mt-1 truncate text-xs text-muted">
                     {item.category}
-                  </DrawerDescription>
+                  </div>
                 </div>
                 <div
-                  className="absolute top-8 right-2 flex gap-0.5"
+                  className="mobile-inspector-actions absolute top-8 right-2 flex gap-0.5"
                   data-base-ui-swipe-ignore
                 >
                   <IconButton
