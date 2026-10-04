@@ -1,15 +1,12 @@
 import { useRef, useState } from 'react';
+import { Combobox } from '@base-ui/react/combobox';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupTextarea,
 } from '@/components/ui/input-group';
-import { Toggle } from '@/components/ui/toggle';
-import { ToggleGroup } from '@/components/ui/toggle-group';
-import { ToggleIcon } from '@/components/ToggleIcon';
 import {
   Select,
   SelectContent,
@@ -18,76 +15,127 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { copy } from '@/lib/downloads';
-import { cn } from '@/lib/utils';
+import { DemoIconButton, DemoToggle } from './DemoControls';
 
+const suggestions = [
+  ['code', 'Review code', 'Review this component and suggest improvements.'],
+  [
+    'thought-bubble',
+    'Explore an idea',
+    'Help me explore a new direction for this interface.',
+  ],
+  [
+    'workflow',
+    'Plan a project',
+    'Break this project into a clear set of next steps.',
+  ],
+];
 export function ComposerDemo() {
   const [prompt, setPrompt] = useState('');
   const [attached, setAttached] = useState(true);
   const [mode, setMode] = useState<string | null>('Thoughtful');
   const [sent, setSent] = useState(false);
+  const [web, setWeb] = useState(false);
+  const input = useRef<HTMLTextAreaElement>(null);
+  const form = useRef<HTMLFormElement>(null);
   return (
     <form
-      onSubmit={(event) => {
-        event.preventDefault();
+      ref={form}
+      onSubmit={(e) => {
+        e.preventDefault();
         if (prompt.trim()) {
           setSent(true);
           setPrompt('');
+          input.current?.focus();
         }
       }}
-      className="flex flex-1 flex-col justify-center gap-5"
+      className="flex flex-1 flex-col gap-4"
     >
-      <div>
-        <div className="mb-2 flex items-center gap-2 text-sm text-muted">
-          <Icon name="sparkles" />
-          Start a conversation
-        </div>
-        <h3 className="text-2xl font-semibold tracking-tight">
-          What are you working on?
-        </h3>
+      <h3 className="text-2xl font-semibold tracking-tight">
+        New conversation
+      </h3>
+      <div className="flex flex-wrap gap-2">
+        {suggestions.map(([icon, label, text]) => (
+          <Button
+            key={label}
+            variant="outline"
+            size="sm"
+            className="rounded-full font-normal"
+            onClick={() => {
+              setPrompt(text);
+              setSent(false);
+              input.current?.focus();
+            }}
+          >
+            <Icon name={icon} />
+            {label}
+          </Button>
+        ))}
       </div>
-      <InputGroup>
-        {attached && (
-          <div className="px-4 pt-3">
-            <Badge variant="outline">
+      <InputGroup className="shadow-xs">
+        <div className="flex min-h-11 items-center px-3 pt-2">
+          {attached ? (
+            <span className="flex items-center gap-2 rounded-lg border border-line bg-canvas py-0.5 pr-0.5 pl-2.5 text-xs">
               <Icon name="file-code" />
               navigation.tsx
-              <Button
+              <DemoIconButton
+                label="Remove attachment"
+                icon="xmark-sm"
                 size="icon-sm"
-                variant="ghost"
-                aria-label="Remove attachment"
                 onClick={() => setAttached(false)}
-              >
-                <Icon name="xmark-sm" />
-              </Button>
-            </Badge>
-          </div>
-        )}
+              />
+            </span>
+          ) : (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-muted"
+              onClick={() => setAttached(true)}
+            >
+              <Icon name="plus-sm" />
+              Add context
+            </Button>
+          )}
+        </div>
         <InputGroupTextarea
+          ref={input}
           value={prompt}
           onChange={(e) => {
             setPrompt(e.target.value);
             setSent(false);
           }}
           aria-label="Chat message"
-          placeholder="Describe a change, ask a question…"
+          placeholder="Ask a question or describe a change…"
+          className="min-h-20 text-base md:text-sm pointer-coarse:text-base"
+          onKeyDown={(e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+              e.preventDefault();
+              form.current?.requestSubmit();
+            }
+          }}
         />
-        <InputGroupAddon>
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Attach context"
+        <InputGroupAddon className="grid grid-cols-[auto_minmax(0,1fr)_auto_auto] gap-1 border-t border-line/60">
+          <DemoIconButton
+            label="Attach context"
+            icon="paperclip-tilt"
             onClick={() => setAttached(!attached)}
-          >
-            <Icon name="paperclip" />
-          </Button>
+          />
           <Select value={mode} onValueChange={setMode}>
             <SelectTrigger
               aria-label="Response mode"
-              className="min-h-8 border-0 bg-transparent px-2"
+              className="min-h-8 min-w-0 justify-start gap-1.5 border-0 bg-transparent px-1.5 pointer-coarse:min-h-11"
             >
-              <Icon name="brain" />
-              <SelectValue />
+              <Icon
+                className="max-[400px]:hidden"
+                name={
+                  mode === 'Quick'
+                    ? 'lightning-bolt'
+                    : mode === 'Research'
+                      ? 'binoculars-1'
+                      : 'brain'
+                }
+              />
+              <SelectValue className="min-w-0 truncate" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
@@ -99,190 +147,110 @@ export function ComposerDemo() {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Toggle size="icon" aria-label="Search the web">
-            <ToggleIcon icon="globe" activeIcon="earth" />
-          </Toggle>
+          <DemoToggle
+            label="Search the web"
+            icon="globe"
+            pressed={web}
+            onPressedChange={setWeb}
+          />
           <Button
             type="submit"
             size="icon"
-            className="ml-auto"
+            className="ml-auto pointer-coarse:size-11"
             disabled={!prompt.trim()}
             aria-label="Send message"
           >
-            <Icon name="arrow-up" />
+            <Icon name={sent ? 'check' : 'send-fill'} />
           </Button>
         </InputGroupAddon>
       </InputGroup>
-      <p
-        role="status"
-        className="flex min-h-4 items-center gap-2 text-xs text-muted"
-      >
-        <Icon name={sent ? 'circle-check' : 'lock'} />
+      <div className="flex items-center gap-2 text-xs text-muted" role="status">
+        <Icon name={sent ? 'circle-check' : web ? 'globe' : 'lock'} />
         {sent
-          ? 'Message sent. Ready for your next idea.'
-          : 'Private conversation'}
-      </p>
+          ? 'Message sent'
+          : web
+            ? 'Web search enabled'
+            : 'Private conversation'}
+        <span className="ml-auto hidden items-center gap-1 sm:flex">
+          <Icon name="kbd-command-small" />
+          <Icon name="kbd-return" />
+          to send
+        </span>
+      </div>
     </form>
   );
 }
-const initialDocument =
-  'Good interfaces give the details room to breathe. Clear labels, considered spacing, and familiar symbols make the next step feel natural.';
-
-export function EditorDemo({ notify }: { notify: (message: string) => void }) {
-  const [formats, setFormats] = useState<string[]>([]);
-  const [align, setAlign] = useState(['left']);
-  const [words, setWords] = useState(initialDocument.split(/\s+/).length);
-  const editor = useRef<HTMLDivElement>(null);
-  return (
-    <div className="flex flex-1 flex-col gap-5">
-      <div
-        className="flex flex-wrap items-center gap-2 rounded-xl border border-line bg-surface p-1.5"
-        role="toolbar"
-        aria-label="Editor toolbar"
-      >
-        <ToggleGroup
-          multiple
-          value={formats}
-          onValueChange={setFormats}
-          aria-label="Text formatting"
-        >
-          {[
-            ['bold', 'text-bold'],
-            ['italic', 'italic'],
-            ['underline', 'text-underline'],
-            ['quote', 'quote-alt'],
-          ].map(([value, icon]) => (
-            <Toggle key={value} value={value} size="icon" aria-label={value}>
-              {value === 'quote' ? (
-                <ToggleIcon icon={icon} activeIcon="quote-alt-fill" />
-              ) : (
-                <Icon name={icon} />
-              )}
-            </Toggle>
-          ))}
-        </ToggleGroup>
-        <span className="h-5 w-px bg-line" />
-        <ToggleGroup
-          value={align}
-          onValueChange={(v) => v.length && setAlign(v)}
-          aria-label="Paragraph alignment"
-        >
-          {[
-            ['left', 'text-align-start'],
-            ['center', 'text-align-center'],
-            ['right', 'text-align-end'],
-          ].map(([value, icon]) => (
-            <Toggle
-              value={value}
-              key={value}
-              size="icon"
-              aria-label={'Align ' + value}
-            >
-              <Icon name={icon} />
-            </Toggle>
-          ))}
-        </ToggleGroup>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label="Copy text"
-          className="ml-auto"
-          onClick={async () =>
-            notify(
-              (await copy(editor.current?.innerText ?? ''))
-                ? 'Text copied'
-                : 'Clipboard unavailable',
-            )
-          }
-        >
-          <Icon name="copy-lg" />
-        </Button>
-      </div>
-      <div className="px-2 py-3">
-        <h3 className="mb-4 font-serif text-3xl">A little room to think.</h3>
-        <div
-          ref={editor}
-          contentEditable
-          suppressContentEditableWarning
-          role="textbox"
-          aria-label="Rich text document"
-          aria-multiline="true"
-          onInput={(e) =>
-            setWords(
-              e.currentTarget.innerText.trim().split(/\s+/).filter(Boolean)
-                .length,
-            )
-          }
-          className={cn(
-            'min-h-24 text-sm leading-7 outline-none',
-            formats.includes('bold') && 'font-bold',
-            formats.includes('italic') && 'italic',
-            formats.includes('underline') && 'underline',
-            formats.includes('quote') && 'border-l-2 border-current/30 pl-4',
-            align[0] === 'center' && 'text-center',
-            align[0] === 'right' && 'text-right',
-          )}
-        >
-          {initialDocument}
-        </div>
-      </div>
-      <div className="mt-auto flex items-center justify-between text-xs text-muted">
-        <span className="flex items-center gap-2">
-          <Icon name="text" />
-          {words} words
-        </span>
-        <span className="flex items-center gap-2">
-          <Icon name="cloud-check" />
-          Draft
-        </span>
-      </div>
-    </div>
-  );
-}
+const commands = [
+  { label: 'Design tokens', icon: 'variable' },
+  { label: 'Icon library', icon: 'grid' },
+  { label: 'Create a branch', icon: 'git-branch' },
+  { label: 'Keyboard shortcuts', icon: 'keyboard' },
+];
 export function SearchDemo() {
   const [query, setQuery] = useState('');
-  const [result, setResult] = useState('');
-  const items = [
-    ['Design tokens', 'variable'],
-    ['Icon library', 'grid'],
-    ['Keyboard shortcuts', 'keyboard'],
-  ];
+  const [result, setResult] = useState<(typeof commands)[number] | null>(null);
   return (
-    <div className="flex flex-1 flex-col rounded-xl border border-line bg-surface">
-      <label className="flex items-center gap-3 border-b border-line px-4">
-        <Icon name="search" />
-        <input
-          aria-label="Find a command"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Find a command…"
-          className="h-12 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted"
-        />
-        <Icon name="kbd-command" className="text-muted" />
-      </label>
-      <div className="flex flex-col gap-1 p-2">
-        {items
-          .filter(([name]) => name.toLowerCase().includes(query.toLowerCase()))
-          .map(([name, icon]) => (
-            <Button
-              key={name}
-              variant="ghost"
-              className="h-10 justify-start font-normal"
-              onClick={() => setResult(name)}
+    <div className="flex flex-1 flex-col gap-3">
+      <div className="overflow-hidden rounded-xl border border-line bg-surface shadow-xs">
+        <Combobox.Root
+          items={commands}
+          itemToStringLabel={(item) => item.label}
+          inline
+          open
+          autoHighlight
+          inputValue={query}
+          onInputValueChange={setQuery}
+          value={result}
+          onValueChange={(value) => {
+            setResult(value);
+            setQuery('');
+          }}
+        >
+          <div className="relative flex items-center border-b border-line">
+            <Icon
+              name="search"
+              className="pointer-events-none absolute left-4 text-muted"
+            />
+            <Combobox.Input
+              aria-label="Find a command"
+              placeholder="Find a command…"
+              className="h-12 w-full bg-transparent pr-10 pl-11 text-base outline-none placeholder:text-muted md:text-sm pointer-coarse:text-base"
+            />
+            <Combobox.Clear
+              aria-label="Clear search"
+              className="absolute right-1 grid size-7 place-items-center rounded-md text-muted hover:bg-current/10 pointer-coarse:size-11"
             >
-              <Icon name={icon} />
-              {name}
-              <span className="ml-auto text-xs text-muted">
-                <Icon name="chevron-right-sm" />
-              </span>
-            </Button>
-          ))}
-        {!items.some(([name]) =>
-          name.toLowerCase().includes(query.toLowerCase()),
-        ) && <p className="p-3 text-sm text-muted">No matching commands.</p>}
+              <Icon name="xmark-sm" />
+            </Combobox.Clear>
+          </div>
+          <Combobox.Empty className="p-5 text-sm text-muted empty:hidden">
+            No matching commands.
+          </Combobox.Empty>
+          <Combobox.List className="min-h-48 p-1.5">
+            {(item: (typeof commands)[number]) => (
+              <Combobox.Item
+                key={item.label}
+                value={item}
+                className="flex min-h-11 cursor-default items-center gap-3 rounded-lg px-3 text-sm outline-none data-highlighted:bg-current/10"
+              >
+                <Icon name={item.icon} />
+                <span className="flex-1">{item.label}</span>
+                <Combobox.ItemIndicator>
+                  <Icon name="check" />
+                </Combobox.ItemIndicator>
+              </Combobox.Item>
+            )}
+          </Combobox.List>
+        </Combobox.Root>
       </div>
-      <p aria-live="polite" className="mt-auto px-4 py-3 text-xs text-muted">
-        {result ? `${result} selected` : 'Search projects, tools, and files'}
+      <p
+        className="flex min-h-5 items-center gap-2 text-xs text-muted"
+        role="status"
+      >
+        <Icon name={result ? 'circle-check' : 'kbd-return'} />
+        {result
+          ? result.label + ' selected'
+          : 'Use ↑ ↓ to navigate and return to select'}
       </p>
     </div>
   );

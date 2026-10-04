@@ -418,7 +418,7 @@ export function App() {
                     </p>
                   }
                 >
-                  <Examples notify={notify} />
+                  <Examples />
                 </Suspense>
               </div>
             )}

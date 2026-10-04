@@ -30,18 +30,19 @@ export function SiteHeader({
     >
       <div
         className={cn(
-          'mx-auto flex h-14 max-w-400 items-center gap-2 px-3 sm:gap-6 sm:px-6',
+          'mx-auto flex h-14 max-w-400 items-center gap-2 px-3 max-[360px]:gap-1 sm:gap-6 sm:px-6',
         )}
       >
         <a
           className={cn(
-            'flex shrink-0 items-center gap-2 text-sm font-semibold tracking-normal',
+            'flex shrink-0 items-center justify-center gap-2 text-sm font-semibold tracking-normal pointer-coarse:min-h-11 pointer-coarse:min-w-11',
           )}
+          aria-label="FYIcons"
           href={pageHref('library')}
           onClick={(event) => navigate('library', event)}
         >
           <Icon name="asterisk-6" />
-          fyicons
+          <span className="max-[400px]:hidden">fyicons</span>
         </a>
         <nav
           className={cn('flex flex-1 items-center sm:gap-1')}
@@ -54,7 +55,7 @@ export function SiteHeader({
               onClick={(event) => navigate(item, event)}
               aria-current={page === item ? 'page' : undefined}
               className={cn(
-                'inline-flex min-h-7 items-center rounded-full px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink sm:px-3 pointer-coarse:min-h-8',
+                'inline-flex min-h-7 items-center rounded-full px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink max-[360px]:text-xs sm:px-3 pointer-coarse:min-h-11',
               )}
             >
               {item === 'library' ? 'Library' : 'Examples'}

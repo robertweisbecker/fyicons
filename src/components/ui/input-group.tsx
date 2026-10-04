@@ -19,7 +19,7 @@ export function InputGroupTextarea({
     <textarea
       {...props}
       className={cn(
-        'min-h-24 w-full resize-none bg-transparent px-4 py-3 text-sm leading-relaxed outline-none placeholder:text-muted',
+        'min-h-24 w-full resize-none bg-transparent px-4 py-3 text-base leading-relaxed outline-none placeholder:text-muted md:text-sm pointer-coarse:text-base',
         className,
       )}
     />
