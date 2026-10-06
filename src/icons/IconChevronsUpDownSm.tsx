@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconChevronsUpDownSm = React.forwardRef<SVGSVGElement, IconProps>(function IconChevronsUpDownSm(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M9.80708 9.80755C10.0512 9.56367 10.4478 9.56354 10.6918 9.80755C10.9357 10.0516 10.9357 10.4483 10.6918 10.6923L8.44185 12.9423C8.19782 13.1863 7.80117 13.1862 7.55708 12.9423L5.30708 10.6923C5.063 10.4482 5.063 10.0516 5.30708 9.80755C5.55118 9.56367 5.94784 9.56354 6.19185 9.80755L7.99946 11.6152L9.80708 9.80755ZM7.55708 3.05755C7.80116 2.8135 8.19777 2.8135 8.44185 3.05755L10.6918 5.30755C10.9359 5.55163 10.9359 5.94824 10.6918 6.19232C10.4478 6.4364 10.0512 6.4364 9.80708 6.19232L7.99946 4.3847L6.19185 6.19232C5.94777 6.4364 5.55116 6.4364 5.30708 6.19232C5.06302 5.94824 5.06301 5.55163 5.30708 5.30755L7.55708 3.05755Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.80708 9.80755C10.0512 9.56367 10.4478 9.56354 10.6918 9.80755C10.9357 10.0516 10.9357 10.4483 10.6918 10.6923L8.44185 12.9423C8.19782 13.1863 7.80117 13.1862 7.55708 12.9423L5.30708 10.6923C5.063 10.4482 5.063 10.0516 5.30708 9.80755C5.55118 9.56367 5.94784 9.56354 6.19185 9.80755L7.99946 11.6152L9.80708 9.80755ZM7.55708 3.05755C7.80116 2.8135 8.19777 2.8135 8.44185 3.05755L10.6918 5.30755C10.9359 5.55163 10.9359 5.94824 10.6918 6.19232C10.4478 6.4364 10.0512 6.4364 9.80708 6.19232L7.99946 4.3847L6.19185 6.19232C5.94777 6.4364 5.55116 6.4364 5.30708 6.19232C5.06302 5.94824 5.06301 5.55163 5.30708 5.30755L7.55708 3.05755Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconChevronsUpDownSm;

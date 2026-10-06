@@ -336,7 +336,7 @@ export function DesignDemo() {
         <DemoToggle
           label="Layer visible"
           icon="eye-closed"
-          activeIcon="eye-open"
+          activeIcon="eye"
           pressed={visible}
           onPressedChange={setVisible}
         />

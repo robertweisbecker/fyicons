@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconUsersTwoFill = React.forwardRef<SVGSVGElement, IconProps>(function IconUsersTwoFill(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11.2526 9.25C12.9815 9.25 14.437 10.4203 14.8707 12.0117C15.0158 12.5445 14.5548 13 14.0026 13H2.00259C1.45037 13 0.989353 12.5445 1.13442 12.0117C1.56819 10.4203 3.02367 9.25 4.75259 9.25C6.14273 9.25 7.35493 10.0072 8.00259 11.1309C8.65025 10.0072 9.86244 9.25 11.2526 9.25ZM4.75161 3.25C5.99425 3.25 7.00161 4.25736 7.00161 5.5C7.00161 6.74264 5.99425 7.75 4.75161 7.75C3.50897 7.75 2.50161 6.74264 2.50161 5.5C2.50161 4.25736 3.50897 3.25 4.75161 3.25ZM11.2497 3.25C12.4923 3.25 13.4997 4.25736 13.4997 5.5C13.4997 6.74264 12.4923 7.75 11.2497 7.75C10.007 7.75 8.99966 6.74264 8.99966 5.5C8.99966 4.25736 10.007 3.25 11.2497 3.25Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.2526 9.25C12.9815 9.25 14.437 10.4203 14.8707 12.0117C15.0158 12.5445 14.5548 13 14.0026 13H2.00259C1.45037 13 0.989353 12.5445 1.13442 12.0117C1.56819 10.4203 3.02367 9.25 4.75259 9.25C6.14273 9.25 7.35493 10.0072 8.00259 11.1309C8.65025 10.0072 9.86244 9.25 11.2526 9.25ZM4.75161 3.25C5.99425 3.25 7.00161 4.25736 7.00161 5.5C7.00161 6.74264 5.99425 7.75 4.75161 7.75C3.50897 7.75 2.50161 6.74264 2.50161 5.5C2.50161 4.25736 3.50897 3.25 4.75161 3.25ZM11.2497 3.25C12.4923 3.25 13.4997 4.25736 13.4997 5.5C13.4997 6.74264 12.4923 7.75 11.2497 7.75C10.007 7.75 8.99966 6.74264 8.99966 5.5C8.99966 4.25736 10.007 3.25 11.2497 3.25Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconUsersTwoFill;

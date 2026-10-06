@@ -33,8 +33,8 @@ export function StateDemo() {
           [
             'Visibility',
             [
-              ['Visible', 'eye-closed', 'eye-open'],
-              ['Light', 'sun-alt', 'sun-alt-fill'],
+              ['Visible', 'eye-closed', 'eye'],
+              ['Light', 'sun-lg', 'sun-lg-fill'],
               ['People', 'users-two', 'users-two-fill'],
             ],
           ],
@@ -80,7 +80,7 @@ export function SettingsDemo() {
   return (
     <div className="flex flex-1 flex-col gap-5">
       <Field.Root className="flex items-center gap-3">
-        <Icon name={enabled ? 'bell-2' : 'bell-1'} />
+        <Icon name={enabled ? 'bell-2' : 'bell-2-slash'} />
         <div className="flex-1">
           <Field.Label className="text-sm font-medium">
             Notifications

@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconNumberThree = React.forwardRef<SVGSVGElement, IconProps>(function IconNumberThree(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11 2C12.6569 2 14 3.34315 14 5V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V5C2 3.34315 3.34315 2 5 2H11ZM5 3C3.89543 3 3 3.89543 3 5V11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V5C13 3.89543 12.1046 3 11 3H5ZM7.99805 5C8.94459 4.99579 9.7568 5.77915 9.75 6.75391C9.7468 7.19597 9.56847 7.5934 9.29395 7.89746C9.71054 8.19468 9.99999 8.65186 10 9.25C10 10.3068 9.09705 11.1299 8 11.1299L7.83594 11.124C7.03517 11.0685 6.51792 10.6076 6.09961 10.0498C5.93424 9.82891 5.97941 9.51521 6.2002 9.34961C6.42108 9.18422 6.73478 9.22942 6.90039 9.4502C7.25799 9.92696 7.55567 10.1299 8 10.1299C8.60809 10.1299 9 9.69321 9 9.25C8.99998 8.87072 8.64469 8.50011 8.01758 8.5H7.75C7.47389 8.49997 7.25 8.27612 7.25 8C7.25001 7.72389 7.47389 7.50003 7.75 7.5H8.00781C8.36826 7.49251 8.74723 7.14182 8.75 6.74609C8.75259 6.33984 8.40337 5.99813 8.00195 6C7.63646 6.00183 7.33161 6.13797 7.09277 6.36328C6.89192 6.55275 6.57622 6.5436 6.38672 6.34277C6.19728 6.14192 6.20642 5.82621 6.40723 5.63672C6.81932 5.24793 7.3638 5.003 7.99805 5Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M11 2C12.6569 2 14 3.34315 14 5V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V5C2 3.34315 3.34315 2 5 2H11ZM5 3C3.89543 3 3 3.89543 3 5V11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V5C13 3.89543 12.1046 3 11 3H5ZM7.99805 5C8.94459 4.99579 9.7568 5.77915 9.75 6.75391C9.7468 7.19597 9.56847 7.5934 9.29395 7.89746C9.71054 8.19468 9.99999 8.65186 10 9.25C10 10.3068 9.09705 11.1299 8 11.1299L7.83594 11.124C7.03517 11.0685 6.51792 10.6076 6.09961 10.0498C5.93424 9.82891 5.97941 9.51521 6.2002 9.34961C6.42108 9.18422 6.73478 9.22942 6.90039 9.4502C7.25799 9.92696 7.55567 10.1299 8 10.1299C8.60809 10.1299 9 9.69321 9 9.25C8.99998 8.87072 8.64469 8.50011 8.01758 8.5H7.75C7.47389 8.49997 7.25 8.27612 7.25 8C7.25001 7.72389 7.47389 7.50003 7.75 7.5H8.00781C8.36826 7.49251 8.74723 7.14182 8.75 6.74609C8.75259 6.33984 8.40337 5.99813 8.00195 6C7.63646 6.00183 7.33161 6.13797 7.09277 6.36328C6.89192 6.55275 6.57622 6.5436 6.38672 6.34277C6.19728 6.14192 6.20642 5.82621 6.40723 5.63672C6.81932 5.24793 7.3638 5.003 7.99805 5Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconNumberThree;

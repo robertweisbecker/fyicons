@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconEject = React.forwardRef<SVGSVGElement, IconProps>(function IconEject(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M12.5001 9.99979C13.3284 9.99979 14 10.6715 14.0001 11.4998V12.4998C14.0001 13.3282 13.3285 13.9998 12.5001 13.9998H3.50009C2.67167 13.9998 2.00009 13.3282 2.00009 12.4998V11.4998C2.00023 10.6715 2.67175 9.99979 3.50009 9.99979H12.5001ZM3.50009 10.9998C3.22403 10.9998 3.00022 11.2238 3.00009 11.4998V12.4998C3.00009 12.7759 3.22395 12.9998 3.50009 12.9998H12.5001C12.7762 12.9998 13.0001 12.7759 13.0001 12.4998V11.4998C13 11.2238 12.7762 10.9998 12.5001 10.9998H3.50009ZM7.16806 2.32303C7.64225 1.89981 8.35891 1.89981 8.8331 2.32303L13.8663 6.81717C14.7226 7.58173 14.1822 8.9996 13.0343 8.99979H2.96591C1.81816 8.99945 1.27762 7.58169 2.13388 6.81717L7.16806 2.32303ZM8.16709 3.06913C8.07227 2.98463 7.92887 2.98458 7.83408 3.06913L2.7999 7.56327C2.62873 7.7161 2.73659 7.99945 2.96591 7.99979H13.0343C13.2637 7.9996 13.3715 7.71614 13.2003 7.56327L8.16709 3.06913Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M12.5001 9.99979C13.3284 9.99979 14 10.6715 14.0001 11.4998V12.4998C14.0001 13.3282 13.3285 13.9998 12.5001 13.9998H3.50009C2.67167 13.9998 2.00009 13.3282 2.00009 12.4998V11.4998C2.00023 10.6715 2.67175 9.99979 3.50009 9.99979H12.5001ZM3.50009 10.9998C3.22403 10.9998 3.00022 11.2238 3.00009 11.4998V12.4998C3.00009 12.7759 3.22395 12.9998 3.50009 12.9998H12.5001C12.7762 12.9998 13.0001 12.7759 13.0001 12.4998V11.4998C13 11.2238 12.7762 10.9998 12.5001 10.9998H3.50009ZM7.16806 2.32303C7.64225 1.89981 8.35891 1.89981 8.8331 2.32303L13.8663 6.81717C14.7226 7.58173 14.1822 8.9996 13.0343 8.99979H2.96591C1.81816 8.99945 1.27762 7.58169 2.13388 6.81717L7.16806 2.32303ZM8.16709 3.06913C8.07227 2.98463 7.92887 2.98458 7.83408 3.06913L2.7999 7.56327C2.62873 7.7161 2.73659 7.99945 2.96591 7.99979H13.0343C13.2637 7.9996 13.3715 7.71614 13.2003 7.56327L8.16709 3.06913Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconEject;

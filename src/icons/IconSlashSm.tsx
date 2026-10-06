@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconSlashSm = React.forwardRef<SVGSVGElement, IconProps>(function IconSlashSm(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M9.04052 4.30216C9.14953 4.0488 9.44416 3.93078 9.69775 4.03946C9.95114 4.14828 10.0688 4.44311 9.96045 4.69669L6.96045 11.6967C6.85166 11.9503 6.55694 12.068 6.30322 11.9594C6.04949 11.8506 5.93176 11.5559 6.04052 11.3022L9.04052 4.30216Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.04052 4.30216C9.14953 4.0488 9.44416 3.93078 9.69775 4.03946C9.95114 4.14828 10.0688 4.44311 9.96045 4.69669L6.96045 11.6967C6.85166 11.9503 6.55694 12.068 6.30322 11.9594C6.04949 11.8506 5.93176 11.5559 6.04052 11.3022L9.04052 4.30216Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconSlashSm;

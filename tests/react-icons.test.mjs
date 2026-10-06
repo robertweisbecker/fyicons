@@ -10,7 +10,7 @@ const generatedFiles = await renderReactIconFiles(catalog.icons);
 
 test('renders a named, typed React component for every catalog SVG', async () => {
   const files = generatedFiles;
-  assert.equal(files.size, catalog.icons.length + 3);
+  assert.equal(files.size, catalog.icons.length + 4);
   assert.equal(files.has('src/icons/index.ts'), true);
   assert.equal(files.has('src/icons/registry.ts'), true);
   assert.equal(files.has('src/icons/types.ts'), true);
@@ -20,16 +20,32 @@ test('renders a named, typed React component for every catalog SVG', async () =>
   }
 });
 
-// Exercise the generated module, rather than just inspecting its source text.
+// Exercise generated modules and their shared SVG root as executable code.
+const svgRootModule = (async () => {
+  const { transformWithOxc } = await import('vite');
+  const { code } = await transformWithOxc(
+    generatedFiles.get('src/icons/base.tsx'),
+    'base.tsx',
+    {
+      jsx: { runtime: 'classic' },
+    },
+  );
+  const executable = code.replace(
+    '"react"',
+    JSON.stringify(import.meta.resolve('react')),
+  );
+  return (
+    'data:text/javascript;base64,' + Buffer.from(executable).toString('base64')
+  );
+})();
 async function loadComponent(source) {
   const { transformWithOxc } = await import('vite');
   const { code } = await transformWithOxc(source, 'Icon.tsx', {
     jsx: { runtime: 'classic' },
   });
-  const executable = code.replace(
-    '"react"',
-    JSON.stringify(import.meta.resolve('react')),
-  );
+  const executable = code
+    .replace('"react"', JSON.stringify(import.meta.resolve('react')))
+    .replace('"./base"', JSON.stringify(await svgRootModule));
   return (
     await import(
       'data:text/javascript;base64,' +

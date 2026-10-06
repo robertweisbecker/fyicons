@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconCheckStraight = React.forwardRef<SVGSVGElement, IconProps>(function IconCheckStraight(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13.1055 3.19385C13.275 2.97592 13.5887 2.93654 13.8066 3.10596C14.0244 3.27548 14.0639 3.58921 13.8945 3.80713L6.89453 12.8071C6.80652 12.9202 6.67425 12.9906 6.53125 12.9995C6.38818 13.0084 6.24788 12.9553 6.14648 12.854L2.14648 8.854C1.95126 8.65878 1.95133 8.34224 2.14648 8.14697C2.34175 7.95171 2.65825 7.95171 2.85352 8.14697L6.45312 11.7466L13.1055 3.19385Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M13.1055 3.19385C13.275 2.97592 13.5887 2.93654 13.8066 3.10596C14.0244 3.27548 14.0639 3.58921 13.8945 3.80713L6.89453 12.8071C6.80652 12.9202 6.67425 12.9906 6.53125 12.9995C6.38818 13.0084 6.24788 12.9553 6.14648 12.854L2.14648 8.854C1.95126 8.65878 1.95133 8.34224 2.14648 8.14697C2.34175 7.95171 2.65825 7.95171 2.85352 8.14697L6.45312 11.7466L13.1055 3.19385Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconCheckStraight;

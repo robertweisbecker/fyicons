@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconSendFill = React.forwardRef<SVGSVGElement, IconProps>(function IconSendFill(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M2 4.17773C1.99977 2.69087 3.56463 1.72382 4.89453 2.38867L12.9873 6.43457C14.277 7.07953 14.277 8.92048 12.9873 9.56543L4.89453 13.6113C3.56482 14.2762 2.00024 13.3098 2 11.8232V9.93457C2.00017 9.28832 2.49314 8.7491 3.13672 8.69043L7.20801 8.32031C7.37332 8.30511 7.5 8.16605 7.5 8C7.5 7.83395 7.37333 7.69489 7.20801 7.67969L3.1377 7.30957C2.49398 7.25104 2.00115 6.71179 2.00098 6.06543L2 4.17773Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M2 3.9939C2.00019 2.48621 3.60553 1.52074 4.9375 2.22729L13.3193 6.67456C14.3818 7.23835 14.3817 8.76105 13.3193 9.32495L4.9375 13.7722C3.6054 14.479 1.99994 13.5136 2 12.0056V9.93433C2.00029 9.28818 2.49321 8.74885 3.13672 8.69019L7.20801 8.32007C7.37332 8.30486 7.5 8.1658 7.5 7.99976C7.49989 7.83379 7.37326 7.69463 7.20801 7.67944L3.1377 7.30933C2.49398 7.2508 2.00115 6.71154 2.00098 6.06519L2 3.9939Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconSendFill;

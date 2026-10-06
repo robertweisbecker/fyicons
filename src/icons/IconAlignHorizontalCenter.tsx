@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconAlignHorizontalCenter = React.forwardRef<SVGSVGElement, IconProps>(function IconAlignHorizontalCenter(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M6.41797 7.72461C6.54613 7.91869 6.52438 8.18265 6.35352 8.35352L4.35352 10.3535C4.15825 10.5488 3.84175 10.5488 3.64648 10.3535C3.45122 10.1583 3.45122 9.84175 3.64648 9.64648L4.79297 8.5H1.5C1.22386 8.5 1 8.27614 1 8C1 7.72386 1.22386 7.5 1.5 7.5H4.79297L3.64648 6.35352C3.45122 6.15825 3.45122 5.84175 3.64648 5.64648C3.84175 5.45122 4.15825 5.45122 4.35352 5.64648L6.35352 7.64648L6.41797 7.72461ZM8.5 13.5C8.5 13.7761 8.27614 14 8 14C7.72386 14 7.5 13.7761 7.5 13.5V2.5C7.5 2.22386 7.72386 2 8 2C8.27614 2 8.5 2.22386 8.5 2.5V13.5ZM15 8C15 8.27614 14.7761 8.5 14.5 8.5H11.207L12.3535 9.64648C12.5488 9.84175 12.5488 10.1583 12.3535 10.3535C12.1583 10.5488 11.8417 10.5488 11.6465 10.3535L9.64648 8.35352C9.47562 8.18265 9.45387 7.91869 9.58203 7.72461L9.64648 7.64648L11.6465 5.64648C11.8417 5.45122 12.1583 5.45122 12.3535 5.64648C12.5488 5.84175 12.5488 6.15825 12.3535 6.35352L11.207 7.5H14.5C14.7761 7.5 15 7.72386 15 8Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.91797 7.72461C7.04613 7.91869 7.02438 8.18265 6.85352 8.35352L4.85352 10.3535C4.65825 10.5488 4.34175 10.5488 4.14648 10.3535C3.95122 10.1583 3.95122 9.84175 4.14648 9.64648L5.29297 8.5H2C1.72386 8.5 1.5 8.27614 1.5 8C1.5 7.72386 1.72386 7.5 2 7.5H5.29297L4.14648 6.35352C3.95122 6.15825 3.95122 5.84175 4.14648 5.64648C4.34175 5.45122 4.65825 5.45122 4.85352 5.64648L6.85352 7.64648L6.91797 7.72461ZM9 13.5C9 13.7761 8.77614 14 8.5 14C8.22386 14 8 13.7761 8 13.5V2.5C8 2.22386 8.22386 2 8.5 2C8.77614 2 9 2.22386 9 2.5V13.5ZM15.5 8C15.5 8.27614 15.2761 8.5 15 8.5H11.707L12.8535 9.64648C13.0488 9.84175 13.0488 10.1583 12.8535 10.3535C12.6583 10.5488 12.3417 10.5488 12.1465 10.3535L10.1465 8.35352C9.97562 8.18265 9.95387 7.91869 10.082 7.72461L10.1465 7.64648L12.1465 5.64648C12.3417 5.45122 12.6583 5.45122 12.8535 5.64648C13.0488 5.84175 13.0488 6.15825 12.8535 6.35352L11.707 7.5H15C15.2761 7.5 15.5 7.72386 15.5 8Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconAlignHorizontalCenter;

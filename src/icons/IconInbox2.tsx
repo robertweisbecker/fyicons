@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconInbox2 = React.forwardRef<SVGSVGElement, IconProps>(function IconInbox2(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M10.4189 2C11.2797 2.00004 12.0441 2.55068 12.3164 3.36719L13.9482 8.26465C13.9822 8.36659 14 8.4736 14 8.58105V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V8.58105C2 8.56604 2.00224 8.55112 2.00293 8.53613C2.00207 8.52416 2 8.51219 2 8.5C2 8.42768 2.01534 8.35894 2.04297 8.29688C2.04614 8.28621 2.04824 8.27521 2.05176 8.26465L3.68359 3.36719C3.95589 2.55068 4.72032 2.00004 5.58105 2H10.4189ZM3 11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V9H10.75L9.40039 10.7998C9.30596 10.9257 9.15738 11 9 11H7C6.84262 11 6.69404 10.9257 6.59961 10.7998L5.25 9H3V11ZM5.58105 3C5.15075 3.00004 4.769 3.27543 4.63281 3.68359L3.19336 8H5.5C5.65738 8 5.80596 8.07429 5.90039 8.2002L7.25 10H8.75L10.0996 8.2002C10.194 8.07429 10.3426 8 10.5 8H12.8066L11.3672 3.68359C11.231 3.27543 10.8492 3.00004 10.4189 3H5.58105Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M10.4189 2C11.2797 2.00004 12.0441 2.55068 12.3164 3.36719L13.9482 8.26465C13.9822 8.36659 14 8.4736 14 8.58105V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V8.58105C2 8.56604 2.00224 8.55112 2.00293 8.53613C2.00207 8.52416 2 8.51219 2 8.5C2 8.42768 2.01534 8.35894 2.04297 8.29688C2.04614 8.28621 2.04824 8.27521 2.05176 8.26465L3.68359 3.36719C3.95589 2.55068 4.72032 2.00004 5.58105 2H10.4189ZM3 11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V9H10.75L9.40039 10.7998C9.30596 10.9257 9.15738 11 9 11H7C6.84262 11 6.69404 10.9257 6.59961 10.7998L5.25 9H3V11ZM5.58105 3C5.15075 3.00004 4.769 3.27543 4.63281 3.68359L3.19336 8H5.5C5.65738 8 5.80596 8.07429 5.90039 8.2002L7.25 10H8.75L10.0996 8.2002C10.194 8.07429 10.3426 8 10.5 8H12.8066L11.3672 3.68359C11.231 3.27543 10.8492 3.00004 10.4189 3H5.58105Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconInbox2;

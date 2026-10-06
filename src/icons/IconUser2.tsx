@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconUser2 = React.forwardRef<SVGSVGElement, IconProps>(function IconUser2(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M7.99931 9C10.1384 9 12.0366 10.1127 13.221 11.8301C14.2506 13.3233 12.8219 15 11.0081 15H4.9915C3.23463 14.9997 1.83931 13.4265 2.68974 11.9707L2.77958 11.8301C3.96362 10.113 5.8606 9.00029 7.99931 9ZM7.99931 10C6.2222 10.0003 4.61968 10.9236 3.60283 12.3984C3.3572 12.7548 3.39542 13.0758 3.61943 13.374C3.87459 13.7136 4.38053 13.9999 4.9915 14H11.0081C11.619 14 12.1258 13.7145 12.3811 13.375C12.6052 13.0768 12.6434 12.7548 12.3977 12.3984C11.3806 10.9234 9.77681 10 7.99931 10ZM8.00029 1C9.50029 1 11.0003 2.067 11.0003 4C11.0003 5.933 10.0003 8 8.00029 8C6.00029 8 5.00029 5.933 5.00029 4C5.00029 2.067 6.50029 1 8.00029 1ZM8.00029 2C6.95499 2 6.00029 2.71207 6.00029 4C6.00029 4.81338 6.21422 5.61204 6.58525 6.1748C6.93877 6.71086 7.40111 7 8.00029 7C8.59947 7 9.0618 6.71086 9.41533 6.1748C9.78636 5.61204 10.0003 4.81338 10.0003 4C10.0003 2.71207 9.04559 2 8.00029 2Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.99931 9C10.1384 9 12.0366 10.1127 13.221 11.8301C14.2506 13.3233 12.8219 15 11.0081 15H4.9915C3.23463 14.9997 1.83931 13.4265 2.68974 11.9707L2.77958 11.8301C3.96362 10.113 5.8606 9.00029 7.99931 9ZM7.99931 10C6.2222 10.0003 4.61968 10.9236 3.60283 12.3984C3.3572 12.7548 3.39542 13.0758 3.61943 13.374C3.87459 13.7136 4.38053 13.9999 4.9915 14H11.0081C11.619 14 12.1258 13.7145 12.3811 13.375C12.6052 13.0768 12.6434 12.7548 12.3977 12.3984C11.3806 10.9234 9.77681 10 7.99931 10ZM8.00029 1C9.50029 1 11.0003 2.067 11.0003 4C11.0003 5.933 10.0003 8 8.00029 8C6.00029 8 5.00029 5.933 5.00029 4C5.00029 2.067 6.50029 1 8.00029 1ZM8.00029 2C6.95499 2 6.00029 2.71207 6.00029 4C6.00029 4.81338 6.21422 5.61204 6.58525 6.1748C6.93877 6.71086 7.40111 7 8.00029 7C8.59947 7 9.0618 6.71086 9.41533 6.1748C9.78636 5.61204 10.0003 4.81338 10.0003 4C10.0003 2.71207 9.04559 2 8.00029 2Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconUser2;

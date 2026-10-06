@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconBookOpen = React.forwardRef<SVGSVGElement, IconProps>(function IconBookOpen(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8 4.5C9.14834 3.24253 10.91 2.74037 12.5508 3.20898C13.4083 3.454 14 4.23804 14 5.12988V11.5967C14 12.5094 13.1916 13.211 12.2881 13.082L11.0146 12.9004C10.4309 12.817 9.83604 12.9424 9.33594 13.2549L8.26465 13.9238C8.10261 14.025 7.89739 14.025 7.73535 13.9238L6.66406 13.2549C6.16396 12.9424 5.56914 12.817 4.98535 12.9004L3.71191 13.082C2.80838 13.211 2.00004 12.5094 2 11.5967V5.12988C2 4.23804 2.59169 3.454 3.44922 3.20898C5.08997 2.74037 6.85166 3.24253 8 4.5ZM7.29395 5.20898C6.40206 4.20561 5.01445 3.8021 3.72363 4.1709C3.29541 4.29326 3 4.68452 3 5.12988V11.5967C3.00004 11.9008 3.26927 12.1346 3.57031 12.0918L4.84473 11.9102C5.66203 11.7935 6.49423 11.9697 7.19434 12.4072L7.5 12.5977V5.44043L7.29395 5.20898ZM12.2764 4.1709C10.9856 3.8021 9.59794 4.20561 8.70605 5.20898L8.5 5.44043V12.5977L8.80566 12.4072C9.50577 11.9697 10.338 11.7935 11.1553 11.9102L12.4297 12.0918C12.7307 12.1346 13 11.9008 13 11.5967V5.12988C13 4.68452 12.7046 4.29326 12.2764 4.1709Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 3.50009C9.14834 2.24262 10.91 1.74045 12.5508 2.20907C13.4083 2.45409 14 3.23812 14 4.12997V11.5968C14 12.5095 13.1916 13.2111 12.2881 13.0821L11.0146 12.9005C10.4309 12.8171 9.83604 12.9425 9.33594 13.255L8.26465 13.9239C8.10261 14.0251 7.89739 14.0251 7.73535 13.9239L6.66406 13.255C6.16396 12.9425 5.56914 12.8171 4.98535 12.9005L3.71191 13.0821C2.80838 13.2111 2.00004 12.5095 2 11.5968V4.12997C2 3.23812 2.59169 2.45409 3.44922 2.20907C5.08997 1.74045 6.85166 2.24262 8 3.50009ZM7.29395 4.20907C6.40206 3.2057 5.01445 2.80219 3.72363 3.17099C3.29541 3.29334 3 3.6846 3 4.12997V11.5968C3.00004 11.9009 3.26927 12.1347 3.57031 12.0919L4.84473 11.9102C5.66203 11.7936 6.49423 11.9698 7.19434 12.4073L7.5 12.5977V4.44052L7.29395 4.20907ZM12.2764 3.17099C10.9856 2.80219 9.59794 3.2057 8.70605 4.20907L8.5 4.44052V12.5977L8.80566 12.4073C9.50577 11.9698 10.338 11.7936 11.1553 11.9102L12.4297 12.0919C12.7307 12.1347 13 11.9009 13 11.5968V4.12997C13 3.6846 12.7046 3.29334 12.2764 3.17099Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconBookOpen;

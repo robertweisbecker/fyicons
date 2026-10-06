@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconEmojiGrin = React.forwardRef<SVGSVGElement, IconProps>(function IconEmojiGrin(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM11.123 9.89062C11.4942 9.76882 11.8734 10.072 11.7334 10.4365C11.1563 11.9359 9.70267 13 8 13C6.29761 13 4.84389 11.9365 4.2666 10.4375C4.12636 10.073 4.50575 9.76991 4.87695 9.8916C6.90271 10.5556 9.0975 10.5553 11.123 9.89062ZM6 5C6.55228 5 7 5.67157 7 6.5C7 7.32843 6.55228 8 6 8C5.44772 8 5 7.32843 5 6.5C5 5.67157 5.44772 5 6 5ZM10 5C10.5523 5 11 5.67157 11 6.5C11 7.32843 10.5523 8 10 8C9.44771 8 9 7.32843 9 6.5C9 5.67157 9.44771 5 10 5Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM11.123 9.89062C11.4942 9.76882 11.8734 10.072 11.7334 10.4365C11.1563 11.9359 9.70267 13 8 13C6.29761 13 4.84389 11.9365 4.2666 10.4375C4.12636 10.073 4.50575 9.76991 4.87695 9.8916C6.90271 10.5556 9.0975 10.5553 11.123 9.89062ZM6 5C6.55228 5 7 5.67157 7 6.5C7 7.32843 6.55228 8 6 8C5.44772 8 5 7.32843 5 6.5C5 5.67157 5.44772 5 6 5ZM10 5C10.5523 5 11 5.67157 11 6.5C11 7.32843 10.5523 8 10 8C9.44771 8 9 7.32843 9 6.5C9 5.67157 9.44771 5 10 5Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconEmojiGrin;

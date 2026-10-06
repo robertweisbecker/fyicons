@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconSendTilt = React.forwardRef<SVGSVGElement, IconProps>(function IconSendTilt(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13.1531 3.00024C14.3441 3.0004 15.0596 4.32188 14.409 5.31958L9.01151 13.5969C8.33591 14.6318 6.76818 14.4518 6.3455 13.2903L5.51054 10.9915C5.15099 10.0027 5.44696 8.88713 6.27616 8.2229C6.32872 8.18082 6.3826 8.13756 6.43729 8.09399C6.40759 8.10304 6.3784 8.11353 6.3494 8.12231C5.42342 8.40287 4.42718 8.10985 3.78983 7.39282L2.10526 5.49634C1.24572 4.529 1.93235 3.00043 3.22636 3.00024H13.1531ZM3.22636 4.00024C2.79518 4.00043 2.56604 4.50986 2.85233 4.83228L4.5369 6.72778C4.92057 7.15949 5.51448 7.33032 6.05936 7.16528C7.1883 6.82308 8.70646 6.33774 9.27616 6.05298C9.52315 5.92948 9.82357 6.02962 9.94706 6.27661C10.0705 6.52358 9.97038 6.82404 9.72343 6.94751C9.46494 7.07682 9.01105 7.38649 8.47538 7.78345C7.95091 8.17211 7.38009 8.62062 6.90116 9.00415C6.41474 9.39394 6.23346 10.0541 6.44999 10.6497L7.28593 12.9485C7.42703 13.3353 7.94946 13.3948 8.1746 13.05L13.5721 4.77368C13.7889 4.44115 13.55 4.0004 13.1531 4.00024H3.22636Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M13.1531 3.00024C14.3441 3.0004 15.0596 4.32188 14.409 5.31958L9.01151 13.5969C8.33591 14.6318 6.76818 14.4518 6.3455 13.2903L5.51054 10.9915C5.15099 10.0027 5.44696 8.88713 6.27616 8.2229C6.32872 8.18082 6.3826 8.13756 6.43729 8.09399C6.40759 8.10304 6.3784 8.11353 6.3494 8.12231C5.42342 8.40287 4.42718 8.10985 3.78983 7.39282L2.10526 5.49634C1.24572 4.529 1.93235 3.00043 3.22636 3.00024H13.1531ZM3.22636 4.00024C2.79518 4.00043 2.56604 4.50986 2.85233 4.83228L4.5369 6.72778C4.92057 7.15949 5.51448 7.33032 6.05936 7.16528C7.1883 6.82308 8.70646 6.33774 9.27616 6.05298C9.52315 5.92948 9.82357 6.02962 9.94706 6.27661C10.0705 6.52358 9.97038 6.82404 9.72343 6.94751C9.46494 7.07682 9.01105 7.38649 8.47538 7.78345C7.95091 8.17211 7.38009 8.62062 6.90116 9.00415C6.41474 9.39394 6.23346 10.0541 6.44999 10.6497L7.28593 12.9485C7.42703 13.3353 7.94946 13.3948 8.1746 13.05L13.5721 4.77368C13.7889 4.44115 13.55 4.0004 13.1531 4.00024H3.22636Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconSendTilt;

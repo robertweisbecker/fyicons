@@ -1,0 +1,11 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconListThumbnails = React.forwardRef<SVGSVGElement, IconProps>(function IconListThumbnails(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.10254 9.00488C6.60667 9.05621 7 9.48232 7 10V12L6.99512 12.1025C6.94722 12.573 6.57297 12.9472 6.10254 12.9951L6 13H2C1.44772 13 1 12.5523 1 12V10C1 9.44772 1.44772 9 2 9H6L6.10254 9.00488ZM2 12H6V10H2V12ZM12.5 11C12.7761 11 13 11.2239 13 11.5C13 11.7761 12.7761 12 12.5 12H8.5C8.22386 12 8 11.7761 8 11.5C8 11.2239 8.22386 11 8.5 11H12.5ZM14.5 9C14.7761 9 15 9.22386 15 9.5C15 9.77614 14.7761 10 14.5 10H8.5C8.22386 10 8 9.77614 8 9.5C8 9.22386 8.22386 9 8.5 9H14.5ZM6.10254 3.00488C6.60667 3.05621 7 3.48232 7 4V6L6.99512 6.10254C6.94722 6.57297 6.57297 6.94722 6.10254 6.99512L6 7H2C1.44772 7 1 6.55228 1 6V4C1 3.44772 1.44772 3 2 3H6L6.10254 3.00488ZM2 6H6V4H2V6ZM12.5 5C12.7761 5 13 5.22386 13 5.5C13 5.77614 12.7761 6 12.5 6H8.5C8.22386 6 8 5.77614 8 5.5C8 5.22386 8.22386 5 8.5 5H12.5ZM14.5 3C14.7761 3 15 3.22386 15 3.5C15 3.77614 14.7761 4 14.5 4H8.5C8.22386 4 8 3.77614 8 3.5C8 3.22386 8.22386 3 8.5 3H14.5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></SvgRoot>;
+});
+export default IconListThumbnails;

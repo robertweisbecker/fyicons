@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconSortDown = React.forwardRef<SVGSVGElement, IconProps>(function IconSortDown(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M3.49518 3C3.77132 3 3.99518 3.22386 3.99518 3.5V11H5.38775C5.61048 11 5.722 11.2693 5.56451 11.4268L3.66803 13.3232C3.57038 13.4206 3.41206 13.4208 3.31451 13.3232L1.41803 11.4268C1.2609 11.2692 1.37315 11 1.59576 11H2.99518V3.5C2.99518 3.22396 3.21918 3.00017 3.49518 3ZM10.5001 9C10.7762 9 11.0001 9.22386 11.0001 9.5C11.0001 9.77614 10.7762 10 10.5001 10H7.50006C7.22397 9.99994 7.00006 9.7761 7.00006 9.5C7.00006 9.2239 7.22397 9.00006 7.50006 9H10.5001ZM12.5001 6C12.7762 6 13.0001 6.22386 13.0001 6.5C13.0001 6.77614 12.7762 7 12.5001 7H7.50006C7.22397 6.99994 7.00006 6.7761 7.00006 6.5C7.00006 6.2239 7.22397 6.00006 7.50006 6H12.5001ZM14.5001 3C14.7762 3 15.0001 3.22386 15.0001 3.5C15.0001 3.77614 14.7762 4 14.5001 4H7.50006C7.22397 3.99994 7.00006 3.7761 7.00006 3.5C7.00006 3.2239 7.22397 3.00006 7.50006 3H14.5001Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M3.49518 3C3.77132 3 3.99518 3.22386 3.99518 3.5V11H5.38775C5.61048 11 5.722 11.2693 5.56451 11.4268L3.66803 13.3232C3.57038 13.4206 3.41206 13.4208 3.31451 13.3232L1.41803 11.4268C1.2609 11.2692 1.37315 11 1.59576 11H2.99518V3.5C2.99518 3.22396 3.21918 3.00017 3.49518 3ZM10.5001 9C10.7762 9 11.0001 9.22386 11.0001 9.5C11.0001 9.77614 10.7762 10 10.5001 10H7.50006C7.22397 9.99994 7.00006 9.7761 7.00006 9.5C7.00006 9.2239 7.22397 9.00006 7.50006 9H10.5001ZM12.5001 6C12.7762 6 13.0001 6.22386 13.0001 6.5C13.0001 6.77614 12.7762 7 12.5001 7H7.50006C7.22397 6.99994 7.00006 6.7761 7.00006 6.5C7.00006 6.2239 7.22397 6.00006 7.50006 6H12.5001ZM14.5001 3C14.7762 3 15.0001 3.22386 15.0001 3.5C15.0001 3.77614 14.7762 4 14.5001 4H7.50006C7.22397 3.99994 7.00006 3.7761 7.00006 3.5C7.00006 3.2239 7.22397 3.00006 7.50006 3H14.5001Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconSortDown;

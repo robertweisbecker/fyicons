@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconProjectorScreen = React.forwardRef<SVGSVGElement, IconProps>(function IconProjectorScreen(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13.5 3C14.3284 3 15 3.67157 15 4.5C15 5.15466 14.5799 5.70932 13.9951 5.91406C13.9975 5.94242 14 5.97101 14 6V11C14 11.5523 13.5523 12 13 12H10V12.002C9.99921 13.1054 9.10456 14.0007 8.00098 14.001C6.89717 14.001 6.00177 13.1056 6.00098 12.002V12H3C2.44772 12 2 11.5523 2 11V6C2 5.97104 2.00149 5.9424 2.00391 5.91406C1.41959 5.70908 1 5.15434 1 4.5C1 3.67157 1.67157 3 2.5 3H13.5ZM7.00098 12V12.002C7.00177 12.5533 7.44945 13.001 8.00098 13.001C8.55228 13.0007 8.99921 12.5531 9 12.002V12H7.00098ZM3 11H13V6H3V11ZM2.5 4C2.22386 4 2 4.22386 2 4.5C2 4.77614 2.22386 5 2.5 5H13.5C13.7761 5 14 4.77614 14 4.5C14 4.22386 13.7761 4 13.5 4H2.5Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M13.5 3C14.3284 3 15 3.67157 15 4.5C15 5.15466 14.5799 5.70932 13.9951 5.91406C13.9975 5.94242 14 5.97101 14 6V11C14 11.5523 13.5523 12 13 12H10V12.002C9.99921 13.1054 9.10456 14.0007 8.00098 14.001C6.89717 14.001 6.00177 13.1056 6.00098 12.002V12H3C2.44772 12 2 11.5523 2 11V6C2 5.97104 2.00149 5.9424 2.00391 5.91406C1.41959 5.70908 1 5.15434 1 4.5C1 3.67157 1.67157 3 2.5 3H13.5ZM7.00098 12V12.002C7.00177 12.5533 7.44945 13.001 8.00098 13.001C8.55228 13.0007 8.99921 12.5531 9 12.002V12H7.00098ZM3 11H13V6H3V11ZM2.5 4C2.22386 4 2 4.22386 2 4.5C2 4.77614 2.22386 5 2.5 5H13.5C13.7761 5 14 4.77614 14 4.5C14 4.22386 13.7761 4 13.5 4H2.5Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconProjectorScreen;

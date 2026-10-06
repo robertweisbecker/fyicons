@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconChevronUp = React.forwardRef<SVGSVGElement, IconProps>(function IconChevronUp(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M12.1464 9.85355C12.3417 10.0488 12.6582 10.0488 12.8535 9.85355C13.0487 9.65829 13.0487 9.34177 12.8535 9.14652L8.35345 4.64652C8.1582 4.45133 7.84167 4.45133 7.64642 4.64652L3.14642 9.14652C2.95118 9.34177 2.95121 9.65829 3.14642 9.85355C3.34168 10.0488 3.65819 10.0488 3.85345 9.85355L7.99994 5.70707L12.1464 9.85355Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M12.1464 9.85355C12.3417 10.0488 12.6582 10.0488 12.8535 9.85355C13.0487 9.65829 13.0487 9.34177 12.8535 9.14652L8.35345 4.64652C8.1582 4.45133 7.84167 4.45133 7.64642 4.64652L3.14642 9.14652C2.95118 9.34177 2.95121 9.65829 3.14642 9.85355C3.34168 10.0488 3.65819 10.0488 3.85345 9.85355L7.99994 5.70707L12.1464 9.85355Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconChevronUp;

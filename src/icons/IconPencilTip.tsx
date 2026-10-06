@@ -1,19 +1,14 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconPencilTip = React.forwardRef<SVGSVGElement, IconProps>(function IconPencilTip(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path opacity={0.5} d="M5.75 6H10.25L8 1.5L5.75 6Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path opacity={0.5} d="M5.75 6H10.25L8 1.5L5.75 6Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
     }} /><path d="M8 1C8.19411 1 8.37089 1.11229 8.45312 1.28809L11.9531 8.78809L12 8.88867V14.5C12 14.7761 11.7761 15 11.5 15H4.5C4.22386 15 4 14.7761 4 14.5V8.88867L4.04688 8.78809L7.54688 1.28809L7.58203 1.22559C7.67355 1.08616 7.83005 1 8 1ZM8.29785 11.1875L8 11.5771L7.70215 11.1875L6.35645 9.42969L5 9.80859V14H11V9.80859L9.64258 9.42969L8.29785 11.1875ZM9.49316 6.48145C9.09947 6.61266 8.55658 6.75098 8 6.75098C7.44342 6.75098 6.90053 6.61266 6.50684 6.48145C6.41989 6.45246 6.3397 6.42212 6.2666 6.39453L5.04297 9.01758L6.39844 8.63867L6.64355 8.57031L6.79785 8.77246L8 10.3428L9.20215 8.77246L9.35645 8.57031L9.60156 8.63867L10.9561 9.01758L9.73242 6.39453C9.65955 6.42203 9.57977 6.45258 9.49316 6.48145ZM6.58496 5.71289C6.6346 5.73117 6.68704 5.7518 6.74316 5.77051C7.09945 5.88927 7.55672 6.00098 8 6.00098C8.44328 6.00098 8.90055 5.88927 9.25684 5.77051C9.31252 5.75194 9.36476 5.73201 9.41406 5.71387L8 2.68262L6.58496 5.71289Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconPencilTip;

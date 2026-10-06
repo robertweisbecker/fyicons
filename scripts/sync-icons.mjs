@@ -9,7 +9,7 @@ if (!source)
     'Usage: npm run sync-icons -- /path/to/FYIcons-export (replaces editable icons/ sources)',
   );
 const root = process.cwd();
-const useSourceNames = process.argv.includes('--use-source-names');
+const useSourceNames = !process.argv.includes('--preserve-names');
 const imported = JSON.parse(
   await readFile(path.join(source, 'manifest.json'), 'utf8'),
 );

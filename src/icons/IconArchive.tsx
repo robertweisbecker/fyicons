@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconArchive = React.forwardRef<SVGSVGElement, IconProps>(function IconArchive(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M13.5 2C14.3284 2 15 2.67157 15 3.5V4.5C15 5.15466 14.5799 5.70933 13.9951 5.91406C13.9975 5.94242 14 5.97101 14 6V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V6C2 5.97104 2.00149 5.9424 2.00391 5.91406C1.41959 5.70908 1 5.15434 1 4.5V3.5C1 2.67157 1.67157 2 2.5 2H13.5ZM3 11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V6H3V11ZM9 7.75C9.27614 7.75 9.5 7.97386 9.5 8.25V8.75C9.5 9.02614 9.27614 9.25 9 9.25H7C6.72386 9.25 6.5 9.02614 6.5 8.75V8.25C6.5 7.97386 6.72386 7.75 7 7.75H9ZM2.5 3C2.22386 3 2 3.22386 2 3.5V4.5C2 4.77614 2.22386 5 2.5 5H13.5C13.7761 5 14 4.77614 14 4.5V3.5C14 3.22386 13.7761 3 13.5 3H2.5Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M13.5 2C14.3284 2 15 2.67157 15 3.5V4.5C15 5.15466 14.5799 5.70933 13.9951 5.91406C13.9975 5.94242 14 5.97101 14 6V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V6C2 5.97104 2.00149 5.9424 2.00391 5.91406C1.41959 5.70908 1 5.15434 1 4.5V3.5C1 2.67157 1.67157 2 2.5 2H13.5ZM3 11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V6H3V11ZM9 7.75C9.27614 7.75 9.5 7.97386 9.5 8.25V8.75C9.5 9.02614 9.27614 9.25 9 9.25H7C6.72386 9.25 6.5 9.02614 6.5 8.75V8.25C6.5 7.97386 6.72386 7.75 7 7.75H9ZM2.5 3C2.22386 3 2 3.22386 2 3.5V4.5C2 4.77614 2.22386 5 2.5 5H13.5C13.7761 5 14 4.77614 14 4.5V3.5C14 3.22386 13.7761 3 13.5 3H2.5Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconArchive;

@@ -162,102 +162,13 @@ function addInstanceSafeIds(jsx) {
     value: { type: 'JSXExpressionContainer', expression },
   });
   const id = (name) => ({ type: 'Identifier', name });
-  const member = (object, property) => ({
-    type: 'MemberExpression',
-    computed: true,
-    object: id(object),
-    property: literal(property),
-  });
-  const coalesce = (left, right) => ({
-    type: 'LogicalExpression',
-    operator: '??',
-    left,
-    right,
-  });
-  const label = {
-    type: 'LogicalExpression',
-    operator: '||',
-    left: id('title'),
-    right: {
-      type: 'LogicalExpression',
-      operator: '||',
-      left: member('svgProps', 'aria-label'),
-      right: member('svgProps', 'aria-labelledby'),
-    },
-  };
+  open.name = { type: 'JSXIdentifier', name: 'SvgRoot' };
+  if (jsx.closingElement) jsx.closingElement.name = { ...open.name };
   open.attributes.push(
-    { type: 'JSXSpreadAttribute', argument: id('svgProps') },
+    { type: 'JSXSpreadAttribute', argument: id('props') },
     attr('ref', id('ref')),
-    attr('width', coalesce(member('svgProps', 'width'), id('size'))),
-    attr('height', coalesce(member('svgProps', 'height'), id('size'))),
-    attr('color', id('color')),
-    attr(
-      'aria-labelledby',
-      coalesce(member('svgProps', 'aria-labelledby'), {
-        type: 'ConditionalExpression',
-        test: id('title'),
-        consequent: {
-          type: 'BinaryExpression',
-          operator: '+',
-          left: id('idPrefix'),
-          right: literal('title'),
-        },
-        alternate: id('undefined'),
-      }),
-    ),
-    attr('aria-label', coalesce(member('svgProps', 'aria-label'), id('title'))),
-    attr(
-      'role',
-      coalesce(member('svgProps', 'role'), {
-        type: 'ConditionalExpression',
-        test: label,
-        consequent: literal('img'),
-        alternate: id('undefined'),
-      }),
-    ),
-    attr(
-      'aria-hidden',
-      coalesce(member('svgProps', 'aria-hidden'), {
-        type: 'ConditionalExpression',
-        test: label,
-        consequent: id('undefined'),
-        alternate: { type: 'BooleanLiteral', value: true },
-      }),
-    ),
+    attr('idPrefix', id('idPrefix')),
   );
-  if (jsx.children) {
-    jsx.children.unshift({
-      type: 'JSXExpressionContainer',
-      expression: {
-        type: 'ConditionalExpression',
-        test: id('title'),
-        alternate: { type: 'NullLiteral' },
-        consequent: {
-          type: 'JSXElement',
-          openingElement: {
-            type: 'JSXOpeningElement',
-            name: { type: 'JSXIdentifier', name: 'title' },
-            attributes: [
-              attr('id', {
-                type: 'BinaryExpression',
-                operator: '+',
-                left: id('idPrefix'),
-                right: literal('title'),
-              }),
-            ],
-            selfClosing: false,
-          },
-          closingElement: {
-            type: 'JSXClosingElement',
-            name: { type: 'JSXIdentifier', name: 'title' },
-          },
-          children: [
-            { type: 'JSXExpressionContainer', expression: id('title') },
-          ],
-        },
-      },
-    });
-  }
 }
 
 function assertComponentName(name) {
@@ -270,6 +181,36 @@ function assertComponentName(name) {
 export async function renderReactIconFiles(icons) {
   const files = new Map();
   const exports = [];
+  // Share SVG prop and accessibility handling without changing each icon's artwork.
+  files.set(
+    'src/icons/base.tsx',
+    `import * as React from 'react';
+import type { IconProps } from './types';
+
+const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }>(function SvgRoot(
+  { size = 16, color, title, idPrefix, children, ...svgProps }, ref,
+) {
+  const labeled = title || svgProps['aria-label'] || svgProps['aria-labelledby'];
+  return (
+    <svg
+      {...svgProps}
+      ref={ref}
+      width={svgProps.width ?? size}
+      height={svgProps.height ?? size}
+      color={color}
+      aria-labelledby={svgProps['aria-labelledby'] ?? (title ? idPrefix + 'title' : undefined)}
+      aria-label={svgProps['aria-label'] ?? title}
+      role={svgProps.role ?? (labeled ? 'img' : undefined)}
+      aria-hidden={svgProps['aria-hidden'] ?? (labeled ? undefined : true)}
+    >
+      {title ? <title id={idPrefix + 'title'}>{title}</title> : null}
+      {children}
+    </svg>
+  );
+});
+export default SvgRoot;
+`,
+  );
   for (const icon of icons) {
     assertComponentName(icon.componentName);
     const componentName = icon.componentName;
@@ -291,9 +232,9 @@ export async function renderReactIconFiles(icons) {
           return tpl`
           import * as React from 'react';
           import type { IconProps } from './types';
+          import SvgRoot from './base';
           const ${variables.componentName} = React.forwardRef<SVGSVGElement, IconProps>(function ${variables.componentName}(props, ref) {
             const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-            const { size = 16, color, title, ...svgProps } = props;
             return ${variables.jsx};
           });
           export default ${variables.componentName};

@@ -95,7 +95,7 @@ function Details({
           pressed={grid}
           onPressedChange={setGrid}
         >
-          <ToggleIcon icon="eye-closed" activeIcon="eye-open" />
+          <ToggleIcon icon="eye-closed" activeIcon="eye" />
           Grid
         </Toggle>
       </div>

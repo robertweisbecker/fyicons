@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconArrowColumn = React.forwardRef<SVGSVGElement, IconProps>(function IconArrowColumn(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M6 9C6.55228 9 7 9.44772 7 10V13C7 13.5523 6.55228 14 6 14H3C2.44772 14 2 13.5523 2 13V10C2 9.44772 2.44772 9 3 9H6ZM3 13H6V10H3V13ZM11.5 3C11.7761 3 12 3.22386 12 3.5V11.293L13.1465 10.1465C13.3417 9.95122 13.6583 9.95122 13.8535 10.1465C14.0488 10.3417 14.0488 10.6583 13.8535 10.8535L11.8535 12.8535C11.6827 13.0244 11.4187 13.0461 11.2246 12.918L11.1465 12.8535L9.14648 10.8535C8.95122 10.6583 8.95122 10.3417 9.14648 10.1465C9.34175 9.95122 9.65825 9.95122 9.85352 10.1465L11 11.293V3.5C11 3.22386 11.2239 3 11.5 3ZM6 2C6.55228 2 7 2.44772 7 3V6C7 6.55228 6.55228 7 6 7H3C2.44772 7 2 6.55228 2 6V3C2 2.44772 2.44772 2 3 2H6ZM3 6H6V3H3V6Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M6 9C6.55228 9 7 9.44772 7 10V13C7 13.5523 6.55228 14 6 14H3C2.44772 14 2 13.5523 2 13V10C2 9.44772 2.44772 9 3 9H6ZM3 13H6V10H3V13ZM11.5 3C11.7761 3 12 3.22386 12 3.5V11.293L13.1465 10.1465C13.3417 9.95122 13.6583 9.95122 13.8535 10.1465C14.0488 10.3417 14.0488 10.6583 13.8535 10.8535L11.8535 12.8535C11.6827 13.0244 11.4187 13.0461 11.2246 12.918L11.1465 12.8535L9.14648 10.8535C8.95122 10.6583 8.95122 10.3417 9.14648 10.1465C9.34175 9.95122 9.65825 9.95122 9.85352 10.1465L11 11.293V3.5C11 3.22386 11.2239 3 11.5 3ZM6 2C6.55228 2 7 2.44772 7 3V6C7 6.55228 6.55228 7 6 7H3C2.44772 7 2 6.55228 2 6V3C2 2.44772 2.44772 2 3 2H6ZM3 6H6V3H3V6Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconArrowColumn;

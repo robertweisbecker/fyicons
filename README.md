@@ -81,7 +81,7 @@ import { IconSun, IconArrowUpRight1 } from '@/icons';
 
 Components default to 16px, inherit `currentColor`, and accept `size`, `color`, `className`, `style`, `width`, `height`, accessibility attributes, event handlers, and SVG refs. Decorative icons are hidden from assistive technology by default; use `title` or an accessible label for meaningful standalone icons. A `strokeWidth` prop cannot change shapes drawn as filled contours.
 
-The barrel exports named components; the site uses a separate registry for dynamic lookup. Names follow the Figma components, with filled variants named from their component set. Duplicate names receive numeric suffixes. Figma IDs remain in metadata, and previous names remain lookup aliases for compatibility. To add an icon, add an SVG and a manifest entry with a unique name, ID, filename, and component name before generating.
+Generated components share the SVG sizing, accessibility, and ref handling in `src/icons/base.tsx` while retaining instance-safe SVG definition IDs. The barrel exports named components; the site uses a separate registry for dynamic lookup. Names follow the Figma components, with filled variants named from their component set. Duplicate names receive numeric suffixes. Figma IDs remain in metadata, and previous names remain lookup aliases for compatibility. To add an icon, add an SVG and a manifest entry with a unique name, ID, filename, and component name before generating.
 
 See [the SVG optimization assessment](docs/svg-optimization-assessment.md) for the next step on selective stroke conversion and optimized outputs.
 
@@ -93,7 +93,7 @@ To import a fresh catalog from the existing FYIcons export process:
 npm run sync-icons -- /absolute/path/to/outputs/fyicons
 ```
 
-This is an explicit full import: it replaces the editable SVG source files and metadata, preserving names for known Figma IDs, then regenerates the React components and catalog. Keep any manual artwork edits you want before importing. The importer checks supplied hashes and validates metadata and SVGs. Normal development and builds need no Figma credentials or external workspace.
+This is an explicit full import: it replaces the editable SVG source files and metadata, using the current Figma names for known IDs, then regenerates the React components and catalog. Keep any manual artwork edits you want before importing. The importer checks supplied hashes and validates metadata and SVGs. Previous names remain lookup aliases; pass `--preserve-names` only when deliberately retaining the earlier naming. Normal development and builds need no Figma credentials or external workspace.
 
 Export selected downloads a ZIP containing only the selected SVGs and their manifest. Existing shortlists are retained as selections.
 

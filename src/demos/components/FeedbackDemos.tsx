@@ -284,7 +284,7 @@ export function SharingDemo() {
             aria-label="Link permission"
             className="min-h-8 gap-2 border-0 bg-transparent p-0 text-xs pointer-coarse:min-h-11"
           >
-            <Icon name={access === 'Can edit' ? 'pencil-edit' : 'eye-open'} />
+            <Icon name={access === 'Can edit' ? 'pencil-edit' : 'eye'} />
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

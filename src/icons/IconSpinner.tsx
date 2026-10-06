@@ -1,14 +1,9 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconSpinner = React.forwardRef<SVGSVGElement, IconProps>(function IconSpinner(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8 1.5V4.5" stroke="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 1.5V4.5" stroke="currentColor" style={{
       stroke: "currentColor",
       strokeOpacity: 1
     }} strokeLinecap="round" /><path opacity={0.9} d="M11.8203 2.74121L10.057 5.16826" stroke="currentColor" style={{
@@ -38,6 +33,6 @@ const IconSpinner = React.forwardRef<SVGSVGElement, IconProps>(function IconSpin
     }} strokeLinecap="round" /><path opacity={0.1} d="M4.17969 2.74121L5.94304 5.16826" stroke="currentColor" style={{
       stroke: "currentColor",
       strokeOpacity: 1
-    }} strokeLinecap="round" /></svg>;
+    }} strokeLinecap="round" /></SvgRoot>;
 });
 export default IconSpinner;

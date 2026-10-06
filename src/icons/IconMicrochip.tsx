@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconMicrochip = React.forwardRef<SVGSVGElement, IconProps>(function IconMicrochip(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M9.5 1C9.77614 1 10 1.22386 10 1.5V3C11.6569 3 13 4.34315 13 6H14.5C14.7761 6 15 6.22386 15 6.5C15 6.77614 14.7761 7 14.5 7H13V9H14.5C14.7761 9 15 9.22386 15 9.5C15 9.77614 14.7761 10 14.5 10H13C13 11.6569 11.6569 13 10 13V14.5C10 14.7761 9.77614 15 9.5 15C9.22386 15 9 14.7761 9 14.5V13H7V14.5C7 14.7761 6.77614 15 6.5 15C6.22386 15 6 14.7761 6 14.5V13C4.34315 13 3 11.6569 3 10H1.5C1.22386 10 1 9.77614 1 9.5C1 9.22386 1.22386 9 1.5 9H3V7H1.5C1.22386 7 1 6.77614 1 6.5C1 6.22386 1.22386 6 1.5 6H3C3 4.34315 4.34315 3 6 3V1.5C6 1.22386 6.22386 1 6.5 1C6.77614 1 7 1.22386 7 1.5V3H9V1.5C9 1.22386 9.22386 1 9.5 1ZM6 4C4.89543 4 4 4.89543 4 6V10C4 11.1046 4.89543 12 6 12H10C11.1046 12 12 11.1046 12 10V6C12 4.89543 11.1046 4 10 4H6ZM9.5 6C9.91421 6 10.25 6.33579 10.25 6.75V9.25C10.25 9.66421 9.91421 10 9.5 10H6.75C6.33579 10 6 9.66421 6 9.25V6.75C6 6.33579 6.33579 6 6.75 6H9.5ZM7 9H9.25V7H7V9Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.5 1C9.77614 1 10 1.22386 10 1.5V3C11.6569 3 13 4.34315 13 6H14.5C14.7761 6 15 6.22386 15 6.5C15 6.77614 14.7761 7 14.5 7H13V9H14.5C14.7761 9 15 9.22386 15 9.5C15 9.77614 14.7761 10 14.5 10H13C13 11.6569 11.6569 13 10 13V14.5C10 14.7761 9.77614 15 9.5 15C9.22386 15 9 14.7761 9 14.5V13H7V14.5C7 14.7761 6.77614 15 6.5 15C6.22386 15 6 14.7761 6 14.5V13C4.34315 13 3 11.6569 3 10H1.5C1.22386 10 1 9.77614 1 9.5C1 9.22386 1.22386 9 1.5 9H3V7H1.5C1.22386 7 1 6.77614 1 6.5C1 6.22386 1.22386 6 1.5 6H3C3 4.34315 4.34315 3 6 3V1.5C6 1.22386 6.22386 1 6.5 1C6.77614 1 7 1.22386 7 1.5V3H9V1.5C9 1.22386 9.22386 1 9.5 1ZM6 4C4.89543 4 4 4.89543 4 6V10C4 11.1046 4.89543 12 6 12H10C11.1046 12 12 11.1046 12 10V6C12 4.89543 11.1046 4 10 4H6ZM9.5 6C9.91421 6 10.25 6.33579 10.25 6.75V9.25C10.25 9.66421 9.91421 10 9.5 10H6.75C6.33579 10 6 9.66421 6 9.25V6.75C6 6.33579 6.33579 6 6.75 6H9.5ZM7 9H9.25V7H7V9Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconMicrochip;

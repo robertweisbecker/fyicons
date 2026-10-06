@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconCircleCheck = React.forwardRef<SVGSVGElement, IconProps>(function IconCircleCheck(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM10.0713 5.24316C10.2133 5.00647 10.5201 4.92945 10.7568 5.07129C10.9935 5.21331 11.0705 5.52008 10.9287 5.75684L7.92871 10.7568C7.84957 10.8887 7.71416 10.9772 7.56152 10.9961C7.40871 11.0149 7.25536 10.9624 7.14648 10.8535L5.14648 8.85352C4.95122 8.65825 4.95122 8.34175 5.14648 8.14648C5.34175 7.95122 5.65825 7.95122 5.85352 8.14648L7.40039 9.69336L10.0713 5.24316Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM10.0713 5.24316C10.2133 5.00647 10.5201 4.92945 10.7568 5.07129C10.9935 5.21331 11.0705 5.52008 10.9287 5.75684L7.92871 10.7568C7.84957 10.8887 7.71416 10.9772 7.56152 10.9961C7.40871 11.0149 7.25536 10.9624 7.14648 10.8535L5.14648 8.85352C4.95122 8.65825 4.95122 8.34175 5.14648 8.14648C5.34175 7.95122 5.65825 7.95122 5.85352 8.14648L7.40039 9.69336L10.0713 5.24316Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconCircleCheck;

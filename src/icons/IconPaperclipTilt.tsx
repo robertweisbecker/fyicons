@@ -1,19 +1,14 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconPaperclipTilt = React.forwardRef<SVGSVGElement, IconProps>(function IconPaperclipTilt(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<g clipPath={`url(#${idPrefix}clip0_315_17581)`}><path d="M14.3532 2.6462C15.3769 3.66985 15.3775 5.32999 14.3539 6.35368L7.10401 13.6036C5.6661 15.0415 3.3339 15.0415 1.896 13.6036C0.458352 12.1657 0.458874 9.8341 1.89669 8.39628L4.6464 5.64657C4.84165 5.45131 5.15824 5.45132 5.3535 5.64657C5.54876 5.84183 5.54877 6.15842 5.3535 6.35368L2.6038 9.10338C1.55651 10.1507 1.55598 11.8491 2.60311 12.8965C3.65048 13.9439 5.34952 13.9439 6.3969 12.8965L13.6468 5.64657C14.2799 5.01341 14.2792 3.98643 13.6461 3.35331C13.013 2.72053 11.9866 2.72035 11.3536 3.35331L4.60358 10.1033C4.38479 10.3221 4.38515 10.6769 4.60358 10.896C4.82257 11.1152 5.17793 11.1158 5.39701 10.8967L11.1471 5.14663C11.3422 4.95169 11.6583 4.9511 11.8535 5.14593C12.0487 5.34112 12.0485 5.65776 11.8535 5.85304L6.1048 11.6031C5.49514 12.2129 4.50597 12.213 3.89648 11.6031C3.28772 10.9935 3.28727 10.0054 3.89648 9.39617L10.6464 2.6462C11.67 1.62272 13.3295 1.6229 14.3532 2.6462Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><g clipPath={`url(#${idPrefix}clip0_315_17581)`}><path d="M14.3532 2.6462C15.3769 3.66985 15.3775 5.32999 14.3539 6.35368L7.10401 13.6036C5.6661 15.0415 3.3339 15.0415 1.896 13.6036C0.458352 12.1657 0.458874 9.8341 1.89669 8.39628L4.6464 5.64657C4.84165 5.45131 5.15824 5.45132 5.3535 5.64657C5.54876 5.84183 5.54877 6.15842 5.3535 6.35368L2.6038 9.10338C1.55651 10.1507 1.55598 11.8491 2.60311 12.8965C3.65048 13.9439 5.34952 13.9439 6.3969 12.8965L13.6468 5.64657C14.2799 5.01341 14.2792 3.98643 13.6461 3.35331C13.013 2.72053 11.9866 2.72035 11.3536 3.35331L4.60358 10.1033C4.38479 10.3221 4.38515 10.6769 4.60358 10.896C4.82257 11.1152 5.17793 11.1158 5.39701 10.8967L10.1472 6.14652C10.3424 5.95169 10.6577 5.95172 10.8529 6.14652C11.0481 6.34166 11.0485 6.65764 10.8536 6.85293L6.1048 11.6031C5.49515 12.2129 4.50598 12.213 3.89648 11.6031C3.28772 10.9935 3.28727 10.0054 3.89648 9.39617L10.6464 2.6462C11.67 1.62272 13.3295 1.6229 14.3532 2.6462Z" fill="currentColor" style={{
         fill: "currentColor",
         fillOpacity: 1
       }} /></g><defs><clipPath id={idPrefix + "clip0_315_17581"}><rect width={16} height={16} fill="white" style={{
           fill: "white",
           fillOpacity: 1
-        }} /></clipPath></defs></svg>;
+        }} /></clipPath></defs></SvgRoot>;
 });
 export default IconPaperclipTilt;

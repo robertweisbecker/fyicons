@@ -1,0 +1,14 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconRowCollapse = React.forwardRef<SVGSVGElement, IconProps>(function IconRowCollapse(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.65127 11.1474C7.84649 10.9525 8.16311 10.9524 8.3583 11.1474L10.3583 13.1474C10.5535 13.3426 10.5533 13.6592 10.3583 13.8545C10.163 14.0497 9.84653 14.0497 9.65127 13.8545L8.00478 12.208L6.3583 13.8545C6.16304 14.0497 5.84653 14.0497 5.65127 13.8545C5.45618 13.6592 5.45606 13.3426 5.65127 13.1474L7.65127 11.1474ZM9.65029 3.1484C9.84555 2.95314 10.1621 2.95314 10.3573 3.1484C10.5525 3.34367 10.5525 3.66021 10.3573 3.85543L8.35732 5.85543C8.16209 6.05053 7.84552 6.05053 7.65029 5.85543L5.65029 3.85543C5.45507 3.66021 5.45515 3.34367 5.65029 3.1484C5.84555 2.95314 6.16206 2.95314 6.35732 3.1484L8.00381 4.79488L9.65029 3.1484Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /><path d="M3.5 8.5H12.5" stroke="currentColor" style={{
+      stroke: "currentColor",
+      strokeOpacity: 1
+    }} strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
+});
+export default IconRowCollapse;

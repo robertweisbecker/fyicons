@@ -172,7 +172,7 @@ export function PlaybackDemo() {
         </Slider.Root>
         <DemoToggle
           label="Show queue"
-          icon="list-media"
+          icon="list-thumbnails"
           activeIcon="list-log"
           pressed={queue}
           onPressedChange={setQueue}

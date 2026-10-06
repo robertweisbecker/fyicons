@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconCamera = React.forwardRef<SVGSVGElement, IconProps>(function IconCamera(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8.45508 2C9.59118 2.00007 10.6305 2.64178 11.1387 3.6582L11.1826 3.7334C11.2966 3.89879 11.4859 3.99984 11.6904 4H12.5C13.8807 4 15 5.11929 15 6.5V11.5C15 12.8807 13.8807 14 12.5 14H3.5C2.11929 14 1 12.8807 1 11.5V6.5C1 5.11929 2.11929 4 3.5 4H4.30957C4.54327 3.99982 4.75693 3.86732 4.86133 3.6582L4.96289 3.47168C5.50002 2.56388 6.47997 2.00007 7.54492 2H8.45508ZM7.54492 3C6.83461 3.00006 6.18119 3.37621 5.82324 3.98145L5.75586 4.10547C5.48213 4.65352 4.92217 4.99982 4.30957 5H3.5C2.67157 5 2 5.67157 2 6.5V11.5C2 12.3284 2.67157 13 3.5 13H12.5C13.3284 13 14 12.3284 14 11.5V6.5C14 5.67157 13.3284 5 12.5 5H11.6904C11.1162 4.99983 10.5882 4.69557 10.2988 4.20605L10.2441 4.10547C9.92667 3.47053 9.29815 3.05455 8.59668 3.00488L8.45508 3H7.54492ZM8 6C9.65685 6 11 7.34315 11 9C11 10.6569 9.65685 12 8 12C6.34315 12 5 10.6569 5 9C5 7.34315 6.34315 6 8 6ZM8 7C6.89543 7 6 7.89543 6 9C6 10.1046 6.89543 11 8 11C9.10457 11 10 10.1046 10 9C10 7.89543 9.10457 7 8 7ZM12.5 7C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8C12.2239 8 12 7.77614 12 7.5C12 7.22386 12.2239 7 12.5 7Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.07324 2C9.83042 2.00015 10.5235 2.42782 10.8623 3.10547L10.917 3.20605C11.2063 3.6956 11.7343 3.9999 12.3086 4H12.5C13.8807 4 15 5.11929 15 6.5V11.5C15 12.8807 13.8807 14 12.5 14H3.5C2.11929 14 1 12.8807 1 11.5V6.5C1 5.11929 2.11929 4 3.5 4H3.69141C4.30397 3.99989 4.86392 3.65347 5.1377 3.10547L5.20508 2.98145C5.56314 2.37601 6.21685 2.00014 6.92676 2H9.07324ZM6.92676 3C6.59525 3.0001 6.2884 3.1639 6.10352 3.43164L6.03223 3.55273C5.58909 4.4396 4.68281 4.99989 3.69141 5H3.5C2.67157 5 2 5.67157 2 6.5V11.5C2 12.3284 2.67157 13 3.5 13H12.5C13.3284 13 14 12.3284 14 11.5V6.5C14 5.67157 13.3284 5 12.5 5H12.3086C11.3791 4.9999 10.525 4.50717 10.0566 3.71484L9.96777 3.55273C9.81973 3.25664 9.53618 3.05554 9.21387 3.00977L9.07324 3H6.92676ZM8 6C9.65685 6 11 7.34315 11 9C11 10.6569 9.65685 12 8 12C6.34315 12 5 10.6569 5 9C5 7.34315 6.34315 6 8 6ZM8 7C6.89543 7 6 7.89543 6 9C6 10.1046 6.89543 11 8 11C9.10457 11 10 10.1046 10 9C10 7.89543 9.10457 7 8 7ZM12.5 7C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8C12.2239 8 12 7.77614 12 7.5C12 7.22386 12.2239 7 12.5 7Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconCamera;

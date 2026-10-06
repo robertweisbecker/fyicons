@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconQuotes = React.forwardRef<SVGSVGElement, IconProps>(function IconQuotes(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M3.99805 4C5.6549 4 6.99805 5.34315 6.99805 7C6.99805 7.0075 6.99713 7.01498 6.99707 7.02246C7.05804 8.64098 6.42115 10.055 5.55762 11.0928C4.69679 12.1272 3.56154 12.8457 2.57227 12.9941C2.2992 13.0351 2.04492 12.8473 2.00391 12.5742C1.96293 12.3012 2.15078 12.0469 2.42383 12.0059C3.10064 11.9043 4.03313 11.3615 4.78906 10.4531C4.98458 10.2181 5.16374 9.9619 5.32227 9.68848C4.92247 9.88577 4.47404 10 3.99805 10C2.34119 10 0.998047 8.65685 0.998047 7C0.998047 5.34315 2.34119 4 3.99805 4ZM12 4C13.6569 4 15 5.34315 15 7C15 7.0075 14.9991 7.01498 14.999 7.02246C15.06 8.64098 14.4231 10.055 13.5596 11.0928C12.6987 12.1272 11.5635 12.8457 10.5742 12.9941C10.3012 13.0351 10.0469 12.8473 10.0059 12.5742C9.96489 12.3012 10.1527 12.0469 10.4258 12.0059C11.1026 11.9043 12.0351 11.3615 12.791 10.4531C12.9865 10.2181 13.1657 9.9619 13.3242 9.68848C12.9244 9.88577 12.476 10 12 10C10.3431 10 9 8.65685 9 7C9 5.34315 10.3431 4 12 4Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M3.99805 4C5.6549 4 6.99805 5.34315 6.99805 7C6.99805 7.0075 6.99713 7.01498 6.99707 7.02246C7.05804 8.64098 6.42115 10.055 5.55762 11.0928C4.69679 12.1272 3.56154 12.8457 2.57227 12.9941C2.2992 13.0351 2.04492 12.8473 2.00391 12.5742C1.96293 12.3012 2.15078 12.0469 2.42383 12.0059C3.10064 11.9043 4.03313 11.3615 4.78906 10.4531C4.98458 10.2181 5.16374 9.9619 5.32227 9.68848C4.92247 9.88577 4.47404 10 3.99805 10C2.34119 10 0.998047 8.65685 0.998047 7C0.998047 5.34315 2.34119 4 3.99805 4ZM12 4C13.6569 4 15 5.34315 15 7C15 7.0075 14.9991 7.01498 14.999 7.02246C15.06 8.64098 14.4231 10.055 13.5596 11.0928C12.6987 12.1272 11.5635 12.8457 10.5742 12.9941C10.3012 13.0351 10.0469 12.8473 10.0059 12.5742C9.96489 12.3012 10.1527 12.0469 10.4258 12.0059C11.1026 11.9043 12.0351 11.3615 12.791 10.4531C12.9865 10.2181 13.1657 9.9619 13.3242 9.68848C12.9244 9.88577 12.476 10 12 10C10.3431 10 9 8.65685 9 7C9 5.34315 10.3431 4 12 4Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconQuotes;

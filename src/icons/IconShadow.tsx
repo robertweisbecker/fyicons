@@ -1,14 +1,9 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconShadow = React.forwardRef<SVGSVGElement, IconProps>(function IconShadow(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<rect x={3.5} y={1.5} width={9} height={8} rx={1} stroke="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><rect x={3.5} y={1.5} width={9} height={8} rx={1} stroke="currentColor" style={{
       stroke: "currentColor",
       strokeOpacity: 1
     }} strokeLinecap="round" strokeLinejoin="round" /><rect x={3.125} y={13.125} width={0.75} height={0.75} rx={0.375} fill="currentColor" style={{
@@ -80,6 +75,6 @@ const IconShadow = React.forwardRef<SVGSVGElement, IconProps>(function IconShado
     }} /><rect x={12.25} y={14.25} width={0.5} height={0.5} rx={0.25} fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconShadow;

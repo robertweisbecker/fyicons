@@ -1,6 +1,6 @@
 {
   "name": "FYIcons",
-  "version": "2026-10-03",
+  "version": "2026-10-05",
   "source": {
     "fileKey": "KA61XWs3LqkOU2bzzvjEeW",
     "sectionId": "646:192",
@@ -857,6 +857,151 @@
           "600:4613",
           "679:4229"
         ]
+      },
+      {
+        "sectionId": "646:192",
+        "sectionName": "Icons",
+        "importedAt": "2026-10-05",
+        "approval": "Ready for Dev",
+        "approvalSource": "Figma Dev Mode Ready for development list",
+        "componentIds": [
+          "60:2290",
+          "356:10073",
+          "101:4284",
+          "705:2000",
+          "705:2021",
+          "129:6736",
+          "129:6738",
+          "701:1671",
+          "701:1662",
+          "498:588",
+          "577:717",
+          "114:2218",
+          "671:285",
+          "701:1751",
+          "58:9530",
+          "101:4340",
+          "158:11669",
+          "158:11668",
+          "560:9100",
+          "560:9101",
+          "560:9099",
+          "560:9098",
+          "702:1775",
+          "702:1806",
+          "702:1828",
+          "604:5010",
+          "697:218",
+          "610:12261",
+          "505:486",
+          "698:274",
+          "698:257",
+          "698:318",
+          "698:351",
+          "698:405",
+          "698:420",
+          "667:471",
+          "101:4289",
+          "101:4287",
+          "376:6583",
+          "137:4872",
+          "679:3682",
+          "619:12629",
+          "619:12605",
+          "619:12628",
+          "619:12595",
+          "506:3912",
+          "693:340",
+          "392:10900",
+          "98:1928",
+          "59:9707",
+          "132:4339",
+          "487:1519",
+          "593:3665",
+          "224:14594",
+          "224:14623",
+          "342:7916",
+          "120:2554",
+          "120:2551",
+          "698:651",
+          "518:4790",
+          "698:618",
+          "652:1160",
+          "652:1149",
+          "376:6544",
+          "377:6937",
+          "529:8017",
+          "667:691",
+          "672:477",
+          "672:464",
+          "701:1610",
+          "672:510",
+          "600:4613",
+          "679:4229",
+          "693:381",
+          "693:382",
+          "693:397",
+          "693:408",
+          "698:1499",
+          "698:1498",
+          "698:1533",
+          "698:1534",
+          "132:3059",
+          "580:357",
+          "705:2043",
+          "593:3645",
+          "154:11361",
+          "154:11363",
+          "154:11377",
+          "477:611",
+          "183:12549",
+          "358:10845",
+          "161:11758",
+          "114:2146",
+          "313:17179",
+          "312:13086",
+          "154:11391",
+          "329:6352",
+          "325:4648",
+          "154:11464",
+          "154:11503",
+          "224:14313",
+          "698:772",
+          "698:799",
+          "548:8661",
+          "505:556",
+          "548:8685",
+          "548:8674",
+          "673:392",
+          "102:5434",
+          "358:10825",
+          "378:7147",
+          "376:6580",
+          "578:3025",
+          "315:17581",
+          "224:14428",
+          "315:17553",
+          "578:2971",
+          "518:4796",
+          "558:8904",
+          "558:8902",
+          "558:8903",
+          "518:4797",
+          "521:7822",
+          "282:17294",
+          "129:6693",
+          "148:6841",
+          "101:4338",
+          "578:3042",
+          "282:16080",
+          "132:2732",
+          "101:4337",
+          "148:6826",
+          "314:17522",
+          "132:2419",
+          "133:4571",
+          "506:2890"
+        ]
       }
     ],
     "pageName": "good",
@@ -1454,19 +1599,21 @@
     },
     {
       "id": "101:4284",
-      "name": "bell-1",
-      "originalName": "bell-1",
-      "baseName": "bell-1",
+      "name": "bell",
+      "originalName": "bell",
+      "baseName": "bell",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "bell-1-16.svg",
+      "filename": "bell-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=101-4284",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconBell1",
+      "componentName": "IconBell",
       "aliases": [
-        "101-4284.svg"
+        "101-4284.svg",
+        "bell-1",
+        "bell-1-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -1768,75 +1915,81 @@
     },
     {
       "id": "593:3645",
-      "name": "tophat",
-      "baseName": "tophat",
-      "originalName": "tophat",
+      "name": "top-hat",
+      "baseName": "top-hat",
+      "originalName": "top-hat",
       "category": "Objects",
       "width": 16,
       "height": 16,
-      "filename": "tophat-16.svg",
+      "filename": "top-hat-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=593-3645",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconTophat",
+      "componentName": "IconTopHat",
       "aliases": [
         "593-3645.svg",
-        "top-hat",
-        "top-hat-16.svg"
+        "tophat",
+        "tophat-16.svg"
       ]
     },
     {
       "id": "154:11361",
-      "name": "agent-1",
-      "originalName": "agent-1",
-      "baseName": "agent-1",
+      "name": "agent",
+      "originalName": "agent",
+      "baseName": "agent",
       "category": "Code",
       "width": 16,
       "height": 16,
-      "filename": "agent-1-16.svg",
+      "filename": "agent-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=154-11361",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconAgent1",
+      "componentName": "IconAgent",
       "aliases": [
-        "154-11361.svg"
+        "154-11361.svg",
+        "agent-1",
+        "agent-1-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
     {
       "id": "154:11363",
-      "name": "agent-2",
-      "originalName": "agent-2",
-      "baseName": "agent-2",
+      "name": "agent-subagent",
+      "originalName": "agent-subagent",
+      "baseName": "agent-subagent",
       "category": "Code",
       "width": 16,
       "height": 16,
-      "filename": "agent-2-16.svg",
+      "filename": "agent-subagent-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=154-11363",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconAgent2",
+      "componentName": "IconAgentSubagent",
       "aliases": [
-        "154-11363.svg"
+        "154-11363.svg",
+        "agent-2",
+        "agent-2-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
     {
       "id": "154:11377",
-      "name": "agent-3",
-      "originalName": "agent-3",
-      "baseName": "agent-3",
+      "name": "agent-simple",
+      "originalName": "agent-simple",
+      "baseName": "agent-simple",
       "category": "Code",
       "width": 16,
       "height": 16,
-      "filename": "agent-3-16.svg",
+      "filename": "agent-simple-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=154-11377",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconAgent3",
+      "componentName": "IconAgentSimple",
       "aliases": [
-        "154-11377.svg"
+        "154-11377.svg",
+        "agent-3",
+        "agent-3-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -2123,19 +2276,21 @@
     },
     {
       "id": "161:11758",
-      "name": "hand-pointing-3d",
-      "originalName": "hand-pointing-3d",
-      "baseName": "hand-pointing-3d",
+      "name": "hand-pointing-alt",
+      "originalName": "hand-pointing-alt",
+      "baseName": "hand-pointing-alt",
       "category": "People",
       "width": 16,
       "height": 16,
-      "filename": "hand-pointing-3d-16.svg",
+      "filename": "hand-pointing-alt-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=161-11758",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconHandPointing3d",
+      "componentName": "IconHandPointingAlt",
       "aliases": [
-        "161-11758.svg"
+        "161-11758.svg",
+        "hand-pointing-3d",
+        "hand-pointing-3d-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -2502,19 +2657,21 @@
     },
     {
       "id": "312:13086",
-      "name": "book-bookmark-lg",
-      "originalName": "book-bookmark-lg",
-      "baseName": "book-bookmark-lg",
+      "name": "book-bookmark-wide",
+      "originalName": "book-bookmark-wide",
+      "baseName": "book-bookmark-wide",
       "category": "Files",
       "width": 16,
       "height": 16,
-      "filename": "book-bookmark-lg-16.svg",
+      "filename": "book-bookmark-wide-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=312-13086",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconBookBookmarkLg",
+      "componentName": "IconBookBookmarkWide",
       "aliases": [
-        "312-13086.svg"
+        "312-13086.svg",
+        "book-bookmark-lg",
+        "book-bookmark-lg-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -2540,19 +2697,21 @@
     },
     {
       "id": "329:6352",
-      "name": "book-lg",
-      "originalName": "book-lg",
-      "baseName": "book-lg",
+      "name": "book-wide",
+      "originalName": "book-wide",
+      "baseName": "book-wide",
       "category": "Files",
       "width": 16,
       "height": 16,
-      "filename": "book-lg-16.svg",
+      "filename": "book-wide-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=329-6352",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconBookLg",
+      "componentName": "IconBookWide",
       "aliases": [
-        "329-6352.svg"
+        "329-6352.svg",
+        "book-lg",
+        "book-lg-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -2829,26 +2988,6 @@
       ]
     },
     {
-      "id": "679:2825",
-      "name": "duplicate-plus-1",
-      "originalName": "duplicate-plus",
-      "baseName": "duplicate-plus",
-      "category": "Files",
-      "width": 16,
-      "height": 16,
-      "filename": "duplicate-plus-1-16.svg",
-      "notes": [],
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=679-2825",
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconDuplicatePlus1",
-      "aliases": [
-        "679-2825.svg",
-        "duplicate-plus",
-        "duplicate-plus-16.svg"
-      ]
-    },
-    {
       "id": "679:580",
       "name": "duplicate",
       "originalName": "duplicate",
@@ -3090,6 +3229,26 @@
     },
     {
       "id": "358:10825",
+      "name": "files-tilt",
+      "originalName": "files-tilt",
+      "baseName": "files-tilt",
+      "category": "Files",
+      "width": 16,
+      "height": 16,
+      "filename": "files-tilt-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=358-10825",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "componentName": "IconFilesTilt",
+      "aliases": [
+        "358-10825.svg",
+        "files",
+        "files-16.svg"
+      ],
+      "sourcePageId": "82:2415"
+    },
+    {
+      "id": "378:7147",
       "name": "files",
       "originalName": "files",
       "baseName": "files",
@@ -3097,30 +3256,14 @@
       "width": 16,
       "height": 16,
       "filename": "files-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=358-10825",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=378-7147",
       "notes": [],
       "sourceSectionId": "646:192",
       "componentName": "IconFiles",
       "aliases": [
-        "358-10825.svg"
-      ],
-      "sourcePageId": "82:2415"
-    },
-    {
-      "id": "378:7147",
-      "name": "files-2",
-      "originalName": "files-2",
-      "baseName": "files-2",
-      "category": "Files",
-      "width": 16,
-      "height": 16,
-      "filename": "files-2-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=378-7147",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "componentName": "IconFiles2",
-      "aliases": [
-        "378-7147.svg"
+        "378-7147.svg",
+        "files-2",
+        "files-2-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -3987,21 +4130,23 @@
     },
     {
       "id": "282:16080",
-      "name": "list-media",
-      "originalName": "list-media",
-      "baseName": "list-media",
+      "name": "list-thumbnails",
+      "originalName": "list-thumbnails",
+      "baseName": "list-thumbnails",
       "category": "Text",
       "width": 16,
       "height": 16,
-      "filename": "list-media-16.svg",
+      "filename": "list-thumbnails-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=282-16080",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconListMedia",
+      "componentName": "IconListThumbnails",
       "aliases": [
         "282-16080.svg",
         "list-images",
-        "list-images-16.svg"
+        "list-images-16.svg",
+        "list-media",
+        "list-media-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -4453,19 +4598,21 @@
     },
     {
       "id": "498:588",
-      "name": "text-block",
-      "originalName": "text-block",
-      "baseName": "text-block",
+      "name": "text-block-square",
+      "originalName": "text-block-square",
+      "baseName": "text-block-square",
       "category": "Text",
       "width": 16,
       "height": 16,
-      "filename": "text-block-16.svg",
+      "filename": "text-block-square-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=498-588",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconTextBlock",
+      "componentName": "IconTextBlockSquare",
       "aliases": [
-        "498-588.svg"
+        "498-588.svg",
+        "text-block",
+        "text-block-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -4871,20 +5018,22 @@
     },
     {
       "id": "671:285",
-      "name": "browser-chrome",
-      "originalName": "browser-chrome",
-      "baseName": "browser-chrome",
+      "name": "browser-fill",
+      "originalName": "browser-fill",
+      "baseName": "browser-fill",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "browser-chrome-16.svg",
+      "filename": "browser-fill-16.svg",
       "notes": [],
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=671-285",
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconBrowserChrome",
+      "componentName": "IconBrowserFill",
       "aliases": [
-        "671-285.svg"
+        "671-285.svg",
+        "browser-chrome",
+        "browser-chrome-16.svg"
       ]
     },
     {
@@ -4979,19 +5128,21 @@
     },
     {
       "id": "58:9530",
-      "name": "columns-text",
-      "originalName": "columns-text",
-      "baseName": "columns-text",
+      "name": "text-columns",
+      "originalName": "text-columns",
+      "baseName": "text-columns",
       "category": "Design",
       "width": 16,
       "height": 16,
-      "filename": "columns-text-16.svg",
+      "filename": "text-columns-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=58-9530",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconColumnsText",
+      "componentName": "IconTextColumns",
       "aliases": [
-        "58-9530.svg"
+        "58-9530.svg",
+        "columns-text",
+        "columns-text-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -5105,55 +5256,61 @@
     },
     {
       "id": "101:4340",
-      "name": "ellipsis-h",
-      "originalName": "ellipsis-h",
-      "baseName": "ellipsis-h",
+      "name": "ellipsis",
+      "originalName": "ellipsis",
+      "baseName": "ellipsis",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "ellipsis-h-16.svg",
+      "filename": "ellipsis-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=101-4340",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconEllipsisH",
+      "componentName": "IconEllipsis",
       "aliases": [
-        "101-4340.svg"
+        "101-4340.svg",
+        "ellipsis-h",
+        "ellipsis-h-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
     {
       "id": "158:11669",
-      "name": "ellipsis-h-lg",
-      "originalName": "ellipsis-h-lg",
-      "baseName": "ellipsis-h-lg",
+      "name": "ellipsis-lg",
+      "originalName": "ellipsis-lg",
+      "baseName": "ellipsis-lg",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "ellipsis-h-lg-16.svg",
+      "filename": "ellipsis-lg-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=158-11669",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconEllipsisHLg",
+      "componentName": "IconEllipsisLg",
       "aliases": [
-        "158-11669.svg"
+        "158-11669.svg",
+        "ellipsis-h-lg",
+        "ellipsis-h-lg-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
     {
       "id": "158:11668",
-      "name": "ellipsis-h-sm",
-      "originalName": "ellipsis-h-sm",
-      "baseName": "ellipsis-h-sm",
+      "name": "ellipsis-sm",
+      "originalName": "ellipsis-sm",
+      "baseName": "ellipsis-sm",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "ellipsis-h-sm-16.svg",
+      "filename": "ellipsis-sm-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=158-11668",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconEllipsisHSm",
+      "componentName": "IconEllipsisSm",
       "aliases": [
-        "158-11668.svg"
+        "158-11668.svg",
+        "ellipsis-h-sm",
+        "ellipsis-h-sm-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -7153,42 +7310,46 @@
     },
     {
       "id": "101:4289",
-      "name": "battery-charging-1",
-      "originalName": "battery-charging",
-      "baseName": "battery-charging",
+      "name": "battery-empty",
+      "originalName": "battery-empty",
+      "baseName": "battery-empty",
       "category": "Devices",
       "width": 16,
       "height": 16,
-      "filename": "battery-charging-1-16.svg",
+      "filename": "battery-empty-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=101-4289",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconBatteryCharging1",
+      "componentName": "IconBatteryEmpty",
       "aliases": [
         "battery-charging--101-4289",
         "battery-charging--101-4289-16.svg",
         "battery-charging",
         "101-4289.svg",
         "battery-charging-2",
-        "battery-charging-2-16.svg"
+        "battery-charging-2-16.svg",
+        "battery-charging-1",
+        "battery-charging-1-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
     {
       "id": "101:4287",
-      "name": "battery-full",
-      "originalName": "battery-full",
-      "baseName": "battery-full",
+      "name": "battery",
+      "originalName": "battery",
+      "baseName": "battery",
       "category": "Devices",
       "width": 16,
       "height": 16,
-      "filename": "battery-full-16.svg",
+      "filename": "battery-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=101-4287",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconBatteryFull",
+      "componentName": "IconBattery",
       "aliases": [
-        "101-4287.svg"
+        "101-4287.svg",
+        "battery-full",
+        "battery-full-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -11534,42 +11695,26 @@
     },
     {
       "id": "224:14594",
-      "name": "ban-lg",
-      "originalName": "ban-lg",
-      "baseName": "ban-lg",
+      "name": "ban",
+      "originalName": "ban",
+      "baseName": "ban",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "ban-lg-16.svg",
+      "filename": "ban-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=224-14594",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconBanLg",
+      "componentName": "IconBan",
       "aliases": [
-        "224-14594.svg"
+        "224-14594.svg",
+        "ban-lg",
+        "ban-lg-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
     {
       "id": "224:14623",
-      "name": "ban-md",
-      "originalName": "ban-md",
-      "baseName": "ban-md",
-      "category": "Interface",
-      "width": 16,
-      "height": 16,
-      "filename": "ban-md-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=224-14623",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "componentName": "IconBanMd",
-      "aliases": [
-        "224-14623.svg"
-      ],
-      "sourcePageId": "82:2415"
-    },
-    {
-      "id": "224:14593",
       "name": "ban-sm",
       "originalName": "ban-sm",
       "baseName": "ban-sm",
@@ -11577,12 +11722,14 @@
       "width": 16,
       "height": 16,
       "filename": "ban-sm-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=224-14593",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=224-14623",
       "notes": [],
       "sourceSectionId": "646:192",
       "componentName": "IconBanSm",
       "aliases": [
-        "224-14593.svg"
+        "224-14623.svg",
+        "ban-md",
+        "ban-md-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -11606,19 +11753,21 @@
     },
     {
       "id": "342:7916",
-      "name": "bullseye",
-      "originalName": "bullseye",
-      "baseName": "bullseye",
+      "name": "target-bullseye",
+      "originalName": "target-bullseye",
+      "baseName": "target-bullseye",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "bullseye-16.svg",
+      "filename": "target-bullseye-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=342-7916",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconBullseye",
+      "componentName": "IconTargetBullseye",
       "aliases": [
-        "342-7916.svg"
+        "342-7916.svg",
+        "bullseye",
+        "bullseye-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -11680,37 +11829,41 @@
     },
     {
       "id": "120:2554",
-      "name": "eye-off",
-      "originalName": "eye-off",
-      "baseName": "eye-off",
+      "name": "eye-slash",
+      "originalName": "eye-slash",
+      "baseName": "eye-slash",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "eye-off-16.svg",
+      "filename": "eye-slash-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=120-2554",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconEyeOff",
+      "componentName": "IconEyeSlash",
       "aliases": [
-        "120-2554.svg"
+        "120-2554.svg",
+        "eye-off",
+        "eye-off-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
     {
       "id": "120:2551",
-      "name": "eye-open",
-      "originalName": "eye-open",
-      "baseName": "eye-open",
+      "name": "eye",
+      "originalName": "eye",
+      "baseName": "eye",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "eye-open-16.svg",
+      "filename": "eye-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=120-2551",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconEyeOpen",
+      "componentName": "IconEye",
       "aliases": [
-        "120-2551.svg"
+        "120-2551.svg",
+        "eye-open",
+        "eye-open-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -11788,19 +11941,21 @@
     },
     {
       "id": "518:4790",
-      "name": "reticle",
-      "originalName": "reticle",
-      "baseName": "reticle",
+      "name": "target-reticle",
+      "originalName": "target-reticle",
+      "baseName": "target-reticle",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "reticle-16.svg",
+      "filename": "target-reticle-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=518-4790",
       "notes": [],
       "sourceSectionId": "646:192",
-      "componentName": "IconReticle",
+      "componentName": "IconTargetReticle",
       "aliases": [
-        "518-4790.svg"
+        "518-4790.svg",
+        "reticle",
+        "reticle-16.svg"
       ],
       "sourcePageId": "82:2415"
     },
@@ -12221,24 +12376,6 @@
     },
     {
       "id": "652:1160",
-      "name": "braces",
-      "originalName": "braces",
-      "baseName": "braces",
-      "category": "Code",
-      "width": 16,
-      "height": 16,
-      "filename": "braces-16.svg",
-      "notes": [],
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=652-1160",
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconBraces",
-      "aliases": [
-        "652-1160.svg"
-      ]
-    },
-    {
-      "id": "652:1149",
       "name": "brackets",
       "originalName": "brackets",
       "baseName": "brackets",
@@ -12247,12 +12384,34 @@
       "height": 16,
       "filename": "brackets-16.svg",
       "notes": [],
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=652-1149",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=652-1160",
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
       "componentName": "IconBrackets",
       "aliases": [
-        "652-1149.svg"
+        "652-1160.svg",
+        "braces",
+        "braces-16.svg"
+      ]
+    },
+    {
+      "id": "652:1149",
+      "name": "braces",
+      "originalName": "braces",
+      "baseName": "braces",
+      "category": "Code",
+      "width": 16,
+      "height": 16,
+      "filename": "braces-16.svg",
+      "notes": [],
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=652-1149",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconBraces",
+      "aliases": [
+        "652-1149.svg",
+        "brackets",
+        "brackets-16.svg"
       ]
     },
     {
@@ -15136,22 +15295,24 @@
     },
     {
       "id": "529:8017",
-      "name": "sun-alt",
-      "baseName": "sun-alt",
+      "name": "sun-lg",
+      "baseName": "sun-lg",
       "originalName": "fill=false",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "sun-alt-16.svg",
+      "filename": "sun-lg-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=529-8017",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconSunAlt",
+      "componentName": "IconSunLg",
       "aliases": [
         "529-8017.svg",
         "sun-2",
-        "sun-2-16.svg"
+        "sun-2-16.svg",
+        "sun-alt",
+        "sun-alt-16.svg"
       ],
       "variantSetId": "667:690",
       "variantSetName": "sun-alt",
@@ -15161,13 +15322,13 @@
     },
     {
       "id": "667:691",
-      "name": "sun-alt-fill",
+      "name": "sun-lg-fill",
       "originalName": "fill=true",
-      "baseName": "sun-alt",
+      "baseName": "sun-lg",
       "category": "Interface",
       "width": 16,
       "height": 16,
-      "filename": "sun-alt-fill-16.svg",
+      "filename": "sun-lg-fill-16.svg",
       "notes": [],
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=667-691",
       "sourceSectionId": "646:192",
@@ -15177,9 +15338,11 @@
       "variantProperties": {
         "fill": "true"
       },
-      "componentName": "IconSunAltFill",
+      "componentName": "IconSunLgFill",
       "aliases": [
-        "667-691.svg"
+        "667-691.svg",
+        "sun-alt-fill",
+        "sun-alt-fill-16.svg"
       ]
     },
     {
@@ -15351,6 +15514,546 @@
         "send-fill-1",
         "send-fill-1-16.svg"
       ]
+    },
+    {
+      "id": "705:2000",
+      "name": "bell-slash",
+      "originalName": "bell-slash",
+      "baseName": "bell-slash",
+      "width": 16,
+      "height": 16,
+      "category": "Interface",
+      "filename": "bell-slash-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=705-2000",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "705-2000.svg"
+      ],
+      "componentName": "IconBellSlash"
+    },
+    {
+      "id": "705:2021",
+      "name": "bell-2-slash",
+      "originalName": "bell-2-slash",
+      "baseName": "bell-2-slash",
+      "width": 16,
+      "height": 16,
+      "category": "Interface",
+      "filename": "bell-2-slash-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=705-2021",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "705-2021.svg"
+      ],
+      "componentName": "IconBell2Slash"
+    },
+    {
+      "id": "701:1671",
+      "name": "text-block",
+      "originalName": "text-block",
+      "baseName": "text-block",
+      "width": 16,
+      "height": 16,
+      "category": "Text",
+      "filename": "text-block-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=701-1671",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "701-1671.svg"
+      ],
+      "componentName": "IconTextBlock"
+    },
+    {
+      "id": "701:1662",
+      "name": "text-html",
+      "originalName": "text-html",
+      "baseName": "text-html",
+      "width": 16,
+      "height": 16,
+      "category": "Text",
+      "filename": "text-html-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=701-1662",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "701-1662.svg"
+      ],
+      "componentName": "IconTextHtml"
+    },
+    {
+      "id": "701:1751",
+      "name": "browser-use",
+      "originalName": "browser-use",
+      "baseName": "browser-use",
+      "width": 16,
+      "height": 16,
+      "category": "Code",
+      "filename": "browser-use-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=701-1751",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "701-1751.svg"
+      ],
+      "componentName": "IconBrowserUse"
+    },
+    {
+      "id": "702:1775",
+      "name": "anchor",
+      "originalName": "anchor",
+      "baseName": "anchor",
+      "width": 16,
+      "height": 16,
+      "category": "Objects",
+      "filename": "anchor-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=702-1775",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "702-1775.svg"
+      ],
+      "componentName": "IconAnchor"
+    },
+    {
+      "id": "702:1806",
+      "name": "hook",
+      "originalName": "hook",
+      "baseName": "hook",
+      "width": 16,
+      "height": 16,
+      "category": "Objects",
+      "filename": "hook-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=702-1806",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "702-1806.svg"
+      ],
+      "componentName": "IconHook"
+    },
+    {
+      "id": "702:1828",
+      "name": "toolbox",
+      "originalName": "toolbox",
+      "baseName": "toolbox",
+      "width": 16,
+      "height": 16,
+      "category": "Objects",
+      "filename": "toolbox-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=702-1828",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "702-1828.svg"
+      ],
+      "componentName": "IconToolbox"
+    },
+    {
+      "id": "697:218",
+      "name": "card",
+      "originalName": "card",
+      "baseName": "card",
+      "width": 16,
+      "height": 16,
+      "category": "Interface",
+      "filename": "card-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=697-218",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "697-218.svg"
+      ],
+      "componentName": "IconCard"
+    },
+    {
+      "id": "698:274",
+      "name": "television-antenna",
+      "originalName": "television-antenna",
+      "baseName": "television-antenna",
+      "width": 16,
+      "height": 16,
+      "category": "Devices",
+      "filename": "television-antenna-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-274",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-274.svg"
+      ],
+      "componentName": "IconTelevisionAntenna"
+    },
+    {
+      "id": "698:257",
+      "name": "desktop-simple",
+      "originalName": "desktop-simple",
+      "baseName": "desktop-simple",
+      "width": 16,
+      "height": 16,
+      "category": "Devices",
+      "filename": "desktop-simple-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-257",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-257.svg"
+      ],
+      "componentName": "IconDesktopSimple"
+    },
+    {
+      "id": "698:318",
+      "name": "cloud-code",
+      "originalName": "cloud-code",
+      "baseName": "cloud-code",
+      "width": 16,
+      "height": 16,
+      "category": "Devices",
+      "filename": "cloud-code-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-318",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-318.svg"
+      ],
+      "componentName": "IconCloudCode"
+    },
+    {
+      "id": "698:351",
+      "name": "cloud-plus",
+      "originalName": "cloud-plus",
+      "baseName": "cloud-plus",
+      "width": 16,
+      "height": 16,
+      "category": "Devices",
+      "filename": "cloud-plus-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-351",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-351.svg"
+      ],
+      "componentName": "IconCloudPlus"
+    },
+    {
+      "id": "698:405",
+      "name": "cloud-bolt",
+      "originalName": "cloud-bolt",
+      "baseName": "cloud-bolt",
+      "width": 16,
+      "height": 16,
+      "category": "Devices",
+      "filename": "cloud-bolt-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-405",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-405.svg"
+      ],
+      "componentName": "IconCloudBolt"
+    },
+    {
+      "id": "698:420",
+      "name": "cloud-x",
+      "originalName": "cloud-x",
+      "baseName": "cloud-x",
+      "width": 16,
+      "height": 16,
+      "category": "Devices",
+      "filename": "cloud-x-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-420",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-420.svg"
+      ],
+      "componentName": "IconCloudX"
+    },
+    {
+      "id": "693:340",
+      "name": "chevrons-down-up",
+      "originalName": "chevrons-down-up",
+      "baseName": "chevrons-down-up",
+      "width": 16,
+      "height": 16,
+      "category": "Navigation",
+      "filename": "chevrons-down-up-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=693-340",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "693-340.svg"
+      ],
+      "componentName": "IconChevronsDownUp"
+    },
+    {
+      "id": "698:651",
+      "name": "eye-pupil",
+      "originalName": "eye-pupil",
+      "baseName": "eye-pupil",
+      "width": 16,
+      "height": 16,
+      "category": "Interface",
+      "filename": "eye-pupil-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-651",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-651.svg"
+      ],
+      "componentName": "IconEyePupil"
+    },
+    {
+      "id": "698:618",
+      "name": "target-crosshair",
+      "originalName": "target-crosshair",
+      "baseName": "target-crosshair",
+      "width": 16,
+      "height": 16,
+      "category": "Interface",
+      "filename": "target-crosshair-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-618",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-618.svg"
+      ],
+      "componentName": "IconTargetCrosshair"
+    },
+    {
+      "id": "701:1610",
+      "name": "input-password",
+      "originalName": "input-password",
+      "baseName": "input-password",
+      "width": 16,
+      "height": 16,
+      "category": "Interface",
+      "filename": "input-password-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=701-1610",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "701-1610.svg"
+      ],
+      "componentName": "IconInputPassword"
+    },
+    {
+      "id": "693:381",
+      "name": "list-collapse",
+      "originalName": "list-collapse",
+      "baseName": "list-collapse",
+      "width": 16,
+      "height": 16,
+      "category": "Text",
+      "filename": "list-collapse-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=693-381",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "693-381.svg"
+      ],
+      "componentName": "IconListCollapse"
+    },
+    {
+      "id": "693:382",
+      "name": "list-expand",
+      "originalName": "list-expand",
+      "baseName": "list-expand",
+      "width": 16,
+      "height": 16,
+      "category": "Text",
+      "filename": "list-expand-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=693-382",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "693-382.svg"
+      ],
+      "componentName": "IconListExpand"
+    },
+    {
+      "id": "693:397",
+      "name": "row-expand",
+      "originalName": "row-expand",
+      "baseName": "row-expand",
+      "width": 16,
+      "height": 16,
+      "category": "Text",
+      "filename": "row-expand-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=693-397",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "693-397.svg"
+      ],
+      "componentName": "IconRowExpand"
+    },
+    {
+      "id": "693:408",
+      "name": "row-collapse",
+      "originalName": "row-collapse",
+      "baseName": "row-collapse",
+      "width": 16,
+      "height": 16,
+      "category": "Text",
+      "filename": "row-collapse-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=693-408",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "693-408.svg"
+      ],
+      "componentName": "IconRowCollapse"
+    },
+    {
+      "id": "698:1498",
+      "name": "quote-fill",
+      "originalName": "fill=true",
+      "baseName": "quote",
+      "width": 16,
+      "height": 16,
+      "category": "Text",
+      "filename": "quote-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-1498",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-1498.svg"
+      ],
+      "componentName": "IconQuoteFill"
+    },
+    {
+      "id": "698:1499",
+      "name": "quote",
+      "originalName": "fill=false",
+      "baseName": "quote",
+      "width": 16,
+      "height": 16,
+      "category": "Text",
+      "filename": "quote-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-1499",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-1499.svg"
+      ],
+      "componentName": "IconQuote"
+    },
+    {
+      "id": "698:1533",
+      "name": "truck",
+      "originalName": "truck",
+      "baseName": "truck",
+      "width": 16,
+      "height": 16,
+      "category": "Objects",
+      "filename": "truck-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-1533",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-1533.svg"
+      ],
+      "componentName": "IconTruck"
+    },
+    {
+      "id": "698:1534",
+      "name": "truck-moving",
+      "originalName": "truck-moving",
+      "baseName": "truck-moving",
+      "width": 16,
+      "height": 16,
+      "category": "Objects",
+      "filename": "truck-moving-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-1534",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-1534.svg"
+      ],
+      "componentName": "IconTruckMoving"
+    },
+    {
+      "id": "705:2043",
+      "name": "thought-bubble-ellipsis",
+      "originalName": "thought-bubble-ellipsis",
+      "baseName": "thought-bubble-ellipsis",
+      "width": 16,
+      "height": 16,
+      "category": "Communication",
+      "filename": "thought-bubble-ellipsis-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=705-2043",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "705-2043.svg"
+      ],
+      "componentName": "IconThoughtBubbleEllipsis"
+    },
+    {
+      "id": "698:772",
+      "name": "file-edit",
+      "originalName": "file-edit",
+      "baseName": "file-edit",
+      "width": 16,
+      "height": 16,
+      "category": "Files",
+      "filename": "file-edit-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-772",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-772.svg"
+      ],
+      "componentName": "IconFileEdit"
+    },
+    {
+      "id": "698:799",
+      "name": "file-new",
+      "originalName": "file-new",
+      "baseName": "file-new",
+      "width": 16,
+      "height": 16,
+      "category": "Files",
+      "filename": "file-new-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-799",
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "notes": [],
+      "aliases": [
+        "698-799.svg"
+      ],
+      "componentName": "IconFileNew"
     }
   ]
 }

@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconCodeSimple = React.forwardRef<SVGSVGElement, IconProps>(function IconCodeSimple(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M5.1709 4.12427C5.37869 3.94241 5.69411 3.96337 5.87598 4.17114C6.05755 4.37894 6.03677 4.69444 5.8291 4.87622L2.25977 8.00025L5.8291 11.1243C6.0366 11.3062 6.05775 11.6217 5.87598 11.8293C5.69418 12.037 5.37867 12.0578 5.1709 11.8762L1.17188 8.37622C1.06349 8.28135 1.00107 8.14427 1.00098 8.00025C1.00098 7.85611 1.06343 7.71921 1.17188 7.62427L5.1709 4.12427ZM10.124 4.17114C10.3059 3.96339 10.6213 3.94245 10.8291 4.12427L14.8291 7.62427C14.9374 7.71919 15 7.85621 15 8.00025C14.9999 8.14426 14.9375 8.28135 14.8291 8.37622L10.8301 11.8762C10.6224 12.0579 10.3069 12.0368 10.125 11.8293C9.94318 11.6216 9.96421 11.3062 10.1719 11.1243L13.7412 8.00025L10.1709 4.87622C9.96319 4.69441 9.94234 4.37894 10.124 4.17114Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M5.1709 4.12427C5.37869 3.94241 5.69411 3.96337 5.87598 4.17114C6.05755 4.37894 6.03677 4.69444 5.8291 4.87622L2.25977 8.00025L5.8291 11.1243C6.0366 11.3062 6.05775 11.6217 5.87598 11.8293C5.69418 12.037 5.37867 12.0578 5.1709 11.8762L1.17188 8.37622C1.06349 8.28135 1.00107 8.14427 1.00098 8.00025C1.00098 7.85611 1.06343 7.71921 1.17188 7.62427L5.1709 4.12427ZM10.124 4.17114C10.3059 3.96339 10.6213 3.94245 10.8291 4.12427L14.8291 7.62427C14.9374 7.71919 15 7.85621 15 8.00025C14.9999 8.14426 14.9375 8.28135 14.8291 8.37622L10.8301 11.8762C10.6224 12.0579 10.3069 12.0368 10.125 11.8293C9.94318 11.6216 9.96421 11.3062 10.1719 11.1243L13.7412 8.00025L10.1709 4.87622C9.96319 4.69441 9.94234 4.37894 10.124 4.17114Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconCodeSimple;

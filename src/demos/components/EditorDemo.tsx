@@ -199,7 +199,7 @@ export function EditorDemo() {
           {state.words} words
         </span>
         <ControlDivider />
-        <Icon name="eye-open" />
+        <Icon name="eye" />
         <span className="text-xs">Only you</span>
       </div>
     </div>

@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconFullscreenLandscape = React.forwardRef<SVGSVGElement, IconProps>(function IconFullscreenLandscape(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M1.5 9C1.77614 9 2 9.22386 2 9.5V12H5.5C5.77614 12 6 12.2239 6 12.5C6 12.7761 5.77614 13 5.5 13H2C1.44772 13 1 12.5523 1 12V9.5C1 9.22386 1.22386 9 1.5 9ZM14.5 9C14.7761 9 15 9.22386 15 9.5V12C15 12.5523 14.5523 13 14 13H10.5C10.2239 13 10 12.7761 10 12.5C10 12.2239 10.2239 12 10.5 12H14V9.5C14 9.22386 14.2239 9 14.5 9ZM5.5 3C5.77614 3 6 3.22386 6 3.5C6 3.77614 5.77614 4 5.5 4H2V6.5C2 6.77614 1.77614 7 1.5 7C1.22386 7 1 6.77614 1 6.5V4C1 3.44772 1.44772 3 2 3H5.5ZM14 3C14.5523 3 15 3.44772 15 4V6.5C15 6.77614 14.7761 7 14.5 7C14.2239 7 14 6.77614 14 6.5V4H10.5C10.2239 4 10 3.77614 10 3.5C10 3.22386 10.2239 3 10.5 3H14Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M1.5 9C1.77614 9 2 9.22386 2 9.5V12H5.5C5.77614 12 6 12.2239 6 12.5C6 12.7761 5.77614 13 5.5 13H2C1.44772 13 1 12.5523 1 12V9.5C1 9.22386 1.22386 9 1.5 9ZM14.5 9C14.7761 9 15 9.22386 15 9.5V12C15 12.5523 14.5523 13 14 13H10.5C10.2239 13 10 12.7761 10 12.5C10 12.2239 10.2239 12 10.5 12H14V9.5C14 9.22386 14.2239 9 14.5 9ZM5.5 3C5.77614 3 6 3.22386 6 3.5C6 3.77614 5.77614 4 5.5 4H2V6.5C2 6.77614 1.77614 7 1.5 7C1.22386 7 1 6.77614 1 6.5V4C1 3.44772 1.44772 3 2 3H5.5ZM14 3C14.5523 3 15 3.44772 15 4V6.5C15 6.77614 14.7761 7 14.5 7C14.2239 7 14 6.77614 14 6.5V4H10.5C10.2239 4 10 3.77614 10 3.5C10 3.22386 10.2239 3 10.5 3H14Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconFullscreenLandscape;

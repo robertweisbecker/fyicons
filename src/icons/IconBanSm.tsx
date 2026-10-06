@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconBanSm = React.forwardRef<SVGSVGElement, IconProps>(function IconBanSm(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M8 4C10.2091 4 12 5.79086 12 8C12 10.2091 10.2091 12 8 12C5.79086 12 4 10.2091 4 8C4 5.79086 5.79086 4 8 4ZM5.55566 6.2627C5.2065 6.75308 5 7.35215 5 8C5 9.65685 6.34315 11 8 11C8.64777 11 9.24598 10.7924 9.73633 10.4434L5.55566 6.2627ZM8 5C7.35215 5 6.75308 5.2065 6.2627 5.55566L10.4434 9.73633C10.7924 9.24598 11 8.64777 11 8C11 6.34315 9.65685 5 8 5Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 2C11.3137 2 14 4.68629 14 8C14 11.3137 11.3137 14 8 14C4.68629 14 2 11.3137 2 8C2 4.68629 4.68629 2 8 2ZM4.12891 4.83496C3.42327 5.69698 3 6.79909 3 8C3 10.7614 5.23858 13 8 13C9.20086 13 10.3021 12.5757 11.1641 11.8701L4.12891 4.83496ZM8 3C6.79959 3 5.6978 3.42282 4.83594 4.12793L11.8711 11.1631C12.5762 10.3012 13 9.20037 13 8C13 5.23858 10.7614 3 8 3Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconBanSm;

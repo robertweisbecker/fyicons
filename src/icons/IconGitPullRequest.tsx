@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconGitPullRequest = React.forwardRef<SVGSVGElement, IconProps>(function IconGitPullRequest(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M4 2C5.10448 2 5.99986 2.89555 6 4C6 4.9316 5.36217 5.71127 4.5 5.93359V10.0654C5.36225 10.2876 5.99988 11.0684 6 12C6 13.1046 5.10457 14 4 14C2.89543 14 2 13.1046 2 12C2.00012 11.0684 2.63775 10.2876 3.5 10.0654V5.93359C2.63783 5.71127 2 4.9316 2 4C2.00014 2.89555 2.89552 2 4 2ZM9.2002 2.34961C9.52981 2.10249 10 2.33801 10 2.75V3.5H10.501C11.6055 3.5 12.5008 4.39556 12.501 5.5V10.0654C13.3628 10.2879 13.9999 11.0687 14 12C14 13.1046 13.1046 14 12 14C10.8956 13.9998 10 13.1045 10 12C10.0001 11.0682 10.6384 10.2874 11.501 10.0654V5.5C11.5008 4.94785 11.0532 4.5 10.501 4.5H10V5.25C9.99961 5.66168 9.52967 5.89643 9.2002 5.64941L7.5332 4.39941C7.26688 4.19942 7.26689 3.79961 7.5332 3.59961L9.2002 2.34961ZM4 11C3.4478 11 3.00014 11.4478 3 12C3 12.5523 3.44772 13 4 13C4.55228 13 5 12.5523 5 12C4.99986 11.4478 4.5522 11 4 11ZM12 11C11.4479 11.0002 11.0002 11.4479 11 12C11 12.5522 11.4479 12.9998 12 13C12.5523 13 13 12.5523 13 12C12.9998 11.4478 12.5522 11 12 11ZM4 3C3.4478 3 3.00014 3.44783 3 4C3 4.55228 3.44772 5 4 5C4.55228 5 5 4.55228 5 4C4.99986 3.44783 4.5522 3 4 3Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M4 2C5.10448 2 5.99986 2.89555 6 4C6 4.9316 5.36217 5.71127 4.5 5.93359V10.0654C5.36225 10.2876 5.99988 11.0684 6 12C6 13.1046 5.10457 14 4 14C2.89543 14 2 13.1046 2 12C2.00012 11.0684 2.63775 10.2876 3.5 10.0654V5.93359C2.63783 5.71127 2 4.9316 2 4C2.00014 2.89555 2.89552 2 4 2ZM9.2002 2.34961C9.52981 2.10249 10 2.33801 10 2.75V3.5H10.501C11.6055 3.5 12.5008 4.39556 12.501 5.5V10.0654C13.3628 10.2879 13.9999 11.0687 14 12C14 13.1046 13.1046 14 12 14C10.8956 13.9998 10 13.1045 10 12C10.0001 11.0682 10.6384 10.2874 11.501 10.0654V5.5C11.5008 4.94785 11.0532 4.5 10.501 4.5H10V5.25C9.99961 5.66168 9.52967 5.89643 9.2002 5.64941L7.5332 4.39941C7.26688 4.19942 7.26689 3.79961 7.5332 3.59961L9.2002 2.34961ZM4 11C3.4478 11 3.00014 11.4478 3 12C3 12.5523 3.44772 13 4 13C4.55228 13 5 12.5523 5 12C4.99986 11.4478 4.5522 11 4 11ZM12 11C11.4479 11.0002 11.0002 11.4479 11 12C11 12.5522 11.4479 12.9998 12 13C12.5523 13 13 12.5523 13 12C12.9998 11.4478 12.5522 11 12 11ZM4 3C3.4478 3 3.00014 3.44783 3 4C3 4.55228 3.44772 5 4 5C4.55228 5 5 4.55228 5 4C4.99986 3.44783 4.5522 3 4 3Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconGitPullRequest;

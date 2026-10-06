@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconSkipForwardFill = React.forwardRef<SVGSVGElement, IconProps>(function IconSkipForwardFill(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M12.5 4C12.7761 4 13 4.22386 13 4.5V11.5C13 11.7761 12.7761 12 12.5 12H11.5C11.2239 12 11 11.7761 11 11.5V4.5C11 4.22386 11.2239 4 11.5 4H12.5ZM3 5.00488C3 4.33187 3.72493 3.90743 4.31152 4.2373L9.63672 7.2334C10.2343 7.5699 10.2343 8.4301 9.63672 8.7666L4.31152 11.7627C3.72493 12.0926 3 11.6681 3 10.9951V5.00488Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M3 4.58807C3 3.89689 3.76056 3.47565 4.34668 3.84198L9.80566 7.25409C10.3571 7.59876 10.3571 8.40161 9.80566 8.74628L4.34668 12.1584C3.76056 12.5247 3 12.1035 3 11.4123V4.58807ZM12.5 4.00018C12.7761 4.00018 13 4.22404 13 4.50018V11.5002C12.9999 11.7763 12.7761 12.0002 12.5 12.0002H11.5C11.2239 12.0002 11.0001 11.7763 11 11.5002V4.50018C11 4.22404 11.2239 4.00018 11.5 4.00018H12.5Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconSkipForwardFill;

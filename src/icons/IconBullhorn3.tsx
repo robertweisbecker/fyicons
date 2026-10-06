@@ -1,16 +1,11 @@
 import * as React from 'react';
 import type { IconProps } from './types';
+import SvgRoot from './base';
 const IconBullhorn3 = React.forwardRef<SVGSVGElement, IconProps>(function IconBullhorn3(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  const {
-    size = 16,
-    color,
-    title,
-    ...svgProps
-  } = props;
-  return <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...svgProps} ref={ref} width={svgProps["width"] ?? size} height={svgProps["height"] ?? size} color={color} aria-labelledby={svgProps["aria-labelledby"] ?? (title ? idPrefix + "title" : undefined)} aria-label={svgProps["aria-label"] ?? title} role={svgProps["role"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? "img" : undefined)} aria-hidden={svgProps["aria-hidden"] ?? (title || svgProps["aria-label"] || svgProps["aria-labelledby"] ? undefined : true)}>{title ? <title id={idPrefix + "title"}>{title}</title> : null}<path d="M11.5 2C12.8807 2 14 3.11929 14 4.5V6C14.5523 6 15 6.44772 15 7C15 7.55228 14.5523 8 14 8V9.5C14 10.8807 12.8807 12 11.5 12C11.408 12 11.3178 11.9747 11.2393 11.9268L8.21094 10.0732C8.17036 10.0485 8.12656 10.0299 8.08105 10.0176L8.01172 13.0234C7.99899 13.5664 7.55481 13.9999 7.01172 14H6.34668C5.92997 14 5.55662 13.7417 5.41016 13.3516L4.14258 9.97168C2.93138 9.79808 2 8.75921 2 7.5V6.5C2 5.11929 3.11929 4 4.5 4H7.9502C8.04214 4 8.13247 3.97468 8.21094 3.92676L11.2393 2.07324L11.2998 2.04199C11.3627 2.01449 11.4308 2 11.5 2ZM6.34668 13H7.01172L7.08203 10H5.22168L6.34668 13ZM12 10.9121C12.5822 10.706 13 10.1528 13 9.5V4.5C13 3.84707 12.5823 3.29297 12 3.08691V10.9121ZM8.7334 4.7793C8.4977 4.92355 8.22653 5 7.9502 5H6V9H7.9502C8.22653 9 8.4977 9.07645 8.7334 9.2207L11 10.6074V3.3916L8.7334 4.7793ZM4.5 5C3.67157 5 3 5.67157 3 6.5V7.5C3 8.32843 3.67157 9 4.5 9H5V5H4.5Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.5 2C12.8807 2 14 3.11929 14 4.5V6C14.5523 6 15 6.44772 15 7C15 7.55228 14.5523 8 14 8V9.5C14 10.8807 12.8807 12 11.5 12C11.408 12 11.3178 11.9747 11.2393 11.9268L8.21094 10.0732C8.17036 10.0485 8.12656 10.0299 8.08105 10.0176L8.01172 13.0234C7.99899 13.5664 7.55481 13.9999 7.01172 14H6.34668C5.92997 14 5.55662 13.7417 5.41016 13.3516L4.14258 9.97168C2.93138 9.79808 2 8.75921 2 7.5V6.5C2 5.11929 3.11929 4 4.5 4H7.9502C8.04214 4 8.13247 3.97468 8.21094 3.92676L11.2393 2.07324L11.2998 2.04199C11.3627 2.01449 11.4308 2 11.5 2ZM6.34668 13H7.01172L7.08203 10H5.22168L6.34668 13ZM12 10.9121C12.5822 10.706 13 10.1528 13 9.5V4.5C13 3.84707 12.5823 3.29297 12 3.08691V10.9121ZM8.7334 4.7793C8.4977 4.92355 8.22653 5 7.9502 5H6V9H7.9502C8.22653 9 8.4977 9.07645 8.7334 9.2207L11 10.6074V3.3916L8.7334 4.7793ZM4.5 5C3.67157 5 3 5.67157 3 6.5V7.5C3 8.32843 3.67157 9 4.5 9H5V5H4.5Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
-    }} /></svg>;
+    }} /></SvgRoot>;
 });
 export default IconBullhorn3;
