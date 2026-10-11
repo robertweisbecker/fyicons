@@ -2,6 +2,11 @@ import { readFile, writeFile, readdir, mkdir, unlink } from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { renderReactIconFiles } from './lib/react-icons.mjs';
+import { syncIconCategories } from './lib/sync-categories.mjs';
+import {
+  parseIconCategories,
+  validateCategoryIcons,
+} from '../src/lib/icon-categories.ts';
 
 const source = process.argv[2];
 if (!source)
@@ -16,18 +21,20 @@ const imported = JSON.parse(
 const currentManifest = JSON.parse(
   await readFile(path.join(root, 'icons/manifest.json'), 'utf8'),
 );
+const categoriesPath = path.join(root, 'public/icon-categories.json');
+const currentCategorySource = await readFile(categoriesPath, 'utf8');
+const currentCategories = parseIconCategories(
+  JSON.parse(currentCategorySource),
+);
+validateCategoryIcons(currentCategories, currentManifest.icons);
 const currentById = new Map(
   currentManifest.icons.map((icon) => [icon.id, icon]),
 );
 const takenNames = new Set(
   useSourceNames ? [] : currentManifest.icons.map((icon) => icon.name),
 );
-if (
-  imported.name !== 'FYIcons' ||
-  !Array.isArray(imported.icons) ||
-  !Array.isArray(imported.categories)
-)
-  throw new Error('Expected a FYIcons manifest with icons and categories.');
+if (imported.name !== 'FYIcons' || !Array.isArray(imported.icons))
+  throw new Error('Expected a FYIcons manifest with icons.');
 const groups = new Map();
 for (const icon of imported.icons) {
   const baseName = icon.baseName || icon.name.replace(/--\d+-\d+$/, '');
@@ -79,7 +86,13 @@ for (const [baseName, group] of groups) {
     const checksum = createHash('sha256').update(svg).digest('hex');
     if (icon.sha256 && icon.sha256 !== checksum)
       throw new Error(`Checksum mismatch: ${icon.name}`);
-    const { svg: _svg, sha256: _sha, ...metadata } = icon;
+    const {
+      svg: _svg,
+      sha256: _sha,
+      category: _category,
+      categories: _categories,
+      ...metadata
+    } = icon;
     normalized.push({
       ...metadata,
       id: icon.id,
@@ -100,7 +113,6 @@ for (const [baseName, group] of groups) {
           ].filter((value) => value !== name && value !== filename),
         ),
       ],
-      category: icon.category,
       width: 16,
       height: 16,
       sourceUrl: icon.sourceUrl,
@@ -112,8 +124,6 @@ const ids = new Set();
 for (const icon of normalized) {
   if (!icon.id || ids.has(icon.id))
     throw new Error(`Duplicate or missing ID: ${icon.id}`);
-  if (!imported.categories.includes(icon.category))
-    throw new Error(`Unknown category: ${icon.category}`);
   ids.add(icon.id);
 }
 const renderRecords = normalized.map(({ _sourceSvg, ...icon }) => ({
@@ -122,7 +132,12 @@ const renderRecords = normalized.map(({ _sourceSvg, ...icon }) => ({
 }));
 await renderReactIconFiles(renderRecords); // Validate all component inputs before replacing editable sources.
 const finalRecords = normalized.map(({ _sourceSvg, ...icon }) => icon);
-const { icons: _oldIcons, ...rootMetadata } = imported;
+const nextCategories = syncIconCategories(
+  currentCategories,
+  currentManifest.icons,
+  finalRecords,
+);
+const { icons: _oldIcons, categories: _categories, ...rootMetadata } = imported;
 const nextManifest = { ...rootMetadata, icons: finalRecords };
 const iconsDir = path.join(root, 'icons');
 await mkdir(iconsDir, { recursive: true });
@@ -135,6 +150,14 @@ await writeFile(
   path.join(iconsDir, 'manifest.json'),
   JSON.stringify(nextManifest, null, 2) + '\n',
 );
+const nextCategorySource =
+  JSON.stringify(
+    { $schema: './icon-categories.schema.json', ...nextCategories },
+    null,
+    2,
+  ) + '\n';
+if (currentCategorySource !== nextCategorySource)
+  await writeFile(categoriesPath, nextCategorySource);
 for (const filename of oldFiles)
   if (!finalRecords.some((icon) => icon.filename === filename))
     await unlink(path.join(iconsDir, filename));

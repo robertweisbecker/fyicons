@@ -80,8 +80,8 @@ export function ComposerDemo() {
               navigation.tsx
               <DemoIconButton
                 label="Remove attachment"
-                icon="xmark-sm"
-                size="icon-sm"
+                icon="xmark"
+                size="icon-xs"
                 onClick={() => setAttached(false)}
               />
             </span>
@@ -123,15 +123,14 @@ export function ComposerDemo() {
           <Select value={mode} onValueChange={setMode}>
             <SelectTrigger
               aria-label="Response mode"
-              className="min-h-8 min-w-0 justify-start gap-1.5 border-0 bg-transparent px-1.5 pointer-coarse:min-h-11"
+              className="min-h-8 w-fit min-w-0 justify-start gap-1.5 border-0 bg-transparent px-1.5"
             >
               <Icon
-                className="max-[400px]:hidden"
                 name={
                   mode === 'Quick'
                     ? 'lightning-bolt'
                     : mode === 'Research'
-                      ? 'binoculars-1'
+                      ? 'binoculars'
                       : 'brain'
                 }
               />
@@ -181,8 +180,8 @@ export function ComposerDemo() {
   );
 }
 const commands = [
-  { label: 'Design tokens', icon: 'variable' },
-  { label: 'Icon library', icon: 'grid' },
+  { label: 'Design tokens', icon: 'token' },
+  { label: 'Icon library', icon: 'library' },
   { label: 'Create a branch', icon: 'git-branch' },
   { label: 'Keyboard shortcuts', icon: 'keyboard' },
 ];
@@ -191,7 +190,7 @@ export function SearchDemo() {
   const [result, setResult] = useState<(typeof commands)[number] | null>(null);
   return (
     <div className="flex flex-1 flex-col gap-3">
-      <div className="overflow-hidden rounded-xl border border-line bg-surface shadow-xs">
+      <div className="overflow-hidden rounded-xl bg-surface shadow-xs outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
         <Combobox.Root
           items={commands}
           itemToStringLabel={(item) => item.label}
@@ -208,7 +207,7 @@ export function SearchDemo() {
         >
           <div className="relative flex items-center border-b border-line">
             <Icon
-              name="search"
+              name="search-lg"
               className="pointer-events-none absolute left-4 text-muted"
             />
             <Combobox.Input
@@ -218,9 +217,9 @@ export function SearchDemo() {
             />
             <Combobox.Clear
               aria-label="Clear search"
-              className="absolute right-1 grid size-7 place-items-center rounded-md text-muted hover:bg-current/10 pointer-coarse:size-11"
+              className="absolute right-2 grid size-7 place-items-center rounded-md text-muted hover:bg-current/10"
             >
-              <Icon name="xmark-sm" />
+              <Icon name="xmark" />
             </Combobox.Clear>
           </div>
           <Combobox.Empty className="p-5 text-sm text-muted empty:hidden">
@@ -247,7 +246,7 @@ export function SearchDemo() {
         className="flex min-h-5 items-center gap-2 text-xs text-muted"
         role="status"
       >
-        <Icon name={result ? 'circle-check' : 'kbd-return'} />
+        <Icon name={result ? 'click' : 'kbd-return'} />
         {result
           ? result.label + ' selected'
           : 'Use ↑ ↓ to navigate and return to select'}

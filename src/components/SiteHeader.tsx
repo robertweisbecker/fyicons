@@ -1,4 +1,5 @@
 import { Icon } from './Icon';
+import { BrandMark } from './BrandMark';
 import { Button } from '@/components/ui/button';
 import { IconButton } from '@/components/IconButton';
 import { cn } from '../lib/utils';
@@ -30,25 +31,26 @@ export function SiteHeader({
     >
       <div
         className={cn(
-          'mx-auto flex h-14 max-w-400 items-center gap-2 px-3 max-[360px]:gap-1 sm:gap-6 sm:px-6',
+          'mx-auto flex h-14 items-center gap-2 px-3 max-[360px]:gap-1 max-[360px]:px-2 sm:gap-6 sm:px-6',
+          page === 'home' ? 'max-w-7xl' : 'max-w-400',
         )}
       >
         <a
           className={cn(
             'flex shrink-0 items-center justify-center gap-2 text-sm font-semibold tracking-normal pointer-coarse:min-h-11 pointer-coarse:min-w-11',
           )}
-          aria-label="FYIcons"
-          href={pageHref('library')}
-          onClick={(event) => navigate('library', event)}
+          aria-label="FYIcons home"
+          href={pageHref('home')}
+          onClick={(event) => navigate('home', event)}
         >
-          <Icon name="asterisk-6" />
+          <BrandMark className="shrink-0" />
           <span className="max-[400px]:hidden">fyicons</span>
         </a>
         <nav
           className={cn('flex flex-1 items-center sm:gap-1')}
           aria-label="Main"
         >
-          {(['library', 'examples'] as const).map((item) => (
+          {(['home', 'library', 'examples'] as const).map((item) => (
             <a
               key={item}
               href={pageHref(item)}
@@ -56,15 +58,20 @@ export function SiteHeader({
               aria-current={page === item ? 'page' : undefined}
               className={cn(
                 'inline-flex min-h-7 items-center rounded-full px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink max-[360px]:text-xs sm:px-3 pointer-coarse:min-h-11',
+                item === 'home' && 'max-sm:hidden',
               )}
             >
-              {item === 'library' ? 'Library' : 'Examples'}
+              {item === 'home'
+                ? 'Overview'
+                : item === 'library'
+                  ? 'Library'
+                  : 'Examples'}
             </a>
           ))}
         </nav>
         <div className={cn('flex shrink-0 items-center gap-1 sm:gap-2')}>
           <IconButton
-            icon="search-1"
+            icon="search"
             label="Search all icons"
             onClick={search}
             className="pointer-coarse:size-11"

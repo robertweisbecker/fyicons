@@ -8,30 +8,31 @@ export const SheetClose = Dialog.Close;
 export const SheetTitle = Dialog.Title;
 export const SheetDescription = Dialog.Description;
 
-const sheetVariants = cva(
-  'flex max-w-full flex-col border-line bg-surface text-ink outline-none',
-  {
-    variants: {
-      side: { left: 'left-0 border-r', right: 'right-0 border-l' },
-      presentation: {
-        overlay: 'fixed inset-y-0 z-50 shadow-xl transition-[translate,opacity] duration-240 ease-out data-starting-style:translate-x-6 data-starting-style:opacity-0 data-ending-style:translate-x-6 data-ending-style:opacity-0',
-        docked: 'relative z-20 h-[calc(100dvh-3.5rem)]',
-      },
-      variant: {
-        default: 'w-80',
-        inspector: 'w-full md:w-(--inspector-width)',
-      },
+const sheetVariants = cva('flex max-w-full flex-col bg-surface text-ink', {
+  variants: {
+    side: { left: 'left-0', right: 'right-0' },
+    presentation: {
+      overlay:
+        'fixed m-4 rounded-xl z-50 shadow-2xl outline-1 outline-ink/10 outline-offset-(--surface-outline-offset) transition-[translate,opacity] duration-240 ease-out data-starting-style:translate-x-6 data-starting-style:opacity-0 data-ending-style:translate-x-6 data-ending-style:opacity-0 inset-y-4',
+      docked:
+        'relative z-20 h-[calc(100dvh-3.5rem)] border-s-line outline-none',
     },
-    compoundVariants: [
-      { variant: 'inspector', presentation: 'overlay', className: 'md:top-14' },
-    ],
-    defaultVariants: {
-      side: 'right',
-      variant: 'default',
-      presentation: 'overlay',
+    variant: {
+      default: 'w-80',
+      inspector: 'w-full md:w-(--inspector-width)',
     },
   },
-);
+  compoundVariants: [
+    { variant: 'inspector', presentation: 'overlay', className: 'md:top-14' },
+    { side: 'left', presentation: 'docked', className: 'border-r' },
+    { side: 'right', presentation: 'docked', className: 'border-l' },
+  ],
+  defaultVariants: {
+    side: 'right',
+    variant: 'default',
+    presentation: 'overlay',
+  },
+});
 
 export function SheetContent({
   className,

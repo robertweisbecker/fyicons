@@ -77,6 +77,29 @@ test('replacing a source regenerates its component and derived catalog hash', as
   try {
     await mkdir(path.join(temp, 'scripts/lib'), { recursive: true });
     await mkdir(path.join(temp, 'icons'), { recursive: true });
+    await mkdir(path.join(temp, 'public'));
+    await mkdir(path.join(temp, 'src/lib'), { recursive: true });
+    await cp(
+      new URL('../src/lib/icon-categories.ts', import.meta.url),
+      path.join(temp, 'src/lib/icon-categories.ts'),
+    );
+    await writeFile(
+      path.join(temp, 'public/icon-categories.json'),
+      JSON.stringify({
+        categories: [
+          {
+            id: 'files',
+            name: 'Files',
+            icon: '16-upload',
+            keywords: ['upload'],
+          },
+        ],
+      }),
+    );
+    await cp(
+      new URL('../scripts/lib/category-schema.ts', import.meta.url),
+      path.join(temp, 'scripts/lib/category-schema.ts'),
+    );
     await cp(
       new URL('../scripts/generate-icons.mjs', import.meta.url),
       path.join(temp, 'scripts/generate-icons.mjs'),
@@ -98,7 +121,6 @@ test('replacing a source regenerates its component and derived catalog hash', as
       baseName: '16-upload',
       filename: '16-upload-16.svg',
       componentName: 'Icon16Upload',
-      category: 'Files',
       width: 16,
       height: 16,
       aliases: [],
@@ -107,7 +129,6 @@ test('replacing a source regenerates its component and derived catalog hash', as
       path.join(temp, 'icons/manifest.json'),
       JSON.stringify({
         name: 'FYIcons',
-        categories: ['Files'],
         icons: [record],
       }),
     );
@@ -120,6 +141,26 @@ test('replacing a source regenerates its component and derived catalog hash', as
       path.join(temp, 'src/icons/Icon16Upload.tsx'),
       'utf8',
     );
+    // Changing keyword rules must not invalidate any generated artwork output.
+    await writeFile(
+      path.join(temp, 'public/icon-categories.json'),
+      JSON.stringify({
+        categories: [
+          { id: 'files', name: 'Documents', icon: 'grid', keywords: ['file'] },
+          {
+            id: 'actions',
+            name: 'Actions',
+            icon: '16-upload',
+            keywords: ['upload'],
+          },
+        ],
+      }),
+    );
+    await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
+      cwd: temp,
+    });
+    assert.ok(!('categories' in firstCatalog));
+    assert.ok(!('category' in firstCatalog.icons[0]));
     const replacement = firstSvg.replace('M1 1', 'M2 2');
     await writeFile(path.join(temp, 'icons', record.filename), replacement);
     await assert.rejects(
@@ -147,7 +188,6 @@ test('replacing a source regenerates its component and derived catalog hash', as
       path.join(temp, 'icons/manifest.json'),
       JSON.stringify({
         name: 'FYIcons',
-        categories: ['Files'],
         icons: [record],
       }),
     );

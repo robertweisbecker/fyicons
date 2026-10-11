@@ -22,22 +22,18 @@ export function AlertsDemo() {
   const [updated, setUpdated] = useState(false);
   return (
     <div className="flex flex-1 flex-col gap-3">
-      <Alert className="text-(--demo-success)">
+      <Alert>
         <Icon name="circle-check-fill" />
         <div>
           <AlertTitle>All changes saved</AlertTitle>
           <AlertDescription>Your project is up to date.</AlertDescription>
         </div>
       </Alert>
-      <Alert
-        className={
-          connected ? 'text-(--demo-success)' : 'text-(--demo-warning)'
-        }
-      >
+      <Alert>
         <Icon name={connected ? 'cloud-check' : 'cloud-slash'} />
         <div className="min-w-0 flex-1">
           <AlertTitle>
-            {connected ? 'Connected again' : 'You’re offline'}
+            {connected ? 'Reconnected' : 'You’re offline'}
           </AlertTitle>
           <AlertDescription>
             {connected
@@ -46,17 +42,17 @@ export function AlertsDemo() {
           </AlertDescription>
           <Button
             variant="ghost"
-            size="sm"
+            size="xs"
             className="mt-2 -ml-2"
             onClick={() => setConnected(!connected)}
           >
-            <Icon name={connected ? 'cloud-slash' : 'arrows-rotate'} />
+            <Icon name={connected ? 'plug-in' : 'arrows-swap'} />
             {connected ? 'Disconnect' : 'Reconnect'}
           </Button>
         </div>
       </Alert>
-      <Alert className="text-(--demo-info)">
-        <Icon name={updated ? 'circle-check' : 'info-fill'} />
+      <Alert>
+        <Icon name={updated ? 'circle-check' : 'info'} />
         <div className="flex-1">
           <AlertTitle>
             {updated ? 'You’re on the latest version' : 'Update available'}
@@ -68,8 +64,8 @@ export function AlertsDemo() {
           </AlertDescription>
         </div>
         <DemoIconButton
-          label={updated ? 'Reset update' : 'Install update'}
-          icon={updated ? 'arrow-restart' : 'download'}
+          label={updated ? 'Revert' : 'Install'}
+          icon={updated ? 'arrow-revert' : 'download'}
           onClick={() => setUpdated(!updated)}
         />
       </Alert>
@@ -83,19 +79,19 @@ export function BadgesDemo() {
     <div className="flex flex-1 flex-col gap-5">
       <div className="flex flex-wrap gap-2">
         <Badge tone="success">
-          <Icon name="circle-check-fill" />
+          <Icon name="circle-check-fill" className="-ms-1.5" />
           Published
         </Badge>
         <Badge tone="warning">
-          <Icon name="clock" />
+          <Icon name="clock" className="-ms-1.5" />
           Scheduled
         </Badge>
-        <Badge variant="solid">
-          <Icon name="lock" />
+        <Badge>
+          <Icon name="lock" className="-ms-1.5 -me-1" />
           Private
         </Badge>
         <Badge tone="info">
-          <Icon name="sparkles" />
+          <Icon name="sparkles" className="-ms-1.5" />
           New
         </Badge>
       </div>
@@ -106,9 +102,9 @@ export function BadgesDemo() {
             {tag}
             <DemoIconButton
               label={'Remove ' + tag + ' tag'}
-              icon="xmark-sm"
+              icon="xmark"
               size="icon-sm"
-              className="-mr-1 size-5"
+              className="-m-1 -me-1.5 size-5 rounded-full"
               onClick={() => setTags(tags.filter((value) => value !== tag))}
             />
           </Badge>
@@ -118,7 +114,7 @@ export function BadgesDemo() {
           size="sm"
           onClick={() => setTags(['Design', 'Interface'])}
         >
-          <Icon name="plus-sm" />
+          <Icon name="tags" />
           Add tags
         </Button>
       </div>
@@ -167,7 +163,7 @@ const tasks = [
   },
   {
     name: 'Review with the team',
-    icon: 'users-two',
+    icon: 'users',
     detail: 'Ready for a second pair of eyes',
   },
 ];
@@ -178,9 +174,10 @@ export function TasksDemo() {
     <div className="flex flex-1 flex-col gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-lg font-semibold">Design review</h3>
-        <Badge tone={complete ? 'success' : 'default'}>
+        <Badge tone={complete ? 'success' : 'default'} className="tabular-nums">
           <Icon
             name={complete ? 'circle-check-fill' : 'circle-progress-half'}
+            className="-ms-1.5"
           />
           {done.length} / 3
         </Badge>
@@ -223,7 +220,7 @@ export function TasksDemo() {
         ))}
       </div>
       <div className="mt-auto flex items-center gap-2 text-xs text-muted">
-        <Icon name={complete ? 'circle-check' : 'calendar'} />
+        <Icon name={complete ? 'circle-check' : 'calendar-fill'} />
         <span role="status">
           {complete ? 'Ready for review' : 'Due Friday, October 9'}
         </span>
@@ -260,7 +257,7 @@ export function SharingDemo() {
         </div>
         <DemoIconButton
           label={invited ? 'Invitation sent' : 'Invite teammate'}
-          icon={invited ? 'check' : 'user-group'}
+          icon={invited ? 'check' : 'send'}
           onClick={() => setInvited(!invited)}
         />
       </div>

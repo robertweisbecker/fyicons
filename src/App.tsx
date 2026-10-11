@@ -12,7 +12,7 @@ import {
 import { Icon } from './components/Icon';
 import { Button } from '@/components/ui/button';
 import { FilterSelect } from '@/components/FilterSelect';
-import { GlobalSearch, IconSearch } from './components/IconSearch';
+import { GlobalSearch, IconSearch, matchesIcon } from './components/IconSearch';
 import { IconTile } from './components/IconTile';
 import { SiteHeader } from './components/SiteHeader';
 import { PreviewSizeControl } from './components/PreviewSizeControl';
@@ -20,19 +20,26 @@ import { pageFromLocation, pageHref, type Page } from './lib/navigation';
 import { CategorySidebar } from './components/CategorySidebar';
 import { notify } from './components/ui/toast';
 import { Inspector } from './components/Inspector';
-import { byId, icons, type IconRecord } from './lib/catalog';
+import {
+  byId,
+  getIconDisplayName,
+  icons,
+  type IconRecord,
+} from './lib/catalog';
 import { downloadIcons } from './lib/downloads';
 import { usePreference } from './lib/preferences';
+import { Badge } from './components/ui/badge';
 
 const Examples = lazy(() => import('./demos/Examples'));
+const Landing = lazy(() => import('./home/Landing'));
 const editable = (target: EventTarget | null) =>
   target instanceof HTMLElement &&
   (target.matches('input, textarea, select, [contenteditable=true]') ||
     !!target.closest(
-      '[role=combobox], [role=listbox], [role=menu], [data-slot=toggle-group], [role=slider]',
+      '[role=combobox], [role=listbox], [role=menu], [data-slot=toggle-group], [role=slider], [role=separator]',
     ));
 
-export function App() {
+export function App({ categoryError }: { categoryError?: string }) {
   const [view, setView] = useState(pageFromLocation);
   const [query, setQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
@@ -52,31 +59,18 @@ export function App() {
   const search = useRef<HTMLInputElement>(null);
   const lastSelected = useRef<string | null>(null);
   const visible = useMemo(() => {
-    const words = query.toLowerCase().trim().split(/\s+/);
     return icons
       .filter(
         (icon) =>
-          (category === 'all' || icon.category === category) &&
+          (category === 'all' || icon.categories.includes(category)) &&
           (review === 'all' ||
             (review === 'duplicates'
               ? icon.duplicate
               : selectedIds.includes(icon.id))) &&
-          words.every((word) =>
-            (
-              icon.name +
-              ' ' +
-              icon.originalName +
-              ' ' +
-              icon.category +
-              ' ' +
-              icon.id
-            )
-              .toLowerCase()
-              .includes(word),
-          ),
+          matchesIcon(icon, query),
       )
       .sort((a, b) =>
-        a.name.localeCompare(b.name, 'en', {
+        getIconDisplayName(a).localeCompare(getIconDisplayName(b), 'en', {
           numeric: true,
           sensitivity: 'base',
         }),
@@ -246,7 +240,7 @@ export function App() {
     return () => document.removeEventListener('keydown', key);
   });
   useEffect(() => {
-    document.title = `FYIcons — ${view === 'examples' ? 'Examples' : 'Icons'}`;
+    document.title = `FYIcons — ${view === 'home' ? '16 × 16 px icons' : view === 'examples' ? 'Examples' : 'Library'}`;
   }, [view]);
   return (
     <div
@@ -256,6 +250,12 @@ export function App() {
         current && inspectorDocked && 'has-docked-inspector',
       )}
     >
+      <a
+        href="#main-content"
+        className="sr-only fixed top-2 left-2 z-50 rounded bg-ink px-4 py-3 text-canvas focus:not-sr-only"
+      >
+        Skip to content
+      </a>
       <SiteHeader
         page={view}
         navigate={changeView}
@@ -281,14 +281,32 @@ export function App() {
       />
       <div className="flex items-start">
         <div className="min-w-0 flex-1">
-          <main className={cn('mx-auto max-w-400 px-4 pb-10 sm:px-6')}>
-            {view === 'library' ? (
+          <main
+            id="main-content"
+            tabIndex={-1}
+            className={cn(
+              'mx-auto px-4 pb-10 sm:px-6',
+              view === 'home' ? 'max-w-7xl' : 'max-w-400',
+            )}
+          >
+            {view === 'home' ? (
+              <Suspense
+                fallback={<p className="py-20 text-sm text-muted">Loading…</p>}
+              >
+                <Landing navigate={changeView} />
+              </Suspense>
+            ) : view === 'library' ? (
               <div
                 id="library"
-                className="flex flex-col gap-6 pt-8 lg:flex-row"
+                className="flex flex-col gap-6 pt-8 lg:min-h-[calc(100dvh-3.5rem)] lg:flex-row"
               >
                 <CategorySidebar value={category} onValueChange={setCategory} />
                 <div className="min-w-0 flex-1">
+                  {categoryError && (
+                    <p role="alert" className="mb-4 text-sm text-muted">
+                      {categoryError}
+                    </p>
+                  )}
                   <section
                     className={cn(
                       'flex items-start justify-between gap-6 pb-6',
@@ -351,25 +369,22 @@ export function App() {
                     </p>
                     <Button
                       variant="text"
+                      size="sm"
                       disabled={
                         packing || !selectedIds.some((id) => byId.has(id))
                       }
                       onClick={() => exportIcons(true)}
                     >
                       <Icon name="download-square" />
-                      Download selected
-                      <span
-                        className={cn(
-                          'rounded-md bg-hover px-1 text-xs font-medium text-muted tabular-nums',
-                        )}
-                      >
+                      Selected
+                      <Badge variant="elevated">
                         {selectedIds.filter((id) => byId.has(id)).length}
-                      </span>
+                      </Badge>
                     </Button>
                   </div>
                   <div
                     className={cn(
-                      'icon-grid group/grid grid grid-cols-[repeat(auto-fill,minmax(128px,1fr))] gap-2 max-[760px]:grid-cols-[repeat(auto-fill,minmax(96px,1fr))] [&.large]:grid-cols-[repeat(auto-fill,minmax(156px,1fr))]',
+                      'icon-grid group/grid grid grid-cols-[repeat(auto-fill,minmax(128px,1fr))] gap-2 max-[760px]:grid-cols-[repeat(auto-fill,minmax(64px,1fr))] [&.large]:grid-cols-[repeat(auto-fill,minmax(156px,1fr))]',
                       previewSize > 40 && 'large',
                     )}
                     style={
@@ -395,7 +410,7 @@ export function App() {
                         'flex min-h-70 flex-col items-center justify-center gap-4',
                       )}
                     >
-                      <Icon name="search-2" />
+                      <Icon name="search-lg" />
                       <h2 className={cn('text-lg font-semibold')}>
                         No matching icons
                       </h2>
@@ -426,10 +441,11 @@ export function App() {
           <footer
             className={cn(
               'mx-auto flex max-w-400 items-center justify-between border-t border-line px-4 py-6 text-xs text-muted sm:px-6',
+              view === 'home' && 'max-w-7xl',
             )}
           >
             <span>FYIcons</span>
-            <span>16px SVG icons</span>
+            <span>Some icons for you.</span>
           </footer>
         </div>
         <Inspector

@@ -3,9 +3,9 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconCheckSm = React.forwardRef<SVGSVGElement, IconProps>(function IconCheckSm(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M4.5 8.5L7.25 11.5L11 5" stroke="currentColor" style={{
-      stroke: "currentColor",
-      strokeOpacity: 1
-    }} strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M10.5674 4.75049C10.7055 4.51154 11.0109 4.42994 11.25 4.56787C11.4887 4.70605 11.5705 5.01152 11.4326 5.25049L7.68262 11.7505C7.60304 11.8881 7.46271 11.9801 7.30469 11.9976C7.14659 12.0149 6.98946 11.9554 6.88184 11.8384L4.13184 8.83838C3.94531 8.63489 3.95876 8.31895 4.16211 8.13232C4.3656 7.94581 4.68154 7.95925 4.86816 8.1626L7.15723 10.6597L10.5674 4.75049Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></SvgRoot>;
 });
 export default IconCheckSm;

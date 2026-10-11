@@ -1,35 +1,54 @@
 import type { ComponentProps } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+import { Icon } from '../Icon';
 const badgeVariants = cva(
-  'inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium',
+  'inline-flex w-fit items-center rounded-full px-1 py-px  font-normal tabular-nums',
   {
     variants: {
       tone: {
         default: '',
-        success: 'text-emerald-700',
-        warning: 'text-amber-700',
-        info: 'text-blue-700',
+        success:
+          'text-emerald-700 [&>svg]:text-emerald-500 dark:text-emerald-400 dark:[&>svg]:text-emerald-500',
+        warning:
+          'text-amber-800 [&>svg]:text-amber-600 dark:text-amber-400 dark:[&>svg]:text-amber-500',
+        info: 'text-blue-700 [&>svg]:text-blue-500 dark:text-blue-400 dark:[&>svg]:text-blue-500',
       },
       variant: {
-        default: 'bg-current/10',
-        outline: 'border border-current/20',
+        default: 'bg-current/5',
+        elevated:
+          'bg-surface outline outline-current/5 shadow-sm dark:outline-current/10 dark:-outline-offset-1 text-ink',
+        outline: 'border border-current/20 bg-current/2',
         solid: 'bg-ink text-canvas',
+        unstyled: '',
+      },
+      size: {
+        sm: 'px-1 py-px text-[11px]',
+        md: 'px-1 py-0.5 text-xs',
+        lg: 'px-2 py-1.5 text-sm',
       },
     },
-    defaultVariants: { variant: 'default' },
+    defaultVariants: { variant: 'default', size: 'md' },
   },
 );
 export function Badge({
   className,
   variant,
+  size,
   tone,
+  children,
+  icon,
+  iconClass,
   ...props
-}: ComponentProps<'span'> & VariantProps<typeof badgeVariants>) {
+}: ComponentProps<'span'> &
+  VariantProps<typeof badgeVariants> & { icon?: string; iconClass?: string }) {
   return (
     <span
       {...props}
-      className={cn(badgeVariants({ variant, tone }), className)}
-    />
+      className={cn(badgeVariants({ variant, tone, size }), className)}
+    >
+      {icon && <Icon name={icon} className={cn('-my-1', iconClass)} />}
+      <span className="flex items-center gap-1 px-1 py-0.5">{children}</span>
+    </span>
   );
 }

@@ -9,16 +9,17 @@ export function SliderControl({
   return (
     <Slider.Control
       className={cn(
-        'flex h-8 min-w-0 flex-1 touch-none items-center select-none pointer-coarse:h-11',
+        'flex h-8 min-w-0 flex-1 touch-none items-center select-none',
       )}
     >
       <Slider.Track
-        className={cn('relative h-1 w-full rounded-full bg-current/20')}
+        className={cn('relative h-1 w-full rounded-full bg-control-track/50')}
       >
-        <Slider.Indicator className={cn('rounded-full bg-current')} />
+        <Slider.Indicator className={cn('rounded-[inherit] bg-current')} />
         <Slider.Thumb
           className={cn(
-            'block size-4 rounded-full border border-current bg-white shadow-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current',
+            'relative block size-4 cursor-grab rounded-full bg-dialog shadow-sm outline outline-line focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current active:cursor-grabbing data-dragging:cursor-grabbing',
+            'before:absolute before:inset-0 before:size-11',
           )}
           getAriaValueText={getAriaValueText}
         />

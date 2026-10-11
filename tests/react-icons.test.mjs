@@ -70,6 +70,23 @@ test('every generated component renders on the server at 16px', async () => {
   }
 });
 
+test('Collection and Home Fill inherit color through both Figma paint fallbacks', async () => {
+  const { createElement } = await import('react');
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  for (const name of ['collection', 'home-fill']) {
+    const icon = catalog.icons.find((item) => item.name === name);
+    const Component = await loadComponent(
+      generatedFiles.get(`src/icons/${icon.componentName}.tsx`),
+    );
+    const html = renderToStaticMarkup(
+      createElement(Component, { color: '#ff00aa' }),
+    );
+    assert.match(html, /fill="currentColor"/, name);
+    assert.match(html, /fill:currentColor/, name);
+    assert.doesNotMatch(html, /display-p3|#131313|#0C0C0C/i, name);
+  }
+});
+
 test('rendered components honor SVG props and keep repeated definition and title IDs unique', async () => {
   const { createElement } = await import('react');
   const { renderToStaticMarkup } = await import('react-dom/server');

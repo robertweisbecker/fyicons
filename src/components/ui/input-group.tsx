@@ -5,7 +5,7 @@ export function InputGroup({ className, ...props }: ComponentProps<'div'>) {
     <div
       {...props}
       className={cn(
-        'flex flex-col overflow-hidden rounded-xl border border-line bg-surface focus-within:ring-2 focus-within:ring-muted/30',
+        'flex flex-col overflow-hidden rounded-xl bg-surface outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 focus-within:ring-2 focus-within:ring-muted/30',
         className,
       )}
     />

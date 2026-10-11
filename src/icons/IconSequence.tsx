@@ -12,10 +12,10 @@ const IconSequence = React.forwardRef<SVGSVGElement, IconProps>(function IconSeq
     }} strokeLinecap="round" strokeLinejoin="round" /><path d="M12.5 5.5L14.5 7.5L12.5 9.5" stroke="currentColor" style={{
       stroke: "currentColor",
       strokeOpacity: 1
-    }} strokeLinecap="round" strokeLinejoin="round" /><rect x={7} y={6} width={3} height={3} rx={1.5} stroke="currentColor" style={{
+    }} strokeLinecap="round" strokeLinejoin="round" /><rect x={7} y={6} width={3} height={3} rx={0.5} stroke="currentColor" style={{
       stroke: "currentColor",
       strokeOpacity: 1
-    }} /><rect x={1.5} y={6} width={3} height={3} rx={1.5} stroke="currentColor" style={{
+    }} /><rect x={1.5} y={6} width={3} height={3} rx={0.5} stroke="currentColor" style={{
       stroke: "currentColor",
       strokeOpacity: 1
     }} /></SvgRoot>;

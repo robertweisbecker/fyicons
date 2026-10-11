@@ -45,6 +45,9 @@ const IconShadow = React.forwardRef<SVGSVGElement, IconProps>(function IconShado
     }} /><rect x={11.125} y={13.125} width={0.75} height={0.75} rx={0.375} fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
+    }} /><rect x={13.125} y={13.125} width={0.75} height={0.75} rx={0.375} fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
     }} /><rect x={8.125} y={12.125} width={0.75} height={0.75} rx={0.375} fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1

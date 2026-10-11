@@ -1,16 +1,15 @@
-export type Page = 'library' | 'examples';
+export type Page = 'home' | 'library' | 'examples';
 
-// Relative entry points keep both pages working under a project subpath as well.
-const basePath = location.pathname.replace(
-  /examples\/?(?:index\.html)?$|index\.html$/,
-  '',
-);
+// Static entry points work at a custom domain and a GitHub project subpath.
+const basePath = location.pathname
+  .replace(/(?:examples|library)\/?(?:index\.html)?$|index\.html$/, '')
+  .replace(/\/?$/, '/');
 export const pageHref = (page: Page) =>
-  basePath + (page === 'examples' ? 'examples/' : '');
+  basePath + (page === 'home' ? '' : `${page}/`);
 export const pageFromLocation = (): Page =>
-  location.hash === '#library'
+  location.hash === '#library' || /\/library(?:\/|$)/.test(location.pathname)
     ? 'library'
     : /\/examples(?:\/|$)/.test(location.pathname) ||
         location.hash === '#examples'
       ? 'examples'
-      : 'library';
+      : 'home';

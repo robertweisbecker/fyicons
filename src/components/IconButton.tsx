@@ -9,7 +9,7 @@ export function IconButton({
   variant = 'ghost',
   size = 'icon',
   ...props
-}: ButtonProps & { icon: string; label: string }) {
+}: ButtonProps & { icon: string | React.ReactNode; label: string }) {
   return (
     <Button
       {...props}
@@ -19,7 +19,7 @@ export function IconButton({
       aria-label={label}
       title={label}
     >
-      <Icon name={icon} />
+      {typeof icon === 'string' ? <Icon name={icon} /> : icon}
     </Button>
   );
 }

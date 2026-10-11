@@ -1,0 +1,11 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconSpeaker = React.forwardRef<SVGSVGElement, IconProps>(function IconSpeaker(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M11 2C12.1046 2 13 2.89543 13 4V13C13 14.1046 12.1046 15 11 15H5C3.89543 15 3 14.1046 3 13V4C3 2.89543 3.89543 2 5 2H11ZM5 3C4.44772 3 4 3.44772 4 4V13C4 13.5523 4.44772 14 5 14H11C11.5523 14 12 13.5523 12 13V4C12 3.44772 11.5523 3 11 3H5ZM8 7C9.65685 7 11 8.34315 11 10C11 11.6569 9.65685 13 8 13C6.34315 13 5 11.6569 5 10C5 8.34315 6.34315 7 8 7ZM8 8C6.89543 8 6 8.89543 6 10C6 11.1046 6.89543 12 8 12C9.10457 12 10 11.1046 10 10C10 8.89543 9.10457 8 8 8ZM8 8.5C8.82843 8.5 9.5 9.17157 9.5 10C9.5 10.8284 8.82843 11.5 8 11.5C7.17157 11.5 6.5 10.8284 6.5 10C6.5 9.17157 7.17157 8.5 8 8.5ZM8 4C8.55228 4 9 4.44772 9 5C9 5.55228 8.55228 6 8 6C7.44772 6 7 5.55228 7 5C7 4.44772 7.44772 4 8 4Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></SvgRoot>;
+});
+export default IconSpeaker;

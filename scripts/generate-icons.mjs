@@ -4,18 +4,29 @@ import { readFile, writeFile, mkdir, readdir, unlink } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderReactIconFiles } from './lib/react-icons.mjs';
+import { updateCategorySchema } from './lib/category-schema.ts';
+import {
+  parseIconCategories,
+  validateCategoryIcons,
+} from '../src/lib/icon-categories.ts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const check = process.argv.includes('--check');
 const manifestPath = path.join(root, 'icons/manifest.json');
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
-if (
-  manifest.name !== 'FYIcons' ||
-  !Array.isArray(manifest.icons) ||
-  !Array.isArray(manifest.categories) ||
-  new Set(manifest.categories).size !== manifest.categories.length
-)
+if (manifest.name !== 'FYIcons' || !Array.isArray(manifest.icons))
   throw new Error('Invalid icons/manifest.json.');
+if (
+  'categories' in manifest ||
+  manifest.icons.some((icon) => 'category' in icon || 'categories' in icon)
+)
+  throw new Error('Move category metadata to public/icon-categories.json.');
+const categoryConfig = parseIconCategories(
+  JSON.parse(
+    await readFile(path.join(root, 'public/icon-categories.json'), 'utf8'),
+  ),
+);
+validateCategoryIcons(categoryConfig, manifest.icons);
 const ids = new Set();
 const filenames = new Set();
 const names = new Set();
@@ -35,12 +46,8 @@ const icons = await Promise.all(
       throw new Error(`Missing or duplicate icon name: ${meta.name}`);
     if (!/^Icon[A-Za-z0-9]+$/.test(meta.componentName))
       throw new Error(`Invalid componentName: ${meta.componentName}`);
-    if (
-      !manifest.categories.includes(meta.category) ||
-      meta.width !== 16 ||
-      meta.height !== 16
-    )
-      throw new Error(`Invalid category or dimensions: ${meta.name}`);
+    if (meta.width !== 16 || meta.height !== 16)
+      throw new Error(`Invalid dimensions: ${meta.name}`);
     ids.add(meta.id);
     filenames.add(meta.filename);
     names.add(meta.name);
@@ -167,6 +174,7 @@ if (check) {
     );
   console.log(`Icon sources are current (${icons.length} icons).`);
 } else {
+  await updateCategorySchema(root);
   for (const filename of obsoleteComponents)
     await unlink(path.join(iconOutput, filename));
   for (const [file, content] of changed) {

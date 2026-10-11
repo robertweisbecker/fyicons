@@ -13,7 +13,9 @@ export function Alert({ className, ...props }: ComponentProps<'div'>) {
   );
 }
 export function AlertTitle(props: ComponentProps<'h3'>) {
-  return <h3 {...props} className={cn('font-medium', props.className)} />;
+  return (
+    <h3 {...props} className={cn('leading-4 font-medium', props.className)} />
+  );
 }
 export function AlertDescription(props: ComponentProps<'p'>) {
   return (

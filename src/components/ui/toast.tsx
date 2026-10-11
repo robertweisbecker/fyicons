@@ -17,7 +17,7 @@ function ToastViewport() {
           <Toast.Root
             key={toast.id}
             toast={toast}
-            className="flex items-center gap-3 rounded-xl border border-line bg-surface p-3 text-ink shadow-lg data-limited:hidden"
+            className="flex items-center gap-3 rounded-xl bg-surface p-3 text-ink shadow-lg outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 data-limited:hidden"
           >
             <Toast.Content className="min-w-0 flex-1">
               <Toast.Title className="text-sm" />

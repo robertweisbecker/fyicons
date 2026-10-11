@@ -2,7 +2,7 @@ import { Icon } from './Icon';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '../lib/utils';
-import type { IconRecord } from '../lib/catalog';
+import { getIconDisplayName, type IconRecord } from '../lib/catalog';
 
 export function IconTile({
   icon,
@@ -17,37 +17,41 @@ export function IconTile({
   inspect: () => void;
   toggleSelection: () => void;
 }) {
+  const name = getIconDisplayName(icon);
   return (
     <div
       className={cn(
-        'group/tile relative min-w-0 rounded-lg border border-line bg-surface hover:border-zinc-400',
-        (inspected || selected) && 'border-zinc-500 bg-selection',
+        'group/tile relative min-w-0 rounded-lg outline outline-transparent hover:outline-line',
+        inspected &&
+          'bg-selection outline-2 outline-focus hover:bg-selection hover:outline-focus',
+        selected && 'bg-surface outline-focus',
       )}
     >
       <Button
         variant="unstyled"
         size="unstyled"
         className={cn(
-          'icon-tile flex h-28 w-full min-w-0 scroll-mt-18 flex-col items-center justify-center gap-4 rounded-lg px-2 pt-3 group-[.large]/grid:h-36 [&>svg]:size-(--preview-size)',
+          'icon-tile flex min-h-16 w-full min-w-0 flex-col items-center justify-center gap-2 rounded-lg p-2',
+          // 'group-[.large]/grid:h-36',
         )}
         data-id={icon.id}
-        aria-label={'Inspect ' + icon.name}
+        aria-label={'Inspect ' + name}
         aria-pressed={inspected}
         onClick={inspect}
       >
-        <Icon name={icon.id} />
+        <Icon name={icon.id} className="bg-grid size-(--preview-size)" />
         <span
           className={cn(
-            'tile-name max-w-full truncate text-xs leading-4 text-muted',
+            'tile-name max-w-full truncate text-[11px] leading-none font-normal wrap-anywhere text-muted',
           )}
-          title={icon.name}
+          title={name}
         >
-          {icon.name}
+          {name}
         </span>
       </Button>
       <Checkbox
         checked={selected}
-        aria-label={'Select ' + icon.name}
+        aria-label={'Select ' + name}
         onCheckedChange={toggleSelection}
         className={cn(
           'absolute top-0 right-0 opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 data-checked:opacity-100 [@media(hover:none)]:opacity-100',

@@ -1,0 +1,11 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconLayoutRows = React.forwardRef<SVGSVGElement, IconProps>(function IconLayoutRows(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M12 2C13.1046 2 14 2.89543 14 4V12C14 13.1046 13.1046 14 12 14H4C2.89543 14 2 13.1046 2 12V4C2 2.89543 2.89543 2 4 2H12ZM4 3C3.44772 3 3 3.44772 3 4V7.5H4.5C4.77614 7.5 5 7.72386 5 8C5 8.27614 4.77614 8.5 4.5 8.5H3V12C3 12.5523 3.44772 13 4 13H12C12.5523 13 13 12.5523 13 12V8.5H11.5C11.2239 8.5 11 8.27614 11 8C11 7.72386 11.2239 7.5 11.5 7.5H13V4C13 3.44772 12.5523 3 12 3H4ZM9.5 7.5C9.77614 7.5 10 7.72386 10 8C10 8.27614 9.77614 8.5 9.5 8.5H6.5C6.22386 8.5 6 8.27614 6 8C6 7.72386 6.22386 7.5 6.5 7.5H9.5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></SvgRoot>;
+});
+export default IconLayoutRows;

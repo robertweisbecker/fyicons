@@ -59,7 +59,7 @@ export function SelectContent({
           data-slot="select-content"
           {...props}
           className={cn(
-            'max-h-[min(360px,var(--available-height))] min-w-(--anchor-width) overflow-y-auto rounded-lg border border-line bg-surface p-1 text-ink shadow-lg',
+            'max-h-[min(360px,var(--available-height))] min-w-(--anchor-width) overflow-y-auto rounded-xl bg-surface p-1 text-ink shadow-lg outline-1 outline-offset-(--surface-outline-offset) outline-ink/10',
             className,
           )}
         >
@@ -84,7 +84,7 @@ export function SelectItem({ className, children, ...props }: SelectItemProps) {
       )}
     >
       <SelectPrimitive.ItemIndicator className={cn('absolute left-2')}>
-        <Icon name="check-lg" />
+        <Icon name="check" />
       </SelectPrimitive.ItemIndicator>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>

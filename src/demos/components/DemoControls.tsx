@@ -42,7 +42,7 @@ export function DemoIconButton({
         size="icon"
         aria-label={label}
         {...props}
-        className={cn(touchControl, className)}
+        className={className}
       >
         <Icon name={icon} />
       </Button>
@@ -54,15 +54,21 @@ export function DemoToggle({
   icon,
   activeIcon,
   className,
+  variant = 'default',
   ...props
-}: { label: string; icon: string; activeIcon?: string } & ToggleProps) {
+}: {
+  label: string;
+  icon: string;
+  activeIcon?: string;
+} & ToggleProps) {
   return (
     <DemoHint label={label}>
       <Toggle
         size="icon"
         aria-label={label}
         {...props}
-        className={cn(touchControl, className)}
+        className={className}
+        variant={variant}
       >
         {activeIcon ? (
           <ToggleIcon icon={icon} activeIcon={activeIcon} />
@@ -123,10 +129,10 @@ export function CopyButton({
         <Icon
           name={
             state === 'copied'
-              ? 'check'
+              ? 'copied-lg'
               : state === 'error'
                 ? 'circle-warning'
-                : 'copy-sm'
+                : 'copy-lg'
           }
         />
         {showLabel && (state === 'error' ? 'Try again' : status)}

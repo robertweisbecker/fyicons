@@ -12,6 +12,7 @@ export function PreviewSizeControl({
     <Slider.Root
       value={value}
       onValueChange={onChange}
+      thumbAlignment="edge"
       min={16}
       max={64}
       step={4}

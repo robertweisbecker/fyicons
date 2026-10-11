@@ -3,7 +3,7 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconGitCommit = React.forwardRef<SVGSVGElement, IconProps>(function IconGitCommit(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 5C9.48647 5 10.7199 6.08118 10.958 7.5H14.5C14.7761 7.5 15 7.72389 15 8C15 8.27614 14.7761 8.5 14.5 8.5H10.958C10.7199 9.91882 9.48647 11 8 11C6.51353 11 5.28007 9.91882 5.04199 8.5H1.5C1.22386 8.5 1 8.27614 1 8C1.00003 7.72389 1.22388 7.5 1.5 7.5H5.04199C5.28007 6.08118 6.51353 5 8 5ZM8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6Z" fill="currentColor" style={{
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 5.25C9.6249 5.25 10.9714 6.44244 11.2119 8H14.5C14.7761 8 15 8.22386 15 8.5C15 8.77614 14.7761 9 14.5 9H11.2119C10.9714 10.5576 9.6249 11.75 8 11.75C6.3751 11.75 5.02858 10.5576 4.78809 9H1.5C1.22386 9 1 8.77614 1 8.5C1 8.22386 1.22386 8 1.5 8H4.78809C5.02858 6.44244 6.3751 5.25 8 5.25ZM8 6.25C6.75736 6.25 5.75 7.25736 5.75 8.5C5.75 9.74264 6.75736 10.75 8 10.75C9.24264 10.75 10.25 9.74264 10.25 8.5C10.25 7.25736 9.24264 6.25 8 6.25Z" fill="currentColor" style={{
       fill: "currentColor",
       fillOpacity: 1
     }} /></SvgRoot>;

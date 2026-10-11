@@ -1,0 +1,11 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconCrownFill = React.forwardRef<SVGSVGElement, IconProps>(function IconCrownFill(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.9746 12C11.991 12.0808 12 12.1644 12 12.25V12.75C12 13.4404 11.4404 14 10.75 14H5.25C4.55964 14 4 13.4404 4 12.75V12.25C4 12.1644 4.00898 12.0808 4.02539 12H11.9746ZM8 2.75C8.69036 2.75 9.25 3.30964 9.25 4C9.25 4.37504 9.08382 4.71034 8.82227 4.93945L9.83105 6.70508C9.93273 6.88299 10.1331 6.98098 10.3359 6.95215L12.2637 6.67578C12.2556 6.61829 12.25 6.55973 12.25 6.5C12.25 5.80964 12.8096 5.25 13.5 5.25C14.1904 5.25 14.75 5.80964 14.75 6.5C14.75 7.19036 14.1904 7.75 13.5 7.75C13.3616 7.75 13.2289 7.7261 13.1045 7.68457L12 11H4L2.89453 7.68457C2.77035 7.72591 2.63807 7.75 2.5 7.75C1.80964 7.75 1.25 7.19036 1.25 6.5C1.25 5.80964 1.80964 5.25 2.5 5.25C3.19036 5.25 3.75 5.80964 3.75 6.5C3.75 6.55978 3.74346 6.61824 3.73535 6.67578L5.66406 6.95215C5.86692 6.98096 6.06729 6.88301 6.16895 6.70508L7.17676 4.93945C6.91552 4.71035 6.75 4.37477 6.75 4C6.75 3.30964 7.30964 2.75 8 2.75Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></SvgRoot>;
+});
+export default IconCrownFill;

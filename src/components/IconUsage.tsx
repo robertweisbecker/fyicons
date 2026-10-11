@@ -3,6 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/Icon';
 import { copy, download } from '@/lib/downloads';
 import type { IconRecord } from '@/lib/catalog';
+import { IconButton } from './IconButton';
+import { ToggleIcon } from './ToggleIcon';
+import { Badge } from './ui/badge';
 
 export function IconUsage({
   item,
@@ -19,48 +22,23 @@ export function IconUsage({
       aria-labelledby={headingId}
       className="flex min-w-0 flex-col gap-2"
     >
-      <h3 id={headingId} className="text-sm font-medium">
-        Use icon
+      <h3 id={headingId} className="text-xs font-medium">
+        Usage
       </h3>
-      <div className="overflow-hidden rounded-xl border border-line">
-        <div className="flex items-center justify-between gap-2 px-3 py-2">
-          <span className="text-xs font-medium">React</span>
-          <Button
-            size="sm"
-            onClick={async () =>
-              notify(
-                (await copy(jsx))
-                  ? 'JSX copied'
-                  : 'Clipboard unavailable. Select and copy the code.',
-              )
-            }
+      <div className="divide-y divide-line overflow-hidden rounded-xl ring ring-line">
+        <div className="flex flex-wrap items-center justify-between gap-2 p-1">
+          <Badge
+            icon="vector-path"
+            iconClass="text-purple-400"
+            variant="unstyled"
           >
-            <Icon name="copy" />
-            Copy JSX
-          </Button>
-        </div>
-        <pre
-          aria-label="React usage"
-          role="region"
-          tabIndex={0}
-          className="overflow-x-auto bg-canvas px-3 py-4 text-xs leading-6 break-all whitespace-pre-wrap outline-offset-[-2px] focus-visible:outline-2 focus-visible:outline-muted"
-          onKeyDown={(event) => {
-            if (
-              ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(
-                event.key,
-              )
-            )
-              event.stopPropagation();
-          }}
-        >
-          <code>{jsx}</code>
-        </pre>
-        <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2">
-          <span className="text-xs font-medium">SVG</span>
+            SVG
+          </Badge>
           <div className="flex items-center gap-1">
             <Button
               variant="ghost"
-              size="sm"
+              size="icon-sm"
+              aria-label="Copy SVG"
               onClick={async () =>
                 notify(
                   (await copy(item.svg))
@@ -69,18 +47,54 @@ export function IconUsage({
                 )
               }
             >
-              <Icon name="copy" />
-              Copy SVG
+              <Icon name="copy-sm" />
             </Button>
             <Button
               variant="ghost"
-              size="sm"
+              size="icon-sm"
               onClick={() => download(item.svg, item.filename, 'image/svg+xml')}
             >
               <Icon name="download-square" />
-              Download SVG
             </Button>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-1 p-1">
+          <div className="flex items-center justify-between gap-2">
+            <Badge icon="atom" iconClass="text-sky-400" variant="unstyled">
+              JSX
+            </Badge>
+            <IconButton
+              icon={'copy-sm'}
+              label="Copy JSX"
+              size="icon-xs"
+              variant="ghost"
+              onClick={async () =>
+                notify(
+                  (await copy(jsx))
+                    ? 'JSX copied'
+                    : 'Clipboard unavailable. Select and copy the code.',
+                )
+              }
+            ></IconButton>
+          </div>
+
+          <pre
+            aria-label="React usage"
+            role="region"
+            tabIndex={0}
+            className="overflow-x-auto rounded-md bg-inset px-2 py-1 text-[11px] leading-5 break-all whitespace-pre-wrap -outline-offset-2 focus-visible:outline-2 focus-visible:outline-muted"
+            onKeyDown={(event) => {
+              if (
+                ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(
+                  event.key,
+                )
+              )
+                event.stopPropagation();
+            }}
+          >
+            <code>{jsx}</code>
+          </pre>
         </div>
       </div>
     </section>

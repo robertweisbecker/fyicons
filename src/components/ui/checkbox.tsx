@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 export const checkboxVariants = cva(
   'group/checkbox peer inline-flex shrink-0 cursor-pointer items-center justify-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-muted data-disabled:pointer-events-none data-disabled:opacity-40 pointer-coarse:size-11',
   {
-    variants: { size: { default: 'size-8', sm: 'size-6' } },
+    variants: { size: { default: 'size-6', sm: 'size-5' } },
     defaultVariants: { size: 'default' },
   },
 );
@@ -38,7 +38,7 @@ export function Checkbox({
         )}
       >
         <CheckboxPrimitive.Indicator data-slot="checkbox-indicator">
-          <Icon name={indeterminate ? 'line-horizontal' : 'check-md'} />
+          <Icon name={indeterminate ? 'minus' : 'check-thick'} />
         </CheckboxPrimitive.Indicator>
       </span>
     </CheckboxPrimitive.Root>

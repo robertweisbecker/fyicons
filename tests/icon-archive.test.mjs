@@ -3,11 +3,27 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { unzipSync, strFromU8 } from 'fflate';
+import {
+  categorizeIcons,
+  parseIconCategories,
+} from '../src/lib/icon-categories.ts';
 import { createIconArchive } from '../src/lib/icon-archive.ts';
 
-const catalog = JSON.parse(
+const generated = JSON.parse(
   await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'),
 );
+const assignments = parseIconCategories(
+  JSON.parse(
+    await readFile(
+      new URL('../public/icon-categories.json', import.meta.url),
+      'utf8',
+    ),
+  ),
+);
+const catalog = {
+  ...generated,
+  ...categorizeIcons(generated.icons, assignments),
+};
 const readme = await readFile(
   new URL('../src/data/README.txt', import.meta.url),
   'utf8',
@@ -35,6 +51,7 @@ function verifyArchive(selection) {
     );
   }
   const exported = JSON.parse(strFromU8(archive['manifest.json']));
+  assert.deepEqual(exported.categories, catalog.categories);
   assert.equal(exported.count, selection.length);
   assert.equal(exported.native16Count, selection.length);
   assert.deepEqual(

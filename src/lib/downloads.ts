@@ -1,4 +1,4 @@
-import { icons, manifest, type IconRecord } from './catalog';
+import { icons, getManifest, type IconRecord } from './catalog';
 import readme from '../data/README.txt?raw';
 
 export function download(content: BlobPart, filename: string, type: string) {
@@ -25,6 +25,6 @@ export async function downloadIcons(
 ) {
   // Generated on demand: no duplicate SVG files or ZIP stored in each deployment.
   const { createIconArchive } = await import('./icon-archive');
-  const bytes = createIconArchive(selection, manifest, readme);
+  const bytes = createIconArchive(selection, getManifest(), readme);
   download(bytes.buffer as ArrayBuffer, filename, 'application/zip');
 }

@@ -1,0 +1,11 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconGridRowTop = React.forwardRef<SVGSVGElement, IconProps>(function IconGridRowTop(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M12.5 14C12.7761 14 13 13.7761 13 13.5V13H13.5C13.7761 13 14 12.7761 14 12.5C14 12.2239 13.7761 12 13.5 12H13V9H13.5L13.6006 8.99023C13.8286 8.94371 14 8.74171 14 8.5V3.5C14 3.25829 13.8286 3.05629 13.6006 3.00977L13.5 3H13V2.5C13 2.22386 12.7761 2 12.5 2C12.2239 2 12 2.22386 12 2.5V3H4V2.5C4 2.22386 3.77614 2 3.5 2C3.22386 2 3 2.22386 3 2.5V3H2.5C2.22386 3 2 3.22386 2 3.5V8.5L2.00977 8.60059C2.05629 8.82855 2.25829 9 2.5 9H3V12H2.5C2.22386 12 2 12.2239 2 12.5C2 12.7761 2.22386 13 2.5 13H3V13.5C3 13.7761 3.22386 14 3.5 14C3.77614 14 4 13.7761 4 13.5V13H12V13.5C12 13.7761 12.2239 14 12.5 14ZM3 8V4H13V8H3ZM4 9H12V12H4V9Z" fill="currentColor" fillOpacity={0.9} style={{
+      fill: "currentColor",
+      fillOpacity: 0.9
+    }} /></SvgRoot>;
+});
+export default IconGridRowTop;

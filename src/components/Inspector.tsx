@@ -1,6 +1,12 @@
 import { Field } from '@base-ui/react/field';
 import { motion, useReducedMotion } from 'motion/react';
-import { useCallback, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from 'react';
 import { cn } from '@/lib/utils';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup } from '@/components/ui/toggle-group';
@@ -25,8 +31,14 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { IconButton } from '@/components/IconButton';
 import { IconUsage } from './IconUsage';
-import { icons, type IconRecord } from '@/lib/catalog';
-import { useMobile } from '@/lib/preferences';
+import { ResizableHandle } from '@/components/ui/resizable';
+import {
+  getIconDisplayName,
+  getIconCategoryLabel,
+  icons,
+  type IconRecord,
+} from '@/lib/catalog';
+import { useMobile, usePreference } from '@/lib/preferences';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
 import { copy } from '@/lib/downloads';
 import './MobileInspector.css';
@@ -44,7 +56,7 @@ type Props = {
   docked: boolean;
   onDockedChange: (docked: boolean) => void;
 };
-const snapPoints = ['192px', 0.55, 1];
+const snapPoints = ['192px', 1];
 function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
   return (
     <span
@@ -84,57 +96,62 @@ function Details({
     : [];
   return (
     <>
-      <div className="flex items-center gap-2 border-y border-line px-5 py-3">
-        <Icon name={item.id} />
-        <span className="text-xs text-muted">16 × 16</span>
-        <Toggle
-          size="sm"
-          className="ml-auto"
-          aria-label="Grid and bounds"
-          title={grid ? 'Hide grid and bounds' : 'Show grid and bounds'}
-          pressed={grid}
-          onPressedChange={setGrid}
-        >
-          <ToggleIcon icon="eye-closed" activeIcon="eye" />
-          Grid
-        </Toggle>
-      </div>
-      <div className="flex flex-col gap-5 p-5">
-        <IconUsage item={item} notify={notify} />
-        <Field.Root className="flex items-center gap-2 text-sm">
-          <Checkbox
+      <div className="flex flex-col gap-4 px-4 py-3">
+        <div className="flex items-center gap-2">
+          <Icon name={item.id} />
+          <span className="text-xs text-muted tabular-nums">16×16</span>
+          <Toggle
             size="sm"
-            checked={selected}
-            onCheckedChange={toggleSelection}
-          />
-          <Field.Label>Include in selection</Field.Label>
-        </Field.Root>
-        {variants.length > 1 && (
-          <section>
-            <h3 className="mb-2 text-sm font-medium">Variants</h3>
-            <ToggleGroup
-              aria-label="Icon variants"
-              className="flex-wrap"
-              value={[item.id]}
-              onValueChange={(values) => {
-                const variant = variants.find((icon) => icon.id === values[0]);
-                if (variant) select(variant);
-              }}
-            >
-              {variants.map((icon, index) => (
-                <Toggle
-                  key={icon.id}
-                  value={icon.id}
-                  variant="outline"
-                  aria-label={'Compare variant ' + icon.id}
-                >
-                  <Icon name={icon.id} />
-                  {index + 1}
-                </Toggle>
-              ))}
-            </ToggleGroup>
-          </section>
-        )}
+            className="ml-auto"
+            aria-label="Pixel grid"
+            title={grid ? 'Hide grid' : 'Show grid'}
+            pressed={grid}
+            onPressedChange={setGrid}
+          >
+            <ToggleIcon icon="eye-closed" activeIcon="eye" />
+            Grid
+          </Toggle>
+        </div>
+
+        <div className="flex flex-col gap-5">
+          <IconUsage item={item} notify={notify} />
+          <Field.Root className="flex items-center gap-1 text-xs">
+            <Checkbox
+              size="sm"
+              checked={selected}
+              onCheckedChange={toggleSelection}
+            />
+            <Field.Label>Add to export</Field.Label>
+          </Field.Root>
+          {variants.length > 1 && (
+            <section>
+              <h3 className="mb-2 text-sm font-medium">Variants</h3>
+              <ToggleGroup
+                aria-label="Icon variants"
+                className="flex-wrap"
+                value={[item.id]}
+                onValueChange={(values) => {
+                  const variant = variants.find(
+                    (icon) => icon.id === values[0],
+                  );
+                  if (variant) select(variant);
+                }}
+              >
+                {variants.map((icon, index) => (
+                  <Toggle
+                    key={icon.id}
+                    value={icon.id}
+                    variant="outline"
+                    aria-label={'Compare variant ' + icon.id}
+                  >
+                    <Icon name={icon.id} />
+                    {index + 1}
+                  </Toggle>
+                ))}
+              </ToggleGroup>
+            </section>
+          )}
+        </div>
       </div>
     </>
   );
@@ -150,29 +167,27 @@ function Pagination({
     <footer
       aria-label="Icon pagination"
       className={cn(
-        'flex shrink-0 items-center justify-between gap-3 border-t border-line px-5 py-2',
+        'flex shrink-0 items-center justify-between gap-3 py-2 ps-2 pe-5',
         mobile && 'pb-[max(.5rem,env(safe-area-inset-bottom))]',
       )}
     >
-      <span aria-live="polite" className="text-xs text-muted tabular-nums">
-        {index + 1} of {visible.length}
-      </span>
       <div className="flex gap-1">
         <IconButton
           icon="chevron-left"
           label="Previous icon"
-          className="pointer-coarse:size-11"
           disabled={index <= 0}
           onClick={() => navigate(-1)}
         />
         <IconButton
           icon="chevron-right"
           label="Next icon"
-          className="pointer-coarse:size-11"
           disabled={index < 0 || index >= visible.length - 1}
           onClick={() => navigate(1)}
         />
       </div>
+      <span aria-live="polite" className="text-xs text-muted tabular-nums">
+        {index + 1} of {visible.length}
+      </span>
     </footer>
   );
 }
@@ -189,6 +204,27 @@ export function Inspector(props: Props) {
     navigate,
   } = props;
   const mobile = useMobile();
+  const [viewportWidth, setViewportWidth] = useState(() => window.innerWidth);
+  const defaultWidth = viewportWidth < 1024 ? 352 : 384;
+  const [preferredWidth, setPreferredWidth] = usePreference(
+    'fyicons-inspector-width-v1',
+    defaultWidth,
+  );
+  const [resizing, setResizing] = useState(false);
+  const minWidth = 280;
+  const maxWidth = Math.max(minWidth, Math.min(640, viewportWidth - 320));
+  const width = Math.min(
+    maxWidth,
+    Math.max(
+      minWidth,
+      Number.isFinite(preferredWidth) ? preferredWidth : defaultWidth,
+    ),
+  );
+  useEffect(() => {
+    const update = () => setViewportWidth(window.innerWidth);
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
   const popup = useRef<HTMLDivElement>(null);
   const portalContainer = useRef<HTMLDivElement>(null);
   const [mobilePopup, setMobilePopup] = useState<HTMLDivElement | null>(null);
@@ -223,7 +259,7 @@ export function Inspector(props: Props) {
       event.altKey ||
       (event.target instanceof HTMLElement &&
         event.target.closest(
-          'input,textarea,[role=slider],[data-slot="toggle-group"]',
+          'input,textarea,[role=slider],[role=separator],[data-slot="toggle-group"]',
         ))
     )
       return;
@@ -292,10 +328,13 @@ export function Inspector(props: Props) {
               </div>
               <div className="mobile-inspector-header-metadata pointer-events-none text-center">
                 <DrawerTitle className="truncate text-base font-semibold">
-                  {item.name}
+                  {getIconDisplayName(item)}
                 </DrawerTitle>
-                <DrawerDescription className="mt-0.5 truncate text-xs text-muted">
-                  {item.category}
+                <DrawerDescription
+                  className="mt-0.5 truncate text-xs text-muted"
+                  title={getIconCategoryLabel(item)}
+                >
+                  {getIconCategoryLabel(item)}
                 </DrawerDescription>
               </div>
               <header className="mobile-inspector-hero">
@@ -313,10 +352,13 @@ export function Inspector(props: Props) {
                   aria-hidden="true"
                 >
                   <div className="truncate text-sm font-semibold">
-                    {item.name}
+                    {getIconDisplayName(item)}
                   </div>
-                  <div className="mt-1 truncate text-xs text-muted">
-                    {item.category}
+                  <div
+                    className="mt-1 truncate text-xs text-muted"
+                    title={getIconCategoryLabel(item)}
+                  >
+                    {getIconCategoryLabel(item)}
                   </div>
                 </div>
                 <div
@@ -326,7 +368,7 @@ export function Inspector(props: Props) {
                   <IconButton
                     icon="copy-sm"
                     label="Copy SVG"
-                    className="size-11"
+                    size="icon-xs"
                     onClick={async () =>
                       notify(
                         (await copy(item.svg))
@@ -336,8 +378,7 @@ export function Inspector(props: Props) {
                     }
                   />
                   <Toggle
-                    size="icon"
-                    className="size-11"
+                    size="icon-sm"
                     aria-label="Include in selection"
                     pressed={selectedIds.includes(item.id)}
                     onPressedChange={() => toggleSelection(item.id)}
@@ -368,7 +409,12 @@ export function Inspector(props: Props) {
       <motion.div
         ref={portalContainer}
         initial={false}
-        style={{ width: inLayout ? 'var(--inspector-width)' : 0 }}
+        style={
+          {
+            width: inLayout ? width : 0,
+            '--inspector-width': `${width}px`,
+          } as CSSProperties
+        }
         transition={{
           duration: reducedMotion ? 0 : 0.24,
           ease: [0.32, 0.72, 0, 1],
@@ -395,7 +441,8 @@ export function Inspector(props: Props) {
           onKeyDown={keyboard}
           render={
             <motion.div
-              layout
+              layout={!resizing}
+              layoutDependency={inLayout}
               layoutRoot
               transition={{
                 layout: {
@@ -408,33 +455,45 @@ export function Inspector(props: Props) {
         >
           {item && (
             <>
-              <header className="flex shrink-0 items-start gap-3 border-b border-line p-5">
+              <ResizableHandle
+                value={width}
+                min={minWidth}
+                max={maxWidth}
+                defaultValue={defaultWidth}
+                controls="inspector"
+                label="Resize inspector"
+                onValueChange={setPreferredWidth}
+                onResizingChange={setResizing}
+              />
+              <header className="flex shrink-0 items-start gap-3 border-b border-line p-2">
                 <div className="min-w-0 flex-1">
-                  <SheetTitle className="text-lg font-semibold break-words">
-                    {item.name}
+                  <SheetTitle className="text-base font-semibold wrap-break-word">
+                    {getIconDisplayName(item)}
                   </SheetTitle>
-                  <SheetDescription className="mt-1 text-sm text-muted">
-                    {item.category}
+                  <SheetDescription className="text-xs text-muted">
+                    {getIconCategoryLabel(item)}
                   </SheetDescription>
                 </div>
-                <Toggle
-                  size="icon"
-                  aria-label="Dock inspector"
-                  title={docked ? 'Undock inspector' : 'Dock inspector'}
-                  pressed={docked}
-                  onPressedChange={onDockedChange}
-                >
-                  <ToggleIcon icon="layout-pin" activeIcon="layout-pinned" />
-                </Toggle>
-                <SheetClose
-                  render={<Button variant="ghost" size="icon" />}
-                  aria-label="Close icon details"
-                >
-                  <Icon name="xmark-lg" />
-                </SheetClose>
+                <div className="flex gap-0.5">
+                  <Toggle
+                    size="icon"
+                    aria-label="Dock inspector"
+                    title={docked ? 'Undock inspector' : 'Dock inspector'}
+                    pressed={docked}
+                    onPressedChange={onDockedChange}
+                  >
+                    <ToggleIcon icon="layout-pin" activeIcon="layout-pinned" />
+                  </Toggle>
+                  <SheetClose
+                    render={<Button variant="ghost" size="icon" />}
+                    aria-label="Close icon details"
+                  >
+                    <Icon name="xmark" />
+                  </SheetClose>
+                </div>
               </header>
               <div className="inspector-scroll min-h-0 flex-1 overflow-y-auto">
-                <div className="flex h-64 items-center justify-center bg-canvas">
+                <div className="flex items-center justify-center bg-canvas">
                   <div className="size-36">
                     <IconPreview item={item} grid={grid} />
                   </div>

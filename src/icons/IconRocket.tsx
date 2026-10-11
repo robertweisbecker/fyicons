@@ -1,0 +1,20 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconRocket = React.forwardRef<SVGSVGElement, IconProps>(function IconRocket(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.49905 10.5463L9.49912 7.00024C9.49912 7.00024 9.81745 5.12806 9.50027 4.00024C9.19194 2.90393 7.99886 1.50024 7.99886 1.50024C7.99886 1.50024 6.80719 2.90421 6.49911 4.00024C6.18208 5.12811 6.49985 7.00024 6.49985 7.00024L6.49919 10.5463" stroke="currentColor" style={{
+      stroke: "currentColor",
+      strokeOpacity: 1
+    }} strokeLinecap="round" strokeLinejoin="round" /><path d="M9.65811 9.02566C9.39614 8.93833 9.11298 9.07991 9.02566 9.34189C8.93833 9.60386 9.07991 9.88702 9.34189 9.97434L9.5 9.5L9.65811 9.02566ZM12.5 10.5L12.3419 10.9743C12.4944 11.0252 12.662 10.9996 12.7924 10.9056C12.9227 10.8116 13 10.6607 13 10.5H12.5ZM9.5 9.5L9.34189 9.97434L12.3419 10.9743L12.5 10.5L12.6581 10.0257L9.65811 9.02566L9.5 9.5ZM12.5 10.5H13V9.32843H12.5H12V10.5H12.5ZM11.9142 7.91421L12.2678 7.56066L10.1036 5.39645L9.75 5.75L9.39645 6.10355L11.5607 8.26777L11.9142 7.91421ZM12.5 9.32843H13C13 8.66539 12.7366 8.0295 12.2678 7.56066L11.9142 7.91421L11.5607 8.26777C11.842 8.54907 12 8.9306 12 9.32843H12.5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /><path d="M6.5 9.5L3.5 10.5V9.32843C3.5 8.79799 3.71071 8.28929 4.08579 7.91421L6.25 5.75" stroke="currentColor" style={{
+      stroke: "currentColor",
+      strokeOpacity: 1
+    }} strokeLinecap="round" strokeLinejoin="round" /><path d="M6.5 12.2499C6.5 11.2736 8 9.99988 8 9.99988C8 9.99988 9.49973 11.2736 9.5 12.2499C9.50034 13.4999 8 14.4999 8 14.4999C8 14.4999 6.5 13.4999 6.5 12.2499Z" stroke="currentColor" style={{
+      stroke: "currentColor",
+      strokeOpacity: 1
+    }} strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
+});
+export default IconRocket;

@@ -1,0 +1,11 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconSpeakers = React.forwardRef<SVGSVGElement, IconProps>(function IconSpeakers(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M12.5 3C13.3284 3 14 3.67157 14 4.5V12.5C14 13.3284 13.3284 14 12.5 14H3.5C2.67157 14 2 13.3284 2 12.5V8.5C2 7.67157 2.67157 7 3.5 7H6V4.5C6 3.67157 6.67157 3 7.5 3H12.5ZM3.5 8C3.22386 8 3 8.22386 3 8.5V12.5C3 12.7761 3.22386 13 3.5 13H6V8H3.5ZM7.5 4C7.22386 4 7 4.22386 7 4.5V13H12.5C12.7761 13 13 12.7761 13 12.5V4.5C13 4.22386 12.7761 4 12.5 4H7.5ZM10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8ZM4.5 9.75C4.91421 9.75 5.25 10.0858 5.25 10.5C5.25 10.9142 4.91421 11.25 4.5 11.25C4.08579 11.25 3.75 10.9142 3.75 10.5C3.75 10.0858 4.08579 9.75 4.5 9.75ZM10 9C9.44772 9 9 9.44772 9 10C9 10.5523 9.44772 11 10 11C10.5523 11 11 10.5523 11 10C11 9.44772 10.5523 9 10 9ZM10 5C10.5523 5 11 5.44772 11 6C11 6.55228 10.5523 7 10 7C9.44772 7 9 6.55228 9 6C9 5.44772 9.44772 5 10 5Z" fill="currentColor" style={{
+      fill: "currentColor",
+      fillOpacity: 1
+    }} /></SvgRoot>;
+});
+export default IconSpeakers;

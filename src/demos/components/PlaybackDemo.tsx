@@ -128,6 +128,7 @@ export function PlaybackDemo() {
         />
       </div>
       <Slider.Root
+        thumbAlignment="edge"
         min={0}
         max={track.length}
         value={position}
@@ -173,7 +174,7 @@ export function PlaybackDemo() {
         <DemoToggle
           label="Show queue"
           icon="list-thumbnails"
-          activeIcon="list-log"
+          activeIcon="log"
           pressed={queue}
           onPressedChange={setQueue}
         />

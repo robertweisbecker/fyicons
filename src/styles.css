@@ -1,40 +1,62 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:is([data-theme='dark'] *));
+
 @theme inline {
-  --color-canvas: var(--bg);
+  --color-inset: var(--inset);
+  --color-canvas: var(--canvas);
+  --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-ink: var(--text);
   --color-muted: var(--muted);
-  --color-line: var(--border);
+  --color-line: var(--line);
+  --color-border: var(--border);
   --color-hover: var(--hover);
   --color-selection: var(--accent-bg);
   --color-control-accent: var(--control-accent);
-  --color-control-track: var(--color-neutral-400);
+  --color-control-track: var(--track);
   --color-danger: var(--color-red-500);
+  --color-dialog: var(--dialog);
+  --color-focus: var(--focus);
 }
 
 :root {
+  --inset: --alpha(var(--text) / 5%);
+  --canvas: var(--color-neutral-100);
   --bg: var(--color-neutral-50);
   --surface: var(--color-white);
+  --dialog: var(--color-white);
   --text: var(--color-neutral-900);
   --muted: var(--color-neutral-500);
-  --border: var(--color-neutral-200);
+  --border: --alpha(var(--text) / 14%);
+  --line: --alpha(var(--text) / 8%);
   --hover: var(--color-neutral-100);
-  --accent-bg: var(--color-neutral-100);
-  --grid: var(--color-neutral-200);
+  --accent-bg: var(--color-blue-100);
+  --grid: var(--color-blue-200);
   --control-accent: var(--color-blue-500);
+  --focus: var(--color-blue-400);
+  --track: var(--color-neutral-300);
   --inspector-width: calc(var(--spacing) * 96);
+  --surface-outline-offset: 0px;
   color-scheme: light;
 }
-:root[data-theme='dark'] {
-  --bg: var(--color-black);
-  --surface: var(--color-neutral-950);
+:root[data-theme='dark'],
+.dark {
+  --inset: var(--color-black);
+  --canvas: var(--color-neutral-950);
+  --bg: var(--color-neutral-950);
+  --surface: var(--color-neutral-900);
+  --dialog: var(--color-neutral-700);
   --text: var(--color-neutral-100);
   --muted: var(--color-neutral-400);
-  --border: var(--color-neutral-700);
+  --border: --alpha(var(--text) / 12%);
+  --line: --alpha(var(--text) / 8%);
   --hover: var(--color-neutral-800);
-  --accent-bg: var(--color-neutral-900);
-  --grid: var(--color-blue-950);
+  --accent-bg: var(--color-blue-950);
+  --grid: var(--color-blue-700);
+  --focus: var(--color-blue-300);
+  --surface-outline-offset: -1px;
+  --track: --alpha(var(--text) / 10%);
   color-scheme: dark;
 }
 @media (768px <= width < 1024px) {

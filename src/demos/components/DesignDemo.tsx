@@ -46,11 +46,13 @@ function Dimension({
       step={8}
       className="flex-1"
     >
-      <NumberField.Group className="flex h-9 items-center gap-2 rounded-lg border border-line bg-surface px-2.5 pointer-coarse:h-11">
-        <Icon name={icon} className="text-muted" />
+      <NumberField.Group className="flex h-8 items-center gap-1 rounded-lg border border-line bg-surface focus-within:border-current">
+        <NumberField.ScrubArea className="cursor-ew-resize px-2">
+          <Icon name={icon} className="text-muted" />
+        </NumberField.ScrubArea>
         <NumberField.Input
           aria-label={label}
-          className="w-full min-w-0 bg-transparent text-right text-sm tabular-nums outline-none pointer-coarse:text-base"
+          className="w-full min-w-0 bg-transparent px-2 text-end text-sm tabular-nums outline-none pointer-coarse:text-base"
         />
       </NumberField.Group>
     </NumberField.Root>
@@ -108,8 +110,8 @@ export function DesignDemo() {
         >
           <div
             className={cn(
-              'relative max-w-[calc(100%-3rem)] border-2 text-violet-950',
-              border ? 'border-violet-800/40' : 'border-transparent',
+              'relative max-w-[calc(100%-3rem)] text-violet-950 outline-2 outline-offset-(--surface-outline-offset)',
+              border ? 'outline-violet-800/40' : 'outline-transparent',
               shadow && 'shadow-xl shadow-violet-950/15',
               !visible && 'invisible',
             )}
@@ -152,10 +154,10 @@ export function DesignDemo() {
             {!locked && tool[0] === 'Select' && (
               <div
                 aria-hidden
-                className="pointer-events-none absolute -inset-2 rounded-sm border border-violet-500"
+                className="pointer-events-none absolute -inset-2 rounded-sm border border-control-accent"
               >
-                <span className="absolute -top-1 -left-1 size-1.5 border border-violet-500 bg-white" />
-                <span className="absolute -right-1 -bottom-1 size-1.5 border border-violet-500 bg-white" />
+                <span className="absolute -top-1 -left-1 size-1.5 border border-control-accent bg-surface" />
+                <span className="absolute -right-1 -bottom-1 size-1.5 border border-control-accent bg-surface" />
               </div>
             )}
           </div>
@@ -180,7 +182,7 @@ export function DesignDemo() {
             >
               {[
                 ['left', 'align-start'],
-                ['center', 'align-horizontal-center'],
+                ['center', 'align-center'],
                 ['right', 'align-end'],
               ].map(([value, icon]) => (
                 <DemoToggle
@@ -195,7 +197,7 @@ export function DesignDemo() {
           <div className="flex items-center gap-2">
             <Dimension
               disabled={locked}
-              label="Object width"
+              label="Width"
               icon="arrow-x"
               value={width}
               onChange={(v) => {
@@ -209,17 +211,10 @@ export function DesignDemo() {
                   );
               }}
             />
-            <DemoToggle
-              disabled={locked}
-              label="Lock aspect ratio"
-              icon="link-break"
-              activeIcon="link"
-              pressed={linked}
-              onPressedChange={setLinked}
-            />
+
             <Dimension
               disabled={locked}
-              label="Object height"
+              label="Height"
               icon="arrow-y"
               value={height}
               onChange={(v) => {
@@ -233,9 +228,19 @@ export function DesignDemo() {
                   );
               }}
             />
+            <DemoToggle
+              variant="text"
+              disabled={locked}
+              label="Lock aspect ratio"
+              icon="link"
+              activeIcon="links"
+              pressed={linked}
+              onPressedChange={setLinked}
+            />
           </div>
           <Slider.Root
             disabled={locked}
+            thumbAlignment="edge"
             value={radius}
             onValueChange={setRadius}
             min={0}
@@ -243,7 +248,7 @@ export function DesignDemo() {
           >
             <div className="flex items-center gap-2 text-xs">
               <Icon name="border-radius" />
-              <Slider.Label>Corner radius</Slider.Label>
+              <Slider.Label>Radius</Slider.Label>
               <Slider.Value className="ml-auto tabular-nums" />
             </div>
             <SliderControl />
@@ -282,6 +287,7 @@ export function DesignDemo() {
           </div>
           <Slider.Root
             disabled={locked}
+            thumbAlignment="edge"
             value={opacity}
             onValueChange={setOpacity}
             min={0}
@@ -305,15 +311,15 @@ export function DesignDemo() {
                 onChange: setShadow,
               },
               {
-                label: 'Border',
-                icon: 'border',
+                label: 'Outline',
+                icon: 'border-dashed',
                 checked: border,
                 onChange: setBorder,
               },
             ].map(({ label, icon, checked, onChange }) => (
               <Field.Root
                 key={label}
-                className="flex items-center justify-between pointer-coarse:min-h-11"
+                className="flex items-center justify-between"
               >
                 <Field.Label className="flex items-center gap-2 text-xs">
                   <Icon name={icon} />

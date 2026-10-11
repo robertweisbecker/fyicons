@@ -35,7 +35,7 @@ export function StateDemo() {
             [
               ['Visible', 'eye-closed', 'eye'],
               ['Light', 'sun-lg', 'sun-lg-fill'],
-              ['People', 'users-two', 'users-two-fill'],
+              ['People', 'users', 'users-fill'],
             ],
           ],
           [
@@ -93,13 +93,13 @@ export function SettingsDemo() {
       </Field.Root>
       <div className="ml-7 flex flex-col gap-4 border-l border-line pl-4">
         {[
-          ['Task updates', 'circle-check', 'circle-check-fill'],
-          ['New messages', 'chat', 'chat-text'],
+          ['Task updates', 'activity', 'activity'],
+          ['New messages', 'chat', 'chat-check'],
           ['Quiet hours', 'moon', 'moon-fill'],
         ].map(([label, icon, activeIcon], i) => (
           <Field.Root
             key={label}
-            className="flex items-center justify-between gap-3 pointer-coarse:min-h-11"
+            className="flex items-center justify-between gap-3"
           >
             <Field.Label className="flex items-center gap-2 text-sm">
               <Icon name={preferences[i] ? activeIcon : icon} />

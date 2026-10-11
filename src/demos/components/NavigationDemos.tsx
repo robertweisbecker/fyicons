@@ -47,9 +47,9 @@ const filePaths: Record<string, string> = {
   'README.md': 'README.md',
 };
 const files = [
-  ['Button.tsx', 'file-code', 'M'],
-  ['Checkbox.tsx', 'file-code', ''],
-  ['Icon.tsx', 'file-code', 'A'],
+  ['Button.tsx', 'atom', 'M'],
+  ['Checkbox.tsx', 'atom', ''],
+  ['Icon.tsx', 'atom', 'A'],
 ] as const;
 export function FileExplorerDemo() {
   const [selected, setSelected] = useState('Button.tsx');
@@ -66,11 +66,11 @@ export function FileExplorerDemo() {
     <Button
       key={name}
       variant="ghost"
-      size="unstyled"
+      size="default"
       onClick={() => setSelected(name)}
       aria-current={selected === name ? 'page' : undefined}
       className={cn(
-        'flex min-h-9 w-full justify-start gap-2 rounded-lg px-2 text-sm font-normal pointer-coarse:min-h-11',
+        'flex w-full justify-start gap-2 px-2 text-sm font-normal',
         selected === name && 'bg-current/10',
       )}
     >
@@ -82,12 +82,15 @@ export function FileExplorerDemo() {
   return (
     <div className="flex flex-1 flex-col gap-4">
       <div className="flex items-center gap-2">
-        <Icon name="git-branch" />
+        <Icon name="book-bookmark" />
         <span className="text-sm font-medium">interface-kit</span>
-        <span className="ml-auto text-xs text-muted">main</span>
+        <span className="ml-auto flex items-center gap-1 rounded bg-current/15 px-1 font-mono text-sm text-muted">
+          <Icon name="git-branch" />
+          main
+        </span>
         <DemoIconButton
           label={allOpen ? 'Collapse folders' : 'Expand folders'}
-          icon={allOpen ? 'arrows-compress' : 'arrows-expand'}
+          icon={allOpen ? 'list-collapse' : 'list-expand'}
           onClick={() =>
             setOpenFolders(allOpen ? [] : ['src', 'components', 'assets'])
           }
@@ -102,17 +105,17 @@ export function FileExplorerDemo() {
             <Folder name="components" {...folderState('components')}>
               {files.map(([name, icon, change]) => row(name, icon, change))}
             </Folder>
-            {row('styles.css', 'paint-bucket')}
+            {row('styles.css', 'palette')}
           </Folder>
           <Folder name="assets" {...folderState('assets')}>
-            {row('cover.png', 'file-image')}
+            {row('cover.png', 'image')}
             {row('logo.svg', 'vector-path')}
           </Folder>
-          {row('README.md', 'markdown')}
+          {row('README.md', 'markdown-fill')}
         </div>
       </nav>
       <div className="mt-auto flex min-w-0 items-center gap-2 text-xs text-muted">
-        <Icon name="file" />
+        <Icon name="eye" />
         <span className="min-w-0 flex-1 truncate" aria-live="polite">
           {selected}
         </span>
@@ -125,7 +128,7 @@ export function FileExplorerDemo() {
   );
 }
 export function SidebarDemo() {
-  const [value, setValue] = useState(['Inbox']);
+  const [value, setValue] = useState(['Home']);
   const [projects, setProjects] = useState(['Website', 'Design system']);
   const [projectsOpen, setProjectsOpen] = useState(true);
   return (
@@ -134,8 +137,8 @@ export function SidebarDemo() {
       className="flex flex-1 flex-col gap-4"
     >
       <div className="flex items-center gap-3">
-        <div className="grid size-9 place-items-center rounded-xl bg-ink text-canvas">
-          <Icon name="asterisk" />
+        <div className="grid size-9 place-items-center rounded-lg bg-inset text-ink">
+          <Icon name="palette" />
         </div>
         <div>
           <p className="text-sm font-semibold">Studio</p>
@@ -144,7 +147,7 @@ export function SidebarDemo() {
         <DemoIconButton
           className="ml-auto"
           label="Add project"
-          icon="plus"
+          icon="folder-add"
           onClick={() => {
             setProjects((p) => [...p, `Untitled ${p.length - 1}`]);
             setProjectsOpen(true);
@@ -156,17 +159,20 @@ export function SidebarDemo() {
         value={value}
         onValueChange={(v) => v.length && setValue(v)}
         aria-label="Workspace section"
+        className="gap-px"
       >
         {[
-          ['Inbox', 'inbox', 'inbox-2', '8'],
-          ['Today', 'calendar', 'calendar-alt', '3'],
+          ['Home', 'home-wide', 'home-wide-fill', ''],
+          ['Priority', 'circle-warning', 'circle-warning-fill', '8'],
+          ['Calls', 'phone', 'phone-fill', ''],
+          ['Calendar', 'calendar', 'calendar-fill', '3'],
           ['Saved', 'bookmark', 'bookmark-fill', ''],
-          ['People', 'users-two', 'users-two-fill', ''],
+          ['Contacts', 'users', 'users-fill', ''],
         ].map(([label, icon, active, count]) => (
           <Toggle
             key={label}
             value={label}
-            className="min-h-9 w-full justify-start gap-3 px-3 font-normal pointer-coarse:min-h-11"
+            className="w-full justify-start gap-2 font-normal"
           >
             <ToggleIcon icon={icon} activeIcon={active} />
             {label}
@@ -177,7 +183,14 @@ export function SidebarDemo() {
         ))}
       </ToggleGroup>
       <Collapsible.Root open={projectsOpen} onOpenChange={setProjectsOpen}>
-        <Collapsible.Trigger className="flex h-9 w-full items-center gap-2 text-xs text-muted pointer-coarse:h-11">
+        <Collapsible.Trigger
+          render={
+            <Button
+              variant="ghost"
+              className="w-full justify-start gap-3 text-xs text-muted"
+            />
+          }
+        >
           <Icon name={projectsOpen ? 'folder-open' : 'folder'} />
           Projects
           <Icon

@@ -28,7 +28,7 @@ export function DrawerContent({
         <Primitive.Popup
           {...props}
           className={cn(
-            'mobile-inspector pointer-events-auto relative w-full overflow-hidden rounded-t-2xl border border-line bg-surface text-ink shadow-xl outline-none',
+            'mobile-inspector pointer-events-auto relative w-full overflow-hidden rounded-t-2xl bg-surface text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10',
             className,
           )}
         >
