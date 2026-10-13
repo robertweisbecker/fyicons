@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Icon } from '@/components/Icon';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { DemoToggle } from '@/demos/components/DemoControls';
+import { cn } from '@/lib/utils';
 import { Window } from './Window';
 
 const locations = [
@@ -16,25 +17,44 @@ const locations = [
   ['trash', 'Trash'],
 ] as const;
 
+const files = [
+  ['file.png', 'image', 'text-rose-500'],
+  ['file.mp4', 'video', 'text-violet-500'],
+  ['file.svg', 'file-svg', 'text-amber-500'],
+  ['file.txt', 'file-text', 'text-sky-600'],
+  ['file.js', 'file-code', 'text-blue-500'],
+  ['file.zip', 'archive', 'text-emerald-600'],
+] as const;
+
 function DriveLocations() {
   return (
-    <div className="flex h-full flex-col gap-3 px-3 text-sm">
-      <span className="flex min-h-9 items-center justify-center gap-2 rounded-lg border border-border bg-surface shadow-xs">
+    <div className="flex min-h-full flex-col gap-3 px-2 text-sm @2xl/window:px-3">
+      <span
+        title="New"
+        className="flex min-h-9 items-center justify-center gap-2 rounded-lg border border-border bg-surface shadow-xs"
+      >
         <Icon name="circle-plus-fill" />
-        New
+        <span className="sr-only @2xl/window:not-sr-only">New</span>
       </span>
       <ul className="space-y-1">
         {locations.map(([icon, label]) => (
-          <li key={label} className="flex min-h-8 items-center gap-2 px-2">
+          <li
+            key={label}
+            title={label}
+            className="flex min-h-8 items-center justify-center gap-2 px-2 @2xl/window:justify-start"
+          >
             <Icon name={icon} />
-            {label}
+            <span className="sr-only @2xl/window:not-sr-only">{label}</span>
           </li>
         ))}
       </ul>
-      <span className="mt-auto flex items-center gap-2 py-2">
+      <span
+        title="Storage: 50% used"
+        className="mt-auto flex items-center justify-center gap-2 py-2 @2xl/window:justify-start"
+      >
         <Icon name="cloud" />
-        <span>Storage</span>
-        <span className="ml-auto text-xs whitespace-nowrap text-muted">
+        <span className="sr-only @2xl/window:not-sr-only">Storage</span>
+        <span className="sr-only ml-auto text-xs whitespace-nowrap text-muted @2xl/window:not-sr-only">
           50% used
         </span>
       </span>
@@ -44,30 +64,21 @@ function DriveLocations() {
 
 export function FilesApp() {
   const [view, setView] = useState(['grid']);
+  const list = view[0] === 'list';
   return (
     <Window title="Files" className="bg-canvas">
-      <div className="relative flex min-w-0 shrink-0 items-center gap-3 p-3">
-        <div className="hidden w-40 shrink-0 items-center gap-2 @2xl/window:flex">
+      <div className="flex min-w-0 shrink-0 items-center gap-2 p-3">
+        <div className="flex shrink-0 items-center gap-2 @2xl/window:w-40">
           <Icon name="truck-moving" />
-          Drive
+          <span className="hidden @sm/window:inline">Drive</span>
         </div>
-        <details className="relative shrink-0 @2xl/window:hidden">
-          <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1">
-            <Icon name="truck-moving" />
-            Drive
-            <Icon name="chevron-down-sm" />
-          </summary>
-          <div className="absolute top-full left-0 z-10 w-52 rounded-xl border border-line bg-surface p-2 shadow-lg">
-            <DriveLocations />
-          </div>
-        </details>
         <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-inset px-3 py-2 text-xs text-muted">
           <Icon name="search-simple" />
           <span>Search</span>
           <Icon name="filter-lines" className="ml-auto" />
           <Icon name="sliders" />
         </div>
-        <div className="hidden items-center gap-3 @3xl/window:flex">
+        <div className="flex shrink-0 items-center gap-2">
           {[
             'circle-question',
             'settings',
@@ -81,7 +92,7 @@ export function FilesApp() {
       </div>
       <div className="flex min-h-0 flex-1 gap-2 pb-3">
         <aside
-          className="hidden w-44 shrink-0 @2xl/window:block"
+          className="w-12 shrink-0 overflow-y-auto overscroll-y-contain @2xl/window:w-44"
           aria-label="Drive locations"
         >
           <DriveLocations />
@@ -104,7 +115,7 @@ export function FilesApp() {
             </span>
             <Icon
               name="users-team-fill"
-              className="hidden items-center gap-2 text-muted @3xl/window:flex"
+              className="hidden text-muted @3xl/window:block"
             />
             <ToggleGroup
               value={view}
@@ -147,18 +158,35 @@ export function FilesApp() {
             ))}
           </div>
           <div
-            className="group/files grid grid-cols-2 gap-2 data-[view=list]:grid-cols-1 @2xl/window:grid-cols-3"
+            className={cn(
+              'grid gap-2',
+              !list && '@sm/window:grid-cols-2 @2xl/window:grid-cols-3',
+            )}
             data-view={view[0]}
             aria-label="Album files"
           >
-            {Array.from({ length: 6 }, (_, i) => (
-              <div key={i} className="min-w-0 rounded-lg bg-canvas p-1">
-                <div className="flex items-center gap-1 px-1 py-1 text-xs">
-                  <Icon name="image" className="text-rose-500" />
-                  <span>file.png</span>
+            {files.map(([name, icon, color]) => (
+              <div
+                key={name}
+                className={cn(
+                  'min-w-0 rounded-lg bg-canvas p-1',
+                  list && 'flex items-center gap-2',
+                )}
+              >
+                <div className="flex min-w-0 flex-1 items-center gap-1 p-1 text-xs">
+                  {!list && <Icon name={icon} className={color} />}
+                  <span className="truncate">{name}</span>
                   <Icon name="ellipsis-v-sm" className="ml-auto" />
                 </div>
-                <div className="h-24 rounded-md bg-inset group-data-[view=list]/files:hidden" />
+                <div
+                  className={cn(
+                    'flex items-center justify-center rounded-md bg-current/10',
+                    color,
+                    list ? 'order-first size-10 shrink-0' : 'h-24',
+                  )}
+                >
+                  <Icon name={icon} size={list ? 20 : 32} />
+                </div>
               </div>
             ))}
           </div>

@@ -124,7 +124,7 @@ function Details({
   item: IconRecord;
   selected: boolean;
   select: Props['select'];
-  toggleSelection: () => void;
+  toggleSelection?: () => void;
   notify: Props['notify'];
 }) {
   const variants = item.duplicate
@@ -138,14 +138,16 @@ function Details({
           <DrawerDescription className="text-xs text-muted">
             {getIconCategoryLabel(item)}
           </DrawerDescription>
-          <Field.Root className="flex items-center gap-1 text-xs">
-            <Checkbox
-              size="sm"
-              checked={selected}
-              onCheckedChange={toggleSelection}
-            />
-            <Field.Label>Add to export</Field.Label>
-          </Field.Root>
+          {toggleSelection && (
+            <Field.Root className="flex items-center gap-1 text-xs">
+              <Checkbox
+                size="sm"
+                checked={selected}
+                onCheckedChange={toggleSelection}
+              />
+              <Field.Label>Add to export</Field.Label>
+            </Field.Root>
+          )}
           {variants.length > 1 && (
             <section>
               <h3 className="mb-2 text-sm font-medium">Variants</h3>
@@ -268,7 +270,7 @@ export function Inspector(props: Props) {
       item={item}
       selected={selectedIds.includes(item.id)}
       select={props.select}
-      toggleSelection={() => toggleSelection(item.id)}
+      toggleSelection={mobile ? undefined : () => toggleSelection(item.id)}
       notify={notify}
     />
   );
@@ -400,14 +402,6 @@ export function Inspector(props: Props) {
                       )
                     }
                   />
-                  <Toggle
-                    size="icon-sm"
-                    aria-label="Include in selection"
-                    pressed={selectedIds.includes(item.id)}
-                    onPressedChange={() => toggleSelection(item.id)}
-                  >
-                    <ToggleIcon icon="square" activeIcon="square-check-fill" />
-                  </Toggle>
                 </div>
               </header>
               <DrawerScroll

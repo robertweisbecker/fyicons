@@ -32,8 +32,8 @@ export const iconGroups = [
   },
   {
     id: '857:27892',
-    name: 'AI',
-    caption: 'For that thing your boss wants',
+    name: 'AI.',
+    caption: 'For that thing your boss wants.',
     rows: [
       ['chat', 'chat-code', 'chat-sparkles', 'chat-round', 'chat-round-code'],
       [
@@ -69,8 +69,8 @@ export const iconGroups = [
   },
   {
     id: '857:27927',
-    name: 'Tools',
-    caption: '…that tilt!',
+    name: 'Tools.',
+    caption: 'With some tilt.',
     rows: [
       ['pencil', 'pen', 'brush-wide', 'brush-filbert', 'paint-bucket'],
       ['highlighter', 'pen-tool', 'pen-tool-alt', 'eyedropper', 'eraser'],
@@ -87,8 +87,8 @@ export const iconGroups = [
   },
   {
     id: '857:27957',
-    name: 'Code',
-    caption: 'The stuff your Claude writes',
+    name: 'Code.',
+    caption: "It's that stuff Claude writes for you.",
     rows: [
       ['code-simple', 'code', 'code-square', 'code-rectangle', 'code-block'],
       [
@@ -154,7 +154,7 @@ export const iconGroups = [
   },
   {
     id: '857:28022',
-    name: 'Emoji',
+    name: 'Emoji.',
     caption: 'Tiny things & weird guys!',
     rows: [
       ['skull', 'ghost', 'agent', 'bug-2', 'bug-1'],
@@ -178,8 +178,8 @@ export const iconGroups = [
   },
   {
     id: '857:28051',
-    name: 'Commerce',
-    caption: '(mostly just bags)',
+    name: 'Commerce.',
+    caption: 'But mostly just bags.',
     rows: [
       ['shopping-cart', 'basket', 'bag', 'backpack', 'suitcase'],
       ['briefcase', 'shop', 'box-shipping', 'truck', 'car'],
@@ -191,7 +191,7 @@ export const iconGroups = [
   {
     id: '857:28081',
     name: 'Symbols',
-    caption: ' for censoring swears',
+    caption: 'for censoring swears',
     rows: [
       ['pound-sign', 'at-sign', 'asterisk', 'asterisk-simple', 'star'],
       ['sparkle', 'kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt'],
@@ -202,8 +202,8 @@ export const iconGroups = [
   },
   {
     id: '857:28111',
-    name: 'Progress',
-    caption: 'Batteries included',
+    name: 'Progress.',
+    caption: 'Batteries included.',
     rows: [
       ['spinner', 'gauge-low', 'gauge', 'gauge-high', 'loader'],
       [
@@ -240,8 +240,8 @@ export const iconGroups = [
   },
   {
     id: '857:28148',
-    name: 'System',
-    caption: 'Sorry Microsoft',
+    name: 'System.',
+    caption: 'Check back later, Windows gang.',
     rows: [
       ['kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt', 'kbd-return'],
       ['eject', 'kbd-shift', 'kbd-caps', 'power', 'wifi'],
@@ -259,8 +259,8 @@ export const iconGroups = [
   },
   {
     id: '857:28183',
-    name: 'States & status',
-    caption: '2 fill or not 2 fill',
+    name: 'Statuses.',
+    caption: 'With states!',
     rows: [
       ['circle-question', 'info', 'warning'],
       ['circle-warning', 'circle-check', 'circle-x'],

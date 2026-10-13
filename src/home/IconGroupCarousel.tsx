@@ -86,7 +86,7 @@ export function IconGroupCarousel() {
       </div>
       <div
         ref={track}
-        className="relative flex scroll-fade-x snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pt-1 pb-5 scroll-fade-6 focus-visible:-outline-offset-2 motion-reduce:scroll-auto sm:gap-6"
+        className="relative flex scroll-fade-x snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pt-1 pb-5 scroll-fade-12 focus-visible:-outline-offset-2 motion-reduce:scroll-auto sm:gap-6"
         role="region"
         aria-roledescription="carousel"
         aria-label="Icon groups"
@@ -96,20 +96,23 @@ export function IconGroupCarousel() {
         {iconGroups.map((group, index) => (
           <figure
             key={group.id}
-            className="m-0 flex h-108 w-72 max-w-full shrink-0 snap-start scroll-ms-0 flex-col gap-6 rounded-2xl bg-inset p-4 sm:w-80 sm:p-5"
+            className="m-0 flex h-108 w-72 max-w-full shrink-0 snap-start scroll-ms-0 flex-col gap-2 rounded-2xl bg-inset p-4 sm:w-80"
             data-figma-id={group.id}
             role="group"
             aria-roledescription="slide"
             aria-label={`${group.name}, ${index + 1} of ${iconGroups.length}`}
           >
+            <figcaption className="flex gap-2 text-sm leading-5">
+              <span className="font-medium">{group.name}</span>{' '}
+              <span className="text-muted">{group.caption}</span>
+            </figcaption>
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-xl bg-surface px-3 py-4 text-muted shadow-md ring ring-border">
               {group.rows.map((row, rowIndex) => (
                 <div
                   key={rowIndex}
                   className="flex max-w-full justify-center data-state-divider:mt-2"
                   data-state-divider={
-                    (group.name === 'States & status' && rowIndex === 3) ||
-                    undefined
+                    (group.name === 'Statuses.' && rowIndex === 3) || undefined
                   }
                 >
                   {row.map((name, iconIndex) => (
@@ -117,16 +120,12 @@ export function IconGroupCarousel() {
                       key={`${name}-${iconIndex}`}
                       className="grid h-10 w-10 min-w-8 shrink place-items-center"
                     >
-                      <Icon name={name} size={32} title={name} />
+                      <Icon name={name} size={24} title={name} />
                     </span>
                   ))}
                 </div>
               ))}
             </div>
-            <figcaption className="min-h-10 text-sm leading-5">
-              <span className="font-medium">{group.name}</span>{' '}
-              <span className="text-muted">{group.caption}</span>
-            </figcaption>
           </figure>
         ))}
       </div>

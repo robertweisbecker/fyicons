@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import { Icon } from '@/components/Icon';
-import { Toggle } from '@/components/ui/toggle';
+import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { DemoToggle } from '@/demos/components/DemoControls';
-import { FormatStudy } from '../FormatStudy';
-import { Window } from './Window';
+import { cn } from '@/lib/utils';
+import { Glyph } from '../Study';
+import { DesignInspector, designFills } from './DesignInspector';
+import { DesignRail } from './DesignRail';
+import { Window, WindowControls } from './Window';
 
 const tools = [
   ['pointer', 'Select'],
-  ['pen-tip', 'Pen'],
-  ['brush-tip', 'Brush'],
-  ['pencil-tip', 'Pencil'],
   ['frame', 'Frame'],
   ['square', 'Rectangle'],
   ['pen-tool', 'Vector'],
@@ -18,51 +18,78 @@ const tools = [
   ['chat-round', 'Comment'],
   ['apps-plus', 'Resources'],
 ] as const;
-const fills = [
-  { name: 'Lavender', color: 'var(--color-violet-300)' },
-  { name: 'Blue', color: 'var(--color-sky-300)' },
-  { name: 'Peach', color: 'var(--color-orange-200)' },
-  { name: 'Mint', color: 'var(--color-emerald-200)' },
-];
-
-function DesignRail() {
-  return (
-    <div className="row-span-2 flex w-12 flex-col items-center gap-4 border-r border-line bg-surface px-1 py-4 text-xs text-muted @lg/window:w-16">
-      <Icon name="atom-spiral" />
-      <span className="h-px w-5 bg-line" />
-      {[
-        ['file', 'File'],
-        ['sparkle', 'Agents'],
-        ['circle-plus', 'Assets'],
-        ['toolbox', 'Tools'],
-        ['token', 'Variables'],
-      ].map(([icon, label]) => (
-        <span key={icon} className="flex flex-col items-center gap-1">
-          <Icon name={icon} />
-          <span className="sr-only @lg/window:not-sr-only">{label}</span>
-        </span>
-      ))}
-      <span className="mt-auto flex flex-col items-center gap-1">
-        <Icon name="book-open" />
-        <span className="sr-only @lg/window:not-sr-only">Libraries</span>
-      </span>
-    </div>
-  );
-}
-
 export function DesignApp() {
   const [tool, setTool] = useState(['pointer']);
-  const [fill, setFill] = useState(['Lavender']);
-  const color = fills.find((item) => item.name === fill[0])!.color;
+  const [fill, setFill] = useState(designFills[0]);
+  const [fillVisible, setFillVisible] = useState(true);
+  const [inspectorOpen, setInspectorOpen] = useState(false);
+  const inspectorId = useId();
+  const inspectorToggle = useRef<HTMLButtonElement>(null);
   return (
-    <Window title="Design">
-      <div className="grid min-h-0 flex-1 grid-cols-[auto_minmax(0,1fr)] grid-rows-[minmax(0,1fr)_auto]">
+    <Window
+      title="Design"
+      header={
+        <div
+          className="flex h-9 shrink-0 items-center border-b border-line bg-bg text-xs text-muted"
+          aria-label="Design file bar"
+        >
+          <WindowControls />
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label="Design home"
+            className="mx-1"
+          >
+            <Icon name="home" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label="Design community"
+            className="mr-1"
+          >
+            <Icon name="globe-simple" />
+          </Button>
+          <div className="flex h-full min-w-0 items-center gap-2 border-x border-line bg-surface px-3 text-ink">
+            <Icon name="pen-tool" className="text-control-accent" />
+            <span className="min-w-0 truncate">Design</span>
+            <Glyph name="xmark-sm" className="ml-3 text-muted" />
+          </div>
+          <Button
+            ref={inspectorToggle}
+            variant="ghost"
+            size="icon-sm"
+            aria-label={
+              inspectorOpen ? 'Hide design inspector' : 'Show design inspector'
+            }
+            aria-expanded={inspectorOpen}
+            aria-controls={inspectorId}
+            onClick={() => setInspectorOpen(!inspectorOpen)}
+            className="mr-1 ml-auto aria-expanded:bg-inset @lg/window:hidden"
+          >
+            <Icon
+              name={inspectorOpen ? 'sidebar-right-open' : 'sidebar-right'}
+            />
+          </Button>
+        </div>
+      }
+    >
+      <div className="relative flex min-h-0 flex-1">
         <DesignRail />
-        <div className="grid min-h-0 min-w-0 content-start items-start gap-6 overflow-y-auto overscroll-y-contain bg-inset p-4 @3xl/window:grid-cols-2 @3xl/window:content-center @3xl/window:p-6">
-          <div className="relative grid min-h-64 place-items-center py-8">
+        <div
+          className={cn(
+            'relative isolate min-h-0 min-w-0 flex-1 place-items-center bg-inset p-4 pb-28',
+            inspectorOpen ? 'hidden @lg/window:grid' : 'grid',
+          )}
+          role="region"
+          aria-label="Design canvas"
+        >
+          <div className="relative">
             <div
               className="relative flex h-44 w-40 flex-col items-center justify-center gap-3 rounded-3xl text-center text-violet-950 shadow-lg"
-              style={{ backgroundColor: color }}
+              style={{
+                backgroundColor: fillVisible ? fill.color : 'transparent',
+              }}
             >
               <Icon
                 name={
@@ -70,9 +97,7 @@ export function DesignApp() {
                     ? 'font-serif'
                     : tool[0] === 'pen-tool'
                       ? 'vector-path'
-                      : tool[0] === 'pencil-tip'
-                        ? 'scribble'
-                        : 'asterisk'
+                      : 'asterisk'
                 }
               />
               <span className="font-serif text-2xl leading-tight font-semibold">
@@ -93,87 +118,76 @@ export function DesignApp() {
                 </span>
               )}
             </div>
-            <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-xs whitespace-nowrap text-muted">
+            <span className="absolute top-full left-1/2 mt-6 -translate-x-1/2 text-xs whitespace-nowrap text-muted">
               160 × 176
             </span>
           </div>
-          <div className="mx-auto flex w-full max-w-72 flex-col gap-3">
-            <div className="flex justify-center">
-              <FormatStudy />
-            </div>
-            <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-surface p-3 text-xs shadow-sm">
-              <span className="flex items-center gap-2">
-                <Icon name="paint-bucket" />
-                Fill
-              </span>
+          <div className="absolute inset-x-3 bottom-4 flex justify-center">
+            <div
+              className="flex w-fit max-w-full flex-wrap items-center justify-center gap-1 rounded-xl bg-surface p-1 shadow-md ring ring-line"
+              aria-label="Canvas toolbar"
+            >
               <ToggleGroup
-                aria-label="Cover fill"
-                value={fill}
-                onValueChange={(v) => v.length && setFill(v)}
+                aria-label="Canvas tools"
+                value={tool}
+                onValueChange={(v) => v.length && setTool(v)}
+                className="max-w-full flex-wrap justify-center gap-0.5"
               >
-                {fills.map((item) => (
-                  <Toggle
-                    key={item.name}
-                    value={item.name}
-                    aria-label={`${item.name} cover`}
+                {tools.map(([icon, label]) => (
+                  <DemoToggle
+                    key={icon}
+                    value={icon}
+                    icon={icon}
+                    label={`${label} canvas tool`}
                     size="icon-sm"
-                    className="pointer-coarse:size-11"
-                  >
-                    <span
-                      className="grid size-5 place-items-center rounded-full border border-black/10 text-violet-950"
-                      style={{ backgroundColor: item.color }}
-                    >
-                      {fill[0] === item.name && <Icon name="check-sm" />}
-                    </span>
-                  </Toggle>
+                    className="data-pressed:bg-control-accent data-pressed:text-white data-pressed:hover:bg-control-accent"
+                  />
+                ))}
+              </ToggleGroup>
+              <ToggleGroup
+                defaultValue={['pointer-rulers']}
+                aria-label="Canvas mode"
+                className="gap-0 rounded-md bg-canvas p-px"
+              >
+                {[
+                  ['scribble', 'Draw'],
+                  ['pointer-rulers', 'Measure'],
+                  ['code', 'Code'],
+                ].map(([icon, label]) => (
+                  <DemoToggle
+                    key={icon}
+                    value={icon}
+                    icon={icon}
+                    label={`${label} mode`}
+                    variant="elevated"
+                    size="icon-sm"
+                  />
                 ))}
               </ToggleGroup>
             </div>
           </div>
         </div>
-        <div className="col-start-2 min-w-0 overflow-x-auto overscroll-x-contain border-t border-line bg-bg p-3">
-          <div className="mx-auto flex w-max items-center gap-1 rounded-xl bg-surface p-1 shadow-md ring ring-line">
-            <ToggleGroup
-              aria-label="Canvas tools"
-              value={tool}
-              onValueChange={(v) => v.length && setTool(v)}
-              className="gap-0.5"
-            >
-              {tools.map(([icon, label]) => (
-                <DemoToggle
-                  key={icon}
-                  value={icon}
-                  icon={icon}
-                  label={`${label} canvas tool`}
-                  size="icon-sm"
-                  className="data-pressed:bg-control-accent data-pressed:text-white data-pressed:hover:bg-control-accent pointer-coarse:size-11"
-                />
-              ))}
-            </ToggleGroup>
-            <span className="mx-1 h-4 w-px shrink-0 bg-line" />
-            <ToggleGroup
-              defaultValue={['pointer-rulers']}
-              aria-label="Canvas mode"
-              className="gap-0 rounded-md bg-canvas p-px"
-            >
-              {[
-                ['scribble', 'Draw'],
-                ['pointer-rulers', 'Measure'],
-                ['code', 'Code'],
-              ].map(([icon, label]) => (
-                <DemoToggle
-                  key={icon}
-                  value={icon}
-                  icon={icon}
-                  label={`${label} mode`}
-                  variant="elevated"
-                  size="icon-sm"
-                  className="pointer-coarse:size-11"
-                />
-              ))}
-            </ToggleGroup>
-          </div>
-        </div>
+        <DesignInspector
+          id={inspectorId}
+          fill={fill}
+          onFillChange={setFill}
+          fillVisible={fillVisible}
+          onFillVisibleChange={setFillVisible}
+          className={
+            inspectorOpen
+              ? 'flex flex-1 @lg/window:flex-none'
+              : 'hidden @lg/window:flex'
+          }
+          onKeyDown={(event) => {
+            if (
+              event.key === 'Escape' &&
+              inspectorToggle.current?.offsetParent
+            ) {
+              setInspectorOpen(false);
+              inspectorToggle.current.focus();
+            }
+          }}
+        />
       </div>
     </Window>
   );

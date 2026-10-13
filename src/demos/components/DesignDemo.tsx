@@ -182,7 +182,7 @@ export function DesignDemo() {
             >
               {[
                 ['left', 'align-start'],
-                ['center', 'align-center'],
+                ['center', 'align-center-1'],
                 ['right', 'align-end'],
               ].map(([value, icon]) => (
                 <DemoToggle

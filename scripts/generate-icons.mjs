@@ -127,6 +127,7 @@ expected.set(
       ...runtimeMetadata,
       svgArchive: deflateSync(
         Buffer.from(JSON.stringify(icons.map((icon) => icon.svg))),
+        { level: 9, memLevel: 9 },
       ).toString('base64'),
       iconFields,
       iconArchive: deflateSync(
@@ -137,6 +138,7 @@ expected.set(
             ),
           ),
         ),
+        { level: 9, memLevel: 9 },
       ).toString('base64'),
     },
     null,

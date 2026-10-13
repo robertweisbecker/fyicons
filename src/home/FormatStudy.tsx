@@ -1,21 +1,29 @@
 import { useState } from 'react';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { Toggle } from '@/components/ui/toggle';
 import { DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Glyph, panel } from './Study';
 
 export function FormatStudy() {
+  return (
+    <div className={cn(panel, 'w-full max-w-72 p-4 pointer-coarse:max-w-80')}>
+      <FormatControls />
+    </div>
+  );
+}
+
+export function FormatControls({ compact = false }: { compact?: boolean }) {
   const [marks, setMarks] = useState(['bold']);
-  const [align, setAlign] = useState(['start']);
   const [list, setList] = useState(['none']);
-  const [vertical, setVertical] = useState(['top']);
+  const size = compact ? 'icon-xs' : 'icon';
 
   return (
     <div
       className={cn(
-        panel,
-        'grid w-full max-w-72 grid-cols-[1fr_auto] items-center gap-y-2 p-4 text-sm max-sm:grid-cols-1 max-sm:gap-y-3 pointer-coarse:max-w-80',
+        'grid grid-cols-[1fr_auto] items-center gap-x-2',
+        compact
+          ? 'gap-y-1 text-xs'
+          : 'gap-y-2 text-sm max-sm:grid-cols-1 max-sm:gap-y-3',
       )}
     >
       <span>Format</span>
@@ -32,7 +40,13 @@ export function FormatStudy() {
           ['underline', 'text-underline', 'Underline'],
           ['strike', 'text-strikethrough', 'Strikethrough'],
         ].map(([value, icon, label]) => (
-          <DemoToggle key={value} value={value} icon={icon} label={label} />
+          <DemoToggle
+            key={value}
+            value={value}
+            icon={icon}
+            label={label}
+            size={size}
+          />
         ))}
       </ToggleGroup>
       <span>List style</span>
@@ -47,29 +61,53 @@ export function FormatStudy() {
             value="none"
             icon="minus"
             label="None"
+            size={size}
             variant="elevated"
           />
           <DemoToggle
             value="ordered"
             icon="list-ordered"
             label="Numbered list"
+            size={size}
             variant="elevated"
           />
           <DemoToggle
             value="bullet"
             icon="list-bullet"
             label="Bullet list"
+            size={size}
             variant="elevated"
           />
         </ToggleGroup>
-        <Glyph name="chevron-right-sm" className="size-8" />
+        <Glyph
+          name="chevron-right-sm"
+          className={compact ? 'size-6' : 'size-8'}
+        />
       </div>
-      <span>Alignment</span>
+      {!compact && (
+        <>
+          <span className="self-start">Alignment</span>
+          <TextAlignment />
+        </>
+      )}
+    </div>
+  );
+}
+
+export function TextAlignment({ compact = false }: { compact?: boolean }) {
+  const [align, setAlign] = useState(['start']);
+  const [vertical, setVertical] = useState(['top']);
+  const size = compact ? 'icon-xs' : 'icon';
+  return (
+    <div className={compact ? 'flex items-center gap-1' : 'space-y-2'}>
       <ToggleGroup
         value={align}
         onValueChange={(v) => v.length && setAlign(v)}
         aria-label="Text alignment"
-        className="w-fit gap-px rounded-lg bg-bg p-0"
+        className={cn(
+          'w-fit rounded-lg bg-bg p-0',
+          compact ? 'gap-0' : 'gap-px',
+        )}
       >
         {['start', 'center', 'end', 'justify'].map((value) => (
           <DemoToggle
@@ -77,17 +115,20 @@ export function FormatStudy() {
             value={value}
             icon={'text-align-' + value}
             label={'Align ' + value}
+            size={size}
             variant="elevated"
           />
         ))}
       </ToggleGroup>
-      <span aria-hidden className="max-sm:hidden" />
       <div className="flex items-center">
         <ToggleGroup
           value={vertical}
           onValueChange={(v) => v.length && setVertical(v)}
           aria-label="Vertical alignment"
-          className="w-fit gap-px rounded-lg bg-bg p-0"
+          className={cn(
+            'w-fit rounded-lg bg-bg p-0',
+            compact ? 'gap-0' : 'gap-px',
+          )}
         >
           {['top', 'middle', 'bottom'].map((value) => (
             <DemoToggle
@@ -95,11 +136,12 @@ export function FormatStudy() {
               value={value}
               icon={'align-' + value}
               label={'Align ' + value}
+              size={size}
               variant="elevated"
             />
           ))}
         </ToggleGroup>
-        <Glyph name="sliders-v" className="size-8" />
+        <Glyph name="sliders-v" className={compact ? 'size-6' : 'size-8'} />
       </div>
     </div>
   );

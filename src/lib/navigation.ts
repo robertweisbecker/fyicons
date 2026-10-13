@@ -1,4 +1,5 @@
 export type Page = 'home' | 'library' | 'examples';
+export const githubHref = 'https://github.com/robertweisbecker/fyicons';
 
 // Static entry points work at a custom domain and a GitHub project subpath.
 const basePath = location.pathname

@@ -1,118 +1,187 @@
+import { useId, useRef, useState } from 'react';
 import { Icon } from '@/components/Icon';
+import { FileTree, fileFolders } from '@/components/FileTree';
+import { Button } from '@/components/ui/button';
+import { ToggleGroup } from '@/components/ui/toggle-group';
+import { DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
-import { CodeStudy } from '../CodeStudy';
 import { Window } from './Window';
-
-const changes = [
-  { path: 'src/components/ui/', name: 'badge.tsx', added: 3, removed: 3 },
-  {
-    path: 'src/components/',
-    name: 'CategorySidebar.tsx',
-    added: 2,
-    removed: 2,
-  },
-  { path: 'src/components/', name: 'Inspector.tsx', added: 3, removed: 1 },
-];
+import { CodeChanges } from './CodeChanges';
+import { reviewFiles } from './codeReviewData';
 
 export function CodeApp() {
+  const [selected, setSelected] = useState(reviewFiles[0].path);
+  const [expanded, setExpanded] = useState(true);
+  const [openFolders, setOpenFolders] = useState([
+    'src',
+    'src/components',
+    'src/components/ui',
+  ]);
+  const [mobileView, setMobileView] = useState(['diff']);
+  const [desktopViews, setDesktopViews] = useState(['files', 'diff']);
+  const mobileFilesOpen = mobileView.includes('files');
+  const sidebarId = useId();
+  const reviewId = useId();
+  const sidebarToggle = useRef<HTMLButtonElement>(null);
+  const allOpen = openFolders.length > 0;
+
+  function selectFile(path: string) {
+    setSelected(path);
+    setExpanded(true);
+    setOpenFolders((current) => [
+      ...new Set([
+        ...current,
+        ...fileFolders(reviewFiles.filter((file) => file.path === path)),
+      ]),
+    ]);
+    if (mobileFilesOpen) sidebarToggle.current?.focus();
+    setMobileView(['diff']);
+    setDesktopViews((views) =>
+      views.includes('diff') ? views : [...views, 'diff'],
+    );
+  }
+
   return (
     <Window title="fyicons">
-      <div className="grid min-h-0 flex-1 grid-cols-1 overflow-y-auto overscroll-y-contain @2xl/window:grid-cols-3">
-        <aside
-          className="min-w-0 border-b border-line p-2 @2xl/window:border-r @2xl/window:border-b-0"
-          aria-label="Source files"
-        >
-          <CodeStudy />
-        </aside>
-        <div className="flex min-w-0 flex-col @2xl/window:col-span-2">
-          <div className="flex flex-wrap items-center gap-2 border-b border-line bg-bg px-3 py-3 text-xs">
-            <span className="flex items-center gap-1">
-              <Icon name="git-commit" />
-              Commit
-              <Icon name="chevron-down-sm" />
-            </span>
-            <span className="text-emerald-600 dark:text-emerald-400">+8</span>
-            <span className="text-red-500">-6</span>
-            <span className="ml-auto flex items-center gap-2">
-              <span>main</span>
-              <Icon name="arrow-right" className="text-muted" />
-              <Icon name="git-branch" />
-              <span>origin/main</span>
-            </span>
-          </div>
-          <div
-            className="flex items-center justify-end gap-3 border-b border-line px-3 py-2 text-muted"
-            aria-hidden
-          >
+      <div className="flex h-10 shrink-0 items-center gap-2 border-b border-line px-3 text-xs">
+        <Icon name="book-bookmark" />
+        <span className="hidden @sm/window:inline">fyicons</span>
+        <Icon
+          name="slash"
+          className="mx-1 hidden text-border @sm/window:block"
+        />
+        <span className="flex items-center gap-1 rounded-md bg-inset px-2 py-1">
+          <Icon name="git-branch" />
+          main
+          <Icon name="chevron-down-sm" />
+        </span>
+        <div className="ml-auto flex items-center gap-2 text-muted">
+          <span className="flex items-center gap-1" aria-hidden>
             {[
               'ellipsis',
               'file-search',
               'arrows-rotate',
               'align-wrap',
               'list-expand',
-              'file-diff',
-              'folders',
             ].map((icon) => (
               <Icon key={icon} name={icon} />
             ))}
-          </div>
-          <div aria-label="Changed files">
-            {changes.map((file) => (
-              <div
-                key={file.name}
-                className="flex min-w-0 items-center gap-2 border-b border-line px-3 py-3 text-xs"
-              >
-                <Icon name="chevron-right" className="text-muted" />
-                <Icon name="atom-tilt" className="text-sky-500" />
-                <span className="min-w-0 flex-1 wrap-anywhere">
-                  <span className="text-muted">{file.path}</span>
-                  {file.name}
-                </span>
-                <span className="flex shrink-0 gap-1 whitespace-nowrap">
-                  <span className="text-emerald-600 dark:text-emerald-400">
-                    +{file.added}
-                  </span>
-                  <span className="text-red-500">-{file.removed}</span>
-                </span>
-                <span className="hidden items-center gap-2 @4xl/window:flex">
-                  <Icon name="eye" />
-                  <Icon name="external-link" />
-                  <Icon name="code" />
-                  <Icon name="ellipsis" />
-                </span>
-              </div>
-            ))}
-          </div>
-          <div className="flex-1 p-3">
-            <div className="mb-2 flex min-h-8 items-center gap-2 rounded-lg border border-line px-2 text-xs text-muted shadow-xs">
-              <Icon name="search-simple" />
-              Filter files...
-            </div>
-            <div className="flex min-h-8 min-w-0 items-center gap-2 px-2 text-xs">
-              <Icon name="caret-down" />
-              <Icon name="folder-open" className="text-control-accent" />
-              src/components
-            </div>
-            <div className="flex min-h-8 min-w-0 items-center gap-2 px-2 pl-6 text-xs">
-              <Icon name="caret-down" />
-              <Icon name="folder-open" className="text-control-accent" />
-              ui
-            </div>
-            {changes.map((file, i) => (
-              <div
-                key={file.name}
-                className={cn(
-                  'flex min-h-8 min-w-0 items-center gap-2 pr-2 text-xs',
-                  i === 0 ? 'pl-14' : 'pl-10',
-                )}
-              >
-                <Icon name="atom-tilt" className="text-sky-500" />
-                <span className="min-w-0 wrap-anywhere">{file.name}</span>
-                <Icon name="git-modified" className="ml-auto text-orange-500" />
-              </div>
-            ))}
-          </div>
+          </span>
+          {[false, true].map((wide) => (
+            <ToggleGroup
+              key={String(wide)}
+              aria-label="Code views"
+              multiple={wide}
+              value={wide ? desktopViews : mobileView}
+              onValueChange={(value) =>
+                value.length && (wide ? setDesktopViews : setMobileView)(value)
+              }
+              className={wide ? 'hidden @lg/window:flex' : '@lg/window:hidden'}
+            >
+              <DemoToggle
+                value="diff"
+                icon="file-diff"
+                label="Diff view"
+                size="icon-sm"
+                aria-controls={reviewId}
+              />
+              <DemoToggle
+                ref={wide ? undefined : sidebarToggle}
+                value="files"
+                icon="folders"
+                label="Folder view"
+                size="icon-sm"
+                aria-controls={sidebarId}
+              />
+            </ToggleGroup>
+          ))}
         </div>
+      </div>
+      <div className="flex min-h-0 flex-1">
+        <aside
+          id={sidebarId}
+          aria-label="Source files"
+          onKeyDown={(event) => {
+            if (event.key === 'Escape' && mobileFilesOpen) {
+              setMobileView(['diff']);
+              sidebarToggle.current?.focus();
+            }
+          }}
+          className={cn(
+            'min-h-0 min-w-0 flex-col border-r border-line bg-bg',
+            mobileFilesOpen ? 'flex flex-1' : 'hidden',
+            desktopViews.includes('files')
+              ? '@lg/window:flex'
+              : '@lg/window:hidden',
+            desktopViews.includes('diff')
+              ? '@lg/window:w-60 @lg/window:flex-none'
+              : '@lg/window:flex-1',
+          )}
+        >
+          <div className="flex items-center gap-1 border-b border-line p-2">
+            <div className="flex h-7 min-w-0 flex-1 items-center gap-2 rounded-md border border-line bg-surface px-2 text-xs text-muted">
+              <Icon name="search-simple" />
+              <span className="truncate">Filter files...</span>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              aria-label={allOpen ? 'Collapse folders' : 'Expand folders'}
+              onClick={() =>
+                setOpenFolders(allOpen ? [] : fileFolders(reviewFiles))
+              }
+            >
+              <Icon name={allOpen ? 'list-collapse' : 'list-expand'} />
+            </Button>
+          </div>
+          <nav
+            aria-label="Review files"
+            className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain p-2"
+          >
+            <FileTree
+              files={reviewFiles}
+              selected={selected}
+              onSelect={selectFile}
+              openFolders={openFolders}
+              onOpenFoldersChange={setOpenFolders}
+              compact
+            />
+          </nav>
+          <div className="flex shrink-0 flex-wrap gap-1 border-t border-line p-2 text-xs">
+            {[
+              ['agent', 'Ask'],
+              ['bug-1', 'Review'],
+              ['git-pull-request', 'Create PR'],
+            ].map(([icon, label]) => (
+              <span
+                key={label}
+                className="inline-flex h-7 items-center gap-1 rounded-md bg-inset px-1.5"
+              >
+                <Icon name={icon} />
+                {label}
+              </span>
+            ))}
+          </div>
+        </aside>
+        <section
+          id={reviewId}
+          aria-label="Code review"
+          className={cn(
+            'min-h-0 min-w-0 flex-1 flex-col',
+            mobileFilesOpen ? 'hidden' : 'flex',
+            desktopViews.includes('diff')
+              ? '@lg/window:flex'
+              : '@lg/window:hidden',
+          )}
+        >
+          <CodeChanges
+            selected={selected}
+            expanded={expanded}
+            onSelect={(path) =>
+              path === selected ? setExpanded(!expanded) : selectFile(path)
+            }
+          />
+        </section>
       </div>
     </Window>
   );

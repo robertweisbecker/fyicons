@@ -106,3 +106,14 @@
     animation: none !important;
   }
 }
+
+@layer components {
+  .desktop-wallpaper {
+    background-image: radial-gradient(
+      ellipse at 40% 30%,
+      var(--color-orange-200),
+      var(--color-rose-300),
+      var(--color-rose-400)
+    );
+  }
+}

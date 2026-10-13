@@ -2,31 +2,60 @@ import { type ReactNode } from 'react';
 import { Icon } from '@/components/Icon';
 import { cn } from '@/lib/utils';
 
+export function WindowControls() {
+  return (
+    <span
+      className="group/traffic flex w-20 shrink-0 items-center justify-center gap-2"
+      aria-hidden
+    >
+      {[
+        ['xmark', 'bg-red-400'],
+        ['minus', 'bg-yellow-400'],
+        ['carets-maximize', 'bg-green-500'],
+      ].map(([icon, color]) => (
+        <span
+          key={icon}
+          className={cn(
+            'flex size-3.5 items-center justify-center rounded-full text-black/60 inset-ring inset-ring-black/5',
+            color,
+          )}
+        >
+          <Icon
+            name={icon}
+            size={11}
+            className="opacity-0 group-hover/traffic:opacity-100"
+          />
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export function Window({
   title,
+  header,
   children,
   className,
 }: {
   title: string;
+  header?: ReactNode;
   children: ReactNode;
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        '@container/window flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl border border-line bg-surface text-sm text-ink shadow-xl',
+        '@container/window flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl bg-surface text-sm text-ink shadow-xl ring ring-line',
         className,
       )}
     >
-      <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-line bg-bg px-3 text-xs text-muted">
-        <span className="flex w-20 items-center gap-2" aria-hidden>
-          <Icon name="xmark-sm" />
-          <Icon name="minus" />
-          <Icon name="carets-maximize" />
-        </span>
-        <span>{title}</span>
-        <span className="flex w-20 items-center gap-2" aria-hidden />
-      </div>
+      {header ?? (
+        <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-line bg-bg text-xs text-muted">
+          <WindowControls />
+          <span>{title}</span>
+          <span className="w-20" aria-hidden />
+        </div>
+      )}
       {children}
     </div>
   );
@@ -39,15 +68,16 @@ export function BrowserWindow({ children }: { children: ReactNode }) {
         <Icon name="arrow-left" />
         <Icon name="arrow-right" className="opacity-30" />
         <Icon name="arrow-reload" />
-        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-md bg-inset px-2 py-1">
+        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-md bg-inset px-1.5 py-1">
           <Icon name="sliders" />
-          <span className="min-w-0 flex-1 truncate">
+          <span className="min-w-0 flex-1 gap-1 truncate">
             <span className="hidden text-muted @lg/window:inline">
               https://
             </span>
             bob.fyi
           </span>
-          <Icon name="star" className="ml-auto" />
+          <Icon name="zoom-in" className="ml-auto" />
+          <Icon name="star" />
         </div>
         <span className="hidden @lg/window:inline-flex">
           <Icon name="puzzle" />

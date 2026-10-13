@@ -1,10 +1,10 @@
 import { Tabs } from '@base-ui/react/tabs';
 import { Icon } from '@/components/Icon';
-import { MusicStudy } from '../MusicStudy';
 import { ProfileStudy } from '../SocialStudy';
 import { DesignApp } from './DesignApp';
 import { FilesApp } from './FilesApp';
 import { CodeApp } from './CodeApp';
+import { MusicApp } from './MusicApp';
 import { BrowserWindow } from './Window';
 
 const apps = [
@@ -18,7 +18,7 @@ const apps = [
 function DesktopStatusBar() {
   return (
     <div
-      className="flex h-9 min-w-0 items-center justify-between gap-4 border-b border-line bg-surface px-3 text-xs"
+      className="relative z-10 flex h-9 min-w-0 items-center justify-between gap-4 border-b border-line bg-surface/60 px-3 text-xs backdrop-blur-md"
       aria-label="Computer status bar"
     >
       <div className="flex items-center gap-4">
@@ -54,7 +54,22 @@ export function DesktopShowcase() {
       className="@container/desktop mx-auto max-w-250"
     >
       <Tabs.Root defaultValue="design">
-        <div className="overflow-hidden rounded-2xl border border-border bg-bg shadow-lg">
+        <Tabs.List
+          aria-label="Demo apps"
+          className="mx-auto my-4 flex max-w-xl gap-1"
+        >
+          {apps.map((app) => (
+            <Tabs.Tab
+              key={app.id}
+              value={app.id}
+              className="flex min-h-14 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-sm text-muted sm:min-h-11 sm:flex-row sm:gap-2 data-active:bg-surface data-active:text-ink data-active:shadow-sm"
+            >
+              <Icon name={app.icon} />
+              {app.name}
+            </Tabs.Tab>
+          ))}
+        </Tabs.List>
+        <div className="desktop-wallpaper overflow-hidden rounded-2xl border border-border">
           <DesktopStatusBar />
           <div className="h-152 sm:h-144">
             <Tabs.Panel
@@ -92,30 +107,10 @@ export function DesktopShowcase() {
               keepMounted
               className="grid h-full min-w-0 place-items-center p-3 data-hidden:hidden sm:p-6 lg:p-8"
             >
-              <div
-                className="dark w-full max-w-80 rounded-2xl shadow-xl"
-                data-theme="dark"
-              >
-                <MusicStudy />
-              </div>
+              <MusicApp />
             </Tabs.Panel>
           </div>
         </div>
-        <Tabs.List
-          aria-label="Demo apps"
-          className="mx-auto mt-6 flex max-w-xl gap-1"
-        >
-          {apps.map((app) => (
-            <Tabs.Tab
-              key={app.id}
-              value={app.id}
-              className="flex min-h-14 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-sm text-muted data-active:bg-surface data-active:text-ink data-active:shadow-sm sm:min-h-11 sm:flex-row sm:gap-2"
-            >
-              <Icon name={app.icon} />
-              {app.name}
-            </Tabs.Tab>
-          ))}
-        </Tabs.List>
       </Tabs.Root>
     </section>
   );

@@ -71,33 +71,6 @@ export function EditorStudy() {
   );
 }
 
-export function RailStudy() {
-  return (
-    <div
-      className={cn(
-        panel,
-        'flex w-15 flex-col items-center gap-3 p-2 text-[10px]',
-      )}
-    >
-      {[
-        ['file', 'File'],
-        ['sparkle', 'Agents'],
-        ['circle-plus', 'Assets'],
-        ['toolbox', 'Tools'],
-        ['line-horizontal', ''],
-        ['token', 'Variables'],
-        ['line-horizontal', ''],
-        ['book-open', 'Libraries'],
-      ].map(([icon, label], i) => (
-        <div key={i} className="flex flex-col items-center gap-0">
-          <Glyph name={icon} className={!label ? 'text-border' : ''} />
-          {label && <span>{label}</span>}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export function DevicesStudy() {
   return (
     <div className={cn(panel, 'w-46 p-1 text-sm')}>

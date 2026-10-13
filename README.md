@@ -1,6 +1,6 @@
 # FYIcons
 
-1,010 icons at 16 × 16 px, with a minimal homepage containing all 17 Figma examples, a searchable library, an inspector, SVG downloads, and fourteen standalone component demos. Built with React, TypeScript, Tailwind CSS, and Base UI.
+1,012 icons at 16 × 16 px, with a minimal homepage featuring five app demos and an icon carousel, a searchable library, an inspector, SVG downloads, and standalone component examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
 
 ## Development
 
@@ -54,7 +54,7 @@ Use `npm run format` to format code and sort Tailwind utilities. Keep conditiona
 
 The fixed 56px header links to the overview at `/`, the library at `/library/`, and `/examples/`. All three routes have static HTML entry points for GitHub Pages reloads; old `#library` and `#examples` links still work. The supplied multicolor atom is shared by the site logo and SVG favicon. The overview studies live in `src/home/` and reuse the shared Base UI controls; file navigation, type formatting, playback previews, and social reactions all use local state. Categories live in a sticky sidebar at `lg` (1024px), with a modal sheet on smaller screens. The inspector floats above the grid by default without changing its columns or scroll position. From `md` (768px), its Dock inspector toggle moves it into a sticky layout column; toggling again returns it to the overlay. Docking preserves the visible grid row. Below `md`, it uses a full-screen modal sheet. Both modes have independently scrolling content and footer navigation. Demo palettes use Tailwind color tokens; the design demo’s editable color-input value remains RGB hex.
 
-The library slider previews icons at 16–64px in 4px steps. Homepage examples preserve their Figma copy and use 12, 14, and 16px text. Most icons render at 16px; the source examples also use 12/14px status icons, a 24px playback icon, and 32/40px avatars. Interactions are limited to toggles, icon swaps, and contained disclosures. Selection controls are hover-enhanced on desktop and always visible on touch screens.
+The library slider previews icons at 16–64px in 4px steps. Homepage examples preserve their Figma copy and use Tailwind typography, spacing, radii, and color tokens. Most icons render at 16px, with larger icons used for thumbnails and the carousel. Interactions are limited to toggles, icon swaps, and contained disclosures. Selection controls and subset downloads are available from 768px; smaller screens retain browsing and previews without selection checkboxes. Saved desktop selections are preserved.
 
 ## Icons and exports
 
@@ -132,7 +132,7 @@ This is an explicit full import: it replaces the editable SVG source files and m
 
 Export selected downloads a ZIP containing only the selected SVGs and their manifest. Existing shortlists are retained as selections.
 
-The Examples page uses a responsive bento grid of standalone navigation, composer, editor, playback, settings, and feedback demos. Interactions use local simulated state and do not connect to external services. The editor shows static sample text; its toolbar buttons only toggle their selected states.
+The Examples page uses a responsive bento grid of standalone navigation, composer, editor, settings, and feedback demos. The homepage combines the design, code review, and music examples into app windows, alongside Files and Social. Interactions use local simulated state and do not connect to external services. The editor shows static sample text; its toolbar buttons only toggle their selected states.
 
 ## GitHub Pages
 

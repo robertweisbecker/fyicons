@@ -8,7 +8,7 @@
     "pageId": "82:2415",
     "pageName": "export",
     "exportMethod": "Figma MCP exportAsync SVG_STRING, svgSimplifyStroke=false",
-    "scope": "Complete Icons section snapshot, including components in variant sets and the nested Updated section. All 1010 SVG exports verified against Figma SHA-256 checksums.",
+    "scope": "Complete Icons section snapshot, including components in variant sets and the nested Updated section. All 1012 SVG exports verified against Figma SHA-256 checksums.",
     "exportedAt": "2026-10-13"
   },
   "icons": [
@@ -2619,20 +2619,22 @@
     },
     {
       "id": "841:12717",
-      "name": "align-bottom-1",
-      "originalName": "align-bottom",
-      "baseName": "align-bottom",
+      "name": "arrange-bottom",
+      "originalName": "arrange-bottom",
+      "baseName": "arrange-bottom",
       "width": 16,
       "height": 16,
-      "filename": "align-bottom-1-16.svg",
+      "filename": "arrange-bottom-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12717",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignBottom1",
+      "componentName": "IconArrangeBottom",
       "aliases": [
         "align-bottom",
-        "841-12717.svg"
+        "841-12717.svg",
+        "align-bottom-1",
+        "align-bottom-1-16.svg"
       ]
     },
     {
@@ -2653,40 +2655,67 @@
       ]
     },
     {
-      "id": "558:8902",
+      "id": "521:7822",
       "name": "align-center",
       "originalName": "align-center",
       "baseName": "align-center",
       "width": 16,
       "height": 16,
       "filename": "align-center-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=558-8902",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=521-7822",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
       "componentName": "IconAlignCenter",
       "aliases": [
-        "558-8902.svg",
-        "align-horizontal-center",
-        "align-horizontal-center-16.svg"
+        "521-7822.svg",
+        "align-middle-v",
+        "align-middle-v-16.svg",
+        "align-vertical-center",
+        "align-vertical-center-16.svg",
+        "align-middle",
+        "align-middle-16.svg"
       ]
     },
     {
-      "id": "841:12714",
+      "id": "558:8902",
       "name": "align-center-1",
       "originalName": "align-center",
       "baseName": "align-center",
       "width": 16,
       "height": 16,
       "filename": "align-center-1-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12714",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=558-8902",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
       "componentName": "IconAlignCenter1",
       "aliases": [
+        "558-8902.svg",
+        "align-horizontal-center",
+        "align-horizontal-center-16.svg",
         "align-center",
-        "841-12714.svg"
+        "align-center-16.svg"
+      ]
+    },
+    {
+      "id": "841:12714",
+      "name": "arrange-center",
+      "originalName": "arrange-center",
+      "baseName": "arrange-center",
+      "width": 16,
+      "height": 16,
+      "filename": "arrange-center-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12714",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconArrangeCenter",
+      "aliases": [
+        "align-center",
+        "841-12714.svg",
+        "align-center-1",
+        "align-center-1-16.svg"
       ]
     },
     {
@@ -2708,20 +2737,22 @@
     },
     {
       "id": "841:12715",
-      "name": "align-start-1",
-      "originalName": "align-start",
-      "baseName": "align-start",
+      "name": "arrange-start",
+      "originalName": "arrange-start",
+      "baseName": "arrange-start",
       "width": 16,
       "height": 16,
-      "filename": "align-start-1-16.svg",
+      "filename": "arrange-start-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12715",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignStart1",
+      "componentName": "IconArrangeStart",
       "aliases": [
         "align-start",
-        "841-12715.svg"
+        "841-12715.svg",
+        "align-start-1",
+        "align-start-1-16.svg"
       ]
     },
     {
@@ -2743,59 +2774,42 @@
     },
     {
       "id": "841:12718",
-      "name": "align-top-1",
-      "originalName": "align-top",
-      "baseName": "align-top",
+      "name": "arrange-top",
+      "originalName": "arrange-top",
+      "baseName": "arrange-top",
       "width": 16,
       "height": 16,
-      "filename": "align-top-1-16.svg",
+      "filename": "arrange-top-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12718",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignTop1",
+      "componentName": "IconArrangeTop",
       "aliases": [
         "align-top",
-        "841-12718.svg"
-      ]
-    },
-    {
-      "id": "521:7822",
-      "name": "align-middle",
-      "originalName": "align-middle",
-      "baseName": "align-middle",
-      "width": 16,
-      "height": 16,
-      "filename": "align-middle-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=521-7822",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconAlignMiddle",
-      "aliases": [
-        "521-7822.svg",
-        "align-middle-v",
-        "align-middle-v-16.svg",
-        "align-vertical-center",
-        "align-vertical-center-16.svg"
+        "841-12718.svg",
+        "align-top-1",
+        "align-top-1-16.svg"
       ]
     },
     {
       "id": "841:12719",
-      "name": "align-middle-1",
-      "originalName": "align-middle",
-      "baseName": "align-middle",
+      "name": "arrange-middle",
+      "originalName": "arrange-middle",
+      "baseName": "arrange-middle",
       "width": 16,
       "height": 16,
-      "filename": "align-middle-1-16.svg",
+      "filename": "arrange-middle-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12719",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignMiddle1",
+      "componentName": "IconArrangeMiddle",
       "aliases": [
         "align-middle",
-        "841-12719.svg"
+        "841-12719.svg",
+        "align-middle-1",
+        "align-middle-1-16.svg"
       ]
     },
     {
@@ -15028,41 +15042,44 @@
     },
     {
       "id": "667:1105",
+      "name": "number5",
+      "originalName": "number5",
+      "baseName": "number5",
+      "width": 16,
+      "height": 16,
+      "filename": "number5-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=667-1105",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconNumber5",
+      "aliases": [
+        "667-1105.svg",
+        "number-five",
+        "number-five-16.svg",
+        "number4",
+        "number4-16.svg"
+      ]
+    },
+    {
+      "id": "667:1107",
       "name": "number4",
       "originalName": "number4",
       "baseName": "number4",
       "width": 16,
       "height": 16,
       "filename": "number4-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=667-1105",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=667-1107",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
       "componentName": "IconNumber4",
       "aliases": [
-        "667-1105.svg",
-        "number-five",
-        "number-five-16.svg"
-      ]
-    },
-    {
-      "id": "667:1107",
-      "name": "number4-1",
-      "originalName": "number4",
-      "baseName": "number4",
-      "width": 16,
-      "height": 16,
-      "filename": "number4-1-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=667-1107",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconNumber41",
-      "aliases": [
         "667-1107.svg",
         "number-four",
         "number-four-16.svg",
-        "number4"
+        "number4-1",
+        "number4-1-16.svg"
       ]
     },
     {
@@ -16066,15 +16083,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconShareArrowFill",
+      "aliases": [
+        "816-11042.svg"
+      ],
       "variantSetName": "share-arrow",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "701:1553",
-      "componentName": "IconShareArrowFill",
-      "aliases": [
-        "816-11042.svg"
-      ]
+      "variantSetId": "701:1553"
     },
     {
       "id": "698:1533",
@@ -18126,19 +18143,21 @@
     },
     {
       "id": "841:12716",
-      "name": "align-right",
-      "originalName": "align-right",
-      "baseName": "align-right",
+      "name": "arrange-end",
+      "originalName": "arrange-end",
+      "baseName": "arrange-end",
       "width": 16,
       "height": 16,
-      "filename": "align-right-16.svg",
+      "filename": "arrange-end-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12716",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignRight",
+      "componentName": "IconArrangeEnd",
       "aliases": [
-        "841-12716.svg"
+        "841-12716.svg",
+        "align-right",
+        "align-right-16.svg"
       ]
     },
     {
@@ -18838,6 +18857,40 @@
       "componentName": "IconImageAlt",
       "aliases": [
         "857-24307.svg"
+      ]
+    },
+    {
+      "id": "886:30451",
+      "name": "french-easel",
+      "originalName": "french-easel",
+      "baseName": "french-easel",
+      "width": 16,
+      "height": 16,
+      "filename": "french-easel-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=886-30451",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFrenchEasel",
+      "aliases": [
+        "886-30451.svg"
+      ]
+    },
+    {
+      "id": "886:30418",
+      "name": "sheet",
+      "originalName": "sheet",
+      "baseName": "sheet",
+      "width": 16,
+      "height": 16,
+      "filename": "sheet-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=886-30418",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSheet",
+      "aliases": [
+        "886-30418.svg"
       ]
     }
   ]

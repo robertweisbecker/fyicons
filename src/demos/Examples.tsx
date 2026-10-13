@@ -9,7 +9,6 @@ import {
 import { ComposerDemo, SearchDemo } from './components/CreationDemos';
 import { EditorDemo } from './components/EditorDemo';
 import { DesignDemo } from './components/DesignDemo';
-import { PlaybackDemo } from './components/PlaybackDemo';
 import {
   ResizableWorkspaceDemo,
   ResizableStackDemo,
@@ -57,13 +56,10 @@ export default function Examples() {
           <DemoCard title="Sidebar" className="xl:col-span-4">
             <SidebarDemo />
           </DemoCard>
-          <DemoCard title="Playback" className="xl:col-span-4">
-            <PlaybackDemo />
-          </DemoCard>
-          <DemoCard title="Command search" className="xl:col-span-4">
+          <DemoCard title="Command search" className="xl:col-span-6">
             <SearchDemo />
           </DemoCard>
-          <DemoCard title="Settings" className="xl:col-span-4">
+          <DemoCard title="Settings" className="xl:col-span-6">
             <SettingsDemo />
           </DemoCard>
           <DemoCard title="Breadcrumbs" className="md:col-span-2 xl:col-span-6">

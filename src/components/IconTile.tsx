@@ -15,7 +15,7 @@ export function IconTile({
   inspected: boolean;
   selected: boolean;
   inspect: () => void;
-  toggleSelection: () => void;
+  toggleSelection?: () => void;
 }) {
   const name = getIconDisplayName(icon);
   return (
@@ -49,14 +49,16 @@ export function IconTile({
           {name}
         </span>
       </Button>
-      <Checkbox
-        checked={selected}
-        aria-label={'Select ' + name}
-        onCheckedChange={toggleSelection}
-        className={cn(
-          'absolute top-0 right-0 opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 data-checked:opacity-100 [@media(hover:none)]:opacity-100',
-        )}
-      />
+      {toggleSelection && (
+        <Checkbox
+          checked={selected}
+          aria-label={'Select ' + name}
+          onCheckedChange={toggleSelection}
+          className={cn(
+            'absolute top-0 right-0 opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 data-checked:opacity-100 [@media(hover:none)]:opacity-100',
+          )}
+        />
+      )}
     </div>
   );
 }

@@ -4,7 +4,10 @@ import { Button } from '@/components/ui/button';
 import { IconButton } from '@/components/IconButton';
 import { cn } from '../lib/utils';
 import type { MouseEvent } from 'react';
-import { pageHref, type Page } from '../lib/navigation';
+import { githubHref, pageHref, type Page } from '../lib/navigation';
+
+const navLinkClassName =
+  'inline-flex min-h-7 items-center gap-1.5 rounded-full px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink max-[360px]:text-xs sm:px-3 pointer-coarse:min-h-11';
 
 export function SiteHeader({
   page,
@@ -57,7 +60,7 @@ export function SiteHeader({
               onClick={(event) => navigate(item, event)}
               aria-current={page === item ? 'page' : undefined}
               className={cn(
-                'inline-flex min-h-7 items-center rounded-full px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink max-[360px]:text-xs sm:px-3 pointer-coarse:min-h-11',
+                navLinkClassName,
                 item === 'home' && 'max-sm:hidden',
               )}
             >
@@ -68,6 +71,17 @@ export function SiteHeader({
                   : 'Examples'}
             </a>
           ))}
+          <a
+            href={githubHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
+            className={cn(navLinkClassName, 'shrink-0 pointer-coarse:min-w-11')}
+          >
+            <span className="hidden md:inline">GitHub</span>
+            <Icon name="arrow-up-right" />
+          </a>
         </nav>
         <div className={cn('flex shrink-0 items-center gap-1 sm:gap-2')}>
           <IconButton

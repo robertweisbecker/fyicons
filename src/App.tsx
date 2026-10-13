@@ -27,7 +27,7 @@ import {
   type IconRecord,
 } from './lib/catalog';
 import { downloadIcons } from './lib/downloads';
-import { usePreference } from './lib/preferences';
+import { useMobile, usePreference } from './lib/preferences';
 import { Badge } from './components/ui/badge';
 
 const Examples = lazy(() => import('./demos/Examples'));
@@ -40,11 +40,13 @@ const editable = (target: EventTarget | null) =>
     ));
 
 export function App({ categoryError }: { categoryError?: string }) {
+  const mobile = useMobile();
   const [view, setView] = useState(pageFromLocation);
   const [query, setQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [category, setCategory] = useState('all');
   const [review, setReview] = useState('all');
+  const activeReview = mobile && review === 'selected' ? 'all' : review;
   const [previewSize, setPreviewSize] = useState(16);
   const [inspectedId, setInspectedId] = useState<string | null>(null);
   const [inspectorDocked, setInspectorDocked] = useState(false);
@@ -63,8 +65,8 @@ export function App({ categoryError }: { categoryError?: string }) {
       .filter(
         (icon) =>
           (category === 'all' || icon.categories.includes(category)) &&
-          (review === 'all' ||
-            (review === 'duplicates'
+          (activeReview === 'all' ||
+            (activeReview === 'duplicates'
               ? icon.duplicate
               : selectedIds.includes(icon.id))) &&
           matchesIcon(icon, query),
@@ -75,7 +77,7 @@ export function App({ categoryError }: { categoryError?: string }) {
           sensitivity: 'base',
         }),
       );
-  }, [query, category, review, selectedIds]);
+  }, [query, category, activeReview, selectedIds]);
   const current = byId.get(inspectedId ?? '') ?? null;
   // Keep the inspected tile (or the first visible tile) in place when columns reflow.
   function preserveGridPosition(preferredId = inspectedId) {
@@ -136,6 +138,7 @@ export function App({ categoryError }: { categoryError?: string }) {
     }
   }
   function toggleSelection(id: string) {
+    if (mobile) return;
     setSelectedIds((previous) =>
       previous.includes(id)
         ? previous.filter((value) => value !== id)
@@ -159,6 +162,7 @@ export function App({ categoryError }: { categoryError?: string }) {
     window.scrollTo(0, 0);
   }
   async function exportIcons(onlySelected = false) {
+    if (onlySelected && mobile) return;
     setPacking(true);
     try {
       await downloadIcons(
@@ -323,13 +327,15 @@ export function App({ categoryError }: { categoryError?: string }) {
                       />
                     </div>
                     <FilterSelect
-                      label="Selection filter"
-                      value={review}
+                      label="Icon filter"
+                      value={activeReview}
                       onValueChange={setReview}
                       options={[
-                        { value: 'all', label: 'All components' },
-                        { value: 'duplicates', label: 'Name variants' },
-                        { value: 'selected', label: 'Selected' },
+                        { value: 'all', label: 'All' },
+                        { value: 'duplicates', label: 'Variant Pairs' },
+                        ...(!mobile
+                          ? [{ value: 'selected', label: 'Selected' }]
+                          : []),
                       ]}
                     />
                     <PreviewSizeControl
@@ -345,20 +351,22 @@ export function App({ categoryError }: { categoryError?: string }) {
                     <p role="status">
                       {visible.length} of {icons.length} icons
                     </p>
-                    <Button
-                      variant="text"
-                      size="sm"
-                      disabled={
-                        packing || !selectedIds.some((id) => byId.has(id))
-                      }
-                      onClick={() => exportIcons(true)}
-                    >
-                      <Icon name="download-square" />
-                      Selected
-                      <Badge variant="elevated">
-                        {selectedIds.filter((id) => byId.has(id)).length}
-                      </Badge>
-                    </Button>
+                    {!mobile && (
+                      <Button
+                        variant="text"
+                        size="sm"
+                        disabled={
+                          packing || !selectedIds.some((id) => byId.has(id))
+                        }
+                        onClick={() => exportIcons(true)}
+                      >
+                        <Icon name="download-square" />
+                        Selected
+                        <Badge variant="elevated">
+                          {selectedIds.filter((id) => byId.has(id)).length}
+                        </Badge>
+                      </Button>
+                    )}
                   </div>
                   <div
                     className={cn(
@@ -376,13 +384,15 @@ export function App({ categoryError }: { categoryError?: string }) {
                         key={icon.id}
                         icon={icon}
                         inspected={inspectedId === icon.id}
-                        selected={selectedIds.includes(icon.id)}
+                        selected={!mobile && selectedIds.includes(icon.id)}
                         inspect={() =>
                           inspectedId === icon.id
                             ? closeInspector()
                             : select(icon)
                         }
-                        toggleSelection={() => toggleSelection(icon.id)}
+                        toggleSelection={
+                          mobile ? undefined : () => toggleSelection(icon.id)
+                        }
                       />
                     ))}
                   </div>

@@ -452,7 +452,7 @@
       "id": "design",
       "name": "Design",
       "icon": "rulers",
-      "keywords": ["align", "arrow-column", "line-height"]
+      "keywords": ["align", "arrange", "arrow-column", "line-height"]
     },
     {
       "id": "objects",
