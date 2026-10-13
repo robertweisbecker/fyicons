@@ -74,7 +74,10 @@ export function EditorStudy() {
 export function RailStudy() {
   return (
     <div
-      className={cn(panel, 'flex w-15 flex-col items-center gap-2 p-2 text-xs')}
+      className={cn(
+        panel,
+        'flex w-15 flex-col items-center gap-3 p-2 text-[10px]',
+      )}
     >
       {[
         ['file', 'File'],
@@ -86,7 +89,7 @@ export function RailStudy() {
         ['line-horizontal', ''],
         ['book-open', 'Libraries'],
       ].map(([icon, label], i) => (
-        <div key={i} className="flex flex-col items-center gap-1">
+        <div key={i} className="flex flex-col items-center gap-0">
           <Glyph name={icon} className={!label ? 'text-border' : ''} />
           {label && <span>{label}</span>}
         </div>
@@ -105,8 +108,11 @@ export function DevicesStudy() {
       {[
         ['mobile', 'Mobile'],
         ['tablet', 'Tablet'],
+        ['tablet-pencil', 'Tablet'],
         ['laptop', 'Laptop'],
         ['desktop', 'Desktop'],
+        ['desktop-simple', 'Desktop'],
+        ['computer', 'Desktop'],
         ['television', 'TV'],
         ['browser-pointer', 'Remote'],
         ['cloud', 'Cloud'],
@@ -234,7 +240,7 @@ export function RichTextStudy() {
                 ['text-blockquote', 'Blockquote'],
                 ['code-rectangle', 'Inline code'],
                 ['code-block', 'Code block'],
-                ['text-mark', 'Mark'],
+                ['text-highlight', 'Mark'],
               ].map(([icon, label]) => (
                 <MenuItem key={icon}>
                   <Icon name={icon} className="text-muted" />

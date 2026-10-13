@@ -60,8 +60,8 @@ export function EditorDemo() {
         </ToggleGroup>
         <DemoToggle
           label="Copy document"
-          icon="copy-lg"
-          activeIcon="copied-lg"
+          icon="copy"
+          activeIcon="copied"
           className="ml-auto"
         />
       </div>
@@ -80,8 +80,8 @@ export function EditorDemo() {
         </div>
       </div>
       <div className="flex items-center gap-1 text-muted">
-        <DemoToggle label="Undo text edit" icon="arrow-undo-arc" />
-        <DemoToggle label="Redo text edit" icon="arrow-redo-arc" />
+        <DemoToggle label="Undo text edit" icon="arrow-undo" />
+        <DemoToggle label="Redo text edit" icon="arrow-redo" />
         <span className="ml-auto text-xs tabular-nums">{wordCount} words</span>
         <ControlDivider />
         <Icon name="eye" />

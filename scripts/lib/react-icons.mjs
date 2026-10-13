@@ -155,8 +155,14 @@ function addInstanceSafeIds(jsx) {
   };
   visit(jsx);
   const open = jsx.openingElement;
+  // The shared SVG root supplies the standard namespace once for the catalog.
   open.attributes = open.attributes.filter(
-    (attribute) => !['width', 'height'].includes(attribute.name?.name),
+    (attribute) =>
+      !['width', 'height'].includes(attribute.name?.name) &&
+      !(
+        attribute.name?.name === 'xmlns' &&
+        attribute.value?.value === 'http://www.w3.org/2000/svg'
+      ),
   );
   const attr = (name, expression) => ({
     type: 'JSXAttribute',
@@ -195,6 +201,7 @@ const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }
   const labeled = title || svgProps['aria-label'] || svgProps['aria-labelledby'];
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       {...svgProps}
       ref={ref}
       width={svgProps.width ?? size}

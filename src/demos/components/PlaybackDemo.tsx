@@ -87,7 +87,7 @@ export function PlaybackDemo() {
       <div className="flex items-center justify-center gap-1 sm:gap-3">
         <DemoToggle
           label="Shuffle"
-          icon="arrow-shuffle"
+          icon="arrows-shuffle"
           pressed={shuffle}
           onPressedChange={setShuffle}
         />
@@ -117,7 +117,7 @@ export function PlaybackDemo() {
         />
         <DemoIconButton
           label={repeatLabel}
-          icon={repeat === 'one' ? 'arrow-repeat-one' : 'arrow-repeat'}
+          icon={repeat === 'one' ? 'arrows-repeat-one' : 'arrows-repeat'}
           aria-pressed={repeat !== 'off'}
           className={cn(repeat !== 'off' && 'bg-current/10')}
           onClick={() =>
@@ -173,8 +173,8 @@ export function PlaybackDemo() {
         </Slider.Root>
         <DemoToggle
           label="Show queue"
-          icon="list-thumbnails"
-          activeIcon="log"
+          icon="queue-play"
+          activeIcon="queue"
           pressed={queue}
           onPressedChange={setQueue}
         />

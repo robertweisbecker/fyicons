@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconChevronsMinimize = React.forwardRef<SVGSVGElement, IconProps>(function IconChevronsMinimize(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.48442 9.01918C6.75877 9.02049 6.9811 9.24269 6.98229 9.51705L6.99956 13.498C7.00065 13.774 6.77768 13.9987 6.50168 14C6.22585 14.001 6.00037 13.7787 5.99897 13.5028L5.98378 10.0156L2.49659 10.0004C2.22091 9.99869 1.99824 9.77348 1.9994 9.49772C2.00092 9.22192 2.2263 8.99947 2.50211 9.00053L6.48442 9.01918ZM9.49791 1.99921C9.77397 1.99808 9.99936 2.22174 10.0006 2.49778L10.0144 5.98497L13.5016 6.00016C13.7776 6.00146 14.0005 6.22623 13.9995 6.50218C13.9982 6.7781 13.7734 7.00105 13.4975 7.00006L9.51448 6.98348C9.23999 6.9823 9.01704 6.75942 9.01592 6.48492L8.99934 2.50192C8.99833 2.22591 9.22189 2.00039 9.49791 1.99921Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconChevronsMinimize;

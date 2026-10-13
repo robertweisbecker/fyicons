@@ -119,18 +119,25 @@ const iconFields = [
 ];
 if (compactIcons.some((icon) => Object.values(icon).includes(null)))
   throw new Error('Icon metadata cannot contain null values.');
+const { icons: _manifestIcons, ...runtimeMetadata } = generatedManifest;
 expected.set(
   path.join(root, 'src/data/catalog-runtime.json'),
   JSON.stringify(
     {
-      ...generatedManifest,
+      ...runtimeMetadata,
       svgArchive: deflateSync(
         Buffer.from(JSON.stringify(icons.map((icon) => icon.svg))),
       ).toString('base64'),
       iconFields,
-      icons: compactIcons.map((icon) =>
-        iconFields.map((field) => icon[field] ?? null),
-      ),
+      iconArchive: deflateSync(
+        Buffer.from(
+          JSON.stringify(
+            compactIcons.map((icon) =>
+              iconFields.map((field) => icon[field] ?? null),
+            ),
+          ),
+        ),
+      ).toString('base64'),
     },
     null,
     2,

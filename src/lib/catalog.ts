@@ -11,13 +11,17 @@ import { pageHref } from './navigation';
 import type fullCatalog from '../data/catalog.json';
 
 type Catalog = typeof fullCatalog;
-const { iconFields, icons: rows, svgArchive, ...metadata } = compact;
+const { iconFields, iconArchive, svgArchive, ...metadata } = compact;
 // Compression only affects transport; clipboard and downloads retain exact SVG bytes.
-const sourceSvgs: string[] = JSON.parse(
-  strFromU8(
-    unzlibSync(Uint8Array.from(atob(svgArchive), (char) => char.charCodeAt(0))),
-  ),
-);
+function unpack(archive: string): unknown {
+  return JSON.parse(
+    strFromU8(
+      unzlibSync(Uint8Array.from(atob(archive), (char) => char.charCodeAt(0))),
+    ),
+  );
+}
+const rows = unpack(iconArchive) as unknown[][];
+const sourceSvgs = unpack(svgArchive) as string[];
 const data = {
   ...metadata,
   icons: rows.map((row, index) => {

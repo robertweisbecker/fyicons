@@ -1,6 +1,6 @@
 {
   "name": "FYIcons",
-  "version": "2026-10-10",
+  "version": "2026-10-13",
   "source": {
     "fileKey": "KA61XWs3LqkOU2bzzvjEeW",
     "sectionId": "646:192",
@@ -8,8 +8,8 @@
     "pageId": "82:2415",
     "pageName": "export",
     "exportMethod": "Figma MCP exportAsync SVG_STRING, svgSimplifyStroke=false",
-    "scope": "Complete Icons section snapshot, including components in variant sets and the nested Updated section. All 939 SVG exports verified against Figma SHA-256 checksums.",
-    "exportedAt": "2026-10-10"
+    "scope": "Complete Icons section snapshot, including components in variant sets and the nested Updated section. All 1010 SVG exports verified against Figma SHA-256 checksums.",
+    "exportedAt": "2026-10-13"
   },
   "icons": [
     {
@@ -67,19 +67,21 @@
     },
     {
       "id": "140:5997",
-      "name": "bullhorn-3",
-      "originalName": "bullhorn-3",
-      "baseName": "bullhorn-3",
+      "name": "bullhorn-alt",
+      "originalName": "bullhorn-alt",
+      "baseName": "bullhorn-alt",
       "width": 16,
       "height": 16,
-      "filename": "bullhorn-3-16.svg",
+      "filename": "bullhorn-alt-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=140-5997",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconBullhorn3",
+      "componentName": "IconBullhornAlt",
       "aliases": [
-        "140-5997.svg"
+        "140-5997.svg",
+        "bullhorn-3",
+        "bullhorn-3-16.svg"
       ]
     },
     {
@@ -551,11 +553,6 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "quotes",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:228",
       "componentName": "IconQuotes",
       "aliases": [
         "132-3059.svg",
@@ -563,7 +560,12 @@
         "quote-outline-16.svg",
         "quote-alt",
         "quote-alt-16.svg"
-      ]
+      ],
+      "variantSetName": "quotes",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:228"
     },
     {
       "id": "580:357",
@@ -577,17 +579,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "quotes",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:228",
       "componentName": "IconQuotesFill",
       "aliases": [
         "580-357.svg",
         "quote-alt-fill",
         "quote-alt-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "quotes",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:228"
     },
     {
       "id": "286:19856",
@@ -685,15 +687,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSendTilt",
+      "aliases": [
+        "282-16070.svg"
+      ],
       "variantSetName": "send-tilt",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "567:466",
-      "componentName": "IconSendTilt",
-      "aliases": [
-        "282-16070.svg"
-      ]
+      "variantSetId": "567:466"
     },
     {
       "id": "469:2073",
@@ -707,15 +709,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSendTiltFill",
+      "aliases": [
+        "469-2073.svg"
+      ],
       "variantSetName": "send-tilt",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "567:466",
-      "componentName": "IconSendTiltFill",
-      "aliases": [
-        "469-2073.svg"
-      ]
+      "variantSetId": "567:466"
     },
     {
       "id": "282:15956",
@@ -729,17 +731,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "send-straight",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:229",
       "componentName": "IconSendStraight",
       "aliases": [
         "282-15956.svg",
         "send",
         "send-16.svg"
-      ]
+      ],
+      "variantSetName": "send-straight",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:229"
     },
     {
       "id": "469:2061",
@@ -753,17 +755,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "send-straight",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:229",
       "componentName": "IconSendStraightFill",
       "aliases": [
         "469-2061.svg",
         "send-fill",
         "send-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "send-straight",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:229"
     },
     {
       "id": "282:17058",
@@ -1151,19 +1153,21 @@
     },
     {
       "id": "747:3944",
-      "name": "folder-check",
-      "originalName": "folder-check",
-      "baseName": "folder-check",
+      "name": "folder-verified",
+      "originalName": "folder-verified",
+      "baseName": "folder-verified",
       "width": 16,
       "height": 16,
-      "filename": "folder-check-16.svg",
+      "filename": "folder-verified-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=747-3944",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconFolderCheck",
+      "componentName": "IconFolderVerified",
       "aliases": [
-        "747-3944.svg"
+        "747-3944.svg",
+        "folder-check",
+        "folder-check-16.svg"
       ]
     },
     {
@@ -1293,15 +1297,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconUser",
+      "aliases": [
+        "101-2293.svg"
+      ],
       "variantSetName": "user",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:240",
-      "componentName": "IconUser",
-      "aliases": [
-        "101-2293.svg"
-      ]
+      "variantSetId": "659:240"
     },
     {
       "id": "328:6260",
@@ -1315,17 +1319,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "user",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:240",
       "componentName": "IconUserFill",
       "aliases": [
         "328-6260.svg",
         "user-filled",
         "user-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "user",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:240"
     },
     {
       "id": "303:6170",
@@ -1339,17 +1343,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "user-2",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:241",
       "componentName": "IconUser2Fill",
       "aliases": [
         "303-6170.svg",
         "user-2-filled",
         "user-2-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "user-2",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:241"
     },
     {
       "id": "303:6171",
@@ -1363,15 +1367,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconUser2",
+      "aliases": [
+        "303-6171.svg"
+      ],
       "variantSetName": "user-2",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:241",
-      "componentName": "IconUser2",
-      "aliases": [
-        "303-6171.svg"
-      ]
+      "variantSetId": "659:241"
     },
     {
       "id": "328:6231",
@@ -1385,15 +1389,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconUser3",
+      "aliases": [
+        "328-6231.svg"
+      ],
       "variantSetName": "user-3",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:242",
-      "componentName": "IconUser3",
-      "aliases": [
-        "328-6231.svg"
-      ]
+      "variantSetId": "659:242"
     },
     {
       "id": "328:6232",
@@ -1407,17 +1411,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "user-3",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:242",
       "componentName": "IconUser3Fill",
       "aliases": [
         "328-6232.svg",
         "user-3-filled",
         "user-3-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "user-3",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:242"
     },
     {
       "id": "505:647",
@@ -1431,17 +1435,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "users-group",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:243",
       "componentName": "IconUsersGroup",
       "aliases": [
         "505-647.svg",
         "user-group",
         "user-group-16.svg"
-      ]
+      ],
+      "variantSetName": "users-group",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:243"
     },
     {
       "id": "578:2616",
@@ -1455,17 +1459,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "users-group",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:243",
       "componentName": "IconUsersGroupFill",
       "aliases": [
         "578-2616.svg",
         "user-group-fill",
         "user-group-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "users-group",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:243"
     },
     {
       "id": "606:5303",
@@ -1479,17 +1483,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "users-team",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "606:5305",
       "componentName": "IconUsersTeam",
       "aliases": [
         "606-5303.svg",
         "users-three",
         "users-three-16.svg"
-      ]
+      ],
+      "variantSetName": "users-team",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "606:5305"
     },
     {
       "id": "606:5304",
@@ -1503,17 +1507,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "users-team",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "606:5305",
       "componentName": "IconUsersTeamFill",
       "aliases": [
         "606-5304.svg",
         "users-three-fill",
         "users-three-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "users-team",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "606:5305"
     },
     {
       "id": "469:1440",
@@ -1527,17 +1531,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "users",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:244",
       "componentName": "IconUsers",
       "aliases": [
         "469-1440.svg",
         "users-two",
         "users-two-16.svg"
-      ]
+      ],
+      "variantSetName": "users",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:244"
     },
     {
       "id": "487:1492",
@@ -1551,17 +1555,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "users",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:244",
       "componentName": "IconUsersFill",
       "aliases": [
         "487-1492.svg",
         "users-two-fill",
         "users-two-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "users",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:244"
     },
     {
       "id": "114:2146",
@@ -1815,15 +1819,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconBookmark",
+      "aliases": [
+        "124-2571.svg"
+      ],
       "variantSetName": "bookmark",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:212",
-      "componentName": "IconBookmark",
-      "aliases": [
-        "124-2571.svg"
-      ]
+      "variantSetId": "659:212"
     },
     {
       "id": "506:2914",
@@ -1837,15 +1841,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconBookmarkFill",
+      "aliases": [
+        "506-2914.svg"
+      ],
       "variantSetName": "bookmark",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:212",
-      "componentName": "IconBookmarkFill",
-      "aliases": [
-        "506-2914.svg"
-      ]
+      "variantSetId": "659:212"
     },
     {
       "id": "96:1510",
@@ -1900,40 +1904,42 @@
     },
     {
       "id": "245:15242",
-      "name": "copy-lg",
-      "originalName": "copy-lg",
-      "baseName": "copy-lg",
+      "name": "copy",
+      "originalName": "copy",
+      "baseName": "copy",
       "width": 16,
       "height": 16,
-      "filename": "copy-lg-16.svg",
+      "filename": "copy-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=245-15242",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCopyLg",
+      "componentName": "IconCopy",
       "aliases": [
         "245-15242.svg",
-        "copy",
-        "copy-16.svg"
+        "copy-lg",
+        "copy-lg-16.svg"
       ]
     },
     {
       "id": "548:8698",
-      "name": "copied-lg",
-      "originalName": "copied-lg",
-      "baseName": "copied-lg",
+      "name": "copied",
+      "originalName": "copied",
+      "baseName": "copied",
       "width": 16,
       "height": 16,
-      "filename": "copied-lg-16.svg",
+      "filename": "copied-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=548-8698",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCopiedLg",
+      "componentName": "IconCopied",
       "aliases": [
         "548-8698.svg",
         "copy-check",
-        "copy-check-16.svg"
+        "copy-check-16.svg",
+        "copied-lg",
+        "copied-lg-16.svg"
       ]
     },
     {
@@ -2112,19 +2118,21 @@
     },
     {
       "id": "358:10802",
-      "name": "file-copy",
-      "originalName": "file-copy",
-      "baseName": "file-copy",
+      "name": "file-duplicate",
+      "originalName": "file-duplicate",
+      "baseName": "file-duplicate",
       "width": 16,
       "height": 16,
-      "filename": "file-copy-16.svg",
+      "filename": "file-duplicate-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=358-10802",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconFileCopy",
+      "componentName": "IconFileDuplicate",
       "aliases": [
-        "358-10802.svg"
+        "358-10802.svg",
+        "file-copy",
+        "file-copy-16.svg"
       ]
     },
     {
@@ -2254,38 +2262,42 @@
     },
     {
       "id": "378:7147",
+      "name": "file-copy",
+      "originalName": "file-copy",
+      "baseName": "file-copy",
+      "width": 16,
+      "height": 16,
+      "filename": "file-copy-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=378-7147",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFileCopy",
+      "aliases": [
+        "378-7147.svg",
+        "files-2",
+        "files-2-16.svg",
+        "files",
+        "files-16.svg"
+      ]
+    },
+    {
+      "id": "717:4029",
       "name": "files",
       "originalName": "files",
       "baseName": "files",
       "width": 16,
       "height": 16,
       "filename": "files-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=378-7147",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=717-4029",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
       "componentName": "IconFiles",
       "aliases": [
-        "378-7147.svg",
-        "files-2",
-        "files-2-16.svg"
-      ]
-    },
-    {
-      "id": "717:4029",
-      "name": "files2",
-      "originalName": "files2",
-      "baseName": "files2",
-      "width": 16,
-      "height": 16,
-      "filename": "files2-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=717-4029",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconFiles2",
-      "aliases": [
-        "717-4029.svg"
+        "717-4029.svg",
+        "files2",
+        "files2-16.svg"
       ]
     },
     {
@@ -2606,6 +2618,24 @@
       ]
     },
     {
+      "id": "841:12717",
+      "name": "align-bottom-1",
+      "originalName": "align-bottom",
+      "baseName": "align-bottom",
+      "width": 16,
+      "height": 16,
+      "filename": "align-bottom-1-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12717",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconAlignBottom1",
+      "aliases": [
+        "align-bottom",
+        "841-12717.svg"
+      ]
+    },
+    {
       "id": "558:8904",
       "name": "align-end",
       "originalName": "align-end",
@@ -2642,6 +2672,24 @@
       ]
     },
     {
+      "id": "841:12714",
+      "name": "align-center-1",
+      "originalName": "align-center",
+      "baseName": "align-center",
+      "width": 16,
+      "height": 16,
+      "filename": "align-center-1-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12714",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconAlignCenter1",
+      "aliases": [
+        "align-center",
+        "841-12714.svg"
+      ]
+    },
+    {
       "id": "558:8903",
       "name": "align-start",
       "originalName": "align-start",
@@ -2659,6 +2707,24 @@
       ]
     },
     {
+      "id": "841:12715",
+      "name": "align-start-1",
+      "originalName": "align-start",
+      "baseName": "align-start",
+      "width": 16,
+      "height": 16,
+      "filename": "align-start-1-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12715",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconAlignStart1",
+      "aliases": [
+        "align-start",
+        "841-12715.svg"
+      ]
+    },
+    {
       "id": "518:4797",
       "name": "align-top",
       "originalName": "align-top",
@@ -2673,6 +2739,24 @@
       "componentName": "IconAlignTop",
       "aliases": [
         "518-4797.svg"
+      ]
+    },
+    {
+      "id": "841:12718",
+      "name": "align-top-1",
+      "originalName": "align-top",
+      "baseName": "align-top",
+      "width": 16,
+      "height": 16,
+      "filename": "align-top-1-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12718",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconAlignTop1",
+      "aliases": [
+        "align-top",
+        "841-12718.svg"
       ]
     },
     {
@@ -2694,6 +2778,24 @@
         "align-middle-v-16.svg",
         "align-vertical-center",
         "align-vertical-center-16.svg"
+      ]
+    },
+    {
+      "id": "841:12719",
+      "name": "align-middle-1",
+      "originalName": "align-middle",
+      "baseName": "align-middle",
+      "width": 16,
+      "height": 16,
+      "filename": "align-middle-1-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12719",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconAlignMiddle1",
+      "aliases": [
+        "align-middle",
+        "841-12719.svg"
       ]
     },
     {
@@ -2938,19 +3040,21 @@
     },
     {
       "id": "59:9595",
-      "name": "heading",
-      "originalName": "heading",
-      "baseName": "heading",
+      "name": "heading-fill",
+      "originalName": "heading-fill",
+      "baseName": "heading-fill",
       "width": 16,
       "height": 16,
-      "filename": "heading-16.svg",
+      "filename": "heading-fill-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=59-9595",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconHeading",
+      "componentName": "IconHeadingFill",
       "aliases": [
-        "59-9595.svg"
+        "59-9595.svg",
+        "heading",
+        "heading-16.svg"
       ]
     },
     {
@@ -3165,19 +3269,21 @@
     },
     {
       "id": "741:8159",
-      "name": "queue",
-      "originalName": "queue",
-      "baseName": "queue",
+      "name": "queue-play",
+      "originalName": "queue-play",
+      "baseName": "queue-play",
       "width": 16,
       "height": 16,
-      "filename": "queue-16.svg",
+      "filename": "queue-play-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=741-8159",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconQueue",
+      "componentName": "IconQueuePlay",
       "aliases": [
-        "741-8159.svg"
+        "741-8159.svg",
+        "queue",
+        "queue-16.svg"
       ]
     },
     {
@@ -3353,15 +3459,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconPencilEdit",
+      "aliases": [
+        "133-4571.svg"
+      ],
       "variantSetName": "pencil-edit",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:225",
-      "componentName": "IconPencilEdit",
-      "aliases": [
-        "133-4571.svg"
-      ]
+      "variantSetId": "659:225"
     },
     {
       "id": "506:2890",
@@ -3375,15 +3481,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconPencilEditFill",
+      "aliases": [
+        "506-2890.svg"
+      ],
       "variantSetName": "pencil-edit",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:225",
-      "componentName": "IconPencilEditFill",
-      "aliases": [
-        "506-2890.svg"
-      ]
+      "variantSetId": "659:225"
     },
     {
       "id": "60:2291",
@@ -3802,21 +3908,21 @@
     },
     {
       "id": "577:717",
-      "name": "text-mark",
-      "originalName": "text-mark",
-      "baseName": "text-mark",
+      "name": "text-highlight",
+      "originalName": "text-highlight",
+      "baseName": "text-highlight",
       "width": 16,
       "height": 16,
-      "filename": "text-mark-16.svg",
+      "filename": "text-highlight-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=577-717",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconTextMark",
+      "componentName": "IconTextHighlight",
       "aliases": [
         "577-717.svg",
-        "text-highlight",
-        "text-highlight-16.svg"
+        "text-mark",
+        "text-mark-16.svg"
       ]
     },
     {
@@ -5691,19 +5797,21 @@
     },
     {
       "id": "697:218",
-      "name": "card",
-      "originalName": "card",
-      "baseName": "card",
+      "name": "article-square",
+      "originalName": "article-square",
+      "baseName": "article-square",
       "width": 16,
       "height": 16,
-      "filename": "card-16.svg",
+      "filename": "article-square-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=697-218",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCard",
+      "componentName": "IconArticleSquare",
       "aliases": [
-        "697-218.svg"
+        "697-218.svg",
+        "card",
+        "card-16.svg"
       ]
     },
     {
@@ -5765,42 +5873,46 @@
     },
     {
       "id": "509:4597",
-      "name": "collection-v",
-      "originalName": "collection-v",
-      "baseName": "collection-v",
+      "name": "stack",
+      "originalName": "stack",
+      "baseName": "stack",
       "width": 16,
       "height": 16,
-      "filename": "collection-v-16.svg",
+      "filename": "stack-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=509-4597",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCollectionV",
+      "componentName": "IconStack",
       "aliases": [
         "509-4597.svg",
         "stack-v",
         "stack-v-16.svg",
         "stack-y",
-        "stack-y-16.svg"
+        "stack-y-16.svg",
+        "collection-v",
+        "collection-v-16.svg"
       ]
     },
     {
       "id": "509:4598",
-      "name": "collection-h",
-      "originalName": "collection-h",
-      "baseName": "collection-h",
+      "name": "stack-horizontal",
+      "originalName": "stack-horizontal",
+      "baseName": "stack-horizontal",
       "width": 16,
       "height": 16,
-      "filename": "collection-h-16.svg",
+      "filename": "stack-horizontal-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=509-4598",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCollectionH",
+      "componentName": "IconStackHorizontal",
       "aliases": [
         "509-4598.svg",
         "stack-x",
-        "stack-x-16.svg"
+        "stack-x-16.svg",
+        "collection-h",
+        "collection-h-16.svg"
       ]
     },
     {
@@ -5991,15 +6103,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFinder",
+      "aliases": [
+        "563-9135.svg"
+      ],
       "variantSetName": "finder",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "566:266",
-      "componentName": "IconFinder",
-      "aliases": [
-        "563-9135.svg"
-      ]
+      "variantSetId": "566:266"
     },
     {
       "id": "564:9157",
@@ -6013,15 +6125,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFinderFill",
+      "aliases": [
+        "564-9157.svg"
+      ],
       "variantSetName": "finder",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "566:266",
-      "componentName": "IconFinderFill",
-      "aliases": [
-        "564-9157.svg"
-      ]
+      "variantSetId": "566:266"
     },
     {
       "id": "310:6303",
@@ -6035,15 +6147,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCursor",
+      "aliases": [
+        "310-6303.svg"
+      ],
       "variantSetName": "cursor",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:216",
-      "componentName": "IconCursor",
-      "aliases": [
-        "310-6303.svg"
-      ]
+      "variantSetId": "659:216"
     },
     {
       "id": "578:3008",
@@ -6057,15 +6169,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCursorFill",
+      "aliases": [
+        "578-3008.svg"
+      ],
       "variantSetName": "cursor",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:216",
-      "componentName": "IconCursorFill",
-      "aliases": [
-        "578-3008.svg"
-      ]
+      "variantSetId": "659:216"
     },
     {
       "id": "140:6033",
@@ -6079,17 +6191,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "pointer",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:217",
       "componentName": "IconPointer",
       "aliases": [
         "140-6033.svg",
         "cursor-arrow",
         "cursor-arrow-16.svg"
-      ]
+      ],
+      "variantSetName": "pointer",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:217"
     },
     {
       "id": "498:2179",
@@ -6103,17 +6215,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "pointer",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:217",
       "componentName": "IconPointerFill",
       "aliases": [
         "498-2179.svg",
         "cursor-arrow-fill",
         "cursor-arrow-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "pointer",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:217"
     },
     {
       "id": "475:427",
@@ -6373,15 +6485,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSettings",
+      "aliases": [
+        "60-2302.svg"
+      ],
       "variantSetName": "settings",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:230",
-      "componentName": "IconSettings",
-      "aliases": [
-        "60-2302.svg"
-      ]
+      "variantSetId": "659:230"
     },
     {
       "id": "578:2559",
@@ -6395,15 +6507,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSettingsFill",
+      "aliases": [
+        "578-2559.svg"
+      ],
       "variantSetName": "settings",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:230",
-      "componentName": "IconSettingsFill",
-      "aliases": [
-        "578-2559.svg"
-      ]
+      "variantSetId": "659:230"
     },
     {
       "id": "178:12405",
@@ -6417,17 +6529,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "settings-small",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "578:2531",
       "componentName": "IconSettingsSmall",
       "aliases": [
         "178-12405.svg",
         "settings-small-off",
         "settings-small-off-16.svg"
-      ]
+      ],
+      "variantSetName": "settings-small",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "578:2531"
     },
     {
       "id": "178:12414",
@@ -6441,17 +6553,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "settings-small",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "578:2531",
       "componentName": "IconSettingsSmallFill",
       "aliases": [
         "178-12414.svg",
         "settings-small-on",
         "settings-small-on-16.svg"
-      ]
+      ],
+      "variantSetName": "settings-small",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "578:2531"
     },
     {
       "id": "328:6275",
@@ -6588,17 +6700,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "laptop",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:222",
       "componentName": "IconLaptop",
       "aliases": [
         "59-9597.svg",
         "device-laptop",
         "device-laptop-16.svg"
-      ]
+      ],
+      "variantSetName": "laptop",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:222"
     },
     {
       "id": "193:13034",
@@ -6612,17 +6724,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "laptop",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:222",
       "componentName": "IconLaptopFill",
       "aliases": [
         "193-13034.svg",
         "device-laptop-2",
         "device-laptop-2-16.svg"
-      ]
+      ],
+      "variantSetName": "laptop",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:222"
     },
     {
       "id": "59:9598",
@@ -6672,15 +6784,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconPhone",
+      "aliases": [
+        "596-4380.svg"
+      ],
       "variantSetName": "phone",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "596:4390",
-      "componentName": "IconPhone",
-      "aliases": [
-        "596-4380.svg"
-      ]
+      "variantSetId": "596:4390"
     },
     {
       "id": "596:4389",
@@ -6694,15 +6806,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconPhoneFill",
+      "aliases": [
+        "596-4389.svg"
+      ],
       "variantSetName": "phone",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "596:4390",
-      "componentName": "IconPhoneFill",
-      "aliases": [
-        "596-4389.svg"
-      ]
+      "variantSetId": "596:4390"
     },
     {
       "id": "486:595",
@@ -7123,15 +7235,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconWifi",
+      "aliases": [
+        "498-490.svg"
+      ],
       "variantSetName": "wifi",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:250",
-      "componentName": "IconWifi",
-      "aliases": [
-        "498-490.svg"
-      ]
+      "variantSetId": "659:250"
     },
     {
       "id": "498:491",
@@ -7145,15 +7257,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconWifiFill",
+      "aliases": [
+        "498-491.svg"
+      ],
       "variantSetName": "wifi",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:250",
-      "componentName": "IconWifiFill",
-      "aliases": [
-        "498-491.svg"
-      ]
+      "variantSetId": "659:250"
     },
     {
       "id": "101:4288",
@@ -7340,21 +7452,21 @@
     },
     {
       "id": "58:9536",
-      "name": "memory-compute",
-      "originalName": "memory-compute",
-      "baseName": "memory-compute",
+      "name": "database",
+      "originalName": "database",
+      "baseName": "database",
       "width": 16,
       "height": 16,
-      "filename": "memory-compute-16.svg",
+      "filename": "database-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=58-9536",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconMemoryCompute",
+      "componentName": "IconDatabase",
       "aliases": [
         "58-9536.svg",
-        "database",
-        "database-16.svg"
+        "memory-compute",
+        "memory-compute-16.svg"
       ]
     },
     {
@@ -7403,17 +7515,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "plug-side",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:227",
       "componentName": "IconPlugSideFill",
       "aliases": [
         "520-5319.svg",
         "plug-3-fill",
         "plug-3-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "plug-side",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:227"
     },
     {
       "id": "520:5330",
@@ -7427,17 +7539,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "plug-side",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:227",
       "componentName": "IconPlugSide",
       "aliases": [
         "520-5330.svg",
         "plug-3",
         "plug-3-16.svg"
-      ]
+      ],
+      "variantSetName": "plug-side",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:227"
     },
     {
       "id": "297:4809",
@@ -7460,19 +7572,21 @@
     },
     {
       "id": "472:650",
-      "name": "plug-in",
-      "originalName": "plug-in",
-      "baseName": "plug-in",
+      "name": "plug-plug",
+      "originalName": "plug-plug",
+      "baseName": "plug-plug",
       "width": 16,
       "height": 16,
-      "filename": "plug-in-16.svg",
+      "filename": "plug-plug-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=472-650",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconPlugIn",
+      "componentName": "IconPlugPlug",
       "aliases": [
-        "472-650.svg"
+        "472-650.svg",
+        "plug-in",
+        "plug-in-16.svg"
       ]
     },
     {
@@ -7572,15 +7686,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconVolumeHighFill",
+      "aliases": [
+        "46-897.svg"
+      ],
       "variantSetName": "volume-high",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:246",
-      "componentName": "IconVolumeHighFill",
-      "aliases": [
-        "46-897.svg"
-      ]
+      "variantSetId": "659:246"
     },
     {
       "id": "46:898",
@@ -7594,32 +7708,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconVolumeHigh",
+      "aliases": [
+        "46-898.svg"
+      ],
       "variantSetName": "volume-high",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:246",
-      "componentName": "IconVolumeHigh",
-      "aliases": [
-        "46-898.svg"
-      ]
-    },
-    {
-      "id": "498:700",
-      "name": "volume-high-slash-fill",
-      "originalName": "volume-high-slash-fill",
-      "baseName": "volume-high-slash-fill",
-      "width": 16,
-      "height": 16,
-      "filename": "volume-high-slash-fill-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=498-700",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconVolumeHighSlashFill",
-      "aliases": [
-        "498-700.svg"
-      ]
+      "variantSetId": "659:246"
     },
     {
       "id": "472:595",
@@ -7633,17 +7730,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "volume-low",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:247",
       "componentName": "IconVolumeLow",
       "aliases": [
         "472-595.svg",
         "volume-med",
         "volume-med-16.svg"
-      ]
+      ],
+      "variantSetName": "volume-low",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:247"
     },
     {
       "id": "498:688",
@@ -7657,34 +7754,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "volume-low",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:247",
       "componentName": "IconVolumeLowFill",
       "aliases": [
         "498-688.svg",
         "volume-med-fill",
         "volume-med-fill-16.svg"
-      ]
-    },
-    {
-      "id": "498:743",
-      "name": "volume-med-slash-fill",
-      "originalName": "volume-med-slash-fill",
-      "baseName": "volume-med-slash-fill",
-      "width": 16,
-      "height": 16,
-      "filename": "volume-med-slash-fill-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=498-743",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconVolumeMedSlashFill",
-      "aliases": [
-        "498-743.svg"
-      ]
+      ],
+      "variantSetName": "volume-low",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:247"
     },
     {
       "id": "472:608",
@@ -7698,17 +7778,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "volume-none",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:248",
       "componentName": "IconVolumeNone",
       "aliases": [
         "472-608.svg",
         "volume-low",
         "volume-low-16.svg"
-      ]
+      ],
+      "variantSetName": "volume-none",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:248"
     },
     {
       "id": "546:8639",
@@ -7722,17 +7802,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "volume-none",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:248",
       "componentName": "IconVolumeNoneFill",
       "aliases": [
         "546-8639.svg",
         "volume-low-fill",
         "volume-low-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "volume-none",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:248"
     },
     {
       "id": "472:629",
@@ -7746,15 +7826,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconVolumeSlash",
+      "aliases": [
+        "472-629.svg"
+      ],
       "variantSetName": "volume-slash",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:249",
-      "componentName": "IconVolumeSlash",
-      "aliases": [
-        "472-629.svg"
-      ]
+      "variantSetId": "659:249"
     },
     {
       "id": "498:748",
@@ -7768,15 +7848,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconVolumeSlashFill",
+      "aliases": [
+        "498-748.svg"
+      ],
       "variantSetName": "volume-slash",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:249",
-      "componentName": "IconVolumeSlashFill",
-      "aliases": [
-        "498-748.svg"
-      ]
+      "variantSetId": "659:249"
     },
     {
       "id": "498:674",
@@ -7843,17 +7923,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "audio-description",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "580:320",
       "componentName": "IconAudioDescription",
       "aliases": [
         "372-6138.svg",
         "rectangle-audio-descriptions",
         "rectangle-audio-descriptions-16.svg"
-      ]
+      ],
+      "variantSetName": "audio-description",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "580:320"
     },
     {
       "id": "380:9408",
@@ -7867,17 +7947,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "audio-description",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "580:320",
       "componentName": "IconAudioDescriptionFill",
       "aliases": [
         "380-9408.svg",
         "rectangle-audio-descriptions-fill",
         "rectangle-audio-descriptions-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "audio-description",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "580:320"
     },
     {
       "id": "372:5686",
@@ -7891,17 +7971,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "closed-captions",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:215",
       "componentName": "IconClosedCaptions",
       "aliases": [
         "372-5686.svg",
         "rectangle-closed-captions",
         "rectangle-closed-captions-16.svg"
-      ]
+      ],
+      "variantSetName": "closed-captions",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:215"
     },
     {
       "id": "380:9409",
@@ -7915,17 +7995,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "closed-captions",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:215",
       "componentName": "IconClosedCaptionsFill",
       "aliases": [
         "380-9409.svg",
         "rectangle-closed-captions-fill",
         "rectangle-closed-captions-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "closed-captions",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:215"
     },
     {
       "id": "344:9604",
@@ -8075,11 +8155,6 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "video-camera",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:245",
       "componentName": "IconVideoCamera",
       "aliases": [
         "100-2289.svg",
@@ -8087,7 +8162,12 @@
         "video-off-16.svg",
         "video",
         "video-16.svg"
-      ]
+      ],
+      "variantSetName": "video-camera",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:245"
     },
     {
       "id": "310:6525",
@@ -8101,11 +8181,6 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "video-camera",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:245",
       "componentName": "IconVideoCameraFill",
       "aliases": [
         "310-6525.svg",
@@ -8113,7 +8188,12 @@
         "video-on-16.svg",
         "video-fill",
         "video-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "video-camera",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:245"
     },
     {
       "id": "96:1649",
@@ -8127,15 +8207,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconEject",
+      "aliases": [
+        "96-1649.svg"
+      ],
       "variantSetName": "eject",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "569:573",
-      "componentName": "IconEject",
-      "aliases": [
-        "96-1649.svg"
-      ]
+      "variantSetId": "569:573"
     },
     {
       "id": "343:9339",
@@ -8149,17 +8229,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "eject",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "569:573",
       "componentName": "IconEjectFill",
       "aliases": [
         "343-9339.svg",
         "eject-filled",
         "eject-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "eject",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "569:573"
     },
     {
       "id": "535:8506",
@@ -8173,15 +8253,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFastBackwardFill",
+      "aliases": [
+        "535-8506.svg"
+      ],
       "variantSetName": "fast-backward",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:218",
-      "componentName": "IconFastBackwardFill",
-      "aliases": [
-        "535-8506.svg"
-      ]
+      "variantSetId": "659:218"
     },
     {
       "id": "535:8507",
@@ -8195,15 +8275,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFastBackward",
+      "aliases": [
+        "535-8507.svg"
+      ],
       "variantSetName": "fast-backward",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:218",
-      "componentName": "IconFastBackward",
-      "aliases": [
-        "535-8507.svg"
-      ]
+      "variantSetId": "659:218"
     },
     {
       "id": "125:2607",
@@ -8217,15 +8297,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFastForward",
+      "aliases": [
+        "125-2607.svg"
+      ],
       "variantSetName": "fast-forward",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:219",
-      "componentName": "IconFastForward",
-      "aliases": [
-        "125-2607.svg"
-      ]
+      "variantSetId": "659:219"
     },
     {
       "id": "129:6652",
@@ -8239,15 +8319,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFastForwardFill",
+      "aliases": [
+        "129-6652.svg"
+      ],
       "variantSetName": "fast-forward",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:219",
-      "componentName": "IconFastForwardFill",
-      "aliases": [
-        "129-6652.svg"
-      ]
+      "variantSetId": "659:219"
     },
     {
       "id": "59:9599",
@@ -8261,15 +8341,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconPause",
+      "aliases": [
+        "59-9599.svg"
+      ],
       "variantSetName": "pause",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:224",
-      "componentName": "IconPause",
-      "aliases": [
-        "59-9599.svg"
-      ]
+      "variantSetId": "659:224"
     },
     {
       "id": "101:4347",
@@ -8283,17 +8363,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "pause",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:224",
       "componentName": "IconPauseFill",
       "aliases": [
         "101-4347.svg",
         "pause-filled",
         "pause-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "pause",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:224"
     },
     {
       "id": "311:9873",
@@ -8307,15 +8387,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconPlay",
+      "aliases": [
+        "311-9873.svg"
+      ],
       "variantSetName": "play",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:226",
-      "componentName": "IconPlay",
-      "aliases": [
-        "311-9873.svg"
-      ]
+      "variantSetId": "659:226"
     },
     {
       "id": "311:10178",
@@ -8329,17 +8409,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "play",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:226",
       "componentName": "IconPlayFill",
       "aliases": [
         "311-10178.svg",
         "play-filled",
         "play-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "play",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:226"
     },
     {
       "id": "619:12605",
@@ -8353,15 +8433,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSkipBackwardFill",
+      "aliases": [
+        "619-12605.svg"
+      ],
       "variantSetName": "skip-backward",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:232",
-      "componentName": "IconSkipBackwardFill",
-      "aliases": [
-        "619-12605.svg"
-      ]
+      "variantSetId": "659:232"
     },
     {
       "id": "619:12629",
@@ -8375,15 +8455,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSkipBackward",
+      "aliases": [
+        "619-12629.svg"
+      ],
       "variantSetName": "skip-backward",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:232",
-      "componentName": "IconSkipBackward",
-      "aliases": [
-        "619-12629.svg"
-      ]
+      "variantSetId": "659:232"
     },
     {
       "id": "619:12595",
@@ -8397,15 +8477,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSkipForwardFill",
+      "aliases": [
+        "619-12595.svg"
+      ],
       "variantSetName": "skip-forward",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:233",
-      "componentName": "IconSkipForwardFill",
-      "aliases": [
-        "619-12595.svg"
-      ]
+      "variantSetId": "659:233"
     },
     {
       "id": "619:12628",
@@ -8419,15 +8499,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSkipForward",
+      "aliases": [
+        "619-12628.svg"
+      ],
       "variantSetName": "skip-forward",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:233",
-      "componentName": "IconSkipForward",
-      "aliases": [
-        "619-12628.svg"
-      ]
+      "variantSetId": "659:233"
     },
     {
       "id": "101:4352",
@@ -8441,17 +8521,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "stop",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:236",
       "componentName": "IconStopFill",
       "aliases": [
         "101-4352.svg",
         "stop-filled",
         "stop-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "stop",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:236"
     },
     {
       "id": "311:10593",
@@ -8465,15 +8545,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconStop",
+      "aliases": [
+        "311-10593.svg"
+      ],
       "variantSetName": "stop",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:236",
-      "componentName": "IconStop",
-      "aliases": [
-        "311-10593.svg"
-      ]
+      "variantSetId": "659:236"
     },
     {
       "id": "376:6585",
@@ -8983,19 +9063,21 @@
     },
     {
       "id": "142:6370",
-      "name": "carets-diagonal",
-      "originalName": "carets-diagonal",
-      "baseName": "carets-diagonal",
+      "name": "carets-maximize",
+      "originalName": "carets-maximize",
+      "baseName": "carets-maximize",
       "width": 16,
       "height": 16,
-      "filename": "carets-diagonal-16.svg",
+      "filename": "carets-maximize-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=142-6370",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCaretsDiagonal",
+      "componentName": "IconCaretsMaximize",
       "aliases": [
-        "142-6370.svg"
+        "142-6370.svg",
+        "carets-diagonal",
+        "carets-diagonal-16.svg"
       ]
     },
     {
@@ -9086,23 +9168,6 @@
       ]
     },
     {
-      "id": "142:6352",
-      "name": "chevron-left-sharp",
-      "originalName": "chevron-left-sharp",
-      "baseName": "chevron-left-sharp",
-      "width": 16,
-      "height": 16,
-      "filename": "chevron-left-sharp-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=142-6352",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconChevronLeftSharp",
-      "aliases": [
-        "142-6352.svg"
-      ]
-    },
-    {
       "id": "142:6354",
       "name": "chevron-left-sm",
       "originalName": "chevron-left-sm",
@@ -9137,23 +9202,6 @@
       ]
     },
     {
-      "id": "142:6355",
-      "name": "chevron-right-sharp",
-      "originalName": "chevron-right-sharp",
-      "baseName": "chevron-right-sharp",
-      "width": 16,
-      "height": 16,
-      "filename": "chevron-right-sharp-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=142-6355",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconChevronRightSharp",
-      "aliases": [
-        "142-6355.svg"
-      ]
-    },
-    {
       "id": "142:6353",
       "name": "chevron-right-sm",
       "originalName": "chevron-right-sm",
@@ -9185,23 +9233,6 @@
       "componentName": "IconChevronUp",
       "aliases": [
         "550-8794.svg"
-      ]
-    },
-    {
-      "id": "142:6356",
-      "name": "chevron-up-sharp",
-      "originalName": "chevron-up-sharp",
-      "baseName": "chevron-up-sharp",
-      "width": 16,
-      "height": 16,
-      "filename": "chevron-up-sharp-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=142-6356",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconChevronUpSharp",
-      "aliases": [
-        "142-6356.svg"
       ]
     },
     {
@@ -9414,21 +9445,23 @@
     },
     {
       "id": "578:3150",
-      "name": "import-right",
-      "originalName": "import-right",
-      "baseName": "import-right",
+      "name": "import-side",
+      "originalName": "import-side",
+      "baseName": "import-side",
       "width": 16,
       "height": 16,
-      "filename": "import-right-16.svg",
+      "filename": "import-side-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=578-3150",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconImportRight",
+      "componentName": "IconImportSide",
       "aliases": [
         "578-3150.svg",
         "arrow-to-box-right",
-        "arrow-to-box-right-16.svg"
+        "arrow-to-box-right-16.svg",
+        "import-right",
+        "import-right-16.svg"
       ]
     },
     {
@@ -9505,72 +9538,80 @@
     },
     {
       "id": "98:1928",
-      "name": "arrow-repeat",
-      "originalName": "arrow-repeat",
-      "baseName": "arrow-repeat",
+      "name": "arrows-repeat",
+      "originalName": "arrows-repeat",
+      "baseName": "arrows-repeat",
       "width": 16,
       "height": 16,
-      "filename": "arrow-repeat-16.svg",
+      "filename": "arrows-repeat-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=98-1928",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowRepeat",
+      "componentName": "IconArrowsRepeat",
       "aliases": [
-        "98-1928.svg"
+        "98-1928.svg",
+        "arrow-repeat",
+        "arrow-repeat-16.svg"
       ]
     },
     {
       "id": "59:9707",
-      "name": "arrow-repeat-one",
-      "originalName": "arrow-repeat-one",
-      "baseName": "arrow-repeat-one",
+      "name": "arrows-repeat-one",
+      "originalName": "arrows-repeat-one",
+      "baseName": "arrows-repeat-one",
       "width": 16,
       "height": 16,
-      "filename": "arrow-repeat-one-16.svg",
+      "filename": "arrows-repeat-one-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=59-9707",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowRepeatOne",
+      "componentName": "IconArrowsRepeatOne",
       "aliases": [
-        "59-9707.svg"
+        "59-9707.svg",
+        "arrow-repeat-one",
+        "arrow-repeat-one-16.svg"
       ]
     },
     {
       "id": "101:4350",
-      "name": "arrow-shuffle",
-      "originalName": "arrow-shuffle",
-      "baseName": "arrow-shuffle",
+      "name": "arrows-shuffle",
+      "originalName": "arrows-shuffle",
+      "baseName": "arrows-shuffle",
       "width": 16,
       "height": 16,
-      "filename": "arrow-shuffle-16.svg",
+      "filename": "arrows-shuffle-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=101-4350",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowShuffle",
+      "componentName": "IconArrowsShuffle",
       "aliases": [
-        "101-4350.svg"
+        "101-4350.svg",
+        "arrow-shuffle",
+        "arrow-shuffle-16.svg"
       ]
     },
     {
       "id": "59:9706",
-      "name": "arrows-rotate",
-      "originalName": "arrows-rotate",
-      "baseName": "arrows-rotate",
+      "name": "arrows-rotate-lg",
+      "originalName": "arrows-rotate-lg",
+      "baseName": "arrows-rotate-lg",
       "width": 16,
       "height": 16,
-      "filename": "arrows-rotate-16.svg",
+      "filename": "arrows-rotate-lg-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=59-9706",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowsRotate",
+      "componentName": "IconArrowsRotateLg",
       "aliases": [
         "59-9706.svg",
         "arrow-refresh",
-        "arrow-refresh-16.svg"
+        "arrow-refresh-16.svg",
+        "arrows-rotate",
+        "arrows-rotate-16.svg"
       ]
     },
     {
@@ -9626,19 +9667,21 @@
     },
     {
       "id": "154:11389",
-      "name": "arrows-compress-all",
-      "originalName": "arrows-compress-all",
-      "baseName": "arrows-compress-all",
+      "name": "arrows-minimize",
+      "originalName": "arrows-minimize",
+      "baseName": "arrows-minimize",
       "width": 16,
       "height": 16,
-      "filename": "arrows-compress-all-16.svg",
+      "filename": "arrows-minimize-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=154-11389",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowsCompressAll",
+      "componentName": "IconArrowsMinimize",
       "aliases": [
-        "154-11389.svg"
+        "154-11389.svg",
+        "arrows-compress-all",
+        "arrows-compress-all-16.svg"
       ]
     },
     {
@@ -9660,57 +9703,63 @@
     },
     {
       "id": "129:6744",
-      "name": "arrows-expand-all",
-      "originalName": "arrows-expand-all",
-      "baseName": "arrows-expand-all",
+      "name": "arrows-maximize",
+      "originalName": "arrows-maximize",
+      "baseName": "arrows-maximize",
       "width": 16,
       "height": 16,
-      "filename": "arrows-expand-all-16.svg",
+      "filename": "arrows-maximize-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=129-6744",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowsExpandAll",
+      "componentName": "IconArrowsMaximize",
       "aliases": [
-        "129-6744.svg"
+        "129-6744.svg",
+        "arrows-expand-all",
+        "arrows-expand-all-16.svg"
       ]
     },
     {
       "id": "578:3183",
-      "name": "corner-minimize",
-      "originalName": "corner-minimize",
-      "baseName": "corner-minimize",
+      "name": "arrow-corner-minimize",
+      "originalName": "arrow-corner-minimize",
+      "baseName": "arrow-corner-minimize",
       "width": 16,
       "height": 16,
-      "filename": "corner-minimize-16.svg",
+      "filename": "arrow-corner-minimize-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=578-3183",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCornerMinimize",
+      "componentName": "IconArrowCornerMinimize",
       "aliases": [
         "578-3183.svg",
         "arrow-to-box-down-right",
-        "arrow-to-box-down-right-16.svg"
+        "arrow-to-box-down-right-16.svg",
+        "corner-minimize",
+        "corner-minimize-16.svg"
       ]
     },
     {
       "id": "578:3210",
-      "name": "corner-resize",
-      "originalName": "corner-resize",
-      "baseName": "corner-resize",
+      "name": "arrow-corner-resize",
+      "originalName": "arrow-corner-resize",
+      "baseName": "arrow-corner-resize",
       "width": 16,
       "height": 16,
-      "filename": "corner-resize-16.svg",
+      "filename": "arrow-corner-resize-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=578-3210",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCornerResize",
+      "componentName": "IconArrowCornerResize",
       "aliases": [
         "578-3210.svg",
         "expand-from-corner",
-        "expand-from-corner-16.svg"
+        "expand-from-corner-16.svg",
+        "corner-resize",
+        "corner-resize-16.svg"
       ]
     },
     {
@@ -9970,53 +10019,40 @@
     },
     {
       "id": "97:1899",
+      "name": "redo",
+      "originalName": "redo",
+      "baseName": "redo",
+      "width": 16,
+      "height": 16,
+      "filename": "redo-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=97-1899",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconRedo",
+      "aliases": [
+        "97-1899.svg",
+        "arrow-redo",
+        "arrow-redo-16.svg"
+      ]
+    },
+    {
+      "id": "334:6678",
       "name": "arrow-redo",
       "originalName": "arrow-redo",
       "baseName": "arrow-redo",
       "width": 16,
       "height": 16,
       "filename": "arrow-redo-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=97-1899",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=334-6678",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
       "componentName": "IconArrowRedo",
       "aliases": [
-        "97-1899.svg"
-      ]
-    },
-    {
-      "id": "335:6781",
-      "name": "arrow-redo-arc",
-      "originalName": "arrow-redo-arc",
-      "baseName": "arrow-redo-arc",
-      "width": 16,
-      "height": 16,
-      "filename": "arrow-redo-arc-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=335-6781",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconArrowRedoArc",
-      "aliases": [
-        "335-6781.svg"
-      ]
-    },
-    {
-      "id": "334:6678",
-      "name": "arrow-redo-arc-lg",
-      "originalName": "arrow-redo-arc-lg",
-      "baseName": "arrow-redo-arc-lg",
-      "width": 16,
-      "height": 16,
-      "filename": "arrow-redo-arc-lg-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=334-6678",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconArrowRedoArcLg",
-      "aliases": [
-        "334-6678.svg"
+        "334-6678.svg",
+        "arrow-redo-arc-lg",
+        "arrow-redo-arc-lg-16.svg"
       ]
     },
     {
@@ -10089,53 +10125,40 @@
     },
     {
       "id": "334:6647",
+      "name": "undo",
+      "originalName": "undo",
+      "baseName": "undo",
+      "width": 16,
+      "height": 16,
+      "filename": "undo-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=334-6647",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconUndo",
+      "aliases": [
+        "334-6647.svg",
+        "arrow-undo",
+        "arrow-undo-16.svg"
+      ]
+    },
+    {
+      "id": "529:7942",
       "name": "arrow-undo",
       "originalName": "arrow-undo",
       "baseName": "arrow-undo",
       "width": 16,
       "height": 16,
       "filename": "arrow-undo-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=334-6647",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=529-7942",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
       "componentName": "IconArrowUndo",
       "aliases": [
-        "334-6647.svg"
-      ]
-    },
-    {
-      "id": "334:6711",
-      "name": "arrow-undo-arc",
-      "originalName": "arrow-undo-arc",
-      "baseName": "arrow-undo-arc",
-      "width": 16,
-      "height": 16,
-      "filename": "arrow-undo-arc-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=334-6711",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconArrowUndoArc",
-      "aliases": [
-        "334-6711.svg"
-      ]
-    },
-    {
-      "id": "529:7942",
-      "name": "arrow-undo-arc-lg",
-      "originalName": "arrow-undo-arc-lg",
-      "baseName": "arrow-undo-arc-lg",
-      "width": 16,
-      "height": 16,
-      "filename": "arrow-undo-arc-lg-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=529-7942",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconArrowUndoArcLg",
-      "aliases": [
-        "529-7942.svg"
+        "529-7942.svg",
+        "arrow-undo-arc-lg",
+        "arrow-undo-arc-lg-16.svg"
       ]
     },
     {
@@ -10292,17 +10315,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "square-check",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:234",
       "componentName": "IconSquareCheckFill",
       "aliases": [
         "245-15207.svg",
         "square-check-solid",
         "square-check-solid-16.svg"
-      ]
+      ],
+      "variantSetName": "square-check",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:234"
     },
     {
       "id": "245:15216",
@@ -10316,15 +10339,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSquareCheck",
+      "aliases": [
+        "245-15216.svg"
+      ],
       "variantSetName": "square-check",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:234",
-      "componentName": "IconSquareCheck",
-      "aliases": [
-        "245-15216.svg"
-      ]
+      "variantSetId": "659:234"
     },
     {
       "id": "484:437",
@@ -10338,15 +10361,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleAccess",
+      "aliases": [
+        "484-437.svg"
+      ],
       "variantSetName": "circle-access",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:214",
-      "componentName": "IconCircleAccess",
-      "aliases": [
-        "484-437.svg"
-      ]
+      "variantSetId": "659:214"
     },
     {
       "id": "487:1571",
@@ -10360,15 +10383,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleAccessFill",
+      "aliases": [
+        "487-1571.svg"
+      ],
       "variantSetName": "circle-access",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:214",
-      "componentName": "IconCircleAccessFill",
-      "aliases": [
-        "487-1571.svg"
-      ]
+      "variantSetId": "659:214"
     },
     {
       "id": "158:11585",
@@ -10382,15 +10405,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleCheck",
+      "aliases": [
+        "158-11585.svg"
+      ],
       "variantSetName": "circle-check",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "578:2495",
-      "componentName": "IconCircleCheck",
-      "aliases": [
-        "158-11585.svg"
-      ]
+      "variantSetId": "578:2495"
     },
     {
       "id": "506:2715",
@@ -10404,15 +10427,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleCheckFill",
+      "aliases": [
+        "506-2715.svg"
+      ],
       "variantSetName": "circle-check",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "578:2495",
-      "componentName": "IconCircleCheckFill",
-      "aliases": [
-        "506-2715.svg"
-      ]
+      "variantSetId": "578:2495"
     },
     {
       "id": "578:2505",
@@ -10426,15 +10449,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleNull",
+      "aliases": [
+        "578-2505.svg"
+      ],
       "variantSetName": "circle-null",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "578:2504",
-      "componentName": "IconCircleNull",
-      "aliases": [
-        "578-2505.svg"
-      ]
+      "variantSetId": "578:2504"
     },
     {
       "id": "578:2509",
@@ -10448,15 +10471,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleNullFill",
+      "aliases": [
+        "578-2509.svg"
+      ],
       "variantSetName": "circle-null",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "578:2504",
-      "componentName": "IconCircleNullFill",
-      "aliases": [
-        "578-2509.svg"
-      ]
+      "variantSetId": "578:2504"
     },
     {
       "id": "96:1634",
@@ -10470,15 +10493,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCirclePause",
+      "aliases": [
+        "96-1634.svg"
+      ],
       "variantSetName": "circle-pause",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "578:2496",
-      "componentName": "IconCirclePause",
-      "aliases": [
-        "96-1634.svg"
-      ]
+      "variantSetId": "578:2496"
     },
     {
       "id": "578:2366",
@@ -10492,15 +10515,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCirclePauseFill",
+      "aliases": [
+        "578-2366.svg"
+      ],
       "variantSetName": "circle-pause",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "578:2496",
-      "componentName": "IconCirclePauseFill",
-      "aliases": [
-        "578-2366.svg"
-      ]
+      "variantSetId": "578:2496"
     },
     {
       "id": "124:2541",
@@ -10514,15 +10537,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCirclePlay",
+      "aliases": [
+        "124-2541.svg"
+      ],
       "variantSetName": "circle-play",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "578:2497",
-      "componentName": "IconCirclePlay",
-      "aliases": [
-        "124-2541.svg"
-      ]
+      "variantSetId": "578:2497"
     },
     {
       "id": "578:2376",
@@ -10536,15 +10559,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCirclePlayFill",
+      "aliases": [
+        "578-2376.svg"
+      ],
       "variantSetName": "circle-play",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "578:2497",
-      "componentName": "IconCirclePlayFill",
-      "aliases": [
-        "578-2376.svg"
-      ]
+      "variantSetId": "578:2497"
     },
     {
       "id": "124:2591",
@@ -10558,15 +10581,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleQuestion",
+      "aliases": [
+        "124-2591.svg"
+      ],
       "variantSetName": "circle-question",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "578:2498",
-      "componentName": "IconCircleQuestion",
-      "aliases": [
-        "124-2591.svg"
-      ]
+      "variantSetId": "578:2498"
     },
     {
       "id": "578:2391",
@@ -10580,15 +10603,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleQuestionFill",
+      "aliases": [
+        "578-2391.svg"
+      ],
       "variantSetName": "circle-question",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "578:2498",
-      "componentName": "IconCircleQuestionFill",
-      "aliases": [
-        "578-2391.svg"
-      ]
+      "variantSetId": "578:2498"
     },
     {
       "id": "124:2540",
@@ -10602,15 +10625,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleStop",
+      "aliases": [
+        "124-2540.svg"
+      ],
       "variantSetName": "circle-stop",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "578:2499",
-      "componentName": "IconCircleStop",
-      "aliases": [
-        "124-2540.svg"
-      ]
+      "variantSetId": "578:2499"
     },
     {
       "id": "578:2402",
@@ -10624,15 +10647,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleStopFill",
+      "aliases": [
+        "578-2402.svg"
+      ],
       "variantSetName": "circle-stop",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "578:2499",
-      "componentName": "IconCircleStopFill",
-      "aliases": [
-        "578-2402.svg"
-      ]
+      "variantSetId": "578:2499"
     },
     {
       "id": "752:4179",
@@ -10646,15 +10669,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleNoEntry",
+      "aliases": [
+        "752-4179.svg"
+      ],
       "variantSetName": "circle-no-entry",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "752:4178",
-      "componentName": "IconCircleNoEntry",
-      "aliases": [
-        "752-4179.svg"
-      ]
+      "variantSetId": "752:4178"
     },
     {
       "id": "752:4183",
@@ -10668,15 +10691,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleNoEntryFill",
+      "aliases": [
+        "752-4183.svg"
+      ],
       "variantSetName": "circle-no-entry",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "752:4178",
-      "componentName": "IconCircleNoEntryFill",
-      "aliases": [
-        "752-4183.svg"
-      ]
+      "variantSetId": "752:4178"
     },
     {
       "id": "390:10591",
@@ -10690,15 +10713,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleUserFill",
+      "aliases": [
+        "390-10591.svg"
+      ],
       "variantSetName": "circle-user",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "578:2500",
-      "componentName": "IconCircleUserFill",
-      "aliases": [
-        "390-10591.svg"
-      ]
+      "variantSetId": "578:2500"
     },
     {
       "id": "390:10592",
@@ -10712,15 +10735,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleUser",
+      "aliases": [
+        "390-10592.svg"
+      ],
       "variantSetName": "circle-user",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "578:2500",
-      "componentName": "IconCircleUser",
-      "aliases": [
-        "390-10592.svg"
-      ]
+      "variantSetId": "578:2500"
     },
     {
       "id": "158:11592",
@@ -10734,15 +10757,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleX",
+      "aliases": [
+        "158-11592.svg"
+      ],
       "variantSetName": "circle-x",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "569:569",
-      "componentName": "IconCircleX",
-      "aliases": [
-        "158-11592.svg"
-      ]
+      "variantSetId": "569:569"
     },
     {
       "id": "297:3620",
@@ -10756,17 +10779,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "circle-x",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "569:569",
       "componentName": "IconCircleXFill",
       "aliases": [
         "297-3620.svg",
         "circle-x-solid",
         "circle-x-solid-16.svg"
-      ]
+      ],
+      "variantSetName": "circle-x",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "569:569"
     },
     {
       "id": "721:395",
@@ -10780,15 +10803,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCirclePlus",
+      "aliases": [
+        "721-395.svg"
+      ],
       "variantSetName": "circle-plus",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "721:394",
-      "componentName": "IconCirclePlus",
-      "aliases": [
-        "721-395.svg"
-      ]
+      "variantSetId": "721:394"
     },
     {
       "id": "721:399",
@@ -10802,15 +10825,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCirclePlusFill",
+      "aliases": [
+        "721-399.svg"
+      ],
       "variantSetName": "circle-plus",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "721:394",
-      "componentName": "IconCirclePlusFill",
-      "aliases": [
-        "721-399.svg"
-      ]
+      "variantSetId": "721:394"
     },
     {
       "id": "721:304",
@@ -10824,15 +10847,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleArrowDown",
+      "aliases": [
+        "721-304.svg"
+      ],
       "variantSetName": "circle-arrow-down",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "721:303",
-      "componentName": "IconCircleArrowDown",
-      "aliases": [
-        "721-304.svg"
-      ]
+      "variantSetId": "721:303"
     },
     {
       "id": "721:308",
@@ -10846,15 +10869,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleArrowDownFill",
+      "aliases": [
+        "721-308.svg"
+      ],
       "variantSetName": "circle-arrow-down",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "721:303",
-      "componentName": "IconCircleArrowDownFill",
-      "aliases": [
-        "721-308.svg"
-      ]
+      "variantSetId": "721:303"
     },
     {
       "id": "721:354",
@@ -10868,15 +10891,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleArrowLeft",
+      "aliases": [
+        "721-354.svg"
+      ],
       "variantSetName": "circle-arrow-left",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "721:353",
-      "componentName": "IconCircleArrowLeft",
-      "aliases": [
-        "721-354.svg"
-      ]
+      "variantSetId": "721:353"
     },
     {
       "id": "721:360",
@@ -10890,15 +10913,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleArrowLeftFill",
+      "aliases": [
+        "721-360.svg"
+      ],
       "variantSetName": "circle-arrow-left",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "721:353",
-      "componentName": "IconCircleArrowLeftFill",
-      "aliases": [
-        "721-360.svg"
-      ]
+      "variantSetId": "721:353"
     },
     {
       "id": "721:367",
@@ -10912,15 +10935,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleArrowRight",
+      "aliases": [
+        "721-367.svg"
+      ],
       "variantSetName": "circle-arrow-right",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "721:366",
-      "componentName": "IconCircleArrowRight",
-      "aliases": [
-        "721-367.svg"
-      ]
+      "variantSetId": "721:366"
     },
     {
       "id": "721:373",
@@ -10934,15 +10957,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleArrowRightFill",
+      "aliases": [
+        "721-373.svg"
+      ],
       "variantSetName": "circle-arrow-right",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "721:366",
-      "componentName": "IconCircleArrowRightFill",
-      "aliases": [
-        "721-373.svg"
-      ]
+      "variantSetId": "721:366"
     },
     {
       "id": "721:380",
@@ -10956,15 +10979,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleArrowUp",
+      "aliases": [
+        "721-380.svg"
+      ],
       "variantSetName": "circle-arrow-up",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "721:379",
-      "componentName": "IconCircleArrowUp",
-      "aliases": [
-        "721-380.svg"
-      ]
+      "variantSetId": "721:379"
     },
     {
       "id": "721:386",
@@ -10978,15 +11001,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleArrowUpFill",
+      "aliases": [
+        "721-386.svg"
+      ],
       "variantSetName": "circle-arrow-up",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "721:379",
-      "componentName": "IconCircleArrowUpFill",
-      "aliases": [
-        "721-386.svg"
-      ]
+      "variantSetId": "721:379"
     },
     {
       "id": "375:6429",
@@ -11114,17 +11137,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "heart-alt",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "569:567",
       "componentName": "IconHeartAlt",
       "aliases": [
         "378-8264.svg",
         "heart",
         "heart-16.svg"
-      ]
+      ],
+      "variantSetName": "heart-alt",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "569:567"
     },
     {
       "id": "378:8265",
@@ -11138,17 +11161,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "heart-alt",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "569:567",
       "componentName": "IconHeartAltFill",
       "aliases": [
         "378-8265.svg",
         "heart-filled",
         "heart-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "heart-alt",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "569:567"
     },
     {
       "id": "378:8262",
@@ -11162,17 +11185,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "heart",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "578:2493",
       "componentName": "IconHeart",
       "aliases": [
         "378-8262.svg",
         "heart-3",
         "heart-3-16.svg"
-      ]
+      ],
+      "variantSetName": "heart",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "578:2493"
     },
     {
       "id": "485:557",
@@ -11186,17 +11209,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "heart",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "578:2493",
       "componentName": "IconHeartFill",
       "aliases": [
         "485-557.svg",
         "heart-3-filled",
         "heart-3-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "heart",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "578:2493"
     },
     {
       "id": "416:11887",
@@ -11210,15 +11233,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconHeartWide",
+      "aliases": [
+        "416-11887.svg"
+      ],
       "variantSetName": "heart-wide",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "578:2501",
-      "componentName": "IconHeartWide",
-      "aliases": [
-        "416-11887.svg"
-      ]
+      "variantSetId": "578:2501"
     },
     {
       "id": "416:11888",
@@ -11232,17 +11255,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "heart-wide",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "578:2501",
       "componentName": "IconHeartWideFill",
       "aliases": [
         "416-11888.svg",
         "heart-wide-filled",
         "heart-wide-filled-16.svg"
-      ]
+      ],
+      "variantSetName": "heart-wide",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "578:2501"
     },
     {
       "id": "132:4339",
@@ -11256,11 +11279,6 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "info",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:221",
       "componentName": "IconInfo",
       "aliases": [
         "info--132-4339",
@@ -11268,7 +11286,12 @@
         "132-4339.svg",
         "info-2",
         "info-2-16.svg"
-      ]
+      ],
+      "variantSetName": "info",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:221"
     },
     {
       "id": "487:1519",
@@ -11282,15 +11305,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconInfoFill",
+      "aliases": [
+        "487-1519.svg"
+      ],
       "variantSetName": "info",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:221",
-      "componentName": "IconInfoFill",
-      "aliases": [
-        "487-1519.svg"
-      ]
+      "variantSetId": "659:221"
     },
     {
       "id": "593:3665",
@@ -11542,15 +11565,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconStar",
+      "aliases": [
+        "127-4125.svg"
+      ],
       "variantSetName": "star",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:235",
-      "componentName": "IconStar",
-      "aliases": [
-        "127-4125.svg"
-      ]
+      "variantSetId": "659:235"
     },
     {
       "id": "652:850",
@@ -11564,15 +11587,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconStarFill",
+      "aliases": [
+        "652-850.svg"
+      ],
       "variantSetName": "star",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:235",
-      "componentName": "IconStarFill",
-      "aliases": [
-        "652-850.svg"
-      ]
+      "variantSetId": "659:235"
     },
     {
       "id": "364:5299",
@@ -11586,15 +11609,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconThumbsDown",
+      "aliases": [
+        "364-5299.svg"
+      ],
       "variantSetName": "thumbs-down",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:238",
-      "componentName": "IconThumbsDown",
-      "aliases": [
-        "364-5299.svg"
-      ]
+      "variantSetId": "659:238"
     },
     {
       "id": "520:5603",
@@ -11608,15 +11631,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconThumbsDownFill",
+      "aliases": [
+        "520-5603.svg"
+      ],
       "variantSetName": "thumbs-down",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:238",
-      "componentName": "IconThumbsDownFill",
-      "aliases": [
-        "520-5603.svg"
-      ]
+      "variantSetId": "659:238"
     },
     {
       "id": "171:11842",
@@ -11630,15 +11653,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconThumbsUp",
+      "aliases": [
+        "171-11842.svg"
+      ],
       "variantSetName": "thumbs-up",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:239",
-      "componentName": "IconThumbsUp",
-      "aliases": [
-        "171-11842.svg"
-      ]
+      "variantSetId": "659:239"
     },
     {
       "id": "520:5594",
@@ -11652,15 +11675,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconThumbsUpFill",
+      "aliases": [
+        "520-5594.svg"
+      ],
       "variantSetName": "thumbs-up",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:239",
-      "componentName": "IconThumbsUpFill",
-      "aliases": [
-        "520-5594.svg"
-      ]
+      "variantSetId": "659:239"
     },
     {
       "id": "364:5388",
@@ -12132,17 +12155,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "verified",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "569:566",
       "componentName": "IconVerified",
       "aliases": [
         "282-17215.svg",
         "check-verified",
         "check-verified-16.svg"
-      ]
+      ],
+      "variantSetName": "verified",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "569:566"
     },
     {
       "id": "282:17261",
@@ -12156,17 +12179,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "verified",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "569:566",
       "componentName": "IconVerifiedFill",
       "aliases": [
         "282-17261.svg",
         "check-verified-solid",
         "check-verified-solid-16.svg"
-      ]
+      ],
+      "variantSetName": "verified",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "569:566"
     },
     {
       "id": "592:3588",
@@ -12829,17 +12852,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "terminal-rectangle",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:237",
       "componentName": "IconTerminalRectangle",
       "aliases": [
         "100-2286.svg",
         "terminal-square",
         "terminal-square-16.svg"
-      ]
+      ],
+      "variantSetName": "terminal-rectangle",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:237"
     },
     {
       "id": "604:5222",
@@ -12853,17 +12876,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "terminal-rectangle",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:237",
       "componentName": "IconTerminalRectangleFill",
       "aliases": [
         "604-5222.svg",
         "terminal-fill",
         "terminal-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "terminal-rectangle",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:237"
     },
     {
       "id": "193:13796",
@@ -12901,21 +12924,23 @@
     },
     {
       "id": "101:2292",
-      "name": "workflow-multitask",
-      "originalName": "workflow-multitask",
-      "baseName": "workflow-multitask",
+      "name": "workflow-multi",
+      "originalName": "workflow-multi",
+      "baseName": "workflow-multi",
       "width": 16,
       "height": 16,
-      "filename": "workflow-multitask-16.svg",
+      "filename": "workflow-multi-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=101-2292",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconWorkflowMultitask",
+      "componentName": "IconWorkflowMulti",
       "aliases": [
         "101-2292.svg",
         "workflow-branching",
-        "workflow-branching-16.svg"
+        "workflow-branching-16.svg",
+        "workflow-multitask",
+        "workflow-multitask-16.svg"
       ]
     },
     {
@@ -13392,17 +13417,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "home",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "569:568",
       "componentName": "IconHomeFill",
       "aliases": [
         "545-8585.svg",
         "home-3-fill",
         "home-3-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "home",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "569:568"
     },
     {
       "id": "545:8586",
@@ -13416,17 +13441,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "home",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "569:568",
       "componentName": "IconHome",
       "aliases": [
         "545-8586.svg",
         "home-3-1",
         "home-3-1-16.svg"
-      ]
+      ],
+      "variantSetName": "home",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "569:568"
     },
     {
       "id": "282:16541",
@@ -13440,17 +13465,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "home-simple",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "659:220",
       "componentName": "IconHomeSimple",
       "aliases": [
         "282-16541.svg",
         "home",
         "home-16.svg"
-      ]
+      ],
+      "variantSetName": "home-simple",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "659:220"
     },
     {
       "id": "487:1759",
@@ -13464,17 +13489,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "home-simple",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "659:220",
       "componentName": "IconHomeSimpleFill",
       "aliases": [
         "487-1759.svg",
         "home-fill",
         "home-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "home-simple",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "659:220"
     },
     {
       "id": "376:6544",
@@ -13645,15 +13670,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconMoon",
+      "aliases": [
+        "364-5390.svg"
+      ],
       "variantSetName": "moon",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "659:223",
-      "componentName": "IconMoon",
-      "aliases": [
-        "364-5390.svg"
-      ]
+      "variantSetId": "659:223"
     },
     {
       "id": "591:3549",
@@ -13667,15 +13692,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconMoonFill",
+      "aliases": [
+        "591-3549.svg"
+      ],
       "variantSetName": "moon",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "659:223",
-      "componentName": "IconMoonFill",
-      "aliases": [
-        "591-3549.svg"
-      ]
+      "variantSetId": "659:223"
     },
     {
       "id": "372:5452",
@@ -13904,19 +13929,21 @@
     },
     {
       "id": "752:5086",
-      "name": "lightbulb-simple-on",
-      "originalName": "lightbulb-simple-on",
-      "baseName": "lightbulb-simple-on",
+      "name": "lightbulb-sm",
+      "originalName": "lightbulb-sm",
+      "baseName": "lightbulb-sm",
       "width": 16,
       "height": 16,
-      "filename": "lightbulb-simple-on-16.svg",
+      "filename": "lightbulb-sm-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=752-5086",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconLightbulbSimpleOn",
+      "componentName": "IconLightbulbSm",
       "aliases": [
-        "752-5086.svg"
+        "752-5086.svg",
+        "lightbulb-simple-on",
+        "lightbulb-simple-on-16.svg"
       ]
     },
     {
@@ -13955,21 +13982,23 @@
     },
     {
       "id": "376:6573",
-      "name": "link-alt",
-      "originalName": "link-alt",
-      "baseName": "link-alt",
+      "name": "linked",
+      "originalName": "linked",
+      "baseName": "linked",
       "width": 16,
       "height": 16,
-      "filename": "link-alt-16.svg",
+      "filename": "linked-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=376-6573",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconLinkAlt",
+      "componentName": "IconLinked",
       "aliases": [
         "376-6573.svg",
         "link-2",
-        "link-2-16.svg"
+        "link-2-16.svg",
+        "link-alt",
+        "link-alt-16.svg"
       ]
     },
     {
@@ -14374,17 +14403,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "dot",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "578:2494",
       "componentName": "IconDotFill",
       "aliases": [
         "506-3129.svg",
         "dot",
         "dot-16.svg"
-      ]
+      ],
+      "variantSetName": "dot",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "578:2494"
     },
     {
       "id": "506:3143",
@@ -14398,17 +14427,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "dot",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "578:2494",
       "componentName": "IconDot",
       "aliases": [
         "506-3143.svg",
         "dot-empty",
         "dot-empty-16.svg"
-      ]
+      ],
+      "variantSetName": "dot",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "578:2494"
     },
     {
       "id": "233:14814",
@@ -15262,15 +15291,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleRecord",
+      "aliases": [
+        "158-11590.svg"
+      ],
       "variantSetName": "circle-record",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "667:488",
-      "componentName": "IconCircleRecord",
-      "aliases": [
-        "158-11590.svg"
-      ]
+      "variantSetId": "667:488"
     },
     {
       "id": "667:487",
@@ -15284,15 +15313,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleRecordFill",
+      "aliases": [
+        "667-487.svg"
+      ],
       "variantSetName": "circle-record",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "667:488",
-      "componentName": "IconCircleRecordFill",
-      "aliases": [
-        "667-487.svg"
-      ]
+      "variantSetId": "667:488"
     },
     {
       "id": "101:2291",
@@ -15306,15 +15335,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconWarning",
+      "aliases": [
+        "101-2291.svg"
+      ],
       "variantSetName": "warning",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "667:568",
-      "componentName": "IconWarning",
-      "aliases": [
-        "101-2291.svg"
-      ]
+      "variantSetId": "667:568"
     },
     {
       "id": "667:582",
@@ -15328,15 +15357,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconWarningFill",
+      "aliases": [
+        "667-582.svg"
+      ],
       "variantSetName": "warning",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "667:568",
-      "componentName": "IconWarningFill",
-      "aliases": [
-        "667-582.svg"
-      ]
+      "variantSetId": "667:568"
     },
     {
       "id": "667:563",
@@ -15350,15 +15379,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleWarning",
+      "aliases": [
+        "667-563.svg"
+      ],
       "variantSetName": "circle-warning",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "667:569",
-      "componentName": "IconCircleWarning",
-      "aliases": [
-        "667-563.svg"
-      ]
+      "variantSetId": "667:569"
     },
     {
       "id": "667:570",
@@ -15372,15 +15401,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCircleWarningFill",
+      "aliases": [
+        "667-570.svg"
+      ],
       "variantSetName": "circle-warning",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "667:569",
-      "componentName": "IconCircleWarningFill",
-      "aliases": [
-        "667-570.svg"
-      ]
+      "variantSetId": "667:569"
     },
     {
       "id": "749:5281",
@@ -15394,15 +15423,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSquareWarning",
+      "aliases": [
+        "749-5281.svg"
+      ],
       "variantSetName": "square-warning",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "749:5280",
-      "componentName": "IconSquareWarning",
-      "aliases": [
-        "749-5281.svg"
-      ]
+      "variantSetId": "749:5280"
     },
     {
       "id": "749:5287",
@@ -15416,15 +15445,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSquareWarningFill",
+      "aliases": [
+        "749-5287.svg"
+      ],
       "variantSetName": "square-warning",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "749:5280",
-      "componentName": "IconSquareWarningFill",
-      "aliases": [
-        "749-5287.svg"
-      ]
+      "variantSetId": "749:5280"
     },
     {
       "id": "313:17365",
@@ -15438,17 +15467,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "home-birdhouse",
-      "variantProperties": {
-        "Property 1": "Default"
-      },
-      "variantSetId": "667:677",
       "componentName": "IconHomeBirdhouse",
       "aliases": [
         "313-17365.svg",
         "home-2",
         "home-2-16.svg"
-      ]
+      ],
+      "variantSetName": "home-birdhouse",
+      "variantProperties": {
+        "Property 1": "Default"
+      },
+      "variantSetId": "667:677"
     },
     {
       "id": "667:678",
@@ -15462,15 +15491,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconHomeBirdhouseFill",
+      "aliases": [
+        "667-678.svg"
+      ],
       "variantSetName": "home-birdhouse",
       "variantProperties": {
         "Property 1": "true"
       },
-      "variantSetId": "667:677",
-      "componentName": "IconHomeBirdhouseFill",
-      "aliases": [
-        "667-678.svg"
-      ]
+      "variantSetId": "667:677"
     },
     {
       "id": "100:2285",
@@ -15484,15 +15513,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSun",
+      "aliases": [
+        "100-2285.svg"
+      ],
       "variantSetName": "sun",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "667:683",
-      "componentName": "IconSun",
-      "aliases": [
-        "100-2285.svg"
-      ]
+      "variantSetId": "667:683"
     },
     {
       "id": "667:696",
@@ -15506,15 +15535,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSunFill",
+      "aliases": [
+        "667-696.svg"
+      ],
       "variantSetName": "sun",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "667:683",
-      "componentName": "IconSunFill",
-      "aliases": [
-        "667-696.svg"
-      ]
+      "variantSetId": "667:683"
     },
     {
       "id": "529:8017",
@@ -15528,11 +15557,6 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "sun-lg",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "667:690",
       "componentName": "IconSunLg",
       "aliases": [
         "529-8017.svg",
@@ -15540,7 +15564,12 @@
         "sun-2-16.svg",
         "sun-alt",
         "sun-alt-16.svg"
-      ]
+      ],
+      "variantSetName": "sun-lg",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "667:690"
     },
     {
       "id": "667:691",
@@ -15554,17 +15583,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "sun-lg",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "667:690",
       "componentName": "IconSunLgFill",
       "aliases": [
         "667-691.svg",
         "sun-alt-fill",
         "sun-alt-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "sun-lg",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "667:690"
     },
     {
       "id": "604:5134",
@@ -15578,17 +15607,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "terminal-square",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "667:1165",
       "componentName": "IconTerminalSquare",
       "aliases": [
         "604-5134.svg",
         "terminal",
         "terminal-16.svg"
-      ]
+      ],
+      "variantSetName": "terminal-square",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "667:1165"
     },
     {
       "id": "667:1166",
@@ -15602,11 +15631,6 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "terminal-square",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "667:1165",
       "componentName": "IconTerminalSquareFill",
       "aliases": [
         "667-1166.svg",
@@ -15614,7 +15638,12 @@
         "terminal-fill-1-16.svg",
         "terminal-fill",
         "terminal-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "terminal-square",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "667:1165"
     },
     {
       "id": "749:5049",
@@ -15669,21 +15698,21 @@
     },
     {
       "id": "672:477",
-      "name": "log",
-      "originalName": "log",
-      "baseName": "log",
+      "name": "list-log",
+      "originalName": "list-log",
+      "baseName": "list-log",
       "width": 16,
       "height": 16,
-      "filename": "log-16.svg",
+      "filename": "list-log-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=672-477",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconLog",
+      "componentName": "IconListLog",
       "aliases": [
         "672-477.svg",
-        "list-log",
-        "list-log-16.svg"
+        "log",
+        "log-16.svg"
       ]
     },
     {
@@ -15783,17 +15812,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "send",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "679:4228",
       "componentName": "IconSend",
       "aliases": [
         "600-4613.svg",
         "send-2",
         "send-2-16.svg"
-      ]
+      ],
+      "variantSetName": "send",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "679:4228"
     },
     {
       "id": "679:4229",
@@ -15807,17 +15836,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "send",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "679:4228",
       "componentName": "IconSendFill",
       "aliases": [
         "679-4229.svg",
         "send-fill-1",
         "send-fill-1-16.svg"
-      ]
+      ],
+      "variantSetName": "send",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "679:4228"
     },
     {
       "id": "693:381",
@@ -15967,17 +15996,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "quotes-alt",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "698:1501",
       "componentName": "IconQuotesAltFill",
       "aliases": [
         "698-1498.svg",
         "quote-fill",
         "quote-fill-16.svg"
-      ]
+      ],
+      "variantSetName": "quotes-alt",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "698:1501"
     },
     {
       "id": "698:1499",
@@ -15991,17 +16020,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "quotes-alt",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "698:1501",
       "componentName": "IconQuotesAlt",
       "aliases": [
         "698-1499.svg",
         "quote",
         "quote-16.svg"
-      ]
+      ],
+      "variantSetName": "quotes-alt",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "698:1501"
     },
     {
       "id": "701:1548",
@@ -16015,14 +16044,36 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconShareArrow",
+      "aliases": [
+        "701-1548.svg"
+      ],
       "variantSetName": "share-arrow",
       "variantProperties": {
         "fill": "false"
       },
+      "variantSetId": "701:1553"
+    },
+    {
+      "id": "816:11042",
+      "name": "share-arrow-fill",
+      "originalName": "fill=true",
+      "baseName": "share-arrow",
+      "width": 16,
+      "height": 16,
+      "filename": "share-arrow-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=816-11042",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "variantSetName": "share-arrow",
+      "variantProperties": {
+        "fill": "true"
+      },
       "variantSetId": "701:1553",
-      "componentName": "IconShareArrow",
+      "componentName": "IconShareArrowFill",
       "aliases": [
-        "701-1548.svg"
+        "816-11042.svg"
       ]
     },
     {
@@ -16071,15 +16122,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconClock",
+      "aliases": [
+        "245-15235.svg"
+      ],
       "variantSetName": "Clock",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "716:3693",
-      "componentName": "IconClock",
-      "aliases": [
-        "245-15235.svg"
-      ]
+      "variantSetId": "716:3693"
     },
     {
       "id": "716:3694",
@@ -16093,15 +16144,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconClockFill",
+      "aliases": [
+        "716-3694.svg"
+      ],
       "variantSetName": "Clock",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "716:3693",
-      "componentName": "IconClockFill",
-      "aliases": [
-        "716-3694.svg"
-      ]
+      "variantSetId": "716:3693"
     },
     {
       "id": "716:3738",
@@ -16132,15 +16183,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconTimer",
+      "aliases": [
+        "299-6105.svg"
+      ],
       "variantSetName": "timer",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "716:3756",
-      "componentName": "IconTimer",
-      "aliases": [
-        "299-6105.svg"
-      ]
+      "variantSetId": "716:3756"
     },
     {
       "id": "716:3755",
@@ -16154,15 +16205,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconTimerFill",
+      "aliases": [
+        "716-3755.svg"
+      ],
       "variantSetName": "timer",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "716:3756",
-      "componentName": "IconTimerFill",
-      "aliases": [
-        "716-3755.svg"
-      ]
+      "variantSetId": "716:3756"
     },
     {
       "id": "811:8906",
@@ -16210,17 +16261,17 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "home-wide",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "716:3773",
       "componentName": "IconHomeWide",
       "aliases": [
         "313-17405.svg",
         "home-3",
         "home-3-16.svg"
-      ]
+      ],
+      "variantSetName": "home-wide",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "716:3773"
     },
     {
       "id": "716:3772",
@@ -16234,15 +16285,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconHomeWideFill",
+      "aliases": [
+        "716-3772.svg"
+      ],
       "variantSetName": "home-wide",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "716:3773",
-      "componentName": "IconHomeWideFill",
-      "aliases": [
-        "716-3772.svg"
-      ]
+      "variantSetId": "716:3773"
     },
     {
       "id": "96:1603",
@@ -16256,11 +16307,6 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "calendar",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "716:3796",
       "componentName": "IconCalendarFill",
       "aliases": [
         "96-1603.svg",
@@ -16268,7 +16314,12 @@
         "calendar-1-16.svg",
         "calendar",
         "calendar-16.svg"
-      ]
+      ],
+      "variantSetName": "calendar",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "variantSetId": "716:3796"
     },
     {
       "id": "344:9669",
@@ -16282,11 +16333,6 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "variantSetName": "calendar",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "716:3796",
       "componentName": "IconCalendar",
       "aliases": [
         "344-9669.svg",
@@ -16294,7 +16340,12 @@
         "calendar-3-16.svg",
         "calendar-simple",
         "calendar-simple-16.svg"
-      ]
+      ],
+      "variantSetName": "calendar",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "variantSetId": "716:3796"
     },
     {
       "id": "716:3809",
@@ -16342,15 +16393,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconLightningBolt",
+      "aliases": [
+        "102-5518.svg"
+      ],
       "variantSetName": "lightning-bolt",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "717:4007",
-      "componentName": "IconLightningBolt",
-      "aliases": [
-        "102-5518.svg"
-      ]
+      "variantSetId": "717:4007"
     },
     {
       "id": "717:4006",
@@ -16364,15 +16415,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconLightningBoltFill",
+      "aliases": [
+        "717-4006.svg"
+      ],
       "variantSetName": "lightning-bolt",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "717:4007",
-      "componentName": "IconLightningBoltFill",
-      "aliases": [
-        "717-4006.svg"
-      ]
+      "variantSetId": "717:4007"
     },
     {
       "id": "583:3487",
@@ -16386,15 +16437,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconHd",
+      "aliases": [
+        "583-3487.svg"
+      ],
       "variantSetName": "hd",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "718:226",
-      "componentName": "IconHd",
-      "aliases": [
-        "583-3487.svg"
-      ]
+      "variantSetId": "718:226"
     },
     {
       "id": "718:225",
@@ -16408,15 +16459,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconHdFill",
+      "aliases": [
+        "718-225.svg"
+      ],
       "variantSetName": "hd",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "718:226",
-      "componentName": "IconHdFill",
-      "aliases": [
-        "718-225.svg"
-      ]
+      "variantSetId": "718:226"
     },
     {
       "id": "727:254",
@@ -16437,19 +16488,21 @@
     },
     {
       "id": "732:428",
-      "name": "crown-2",
-      "originalName": "crown-2",
-      "baseName": "crown-2",
+      "name": "crown-lg",
+      "originalName": "crown-lg",
+      "baseName": "crown-lg",
       "width": 16,
       "height": 16,
-      "filename": "crown-2-16.svg",
+      "filename": "crown-lg-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=732-428",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconCrown2",
+      "componentName": "IconCrownLg",
       "aliases": [
-        "732-428.svg"
+        "732-428.svg",
+        "crown-2",
+        "crown-2-16.svg"
       ]
     },
     {
@@ -16464,15 +16517,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCrown",
+      "aliases": [
+        "732-455.svg"
+      ],
       "variantSetName": "crown",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "732:485",
-      "componentName": "IconCrown",
-      "aliases": [
-        "732-455.svg"
-      ]
+      "variantSetId": "732:485"
     },
     {
       "id": "732:484",
@@ -16486,15 +16539,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconCrownFill",
+      "aliases": [
+        "732-484.svg"
+      ],
       "variantSetName": "crown",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "732:485",
-      "componentName": "IconCrownFill",
-      "aliases": [
-        "732-484.svg"
-      ]
+      "variantSetId": "732:485"
     },
     {
       "id": "737:7261",
@@ -16559,15 +16612,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSubtitles",
+      "aliases": [
+        "378-9037.svg"
+      ],
       "variantSetName": "subtitles",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "739:7572",
-      "componentName": "IconSubtitles",
-      "aliases": [
-        "378-9037.svg"
-      ]
+      "variantSetId": "739:7572"
     },
     {
       "id": "739:7571",
@@ -16581,15 +16634,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconSubtitlesFill",
+      "aliases": [
+        "739-7571.svg"
+      ],
       "variantSetName": "subtitles",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "739:7572",
-      "componentName": "IconSubtitlesFill",
-      "aliases": [
-        "739-7571.svg"
-      ]
+      "variantSetId": "739:7572"
     },
     {
       "id": "102:4392",
@@ -16603,15 +16656,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFolder",
+      "aliases": [
+        "102-4392.svg"
+      ],
       "variantSetName": "folder",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "741:7712",
-      "componentName": "IconFolder",
-      "aliases": [
-        "102-4392.svg"
-      ]
+      "variantSetId": "741:7712"
     },
     {
       "id": "741:7685",
@@ -16625,15 +16678,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFolderFill",
+      "aliases": [
+        "741-7685.svg"
+      ],
       "variantSetName": "folder",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "741:7712",
-      "componentName": "IconFolderFill",
-      "aliases": [
-        "741-7685.svg"
-      ]
+      "variantSetId": "741:7712"
     },
     {
       "id": "102:4393",
@@ -16647,15 +16700,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFolderOpen",
+      "aliases": [
+        "102-4393.svg"
+      ],
       "variantSetName": "folder-open",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "741:7762",
-      "componentName": "IconFolderOpen",
-      "aliases": [
-        "102-4393.svg"
-      ]
+      "variantSetId": "741:7762"
     },
     {
       "id": "741:7694",
@@ -16669,15 +16722,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFolderOpenFill",
+      "aliases": [
+        "741-7694.svg"
+      ],
       "variantSetName": "folder-open",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "741:7762",
-      "componentName": "IconFolderOpenFill",
-      "aliases": [
-        "741-7694.svg"
-      ]
+      "variantSetId": "741:7762"
     },
     {
       "id": "58:9539",
@@ -16691,15 +16744,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconMicrophone",
+      "aliases": [
+        "58-9539.svg"
+      ],
       "variantSetName": "microphone",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "748:4675",
-      "componentName": "IconMicrophone",
-      "aliases": [
-        "58-9539.svg"
-      ]
+      "variantSetId": "748:4675"
     },
     {
       "id": "748:4674",
@@ -16713,15 +16766,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconMicrophoneFill",
+      "aliases": [
+        "748-4674.svg"
+      ],
       "variantSetName": "microphone",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "748:4675",
-      "componentName": "IconMicrophoneFill",
-      "aliases": [
-        "748-4674.svg"
-      ]
+      "variantSetId": "748:4675"
     },
     {
       "id": "485:547",
@@ -16735,15 +16788,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconMicrophoneNarrow",
+      "aliases": [
+        "485-547.svg"
+      ],
       "variantSetName": "microphone-narrow",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "748:4676",
-      "componentName": "IconMicrophoneNarrow",
-      "aliases": [
-        "485-547.svg"
-      ]
+      "variantSetId": "748:4676"
     },
     {
       "id": "748:4673",
@@ -16757,15 +16810,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconMicrophoneNarrowFill",
+      "aliases": [
+        "748-4673.svg"
+      ],
       "variantSetName": "microphone-narrow",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "748:4676",
-      "componentName": "IconMicrophoneNarrowFill",
-      "aliases": [
-        "748-4673.svg"
-      ]
+      "variantSetId": "748:4676"
     },
     {
       "id": "416:12064",
@@ -16779,15 +16832,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconMicrophoneWide",
+      "aliases": [
+        "416-12064.svg"
+      ],
       "variantSetName": "microphone-wide",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "748:4677",
-      "componentName": "IconMicrophoneWide",
-      "aliases": [
-        "416-12064.svg"
-      ]
+      "variantSetId": "748:4677"
     },
     {
       "id": "748:4672",
@@ -16801,15 +16854,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconMicrophoneWideFill",
+      "aliases": [
+        "748-4672.svg"
+      ],
       "variantSetName": "microphone-wide",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "748:4677",
-      "componentName": "IconMicrophoneWideFill",
-      "aliases": [
-        "748-4672.svg"
-      ]
+      "variantSetId": "748:4677"
     },
     {
       "id": "749:5010",
@@ -16840,15 +16893,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFolderView",
+      "aliases": [
+        "738-7465.svg"
+      ],
       "variantSetName": "folder-view",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "749:4987",
-      "componentName": "IconFolderView",
-      "aliases": [
-        "738-7465.svg"
-      ]
+      "variantSetId": "749:4987"
     },
     {
       "id": "749:4998",
@@ -16862,15 +16915,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconFolderViewFill",
+      "aliases": [
+        "749-4998.svg"
+      ],
       "variantSetName": "folder-view",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "749:4987",
-      "componentName": "IconFolderViewFill",
-      "aliases": [
-        "749-4998.svg"
-      ]
+      "variantSetId": "749:4987"
     },
     {
       "id": "752:3991",
@@ -16918,15 +16971,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconLock",
+      "aliases": [
+        "101-4339.svg"
+      ],
       "variantSetName": "lock",
       "variantProperties": {
         "fill": "false"
       },
-      "variantSetId": "752:4248",
-      "componentName": "IconLock",
-      "aliases": [
-        "101-4339.svg"
-      ]
+      "variantSetId": "752:4248"
     },
     {
       "id": "752:4245",
@@ -16940,15 +16993,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconLockFill",
+      "aliases": [
+        "752-4245.svg"
+      ],
       "variantSetName": "lock",
       "variantProperties": {
         "fill": "true"
       },
-      "variantSetId": "752:4248",
-      "componentName": "IconLockFill",
-      "aliases": [
-        "752-4245.svg"
-      ]
+      "variantSetId": "752:4248"
     },
     {
       "id": "193:13627",
@@ -16962,15 +17015,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconLockOpen",
+      "aliases": [
+        "193-13627.svg"
+      ],
       "variantSetName": "lock-open",
       "variantProperties": {
         "Property 1": "false"
       },
-      "variantSetId": "752:4269",
-      "componentName": "IconLockOpen",
-      "aliases": [
-        "193-13627.svg"
-      ]
+      "variantSetId": "752:4269"
     },
     {
       "id": "752:4267",
@@ -16984,15 +17037,15 @@
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
+      "componentName": "IconLockOpenFill",
+      "aliases": [
+        "752-4267.svg"
+      ],
       "variantSetName": "lock-open",
       "variantProperties": {
         "Property 1": "true"
       },
-      "variantSetId": "752:4269",
-      "componentName": "IconLockOpenFill",
-      "aliases": [
-        "752-4267.svg"
-      ]
+      "variantSetId": "752:4269"
     },
     {
       "id": "705:2147",
@@ -17557,6 +17610,1234 @@
       "componentName": "IconPostageStamp",
       "aliases": [
         "811-9265.svg"
+      ]
+    },
+    {
+      "id": "811:9311",
+      "name": "scroll-simple",
+      "originalName": "scroll-simple",
+      "baseName": "scroll-simple",
+      "width": 16,
+      "height": 16,
+      "filename": "scroll-simple-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=811-9311",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconScrollSimple",
+      "aliases": [
+        "811-9311.svg"
+      ]
+    },
+    {
+      "id": "814:10849",
+      "name": "wand-star",
+      "originalName": "wand-star",
+      "baseName": "wand-star",
+      "width": 16,
+      "height": 16,
+      "filename": "wand-star-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=814-10849",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconWandStar",
+      "aliases": [
+        "814-10849.svg"
+      ]
+    },
+    {
+      "id": "816:11006",
+      "name": "flow-v",
+      "originalName": "flow-v",
+      "baseName": "flow-v",
+      "width": 16,
+      "height": 16,
+      "filename": "flow-v-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=816-11006",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFlowV",
+      "aliases": [
+        "816-11006.svg"
+      ]
+    },
+    {
+      "id": "816:11019",
+      "name": "chevrons-maximize",
+      "originalName": "chevrons-maximize",
+      "baseName": "chevrons-maximize",
+      "width": 16,
+      "height": 16,
+      "filename": "chevrons-maximize-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=816-11019",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconChevronsMaximize",
+      "aliases": [
+        "816-11019.svg"
+      ]
+    },
+    {
+      "id": "816:11028",
+      "name": "chevrons-minimize",
+      "originalName": "chevrons-minimize",
+      "baseName": "chevrons-minimize",
+      "width": 16,
+      "height": 16,
+      "filename": "chevrons-minimize-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=816-11028",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconChevronsMinimize",
+      "aliases": [
+        "816-11028.svg"
+      ]
+    },
+    {
+      "id": "816:11041",
+      "name": "share-android",
+      "originalName": "share-android",
+      "baseName": "share-android",
+      "width": 16,
+      "height": 16,
+      "filename": "share-android-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=816-11041",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconShareAndroid",
+      "aliases": [
+        "816-11041.svg"
+      ]
+    },
+    {
+      "id": "820:11196",
+      "name": "play-pause",
+      "originalName": "play-pause",
+      "baseName": "play-pause",
+      "width": 16,
+      "height": 16,
+      "filename": "play-pause-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=820-11196",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconPlayPause",
+      "aliases": [
+        "820-11196.svg"
+      ]
+    },
+    {
+      "id": "820:11209",
+      "name": "page",
+      "originalName": "page",
+      "baseName": "page",
+      "width": 16,
+      "height": 16,
+      "filename": "page-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=820-11209",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconPage",
+      "aliases": [
+        "820-11209.svg"
+      ]
+    },
+    {
+      "id": "820:11248",
+      "name": "file-svg",
+      "originalName": "file-svg",
+      "baseName": "file-svg",
+      "width": 16,
+      "height": 16,
+      "filename": "file-svg-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=820-11248",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFileSvg",
+      "aliases": [
+        "820-11248.svg"
+      ]
+    },
+    {
+      "id": "820:11253",
+      "name": "folders",
+      "originalName": "folders",
+      "baseName": "folders",
+      "width": 16,
+      "height": 16,
+      "filename": "folders-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=820-11253",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFolders",
+      "aliases": [
+        "820-11253.svg"
+      ]
+    },
+    {
+      "id": "820:11297",
+      "name": "folder-check",
+      "originalName": "folder-check",
+      "baseName": "folder-check",
+      "width": 16,
+      "height": 16,
+      "filename": "folder-check-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=820-11297",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFolderCheck",
+      "aliases": [
+        "820-11297.svg"
+      ]
+    },
+    {
+      "id": "820:11406",
+      "name": "folder-dashed",
+      "originalName": "folder-dashed",
+      "baseName": "folder-dashed",
+      "width": 16,
+      "height": 16,
+      "filename": "folder-dashed-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=820-11406",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFolderDashed",
+      "aliases": [
+        "820-11406.svg"
+      ]
+    },
+    {
+      "id": "820:11444",
+      "name": "folder-missing",
+      "originalName": "folder-missing",
+      "baseName": "folder-missing",
+      "width": 16,
+      "height": 16,
+      "filename": "folder-missing-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=820-11444",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFolderMissing",
+      "aliases": [
+        "820-11444.svg"
+      ]
+    },
+    {
+      "id": "821:11465",
+      "name": "flag-pennant",
+      "originalName": "flag-pennant",
+      "baseName": "flag-pennant",
+      "width": 16,
+      "height": 16,
+      "filename": "flag-pennant-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=821-11465",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFlagPennant",
+      "aliases": [
+        "821-11465.svg"
+      ]
+    },
+    {
+      "id": "821:11523",
+      "name": "cost-low",
+      "originalName": "cost-low",
+      "baseName": "cost-low",
+      "width": 16,
+      "height": 16,
+      "filename": "cost-low-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=821-11523",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconCostLow",
+      "aliases": [
+        "821-11523.svg"
+      ]
+    },
+    {
+      "id": "821:11524",
+      "name": "cost-medium",
+      "originalName": "cost-medium",
+      "baseName": "cost-medium",
+      "width": 16,
+      "height": 16,
+      "filename": "cost-medium-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=821-11524",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconCostMedium",
+      "aliases": [
+        "821-11524.svg"
+      ]
+    },
+    {
+      "id": "821:11525",
+      "name": "cost-high",
+      "originalName": "cost-high",
+      "baseName": "cost-high",
+      "width": 16,
+      "height": 16,
+      "filename": "cost-high-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=821-11525",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconCostHigh",
+      "aliases": [
+        "821-11525.svg"
+      ]
+    },
+    {
+      "id": "855:18013",
+      "name": "dollar-sign",
+      "originalName": "dollar-sign",
+      "baseName": "dollar-sign",
+      "width": 16,
+      "height": 16,
+      "filename": "dollar-sign-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=855-18013",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconDollarSign",
+      "aliases": [
+        "855-18013.svg",
+        "cost-high-1",
+        "cost-high-1-16.svg"
+      ]
+    },
+    {
+      "id": "821:11540",
+      "name": "gauge-simple-max",
+      "originalName": "gauge-simple-max",
+      "baseName": "gauge-simple-max",
+      "width": 16,
+      "height": 16,
+      "filename": "gauge-simple-max-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=821-11540",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconGaugeSimpleMax",
+      "aliases": [
+        "821-11540.svg"
+      ]
+    },
+    {
+      "id": "821:11555",
+      "name": "gauge-simple-min",
+      "originalName": "gauge-simple-min",
+      "baseName": "gauge-simple-min",
+      "width": 16,
+      "height": 16,
+      "filename": "gauge-simple-min-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=821-11555",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconGaugeSimpleMin",
+      "aliases": [
+        "821-11555.svg"
+      ]
+    },
+    {
+      "id": "828:11575",
+      "name": "file-diff",
+      "originalName": "file-diff",
+      "baseName": "file-diff",
+      "width": 16,
+      "height": 16,
+      "filename": "file-diff-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=828-11575",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFileDiff",
+      "aliases": [
+        "828-11575.svg"
+      ]
+    },
+    {
+      "id": "828:11718",
+      "name": "queue",
+      "originalName": "queue",
+      "baseName": "queue",
+      "width": 16,
+      "height": 16,
+      "filename": "queue-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=828-11718",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconQueue",
+      "aliases": [
+        "828-11718.svg"
+      ]
+    },
+    {
+      "id": "828:11768",
+      "name": "layout-template",
+      "originalName": "layout-template",
+      "baseName": "layout-template",
+      "width": 16,
+      "height": 16,
+      "filename": "layout-template-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=828-11768",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLayoutTemplate",
+      "aliases": [
+        "828-11768.svg"
+      ]
+    },
+    {
+      "id": "837:11804",
+      "name": "map-pin",
+      "originalName": "map-pin",
+      "baseName": "map-pin",
+      "width": 16,
+      "height": 16,
+      "filename": "map-pin-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=837-11804",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconMapPin",
+      "aliases": [
+        "837-11804.svg"
+      ]
+    },
+    {
+      "id": "837:11816",
+      "name": "layout-panel-end",
+      "originalName": "layout-panel-end",
+      "baseName": "layout-panel-end",
+      "width": 16,
+      "height": 16,
+      "filename": "layout-panel-end-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=837-11816",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLayoutPanelEnd",
+      "aliases": [
+        "837-11816.svg"
+      ]
+    },
+    {
+      "id": "837:11817",
+      "name": "layout-panel-start",
+      "originalName": "layout-panel-start",
+      "baseName": "layout-panel-start",
+      "width": 16,
+      "height": 16,
+      "filename": "layout-panel-start-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=837-11817",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLayoutPanelStart",
+      "aliases": [
+        "837-11817.svg"
+      ]
+    },
+    {
+      "id": "837:11818",
+      "name": "layout-footer",
+      "originalName": "layout-footer",
+      "baseName": "layout-footer",
+      "width": 16,
+      "height": 16,
+      "filename": "layout-footer-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=837-11818",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLayoutFooter",
+      "aliases": [
+        "837-11818.svg"
+      ]
+    },
+    {
+      "id": "837:11819",
+      "name": "layout-header",
+      "originalName": "layout-header",
+      "baseName": "layout-header",
+      "width": 16,
+      "height": 16,
+      "filename": "layout-header-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=837-11819",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLayoutHeader",
+      "aliases": [
+        "837-11819.svg"
+      ]
+    },
+    {
+      "id": "841:12662",
+      "name": "heading",
+      "originalName": "heading",
+      "baseName": "heading",
+      "width": 16,
+      "height": 16,
+      "filename": "heading-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12662",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconHeading",
+      "aliases": [
+        "841-12662.svg"
+      ]
+    },
+    {
+      "id": "841:12695",
+      "name": "text-box-heading",
+      "originalName": "text-box-heading",
+      "baseName": "text-box-heading",
+      "width": 16,
+      "height": 16,
+      "filename": "text-box-heading-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12695",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconTextBoxHeading",
+      "aliases": [
+        "841-12695.svg"
+      ]
+    },
+    {
+      "id": "841:12716",
+      "name": "align-right",
+      "originalName": "align-right",
+      "baseName": "align-right",
+      "width": 16,
+      "height": 16,
+      "filename": "align-right-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12716",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconAlignRight",
+      "aliases": [
+        "841-12716.svg"
+      ]
+    },
+    {
+      "id": "841:12743",
+      "name": "shield-warning",
+      "originalName": "shield-warning",
+      "baseName": "shield-warning",
+      "width": 16,
+      "height": 16,
+      "filename": "shield-warning-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12743",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconShieldWarning",
+      "aliases": [
+        "841-12743.svg"
+      ]
+    },
+    {
+      "id": "841:12779",
+      "name": "switch-off",
+      "originalName": "switch-off",
+      "baseName": "switch-off",
+      "width": 16,
+      "height": 16,
+      "filename": "switch-off-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12779",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSwitchOff",
+      "aliases": [
+        "841-12779.svg"
+      ]
+    },
+    {
+      "id": "841:12780",
+      "name": "switch-on",
+      "originalName": "switch-on",
+      "baseName": "switch-on",
+      "width": 16,
+      "height": 16,
+      "filename": "switch-on-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12780",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSwitchOn",
+      "aliases": [
+        "841-12780.svg"
+      ]
+    },
+    {
+      "id": "841:12902",
+      "name": "file-search",
+      "originalName": "file-search",
+      "baseName": "file-search",
+      "width": 16,
+      "height": 16,
+      "filename": "file-search-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-12902",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFileSearch",
+      "aliases": [
+        "841-12902.svg"
+      ]
+    },
+    {
+      "id": "841:13053",
+      "name": "arrows-rotate",
+      "originalName": "arrows-rotate",
+      "baseName": "arrows-rotate",
+      "width": 16,
+      "height": 16,
+      "filename": "arrows-rotate-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13053",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconArrowsRotate",
+      "aliases": [
+        "841-13053.svg"
+      ]
+    },
+    {
+      "id": "841:13118",
+      "name": "caret-down-lg",
+      "originalName": "caret-down-lg",
+      "baseName": "caret-down-lg",
+      "width": 16,
+      "height": 16,
+      "filename": "caret-down-lg-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13118",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconCaretDownLg",
+      "aliases": [
+        "841-13118.svg"
+      ]
+    },
+    {
+      "id": "841:13128",
+      "name": "caret-left-lg",
+      "originalName": "caret-left-lg",
+      "baseName": "caret-left-lg",
+      "width": 16,
+      "height": 16,
+      "filename": "caret-left-lg-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13128",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconCaretLeftLg",
+      "aliases": [
+        "841-13128.svg"
+      ]
+    },
+    {
+      "id": "841:13300",
+      "name": "merge",
+      "originalName": "merge",
+      "baseName": "merge",
+      "width": 16,
+      "height": 16,
+      "filename": "merge-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13300",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconMerge",
+      "aliases": [
+        "841-13300.svg"
+      ]
+    },
+    {
+      "id": "841:13310",
+      "name": "merge-horizontal",
+      "originalName": "merge-horizontal",
+      "baseName": "merge-horizontal",
+      "width": 16,
+      "height": 16,
+      "filename": "merge-horizontal-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13310",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconMergeHorizontal",
+      "aliases": [
+        "841-13310.svg"
+      ]
+    },
+    {
+      "id": "841:13376",
+      "name": "arrows-rotate-cw",
+      "originalName": "arrows-rotate-cw",
+      "baseName": "arrows-rotate-cw",
+      "width": 16,
+      "height": 16,
+      "filename": "arrows-rotate-cw-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13376",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconArrowsRotateCw",
+      "aliases": [
+        "841-13376.svg"
+      ]
+    },
+    {
+      "id": "841:13377",
+      "name": "arrows-rotate-ccw",
+      "originalName": "arrows-rotate-ccw",
+      "baseName": "arrows-rotate-ccw",
+      "width": 16,
+      "height": 16,
+      "filename": "arrows-rotate-ccw-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13377",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconArrowsRotateCcw",
+      "aliases": [
+        "841-13377.svg"
+      ]
+    },
+    {
+      "id": "841:13534",
+      "name": "seek-30",
+      "originalName": "seek-30",
+      "baseName": "seek-30",
+      "width": 16,
+      "height": 16,
+      "filename": "seek-30-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13534",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSeek30",
+      "aliases": [
+        "841-13534.svg"
+      ]
+    },
+    {
+      "id": "841:13535",
+      "name": "seek-15",
+      "originalName": "seek-15",
+      "baseName": "seek-15",
+      "width": 16,
+      "height": 16,
+      "filename": "seek-15-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13535",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSeek15",
+      "aliases": [
+        "841-13535.svg"
+      ]
+    },
+    {
+      "id": "841:13536",
+      "name": "seek-back-15",
+      "originalName": "seek-back-15",
+      "baseName": "seek-back-15",
+      "width": 16,
+      "height": 16,
+      "filename": "seek-back-15-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13536",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSeekBack15",
+      "aliases": [
+        "841-13536.svg"
+      ]
+    },
+    {
+      "id": "841:13537",
+      "name": "seek-back-30",
+      "originalName": "seek-back-30",
+      "baseName": "seek-back-30",
+      "width": 16,
+      "height": 16,
+      "filename": "seek-back-30-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13537",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSeekBack30",
+      "aliases": [
+        "841-13537.svg",
+        "seek-back-30-1",
+        "seek-back-30-1-16.svg"
+      ]
+    },
+    {
+      "id": "841:13682",
+      "name": "folders-fill",
+      "originalName": "folders-fill",
+      "baseName": "folders-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "folders-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13682",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFoldersFill",
+      "aliases": [
+        "841-13682.svg"
+      ]
+    },
+    {
+      "id": "845:14018",
+      "name": "plug-plugged",
+      "originalName": "plug-plugged",
+      "baseName": "plug-plugged",
+      "width": 16,
+      "height": 16,
+      "filename": "plug-plugged-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=845-14018",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconPlugPlugged",
+      "aliases": [
+        "845-14018.svg"
+      ]
+    },
+    {
+      "id": "845:14052",
+      "name": "plug-unplug",
+      "originalName": "plug-unplug",
+      "baseName": "plug-unplug",
+      "width": 16,
+      "height": 16,
+      "filename": "plug-unplug-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=845-14052",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconPlugUnplug",
+      "aliases": [
+        "845-14052.svg"
+      ]
+    },
+    {
+      "id": "845:14081",
+      "name": "laptop-simple",
+      "originalName": "laptop-simple",
+      "baseName": "laptop-simple",
+      "width": 16,
+      "height": 16,
+      "filename": "laptop-simple-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=845-14081",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLaptopSimple",
+      "aliases": [
+        "845-14081.svg"
+      ]
+    },
+    {
+      "id": "845:14093",
+      "name": "map-pin-fill",
+      "originalName": "map-pin-fill",
+      "baseName": "map-pin-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "map-pin-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=845-14093",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconMapPinFill",
+      "aliases": [
+        "845-14093.svg"
+      ]
+    },
+    {
+      "id": "845:14105",
+      "name": "picture-in-picture",
+      "originalName": "picture-in-picture",
+      "baseName": "picture-in-picture",
+      "width": 16,
+      "height": 16,
+      "filename": "picture-in-picture-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=845-14105",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconPictureInPicture",
+      "aliases": [
+        "845-14105.svg"
+      ]
+    },
+    {
+      "id": "845:14174",
+      "name": "clipboard-text",
+      "originalName": "clipboard-text",
+      "baseName": "clipboard-text",
+      "width": 16,
+      "height": 16,
+      "filename": "clipboard-text-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=845-14174",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconClipboardText",
+      "aliases": [
+        "845-14174.svg"
+      ]
+    },
+    {
+      "id": "845:14204",
+      "name": "folder-plus",
+      "originalName": "folder-plus",
+      "baseName": "folder-plus",
+      "width": 16,
+      "height": 16,
+      "filename": "folder-plus-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=845-14204",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFolderPlus",
+      "aliases": [
+        "845-14204.svg"
+      ]
+    },
+    {
+      "id": "845:14242",
+      "name": "inbox-fill",
+      "originalName": "inbox-fill",
+      "baseName": "inbox-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "inbox-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=845-14242",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconInboxFill",
+      "aliases": [
+        "845-14242.svg"
+      ]
+    },
+    {
+      "id": "847:16024",
+      "name": "lightbulb-on",
+      "originalName": "lightbulb-on",
+      "baseName": "lightbulb-on",
+      "width": 16,
+      "height": 16,
+      "filename": "lightbulb-on-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=847-16024",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLightbulbOn",
+      "aliases": [
+        "847-16024.svg"
+      ]
+    },
+    {
+      "id": "847:16063",
+      "name": "lightbulb-simple-on",
+      "originalName": "lightbulb-simple-on",
+      "baseName": "lightbulb-simple-on",
+      "width": 16,
+      "height": 16,
+      "filename": "lightbulb-simple-on-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=847-16063",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLightbulbSimpleOn",
+      "aliases": [
+        "847-16063.svg"
+      ]
+    },
+    {
+      "id": "847:16072",
+      "name": "postage-sent",
+      "originalName": "postage-sent",
+      "baseName": "postage-sent",
+      "width": 16,
+      "height": 16,
+      "filename": "postage-sent-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=847-16072",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconPostageSent",
+      "aliases": [
+        "847-16072.svg"
+      ]
+    },
+    {
+      "id": "847:16086",
+      "name": "purse",
+      "originalName": "purse",
+      "baseName": "purse",
+      "width": 16,
+      "height": 16,
+      "filename": "purse-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=847-16086",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconPurse",
+      "aliases": [
+        "847-16086.svg"
+      ]
+    },
+    {
+      "id": "849:16217",
+      "name": "translate",
+      "originalName": "translate",
+      "baseName": "translate",
+      "width": 16,
+      "height": 16,
+      "filename": "translate-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=849-16217",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconTranslate",
+      "aliases": [
+        "849-16217.svg"
+      ]
+    },
+    {
+      "id": "849:16233",
+      "name": "eye-check",
+      "originalName": "eye-check",
+      "baseName": "eye-check",
+      "width": 16,
+      "height": 16,
+      "filename": "eye-check-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=849-16233",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconEyeCheck",
+      "aliases": [
+        "849-16233.svg"
+      ]
+    },
+    {
+      "id": "849:16253",
+      "name": "trophy",
+      "originalName": "trophy",
+      "baseName": "trophy",
+      "width": 16,
+      "height": 16,
+      "filename": "trophy-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=849-16253",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconTrophy",
+      "aliases": [
+        "849-16253.svg"
+      ]
+    },
+    {
+      "id": "849:16277",
+      "name": "luggage",
+      "originalName": "luggage",
+      "baseName": "luggage",
+      "width": 16,
+      "height": 16,
+      "filename": "luggage-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=849-16277",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLuggage",
+      "aliases": [
+        "849-16277.svg"
+      ]
+    },
+    {
+      "id": "849:16278",
+      "name": "luggage-rolling",
+      "originalName": "luggage-rolling",
+      "baseName": "luggage-rolling",
+      "width": 16,
+      "height": 16,
+      "filename": "luggage-rolling-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=849-16278",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLuggageRolling",
+      "aliases": [
+        "849-16278.svg"
+      ]
+    },
+    {
+      "id": "849:17265",
+      "name": "lightbulb-simple-fill",
+      "originalName": "lightbulb-simple-fill",
+      "baseName": "lightbulb-simple-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "lightbulb-simple-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=849-17265",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLightbulbSimpleFill",
+      "aliases": [
+        "849-17265.svg"
+      ]
+    },
+    {
+      "id": "849:17808",
+      "name": "globe-stand",
+      "originalName": "globe-stand",
+      "baseName": "globe-stand",
+      "width": 16,
+      "height": 16,
+      "filename": "globe-stand-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=849-17808",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconGlobeStand",
+      "aliases": [
+        "849-17808.svg"
+      ]
+    },
+    {
+      "id": "856:18071",
+      "name": "sparkles-fill",
+      "originalName": "sparkles-fill",
+      "baseName": "sparkles-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "sparkles-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=856-18071",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSparklesFill",
+      "aliases": [
+        "856-18071.svg"
+      ]
+    },
+    {
+      "id": "856:18075",
+      "name": "sparkle-fill",
+      "originalName": "sparkle-fill",
+      "baseName": "sparkle-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "sparkle-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=856-18075",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSparkleFill",
+      "aliases": [
+        "856-18075.svg"
+      ]
+    },
+    {
+      "id": "856:19494",
+      "name": "chart-donut",
+      "originalName": "chart-donut",
+      "baseName": "chart-donut",
+      "width": 16,
+      "height": 16,
+      "filename": "chart-donut-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=856-19494",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconChartDonut",
+      "aliases": [
+        "856-19494.svg"
+      ]
+    },
+    {
+      "id": "857:19705",
+      "name": "chart-pie",
+      "originalName": "chart-pie",
+      "baseName": "chart-pie",
+      "width": 16,
+      "height": 16,
+      "filename": "chart-pie-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=857-19705",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconChartPie",
+      "aliases": [
+        "857-19705.svg"
+      ]
+    },
+    {
+      "id": "857:20359",
+      "name": "arrow-reload",
+      "originalName": "arrow-reload",
+      "baseName": "arrow-reload",
+      "width": 16,
+      "height": 16,
+      "filename": "arrow-reload-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=857-20359",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconArrowReload",
+      "aliases": [
+        "857-20359.svg"
+      ]
+    },
+    {
+      "id": "857:24307",
+      "name": "image-alt",
+      "originalName": "image-alt",
+      "baseName": "image-alt",
+      "width": 16,
+      "height": 16,
+      "filename": "image-alt-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=857-24307",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconImageAlt",
+      "aliases": [
+        "857-24307.svg"
       ]
     }
   ]

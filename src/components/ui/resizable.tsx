@@ -1,91 +1,57 @@
-import { useRef, type PointerEvent } from 'react';
+import {
+  Group,
+  Panel,
+  Separator,
+  type GroupProps,
+  type PanelProps,
+  type SeparatorProps,
+} from 'react-resizable-panels';
+import { Icon } from '@/components/Icon';
 import { cn } from '@/lib/utils';
 
-type Props = {
-  value: number;
-  min: number;
-  max: number;
-  defaultValue: number;
-  controls: string;
-  label: string;
-  onValueChange: (value: number) => void;
-  onResizingChange: (resizing: boolean) => void;
-  className?: string;
-};
-
-/** A vertical separator that resizes the pane on its right. */
-export function ResizableHandle({
-  value,
-  min,
-  max,
-  defaultValue,
-  controls,
-  label,
-  onValueChange,
-  onResizingChange,
+export function ResizablePanelGroup({
   className,
-}: Props) {
-  const drag = useRef<{ pointerId: number; x: number; width: number } | null>(
-    null,
-  );
-  const change = (next: number) =>
-    onValueChange(Math.min(max, Math.max(min, next)));
-  function finish(event: PointerEvent<HTMLDivElement>) {
-    if (drag.current?.pointerId !== event.pointerId) return;
-    drag.current = null;
-    onResizingChange(false);
-  }
+  resizeTargetMinimumSize = { coarse: 44, fine: 12 },
+  ...props
+}: GroupProps) {
   return (
-    <div
+    <Group
+      data-slot="resizable-panel-group"
+      className={cn('flex h-full w-full', className)}
+      resizeTargetMinimumSize={resizeTargetMinimumSize}
+      {...props}
+    />
+  );
+}
+
+export function ResizablePanel(props: PanelProps) {
+  return <Panel data-slot="resizable-panel" {...props} />;
+}
+
+export function ResizableHandle({
+  withHandle = false,
+  className,
+  children,
+  ...props
+}: SeparatorProps & { withHandle?: boolean }) {
+  return (
+    <Separator
       data-slot="resizable-handle"
-      role="separator"
-      tabIndex={0}
-      aria-label={label}
-      aria-orientation="vertical"
-      aria-controls={controls}
-      aria-valuemin={min}
-      aria-valuemax={max}
-      aria-valuenow={Math.round(value)}
-      aria-valuetext={`${Math.round(value)} pixels`}
-      title={`${label}. Drag or use arrow keys. Double-click to reset.`}
       className={cn(
-        'absolute inset-y-0 left-0 z-10 flex w-3 -translate-x-1/2 cursor-ew-resize touch-none items-center justify-center before:absolute before:inset-y-0 before:w-px before:bg-line hover:before:bg-control-accent focus-visible:outline-focus focus-visible:before:bg-control-accent pointer-coarse:w-11',
+        'relative flex w-px items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-3 after:-translate-x-1/2 hover:bg-control-accent focus-visible:bg-control-accent focus-visible:outline-focus aria-[orientation=horizontal]:h-px aria-[orientation=horizontal]:w-full aria-[orientation=horizontal]:after:inset-x-0 aria-[orientation=horizontal]:after:top-1/2 aria-[orientation=horizontal]:after:h-3 aria-[orientation=horizontal]:after:w-full aria-[orientation=horizontal]:after:translate-x-0 aria-[orientation=horizontal]:after:-translate-y-1/2 [&[aria-orientation=horizontal]>span]:rotate-90',
         className,
       )}
-      onPointerDown={(event) => {
-        if (event.button !== 0) return;
-        event.preventDefault();
-        event.currentTarget.focus({ preventScroll: true });
-        event.currentTarget.setPointerCapture(event.pointerId);
-        drag.current = {
-          pointerId: event.pointerId,
-          x: event.clientX,
-          width: value,
-        };
-        onResizingChange(true);
-      }}
-      onPointerMove={(event) => {
-        const start = drag.current;
-        if (start?.pointerId === event.pointerId)
-          change(start.width + start.x - event.clientX);
-      }}
-      onPointerUp={finish}
-      onPointerCancel={finish}
-      onLostPointerCapture={finish}
-      onDoubleClick={() => change(defaultValue)}
-      onKeyDown={(event) => {
-        if (event.metaKey || event.ctrlKey || event.altKey) return;
-        const step = event.shiftKey ? 40 : 10;
-        if (event.key === 'ArrowLeft') change(value + step);
-        else if (event.key === 'ArrowRight') change(value - step);
-        else if (event.key === 'Home') change(min);
-        else if (event.key === 'End') change(max);
-        else return;
-        event.preventDefault();
-        event.stopPropagation();
-      }}
+      {...props}
     >
-      <span aria-hidden className="relative h-8 w-1 rounded-full bg-border" />
-    </div>
+      {children ??
+        (withHandle && (
+          <span
+            aria-hidden
+            className="relative flex h-6 w-4 items-center justify-center rounded-sm border border-border bg-surface text-muted"
+          >
+            <Icon name="grip-v" />
+          </span>
+        ))}
+    </Separator>
   );
 }

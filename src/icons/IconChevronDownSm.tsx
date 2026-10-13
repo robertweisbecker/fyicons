@@ -3,9 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconChevronDownSm = React.forwardRef<SVGSVGElement, IconProps>(function IconChevronDownSm(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.1465 6.14648C11.3417 5.95122 11.6583 5.95122 11.8535 6.14648C12.0487 6.34175 12.0488 6.65827 11.8535 6.85352L8.35352 10.3535C8.15827 10.5488 7.84175 10.5487 7.64648 10.3535L4.14648 6.85352C3.95122 6.65825 3.95122 6.34175 4.14648 6.14648C4.34175 5.95122 4.65825 5.95122 4.85352 6.14648L8 9.29297L11.1465 6.14648Z" fill="currentColor" style={{
-      fill: "currentColor",
-      fillOpacity: 1
-    }} /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.1464 7.14645C11.3417 6.95118 11.6582 6.95118 11.8535 7.14645C12.0487 7.34171 12.0487 7.65823 11.8535 7.85348L8.35348 11.3535C8.15823 11.5487 7.84171 11.5487 7.64645 11.3535L4.14645 7.85348C3.95118 7.65822 3.95118 7.34171 4.14645 7.14645C4.34171 6.95118 4.65822 6.95118 4.85348 7.14645L7.99996 10.2929L11.1464 7.14645Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconChevronDownSm;

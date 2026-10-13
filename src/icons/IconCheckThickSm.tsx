@@ -3,9 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconCheckThickSm = React.forwardRef<SVGSVGElement, IconProps>(function IconCheckThickSm(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.33594 5.65088C9.52888 5.28439 9.98309 5.14352 10.3496 5.33643C10.7159 5.52947 10.8569 5.98369 10.6641 6.3501L8.16406 11.1001C8.04945 11.3176 7.83482 11.4648 7.59082 11.4946C7.34667 11.5243 7.10295 11.4322 6.93945 11.2485L4.93945 8.99854C4.66442 8.689 4.69255 8.21511 5.00195 7.93994C5.31154 7.66487 5.78539 7.69289 6.06055 8.00244L7.33984 9.44189L9.33594 5.65088Z" fill="currentColor" style={{
-      fill: "currentColor",
-      fillOpacity: 1
-    }} /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.85629 5.36448C10.0694 5.00953 10.5305 4.89383 10.8856 5.10667C11.2405 5.31974 11.3561 5.78091 11.1434 6.13597L8.1434 11.136C8.02064 11.3406 7.80672 11.475 7.56918 11.4973C7.33171 11.5193 7.09778 11.4265 6.9393 11.2483L4.9393 8.99827C4.66422 8.68868 4.69225 8.21483 5.0018 7.93968C5.31139 7.66479 5.7853 7.6927 6.06039 8.00218L7.38168 9.4885L9.85629 5.36448Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconCheckThickSm;

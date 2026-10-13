@@ -46,7 +46,7 @@ export function AlertsDemo() {
             className="mt-2 -ml-2"
             onClick={() => setConnected(!connected)}
           >
-            <Icon name={connected ? 'plug-in' : 'arrows-swap'} />
+            <Icon name={connected ? 'plug-plug' : 'arrows-swap'} />
             {connected ? 'Disconnect' : 'Reconnect'}
           </Button>
         </div>

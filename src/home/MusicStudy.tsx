@@ -10,10 +10,10 @@ export function MusicStudy() {
   const [volume, setVolume] = useState(50);
   const previousVolume = useRef(50);
   return (
-    <div className="w-full max-w-80 rounded-2xl bg-surface p-4 text-ink shadow-[0_12px_24px_-12px_#00000040]">
+    <div className="w-full max-w-80 rounded-2xl bg-surface p-4 text-ink shadow-lg">
       <div className="flex items-center justify-between gap-1">
-        <DemoToggle label="Shuffle" icon="arrow-shuffle" size="icon-sm" />
-        <div className="flex items-center gap-1 max-[374px]:gap-0">
+        <DemoToggle label="Shuffle" icon="arrows-shuffle" size="icon-sm" />
+        <div className="flex items-center gap-1 max-sm:gap-0">
           <Glyph name="skip-backward-fill" />
           <Glyph name="fast-backward-fill" />
           <Button
@@ -29,14 +29,14 @@ export function MusicStudy() {
         </div>
         <DemoToggle
           label="Repeat"
-          icon="arrow-repeat-one"
+          icon="arrows-repeat-one"
           size="icon-sm"
           defaultPressed
           className="data-pressed:text-green-700 dark:data-pressed:text-green-400"
         />
       </div>
       <div className="mt-2 flex items-center gap-1">
-        <Glyph name="queue" />
+        <Glyph name="queue-play" />
         <DemoIconButton
           label={volume ? 'Mute' : 'Unmute'}
           icon={volume ? 'volume-none-fill' : 'volume-slash'}

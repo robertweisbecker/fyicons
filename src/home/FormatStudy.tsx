@@ -15,7 +15,7 @@ export function FormatStudy() {
     <div
       className={cn(
         panel,
-        'grid w-full max-w-[282px] grid-cols-[1fr_auto] items-center gap-y-2 p-4 text-sm max-[480px]:grid-cols-1 max-[480px]:gap-y-3 pointer-coarse:max-w-80',
+        'grid w-full max-w-72 grid-cols-[1fr_auto] items-center gap-y-2 p-4 text-sm max-sm:grid-cols-1 max-sm:gap-y-3 pointer-coarse:max-w-80',
       )}
     >
       <span>Format</span>
@@ -81,7 +81,7 @@ export function FormatStudy() {
           />
         ))}
       </ToggleGroup>
-      <span aria-hidden className="max-[480px]:hidden" />
+      <span aria-hidden className="max-sm:hidden" />
       <div className="flex items-center">
         <ToggleGroup
           value={vertical}

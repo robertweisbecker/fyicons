@@ -3,9 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconVolumeNoneFill = React.forwardRef<SVGSVGElement, IconProps>(function IconVolumeNoneFill(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.37988 3.02894C8.03566 2.51122 9 2.97859 9 3.8141V12.1862C9 13.0217 8.03566 13.489 7.37988 12.9713L4.25 10.4996L2.5 10.5006C1.6717 10.5006 1.0002 9.82889 1 9.00062V7.00062C1 6.17224 1.67162 5.50068 2.5 5.50062L4.25 5.49964L7.37988 3.02894Z" fill="currentColor" style={{
-      fill: "currentColor",
-      fillOpacity: 1
-    }} /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.91992 2.23657C7.726 1.52006 8.99983 2.09174 9 3.17017V12.8303C8.99972 13.9086 7.72596 14.4803 6.91992 13.7639L3.81055 11.0002H1.5C0.671628 11.0002 7.76759e-05 10.3286 0 9.50024V6.50024C9.43067e-05 5.67194 0.671672 5.0003 1.5 5.00024H3.80957L6.91992 2.23657Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconVolumeNoneFill;

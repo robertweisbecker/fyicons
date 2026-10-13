@@ -18,16 +18,19 @@ export function Study({
   children: ReactNode;
 }) {
   return (
-    <section
-      aria-label={`${name} example`}
-      data-example-id={id}
-      className={cn(
-        'relative grid w-full min-w-0 flex-1 justify-items-center gap-2 self-stretch rounded-2xl bg-inset p-4',
-        className,
-      )}
-    >
-      {children}
-    </section>
+    <div className="flex flex-col items-center gap-2">
+      <h2 className="text-sm font-medium">{name}</h2>
+      <section
+        aria-label={`${name} example`}
+        data-example-id={id}
+        className={cn(
+          'relative grid w-full min-w-0 flex-1 items-center justify-items-center gap-2 self-stretch overflow-x-auto rounded-2xl bg-inset p-4',
+          className,
+        )}
+      >
+        {children}
+      </section>
+    </div>
   );
 }
 

@@ -17,7 +17,7 @@ export function CodeStudy() {
   const [open, setOpen] = useState(true);
   return (
     <div className={cn(panel, 'w-full overflow-hidden')}>
-      <div className="flex items-center gap-1 border-b border-line p-3 text-xs">
+      <div className="flex flex-wrap items-center gap-1 border-b border-line p-3 text-xs">
         <Button variant="ghost" size="sm">
           <Icon name="book-bookmark" />
           fyicons
@@ -35,6 +35,7 @@ export function CodeStudy() {
           <Button
             variant="neutral"
             size="icon-xs"
+            aria-label="Branch options"
             className="rounded-lg rounded-s-sm"
           >
             <Icon name="chevron-down-sm" />
@@ -51,7 +52,7 @@ export function CodeStudy() {
             onPressedChange={setOpen}
             className="data-pressed:bg-selection data-pressed:text-control-accent"
           />
-          <DemoToggle label="Show source files" icon="diff" size="icon-sm" />
+          <DemoToggle label="Show changes" icon="diff" size="icon-sm" />
         </div>
       </div>
       <div className="min-h-60 p-2 text-sm">

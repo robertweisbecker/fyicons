@@ -26,10 +26,7 @@ export function FilterSelect({
         if (next !== null) onValueChange(next);
       }}
     >
-      <SelectTrigger
-        aria-label={label}
-        className="max-[760px]:flex-1 md:group-[.has-docked-inspector]/app:flex-1"
-      >
+      <SelectTrigger aria-label={label} className="shrink-0 whitespace-nowrap">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

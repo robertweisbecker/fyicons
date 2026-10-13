@@ -85,8 +85,8 @@
 .mobile-inspector-header-metadata {
   position: absolute;
   top: 30px;
-  left: 56px;
-  right: 56px;
+  left: 88px;
+  right: 88px;
   opacity: clamp(0, calc((var(--inspector-progress) - 0.2) * 5), 1);
   transform: translateY(calc(8px * (1 - var(--inspector-progress))));
 }
@@ -97,11 +97,8 @@
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
 }
-.inspector-compact-details {
-  visibility: hidden;
-}
-.mobile-inspector[data-swiping] .inspector-compact-details {
-  visibility: visible;
+.mobile-inspector-details {
+  padding-top: calc(2rem * (1 - var(--inspector-progress)));
 }
 @media (prefers-reduced-motion: reduce) {
   .mobile-inspector {

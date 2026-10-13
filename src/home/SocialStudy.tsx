@@ -10,8 +10,8 @@ function SocialStudy() {
     <div className="w-full">
       <div className="flex items-start gap-2">
         <Icon name="circle-user-fill" size={40} className="text-muted" />
-        <div className="flex-1">
-          <div className="flex items-center gap-1 text-sm font-semibold">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-1 text-sm font-semibold">
             wint
             <Icon name="verified-fill" className="text-sky-500" />
             <span className="rounded bg-slate-200 px-1 py-px text-xs font-normal text-slate-600 dark:bg-slate-800 dark:text-slate-400">
@@ -161,7 +161,7 @@ export function ProfileStudy() {
       <ToggleGroup
         defaultValue={['posts']}
         aria-label="Profile view"
-        className="gap-0 shadow-[inset_0_-1px_0_var(--line)]"
+        className="gap-0 border-b border-line"
       >
         {[
           ['posts', 'Posts'],

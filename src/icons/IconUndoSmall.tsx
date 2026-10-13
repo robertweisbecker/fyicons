@@ -3,9 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconUndoSmall = React.forwardRef<SVGSVGElement, IconProps>(function IconUndoSmall(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.17969 4.68384C6.50535 4.41245 7 4.64371 7 5.06763V6.00024H9C10.6569 6.00024 12 7.34339 12 9.00024C11.9999 10.657 10.6568 12.0002 9 12.0002H8.5C8.22399 12.0002 8.00013 11.7762 8 11.5002C8 11.2241 8.22391 11.0003 8.5 11.0002H9C10.1045 11.0002 10.9999 10.1047 11 9.00024C11 7.89567 10.1046 7.00024 9 7.00024H7V7.93286C6.99971 8.35654 6.50525 8.58796 6.17969 8.31665L4.46094 6.88403C4.22116 6.68412 4.22109 6.31535 4.46094 6.11548L6.17969 4.68384Z" fill="currentColor" style={{
-      fill: "currentColor",
-      fillOpacity: 1
-    }} /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.17969 4.68384C6.50535 4.41245 7 4.64371 7 5.06763V6.00024H9C10.6569 6.00024 12 7.34339 12 9.00024C11.9999 10.657 10.6568 12.0002 9 12.0002H8.5C8.22399 12.0002 8.00013 11.7762 8 11.5002C8 11.2241 8.22391 11.0003 8.5 11.0002H9C10.1045 11.0002 10.9999 10.1047 11 9.00024C11 7.89567 10.1046 7.00024 9 7.00024H7V7.93286C6.99971 8.35654 6.50525 8.58796 6.17969 8.31665L4.46094 6.88403C4.22116 6.68412 4.22109 6.31535 4.46094 6.11548L6.17969 4.68384Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconUndoSmall;

@@ -1,5 +1,6 @@
 import { Tooltip } from '@base-ui/react/tooltip';
 import { DemoCard } from './components/DemoCard';
+import { HomepageExamples } from './HomepageExamples';
 import {
   FileExplorerDemo,
   SidebarDemo,
@@ -9,6 +10,10 @@ import { ComposerDemo, SearchDemo } from './components/CreationDemos';
 import { EditorDemo } from './components/EditorDemo';
 import { DesignDemo } from './components/DesignDemo';
 import { PlaybackDemo } from './components/PlaybackDemo';
+import {
+  ResizableWorkspaceDemo,
+  ResizableStackDemo,
+} from './components/ResizableDemos';
 import { StateDemo, SettingsDemo } from './components/ControlDemos';
 import {
   AlertsDemo,
@@ -36,6 +41,12 @@ export default function Examples() {
           </DemoCard>
           <DemoCard title="Rich text editor" className="xl:col-span-8">
             <EditorDemo />
+          </DemoCard>
+          <DemoCard title="Resizable workspace" className="xl:col-span-8">
+            <ResizableWorkspaceDemo />
+          </DemoCard>
+          <DemoCard title="Resizable stack" className="xl:col-span-4">
+            <ResizableStackDemo />
           </DemoCard>
           <DemoCard
             title="Design tools"
@@ -71,6 +82,7 @@ export default function Examples() {
             <SharingDemo />
           </DemoCard>
         </div>
+        <HomepageExamples />
       </div>
     </Tooltip.Provider>
   );

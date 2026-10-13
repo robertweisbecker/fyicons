@@ -215,7 +215,10 @@ test('compact browser catalog reconstructs complete download metadata', async ()
       'utf8',
     ),
   );
-  const { iconFields, icons: rows, svgArchive, ...metadata } = compact;
+  const { iconFields, iconArchive, svgArchive, ...metadata } = compact;
+  const rows = JSON.parse(
+    inflateSync(Buffer.from(iconArchive, 'base64')).toString(),
+  );
   const sourceSvgs = JSON.parse(
     inflateSync(Buffer.from(svgArchive, 'base64')).toString(),
   );

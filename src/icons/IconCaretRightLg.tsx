@@ -3,9 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconCaretRightLg = React.forwardRef<SVGSVGElement, IconProps>(function IconCaretRightLg(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M6 5.05115C6.00012 4.447 6.66745 4.10658 7.15039 4.41639L7.24414 4.4867L10.6143 7.43592C10.9556 7.73476 10.9557 8.26607 10.6143 8.56482L7.24414 11.514C6.75933 11.938 6.00044 11.5935 6 10.9496V5.05115Z" fill="currentColor" style={{
-      fill: "currentColor",
-      fillOpacity: 1
-    }} /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6 4.06152C6 3.45271 6.67602 3.11356 7.1582 3.43164L7.25195 3.50391L11.6279 7.44238C11.9589 7.74032 11.9589 8.25971 11.6279 8.55762L7.25195 12.4961C6.76935 12.9303 6.00012 12.5877 6 11.9385V4.06152Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconCaretRightLg;

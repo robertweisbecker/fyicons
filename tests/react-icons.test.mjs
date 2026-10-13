@@ -67,10 +67,11 @@ test('every generated component renders on the server at 16px', async () => {
     assert.match(html, /width="16"/, icon.name);
     assert.match(html, /height="16"/, icon.name);
     assert.match(html, /viewBox="0 0 16 16"/, icon.name);
+    assert.match(html, /xmlns="http:\/\/www.w3.org\/2000\/svg"/, icon.name);
   }
 });
 
-test('Collection and Home Fill inherit color through both Figma paint fallbacks', async () => {
+test('Collection and Home Fill inherit color without dark paint overrides', async () => {
   const { createElement } = await import('react');
   const { renderToStaticMarkup } = await import('react-dom/server');
   for (const name of ['collection', 'home-fill']) {
@@ -82,7 +83,6 @@ test('Collection and Home Fill inherit color through both Figma paint fallbacks'
       createElement(Component, { color: '#ff00aa' }),
     );
     assert.match(html, /fill="currentColor"/, name);
-    assert.match(html, /fill:currentColor/, name);
     assert.doesNotMatch(html, /display-p3|#131313|#0C0C0C/i, name);
   }
 });
@@ -110,6 +110,7 @@ test('rendered components honor SVG props and keep repeated definition and title
         title: 'Sample',
         style: { opacity: 0.5 },
         'data-test': 'first',
+        viewBox: '0 0 32 24',
       }),
       createElement(Component, { title: 'Second', 'aria-hidden': true }),
     ),
@@ -120,6 +121,7 @@ test('rendered components honor SVG props and keep repeated definition and title
   assert.match(html, /class="sample"/);
   assert.match(html, /style="opacity:0.5"/);
   assert.match(html, /data-test="first"/);
+  assert.match(html, /viewBox="0 0 32 24"/);
   assert.match(html, /role="img"/);
   assert.match(html, /aria-hidden="true"/);
   assert.match(html, /<title[^>]+>Sample<\/title>/);

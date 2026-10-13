@@ -1,6 +1,6 @@
 # FYIcons
 
-939 icons at 16 × 16 px, with a minimal homepage containing all 17 Figma examples, a searchable library, an inspector, SVG downloads, and fourteen standalone component demos. Built with React, TypeScript, Tailwind CSS, and Base UI.
+1,010 icons at 16 × 16 px, with a minimal homepage containing all 17 Figma examples, a searchable library, an inspector, SVG downloads, and fourteen standalone component demos. Built with React, TypeScript, Tailwind CSS, and Base UI.
 
 ## Development
 
@@ -64,7 +64,7 @@ The editable source is [`icons/`](icons/): one SVG per icon, with artwork metada
 npm run generate:icons
 ```
 
-This rebuilds `src/icons/`, `src/data/catalog.json`, and the compact browser catalog `src/data/catalog-runtime.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. The browser catalog compresses the SVG payload and stores metadata field names once; it reconstructs the exact original SVG bytes and full metadata at runtime. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and both catalog JSON files are generated; edit the standalone SVGs instead.
+This rebuilds `src/icons/`, `src/data/catalog.json`, and the compact browser catalog `src/data/catalog-runtime.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. The browser catalog compresses both the SVG payload and metadata rows, storing metadata field names once; it reconstructs the exact original SVG bytes and full metadata at runtime. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and both catalog JSON files are generated; edit the standalone SVGs instead.
 
 `npm run dev` and `npm run build` generate automatically at startup. While the dev server is running, run `npm run generate:icons` after an SVG edit; Vite picks up the generated changes. `npm run check:icons` detects stale or obsolete generated components without changing files. `npm run test:icons` checks generation and React behavior. CI checks freshness before building.
 
@@ -155,6 +155,6 @@ The apex `bob.fyi` records do not need to change. With Actions-based publishing,
 
 ## Deployment size
 
-This is a static client application with no server functions, image processing, or external API requests. Categories load from a standalone JSON file on the same host. The current production output is approximately **2.94 MiB**, including the full icon catalog. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 3 MiB output budget.
+This is a static client application with no server functions, image processing, or external API requests. Categories load from a standalone JSON file on the same host. The current production output is approximately **2.99 MiB**, including the full icon catalog. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 3 MiB output budget.
 
 GitHub Pages does not consume Vercel deployment storage or bandwidth. An optional `vercel.json` makes the same source deployable as a Vite site, but connecting it to Vercel would consume Vercel storage and transfer for retained deployments. This repository does not create or configure a Vercel project.

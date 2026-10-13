@@ -3,9 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconCirclePlusFill = React.forwardRef<SVGSVGElement, IconProps>(function IconCirclePlusFill(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 4.46484C7.72403 4.46505 7.5 4.68883 7.5 4.96484V7.5H4.96484C4.68883 7.5 4.46505 7.72403 4.46484 8C4.46505 8.27597 4.68883 8.5 4.96484 8.5H7.5V11.0361C7.50032 11.3119 7.72423 11.5359 8 11.5361C8.27577 11.5359 8.49968 11.3119 8.5 11.0361V8.5H11.0361C11.3119 8.49968 11.5359 8.27577 11.5361 8C11.5359 7.72423 11.3119 7.50032 11.0361 7.5H8.5V4.96484C8.5 4.68883 8.27597 4.46505 8 4.46484Z" fill="currentColor" style={{
-      fill: "currentColor",
-      fillOpacity: 1
-    }} /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 4.46484C7.72403 4.46505 7.5 4.68883 7.5 4.96484V7.5H4.96484C4.68883 7.5 4.46505 7.72403 4.46484 8C4.46505 8.27597 4.68883 8.5 4.96484 8.5H7.5V11.0361C7.50032 11.3119 7.72423 11.5359 8 11.5361C8.27577 11.5359 8.49968 11.3119 8.5 11.0361V8.5H11.0361C11.3119 8.49968 11.5359 8.27577 11.5361 8C11.5359 7.72423 11.3119 7.50032 11.0361 7.5H8.5V4.96484C8.5 4.68883 8.27597 4.46505 8 4.46484Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconCirclePlusFill;

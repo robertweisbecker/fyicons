@@ -3,9 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconTriangleUp = React.forwardRef<SVGSVGElement, IconProps>(function IconTriangleUp(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.8 4.26667C7.9 4.13333 8.1 4.13333 8.2 4.26667L10.7 7.6C10.8236 7.76481 10.706 8 10.5 8L5.5 8C5.29399 8 5.17639 7.76481 5.3 7.6L7.8 4.26667Z" fill="currentColor" style={{
-      fill: "currentColor",
-      fillOpacity: 1
-    }} /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.78563 4.35729C7.88273 4.19545 8.11727 4.19545 8.21437 4.35729L10.7728 8.62138C10.8728 8.78801 10.7528 9 10.5585 9L5.44155 9C5.24722 9 5.1272 8.78801 5.22717 8.62138L7.78563 4.35729Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconTriangleUp;

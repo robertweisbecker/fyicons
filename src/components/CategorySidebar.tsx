@@ -30,8 +30,10 @@ function CategoryLabel({
   return (
     <>
       <Icon name={option.icon} className="opacity-50" />
-      <span className="flex-1 truncate">{option.label}</span>
-      <Badge>{option.count}</Badge>
+      <span className="truncate">{option.label}</span>
+      <Badge size="sm" variant="unstyled" className="p-0 text-muted/50">
+        {option.count}
+      </Badge>
     </>
   );
 }
@@ -43,7 +45,7 @@ export function CategorySidebar({ value, onValueChange }: Props) {
     <>
       <aside
         aria-label="Categories"
-        className="sticky top-20 hidden max-h-[calc(100dvh-6rem)] w-52 shrink-0 self-start overflow-y-auto overscroll-contain pr-4 lg:block"
+        className="sticky top-20 hidden max-h-[calc(100dvh-6rem)] w-[var(--category-sidebar-width,13rem)] shrink-0 self-start overflow-y-auto overscroll-contain pr-4 lg:block"
       >
         <h2 className="mb-3 ps-2 text-xs text-muted">Categories</h2>
         <ToggleGroup

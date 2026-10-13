@@ -7,6 +7,7 @@ const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }
   const labeled = title || svgProps['aria-label'] || svgProps['aria-labelledby'];
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       {...svgProps}
       ref={ref}
       width={svgProps.width ?? size}

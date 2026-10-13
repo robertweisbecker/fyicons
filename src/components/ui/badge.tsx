@@ -18,7 +18,7 @@ const badgeVariants = cva(
         default: 'bg-current/5',
         elevated:
           'bg-surface outline outline-current/5 shadow-sm dark:outline-current/10 dark:-outline-offset-1 text-ink',
-        outline: 'border border-current/20 bg-current/2',
+        outline: 'border border-current/8 bg-current/2 text-current/64',
         solid: 'bg-ink text-canvas',
         unstyled: '',
       },

@@ -298,44 +298,22 @@ export function App({ categoryError }: { categoryError?: string }) {
             ) : view === 'library' ? (
               <div
                 id="library"
-                className="flex flex-col gap-6 pt-8 lg:min-h-[calc(100dvh-3.5rem)] lg:flex-row"
+                className="flex flex-col gap-6 pt-8 [--category-sidebar-width:13rem] lg:grid lg:min-h-[calc(100dvh-3.5rem)] lg:grid-cols-[var(--category-sidebar-width)_minmax(0,1fr)_var(--category-sidebar-width)] lg:group-[.has-docked-inspector]/app:grid-cols-[var(--category-sidebar-width)_minmax(0,1fr)]"
               >
                 <CategorySidebar value={category} onValueChange={setCategory} />
-                <div className="min-w-0 flex-1">
+                <div className="w-full max-w-5xl min-w-0">
                   {categoryError && (
                     <p role="alert" className="mb-4 text-sm text-muted">
                       {categoryError}
                     </p>
                   )}
-                  <section
-                    className={cn(
-                      'flex items-start justify-between gap-6 pb-6',
-                    )}
-                  >
-                    <div>
-                      <h1
-                        className={cn(
-                          'mb-2 text-3xl font-semibold tracking-normal',
-                        )}
-                      >
-                        Icons
-                      </h1>
-                      <p
-                        className={cn(
-                          'max-w-150 text-sm leading-relaxed text-muted',
-                        )}
-                      >
-                        Click an icon to inspect, copy, or download it. Select
-                        icons to export a set.
-                      </p>
-                    </div>
-                  </section>
+                  <h1 className="sr-only">Icons</h1>
                   <div
                     className={cn(
-                      'library-tools flex flex-wrap items-center gap-2',
+                      'library-tools relative -m-1 flex flex-nowrap items-center gap-2 overflow-x-auto p-1',
                     )}
                   >
-                    <div className="min-w-56 flex-1 max-md:basis-full md:group-[.has-docked-inspector]/app:basis-full">
+                    <div className="min-w-48 flex-1">
                       <IconSearch
                         value={query}
                         onValueChange={setQuery}
@@ -399,7 +377,11 @@ export function App({ categoryError }: { categoryError?: string }) {
                         icon={icon}
                         inspected={inspectedId === icon.id}
                         selected={selectedIds.includes(icon.id)}
-                        inspect={() => select(icon)}
+                        inspect={() =>
+                          inspectedId === icon.id
+                            ? closeInspector()
+                            : select(icon)
+                        }
                         toggleSelection={() => toggleSelection(icon.id)}
                       />
                     ))}

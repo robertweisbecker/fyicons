@@ -113,7 +113,7 @@ export function AgentsStudy() {
                   />
                 }
               >
-                <Icon name="lightbulb-simple-on" />
+                <Icon name="lightbulb-sm" />
               </MenuTrigger>
               <MenuContent side="top" className="w-40">
                 <MenuRadioGroup

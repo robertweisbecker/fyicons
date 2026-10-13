@@ -16,7 +16,6 @@ import {
   SheetClose,
   SheetContent,
   SheetTitle,
-  SheetDescription,
 } from '@/components/ui/sheet';
 import {
   Drawer,
@@ -31,7 +30,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { IconButton } from '@/components/IconButton';
 import { IconUsage } from './IconUsage';
-import { ResizableHandle } from '@/components/ui/resizable';
+import { InspectorResizeHandle } from '@/components/InspectorResizeHandle';
 import {
   getIconDisplayName,
   getIconCategoryLabel,
@@ -74,19 +73,56 @@ function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
     </span>
   );
 }
+function PreviewGridControl({
+  grid,
+  setGrid,
+}: {
+  grid: boolean;
+  setGrid: (value: boolean) => void;
+}) {
+  return (
+    <div
+      className="pointer-events-none absolute top-3 right-2 rounded-md bg-surface opacity-0 shadow-xs transition-opacity duration-150 ease-out group-focus-within/preview-container:pointer-events-auto group-focus-within/preview-container:opacity-100 group-hover/preview-container:pointer-events-auto group-hover/preview-container:opacity-100 pointer-coarse:pointer-events-auto pointer-coarse:opacity-100"
+      data-base-ui-swipe-ignore
+    >
+      <Toggle
+        size="sm"
+        variant="elevated"
+        aria-label="Pixel grid"
+        title={grid ? 'Hide grid' : 'Show grid'}
+        pressed={grid}
+        onPressedChange={setGrid}
+        className="pointer-coarse:min-h-11"
+      >
+        <ToggleIcon icon="eye-closed" activeIcon="eye" />
+        Grid
+      </Toggle>
+    </div>
+  );
+}
+function NativeSizePreview({
+  item,
+  className,
+}: {
+  item: IconRecord;
+  className?: string;
+}) {
+  return (
+    <div className={cn('flex items-center gap-2', className)}>
+      <Icon name={item.id} />
+      <span className="text-xs text-muted tabular-nums">16×16</span>
+    </div>
+  );
+}
 function Details({
   item,
   selected,
-  grid,
-  setGrid,
   select,
   toggleSelection,
   notify,
 }: {
   item: IconRecord;
   selected: boolean;
-  grid: boolean;
-  setGrid: (value: boolean) => void;
   select: Props['select'];
   toggleSelection: () => void;
   notify: Props['notify'];
@@ -97,24 +133,11 @@ function Details({
   return (
     <>
       <div className="flex flex-col gap-4 px-4 py-3">
-        <div className="flex items-center gap-2">
-          <Icon name={item.id} />
-          <span className="text-xs text-muted tabular-nums">16×16</span>
-          <Toggle
-            size="sm"
-            className="ml-auto"
-            aria-label="Pixel grid"
-            title={grid ? 'Hide grid' : 'Show grid'}
-            pressed={grid}
-            onPressedChange={setGrid}
-          >
-            <ToggleIcon icon="eye-closed" activeIcon="eye" />
-            Grid
-          </Toggle>
-        </div>
-
         <div className="flex flex-col gap-5">
           <IconUsage item={item} notify={notify} />
+          <DrawerDescription className="text-xs text-muted">
+            {getIconCategoryLabel(item)}
+          </DrawerDescription>
           <Field.Root className="flex items-center gap-1 text-xs">
             <Checkbox
               size="sm"
@@ -211,7 +234,7 @@ export function Inspector(props: Props) {
     defaultWidth,
   );
   const [resizing, setResizing] = useState(false);
-  const minWidth = 280;
+  const minWidth = 176;
   const maxWidth = Math.max(minWidth, Math.min(640, viewportWidth - 320));
   const width = Math.min(
     maxWidth,
@@ -244,8 +267,6 @@ export function Inspector(props: Props) {
     <Details
       item={item}
       selected={selectedIds.includes(item.id)}
-      grid={grid}
-      setGrid={setGrid}
       select={props.select}
       toggleSelection={() => toggleSelection(item.id)}
       notify={notify}
@@ -314,30 +335,31 @@ export function Inspector(props: Props) {
                   onClick={() => setSnapPoint(expanded ? snapPoints[0] : 1)}
                   className="absolute inset-x-12 top-0 flex h-6 touch-none items-center justify-center"
                 >
-                  <span className="h-1 w-9 rounded-full bg-current/20" />
+                  <span className="h-1 w-9 rounded-full bg-neutral-400" />
                 </Button>
                 <DrawerClose
                   render={
                     <IconButton
-                      icon="xmark-lg"
+                      icon="xmark"
                       label="Close icon details"
-                      className="absolute top-1 right-2 size-11"
+                      className="absolute top-1 right-2"
                     />
                   }
                 />
               </div>
               <div className="mobile-inspector-header-metadata pointer-events-none text-center">
-                <DrawerTitle className="truncate text-base font-semibold">
+                <DrawerTitle
+                  className="truncate text-base font-semibold"
+                  title={getIconDisplayName(item)}
+                >
                   {getIconDisplayName(item)}
                 </DrawerTitle>
-                <DrawerDescription
-                  className="mt-0.5 truncate text-xs text-muted"
-                  title={getIconCategoryLabel(item)}
-                >
-                  {getIconCategoryLabel(item)}
-                </DrawerDescription>
+                <NativeSizePreview
+                  item={item}
+                  className="mt-1 justify-center"
+                />
               </div>
-              <header className="mobile-inspector-hero">
+              <header className="mobile-inspector-hero group/preview-container">
                 <Button
                   variant="unstyled"
                   size="unstyled"
@@ -347,19 +369,20 @@ export function Inspector(props: Props) {
                 >
                   <IconPreview item={item} grid={grid} />
                 </Button>
+                {expanded && (
+                  <PreviewGridControl grid={grid} setGrid={setGrid} />
+                )}
                 <div
                   className="mobile-inspector-metadata pointer-events-none pr-2"
                   aria-hidden="true"
                 >
-                  <div className="truncate text-sm font-semibold">
+                  <div
+                    className="truncate text-sm font-semibold"
+                    title={getIconDisplayName(item)}
+                  >
                     {getIconDisplayName(item)}
                   </div>
-                  <div
-                    className="mt-1 truncate text-xs text-muted"
-                    title={getIconCategoryLabel(item)}
-                  >
-                    {getIconCategoryLabel(item)}
-                  </div>
+                  <NativeSizePreview item={item} className="mt-1" />
                 </div>
                 <div
                   className="mobile-inspector-actions absolute top-8 right-2 flex gap-0.5"
@@ -391,12 +414,10 @@ export function Inspector(props: Props) {
                 inert={!expanded}
                 className={cn(
                   'inspector-scroll min-h-0 flex-1',
-                  expanded
-                    ? 'overflow-y-auto'
-                    : 'inspector-compact-details overflow-hidden',
+                  expanded ? 'overflow-y-auto' : 'overflow-hidden',
                 )}
               >
-                {details}
+                <div className="mobile-inspector-details">{details}</div>
               </DrawerScroll>
               <Pagination {...props} mobile />
             </div>
@@ -423,6 +444,7 @@ export function Inspector(props: Props) {
       />
       <Sheet
         open={!!item}
+        swipeDirection="right"
         onOpenChange={(open) => {
           if (!open) close();
         }}
@@ -455,7 +477,7 @@ export function Inspector(props: Props) {
         >
           {item && (
             <>
-              <ResizableHandle
+              <InspectorResizeHandle
                 value={width}
                 min={minWidth}
                 max={maxWidth}
@@ -465,16 +487,17 @@ export function Inspector(props: Props) {
                 onValueChange={setPreferredWidth}
                 onResizingChange={setResizing}
               />
-              <header className="flex shrink-0 items-start gap-3 border-b border-line p-2">
+              <header className="flex shrink-0 cursor-grab items-start gap-3 border-b border-line p-2 active:cursor-grabbing">
                 <div className="min-w-0 flex-1">
-                  <SheetTitle className="text-base font-semibold wrap-break-word">
+                  <SheetTitle
+                    className="truncate text-base font-semibold"
+                    title={getIconDisplayName(item)}
+                  >
                     {getIconDisplayName(item)}
                   </SheetTitle>
-                  <SheetDescription className="text-xs text-muted">
-                    {getIconCategoryLabel(item)}
-                  </SheetDescription>
+                  <NativeSizePreview item={item} className="mt-1" />
                 </div>
-                <div className="flex gap-0.5">
+                <div className="flex shrink-0 gap-0.5">
                   <Toggle
                     size="icon"
                     aria-label="Dock inspector"
@@ -492,14 +515,15 @@ export function Inspector(props: Props) {
                   </SheetClose>
                 </div>
               </header>
-              <div className="inspector-scroll min-h-0 flex-1 overflow-y-auto">
-                <div className="flex items-center justify-center bg-canvas">
+              <DrawerScroll className="inspector-scroll min-h-0 flex-1 overflow-y-auto">
+                <div className="group/preview-container relative flex items-center justify-center bg-canvas p-4">
                   <div className="size-36">
                     <IconPreview item={item} grid={grid} />
                   </div>
+                  <PreviewGridControl grid={grid} setGrid={setGrid} />
                 </div>
                 {details}
-              </div>
+              </DrawerScroll>
               <Pagination {...props} />
             </>
           )}
