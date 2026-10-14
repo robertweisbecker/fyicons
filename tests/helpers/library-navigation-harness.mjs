@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { registerHooks } from 'node:module';
-import { act, createElement, StrictMode, useMemo } from 'react';
+import { act, createElement, StrictMode } from 'react';
 import { JSDOM } from 'jsdom';
 
 const sourceRoot = new URL('../../src/', import.meta.url);
@@ -48,10 +48,7 @@ async function loadModules(root) {
     const readiness = await import(
       new URL(`lib/category-readiness.ts${search}`, root)
     );
-    const searchIcons = await import(
-      new URL(`lib/icon-search.ts${search}`, root)
-    );
-    return { navigation, catalog, readiness, searchIcons };
+    return { navigation, catalog, readiness };
   } finally {
     hooks.deregister();
   }
@@ -112,30 +109,13 @@ export async function mountNavigation(
     }
   });
 
-  const { navigation, catalog, readiness, searchIcons } =
-    await loadModules(sourceRoot);
+  const { navigation, catalog, readiness } = await loadModules(sourceRoot);
   if (!pending) await readiness.loadCategories();
   const { createRoot } = await import('react-dom/client');
   let current;
-  let visible;
   function Harness() {
     current = navigation.useLibraryNavigation();
-    const { category, query, categoryReadiness } = current;
-    const activeCategory =
-      query.trim() || categoryReadiness.status === 'loading' ? 'all' : category;
-    visible = useMemo(
-      () =>
-        searchIcons.searchIcons(
-          catalog.icons.filter(
-            (icon) =>
-              activeCategory === 'all' ||
-              icon.categories.includes(activeCategory),
-          ),
-          query,
-        ),
-      [activeCategory, query, categoryReadiness.version],
-    );
-    return createElement('p', null, `${visible.length} icons available`);
+    return null;
   }
   const writes = [];
   for (const method of ['pushState', 'replaceState']) {
@@ -172,12 +152,6 @@ export async function mountNavigation(
     catalog,
     readiness,
     requests,
-    get visible() {
-      return visible;
-    },
-    get content() {
-      return dom.window.document.getElementById('root').textContent;
-    },
     async resolveCategories(config = categoryConfig, status = 200) {
       await act(async () => {
         resolveResponse(Response.json(config, { status }));

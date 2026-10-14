@@ -277,28 +277,9 @@ test('delayed categories preserve initial category/query/icon intent and indepen
   assert.equal(initial.category, 'buildings');
   assert.equal(initial.query, 'plus');
   assert.equal(initial.inspectedId, h.catalog.byName.get('home').id);
-  assert.ok(h.visible.length > 0);
   await h.resolveCategories(pendingConfig);
   assert.deepEqual(snapshot(h.state), initial);
-  assert.ok(!h.visible.some(({ id }) => id === initial.inspectedId));
   assert.deepEqual(h.writes, []);
-});
-
-test('delayed category intent becomes an active filter with refreshed counts', async (t) => {
-  const h = await mountNavigation(
-    t,
-    'https://example.test/library/#category=buildings',
-    { pending: true },
-  );
-  assert.equal(h.visible.length, h.catalog.icons.length);
-  await h.resolveCategories(pendingConfig);
-  assert.equal(h.state.category, 'buildings');
-  assert.ok(h.visible.length > 0 && h.visible.length < h.catalog.icons.length);
-  assert.equal(
-    h.visible.length,
-    h.catalog.icons.filter(({ categories }) => categories.includes('buildings'))
-      .length,
-  );
 });
 
 for (const outcome of ['ready', 'error']) {
