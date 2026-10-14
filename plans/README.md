@@ -18,12 +18,12 @@ GPT-6.1 Sol agents at High reasoning in isolated worktrees. Plans 009 and 010 ar
 
 | Plan | Work | Findings | Depends on | Status |
 | --- | --- | --- | --- | --- |
-| [001](001-react-generation.md) | Correct generated React references and accessible names | F09, F10, F11 | none | TODO |
+| [001](001-react-generation.md) | Correct generated React references and accessible names | F09, F10, F11 | none | IN PROGRESS |
 | [002](002-safe-icon-imports.md) | Prepare complete imports before publishing files | F01, F02 | 001 | TODO |
-| [003](003-app-accessibility-preferences.md) | Name the SVG download action and validate saved selections | F03, F05 | none | TODO |
+| [003](003-app-accessibility-preferences.md) | Name the SVG download action and validate saved selections | F03, F05 | none | IN PROGRESS |
 | [004](004-catalog-decoder.md) | Test the production catalog reconstruction directly | F04 | none | TODO |
 | [005](005-category-schema-check.md) | Check category-schema freshness without writes | F12 | 002 | TODO |
-| [006](006-navigation-characterization.md) | Characterize real navigation history and pending writes | F07 | none | TODO |
+| [006](006-navigation-characterization.md) | Characterize real navigation history and pending writes | F07 | none | IN PROGRESS |
 | [007](007-category-readiness.md) | Render immediately while categories become ready | F06 | 003, 004, 006 | TODO |
 | [008](008-contract-documentation.md) | Align CI and naming documentation with behavior | F08 | 002, 005 | TODO |
 | [009](009-import-dry-run.md) | Preview import changes using the prepared result | Direction: dry-run import report; PLAN ONLY by user instruction | 002, 008 | TODO — plan only |
