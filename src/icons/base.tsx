@@ -13,7 +13,7 @@ const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }
       width={svgProps.width ?? size}
       height={svgProps.height ?? size}
       color={color}
-      aria-labelledby={svgProps['aria-labelledby'] ?? (title ? idPrefix + 'title' : undefined)}
+      aria-labelledby={svgProps['aria-labelledby'] ?? (svgProps['aria-label'] == null && title ? idPrefix + 'title' : undefined)}
       aria-label={svgProps['aria-label'] ?? title}
       role={svgProps.role ?? (labeled ? 'img' : undefined)}
       aria-hidden={svgProps['aria-hidden'] ?? (labeled ? undefined : true)}

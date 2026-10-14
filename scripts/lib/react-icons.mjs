@@ -60,21 +60,17 @@ function literal(value) {
 }
 
 function instanceReference(prefix, id, suffix = '') {
+  // Reference text is SVG data, never raw JavaScript template syntax.
   return {
-    type: 'TemplateLiteral',
-    expressions: [{ type: 'Identifier', name: 'idPrefix' }],
-    quasis: [
-      {
-        type: 'TemplateElement',
-        value: { raw: prefix, cooked: prefix },
-        tail: false,
-      },
-      {
-        type: 'TemplateElement',
-        value: { raw: id + suffix, cooked: id + suffix },
-        tail: true,
-      },
-    ],
+    type: 'BinaryExpression',
+    operator: '+',
+    left: {
+      type: 'BinaryExpression',
+      operator: '+',
+      left: literal(prefix),
+      right: { type: 'Identifier', name: 'idPrefix' },
+    },
+    right: literal(id + suffix),
   };
 }
 
@@ -207,7 +203,7 @@ const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }
       width={svgProps.width ?? size}
       height={svgProps.height ?? size}
       color={color}
-      aria-labelledby={svgProps['aria-labelledby'] ?? (title ? idPrefix + 'title' : undefined)}
+      aria-labelledby={svgProps['aria-labelledby'] ?? (svgProps['aria-label'] == null && title ? idPrefix + 'title' : undefined)}
       aria-label={svgProps['aria-label'] ?? title}
       role={svgProps.role ?? (labeled ? 'img' : undefined)}
       aria-hidden={svgProps['aria-hidden'] ?? (labeled ? undefined : true)}
