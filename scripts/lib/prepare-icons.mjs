@@ -219,7 +219,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
         ]),
     ),
     duplicatePolicy:
-      'Distinct icons with the same base name receive stable numeric suffixes.',
+      'Distinct icons with the same base name receive numeric suffixes to disambiguate the current inventory; suffixes may change when the inventory changes.',
   };
   const catalogText =
     JSON.stringify({ ...generatedManifest, icons }, null, 2) + '\n';
