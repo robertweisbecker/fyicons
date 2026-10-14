@@ -9,8 +9,8 @@
 - **Risk**: MED
 - **Depends on**: 002, 008
 - **Findings**: Direction: dry-run import report; PLAN ONLY by user instruction
-- **Planned at**: `2269820`, 2026-10-14
-- **Drift check**: `git diff --stat 2269820..HEAD -- scripts/sync-icons.mjs scripts/lib/prepare-icons.mjs scripts/lib/icon-files.mjs scripts/lib/import-report.mjs tests/import-report.test.mjs tests/safe-imports.test.mjs README.md`
+- **Planned at**: `a569249`, 2026-10-14
+- **Drift check**: `git diff --stat a569249..HEAD -- scripts/sync-icons.mjs scripts/lib/prepare-icons.mjs scripts/lib/icon-files.mjs scripts/lib/import-report.mjs tests/import-report.test.mjs tests/safe-imports.test.mjs README.md`
 
 ## Why this matters
 
