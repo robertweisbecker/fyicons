@@ -3,7 +3,10 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { updateCategorySchema } from '../scripts/lib/category-schema.ts';
+import {
+  createCategorySchema,
+  updateCategorySchema,
+} from '../scripts/lib/category-schema.ts';
 
 test('schema suggests sidebar icons and keywords without depending on category definitions', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'fyicons-schema-'));
@@ -16,12 +19,15 @@ test('schema suggests sidebar icons and keywords without depending on category d
         JSON.stringify({ icons: names.map((name) => ({ name })) }),
       );
       await updateCategorySchema(root);
-      return JSON.parse(
-        await readFile(
-          path.join(root, 'public/icon-categories.schema.json'),
-          'utf8',
-        ),
+      const content = await readFile(
+        path.join(root, 'public/icon-categories.schema.json'),
+        'utf8',
       );
+      assert.equal(
+        content,
+        JSON.stringify(createCategorySchema(names), null, 2) + '\n',
+      );
+      return JSON.parse(content);
     };
     let schema = await saveInventory(['anchor', 'arrow-up']);
     assert.deepEqual(schema.required, ['categories']);
