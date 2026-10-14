@@ -22,7 +22,7 @@ Sync validates only part of the contract before overwriting editable sources and
 - Sync pre-renders React once, writes source SVGs and manifest, removes old names using exact string comparison, then starts `scripts/generate-icons.mjs` as a subprocess.
 - Generator separately checks `path.basename(meta.filename) !== meta.filename` and `!/viewBox=["']0 0 16 16["']/.test(svg)`, and prepares full/compact catalogs. Its filename checks currently occur after sync mutations.
 - Browser metadata consumers require string `source.fileKey` and `originalName`; some old test fixtures omit them. Deliberately normalize legacy missing originalName to a safe string and define fileKey policy explicitly; reject invalid supplied types before writes.
-- `scripts/lib/sync-categories.mjs` remaps sidebar icons and exactNames by source ID. Existing Node tests use copied scripts, temporary repositories and linked node_modules; extend that boundary.
+- `scripts/lib/sync-categories.mjs` remaps sidebar artwork by source ID while preserving local keyword and exactNames rules. Existing Node tests use copied scripts, temporary repositories and linked node_modules; extend that boundary.
 
 ## Repository contract and commands
 

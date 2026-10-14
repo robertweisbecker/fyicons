@@ -10,7 +10,7 @@
 - **Depends on**: 003, 004, 006
 - **Findings**: F06
 - **Planned at**: `f50ebe1`, 2026-10-14
-- **Drift check**: `git diff --stat f50ebe1..HEAD -- src/main.tsx src/App.tsx src/lib/catalog.ts src/lib/category-readiness.ts src/lib/use-library-navigation.ts src/lib/library-url.ts src/components/CategorySidebar.tsx src/lib/icon-search.ts tests/category-readiness.test.mjs tests/library-navigation.test.mjs tests/helpers`
+- **Drift check**: `git diff --stat f50ebe1..HEAD -- src/main.tsx src/App.tsx src/lib/catalog.ts src/lib/category-readiness.ts src/lib/use-library-navigation.ts src/lib/library-url.ts src/components/CategorySidebar.tsx src/components/Search.tsx src/components/Inspector.tsx src/lib/icon-search.ts tests/category-readiness.test.mjs tests/library-navigation.test.mjs tests/helpers`
 
 ## Why this matters
 
@@ -21,7 +21,7 @@ Every route currently waits for optional category fetch completion before React 
 - `src/main.tsx:8`: `const categoryError = await loadIconCategories();` precedes createRoot and passes categoryError to App.
 - `src/lib/catalog.ts`: exported icons begin uncategorized; loadIconCategories fetches same-host icon-categories.json with cache:no-store and a 5s timeout, mutates records and replaces exported categories.
 - `src/lib/use-library-navigation.ts` reads allowed categories synchronously on mount, relying on the startup await.
-- App memoizes filtered icons by query/category and consumes categoryError; category arrival must trigger filters, search and counts, not just change a global.
+- App memoizes filtered icons by query/category and consumes categoryError; category arrival must trigger filters, search and counts, not just change a global. CategorySidebar computes options at render; Search defaults matches through searchIcons; Inspector reads category labels. Audit all consumers for actual reactive updates.
 - Reviewer must refresh these excerpts against reviewed 003/004/006 before dispatch. Reuse the actual hook harness from 006.
 
 ## Repository contract and commands
@@ -32,7 +32,7 @@ Run commands from the assigned isolated worktree, never the user's main checkout
 
 ## Scope and Git workflow
 
-Only modify these paths (directories include focused new modules/tests): `src/main.tsx src/App.tsx src/lib/catalog.ts src/lib/category-readiness.ts src/lib/use-library-navigation.ts src/lib/library-url.ts src/components/CategorySidebar.tsx src/lib/icon-search.ts tests/category-readiness.test.mjs tests/library-navigation.test.mjs tests/helpers`. Everything else is outside scope; report required expansions. Reviewer may refresh downstream scope to match reviewed prerequisites. Do not change `plans/README.md`, unrelated toast/prototypes, canonical inventory, dependencies unless explicitly listed, or CI. Use assigned `codex/` branch or detached worktree; commits start `[codex]`. Stage only this plan's changes; commit after verification, do not push/open PR/merge main. Reviewer integrates reviewed commits on main, as authorized by the user.
+Only modify these paths (directories include focused new modules/tests): `src/main.tsx src/App.tsx src/lib/catalog.ts src/lib/category-readiness.ts src/lib/use-library-navigation.ts src/lib/library-url.ts src/components/CategorySidebar.tsx src/components/Search.tsx src/components/Inspector.tsx src/lib/icon-search.ts tests/category-readiness.test.mjs tests/library-navigation.test.mjs tests/helpers`. Everything else is outside scope; report required expansions. Reviewer may refresh downstream scope to match reviewed prerequisites. Do not change `plans/README.md`, unrelated toast/prototypes, canonical inventory, dependencies unless explicitly listed, or CI. Use assigned `codex/` branch or detached worktree; commits start `[codex]`. Stage only this plan's changes; commit after verification, do not push/open PR/merge main. Reviewer integrates reviewed commits on main, as authorized by the user.
 
 ## Steps
 
