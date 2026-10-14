@@ -42,6 +42,12 @@ Only modify these paths (directories include focused new modules/tests): `src/ma
 
 ## Done criteria and tests
 
+Reviewed scope refinement: actual-App integration uses a synchronous TSX transform
+inside Node's import hooks. Declare the already locked `rolldown` 1.2.11 directly
+in `package.json` and `package-lock.json`; no version upgrades or new lock records.
+The reviewer also required actual App rendering tests instead of copying the
+filtering/memo logic into a navigation harness.
+
 - No top-level awaited optional category request before createRoot.
 - Reactive success updates category filters, labels, search, counts and exports.
 - Delayed category resolution preserves deep links without overriding later intent.
