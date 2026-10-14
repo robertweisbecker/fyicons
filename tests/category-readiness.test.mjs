@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mountNavigation } from './helpers/library-navigation-harness.mjs';
+import { mountApp } from './helpers/app-readiness-harness.mjs';
 
 const config = {
   categories: [
@@ -8,14 +9,12 @@ const config = {
   ],
 };
 
-test('pending categories leave useful icons mounted, then publish coherent metadata once', async (t) => {
+test('pending categories retain catalog records, then publish coherent metadata once', async (t) => {
   const h = await mountNavigation(t, 'https://example.test/fyicons/library/', {
     pending: true,
   });
   const loading = h.readiness.getCategoryReadiness();
   assert.equal(loading.status, 'loading');
-  assert.equal(h.visible.length, h.catalog.icons.length);
-  assert.match(h.content, /icons available/);
   assert.equal(h.requests.length, 1);
   assert.equal(h.requests[0].url, '/fyicons/icon-categories.json');
   assert.equal(h.requests[0].options.cache, 'no-store');
@@ -69,7 +68,6 @@ for (const failure of ['network', 'http', 'invalid rules']) {
       h.state.categoryReadiness.error,
       /All icons are still available/,
     );
-    assert.equal(h.visible.length, h.catalog.icons.length);
     assert.ok(
       h.catalog.icons.every(({ categories }) =>
         categories.includes('uncategorized'),
@@ -92,17 +90,56 @@ test('StrictMode effect replay starts one request and receives one settled snaps
   assert.equal(h.state.categoryReadiness.status, 'ready');
 });
 
-test('category-label search and memoized counts refresh after metadata arrival', async (t) => {
-  const h = await mountNavigation(
+test('actual App renders useful library content before categories resolve', async (t) => {
+  const h = await mountApp(
     t,
-    'https://example.test/library/#q=buildings',
-    { pending: true },
+    'https://example.test/library/#category=buildings',
   );
-  assert.equal(h.visible.length, 0);
+  assert.equal(h.readiness.getCategoryReadiness().status, 'loading');
+  assert.equal(h.requests.length, 1);
+  assert.ok(h.document.querySelector('header'));
+  assert.ok(h.document.querySelector('input[aria-label="Search icons"]'));
+  assert.equal(h.tiles.length, h.catalog.icons.length);
+  assert.equal(
+    h.count,
+    `${h.catalog.icons.length} of ${h.catalog.icons.length} icons`,
+  );
   await h.resolveCategories(config);
-  assert.ok(h.visible.length > 0);
-  assert.ok(
-    h.visible.every(({ categories }) => categories.includes('buildings')),
+  const categorized = h.catalog.icons.filter(({ categories }) =>
+    categories.includes('buildings'),
   );
-  assert.match(h.content, new RegExp(`^${h.visible.length} icons available$`));
+  assert.ok(
+    categorized.length > 0 && categorized.length < h.catalog.icons.length,
+  );
+  assert.equal(h.tiles.length, categorized.length);
+  assert.equal(
+    h.count,
+    `${categorized.length} of ${h.catalog.icons.length} icons`,
+  );
+  assert.ok(h.document.querySelector('[aria-label="Buildings"]'));
+});
+
+test('actual App category-label search results and rendered counts refresh after arrival', async (t) => {
+  const h = await mountApp(t, 'https://example.test/library/#q=buildings');
+  assert.equal(h.tiles.length, 0);
+  assert.equal(h.count, `0 of ${h.catalog.icons.length} icons`);
+  assert.ok(h.document.body.textContent.includes('No matching icons'));
+  await h.resolveCategories(config);
+  const categorized = h.catalog.icons.filter(({ categories }) =>
+    categories.includes('buildings'),
+  );
+  assert.ok(categorized.length > 0);
+  assert.equal(h.tiles.length, categorized.length);
+  assert.deepEqual(
+    h.tiles.map((tile) => tile.dataset.id).sort(),
+    categorized.map(({ id }) => id).sort(),
+  );
+  assert.equal(
+    h.count,
+    `${categorized.length} of ${h.catalog.icons.length} icons`,
+  );
+  assert.equal(
+    h.document.querySelector('input[aria-label="Search icons"]').value,
+    'buildings',
+  );
 });
