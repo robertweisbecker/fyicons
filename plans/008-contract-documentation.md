@@ -9,8 +9,8 @@
 - **Risk**: LOW
 - **Depends on**: 002, 005
 - **Findings**: F08
-- **Planned at**: `f50ebe1`, 2026-10-14
-- **Drift check**: `git diff --stat f50ebe1..HEAD -- README.md scripts/generate-icons.mjs scripts/lib/icon-generation.mjs scripts/lib/prepare-icons.mjs src/data/catalog.json src/data/catalog-runtime.json`
+- **Planned at**: `c900916`, 2026-10-14
+- **Drift check**: `git diff --stat c900916..HEAD -- README.md scripts/lib/prepare-icons.mjs src/data/catalog.json src/data/catalog-runtime.json`
 
 ## Why this matters
 
@@ -20,7 +20,8 @@ README claims a freshness check precedes CI build, but CI regenerates during bui
 
 - `README.md:69`: `CI checks freshness before building.`
 - `.github/workflows/pages.yml` runs npm ci, npm run build, then npm test.
-- At f50ebe1 `scripts/generate-icons.mjs:101`: duplicatePolicy is `Distinct icons with the same base name receive stable numeric suffixes.` Plan 002 may move this to its preparation owner.
+- `scripts/lib/prepare-icons.mjs:222` now owns duplicatePolicy: `Distinct icons with the same base name receive stable numeric suffixes.` The generator and sync share this owner; update it once and regenerate both catalogs.
+- Reviewed plan 002 added complete preparation and source/output preflight. It also made category schema part of `check:icons`; plan 005 adds command-level missing/stale/non-mutation tests. Retain the import contract paragraphs added by 002.
 - Names are authoritative from current Figma export; source IDs remain identities and former names become aliases. Persistent suffix mapping is explicitly deferred.
 
 ## Repository contract and commands
@@ -31,7 +32,7 @@ Run commands from the assigned isolated worktree, never the user's main checkout
 
 ## Scope and Git workflow
 
-Only modify these paths (directories include focused new modules/tests): `README.md scripts/generate-icons.mjs scripts/lib/icon-generation.mjs scripts/lib/prepare-icons.mjs src/data/catalog.json src/data/catalog-runtime.json`. Everything else is outside scope; report required expansions. Reviewer may refresh downstream scope to match reviewed prerequisites. Do not change `plans/README.md`, unrelated toast/prototypes, canonical inventory, dependencies unless explicitly listed, or CI. Use assigned `codex/` branch or detached worktree; commits start `[codex]`. Stage only this plan's changes; commit after verification, do not push/open PR/merge main. Reviewer integrates reviewed commits on main, as authorized by the user.
+Only modify these paths: `README.md scripts/lib/prepare-icons.mjs src/data/catalog.json src/data/catalog-runtime.json`. Everything else is outside scope; report required expansions. Reviewer may refresh downstream scope to match reviewed prerequisites. Do not change `plans/README.md`, unrelated toast/prototypes, canonical inventory, dependencies unless explicitly listed, or CI. Use assigned `codex/` branch or detached worktree; commits start `[codex]`. Stage only this plan's changes; commit after verification, do not push/open PR/merge main. Reviewer integrates reviewed commits on main, as authorized by the user.
 
 ## Steps
 
@@ -50,6 +51,6 @@ All commands applicable to the plan must pass. `git diff --check` has no errors.
 
 ## STOP conditions and maintenance
 
-Stop if real workflow order has changed independently; report new evidence. Do not add a freshness CI gate, suffix provenance, package publication or dry-run implementation. Update the preparation file scope before dispatch if plan 002 chose a different name.
+Stop if real workflow order has changed independently; report new evidence. Do not add a freshness CI gate, suffix provenance, package publication or dry-run implementation. Preparation ownership has been refreshed to scripts/lib/prepare-icons.mjs; do not change its validation or serialization behavior.
 
 Also stop/report if current code differs materially from the excerpts without a reviewed prerequisite explaining it, verification fails twice after reasonable fixes, or an out-of-scope file is required. Keep the worktree intact for review. No secrets, credential values, unrelated dependency upgrades or unverified compatibility claims in output.

@@ -9,8 +9,8 @@
 - **Risk**: MED
 - **Depends on**: 002, 008
 - **Findings**: Direction: dry-run import report; PLAN ONLY by user instruction
-- **Planned at**: `f50ebe1`, 2026-10-14
-- **Drift check**: `git diff --stat f50ebe1..HEAD -- scripts/sync-icons.mjs scripts/lib/import-report.mjs tests/import-report.test.mjs tests/safe-imports.test.mjs README.md`
+- **Planned at**: `2269820`, 2026-10-14
+- **Drift check**: `git diff --stat 2269820..HEAD -- scripts/sync-icons.mjs scripts/lib/prepare-icons.mjs scripts/lib/icon-files.mjs scripts/lib/import-report.mjs tests/import-report.test.mjs tests/safe-imports.test.mjs README.md`
 
 ## Why this matters
 
@@ -18,8 +18,8 @@ Once preparation owns a fully valid next inventory, the importer can report cons
 
 ## Current state
 
-- At f50ebe1, sync only logs a final imported count after publication. README warns that imports replace editable sources.
-- Plan 002 will provide prepared source/manifest/category/generated outputs before publication; report from that same prepared result, never repeat naming or validation.
+- After reviewed plan 002, sync still logs only a final imported count after publication. README warns that imports replace editable sources.
+- `scripts/sync-icons.mjs` calls `prepareIcons(nextManifest, nextCategories, readSvg)` from `scripts/lib/prepare-icons.mjs`, then assembles expected canonical and generated files. `preparePublication` returns changed and obsolete files before `publishFiles` writes. Derive the report from those prepared records and maps; never repeat naming or validation.
 - Source IDs establish identity; SVG hashes establish artwork changes. Numeric suffixes are current-inventory disambiguators and may change without upstream renames.
 
 ## Repository contract and commands

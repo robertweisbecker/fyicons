@@ -9,8 +9,8 @@
 - **Risk**: LOW
 - **Depends on**: 001, 004
 - **Findings**: Direction: design spike; PLAN ONLY by user instruction
-- **Planned at**: `f50ebe1`, 2026-10-14
-- **Drift check**: `git diff --stat f50ebe1..HEAD -- docs/react-source-download-design.md`
+- **Planned at**: `2269820`, 2026-10-14
+- **Drift check**: `git diff --stat 2269820..HEAD -- docs/react-source-download-design.md scripts/lib/react-icons.mjs src/lib/icon-archive.ts src/lib/catalog-codec.ts src/components/IconUsage.tsx package.json scripts/measure-build.mjs`
 
 ## Why this matters
 
