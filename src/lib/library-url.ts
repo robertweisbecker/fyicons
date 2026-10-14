@@ -12,14 +12,14 @@ export const emptyLibraryState: LibraryUrlState = {
 
 export function readLibraryHash(
   hash: string,
-  categoryIds: ReadonlySet<string>,
+  categoryIds: ReadonlySet<string> | null,
   iconNames: ReadonlySet<string>,
 ): LibraryUrlState {
   const params = new URLSearchParams(hash.replace(/^#/, ''));
   const category = params.get('category') ?? 'all';
   const icon = params.get('icon');
   return {
-    category: categoryIds.has(category) ? category : 'all',
+    category: !categoryIds || categoryIds.has(category) ? category : 'all',
     query: params.get('q') ?? '',
     icon: icon && iconNames.has(icon) ? icon : null,
   };

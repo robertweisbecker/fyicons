@@ -36,7 +36,7 @@ const editable = (target: EventTarget | null) =>
       '[role=combobox], [role=listbox], [role=menu], [data-slot=toggle-group], [role=slider], [role=separator]',
     ));
 
-export function App({ categoryError }: { categoryError?: string }) {
+export function App() {
   const mobile = useMobile();
   const library = useLibraryNavigation();
   const {
@@ -48,7 +48,9 @@ export function App({ categoryError }: { categoryError?: string }) {
     setCategory,
   } = library;
   const [searchOpen, setSearchOpen] = useState(false);
-  const activeCategory = query.trim() ? 'all' : category;
+  const { categoryReadiness } = library;
+  const activeCategory =
+    query.trim() || categoryReadiness.status === 'loading' ? 'all' : category;
   const [review, setReview] = useState('all');
   const activeReview = mobile && review === 'selected' ? 'all' : review;
   const [previewSize, setPreviewSize] = useState(16);
@@ -77,7 +79,13 @@ export function App({ categoryError }: { categoryError?: string }) {
       ),
       query,
     );
-  }, [query, activeCategory, activeReview, selectedIds]);
+  }, [
+    query,
+    activeCategory,
+    activeReview,
+    selectedIds,
+    categoryReadiness.version,
+  ]);
   const current = byId.get(inspectedId ?? '') ?? null;
   // Keep the inspected tile (or the first visible tile) in place when columns reflow.
   function preserveGridPosition(preferredId = inspectedId) {
@@ -184,7 +192,12 @@ export function App({ categoryError }: { categoryError?: string }) {
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
+  const previousReadiness = useRef(categoryReadiness);
   useEffect(() => {
+    if (previousReadiness.current !== categoryReadiness) {
+      previousReadiness.current = categoryReadiness;
+      return; // Metadata arrival must not replace a user's current inspection.
+    }
     if (
       inspectedId &&
       !library.icon &&
@@ -193,7 +206,7 @@ export function App({ categoryError }: { categoryError?: string }) {
       if (visible[0]) select(visible[0]);
       else library.inspect(null);
     }
-  }, [visible, inspectedId, library.icon]);
+  }, [visible, inspectedId, library.icon, categoryReadiness]);
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
       if (
@@ -295,9 +308,9 @@ export function App({ categoryError }: { categoryError?: string }) {
                   onValueChange={setCategory}
                 />
                 <div className="w-full max-w-5xl min-w-0">
-                  {categoryError && (
+                  {categoryReadiness.error && (
                     <p role="alert" className="mb-4 text-sm text-muted">
-                      {categoryError}
+                      {categoryReadiness.error}
                     </p>
                   )}
                   <h1 className="sr-only">Icons</h1>

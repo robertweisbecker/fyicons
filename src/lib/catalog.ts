@@ -25,13 +25,18 @@ export function getIconCategoryLabel(icon: IconRecord) {
     .join(' · ');
 }
 
-// Called before React mounts. Existing maps and search indexes retain these records.
-export async function loadIconCategories(): Promise<string | undefined> {
+// Existing maps and search indexes retain these canonical records.
+export async function loadIconCategories(
+  fetchCategories: typeof fetch = fetch,
+): Promise<string | undefined> {
   try {
-    const response = await fetch(`${pageHref('home')}icon-categories.json`, {
-      cache: 'no-store',
-      signal: AbortSignal.timeout(5000),
-    });
+    const response = await fetchCategories(
+      `${pageHref('home')}icon-categories.json`,
+      {
+        cache: 'no-store',
+        signal: AbortSignal.timeout(5000),
+      },
+    );
     if (!response.ok)
       throw new Error(`Category request failed: ${response.status}`);
     const config = parseIconCategories(await response.json());

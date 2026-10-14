@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { registerHooks } from 'node:module';
-import { act, createElement } from 'react';
+import { act, createElement, StrictMode, useMemo } from 'react';
 import { JSDOM } from 'jsdom';
 
 const sourceRoot = new URL('../../src/', import.meta.url);
@@ -45,7 +45,13 @@ async function loadModules(root) {
       new URL(`lib/use-library-navigation.ts${search}`, root)
     );
     const catalog = await import(new URL(`lib/catalog.ts${search}`, root));
-    return { navigation, catalog };
+    const readiness = await import(
+      new URL(`lib/category-readiness.ts${search}`, root)
+    );
+    const searchIcons = await import(
+      new URL(`lib/icon-search.ts${search}`, root)
+    );
+    return { navigation, catalog, readiness, searchIcons };
   } finally {
     hooks.deregister();
   }
@@ -54,9 +60,17 @@ async function loadModules(root) {
 export async function mountNavigation(
   t,
   url = 'https://example.test/library/',
+  { pending = false, strict = false } = {},
 ) {
   const dom = new JSDOM('<div id="root"></div>', { url });
   const saved = new Map();
+  let resolveResponse;
+  let rejectResponse;
+  const response = new Promise((resolve, reject) => {
+    resolveResponse = resolve;
+    rejectResponse = reject;
+  });
+  const requests = [];
   const globals = {
     window: dom.window,
     document: dom.window.document,
@@ -65,7 +79,12 @@ export async function mountNavigation(
     navigator: dom.window.navigator,
     HTMLElement: dom.window.HTMLElement,
     IS_REACT_ACT_ENVIRONMENT: true,
-    fetch: async () => Response.json(categoryConfig),
+    fetch: (url, options) => {
+      requests.push({ url, options });
+      return pending
+        ? response
+        : Promise.resolve(Response.json(categoryConfig));
+    },
   };
   for (const [key, value] of Object.entries(globals)) {
     saved.set(key, Object.getOwnPropertyDescriptor(globalThis, key));
@@ -93,14 +112,30 @@ export async function mountNavigation(
     }
   });
 
-  const { navigation, catalog } = await loadModules(sourceRoot);
-  const categoryError = await catalog.loadIconCategories();
-  if (categoryError) throw new Error(categoryError);
+  const { navigation, catalog, readiness, searchIcons } =
+    await loadModules(sourceRoot);
+  if (!pending) await readiness.loadCategories();
   const { createRoot } = await import('react-dom/client');
   let current;
+  let visible;
   function Harness() {
     current = navigation.useLibraryNavigation();
-    return null;
+    const { category, query, categoryReadiness } = current;
+    const activeCategory =
+      query.trim() || categoryReadiness.status === 'loading' ? 'all' : category;
+    visible = useMemo(
+      () =>
+        searchIcons.searchIcons(
+          catalog.icons.filter(
+            (icon) =>
+              activeCategory === 'all' ||
+              icon.categories.includes(activeCategory),
+          ),
+          query,
+        ),
+      [activeCategory, query, categoryReadiness.version],
+    );
+    return createElement('p', null, `${visible.length} icons available`);
   }
   const writes = [];
   for (const method of ['pushState', 'replaceState']) {
@@ -116,7 +151,13 @@ export async function mountNavigation(
   t.mock.timers.enable({ apis: ['setTimeout'] });
   reactRoot = createRoot(dom.window.document.getElementById('root'));
   mounted = true;
-  act(() => reactRoot.render(createElement(Harness)));
+  act(() =>
+    reactRoot.render(
+      strict
+        ? createElement(StrictMode, null, createElement(Harness))
+        : createElement(Harness),
+    ),
+  );
 
   return {
     get state() {
@@ -129,6 +170,26 @@ export async function mountNavigation(
       return dom.window.history.length;
     },
     catalog,
+    readiness,
+    requests,
+    get visible() {
+      return visible;
+    },
+    get content() {
+      return dom.window.document.getElementById('root').textContent;
+    },
+    async resolveCategories(config = categoryConfig, status = 200) {
+      await act(async () => {
+        resolveResponse(Response.json(config, { status }));
+        await readiness.loadCategories();
+      });
+    },
+    async rejectCategories(error = new Error('Category request failed')) {
+      await act(async () => {
+        rejectResponse(error);
+        await readiness.loadCategories();
+      });
+    },
     writes,
     act: (callback) => act(() => callback(current)),
     advance: (milliseconds) => act(() => t.mock.timers.tick(milliseconds)),

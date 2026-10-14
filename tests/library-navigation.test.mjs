@@ -260,3 +260,131 @@ test('unmount cancels pending search and removes history and hash listeners', as
   assert.equal(h.href, 'https://example.test/library/#examples');
   assert.deepEqual(h.writes, []);
 });
+
+const pendingConfig = {
+  categories: [
+    { id: 'buildings', name: 'Buildings', icon: 'home', keywords: ['home'] },
+  ],
+};
+
+test('delayed categories preserve initial category/query/icon intent and independent inspection', async (t) => {
+  const h = await mountNavigation(
+    t,
+    'https://example.test/library/#category=buildings&q=plus&icon=home',
+    { pending: true },
+  );
+  const initial = snapshot(h.state);
+  assert.equal(initial.category, 'buildings');
+  assert.equal(initial.query, 'plus');
+  assert.equal(initial.inspectedId, h.catalog.byName.get('home').id);
+  assert.ok(h.visible.length > 0);
+  await h.resolveCategories(pendingConfig);
+  assert.deepEqual(snapshot(h.state), initial);
+  assert.ok(!h.visible.some(({ id }) => id === initial.inspectedId));
+  assert.deepEqual(h.writes, []);
+});
+
+test('delayed category intent becomes an active filter with refreshed counts', async (t) => {
+  const h = await mountNavigation(
+    t,
+    'https://example.test/library/#category=buildings',
+    { pending: true },
+  );
+  assert.equal(h.visible.length, h.catalog.icons.length);
+  await h.resolveCategories(pendingConfig);
+  assert.equal(h.state.category, 'buildings');
+  assert.ok(h.visible.length > 0 && h.visible.length < h.catalog.icons.length);
+  assert.equal(
+    h.visible.length,
+    h.catalog.icons.filter(({ categories }) => categories.includes('buildings'))
+      .length,
+  );
+});
+
+for (const outcome of ['ready', 'error']) {
+  test(`unknown category falls back only after ${outcome}, preserving latest query and inspection`, async (t) => {
+    const h = await mountNavigation(
+      t,
+      'https://example.test/library/#category=missing&q=home&icon=home',
+      { pending: true },
+    );
+    assert.equal(h.state.category, 'missing');
+    const icon = h.catalog.icons[0];
+    h.act((nav) => nav.inspect(icon.id));
+    h.act((nav) => nav.setQuery('latest'));
+    if (outcome === 'ready') await h.resolveCategories(pendingConfig);
+    else await h.rejectCategories();
+    assert.deepEqual(snapshot(h.state), {
+      ...empty,
+      query: 'latest',
+      inspectedId: icon.id,
+    });
+    h.advance(200);
+    assert.equal(h.href, 'https://example.test/library/#q=latest');
+  });
+}
+
+test('late success validates current Back/Forward category intent without restoring stale fields', async (t) => {
+  const h = await mountNavigation(
+    t,
+    'https://example.test/library/#category=buildings&icon=home',
+    { pending: true },
+  );
+  h.act((nav) => nav.setCategory('uncategorized'));
+  h.traverse('back');
+  assert.equal(h.state.category, 'buildings');
+  h.traverse('forward');
+  assert.equal(h.state.category, 'uncategorized');
+  h.act((nav) => nav.setQuery('latest'));
+  const writesBefore = h.writes.length;
+  await h.resolveCategories(pendingConfig);
+  assert.equal(h.state.category, 'uncategorized');
+  assert.equal(h.state.query, 'latest');
+  assert.equal(h.state.inspectedId, h.catalog.byName.get('home').id);
+  assert.equal(h.writes.length, writesBefore);
+  h.advance(200);
+  assert.match(h.href, /category=uncategorized&q=latest&icon=home/);
+});
+
+for (const action of [
+  'reset',
+  'changePage',
+  'openSearchResult',
+  'setCategory',
+]) {
+  test(`late categories retain the state after ${action}`, async (t) => {
+    const h = await mountNavigation(
+      t,
+      'https://example.test/library/#category=buildings&q=home&icon=home',
+      { pending: true },
+    );
+    h.act((nav) => {
+      if (action === 'reset') nav.reset();
+      else if (action === 'changePage') nav.changePage('examples');
+      else if (action === 'openSearchResult')
+        nav.openSearchResult(h.catalog.icons[0].id);
+      else nav.setCategory('all');
+    });
+    const latest = snapshot(h.state);
+    const href = h.href;
+    await h.resolveCategories(pendingConfig);
+    assert.deepEqual(snapshot(h.state), latest);
+    assert.equal(h.href, href);
+  });
+}
+
+test('query edits and temporary inspection remain latest when a valid category resolves', async (t) => {
+  const h = await mountNavigation(
+    t,
+    'https://example.test/library/#category=buildings&q=home&icon=home',
+    { pending: true },
+  );
+  const icon = h.catalog.icons[0];
+  h.act((nav) => nav.setQuery('changed'));
+  h.act((nav) => nav.inspect(icon.id));
+  const latest = snapshot(h.state);
+  await h.resolveCategories(pendingConfig);
+  assert.deepEqual(snapshot(h.state), latest);
+  assert.equal(h.state.icon, null);
+  assert.equal(h.state.inspectedId, icon.id);
+});

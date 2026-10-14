@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { byId, categories, icons } from './catalog';
+import {
+  getCategoryReadiness,
+  useCategoryReadiness,
+} from './category-readiness';
 import { pageFromLocation, pageHref, type Page } from './navigation';
 import {
   emptyLibraryState,
@@ -13,14 +17,17 @@ type LibraryNavigation = LibraryUrlState & {
   inspectedId: string | null;
 };
 
-// Categories are loaded before App mounts. Only current canonical names link icons.
+// Preserve category intent until it can be validated. Canonical icon names are
+// available immediately, independently of category readiness and filters.
 function readLocation(): LibraryNavigation {
   const page = pageFromLocation();
   const state =
     page === 'library'
       ? readLibraryHash(
           location.hash,
-          new Set(categories.map(({ id }) => id)),
+          getCategoryReadiness().status === 'loading'
+            ? null
+            : new Set(categories.map(({ id }) => id)),
           new Set(icons.map(({ name }) => name)),
         )
       : emptyLibraryState;
@@ -33,6 +40,7 @@ function readLocation(): LibraryNavigation {
 
 /** Keep URL writes in user actions so restoring history never writes it back. */
 export function useLibraryNavigation() {
+  const categoryReadiness = useCategoryReadiness();
   const [state, setState] = useState(readLocation);
   const latest = useRef(state);
   const pendingUrl = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -44,18 +52,25 @@ export function useLibraryNavigation() {
   ) {
     clearTimeout(pendingUrl.current);
     const next = { ...latest.current, ...patch };
-    const href =
-      pageHref(next.page) + (next.page === 'library' ? libraryHash(next) : '');
-    const url = new URL(href, location.href).href;
+    const urlFor = (value: LibraryNavigation) =>
+      new URL(
+        pageHref(value.page) +
+          (value.page === 'library' ? libraryHash(value) : ''),
+        location.href,
+      ).href;
+    const url = urlFor(next);
     const write = () => {
+      // Category validation may settle during the search debounce. Write the
+      // latest fields so its fallback cannot resurrect an obsolete category.
+      const url = urlFor(latest.current);
       if (url !== location.href) {
         if (mode === 'push') history.pushState(null, '', url);
         else history.replaceState(history.state, '', url);
       }
     };
+    latest.current = next;
     if (delay) pendingUrl.current = setTimeout(write, delay);
     else write();
-    latest.current = next;
     setState(next);
     return url;
   }
@@ -81,8 +96,28 @@ export function useLibraryNavigation() {
     };
   }, []);
 
+  useEffect(() => {
+    const current = latest.current;
+    if (
+      categoryReadiness.status !== 'loading' &&
+      current.category !== 'all' &&
+      !categories.some(({ id }) => id === current.category)
+    ) {
+      const next = { ...current, category: 'all' };
+      latest.current = next;
+      setState(next);
+    }
+  }, [categoryReadiness, state.category]);
+
   return {
     ...state,
+    category:
+      categoryReadiness.status !== 'loading' &&
+      state.category !== 'all' &&
+      !categories.some(({ id }) => id === state.category)
+        ? 'all'
+        : state.category,
+    categoryReadiness,
     setQuery: (query: string) => update({ query }, 'replace', 200),
     setCategory: (category: string) => update({ category, query: '' }, 'push'),
     inspect: (inspectedId: string | null) =>
