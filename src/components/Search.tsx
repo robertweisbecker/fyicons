@@ -5,6 +5,7 @@ import { Icon } from '@/components/Icon';
 import { IconButton } from '@/components/IconButton';
 import { cn } from '@/lib/utils';
 import { searchIcons } from '@/lib/icon-search';
+import { useCategoryReadiness } from '@/lib/category-readiness';
 import {
   getIconDisplayName,
   getIconCategoryLabel,
@@ -27,6 +28,7 @@ export function Search({
   inline?: boolean;
   inputRef?: Ref<HTMLInputElement>;
 }) {
+  useCategoryReadiness();
   const [popupOpen, setPopupOpen] = useState(false);
   const queryReady = value.replace(/\s/g, '').length >= 3;
   const results = matches.slice(0, inline ? 100 : 8);
