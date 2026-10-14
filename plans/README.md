@@ -19,7 +19,7 @@ GPT-6.1 Sol agents at High reasoning in isolated worktrees. Plans 009 and 010 ar
 | Plan | Work | Findings | Depends on | Status |
 | --- | --- | --- | --- | --- |
 | [001](001-react-generation.md) | Correct generated React references and accessible names | F09, F10, F11 | none | DONE — e429717 + 1c186fe |
-| [002](002-safe-icon-imports.md) | Prepare complete imports before publishing files | F01, F02 | 001 | IN PROGRESS |
+| [002](002-safe-icon-imports.md) | Prepare complete imports before publishing files | F01, F02 | 001 | DONE — 2269820 |
 | [003](003-app-accessibility-preferences.md) | Name the SVG download action and validate saved selections | F03, F05 | none | DONE — 5aff489 |
 | [004](004-catalog-decoder.md) | Test the production catalog reconstruction directly | F04 | none | DONE — 33f6c19 |
 | [005](005-category-schema-check.md) | Check category-schema freshness without writes | F12 | 002 | TODO |
@@ -79,6 +79,12 @@ in Codex was queued, but its rendered appearance could not be verified.
 - **001**: reviewed literal AST composition, naming precedence, generated changes,
   and fresh-map rendering; reviewer reran six React cases (all 1,021 icons) and
   freshness. Added a direct pinned declaration for the parser used by tests.
+- **002**: reviewer read shared preparation/publication and all command fixtures;
+  independently reran 125 tests, freshness, standalone TypeScript and production
+  build. Zero-write validation, actual case-insensitive source/component renames,
+  BOM/Unicode/CRLF bytes, local category rules, aliases and supplied checksums pass.
+  Review added custom source URL parity through the production decoder. Generated
+  real inventory remains unchanged; publication makes no crash-atomic guarantee.
 - **003**: reviewed four-file diff; reviewer reran 20 preference cases and TypeScript.
   Browser accessibility exposed Download SVG in desktop and expanded mobile
   inspectors. A fresh browser tab resolved an initial control detachment; keyboard
