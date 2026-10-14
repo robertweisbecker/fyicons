@@ -9,18 +9,19 @@
 - **Risk**: LOW
 - **Depends on**: 002
 - **Findings**: F12
-- **Planned at**: `f50ebe1`, 2026-10-14
-- **Drift check**: `git diff --stat f50ebe1..HEAD -- scripts/generate-icons.mjs scripts/lib/category-schema.ts scripts/lib/icon-generation.mjs scripts/lib/prepare-icons.mjs tests/icons-source.test.mjs tests/category-schema.test.mjs tests/schema-check.test.mjs`
+- **Planned at**: `2269820`, 2026-10-14
+- **Drift check**: `git diff --stat 2269820..HEAD -- scripts/generate-icons.mjs scripts/lib/category-schema.ts scripts/lib/icon-generation.mjs scripts/lib/prepare-icons.mjs tests/icons-source.test.mjs tests/category-schema.test.mjs tests/schema-check.test.mjs`
 
 ## Why this matters
 
-The category schema is generated in write mode but absent from the check-mode expected outputs. A missing or stale schema can pass check:icons, leaving editor completions inconsistent.
+The original gap was a schema generated in write mode but absent from check-mode expected outputs. Reviewed plan 002 now includes it in the shared preparation map. Protect that behavior with command-level tests for missing and stale schemas, including non-mutation and exact regeneration.
 
 ## Current state
 
-- At f50ebe1, `scripts/generate-icons.mjs` builds an expected map containing React files and two catalogs; `await updateCategorySchema(root)` occurs only in the write branch.
+- Plan 002 introduced `scripts/lib/prepare-icons.mjs`. `prepareIcons` adds `public/icon-categories.schema.json` to its expected map using `createCategorySchema(icons.map(({ name }) => name))` and two-space JSON plus a trailing newline.
+- `scripts/generate-icons.mjs` calls `prepareRepositoryIcons(root)` then `preparePublication(root, prepared.expected)`. Check mode reports `publication.changed` and `publication.obsolete`; only write mode calls `publishFiles`.
 - `scripts/lib/category-schema.ts` exports pure `createCategorySchema(iconNames)` and write-oriented `updateCategorySchema(root)`; serialization is JSON with two-space indentation and a trailing newline.
-- Plan 002 will centralize expected output preparation. Before dispatch, reviewer must refresh these excerpts and scope to the actual preparation file it introduced; do not duplicate the new owner.
+- Existing `tests/category-schema.test.mjs` covers schema content and standalone generation despite unfinished category edits. It does not run the icon generator's check command against a missing/stale schema. `tests/safe-imports.test.mjs` demonstrates copying scripts into a temporary repository and linking installed dependencies.
 
 ## Repository contract and commands
 
@@ -30,11 +31,11 @@ Run commands from the assigned isolated worktree, never the user's main checkout
 
 ## Scope and Git workflow
 
-Only modify these paths (directories include focused new modules/tests): `scripts/generate-icons.mjs scripts/lib/category-schema.ts scripts/lib/icon-generation.mjs scripts/lib/prepare-icons.mjs tests/icons-source.test.mjs tests/category-schema.test.mjs tests/schema-check.test.mjs`. Everything else is outside scope; report required expansions. Reviewer may refresh downstream scope to match reviewed prerequisites. Do not change `plans/README.md`, unrelated toast/prototypes, canonical inventory, dependencies unless explicitly listed, or CI. Use assigned `codex/` branch or detached worktree; commits start `[codex]`. Stage only this plan's changes; commit after verification, do not push/open PR/merge main. Reviewer integrates reviewed commits on main, as authorized by the user.
+Only modify these paths: `tests/category-schema.test.mjs tests/schema-check.test.mjs`. The implementation already exists after reviewed plan 002; report an actual production defect before expanding scope. Everything else is outside scope; report required expansions. Reviewer may refresh downstream scope to match reviewed prerequisites. Do not change `plans/README.md`, unrelated toast/prototypes, canonical inventory, dependencies unless explicitly listed, or CI. Use assigned `codex/` branch or detached worktree; commits start `[codex]`. Stage only this plan's changes; commit after verification, do not push/open PR/merge main. Reviewer integrates reviewed commits on main, as authorized by the user.
 
 ## Steps
 
-1. Include expected schema bytes in the prepared output map used by check and write modes. Reuse createCategorySchema and keep standalone generate:category-schema working; avoid a second schema algorithm. **Verify:** `npm run check:icons` passes on the fresh real inventory.
+1. Confirm the reviewed shared map already includes schema bytes for check and write modes; do not duplicate or refactor this completed implementation. Keep standalone generate:category-schema working. **Verify:** `npm run check:icons` passes on the fresh real inventory.
 2. Add command-level temp-repository tests that first generate, then remove or corrupt the schema. Check must fail with the schema path in diagnostics and leave all files unchanged. Regeneration must restore exact expected schema and a passing check. **Verify:** `node --test tests/schema-check.test.mjs tests/category-schema.test.mjs` passes.
 3. Verify command contracts after sharing preparation. **Verify:** `npm run test:icons`, `npm run check:icons`, typecheck and build pass with no unintended real generated changes.
 
@@ -49,6 +50,6 @@ All commands applicable to the plan must pass. `git diff --check` has no errors.
 
 ## STOP conditions and maintenance
 
-Do not change category matching or JSON schema semantics, CI order or editor conventions. Stop before modifying a preparation filename not yet included by the reviewer. Future generated artifacts belong in the shared expected-output contract.
+Do not change category matching or JSON schema semantics, CI order or editor conventions. Stop before changing production source; this remaining plan is regression coverage for the reviewed implementation. Future generated artifacts belong in the shared expected-output contract.
 
 Also stop/report if current code differs materially from the excerpts without a reviewed prerequisite explaining it, verification fails twice after reasonable fixes, or an out-of-scope file is required. Keep the worktree intact for review. No secrets, credential values, unrelated dependency upgrades or unverified compatibility claims in output.
