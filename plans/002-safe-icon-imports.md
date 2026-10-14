@@ -9,8 +9,8 @@
 - **Risk**: MED
 - **Depends on**: 001
 - **Findings**: F01, F02
-- **Planned at**: `f50ebe1`, 2026-10-14
-- **Drift check**: `git diff --stat f50ebe1..HEAD -- scripts/sync-icons.mjs scripts/generate-icons.mjs scripts/lib tests/icons-source.test.mjs tests/sync-icons.test.mjs tests/safe-imports.test.mjs README.md`
+- **Planned at**: `33f6c19`, 2026-10-14
+- **Drift check**: `git diff --stat 33f6c19..HEAD -- scripts/sync-icons.mjs scripts/generate-icons.mjs scripts/lib tests/icons-source.test.mjs tests/sync-icons.test.mjs tests/safe-imports.test.mjs README.md`
 
 ## Why this matters
 
@@ -37,7 +37,7 @@ Only modify these paths (directories include focused new modules/tests): `script
 ## Steps
 
 1. Introduce a focused preparation module under `scripts/lib/` owning normalized inventory validation, React rendering and complete generated catalog preparation. Have generator consume it. Keep exact SVG bytes and existing transport format; do not change numeric suffix assignment policy. Make valid missing legacy metadata defaults explicit, reject invalid supplied types. **Verify:** `npm run test:icons` passes and `npm run check:icons` passes on the real inventory.
-2. Route sync through the same preparation before any writes. Validate name/path confinement (including symlink escape), required field types, aliases, dimensions, actual root viewBox, hashes, duplicate IDs, unsafe destinations, case-folded file/component collisions and category references. Validate the complete import before reading/writing destinations; rendered code and encoded catalogs must be ready before publish. Reuse prepared outputs instead of rendering again in a subprocess. **Verify:** targeted sync/import tests pass and snapshots prove every file, including sentinels and generated outputs, is unchanged for invalid fixtures.
+2. Route sync through the same preparation before any writes. Validate name/path confinement (including symlink escape), required field types, aliases, dimensions, actual root viewBox, hashes, duplicate IDs, unsafe destinations, case-folded file/component collisions and category references. Validate destination containment too, rejecting symlinked output paths that escape the repository. Validate the complete import before writing destinations; rendered code and encoded catalogs must be ready before publish. Reuse prepared outputs instead of rendering again in a subprocess. **Verify:** targeted sync/import tests pass and snapshots prove every file, including sentinels and generated outputs, is unchanged for invalid fixtures.
 3. Publish valid imports with exact directory casing and safe case-only renames. Avoid deleting replacement files via old case aliases; test the actual case-insensitive host when available and a platform-independent publication scenario. Preserve source identities, aliases, source-name authority, category keyword rules, and exact SVG bytes. **Verify:** `node --test tests/sync-icons.test.mjs tests/safe-imports.test.mjs` passes; rename fixture has exactly the expected cased filename and a passing generator check.
 4. Document validation and publication guarantees precisely (zero writes on validation failure; no crash-atomic claim). **Verify:** full `npm test`, typecheck, `npm run check:icons` and `npm run build` pass; generated real inventory remains byte-identical apart from prior plan 001.
 

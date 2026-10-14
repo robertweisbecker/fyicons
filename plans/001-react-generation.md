@@ -10,7 +10,7 @@
 - **Depends on**: none
 - **Findings**: F09, F10, F11
 - **Planned at**: `f50ebe1`, 2026-10-14
-- **Drift check**: `git diff --stat f50ebe1..HEAD -- scripts/lib/react-icons.mjs tests/react-icons.test.mjs src/icons`
+- **Drift check**: `git diff --stat f50ebe1..HEAD -- scripts/lib/react-icons.mjs tests/react-icons.test.mjs src/icons package.json package-lock.json`
 
 ## Why this matters
 
@@ -31,13 +31,13 @@ Run commands from the assigned isolated worktree, never the user's main checkout
 
 ## Scope and Git workflow
 
-Only modify these paths (directories include focused new modules/tests): `scripts/lib/react-icons.mjs tests/react-icons.test.mjs src/icons`. Everything else is outside scope; report required expansions. Reviewer may refresh downstream scope to match reviewed prerequisites. Do not change `plans/README.md`, unrelated toast/prototypes, canonical inventory, dependencies unless explicitly listed, or CI. Use assigned `codex/` branch or detached worktree; commits start `[codex]`. Stage only this plan's changes; commit after verification, do not push/open PR/merge main. Reviewer integrates reviewed commits on main, as authorized by the user.
+Only modify these paths (directories include focused new modules/tests): `scripts/lib/react-icons.mjs tests/react-icons.test.mjs src/icons package.json package-lock.json`. Everything else is outside scope; report required expansions. Reviewer may refresh downstream scope to match reviewed prerequisites. Do not change `plans/README.md`, unrelated toast/prototypes, canonical inventory, dependencies unless explicitly listed, or CI. Use assigned `codex/` branch or detached worktree; commits start `[codex]`. Stage only this plan's changes; commit after verification, do not push/open PR/merge main. Reviewer integrates reviewed commits on main, as authorized by the user.
 
 ## Steps
 
 1. Replace raw template segments with string-literal AST composition. Preserve prefix/id/suffix bytes for href, xlinkHref, url references in attributes and style. Add fixtures containing backticks, backslashes, `${...}`, quotes and Unicode; benign expressions must remain literal data. Verify both source AST and rendered reference resolution with repeated instances. **Verify:** `node --test tests/react-icons.test.mjs` passes.
 2. Only synthesize title-based aria-labelledby when neither explicit naming prop is supplied. Explicit aria-labelledby retains precedence; explicit aria-label must not acquire title linkage. Keep title-only, decorative, role, hidden, size, color, props and ref behavior. Add actual rendered-markup regression cases. Switch exhaustive rendering to fresh map entries. **Verify:** `node --test tests/react-icons.test.mjs` passes all cases and all 1,021 generated icons.
-3. Regenerate derived TSX and inspect the diff; source SVGs and catalog metadata must remain unchanged. **Verify:** `npm run generate:icons && npm run check:icons && npm run test:icons` exits 0; `git diff --name-only` contains only scoped paths. Run final typecheck and build below.
+3. Declare the already-locked @babel/parser version as a pinned dev dependency because the AST regression imports it directly; do not upgrade packages. Regenerate derived TSX and inspect the diff; source SVGs and catalog metadata must remain unchanged. **Verify:** `npm run generate:icons && npm run check:icons && npm run test:icons` exits 0; `git diff --name-only` contains only scoped paths. Run final typecheck and build below.
 
 ## Done criteria and tests
 
