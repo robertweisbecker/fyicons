@@ -10,7 +10,7 @@ export type CompactCatalog = Omit<Catalog, 'icons'> & {
 type ArchivedIcon = Omit<
   Catalog['icons'][number],
   'svg' | 'width' | 'height' | 'file' | 'sourceUrl'
->;
+> & { sourceUrl?: string };
 
 // Compression only affects transport; clipboard and downloads retain exact SVG bytes.
 function unpack(archive: string): unknown {
@@ -39,7 +39,9 @@ export function decodeCatalog(compact: CompactCatalog): Catalog {
         width: 16,
         height: 16,
         file: `icons/${icon.filename}`,
-        sourceUrl: `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
+        sourceUrl:
+          icon.sourceUrl ??
+          `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
       };
     }),
   } as unknown as Catalog;

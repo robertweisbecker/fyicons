@@ -108,6 +108,11 @@ test('replacing a source regenerates its component and derived catalog hash', as
       new URL('../scripts/lib/react-icons.mjs', import.meta.url),
       path.join(temp, 'scripts/lib/react-icons.mjs'),
     );
+    for (const name of ['prepare-icons.mjs', 'icon-files.mjs'])
+      await cp(
+        new URL(`../scripts/lib/${name}`, import.meta.url),
+        path.join(temp, 'scripts/lib', name),
+      );
     await symlink(
       path.resolve('node_modules'),
       path.join(temp, 'node_modules'),
