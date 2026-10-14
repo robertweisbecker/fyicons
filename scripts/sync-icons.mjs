@@ -1,27 +1,42 @@
-import { readFile, writeFile, readdir, mkdir, unlink } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
-import { renderReactIconFiles } from './lib/react-icons.mjs';
+import {
+  normalizeManifest,
+  prepareIcons,
+  safeFilename,
+} from './lib/prepare-icons.mjs';
+import {
+  confinedPath,
+  readSvgFile,
+  preparePublication,
+  publishFiles,
+} from './lib/icon-files.mjs';
 import { syncIconCategories } from './lib/sync-categories.mjs';
 import {
   parseIconCategories,
   validateCategoryIcons,
 } from '../src/lib/icon-categories.ts';
 
-const source = process.argv[2];
-if (!source)
+const sourceArgument = process.argv[2];
+if (!sourceArgument)
   throw new Error(
     'Usage: npm run sync-icons -- /path/to/FYIcons-export (replaces editable icons/ sources)',
   );
 const root = process.cwd();
+const source = path.resolve(root, sourceArgument);
 const useSourceNames = !process.argv.includes('--preserve-names');
-const imported = JSON.parse(
-  await readFile(path.join(source, 'manifest.json'), 'utf8'),
+const imported = normalizeManifest(
+  JSON.parse(
+    await readFile(await confinedPath(source, 'manifest.json'), 'utf8'),
+  ),
+  { imported: true },
 );
-const currentManifest = JSON.parse(
-  await readFile(path.join(root, 'icons/manifest.json'), 'utf8'),
+const currentManifest = normalizeManifest(
+  JSON.parse(
+    await readFile(await confinedPath(root, 'icons/manifest.json'), 'utf8'),
+  ),
 );
-const categoriesPath = path.join(root, 'public/icon-categories.json');
+const categoriesPath = await confinedPath(root, 'public/icon-categories.json');
 const currentCategorySource = await readFile(categoriesPath, 'utf8');
 const currentCategories = parseIconCategories(
   JSON.parse(currentCategorySource),
@@ -33,8 +48,6 @@ const currentById = new Map(
 const takenNames = new Set(
   useSourceNames ? [] : currentManifest.icons.map((icon) => icon.name),
 );
-if (imported.name !== 'FYIcons' || !Array.isArray(imported.icons))
-  throw new Error('Expected a FYIcons manifest with icons.');
 const groups = new Map();
 for (const icon of imported.icons) {
   const baseName = icon.baseName || icon.name.replace(/--\d+-\d+$/, '');
@@ -72,23 +85,12 @@ for (const [baseName, group] of groups) {
     if (normalized.some((item) => item.name === name))
       throw new Error(`Name collision: ${name}`);
     const filename = `${name}-16.svg`;
-    const originalFilename = icon.filename || path.basename(icon.file);
-    const svg = await readFile(
-      path.join(source, icon.file || originalFilename),
-      'utf8',
+    const originalFilename = safeFilename(
+      icon.filename || path.posix.basename(icon.file || ''),
     );
-    if (
-      icon.width !== 16 ||
-      icon.height !== 16 ||
-      !svg.trimStart().startsWith('<svg')
-    )
-      throw new Error(`Invalid SVG: ${icon.name}`);
-    const checksum = createHash('sha256').update(svg).digest('hex');
-    if (icon.sha256 && icon.sha256 !== checksum)
-      throw new Error(`Checksum mismatch: ${icon.name}`);
+    const svg = await readSvgFile(source, icon.file || originalFilename);
     const {
       svg: _svg,
-      sha256: _sha,
       category: _category,
       categories: _categories,
       ...metadata
@@ -115,22 +117,10 @@ for (const [baseName, group] of groups) {
       ],
       width: 16,
       height: 16,
-      sourceUrl: icon.sourceUrl,
       _sourceSvg: svg,
     });
   }
 }
-const ids = new Set();
-for (const icon of normalized) {
-  if (!icon.id || ids.has(icon.id))
-    throw new Error(`Duplicate or missing ID: ${icon.id}`);
-  ids.add(icon.id);
-}
-const renderRecords = normalized.map(({ _sourceSvg, ...icon }) => ({
-  ...icon,
-  svg: _sourceSvg,
-}));
-await renderReactIconFiles(renderRecords); // Validate all component inputs before replacing editable sources.
 const finalRecords = normalized.map(({ _sourceSvg, ...icon }) => icon);
 const nextCategories = syncIconCategories(
   currentCategories,
@@ -139,33 +129,30 @@ const nextCategories = syncIconCategories(
 );
 const { icons: _oldIcons, categories: _categories, ...rootMetadata } = imported;
 const nextManifest = { ...rootMetadata, icons: finalRecords };
-const iconsDir = path.join(root, 'icons');
-await mkdir(iconsDir, { recursive: true });
-const oldFiles = (await readdir(iconsDir)).filter((name) =>
-  name.endsWith('.svg'),
+const svgById = new Map(normalized.map((icon) => [icon.id, icon._sourceSvg]));
+const prepared = await prepareIcons(nextManifest, nextCategories, (icon) =>
+  svgById.get(icon.id),
 );
-for (const icon of normalized)
-  await writeFile(path.join(iconsDir, icon.filename), icon._sourceSvg);
-await writeFile(
-  path.join(iconsDir, 'manifest.json'),
-  JSON.stringify(nextManifest, null, 2) + '\n',
+const expected = new Map(prepared.expected);
+for (const icon of prepared.icons)
+  expected.set(`icons/${icon.filename}`, icon.svg);
+expected.set(
+  'icons/manifest.json',
+  JSON.stringify(prepared.manifest, null, 2) + '\n',
 );
-const nextCategorySource =
+expected.set(
+  'public/icon-categories.json',
   JSON.stringify(
     { $schema: './icon-categories.schema.json', ...nextCategories },
     null,
     2,
-  ) + '\n';
-if (currentCategorySource !== nextCategorySource)
-  await writeFile(categoriesPath, nextCategorySource);
-for (const filename of oldFiles)
-  if (!finalRecords.some((icon) => icon.filename === filename))
-    await unlink(path.join(iconsDir, filename));
-const { execFile } = await import('node:child_process');
-const { promisify } = await import('node:util');
-await promisify(execFile)('node', ['scripts/generate-icons.mjs'], {
-  cwd: root,
-});
+  ) + '\n',
+);
+const publication = await preparePublication(root, expected, [
+  'icons',
+  'src/icons',
+]);
+await publishFiles(publication);
 console.log(
-  `Imported ${finalRecords.length} SVGs, ${useSourceNames ? 'using Figma source names' : 'preserving names for known IDs'} and generating site output.`,
+  `Imported ${prepared.icons.length} SVGs, ${useSourceNames ? 'using Figma source names' : 'preserving names for known IDs'} and generating site output.`,
 );

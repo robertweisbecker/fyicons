@@ -15,7 +15,12 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { categorizeIcons } from '../src/lib/icon-categories.ts';
 
-for (const format of ['legacy', 'multiple', 'artwork-only'])
+for (const format of [
+  'legacy',
+  'multiple',
+  'artwork-only',
+  'ignored-category-values',
+])
   test(`sync preserves local keyword rules, sidebar icons, aliases, and SVGs with ${format} imports`, async () => {
     const temp = await mkdtemp(path.join(tmpdir(), 'fyicons-sync-'));
     const run = promisify(execFile);
@@ -68,6 +73,8 @@ for (const format of ['legacy', 'multiple', 'artwork-only'])
         'sync-icons.mjs',
         'generate-icons.mjs',
         'lib/react-icons.mjs',
+        'lib/prepare-icons.mjs',
+        'lib/icon-files.mjs',
         'lib/sync-categories.mjs',
         'lib/category-schema.ts',
       ]) {
@@ -100,27 +107,31 @@ for (const format of ['legacy', 'multiple', 'artwork-only'])
         JSON.stringify({
           name: 'FYIcons',
           categories:
-            format === 'artwork-only'
-              ? undefined
-              : format === 'legacy'
-                ? ['Interface']
-                : [
-                    { id: 'interface', name: 'Interface', icon: 'alpha' },
-                    { id: 'new-group', name: 'New group', icon: 'beta' },
-                  ],
+            format === 'ignored-category-values'
+              ? null
+              : format === 'artwork-only'
+                ? undefined
+                : format === 'legacy'
+                  ? ['Interface']
+                  : [
+                      { id: 'interface', name: 'Interface', icon: 'alpha' },
+                      { id: 'new-group', name: 'New group', icon: 'beta' },
+                    ],
           icons: [
             record('fixture:1', 'beta', 'one.svg'),
             record('fixture:2', 'alpha', 'two.svg'),
             record('fixture:3', 'beta', 'three.svg'),
             record('fixture:4', 'unmatched', 'four.svg'),
           ].map((icon) =>
-            format === 'artwork-only'
-              ? Object.fromEntries(
-                  Object.entries(icon).filter(([key]) => key !== 'category'),
-                )
-              : format === 'legacy'
-                ? icon
-                : { ...icon, categories: ['interface', 'new-group'] },
+            format === 'ignored-category-values'
+              ? { ...icon, category: null, categories: { ignored: true } }
+              : format === 'artwork-only'
+                ? Object.fromEntries(
+                    Object.entries(icon).filter(([key]) => key !== 'category'),
+                  )
+                : format === 'legacy'
+                  ? icon
+                  : { ...icon, categories: ['interface', 'new-group'] },
           ),
         }),
       );

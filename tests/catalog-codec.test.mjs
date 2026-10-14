@@ -142,3 +142,28 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
     ],
   });
 });
+
+test('production decoder keeps explicit source URLs and reconstructs absent URLs', () => {
+  const compact = {
+    source: { fileKey: 'fixture-file' },
+    iconFields: ['id', 'filename', 'sourceUrl'],
+    iconArchive: pack([
+      [
+        '1:2',
+        'custom-16.svg',
+        'https://www.figma.com/design/other-file/source?node-id=9-8',
+      ],
+      ['3:4', 'default-16.svg', null],
+      ['5:6', 'empty-16.svg', ''],
+    ]),
+    svgArchive: pack(['<svg/>', '<svg/>', '<svg/>']),
+  };
+  assert.deepEqual(
+    decodeCatalog(compact).icons.map(({ sourceUrl }) => sourceUrl),
+    [
+      'https://www.figma.com/design/other-file/source?node-id=9-8',
+      'https://www.figma.com/design/fixture-file/icons-astra?node-id=3-4',
+      '',
+    ],
+  );
+});
