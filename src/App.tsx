@@ -24,7 +24,7 @@ import { notify } from './components/ui/toast';
 import { Inspector } from './components/Inspector';
 import { byId, icons, type IconRecord } from './lib/catalog';
 import { downloadIcons } from './lib/downloads';
-import { useMobile, usePreference } from './lib/preferences';
+import { isStringArray, useMobile, usePreference } from './lib/preferences';
 import { Badge } from './components/ui/badge';
 
 const Examples = lazy(() => import('./demos/Examples'));
@@ -58,6 +58,7 @@ export function App({ categoryError }: { categoryError?: string }) {
   const [selectedIds, setSelectedIds] = usePreference<string[]>(
     'fyicons-shortlist-v1',
     [],
+    isStringArray,
   );
   const [theme, setTheme] = usePreference<string>('fyicons-theme-v1', 'light');
   const [packing, setPacking] = useState(false);
