@@ -8,8 +8,9 @@ The original survey inspected `edce290` plus local work; consolidation rechecked
 the relevant code at **`f50ebe1`**, after that work was committed. Recheck cited
 lines before execution.
 
-Status: **implementation authorized and planned**. Eight implementation plans cover
-all twelve confirmed findings. The reviewer owns this index, validates executor
+Status: **implementation complete**. Eight reviewed implementation plans resolve
+all twelve confirmed findings and are integrated on local main through `a569249`.
+The reviewer owns this index, validates executor
 changes, and integrates accepted commits onto `main`. Executors use fresh-context
 GPT-6.1 Sol agents at High reasoning in isolated worktrees. Plans 009 and 010 are
 **plan only**, by the user's explicit instruction; they will not execute in this goal.
@@ -25,7 +26,7 @@ GPT-6.1 Sol agents at High reasoning in isolated worktrees. Plans 009 and 010 ar
 | [005](005-category-schema-check.md) | Check category-schema freshness without writes | F12 | 002 | DONE — c900916 |
 | [006](006-navigation-characterization.md) | Characterize real navigation history and pending writes | F07 | none | DONE — 87e2e69 |
 | [007](007-category-readiness.md) | Render immediately while categories become ready | F06 | 003, 004, 006 | DONE — 621d101 + 045836f + 4cd9ae3 |
-| [008](008-contract-documentation.md) | Align CI and naming documentation with behavior | F08 | 002, 005 | IN PROGRESS |
+| [008](008-contract-documentation.md) | Align CI and naming documentation with behavior | F08 | 002, 005 | DONE — a569249 |
 | [009](009-import-dry-run.md) | Preview import changes using the prepared result | Direction: dry-run import report; PLAN ONLY by user instruction | 002, 008 | TODO — plan only |
 | [010](010-react-source-download-spike.md) | Decide a portable selected React-source bundle | Direction: design spike; PLAN ONLY by user instruction | 001, 004 | TODO — plan only |
 
@@ -109,12 +110,26 @@ in Codex was queued, but its rendered appearance could not be verified.
   successful routes had no console errors. Reviewer reran the full 88-test suite,
   freshness and production build in the isolated worktree; all passed with no diff.
   The TSX transformer is directly declared at its existing locked version. Mobile evidence: `/tmp/fyicons-category-readiness-mobile.jpg`.
-- Executors also passed each batch's typecheck, production build and full suite.
-  Builds remained approximately 3.01 MiB below the 4 MiB limit. Reviewer integration
-  checks cover preferences, navigation and codec together; final combined build
-  and full-suite verification will follow the remaining batches.
+- **008**: reviewed exact four-file diff against CI and importer behavior. Parsed
+  both generated catalogs and confirmed only duplicatePolicy changed. Reviewer
+  reran all final gates in the isolated checkout before integration.
+- **Final combined verification**: 143 tests passed, zero failed/skipped; all 1,021
+  icon outputs and schema fresh; standalone TypeScript passed; production build
+  passed at 3,152,108 bytes / 3.01 MiB against the 4 MiB limit. Vite retains its
+  advisory warning for chunks over 500 kB. Build left no tracked changes.
+- **Final browser smoke**: integrated production build shows Communication's 45
+  icons while independently inspecting Home. Download SVG has its accessible
+  name; Tab moves to Copy JSX. No horizontal overflow or console errors at
+  1710 by 952. Screenshot: `/tmp/fyicons-audit-final-library.jpg`. Earlier review
+  covered the expanded mobile inspector and category-request failure at 390px.
+- **Preservation**: all 1,023 canonical SVG/manifest/category-rule files match the
+  pre-implementation hash snapshot. CI is unchanged. The lockfile adds 44 dev-only
+  records and changes no existing dependency records or versions. Unrelated local
+  toast/prototypes work remains unstaged. No push or PR was requested or performed.
+- Isolated review worktrees are retained; the app refused earlier archive attempts
+  because the task/workspace is pinned. No pin or workspace settings were changed.
 
-## Verification evidence
+## Original audit verification evidence
 
 The following baseline checks ran during the original survey. The pipeline and
 catalog inputs were unchanged by the subsequent commits; the inspector changes
@@ -148,7 +163,7 @@ below rather than repeating the entire unchanged suite.
 - The current category schema was independently compared with the schema generator
   and is fresh for 1,021 icons. F12 is a check-coverage gap, not current stale data.
 
-The production build was not run: `npm run build` starts by regenerating tracked
+The original survey did not run the production build: `npm run build` starts by regenerating tracked
 sources. For implementation plans, its full verification command remains
 `npm run build` in an appropriately isolated checkout. It performs generation,
 TypeScript, Vite compilation, JSON compaction, and a **4 MiB** deployment-budget
@@ -158,7 +173,7 @@ There is no dedicated lint or typecheck script. Formatting is configured with
 Prettier and its Tailwind plugin; use check mode for targeted verification rather
 than the mutating `npm run format` during reviews.
 
-## Finding register
+## Finding register (audit baseline)
 
 All findings have **HIGH confidence** in the stated code pattern. Conditional
 impact and verification limits are stated explicitly. S means hours; M means
@@ -166,18 +181,18 @@ approximately a day, including focused verification. Risk describes the fix.
 
 | ID | Finding | Category | Impact | Effort | Fix risk | Evidence | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| F01 | Validate the complete import before any writes | Correctness / security | High: source corruption and writes outside `icons/` | M | Medium | `scripts/sync-icons.mjs:74`, `:80`, `:133`, `:147`; `scripts/generate-icons.mjs:37`, `:55` | Planned |
-| F02 | Make source publication safe for case-only renames | Correctness | High: deletes replacement SVG on case-insensitive filesystems | S | Medium | `scripts/sync-icons.mjs:144`, `:147`, `:161` | Planned |
-| F03 | Give the individual SVG download button an accessible name | Accessibility | Medium: unnamed inspector action | S | Low | `src/components/IconUsage.tsx:32`; `src/components/Icon.tsx:31` | Planned |
-| F04 | Exercise the production catalog reconstruction in integrity tests | Tests / architecture | Medium: current tests bypass the production decoder | S | Low | `src/lib/catalog.ts:14`; `tests/icons-source.test.mjs:211` | Planned |
-| F05 | Validate persisted selection values | Correctness | Medium, conditional on wrong-shaped stored JSON | S | Low | `src/lib/preferences.ts:3`; `src/App.tsx:347`; `src/components/Inspector.tsx:267` | Planned |
-| F06 | Render useful content while optional categories load | Performance / resilience | Medium: every route waits before first mount | M | Medium | `src/main.tsx:8`; `src/lib/catalog.ts:65`; `src/lib/use-library-navigation.ts:16` | Planned |
-| F07 | Characterize navigation history and timer transitions | Tests | Medium: stateful behavior is unprotected | M | Low | `src/lib/use-library-navigation.ts:40`; `tests/library-url.test.mjs:13`; `tests/navigation.test.mjs:5` | Planned |
-| F08 | Align the CI freshness statement with regeneration behavior | Docs / tooling | Low: incorrect maintainer expectation | S | Low | `README.md:69`; `.github/workflows/pages.yml:57` | Planned |
-| F09 | Emit SVG reference strings as literal data | Generator correctness / security | High when reference text contains JavaScript delimiters; no compromised current asset established | S | Low | `scripts/lib/react-icons.mjs:62`, `:115`, `:123`, `:136` | Planned |
-| F10 | Respect explicit accessible labels over the title fallback | Accessibility | Medium: generated title linkage overrides the supplied label | S | Low | `scripts/lib/react-icons.mjs:198`, `:210` | Planned |
-| F11 | Render fresh generator output in the exhaustive test | Tests | Medium: standalone test can miss generator-only regressions | S | Low | `tests/react-icons.test.mjs:9`, `:57` | Planned |
-| F12 | Include category-schema freshness in the check contract | Tests / tooling | Low: stale editor completions can pass `check:icons` | S | Low | `scripts/generate-icons.mjs:106`, `:176`, `:186`; `scripts/lib/category-schema.ts:79` | Planned |
+| F01 | Validate the complete import before any writes | Correctness / security | High: source corruption and writes outside `icons/` | M | Medium | `scripts/sync-icons.mjs:74`, `:80`, `:133`, `:147`; `scripts/generate-icons.mjs:37`, `:55` | Done |
+| F02 | Make source publication safe for case-only renames | Correctness | High: deletes replacement SVG on case-insensitive filesystems | S | Medium | `scripts/sync-icons.mjs:144`, `:147`, `:161` | Done |
+| F03 | Give the individual SVG download button an accessible name | Accessibility | Medium: unnamed inspector action | S | Low | `src/components/IconUsage.tsx:32`; `src/components/Icon.tsx:31` | Done |
+| F04 | Exercise the production catalog reconstruction in integrity tests | Tests / architecture | Medium: current tests bypass the production decoder | S | Low | `src/lib/catalog.ts:14`; `tests/icons-source.test.mjs:211` | Done |
+| F05 | Validate persisted selection values | Correctness | Medium, conditional on wrong-shaped stored JSON | S | Low | `src/lib/preferences.ts:3`; `src/App.tsx:347`; `src/components/Inspector.tsx:267` | Done |
+| F06 | Render useful content while optional categories load | Performance / resilience | Medium: every route waits before first mount | M | Medium | `src/main.tsx:8`; `src/lib/catalog.ts:65`; `src/lib/use-library-navigation.ts:16` | Done |
+| F07 | Characterize navigation history and timer transitions | Tests | Medium: stateful behavior is unprotected | M | Low | `src/lib/use-library-navigation.ts:40`; `tests/library-url.test.mjs:13`; `tests/navigation.test.mjs:5` | Done |
+| F08 | Align the CI freshness statement with regeneration behavior | Docs / tooling | Low: incorrect maintainer expectation | S | Low | `README.md:69`; `.github/workflows/pages.yml:57` | Done |
+| F09 | Emit SVG reference strings as literal data | Generator correctness / security | High when reference text contains JavaScript delimiters; no compromised current asset established | S | Low | `scripts/lib/react-icons.mjs:62`, `:115`, `:123`, `:136` | Done |
+| F10 | Respect explicit accessible labels over the title fallback | Accessibility | Medium: generated title linkage overrides the supplied label | S | Low | `scripts/lib/react-icons.mjs:198`, `:210` | Done |
+| F11 | Render fresh generator output in the exhaustive test | Tests | Medium: standalone test can miss generator-only regressions | S | Low | `tests/react-icons.test.mjs:9`, `:57` | Done |
+| F12 | Include category-schema freshness in the check contract | Tests / tooling | Low: stale editor completions can pass `check:icons` | S | Low | `scripts/generate-icons.mjs:106`, `:176`, `:186`; `scripts/lib/category-schema.ts:79` | Done |
 
 ### F09–F11: generator correctness and its regression tests
 
@@ -409,7 +424,7 @@ These entries were not promoted into unsupported runtime-security findings.
   separate scope. Zero writes on validation failure and safe case handling are
   the current acceptance targets.
 
-## Scope and remaining uncertainty
+## Original audit scope and remaining limits
 
 Standard, hotspot-weighted review across correctness, security, performance,
 tests, architecture, dependencies, tooling, docs and direction. Inspected runtime
@@ -418,8 +433,9 @@ archive behavior, tests, build/CI configuration and design-intent documents.
 No domain glossary or ADRs were present. Exact-source preservation and local demo
 behavior are documented decisions, not audit defects.
 
-Live browser initialization failed, so accessibility-tree, focus, mobile gestures,
-visual layout and report rendering remain unverified. No production build,
-hosted deployment inspection, measured network/CPU performance pass, exhaustive
-per-icon visual audit, full Git-history secret scan or upstream lifecycle audit
-was performed. Existing local changes were preserved.
+The original survey could not initialize the browser or run a production build.
+Implementation review subsequently verified the affected desktop/mobile flows,
+accessibility names and keyboard focus, and isolated production builds, as recorded
+above. Report rendering, hosted deployment, measured network/CPU performance,
+exhaustive per-icon visual inspection, full Git-history secret scanning and upstream
+lifecycle review remain outside this work. Existing unrelated local changes were preserved.
