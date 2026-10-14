@@ -32,6 +32,7 @@ export function IconUsage({ item }: { item: IconRecord }) {
             <Button
               variant="ghost"
               size="icon-sm"
+              aria-label="Download SVG"
               onClick={() => download(item.svg, item.filename, 'image/svg+xml')}
             >
               <Icon name="download-square" />
