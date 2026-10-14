@@ -1,5 +1,5 @@
-import { unzlibSync, strFromU8 } from 'fflate';
 import compact from '../data/catalog-runtime.json';
+import { decodeCatalog } from './catalog-codec';
 import {
   categorizeIcons,
   parseIconCategories,
@@ -8,41 +8,7 @@ import {
 } from './icon-categories';
 import { pageHref } from './navigation';
 
-import type fullCatalog from '../data/catalog.json';
-
-type Catalog = typeof fullCatalog;
-const { iconFields, iconArchive, svgArchive, ...metadata } = compact;
-// Compression only affects transport; clipboard and downloads retain exact SVG bytes.
-function unpack(archive: string): unknown {
-  return JSON.parse(
-    strFromU8(
-      unzlibSync(Uint8Array.from(atob(archive), (char) => char.charCodeAt(0))),
-    ),
-  );
-}
-const rows = unpack(iconArchive) as unknown[][];
-const sourceSvgs = unpack(svgArchive) as string[];
-const data = {
-  ...metadata,
-  icons: rows.map((row, index) => {
-    const icon = Object.fromEntries(
-      iconFields.flatMap((field, index) =>
-        row[index] === null ? [] : [[field, row[index]]],
-      ),
-    ) as unknown as Omit<
-      Catalog['icons'][number],
-      'width' | 'height' | 'file' | 'sourceUrl'
-    >;
-    return {
-      ...icon,
-      svg: sourceSvgs[index],
-      width: 16,
-      height: 16,
-      file: `icons/${icon.filename}`,
-      sourceUrl: `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
-    };
-  }),
-} as unknown as Catalog;
+const data = decodeCatalog(compact);
 
 export type IconRecord = (typeof data.icons)[number] & { categories: string[] };
 export function getIconDisplayName(icon: IconRecord) {

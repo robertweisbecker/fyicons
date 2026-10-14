@@ -1,4 +1,3 @@
-import { inflateSync } from 'node:zlib';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -8,6 +7,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { decodeCatalog } from '../src/lib/catalog-codec.ts';
 
 const manifest = JSON.parse(
   await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
@@ -215,30 +215,16 @@ test('compact browser catalog reconstructs complete download metadata', async ()
       'utf8',
     ),
   );
-  const { iconFields, iconArchive, svgArchive, ...metadata } = compact;
-  const rows = JSON.parse(
-    inflateSync(Buffer.from(iconArchive, 'base64')).toString(),
-  );
-  const sourceSvgs = JSON.parse(
-    inflateSync(Buffer.from(svgArchive, 'base64')).toString(),
-  );
-  const reconstructed = {
-    ...metadata,
-    icons: rows.map((row, index) => {
-      const icon = Object.fromEntries(
-        iconFields.flatMap((field, index) =>
-          row[index] === null ? [] : [[field, row[index]]],
-        ),
-      );
-      return {
-        ...icon,
-        svg: sourceSvgs[index],
-        width: 16,
-        height: 16,
-        file: `icons/${icon.filename}`,
-        sourceUrl: `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
-      };
-    }),
-  };
+  const reconstructed = decodeCatalog(compact);
   assert.deepEqual(reconstructed, catalog);
+  for (const icon of reconstructed.icons) {
+    assert.equal(
+      icon.svg,
+      await readFile(
+        new URL(`../icons/${icon.filename}`, import.meta.url),
+        'utf8',
+      ),
+      `${icon.filename} bytes differ after production decoding`,
+    );
+  }
 });
