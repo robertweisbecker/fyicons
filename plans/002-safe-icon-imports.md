@@ -43,6 +43,14 @@ Only modify these paths (directories include focused new modules/tests): `script
 
 ## Done criteria and tests
 
+Reviewed scope refinement: plan 004 is integrated. Preserve valid non-default
+`sourceUrl` values through existing optional compact fields, and make the
+production decoder prefer an explicit value over its deterministic fallback.
+Scope additionally includes `src/lib/catalog-codec.ts` and
+`tests/catalog-codec.test.mjs` for this targeted correction. Cover accepted
+custom/default/missing URLs and rejected invalid values, exact full/decoded
+equality, and unchanged real generated output. No transport redesign is authorized.
+
 - Invalid metadata, IDs, hashes, paths, file/component collisions, SVG viewBoxes and null compact metadata fail before any fixture file changes.
 - Case-only source rename succeeds with exact expected casing and bytes.
 - Normal and preserve-names imports retain identity, aliases and category remapping.

@@ -19,12 +19,12 @@ GPT-6.1 Sol agents at High reasoning in isolated worktrees. Plans 009 and 010 ar
 | Plan | Work | Findings | Depends on | Status |
 | --- | --- | --- | --- | --- |
 | [001](001-react-generation.md) | Correct generated React references and accessible names | F09, F10, F11 | none | DONE — e429717 + 1c186fe |
-| [002](002-safe-icon-imports.md) | Prepare complete imports before publishing files | F01, F02 | 001 | TODO |
+| [002](002-safe-icon-imports.md) | Prepare complete imports before publishing files | F01, F02 | 001 | IN PROGRESS |
 | [003](003-app-accessibility-preferences.md) | Name the SVG download action and validate saved selections | F03, F05 | none | DONE — 5aff489 |
 | [004](004-catalog-decoder.md) | Test the production catalog reconstruction directly | F04 | none | DONE — 33f6c19 |
 | [005](005-category-schema-check.md) | Check category-schema freshness without writes | F12 | 002 | TODO |
 | [006](006-navigation-characterization.md) | Characterize real navigation history and pending writes | F07 | none | DONE — 87e2e69 |
-| [007](007-category-readiness.md) | Render immediately while categories become ready | F06 | 003, 004, 006 | TODO |
+| [007](007-category-readiness.md) | Render immediately while categories become ready | F06 | 003, 004, 006 | DONE — 621d101 + 045836f + 4cd9ae3 |
 | [008](008-contract-documentation.md) | Align CI and naming documentation with behavior | F08 | 002, 005 | TODO |
 | [009](009-import-dry-run.md) | Preview import changes using the prepared result | Direction: dry-run import report; PLAN ONLY by user instruction | 002, 008 | TODO — plan only |
 | [010](010-react-source-download-spike.md) | Decide a portable selected React-source bundle | Direction: design spike; PLAN ONLY by user instruction | 001, 004 | TODO — plan only |
@@ -73,6 +73,36 @@ Visual report with three before/after architecture candidates:
 [architecture-review-20261014-142029.html](/private/var/folders/2m/5k18f02x68g2v04w4k_z3x840000gn/T/architecture-review-20261014-142029.html).
 The report is temporary; this index preserves its findings. Opening the report
 in Codex was queued, but its rendered appearance could not be verified.
+
+## Implementation review evidence
+
+- **001**: reviewed literal AST composition, naming precedence, generated changes,
+  and fresh-map rendering; reviewer reran six React cases (all 1,021 icons) and
+  freshness. Added a direct pinned declaration for the parser used by tests.
+- **003**: reviewed four-file diff; reviewer reran 20 preference cases and TypeScript.
+  Browser accessibility exposed Download SVG in desktop and expanded mobile
+  inspectors. A fresh browser tab resolved an initial control detachment; keyboard
+  navigation from the download action to Copy JSX passed at 1710px and 390px, with
+  no horizontal overflow or console errors. Evidence screenshots are retained in
+  `/tmp/fyicons-audit-desktop-inspector.jpg` and `/tmp/fyicons-audit-mobile-inspector.jpg`.
+- **004**: reviewed the shared decoder and callers; reviewer reran six decoder/source
+  acceptance cases. Exact full-catalog equality and optional/Unicode fields pass.
+- **006**: reviewed the actual-hook harness and 17 new cases; reviewer reran all
+  22 navigation cases. A removed-cancellation mutation was caught in an isolated
+  copy. Production navigation source is unchanged in this batch.
+- **007**: reviewed reactive readiness, latest-state validation and debounce behavior.
+  Required actual-App integration coverage; reviewer reran 37 readiness/navigation
+  tests plus TypeScript. Browser verified useful pending library content, 45-icon
+  Communication filtering after arrival with Home inspection preserved, category-label
+  search changing from zero to 45 results, latest query retained, and mobile failure
+  fallback at 390px without overflow. Home and examples mount during the held request;
+  successful routes had no console errors. Reviewer reran the full 88-test suite,
+  freshness and production build in the isolated worktree; all passed with no diff.
+  The TSX transformer is directly declared at its existing locked version. Mobile evidence: `/tmp/fyicons-category-readiness-mobile.jpg`.
+- Executors also passed each batch's typecheck, production build and full suite.
+  Builds remained approximately 3.01 MiB below the 4 MiB limit. Reviewer integration
+  checks cover preferences, navigation and codec together; final combined build
+  and full-suite verification will follow the remaining batches.
 
 ## Verification evidence
 
