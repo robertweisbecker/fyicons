@@ -24,11 +24,11 @@ export function DrawerContent({
           !expanded && 'pointer-events-none opacity-0',
         )}
       />
-      <Primitive.Viewport className="pointer-events-none fixed inset-0 z-50 flex items-end">
+      <Primitive.Viewport className="pointer-events-none fixed inset-0 z-50 flex items-end px-3 pb-[max(.5rem,env(safe-area-inset-bottom))]">
         <Primitive.Popup
           {...props}
           className={cn(
-            'mobile-inspector pointer-events-auto relative w-full overflow-hidden rounded-t-2xl bg-surface text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10',
+            'mobile-inspector pointer-events-none relative w-full text-ink',
             className,
           )}
         >

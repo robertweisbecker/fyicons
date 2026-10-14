@@ -4,6 +4,7 @@ import { useRef, useState, type Ref } from 'react';
 import { Icon } from '@/components/Icon';
 import { IconButton } from '@/components/IconButton';
 import { cn } from '@/lib/utils';
+import { searchIcons } from '@/lib/icon-search';
 import {
   getIconDisplayName,
   getIconCategoryLabel,
@@ -11,40 +12,23 @@ import {
   type IconRecord,
 } from '@/lib/catalog';
 
-export function matchesIcon(icon: IconRecord, query: string) {
-  const text =
-    `${getIconDisplayName(icon)} ${icon.name} ${icon.originalName} ${getIconCategoryLabel(icon)} ${icon.id}`.toLowerCase();
-  return query
-    .toLowerCase()
-    .trim()
-    .split(/\s+/)
-    .every((word) => text.includes(word));
-}
-const alphabetical = [...icons].sort((a, b) =>
-  getIconDisplayName(a).localeCompare(getIconDisplayName(b), 'en', {
-    numeric: true,
-    sensitivity: 'base',
-  }),
-);
-
-export function IconSearch({
+export function Search({
   value,
   onValueChange,
   select,
-  items = alphabetical,
+  matches = searchIcons(icons, value),
   inline = false,
   inputRef,
 }: {
   value: string;
   onValueChange: (value: string) => void;
   select: (icon: IconRecord) => void;
-  items?: IconRecord[];
+  matches?: IconRecord[];
   inline?: boolean;
   inputRef?: Ref<HTMLInputElement>;
 }) {
   const [popupOpen, setPopupOpen] = useState(false);
   const queryReady = value.replace(/\s/g, '').length >= 3;
-  const matches = items.filter((icon) => matchesIcon(icon, value));
   const results = matches.slice(0, inline ? 100 : 8);
   const list = (
     <>
@@ -82,7 +66,7 @@ export function IconSearch({
   );
   return (
     <Autocomplete.Root
-      items={items}
+      items={matches}
       filteredItems={results}
       filter={null}
       value={value}
@@ -177,7 +161,7 @@ export function GlobalSearch({
               }
             /> */}
           </div>
-          <IconSearch
+          <Search
             inline
             value={value}
             onValueChange={setValue}

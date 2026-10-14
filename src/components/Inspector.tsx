@@ -40,6 +40,7 @@ import {
 import { useMobile, usePreference } from '@/lib/preferences';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
 import { IconCopyButton } from './IconCopyButton';
+import { InspectorLink } from './InspectorLink';
 import './MobileInspector.css';
 
 type Props = {
@@ -49,12 +50,14 @@ type Props = {
   select: (icon: IconRecord) => void;
   navigate: (step: number) => void;
   close: () => void;
+  share: () => string;
   toggleSelection: (id: string) => void;
   finalFocus: () => HTMLElement | false;
   docked: boolean;
   onDockedChange: (docked: boolean) => void;
 };
-const snapPoints = ['192px', 1];
+const compactHeight = 144;
+const snapPoints = [compactHeight, 1];
 function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
   return (
     <span
@@ -181,16 +184,12 @@ function Pagination({
   item,
   visible,
   navigate,
-  mobile = false,
-}: Pick<Props, 'item' | 'visible' | 'navigate'> & { mobile?: boolean }) {
+}: Pick<Props, 'item' | 'visible' | 'navigate'>) {
   const index = visible.findIndex((icon) => icon.id === item?.id);
   return (
     <footer
       aria-label="Icon pagination"
-      className={cn(
-        'flex shrink-0 items-center justify-between gap-3 py-2 ps-2 pe-5',
-        mobile && 'pb-[max(.5rem,env(safe-area-inset-bottom))]',
-      )}
+      className="flex shrink-0 items-center justify-between gap-3 py-2 ps-2 pe-5"
     >
       <div className="flex gap-1">
         <IconButton
@@ -207,7 +206,9 @@ function Pagination({
         />
       </div>
       <span aria-live="polite" className="text-xs text-muted tabular-nums">
-        {index + 1} of {visible.length}
+        {index < 0
+          ? 'Outside current filters'
+          : `${index + 1} of ${visible.length}`}
       </span>
     </footer>
   );
@@ -259,7 +260,7 @@ export function Inspector(props: Props) {
   const reducedMotion = useReducedMotion();
   const inLayout = docked && !mobile && !!item;
   const expanded = snapPoint !== snapPoints[0];
-  useDrawerPresentation(mobilePopup, mobile && !!item, expanded);
+  useDrawerPresentation(mobilePopup, mobile && !!item, expanded, compactHeight);
   const details = item && (
     <Details
       item={item}
@@ -315,68 +316,96 @@ export function Inspector(props: Props) {
           id="inspector"
           ref={mobilePopupRef}
           expanded={expanded}
+          data-expanded={expanded || undefined}
+          style={
+            {
+              '--inspector-compact-height': `${compactHeight}px`,
+            } as CSSProperties
+          }
           initialFocus={false}
           finalFocus={finalFocus}
           onKeyDown={keyboard}
         >
           {item && (
-            <div className="mobile-inspector-frame flex flex-col">
-              <div className="relative h-6 shrink-0">
-                <Button
-                  variant="unstyled"
-                  size="unstyled"
-                  aria-label={
-                    expanded ? 'Collapse icon details' : 'Expand icon details'
-                  }
-                  onClick={() => setSnapPoint(expanded ? snapPoints[0] : 1)}
-                  className="absolute inset-x-12 top-0 flex h-6 touch-none items-center justify-center"
+            <div className="mobile-inspector-frame pointer-events-auto flex flex-col overflow-hidden rounded-2xl bg-surface shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
+              <div className="relative z-10 h-9 shrink-0">
+                <div
+                  aria-hidden="true"
+                  className="flex h-full touch-none items-center justify-center"
                 >
                   <span className="h-1 w-9 rounded-full bg-neutral-400" />
-                </Button>
+                </div>
                 <DrawerClose
                   render={
                     <IconButton
                       icon="xmark"
                       label="Close icon details"
                       className="absolute top-1 right-2"
+                      data-base-ui-swipe-ignore
                     />
                   }
                 />
               </div>
-              <div className="mobile-inspector-header-metadata pointer-events-none text-center">
+              <div
+                className="mobile-inspector-header-metadata text-center"
+                inert={!expanded}
+              >
                 <DrawerTitle
                   className="truncate text-base font-semibold"
+                  aria-label={getIconDisplayName(item)}
                   title={getIconDisplayName(item)}
                 >
-                  {getIconDisplayName(item)}
+                  {expanded ? (
+                    <InspectorLink
+                      key={item.id}
+                      name={getIconDisplayName(item)}
+                      share={props.share}
+                    />
+                  ) : (
+                    getIconDisplayName(item)
+                  )}
                 </DrawerTitle>
                 <NativeSizePreview
                   item={item}
                   className="mt-1 justify-center"
                 />
               </div>
-              <header className="mobile-inspector-hero group/preview-container">
-                <Button
-                  variant="unstyled"
-                  size="unstyled"
-                  aria-label={expanded ? 'Collapse preview' : 'Expand preview'}
-                  onClick={() => setSnapPoint(expanded ? snapPoints[0] : 1)}
-                  className="mobile-inspector-art overflow-hidden rounded-xl border border-line bg-canvas"
-                >
-                  <IconPreview item={item} grid={grid} />
-                </Button>
-                {expanded && (
-                  <PreviewGridControl grid={grid} setGrid={setGrid} />
-                )}
+              <header className="mobile-inspector-hero">
+                <div className="mobile-inspector-art group/preview-container rounded-xl bg-canvas outline outline-line">
+                  <Button
+                    variant="unstyled"
+                    size="unstyled"
+                    aria-label={
+                      expanded ? 'Collapse preview' : 'Expand preview'
+                    }
+                    aria-expanded={expanded}
+                    onClick={() => setSnapPoint(expanded ? snapPoints[0] : 1)}
+                    className="size-full overflow-hidden rounded-[inherit]"
+                  >
+                    <IconPreview item={item} grid={grid} />
+                  </Button>
+                  {expanded && (
+                    <PreviewGridControl grid={grid} setGrid={setGrid} />
+                  )}
+                </div>
                 <div
-                  className="mobile-inspector-metadata pointer-events-none pr-2"
-                  aria-hidden="true"
+                  className="mobile-inspector-metadata pr-2"
+                  aria-hidden={expanded || undefined}
+                  inert={expanded}
                 >
                   <div
                     className="truncate text-sm font-semibold"
                     title={getIconDisplayName(item)}
                   >
-                    {getIconDisplayName(item)}
+                    {!expanded ? (
+                      <InspectorLink
+                        key={item.id}
+                        name={getIconDisplayName(item)}
+                        share={props.share}
+                      />
+                    ) : (
+                      getIconDisplayName(item)
+                    )}
                   </div>
                   <NativeSizePreview item={item} className="mt-1" />
                 </div>
@@ -394,9 +423,9 @@ export function Inspector(props: Props) {
                   expanded ? 'overflow-y-auto' : 'overflow-hidden',
                 )}
               >
-                <div className="mobile-inspector-details">{details}</div>
+                {details}
               </DrawerScroll>
-              <Pagination {...props} mobile />
+              <Pagination {...props} />
             </div>
           )}
         </DrawerContent>
@@ -468,9 +497,14 @@ export function Inspector(props: Props) {
                 <div className="min-w-0 flex-1">
                   <SheetTitle
                     className="truncate text-base font-semibold"
+                    aria-label={getIconDisplayName(item)}
                     title={getIconDisplayName(item)}
                   >
-                    {getIconDisplayName(item)}
+                    <InspectorLink
+                      key={item.id}
+                      name={getIconDisplayName(item)}
+                      share={props.share}
+                    />
                   </SheetTitle>
                   <NativeSizePreview item={item} className="mt-1" />
                 </div>

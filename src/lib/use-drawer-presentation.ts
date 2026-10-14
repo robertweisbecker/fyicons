@@ -6,6 +6,7 @@ export function useDrawerPresentation(
   element: HTMLDivElement | null,
   enabled: boolean,
   expanded: boolean,
+  compactHeight: number,
 ) {
   useLayoutEffect(() => {
     if (!enabled || !element) return;
@@ -29,7 +30,8 @@ export function useDrawerPresentation(
           0,
           Math.min(
             1,
-            (height - offset - movement - 192) / Math.max(1, height - 192),
+            (height - offset - movement - compactHeight) /
+              Math.max(1, height - compactHeight),
           ),
         );
       }
@@ -50,5 +52,5 @@ export function useDrawerPresentation(
       observer.disconnect();
       resize.disconnect();
     };
-  }, [element, enabled, expanded]);
+  }, [element, enabled, expanded, compactHeight]);
 }

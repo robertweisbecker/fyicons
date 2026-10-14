@@ -7,21 +7,30 @@
 /* Base UI owns the sheet offset. One presentation value controls its contents,
    so the art, header and scroll region settle together and reverse in place. */
 .mobile-inspector {
-  --drawer-frame: calc(100dvh - max(1rem, env(safe-area-inset-top)));
+  --drawer-frame: calc(
+    100dvh - max(1rem, env(safe-area-inset-top)) -
+      max(0.5rem, env(safe-area-inset-bottom))
+  );
   --inspector-progress: 0;
-  --inspector-duration: 360ms;
+  --inspector-duration: 300ms;
   --inspector-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Keep the compact offset stable during Base UI's initial height measurement. */
+  --inspector-offset: calc(
+    var(--drawer-frame) - var(--inspector-compact-height)
+  );
   height: var(--drawer-frame);
   transform: translateY(
-    calc(
-      var(--drawer-snap-point-offset, calc(var(--drawer-frame) - 192px)) +
-        var(--drawer-swipe-movement-y, 0px)
-    )
+    calc(var(--inspector-offset) + var(--drawer-swipe-movement-y, 0px))
   );
   transition:
     transform calc(var(--inspector-duration) * var(--drawer-swipe-strength, 1))
       var(--inspector-ease),
-    --inspector-progress var(--inspector-duration) var(--inspector-ease);
+    --inspector-progress
+      calc(var(--inspector-duration) * var(--drawer-swipe-strength, 1))
+      var(--inspector-ease);
+}
+.mobile-inspector[data-expanded] {
+  --inspector-offset: var(--drawer-snap-point-offset, 0px);
 }
 .mobile-inspector[data-starting-style],
 .mobile-inspector[data-ending-style] {
@@ -34,13 +43,15 @@
 .mobile-inspector-frame {
   position: relative;
   height: calc(
-    190px + (var(--drawer-frame) - 192px) * var(--inspector-progress)
+    var(--inspector-compact-height) +
+      (var(--drawer-frame) - var(--inspector-compact-height)) *
+      var(--inspector-progress)
   );
 }
 .mobile-inspector-hero {
   position: relative;
   container-type: inline-size;
-  height: calc(88px + 184px * var(--inspector-progress));
+  height: calc(60px + 212px * var(--inspector-progress));
   flex-shrink: 0;
 }
 .mobile-inspector-art {
@@ -69,7 +80,9 @@
       0
     )
     scale(calc(0.333333 + 0.666667 * var(--art-progress)));
-  border-width: calc(3px - 2px * var(--art-progress));
+  /* Keep the 128px SVG aligned with the 8px grid; a border shrinks its content. */
+  outline-width: calc(3px - 2px * var(--art-progress));
+  outline-offset: calc(-3px + 2px * var(--art-progress));
   border-radius: calc(24px - 12px * var(--art-progress));
 }
 /* Distinct text lanes avoid sending the label through the growing preview.
@@ -96,9 +109,6 @@
 .inspector-scroll {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
-}
-.mobile-inspector-details {
-  padding-top: calc(2rem * (1 - var(--inspector-progress)));
 }
 @media (prefers-reduced-motion: reduce) {
   .mobile-inspector {

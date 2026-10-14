@@ -12,20 +12,17 @@ import {
 import { Icon } from './components/Icon';
 import { Button } from '@/components/ui/button';
 import { FilterSelect } from '@/components/FilterSelect';
-import { GlobalSearch, IconSearch, matchesIcon } from './components/IconSearch';
+import { GlobalSearch, Search } from './components/Search';
+import { searchIcons } from './lib/icon-search';
 import { IconTile } from './components/IconTile';
 import { SiteHeader } from './components/SiteHeader';
 import { PreviewSizeControl } from './components/PreviewSizeControl';
-import { pageFromLocation, pageHref, type Page } from './lib/navigation';
+import { type Page } from './lib/navigation';
+import { useLibraryNavigation } from './lib/use-library-navigation';
 import { CategorySidebar } from './components/CategorySidebar';
 import { notify } from './components/ui/toast';
 import { Inspector } from './components/Inspector';
-import {
-  byId,
-  getIconDisplayName,
-  icons,
-  type IconRecord,
-} from './lib/catalog';
+import { byId, icons, type IconRecord } from './lib/catalog';
 import { downloadIcons } from './lib/downloads';
 import { useMobile, usePreference } from './lib/preferences';
 import { Badge } from './components/ui/badge';
@@ -41,14 +38,20 @@ const editable = (target: EventTarget | null) =>
 
 export function App({ categoryError }: { categoryError?: string }) {
   const mobile = useMobile();
-  const [view, setView] = useState(pageFromLocation);
-  const [query, setQuery] = useState('');
+  const library = useLibraryNavigation();
+  const {
+    page: view,
+    query,
+    category,
+    inspectedId,
+    setQuery,
+    setCategory,
+  } = library;
   const [searchOpen, setSearchOpen] = useState(false);
-  const [category, setCategory] = useState('all');
+  const activeCategory = query.trim() ? 'all' : category;
   const [review, setReview] = useState('all');
   const activeReview = mobile && review === 'selected' ? 'all' : review;
   const [previewSize, setPreviewSize] = useState(16);
-  const [inspectedId, setInspectedId] = useState<string | null>(null);
   const [inspectorDocked, setInspectorDocked] = useState(false);
   const gridAnchor = useRef<{ element: HTMLElement; top: number } | null>(null);
   // Retain the legacy storage key so existing saved choices remain selected.
@@ -61,23 +64,19 @@ export function App({ categoryError }: { categoryError?: string }) {
   const search = useRef<HTMLInputElement>(null);
   const lastSelected = useRef<string | null>(null);
   const visible = useMemo(() => {
-    return icons
-      .filter(
+    return searchIcons(
+      icons.filter(
         (icon) =>
-          (category === 'all' || icon.categories.includes(category)) &&
+          (activeCategory === 'all' ||
+            icon.categories.includes(activeCategory)) &&
           (activeReview === 'all' ||
             (activeReview === 'duplicates'
               ? icon.duplicate
-              : selectedIds.includes(icon.id))) &&
-          matchesIcon(icon, query),
-      )
-      .sort((a, b) =>
-        getIconDisplayName(a).localeCompare(getIconDisplayName(b), 'en', {
-          numeric: true,
-          sensitivity: 'base',
-        }),
-      );
-  }, [query, category, activeReview, selectedIds]);
+              : selectedIds.includes(icon.id))),
+      ),
+      query,
+    );
+  }, [query, activeCategory, activeReview, selectedIds]);
   const current = byId.get(inspectedId ?? '') ?? null;
   // Keep the inspected tile (or the first visible tile) in place when columns reflow.
   function preserveGridPosition(preferredId = inspectedId) {
@@ -115,7 +114,7 @@ export function App({ categoryError }: { categoryError?: string }) {
   }, [current, inspectorDocked]);
   function closeInspector() {
     if (inspectorDocked) preserveGridPosition();
-    setInspectedId(null);
+    library.inspect(null);
   }
   function changeInspectorDocked(docked: boolean) {
     preserveGridPosition();
@@ -124,11 +123,12 @@ export function App({ categoryError }: { categoryError?: string }) {
   function select(icon: IconRecord) {
     if (!current && inspectorDocked) preserveGridPosition(icon.id);
     lastSelected.current = icon.id;
-    setInspectedId(icon.id);
+    library.inspect(icon.id);
   }
   function navigate(step: number) {
-    const next =
-      visible[visible.findIndex((icon) => icon.id === inspectedId) + step];
+    const index = visible.findIndex((icon) => icon.id === inspectedId);
+    if (index < 0) return;
+    const next = visible[index + step];
     if (next) {
       select(next);
       if (matchMedia('(min-width: 768px)').matches)
@@ -156,9 +156,7 @@ export function App({ categoryError }: { categoryError?: string }) {
       return;
     event.preventDefault();
     if (value === view) return;
-    history.pushState(null, '', pageHref(value));
-    setView(value);
-    setInspectedId(null);
+    library.changePage(value);
     window.scrollTo(0, 0);
   }
   async function exportIcons(onlySelected = false) {
@@ -178,8 +176,7 @@ export function App({ categoryError }: { categoryError?: string }) {
     }
   }
   function reset() {
-    setQuery('');
-    setCategory('all');
+    library.reset();
     setReview('all');
     search.current?.focus();
   }
@@ -187,27 +184,15 @@ export function App({ categoryError }: { categoryError?: string }) {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
   useEffect(() => {
-    const update = () => {
-      const page = pageFromLocation();
-      setView(page);
-      if (location.hash === '#examples' || location.hash === '#library')
-        history.replaceState(null, '', pageHref(page));
-      setInspectedId(null);
-    };
-    update();
-    window.addEventListener('popstate', update);
-    window.addEventListener('hashchange', update);
-    return () => {
-      window.removeEventListener('popstate', update);
-      window.removeEventListener('hashchange', update);
-    };
-  }, []);
-  useEffect(() => {
-    if (inspectedId && !visible.some((icon) => icon.id === inspectedId)) {
+    if (
+      inspectedId &&
+      !library.icon &&
+      !visible.some((icon) => icon.id === inspectedId)
+    ) {
       if (visible[0]) select(visible[0]);
-      else setInspectedId(null);
+      else library.inspect(null);
     }
-  }, [visible, inspectedId]);
+  }, [visible, inspectedId, library.icon]);
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
       if (
@@ -256,6 +241,10 @@ export function App({ categoryError }: { categoryError?: string }) {
     >
       <a
         href="#main-content"
+        onClick={(event) => {
+          event.preventDefault();
+          document.getElementById('main-content')?.focus();
+        }}
         className="sr-only fixed top-2 left-2 z-50 rounded bg-ink px-4 py-3 text-canvas focus:not-sr-only"
       >
         Skip to content
@@ -273,14 +262,10 @@ export function App({ categoryError }: { categoryError?: string }) {
         open={searchOpen}
         onOpenChange={setSearchOpen}
         select={(icon) => {
-          if (view !== 'library') {
-            history.pushState(null, '', pageHref('library'));
-            setView('library');
-          }
-          setQuery('');
-          setCategory('all');
+          if (!current && inspectorDocked) preserveGridPosition(icon.id);
           setReview('all');
-          select(icon);
+          lastSelected.current = icon.id;
+          library.openSearchResult(icon.id);
         }}
       />
       <div className="flex items-start">
@@ -304,7 +289,10 @@ export function App({ categoryError }: { categoryError?: string }) {
                 id="library"
                 className="flex flex-col gap-6 pt-8 [--category-sidebar-width:13rem] lg:grid lg:min-h-[calc(100dvh-3.5rem)] lg:grid-cols-[var(--category-sidebar-width)_minmax(0,1fr)_var(--category-sidebar-width)] lg:group-[.has-docked-inspector]/app:grid-cols-[var(--category-sidebar-width)_minmax(0,1fr)]"
               >
-                <CategorySidebar value={category} onValueChange={setCategory} />
+                <CategorySidebar
+                  value={activeCategory}
+                  onValueChange={setCategory}
+                />
                 <div className="w-full max-w-5xl min-w-0">
                   {categoryError && (
                     <p role="alert" className="mb-4 text-sm text-muted">
@@ -318,11 +306,11 @@ export function App({ categoryError }: { categoryError?: string }) {
                     )}
                   >
                     <div className="min-w-48 flex-1">
-                      <IconSearch
+                      <Search
                         value={query}
                         onValueChange={setQuery}
                         inputRef={search}
-                        items={visible}
+                        matches={visible}
                         select={select}
                       />
                     </div>
@@ -447,6 +435,7 @@ export function App({ categoryError }: { categoryError?: string }) {
           select={select}
           navigate={navigate}
           close={closeInspector}
+          share={library.share}
           docked={inspectorDocked}
           onDockedChange={changeInspectorDocked}
           toggleSelection={toggleSelection}

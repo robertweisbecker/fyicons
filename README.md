@@ -159,6 +159,6 @@ The apex `bob.fyi` records do not need to change. With Actions-based publishing,
 
 ## Deployment size
 
-This is a static client application with no server functions, image processing, or external API requests. Categories load from a standalone JSON file on the same host. The current production output is approximately **2.99 MiB**, including the full icon catalog. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 3 MiB output budget.
+This is a static client application with no server functions, image processing, or external API requests. Categories load from a standalone JSON file on the same host. The current production output is approximately **3 MiB**, including the full icon catalog. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 4 MiB output budget.
 
 GitHub Pages does not consume Vercel deployment storage or bandwidth. An optional `vercel.json` makes the same source deployable as a Vite site, but connecting it to Vercel would consume Vercel storage and transfer for retained deployments. This repository does not create or configure a Vercel project.
