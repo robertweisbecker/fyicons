@@ -31,6 +31,11 @@ in Codex was queued, but its rendered appearance could not be verified.
   `createRoot` is not called while category loading is pending.
 - The HTML report has three candidate cards and valid internal anchor targets;
   its only scripts are Tailwind CDN and the Mermaid module.
+- Final hashes compared 2,171 pre-existing files. Only `Inspector.tsx` and
+  `MobileInspector.css` changed concurrently during the audit; this audit made
+  neither edit. Their affected evidence was reopened, and TypeScript passed
+  again. The other 2,169 pre-existing files were byte-for-byte unchanged.
+  The only repository file added by this audit is `plans/README.md`.
 
 The production build was not run: `npm run build` starts by regenerating tracked
 sources. For implementation plans, its full verification command remains
