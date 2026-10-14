@@ -96,7 +96,7 @@ export function DesignInspector({
             Semibold <Icon name="chevron-down-sm" className="text-muted" />
           </span>
           <dl>
-            <PropertyValue label="Font size" icon="text" value="24" />
+            <PropertyValue label="Font size" icon="font-family" value="24" />
           </dl>
         </div>
         <TextAlignment compact />
@@ -108,7 +108,7 @@ export function DesignInspector({
             <Icon name="paint-bucket" />
             Fill
           </h3>
-          <span className="text-muted tabular-nums">100%</span>
+          <Icon name="swatch" className="text-muted" />
         </div>
         <div className="flex items-center">
           <ToggleGroup
@@ -144,6 +144,7 @@ export function DesignInspector({
             size="icon-xs"
             className="ml-auto"
           />
+          <Icon name="minus" className="text-muted" />
         </div>
       </div>
       <div className="flex items-center justify-between border-b border-line px-3 py-2">
@@ -152,10 +153,13 @@ export function DesignInspector({
       </div>
       <div className="space-y-2 p-3">
         <h3 className="font-medium">Effects</h3>
-        <div className="flex h-6 items-center gap-2 rounded-md bg-inset px-2">
-          <Icon name="shadow" className="text-muted" />
-          <span className="flex-1">Drop shadow</span>
-          <Icon name="eye" className="text-muted" />
+        <div className="flex items-center gap-2">
+          <div className="flex h-6 flex-1 items-center gap-2 rounded-md border border-line px-2">
+            <Icon name="shadow" className="text-muted" />
+            <span className="flex-1">Drop shadow</span>
+          </div>
+          <Icon name="eye" />
+          <Icon name="minus" />
         </div>
       </div>
     </aside>

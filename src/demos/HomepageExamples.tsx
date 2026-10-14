@@ -1,6 +1,4 @@
 import { FormatStudy } from '@/home/FormatStudy';
-import { ProfileStudy } from '@/home/SocialStudy';
-import { AgentsStudy } from '@/home/AgentsStudy';
 import {
   EditorStudy,
   RichTextStudy,
@@ -17,12 +15,6 @@ export function HomepageExamples() {
         Interface studies
       </h2>
       <div className="grid min-w-0 grid-cols-1 items-start gap-x-8 gap-y-12 lg:grid-cols-2">
-        <Study name="Social" id="736:6768">
-          <ProfileStudy />
-        </Study>
-        <Study name="Agents" id="748:3983">
-          <AgentsStudy />
-        </Study>
         <Study name="Design" id="732:4848">
           <EditorStudy />
         </Study>

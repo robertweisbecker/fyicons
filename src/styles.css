@@ -31,7 +31,7 @@
   --muted: var(--color-neutral-500);
   --border: --alpha(var(--text) / 14%);
   --line: --alpha(var(--text) / 8%);
-  --hover: var(--color-neutral-100);
+  --hover: --alpha(var(--text) / 5%);
   --accent-bg: var(--color-blue-100);
   --grid: var(--color-blue-200);
   --control-accent: var(--color-blue-500);
@@ -68,7 +68,7 @@
 @layer base {
   body {
     position: relative;
-    @apply m-0 bg-canvas font-sans text-ink antialiased;
+    @apply m-0 bg-bg font-sans text-ink antialiased;
   }
   #root {
     isolation: isolate;
@@ -94,7 +94,7 @@
     display: none !important;
   }
   kbd {
-    @apply rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted;
+    @apply rounded bg-muted/10 px-1.5 py-0.5 font-sans text-[11px] font-medium text-ink;
   }
 }
 @media (prefers-reduced-motion: reduce) {

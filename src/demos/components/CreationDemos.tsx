@@ -106,7 +106,7 @@ export function ComposerDemo() {
           }}
           aria-label="Chat message"
           placeholder="Ask a question or describe a change…"
-          className="min-h-20 text-base md:text-sm pointer-coarse:text-base"
+          className="min-h-20 text-base md:text-sm"
           onKeyDown={(e) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
               e.preventDefault();
@@ -155,7 +155,7 @@ export function ComposerDemo() {
           <Button
             type="submit"
             size="icon"
-            className="ml-auto pointer-coarse:size-11"
+            className="ml-auto"
             disabled={!prompt.trim()}
             aria-label="Send message"
           >
@@ -213,7 +213,7 @@ export function SearchDemo() {
             <Combobox.Input
               aria-label="Find a command"
               placeholder="Find a command…"
-              className="h-12 w-full bg-transparent pr-10 pl-11 text-base outline-none placeholder:text-muted md:text-sm pointer-coarse:text-base"
+              className="h-12 w-full bg-transparent pr-10 pl-11 text-base outline-none placeholder:text-muted md:text-sm"
             />
             <Combobox.Clear
               aria-label="Clear search"

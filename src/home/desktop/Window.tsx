@@ -61,9 +61,17 @@ export function Window({
   );
 }
 
-export function BrowserWindow({ children }: { children: ReactNode }) {
+export function BrowserWindow({
+  title,
+  address,
+  children,
+}: {
+  title: string;
+  address: string;
+  children: ReactNode;
+}) {
   return (
-    <Window title="bob.fyi" className="max-w-2xl">
+    <Window title={title} className="max-w-3xl">
       <div className="flex shrink-0 items-center gap-2 border-b border-line bg-canvas px-3 py-2 text-xs">
         <Icon name="arrow-left" />
         <Icon name="arrow-right" className="opacity-30" />
@@ -74,7 +82,7 @@ export function BrowserWindow({ children }: { children: ReactNode }) {
             <span className="hidden text-muted @lg/window:inline">
               https://
             </span>
-            bob.fyi
+            {address}
           </span>
           <Icon name="zoom-in" className="ml-auto" />
           <Icon name="star" />
@@ -85,8 +93,8 @@ export function BrowserWindow({ children }: { children: ReactNode }) {
         <Icon name="circle-user-fill" />
         <Icon name="ellipsis-v" />
       </div>
-      <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain bg-inset p-3 sm:p-5">
-        <div className="mx-auto w-full max-w-100">{children}</div>
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain">
+        {children}
       </div>
     </Window>
   );

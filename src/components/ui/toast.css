@@ -1,0 +1,19 @@
+/* Base UI alternates these names to replay the same pulse on each update. */
+@keyframes toast-repeat-odd {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.04;
+  }
+}
+@keyframes toast-repeat-even {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.04;
+  }
+}

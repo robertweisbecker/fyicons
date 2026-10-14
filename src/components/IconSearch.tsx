@@ -98,10 +98,10 @@ export function IconSearch({
     >
       <Autocomplete.InputGroup
         className={cn(
-          'flex min-w-0 items-center gap-3 bg-surface px-3 focus-within:ring-2 focus-within:ring-muted',
+          'flex min-w-0 items-center gap-3 bg-surface px-3',
           inline
             ? 'h-11 shrink-0 border-b border-line'
-            : 'h-10 rounded-lg border border-line',
+            : 'h-10 rounded-xl shadow-sm ring-1 ring-line focus-within:ring-2 focus-within:ring-muted hover:not-focus-within:ring-border',
         )}
       >
         <Icon name="search" />
@@ -110,12 +110,16 @@ export function IconSearch({
           type="search"
           aria-label={inline ? 'Search all icons' : 'Search icons'}
           placeholder="Search icons…"
-          className="h-full min-w-0 flex-1 bg-transparent py-0 text-base outline-none placeholder:text-muted sm:text-sm [&::-webkit-search-cancel-button]:hidden"
+          className="h-full min-w-0 flex-1 bg-transparent py-0 text-base outline-none placeholder:text-muted/50 sm:text-sm [&::-webkit-search-cancel-button]:hidden"
         />
         <Autocomplete.Clear
           render={<IconButton icon="xmark" label="Clear search" />}
         />
-        {!inline && <kbd>/</kbd>}
+        {!inline && (
+          <kbd className="p-px">
+            <Icon name="slash-sm" aria-label="Slash" size={16} />
+          </kbd>
+        )}
       </Autocomplete.InputGroup>
       {queryReady &&
         (inline ? (
@@ -153,25 +157,25 @@ export function GlobalSearch({
       }}
     >
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-0 z-70 bg-black/30 backdrop-blur-sm transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Backdrop className="fixed inset-0 z-70 bg-black/10 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
         <Dialog.Popup
           initialFocus={input}
           finalFocus={() => !selecting.current}
           className="fixed inset-x-3 top-[max(1rem,env(safe-area-inset-top))] z-70 flex max-h-[min(36rem,80dvh)] flex-col overflow-hidden rounded-2xl bg-surface text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,transform] duration-200 ease-out data-ending-style:translate-y-2 data-ending-style:opacity-0 data-starting-style:translate-y-2 data-starting-style:opacity-0 sm:inset-x-auto sm:top-[15dvh] sm:left-1/2 sm:w-xl sm:-translate-x-1/2"
         >
-          <div className="flex shrink-0 items-center justify-between px-4 py-2">
-            <Dialog.Title className="text-sm font-medium">
+          <div className="flex shrink-0 items-center justify-between">
+            <Dialog.Title className="sr-only text-sm font-medium">
               Find an icon
             </Dialog.Title>
-            <Dialog.Close
+            {/* <Dialog.Close
               render={
                 <IconButton
                   icon="xmark"
                   label="Close search"
-                  className="size-11"
+                  className="absolute top-1.5 right-1.5"
                 />
               }
-            />
+            /> */}
           </div>
           <IconSearch
             inline

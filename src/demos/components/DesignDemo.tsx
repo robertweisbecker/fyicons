@@ -52,7 +52,7 @@ function Dimension({
         </NumberField.ScrubArea>
         <NumberField.Input
           aria-label={label}
-          className="w-full min-w-0 bg-transparent px-2 text-end text-sm tabular-nums outline-none pointer-coarse:text-base"
+          className="w-full min-w-0 bg-transparent px-2 text-end text-sm tabular-nums outline-none"
         />
       </NumberField.Group>
     </NumberField.Root>
@@ -172,7 +172,7 @@ export function DesignDemo() {
           </span>
         </div>
         <div className="flex min-w-0 flex-col gap-4">
-          <div className="flex items-center justify-between pointer-coarse:min-h-11">
+          <div className="flex items-center justify-between">
             <h3 className="text-sm font-medium">Layout</h3>
             <ToggleGroup
               value={align}
@@ -181,9 +181,9 @@ export function DesignDemo() {
               aria-label="Design text alignment"
             >
               {[
-                ['left', 'align-start'],
-                ['center', 'align-center-1'],
-                ['right', 'align-end'],
+                ['left', 'arrow-to-left'],
+                ['center', 'arrows-to-center'],
+                ['right', 'arrow-to-right'],
               ].map(([value, icon]) => (
                 <DemoToggle
                   key={value}
@@ -253,7 +253,7 @@ export function DesignDemo() {
             </div>
             <SliderControl />
           </Slider.Root>
-          <div className="flex items-center justify-between pointer-coarse:min-h-11">
+          <div className="flex items-center justify-between">
             <span className="flex items-center gap-2 text-xs">
               <Icon name="paint-bucket" />
               Fill
@@ -270,7 +270,7 @@ export function DesignDemo() {
                   value={item.name}
                   aria-label={item.name + ' fill'}
                   size="icon"
-                  className="group/fill size-7 pointer-coarse:size-11"
+                  className="group/fill size-7"
                 >
                   <span
                     style={{ background: item.value }}

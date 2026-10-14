@@ -23,7 +23,7 @@ const files = [
   ['file.svg', 'file-svg', 'text-amber-500'],
   ['file.txt', 'file-text', 'text-sky-600'],
   ['file.js', 'file-code', 'text-blue-500'],
-  ['file.zip', 'archive', 'text-emerald-600'],
+  ['file.zip', 'file-zip', 'text-emerald-600'],
 ] as const;
 
 function DriveLocations() {
@@ -129,7 +129,6 @@ export function FilesApp() {
                 label="List view"
                 size="icon-sm"
                 variant="elevated"
-                className="pointer-coarse:size-11"
               />
               <DemoToggle
                 value="grid"
@@ -137,7 +136,6 @@ export function FilesApp() {
                 label="Grid view"
                 size="icon-sm"
                 variant="elevated"
-                className="pointer-coarse:size-11"
               />
             </ToggleGroup>
           </div>

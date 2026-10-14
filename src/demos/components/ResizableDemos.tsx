@@ -43,7 +43,6 @@ export function ResizableWorkspaceDemo() {
               if (sidebar.current?.isCollapsed()) sidebar.current.expand();
               else sidebar.current?.collapse();
             }}
-            className="pointer-coarse:size-11"
           >
             <Icon name={collapsed ? 'panel-left-open' : 'panel-left-closed'} />
           </Button>

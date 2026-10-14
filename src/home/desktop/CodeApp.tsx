@@ -61,7 +61,7 @@ export function CodeApp() {
               'ellipsis',
               'file-search',
               'arrows-rotate',
-              'align-wrap',
+              'arrow-wrap',
               'list-expand',
             ].map((icon) => (
               <Icon key={icon} name={icon} />

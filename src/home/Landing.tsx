@@ -15,46 +15,67 @@ export default function Landing({
   return (
     <Tooltip.Provider delay={350}>
       <div className="mx-auto pb-16 sm:pb-24">
-        <div className="mx-auto flex max-w-250 flex-wrap items-baseline-last justify-between gap-x-8 gap-y-6 pt-16 pb-16 sm:pt-24 sm:pb-20">
+        <div className="mx-auto flex max-w-2xl flex-col gap-16 px-8 py-16">
+          {/* <Icon name="atom-spiral" className="size-12 rotate-12" /> */}
+
+          <h1 className="text-sm">
+            fyi<span className="">cons</span>
+          </h1>
+          <p className="relative text-2xl font-medium text-pretty text-muted">
+            Some{' '}
+            <span className="relative text-ink">
+              <Icon
+                name="squares"
+                className="absolute -top-3/4 left-1/2 inline size-6 -translate-x-1/2"
+              />
+              icons
+            </span>{' '}
+            I{' '}
+            <span className="relative text-blue-500">
+              <Icon
+                name="pen-tool"
+                className="absolute -top-3/4 -right-3 inline size-6 text-blue-500"
+              />
+              made{' '}
+            </span>{' '}
+            for me, now for{' '}
+            <span className="relative text-pink-500 dark:text-pink-400">
+              you
+              <Icon
+                name="gift"
+                className="absolute -top-3/4 -right-2 inline size-6 rotate-12"
+              />
+            </span>
+            .
+          </p>
+
           <div className="flex flex-col gap-2">
-            {/* <BrandMark className="size-12" /> */}
-            <h1 className="text-4xl font-semibold tracking-tight">
-              fyi<span className="opacity-50">cons</span>
-            </h1>
-            <p className="flex items-center gap-1 text-2xl font-medium">
-              Some icons I made{' '}
-              <span className="flex items-center justify-center rounded bg-dialog p-1 text-blue-500">
-                <Icon name="pen-tip" className="size-7" />
-              </span>{' '}
-              for me, now for you{' '}
-              <span className="-me-2 flex items-center justify-center rounded p-1 text-pink-500">
-                <Icon name="gift" className="size-7" />
-              </span>
-              .
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-muted">
-            <span>16 × 16px ∙ 1px stroke ∙ Pixel-perfect</span>
-            <a
-              className="inline-flex min-h-11 items-center gap-1.5 underline decoration-1 underline-offset-4 hover:text-ink"
-              href={pageHref('library')}
-              onClick={(event) => navigate('library', event)}
-            >
-              {(Math.floor(icons.length / 100) * 100).toLocaleString('en-US')}+
-              {' icons '}
-              <Icon name="arrow-right" />
-            </a>
-            <a
-              className="inline-flex min-h-11 items-center gap-1.5 underline decoration-1 underline-offset-4 hover:text-ink"
-              href={githubHref}
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-              <Icon name="arrow-up-right" />
-            </a>
+            <span className="text-muted">
+              16×16px ∙ 1px stroke ∙ Pixel-perfect
+            </span>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+              <a
+                className="inline-flex min-h-11 items-center gap-1.5 underline decoration-1 underline-offset-4 hover:text-ink"
+                href={pageHref('library')}
+                onClick={(event) => navigate('library', event)}
+              >
+                {(Math.floor(icons.length / 100) * 100).toLocaleString('en-US')}
+                +{' icons '}
+                <Icon name="arrow-right" />
+              </a>
+              <a
+                className="inline-flex min-h-11 items-center gap-1.5 underline decoration-1 underline-offset-4 hover:text-ink"
+                href={githubHref}
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+                <Icon name="arrow-up-right" />
+              </a>
+            </div>
           </div>
         </div>
+
         <DesktopShowcase />
         <IconGroupCarousel />
       </div>

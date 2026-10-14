@@ -42,6 +42,11 @@ test('schema suggests sidebar icons and keywords without depending on category d
       'new keywords are allowed before an icon exists',
     );
     assert.deepEqual(keywordSchema.examples, ['anchor', 'arrow', 'up']);
+    assert.deepEqual(
+      schema.properties.categories.items.properties.exactNames.items.anyOf[0],
+      { $ref: '#/definitions/iconName' },
+      'exact name completions share the catalog icon list',
+    );
     await writeFile(
       path.join(root, 'public/icon-categories.json'),
       '{ unfinished category edit',

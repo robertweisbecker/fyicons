@@ -1,6 +1,6 @@
 {
   "name": "FYIcons",
-  "version": "2026-10-13",
+  "version": "2026-10-14",
   "source": {
     "fileKey": "KA61XWs3LqkOU2bzzvjEeW",
     "sectionId": "646:192",
@@ -8,8 +8,8 @@
     "pageId": "82:2415",
     "pageName": "export",
     "exportMethod": "Figma MCP exportAsync SVG_STRING, svgSimplifyStroke=false",
-    "scope": "Complete Icons section snapshot, including components in variant sets and the nested Updated section. All 1012 SVG exports verified against Figma SHA-256 checksums.",
-    "exportedAt": "2026-10-13"
+    "scope": "Complete Icons section snapshot, including components in variant sets and the nested Updated section. All 1021 SVG exports verified against Figma SHA-256 checksums.",
+    "exportedAt": "2026-10-14"
   },
   "icons": [
     {
@@ -2712,8 +2712,8 @@
         "505-556.svg"
       ],
       "file": "icons/file-image-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.46484 1C8.26036 1.0001 9.02342 1.31639 9.58594 1.87891L12.4141 4.70703C12.7891 5.08205 12.9999 5.59074 13 6.12109V13C13 14.1046 12.1046 15 11 15H5C3.89543 15 3 14.1046 3 13V3C3 1.89543 3.89543 1 5 1H7.46484ZM5 2C4.44772 2 4 2.44772 4 3V13C4 13.5523 4.44772 14 5 14H11C11.5523 14 12 13.5523 12 13V6.12109C12 6.08039 11.9971 6.03999 11.9922 6H9.5C9.10217 6 8.72076 5.84185 8.43945 5.56055C8.15815 5.27924 8 4.89783 8 4.5V2.07422C7.82712 2.02613 7.64741 2.00003 7.46484 2H5ZM9 4.5C9 4.63261 9.05272 4.75975 9.14648 4.85352C9.24025 4.94728 9.36739 5 9.5 5H11.293L9 2.70703V4.5Z\" fill=\"black\"/>\n<path d=\"M13 8.5C13 8.22386 12.7761 8 12.5 8C12.2239 8 12 8.22386 12 8.5H12.5H13ZM8.18291 11.3701L7.8194 11.7134L8.18291 11.3701ZM3.5 12.5L3.97434 12.6581L4.04777 12.4378L3.57343 12.2797L3.09909 12.1216L3.02566 12.3419L3.5 12.5ZM8.0975 11.2797L7.73399 11.623L7.8194 11.7134L8.18291 11.3701L8.54641 11.0268L8.46101 10.9364L8.0975 11.2797ZM12.5 9.65375H13V8.5H12.5H12V9.65375H12.5ZM10.7354 12.043L10.8824 12.5208C12.1411 12.1336 13 10.9707 13 9.65375H12.5H12C12 10.5316 11.4274 11.3069 10.5884 11.5651L10.7354 12.043ZM8.18291 11.3701L7.8194 11.7134C8.6035 12.5437 9.79097 12.8567 10.8824 12.5208L10.7354 12.043L10.5884 11.5651C9.86074 11.7889 9.06912 11.5803 8.54641 11.0268L8.18291 11.3701ZM3.57343 12.2797L4.04777 12.4378C4.57362 10.8603 6.59223 10.4141 7.73399 11.623L8.0975 11.2797L8.46101 10.9364C6.80021 9.17791 3.86398 9.82693 3.09909 12.1216L3.57343 12.2797Z\" fill=\"black\"/>\n<path d=\"M10 10C10.5523 10 11 9.55228 11 9C11 8.44772 10.5523 8 10 8C9.44772 8 9 8.44772 9 9C9 9.55228 9.44772 10 10 10Z\" stroke=\"black\"/>\n</svg>\n",
-      "sha256": "7c5355880b1ce9aef3dabb0701db29174a0f2695da4dbeb25d0a575d60aee47c",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.46484 1C8.26036 1.0001 9.02342 1.31639 9.58594 1.87891L12.4141 4.70703C12.7891 5.08205 12.9999 5.59074 13 6.12109V13C13 14.1046 12.1046 15 11 15H5C3.89543 15 3 14.1046 3 13V3C3 1.89543 3.89543 1 5 1H7.46484ZM5 2C4.44772 2 4 2.44772 4 3V13C4 13.5523 4.44772 14 5 14H11C11.5523 14 12 13.5523 12 13V6.12109C12 6.08039 11.9971 6.03999 11.9922 6H9.5C9.10217 6 8.72076 5.84185 8.43945 5.56055C8.15815 5.27924 8 4.89783 8 4.5V2.07422C7.82712 2.02613 7.64741 2.00003 7.46484 2H5ZM9 4.5C9 4.63261 9.05272 4.75975 9.14648 4.85352C9.24025 4.94728 9.36739 5 9.5 5H11.293L9 2.70703V4.5Z\" fill=\"black\"/>\n<path d=\"M4.16139 9.53225L3.5 9.55769V12.75C3.5 13.7165 4.2835 14.5 5.25 14.5H10.75C11.7165 14.5 12.5 13.7165 12.5 12.75V10.5L11.3871 11.0565C10.2061 11.6469 8.80986 11.6166 7.65567 10.9754L5.73362 9.90757C5.25375 9.64097 4.70993 9.51116 4.16139 9.53225Z\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M10 9.5C10.2761 9.5 10.5 9.27614 10.5 9C10.5 8.72386 10.2761 8.5 10 8.5C9.72386 8.5 9.5 8.72386 9.5 9C9.5 9.27614 9.72386 9.5 10 9.5Z\" stroke=\"black\"/>\n</svg>\n",
+      "sha256": "9f17bb772831b47f42350f36fef1ee1557d7edceb40430747eed436ec51fcb31",
       "duplicate": false,
       "variantCount": 1
     },
@@ -2876,8 +2876,8 @@
         "files-16.svg"
       ],
       "file": "icons/file-copy-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10.3789 1C10.9093 1.00006 11.4179 1.21092 11.793 1.58594L13.4141 3.20703C13.7891 3.58205 13.9999 4.09074 14 4.62109V10C14 11.1046 13.1046 12 12 12H10V13C10 14.1046 9.10457 15 8 15H4C2.89543 15 2 14.1046 2 13V6C2 4.89543 2.89543 4 4 4H6V3C6 1.89543 6.89543 1 8 1H10.3789ZM4 5C3.44772 5 3 5.44772 3 6V13C3 13.5523 3.44772 14 4 14H8C8.55228 14 9 13.5523 9 13V12H8C6.89543 12 6 11.1046 6 10V5H4ZM8 2C7.44772 2 7 2.44772 7 3V10C7 10.5523 7.44772 11 8 11H12C12.5523 11 13 10.5523 13 10V5H11.25C10.5596 5 10 4.44036 10 3.75V2H8ZM11 3.75C11 3.88807 11.1119 4 11.25 4H12.7832C12.7595 3.97012 12.7343 3.94129 12.707 3.91406L11.0859 2.29297C11.0587 2.26574 11.0299 2.24049 11 2.2168V3.75Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "f96b676d63bf2827b2fdb84eabe9a7f85e0945eeb7c482d637b22d442afb8494",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10.3789 2C10.9093 2.00006 11.4179 2.21092 11.793 2.58594L13.4141 4.20703C13.7891 4.58205 13.9999 5.09074 14 5.62109V11C14 12.1046 13.1046 13 12 13H9.73047C9.38454 13.5973 8.73993 14 8 14H4C2.89543 14 2 13.1046 2 12V8C2 6.89543 2.89543 6 4 6H6V4C6 2.89543 6.89543 2 8 2H10.3789ZM4 7C3.44772 7 3 7.44772 3 8V12C3 12.5523 3.44772 13 4 13H8C8.55228 13 9 12.5523 9 12V8C9 7.44772 8.55228 7 8 7H4ZM8 3C7.44772 3 7 3.44772 7 4V6H8C9.10457 6 10 6.89543 10 8V12H12C12.5523 12 13 11.5523 13 11V6H11.25C10.5596 6 10 5.44036 10 4.75V3H8ZM11 4.75C11 4.88807 11.1119 5 11.25 5H12.7832C12.7595 4.97012 12.7343 4.94129 12.707 4.91406L11.0859 3.29297C11.0587 3.26574 11.0299 3.24049 11 3.2168V4.75Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "f1bbe3e8e082e58a07ac8d245082fca62f8ee83b44fc2cf2df005cff33ef3337",
       "duplicate": false,
       "variantCount": 1
     },
@@ -2922,8 +2922,8 @@
         "672-528.svg"
       ],
       "file": "icons/folder-full-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M9.18945 0.776017C9.98964 0.561487 10.8128 1.0364 11.0273 1.83656L11.3389 2.99965H11.5098C12.1774 2.99981 12.7431 3.43659 12.9375 4.03969C14.1094 4.24668 14.9999 5.26836 15 6.49965V11.4996C15 12.8804 13.8807 13.9996 12.5 13.9996H3.5C2.11929 13.9996 1 12.8804 1 11.4996V4.49965C1.00009 3.11901 2.11934 1.99965 3.5 1.99965H4.62598L9.18945 0.776017ZM2 11.4996C2 12.3281 2.67157 12.9996 3.5 12.9996H12.5C13.3284 12.9996 14 12.3281 14 11.4996V7.99965H2V11.4996ZM3.5 2.99965C2.67163 2.99965 2.00009 3.6713 2 4.49965V6.99965H4.37793L3.53223 3.84535C3.4548 3.5563 3.46837 3.26486 3.55371 2.99965H3.5ZM13.0088 6.99965H14V6.49965C13.9999 5.85004 13.5865 5.29796 13.0088 5.08949V6.99965ZM7.5 3.99965C7.22432 4.00008 7.00015 4.2239 7 4.49965V6.99965H12.0088L12.0098 4.49965C12.0097 4.22371 11.7857 3.99985 11.5098 3.99965H7.5ZM9.44824 1.74184L4.85156 2.97426C4.58512 3.04588 4.42673 3.32002 4.49805 3.58656L5.41309 6.99965H6V4.49965C6.00017 3.67162 6.67205 3.00008 7.5 2.99965H10.3037L10.0615 2.09535C9.99001 1.82865 9.71496 1.67033 9.44824 1.74184Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "ab543177511b94b030756781db245734fab46ac9b8643a119e95f15ae43da6a4",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M9.18945 0.776245C9.98964 0.561716 10.8128 1.03662 11.0273 1.83679L11.3389 2.99988H11.5098C12.1774 3.00004 12.7431 3.43681 12.9375 4.03992C14.1094 4.24691 14.9999 5.26859 15 6.49988V11.4999C15 12.8806 13.8807 13.9999 12.5 13.9999H3.5C2.11929 13.9999 1 12.8806 1 11.4999V4.49988C1.00009 3.11924 2.11934 1.99988 3.5 1.99988H4.62598L9.18945 0.776245ZM2 11.4999C2 12.3283 2.67157 12.9999 3.5 12.9999H12.5C13.3284 12.9999 14 12.3283 14 11.4999V7.99988H2V11.4999ZM3.5 2.99988C2.67163 2.99988 2.00009 3.67153 2 4.49988V6.99988H4.37793L3.53223 3.84558C3.4548 3.55652 3.46837 3.26509 3.55371 2.99988H3.5ZM13.0088 6.99988H14V6.49988C13.9999 5.85027 13.5865 5.29819 13.0088 5.08972V6.99988ZM7.5 3.99988C7.22432 4.00031 7.00015 4.22413 7 4.49988V6.99988H12.0088L12.0098 4.49988C12.0097 4.22394 11.7857 4.00008 11.5098 3.99988H7.5ZM9.44824 1.74207L4.85156 2.97449C4.58512 3.04611 4.42673 3.32025 4.49805 3.58679L5.41309 6.99988H6V4.49988C6.00017 3.67185 6.67205 3.00031 7.5 2.99988H10.3037L10.0615 2.09558C9.99001 1.82887 9.71496 1.67056 9.44824 1.74207Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "c384a615c2b91ec4c7ad7fc644a51a724724754d9f483f9070926c316a1213f6",
       "duplicate": false,
       "variantCount": 1
     },
@@ -3169,8 +3169,8 @@
         "paperclip-1-16.svg"
       ],
       "file": "icons/paperclip-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.5 1C9.88071 1 11 2.11929 11 3.5V11.5C11 13.433 9.433 15 7.5 15C5.567 15 4 13.433 4 11.5V8.5C4 8.22386 4.22386 8 4.5 8C4.77614 8 5 8.22386 5 8.5V11.5C5 12.8807 6.11929 14 7.5 14C8.88071 14 10 12.8807 10 11.5V3.5C10 2.67157 9.32843 2 8.5 2C7.67157 2 7 2.67157 7 3.5V11.5C7 11.7761 7.22386 12 7.5 12C7.77614 12 8 11.7761 8 11.5V6.5C8 6.22386 8.22386 6 8.5 6C8.77614 6 9 6.22386 9 6.5V11.5C9 12.3284 8.32843 13 7.5 13C6.67157 13 6 12.3284 6 11.5V3.5C6 2.11929 7.11929 1 8.5 1Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "ff8c58319ab999ba8e4e10ae7cec52a61bffa4681e364497051acf4d666a2a63",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.5 1C9.88071 1 11 2.11929 11 3.5V11.5C11 13.433 9.433 15 7.5 15C5.567 15 4 13.433 4 11.5V8.5C4 8.22386 4.22386 8 4.5 8C4.77614 8 5 8.22386 5 8.5V11.5C5 12.8807 6.11929 14 7.5 14C8.88071 14 10 12.8807 10 11.5V3.5C10 2.67157 9.32843 2 8.5 2C7.67157 2 7 2.67157 7 3.5V11.5C7 11.7761 7.22386 12 7.5 12C7.77614 12 8 11.7761 8 11.5V4.5C8 4.22386 8.22386 4 8.5 4C8.77614 4 9 4.22386 9 4.5V11.5C9 12.3284 8.32843 13 7.5 13C6.67157 13 6 12.3284 6 11.5V3.5C6 2.11929 7.11929 1 8.5 1Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "5a9a66680b0867ced4cf948b25088a52ffb588874f9f8f79dec94eede2ecf1ad",
       "duplicate": false,
       "variantCount": 1
     },
@@ -3193,8 +3193,8 @@
         "paperclip-tilt-2-16.svg"
       ],
       "file": "icons/paperclip-tilt-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_315_17581)\">\n<path d=\"M14.3532 2.64669C15.3769 3.67033 15.3763 5.32988 14.3532 6.35348L7.60395 13.1028C6.16619 14.5403 3.83463 14.5414 2.39664 13.1034C0.958736 11.6655 0.958737 9.33472 2.39664 7.89682L3.6465 6.64695C3.84177 6.45169 4.15835 6.45169 4.35361 6.64695C4.5486 6.84224 4.54878 7.15889 4.35361 7.35406L3.10374 8.60393C2.05637 9.65131 2.05568 11.3497 3.10305 12.397C4.15024 13.4442 5.84932 13.443 6.89685 12.3956L13.6461 5.64637C14.2789 5.01306 14.279 3.98667 13.6461 3.3538C13.013 2.72073 11.9867 2.72075 11.3536 3.3538L4.60358 10.1038C4.38471 10.3227 4.38489 10.6775 4.60358 10.8965C4.82257 11.1157 5.17725 11.1156 5.39632 10.8965L10.1465 6.14632C10.3418 5.95139 10.6577 5.95192 10.8529 6.14701C11.0481 6.34215 11.0485 6.65813 10.8536 6.85342L6.1048 11.6036C5.49516 12.2134 4.50598 12.2134 3.89648 11.6036C3.28747 10.994 3.28719 10.006 3.89648 9.39666L10.6464 2.64669C11.6701 1.62312 13.3296 1.6231 14.3532 2.64669Z\" fill=\"black\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_315_17581\">\n<rect width=\"16\" height=\"16\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
-      "sha256": "cd00714c93b0d0d70a6fe147e5aeabb54dbcb556b428b87e57748fdc4a843eb7",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_315_17581)\">\n<path d=\"M14.3532 2.64669C15.3769 3.67033 15.3763 5.32988 14.3532 6.35348L7.60395 13.1028C6.16619 14.5403 3.83463 14.5414 2.39664 13.1034C0.958736 11.6655 0.958737 9.33472 2.39664 7.89682L3.6465 6.64695C3.84177 6.45169 4.15835 6.45169 4.35361 6.64695C4.5486 6.84224 4.54878 7.15889 4.35361 7.35406L3.10374 8.60393C2.05637 9.65131 2.05568 11.3497 3.10305 12.397C4.15024 13.4442 5.84932 13.443 6.89685 12.3956L13.6461 5.64637C14.2789 5.01306 14.279 3.98667 13.6461 3.3538C13.013 2.72073 11.9867 2.72075 11.3536 3.3538L4.60358 10.1038C4.38471 10.3227 4.3849 10.6775 4.60358 10.8965C4.82257 11.1157 5.17725 11.1156 5.39632 10.8965L11.1464 5.14642C11.3416 4.95139 11.6583 4.9513 11.8535 5.14642C12.0487 5.3416 12.0485 5.65824 11.8535 5.85353L6.1048 11.6036C5.49516 12.2133 4.50598 12.2134 3.89648 11.6036C3.28746 10.994 3.28718 10.006 3.89648 9.39666L10.6464 2.64669C11.6701 1.62312 13.3296 1.6231 14.3532 2.64669Z\" fill=\"black\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_315_17581\">\n<rect width=\"16\" height=\"16\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+      "sha256": "f289da23de35736d071b1e50b8210e2231d7121706715e0d9094482cd78b70ab",
       "duplicate": false,
       "variantCount": 1
     },
@@ -3270,21 +3270,23 @@
     },
     {
       "id": "578:2971",
-      "name": "align-all-center",
-      "originalName": "align-all-center",
-      "baseName": "align-all-center",
+      "name": "arrows-to-origin",
+      "originalName": "arrows-to-origin",
+      "baseName": "arrows-to-origin",
       "width": 16,
       "height": 16,
-      "filename": "align-all-center-16.svg",
+      "filename": "arrows-to-origin-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=578-2971",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignAllCenter",
+      "componentName": "IconArrowsToOrigin",
       "aliases": [
-        "578-2971.svg"
+        "578-2971.svg",
+        "align-all-center",
+        "align-all-center-16.svg"
       ],
-      "file": "icons/align-all-center-16.svg",
+      "file": "icons/arrows-to-origin-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.72461 10.582C7.91869 10.4539 8.18265 10.4756 8.35352 10.6465L9.85352 12.1465C9.99651 12.2895 10.0393 12.5046 9.96191 12.6914C9.88451 12.8782 9.70221 13 9.5 13H8.5V14.5C8.5 14.7761 8.27614 15 8 15C7.72386 15 7.5 14.7761 7.5 14.5V13H6.5C6.29779 13 6.11549 12.8782 6.03809 12.6914C5.9607 12.5046 6.00349 12.2895 6.14648 12.1465L7.64648 10.6465L7.72461 10.582ZM3.30859 6.03809C3.49543 5.9607 3.71052 6.00349 3.85352 6.14648L5.35352 7.64648C5.54878 7.84175 5.54878 8.15825 5.35352 8.35352L3.85352 9.85352C3.71052 9.99652 3.49543 10.0393 3.30859 9.96191C3.12179 9.88451 3 9.70221 3 9.5V8.5H1.5C1.22386 8.5 1 8.27614 1 8C1 7.72386 1.22386 7.5 1.5 7.5H3V6.5C3 6.29779 3.12179 6.11549 3.30859 6.03809ZM12.1465 6.14648C12.2895 6.00349 12.5046 5.9607 12.6914 6.03809C12.8782 6.11549 13 6.29779 13 6.5V7.5H14.5C14.7761 7.5 15 7.72386 15 8C15 8.27614 14.7761 8.5 14.5 8.5H13V9.5C13 9.70221 12.8782 9.88451 12.6914 9.96191C12.5046 10.0393 12.2895 9.99651 12.1465 9.85352L10.6465 8.35352C10.4512 8.15825 10.4512 7.84175 10.6465 7.64648L12.1465 6.14648ZM8 7C8.55228 7 9 7.44772 9 8C9 8.55228 8.55228 9 8 9C7.44772 9 7 8.55228 7 8C7 7.44772 7.44772 7 8 7ZM8 1C8.27614 1 8.5 1.22386 8.5 1.5V3H9.5C9.70221 3 9.88451 3.12179 9.96191 3.30859C10.0393 3.49543 9.99651 3.71052 9.85352 3.85352L8.35352 5.35352C8.18265 5.52438 7.91869 5.54613 7.72461 5.41797L7.64648 5.35352L6.14648 3.85352C6.00349 3.71052 5.9607 3.49543 6.03809 3.30859C6.11549 3.12179 6.29779 3 6.5 3H7.5V1.5C7.5 1.22386 7.72386 1 8 1Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "46624e51637c4fb524b6bc3840654d78de469a3fb4209560ac34f01d11d05976",
       "duplicate": false,
@@ -3292,21 +3294,23 @@
     },
     {
       "id": "518:4796",
-      "name": "align-bottom",
-      "originalName": "align-bottom",
-      "baseName": "align-bottom",
+      "name": "arrow-to-bottom",
+      "originalName": "arrow-to-bottom",
+      "baseName": "arrow-to-bottom",
       "width": 16,
       "height": 16,
-      "filename": "align-bottom-16.svg",
+      "filename": "arrow-to-bottom-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=518-4796",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignBottom",
+      "componentName": "IconArrowToBottom",
       "aliases": [
-        "518-4796.svg"
+        "518-4796.svg",
+        "align-bottom",
+        "align-bottom-16.svg"
       ],
-      "file": "icons/align-bottom-16.svg",
+      "file": "icons/arrow-to-bottom-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.5 13C12.7761 13 13 13.2239 13 13.5C13 13.7761 12.7761 14 12.5 14H3.5C3.22386 14 3 13.7761 3 13.5C3 13.2239 3.22386 13 3.5 13H12.5ZM8 3C8.27614 3 8.5 3.22386 8.5 3.5V9.79297L10.6465 7.64648C10.8417 7.45122 11.1583 7.45122 11.3535 7.64648C11.5488 7.84175 11.5488 8.15825 11.3535 8.35352L8.35352 11.3535C8.18265 11.5244 7.91869 11.5461 7.72461 11.418L7.64648 11.3535L4.64648 8.35352C4.45122 8.15825 4.45122 7.84175 4.64648 7.64648C4.84175 7.45122 5.15825 7.45122 5.35352 7.64648L7.5 9.79297V3.5C7.5 3.22386 7.72386 3 8 3Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "281641ece61e93d6df395b0c3bc58912d368e51fa28cfc0106e2f2d3be02fff0",
       "duplicate": false,
@@ -3339,21 +3343,23 @@
     },
     {
       "id": "558:8904",
-      "name": "align-end",
-      "originalName": "align-end",
-      "baseName": "align-end",
+      "name": "arrow-to-right",
+      "originalName": "arrow-to-right",
+      "baseName": "arrow-to-right",
       "width": 16,
       "height": 16,
-      "filename": "align-end-16.svg",
+      "filename": "arrow-to-right-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=558-8904",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignEnd",
+      "componentName": "IconArrowToRight",
       "aliases": [
-        "558-8904.svg"
+        "558-8904.svg",
+        "align-end",
+        "align-end-16.svg"
       ],
-      "file": "icons/align-end-16.svg",
+      "file": "icons/arrow-to-right-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12 3.5C12 3.22386 12.2239 3 12.5 3C12.7761 3 13 3.22386 13 3.5V12.5C13 12.7761 12.7761 13 12.5 13C12.2239 13 12 12.7761 12 12.5V3.5ZM2 8C2 7.72386 2.22386 7.5 2.5 7.5H8.79297L6.64648 5.35352C6.45122 5.15825 6.45122 4.84175 6.64648 4.64648C6.84175 4.45122 7.15825 4.45122 7.35352 4.64648L10.3535 7.64648C10.5244 7.81735 10.5461 8.08131 10.418 8.27539L10.3535 8.35352L7.35352 11.3535C7.15825 11.5488 6.84175 11.5488 6.64648 11.3535C6.45122 11.1583 6.45122 10.8417 6.64648 10.6465L8.79297 8.5H2.5C2.22386 8.5 2 8.27614 2 8Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "f597903362b9520228a55c058bffb107e4394a355b0c7471e024c888f92a831f",
       "duplicate": false,
@@ -3361,17 +3367,17 @@
     },
     {
       "id": "521:7822",
-      "name": "align-center",
-      "originalName": "align-center",
-      "baseName": "align-center",
+      "name": "arrows-to-middle",
+      "originalName": "arrows-to-middle",
+      "baseName": "arrows-to-middle",
       "width": 16,
       "height": 16,
-      "filename": "align-center-16.svg",
+      "filename": "arrows-to-middle-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=521-7822",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignCenter",
+      "componentName": "IconArrowsToMiddle",
       "aliases": [
         "521-7822.svg",
         "align-middle-v",
@@ -3379,39 +3385,43 @@
         "align-vertical-center",
         "align-vertical-center-16.svg",
         "align-middle",
-        "align-middle-16.svg"
+        "align-middle-16.svg",
+        "align-center",
+        "align-center-16.svg"
       ],
-      "file": "icons/align-center-16.svg",
+      "file": "icons/arrows-to-middle-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 10.5C8.13261 10.5 8.25975 10.5527 8.35352 10.6465L10.3535 12.6465C10.5488 12.8417 10.5488 13.1583 10.3535 13.3535C10.1583 13.5488 9.84175 13.5488 9.64648 13.3535L8.5 12.207V15.5C8.5 15.7761 8.27614 16 8 16C7.72386 16 7.5 15.7761 7.5 15.5V12.207L6.35352 13.3535C6.15825 13.5488 5.84175 13.5488 5.64648 13.3535C5.45122 13.1583 5.45122 12.8417 5.64648 12.6465L7.64648 10.6465L7.72266 10.584C7.80419 10.5296 7.90056 10.5 8 10.5ZM13.5 8C13.7761 8 14 8.22386 14 8.5C14 8.77614 13.7761 9 13.5 9H2.5C2.22386 9 2 8.77614 2 8.5C2 8.22386 2.22386 8 2.5 8H13.5ZM8 1C8.27614 1 8.5 1.22386 8.5 1.5V4.79297L9.64648 3.64648C9.84175 3.45122 10.1583 3.45122 10.3535 3.64648C10.5488 3.84175 10.5488 4.15825 10.3535 4.35352L8.35352 6.35352C8.18265 6.52438 7.91869 6.54613 7.72461 6.41797L7.64648 6.35352L5.64648 4.35352C5.45122 4.15825 5.45122 3.84175 5.64648 3.64648C5.84175 3.45122 6.15825 3.45122 6.35352 3.64648L7.5 4.79297V1.5C7.5 1.22386 7.72386 1 8 1Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "4acf876e9eb348c933e48023ed37cf730473fb694270399a2fe27899fc004008",
-      "duplicate": true,
-      "variantCount": 2
+      "duplicate": false,
+      "variantCount": 1
     },
     {
       "id": "558:8902",
-      "name": "align-center-1",
-      "originalName": "align-center",
-      "baseName": "align-center",
+      "name": "arrows-to-center",
+      "originalName": "arrows-to-center",
+      "baseName": "arrows-to-center",
       "width": 16,
       "height": 16,
-      "filename": "align-center-1-16.svg",
+      "filename": "arrows-to-center-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=558-8902",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignCenter1",
+      "componentName": "IconArrowsToCenter",
       "aliases": [
         "558-8902.svg",
         "align-horizontal-center",
         "align-horizontal-center-16.svg",
         "align-center",
-        "align-center-16.svg"
+        "align-center-16.svg",
+        "align-center-1",
+        "align-center-1-16.svg"
       ],
-      "file": "icons/align-center-1-16.svg",
+      "file": "icons/arrows-to-center-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M6.91797 7.72461C7.04613 7.91869 7.02438 8.18265 6.85352 8.35352L4.85352 10.3535C4.65825 10.5488 4.34175 10.5488 4.14648 10.3535C3.95122 10.1583 3.95122 9.84175 4.14648 9.64648L5.29297 8.5H2C1.72386 8.5 1.5 8.27614 1.5 8C1.5 7.72386 1.72386 7.5 2 7.5H5.29297L4.14648 6.35352C3.95122 6.15825 3.95122 5.84175 4.14648 5.64648C4.34175 5.45122 4.65825 5.45122 4.85352 5.64648L6.85352 7.64648L6.91797 7.72461ZM9 12.5C9 12.7761 8.77614 13 8.5 13C8.22386 13 8 12.7761 8 12.5V3.5C8 3.22386 8.22386 3 8.5 3C8.77614 3 9 3.22386 9 3.5V12.5ZM15.5 8C15.5 8.27614 15.2761 8.5 15 8.5H11.707L12.8535 9.64648C13.0488 9.84175 13.0488 10.1583 12.8535 10.3535C12.6583 10.5488 12.3417 10.5488 12.1465 10.3535L10.1465 8.35352C9.97562 8.18265 9.95387 7.91869 10.082 7.72461L10.1465 7.64648L12.1465 5.64648C12.3417 5.45122 12.6583 5.45122 12.8535 5.64648C13.0488 5.84175 13.0488 6.15825 12.8535 6.35352L11.707 7.5H15C15.2761 7.5 15.5 7.72386 15.5 8Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "b45c010ff5c7e9ee3fc99b4e6455b75564eae187730f4c464a359cebf97ee443",
-      "duplicate": true,
-      "variantCount": 2
+      "duplicate": false,
+      "variantCount": 1
     },
     {
       "id": "841:12714",
@@ -3440,21 +3450,23 @@
     },
     {
       "id": "558:8903",
-      "name": "align-start",
-      "originalName": "align-start",
-      "baseName": "align-start",
+      "name": "arrow-to-left",
+      "originalName": "arrow-to-left",
+      "baseName": "arrow-to-left",
       "width": 16,
       "height": 16,
-      "filename": "align-start-16.svg",
+      "filename": "arrow-to-left-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=558-8903",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignStart",
+      "componentName": "IconArrowToLeft",
       "aliases": [
-        "558-8903.svg"
+        "558-8903.svg",
+        "align-start",
+        "align-start-16.svg"
       ],
-      "file": "icons/align-start-16.svg",
+      "file": "icons/arrow-to-left-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M4 12.5C4 12.7761 3.77614 13 3.5 13C3.22386 13 3 12.7761 3 12.5V3.5C3 3.22386 3.22386 3 3.5 3C3.77614 3 4 3.22386 4 3.5V12.5ZM14 8C14 8.27614 13.7761 8.5 13.5 8.5H7.20703L9.35352 10.6465C9.54878 10.8417 9.54878 11.1583 9.35352 11.3535C9.15825 11.5488 8.84175 11.5488 8.64648 11.3535L5.64648 8.35352C5.47562 8.18265 5.45387 7.91869 5.58203 7.72461L5.64648 7.64648L8.64648 4.64648C8.84175 4.45122 9.15825 4.45122 9.35352 4.64648C9.54878 4.84175 9.54878 5.15825 9.35352 5.35352L7.20703 7.5H13.5C13.7761 7.5 14 7.72386 14 8Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "49dae202eea9b7f5f6672e2736f142eec7dff3c7e549506478db3c85868fec15",
       "duplicate": false,
@@ -3487,21 +3499,23 @@
     },
     {
       "id": "518:4797",
-      "name": "align-top",
-      "originalName": "align-top",
-      "baseName": "align-top",
+      "name": "arrow-to-top",
+      "originalName": "arrow-to-top",
+      "baseName": "arrow-to-top",
       "width": 16,
       "height": 16,
-      "filename": "align-top-16.svg",
+      "filename": "arrow-to-top-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=518-4797",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignTop",
+      "componentName": "IconArrowToTop",
       "aliases": [
-        "518-4797.svg"
+        "518-4797.svg",
+        "align-top",
+        "align-top-16.svg"
       ],
-      "file": "icons/align-top-16.svg",
+      "file": "icons/arrow-to-top-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.72461 4.58203C7.91869 4.45387 8.18265 4.47562 8.35352 4.64648L11.3535 7.64648C11.5488 7.84175 11.5488 8.15825 11.3535 8.35352C11.1583 8.54878 10.8417 8.54878 10.6465 8.35352L8.5 6.20703V12.5C8.5 12.7761 8.27614 13 8 13C7.72386 13 7.5 12.7761 7.5 12.5V6.20703L5.35352 8.35352C5.15825 8.54878 4.84175 8.54878 4.64648 8.35352C4.45122 8.15825 4.45122 7.84175 4.64648 7.64648L7.64648 4.64648L7.72461 4.58203ZM12.5 2C12.7761 2 13 2.22386 13 2.5C13 2.77614 12.7761 3 12.5 3H3.5C3.22386 3 3 2.77614 3 2.5C3 2.22386 3.22386 2 3.5 2H12.5Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "2da6f29a9ea426ef55e2a4459f2a5faa0f6fe45c01867998050389321993503b",
       "duplicate": false,
@@ -4746,50 +4760,54 @@
       "file": "icons/text-block-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12 1.99951C13.1044 1.99951 13.9998 2.89515 14 3.99951V11.9995C14 13.1041 13.1046 13.9995 12 13.9995H4C2.8956 13.9993 2 13.104 2 11.9995V9.49951C2.00025 9.22371 2.22418 8.99971 2.5 8.99951C2.77599 8.99951 2.99975 9.22358 3 9.49951V11.9995C3 12.5517 3.44789 12.9993 4 12.9995H12C12.5523 12.9995 13 12.5518 13 11.9995V3.99951C12.9998 3.44744 12.5521 2.99951 12 2.99951H8.5C8.22403 2.99931 8 2.77553 8 2.49951C8.00025 2.22371 8.22418 1.99971 8.5 1.99951H12ZM5.50098 2.00049C5.77712 2.00049 6.00098 2.22435 6.00098 2.50049V3.50049C6.00071 3.77641 5.77696 4.00049 5.50098 4.00049C5.225 4.00049 5.00124 3.77641 5.00098 3.50049V3.00049H4.00098V6.00049H4.50098C4.77712 6.00049 5.00098 6.22435 5.00098 6.50049C5.00071 6.77641 4.77696 7.00049 4.50098 7.00049H2.50098C2.225 7.00049 2.00124 6.77641 2.00098 6.50049C2.00098 6.22435 2.22483 6.00049 2.50098 6.00049H3.00098V3.00049H2.00098V3.50049C2.00071 3.77641 1.77696 4.00049 1.50098 4.00049C1.225 4.00049 1.00124 3.77641 1.00098 3.50049V2.50049C1.00098 2.22435 1.22483 2.00049 1.50098 2.00049H5.50098Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "a16119c2139d8243dc98fd0af10889db678b20914bd6b24b296faff29e4707fc",
-      "duplicate": true,
-      "variantCount": 2
+      "duplicate": false,
+      "variantCount": 1
     },
     {
       "id": "701:1671",
-      "name": "text-block-1",
-      "originalName": "text-block",
-      "baseName": "text-block",
+      "name": "text-paragraph",
+      "originalName": "text-paragraph",
+      "baseName": "text-paragraph",
       "width": 16,
       "height": 16,
-      "filename": "text-block-1-16.svg",
+      "filename": "text-paragraph-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=701-1671",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconTextBlock1",
+      "componentName": "IconTextParagraph",
       "aliases": [
         "701-1671.svg",
         "text-block",
-        "text-block-16.svg"
+        "text-block-16.svg",
+        "text-block-1",
+        "text-block-1-16.svg"
       ],
-      "file": "icons/text-block-1-16.svg",
+      "file": "icons/text-paragraph-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.5 12C12.7761 12 13 12.2239 13 12.5C13 12.7761 12.7761 13 12.5 13H3.5C3.22386 13 3 12.7761 3 12.5C3 12.2239 3.22386 12 3.5 12H12.5ZM12.5 9C12.7761 9 13 9.22386 13 9.5C13 9.77614 12.7761 10 12.5 10H3.5C3.22386 10 3 9.77614 3 9.5C3 9.22386 3.22386 9 3.5 9H12.5ZM6.50098 2C6.77712 2 7.00098 2.22386 7.00098 2.5V3.5C7.00098 3.77614 6.77712 4 6.50098 4C6.22483 4 6.00098 3.77614 6.00098 3.5V3H5.00098V6H5.5C5.77614 6 6 6.22386 6 6.5C6 6.77614 5.77614 7 5.5 7H3.5C3.22386 7 3 6.77614 3 6.5C3 6.22386 3.22386 6 3.5 6H4.00098V3H3.00098V3.5C3.00098 3.77614 2.77712 4 2.50098 4C2.22483 4 2.00098 3.77614 2.00098 3.5V2.5C2.00098 2.22386 2.22483 2 2.50098 2H6.50098ZM12.5 6C12.7761 6 13 6.22386 13 6.5C13 6.77614 12.7761 7 12.5 7H8.5C8.22386 7 8 6.77614 8 6.5C8 6.22386 8.22386 6 8.5 6H12.5ZM12.5 3C12.7761 3 13 3.22386 13 3.5C13 3.77614 12.7761 4 12.5 4H8.5C8.22386 4 8 3.77614 8 3.5C8 3.22386 8.22386 3 8.5 3H12.5Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "e422c47021e0c07ef3b58be93b9bed3cd37a2ffaf9e2b3f89e215c3bf65b10b6",
-      "duplicate": true,
-      "variantCount": 2
+      "duplicate": false,
+      "variantCount": 1
     },
     {
       "id": "732:2005",
-      "name": "text-block-pilcrow",
-      "originalName": "text-block-pilcrow",
-      "baseName": "text-block-pilcrow",
+      "name": "paragraph",
+      "originalName": "paragraph",
+      "baseName": "paragraph",
       "width": 16,
       "height": 16,
-      "filename": "text-block-pilcrow-16.svg",
+      "filename": "paragraph-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=732-2005",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconTextBlockPilcrow",
+      "componentName": "IconParagraph",
       "aliases": [
-        "732-2005.svg"
+        "732-2005.svg",
+        "text-block-pilcrow",
+        "text-block-pilcrow-16.svg"
       ],
-      "file": "icons/text-block-pilcrow-16.svg",
+      "file": "icons/paragraph-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.5 12C12.7761 12 13 12.2239 13 12.5C13 12.7761 12.7761 13 12.5 13H3.5C3.22386 13 3 12.7761 3 12.5C3 12.2239 3.22386 12 3.5 12H12.5ZM12.5 9C12.7761 9 13 9.22386 13 9.5C13 9.77614 12.7761 10 12.5 10H3.5C3.22386 10 3 9.77614 3 9.5C3 9.22386 3.22386 9 3.5 9H12.5ZM5.5 2C5.77614 2 6 2.22386 6 2.5C6 2.77614 5.77614 3 5.5 3H5.00098V6H5.5C5.77614 6 6 6.22386 6 6.5C6 6.77614 5.77614 7 5.5 7H3.5C3.22386 7 3 6.77614 3 6.5C3 6.22386 3.22386 6 3.5 6H4.00098V5H3.50098C2.67255 5 2.00098 4.32843 2.00098 3.5C2.00098 2.67157 2.67255 2 3.50098 2H5.5ZM12.5 6C12.7761 6 13 6.22386 13 6.5C13 6.77614 12.7761 7 12.5 7H8.5C8.22386 7 8 6.77614 8 6.5C8 6.22386 8.22386 6 8.5 6H12.5ZM3.50098 3C3.22483 3 3.00098 3.22386 3.00098 3.5C3.00098 3.77614 3.22483 4 3.50098 4H4.00098V3H3.50098ZM12.5 3C12.7761 3 13 3.22386 13 3.5C13 3.77614 12.7761 4 12.5 4H8.5C8.22386 4 8 3.77614 8 3.5C8 3.22386 8.22386 3 8.5 3H12.5Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "01cac621a95a8727787ee755a5d616db13f917db0a30f0887b93a0d56a316e48",
       "duplicate": false,
@@ -5089,21 +5107,23 @@
     },
     {
       "id": "717:4230",
-      "name": "align-wrap",
-      "originalName": "align-wrap",
-      "baseName": "align-wrap",
+      "name": "arrow-wrap",
+      "originalName": "arrow-wrap",
+      "baseName": "arrow-wrap",
       "width": 16,
       "height": 16,
-      "filename": "align-wrap-16.svg",
+      "filename": "arrow-wrap-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=717-4230",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAlignWrap",
+      "componentName": "IconArrowWrap",
       "aliases": [
-        "717-4230.svg"
+        "717-4230.svg",
+        "align-wrap",
+        "align-wrap-16.svg"
       ],
-      "file": "icons/align-wrap-16.svg",
+      "file": "icons/arrow-wrap-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.5 2C12.7761 2 13 2.22386 13 2.5V13.5C13 13.7761 12.7761 14 12.5 14C12.2239 14 12 13.7761 12 13.5V2.5C12 2.22386 12.2239 2 12.5 2ZM7.5 4C9.43281 4.00022 11 5.56714 11 7.5C11 9.43286 9.43281 10.9998 7.5 11H3.70605L4.85352 12.1475C5.04877 12.3427 5.04877 12.6592 4.85352 12.8545C4.65826 13.0497 4.34175 13.0497 4.14648 12.8545L2.14551 10.8535C2.05179 10.7598 1.99903 10.6326 1.99902 10.5C1.99906 10.3675 2.05178 10.2402 2.14551 10.1465L4.14648 8.14551C4.34174 7.95025 4.65825 7.95026 4.85352 8.14551C5.04877 8.34076 5.04877 8.65727 4.85352 8.85254L3.70605 10H7.5C8.88053 9.99978 10 8.88058 10 7.5C10 6.11942 8.88053 5.00022 7.5 5H3.5C3.22386 5 3 4.77614 3 4.5C3 4.22386 3.22386 4 3.5 4H7.5Z\" fill=\"black\"/>\n</svg>\n",
       "sha256": "9726dc47aaac09eae591a1e98d46a257c163ac5d3e2d469d4d77bc64fbffcb2d",
       "duplicate": false,
@@ -7621,21 +7641,23 @@
     },
     {
       "id": "811:8858",
-      "name": "lightness-high",
-      "originalName": "lightness-high",
-      "baseName": "lightness-high",
+      "name": "brightness-high",
+      "originalName": "brightness-high",
+      "baseName": "brightness-high",
       "width": 16,
       "height": 16,
-      "filename": "lightness-high-16.svg",
+      "filename": "brightness-high-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=811-8858",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconLightnessHigh",
+      "componentName": "IconBrightnessHigh",
       "aliases": [
-        "811-8858.svg"
+        "811-8858.svg",
+        "lightness-high",
+        "lightness-high-16.svg"
       ],
-      "file": "icons/lightness-high-16.svg",
+      "file": "icons/brightness-high-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 3.5V6.5M0.5 10.5H2.5M13.5 10.5H15.5M2.5 5.5L4.5 7.5M11.5 7.5L13.5 5.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M10.5 10.5H5.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
       "sha256": "092d243f05e1fee7d16f627b541f92f465033d922b7cc2508a8aee65f23fd42c",
       "duplicate": false,
@@ -7643,21 +7665,23 @@
     },
     {
       "id": "811:8859",
-      "name": "lightness-low",
-      "originalName": "lightness-low",
-      "baseName": "lightness-low",
+      "name": "brightness-low",
+      "originalName": "brightness-low",
+      "baseName": "brightness-low",
       "width": 16,
       "height": 16,
-      "filename": "lightness-low-16.svg",
+      "filename": "brightness-low-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=811-8859",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconLightnessLow",
+      "componentName": "IconBrightnessLow",
       "aliases": [
-        "811-8859.svg"
+        "811-8859.svg",
+        "lightness-low",
+        "lightness-low-16.svg"
       ],
-      "file": "icons/lightness-low-16.svg",
+      "file": "icons/brightness-low-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<circle cx=\"14\" cy=\"10\" r=\"0.75\" fill=\"black\"/>\n<circle cx=\"12\" cy=\"7\" r=\"0.75\" fill=\"black\"/>\n<circle cx=\"8\" cy=\"6\" r=\"0.75\" fill=\"black\"/>\n<circle cx=\"4\" cy=\"7\" r=\"0.75\" fill=\"black\"/>\n<circle cx=\"2\" cy=\"10\" r=\"0.75\" fill=\"black\"/>\n<path d=\"M10.5 10.5H5.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
       "sha256": "a2bc1ce16c6d19a0bed2012c012a812246b1ed9f7724f258382c7ef404b97263",
       "duplicate": false,
@@ -8728,8 +8752,8 @@
         "device-tablet-pencil-16.svg"
       ],
       "file": "icons/tablet-pencil-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10.2998 0.999756C10.8516 0.999756 11.2957 0.999757 11.6543 1.02905C12.0186 1.05882 12.3387 1.12143 12.6348 1.27222C13.1051 1.51187 13.4878 1.89467 13.7275 2.36499C13.8314 2.56897 13.8909 2.78491 13.9287 3.01831C14.1614 3.08679 14.3808 3.21268 14.5645 3.39624C15.1502 3.98197 15.1501 4.93153 14.5645 5.51733L14 6.08179V11.2996C14 11.8512 14 12.2955 13.9707 12.6541C13.9409 13.0183 13.8783 13.3385 13.7275 13.6345C13.4879 14.1049 13.1051 14.4876 12.6348 14.7273C12.3387 14.8781 12.0186 14.9407 11.6543 14.9705C11.2957 14.9998 10.8516 14.9998 10.2998 14.9998H5.7002C5.14839 14.9998 4.70429 14.9998 4.3457 14.9705C3.98137 14.9407 3.66132 14.8781 3.36523 14.7273C2.89487 14.4876 2.51213 14.1049 2.27246 13.6345C2.12171 13.3385 2.05906 13.0183 2.0293 12.6541C2.00002 12.2955 2 11.8512 2 11.2996V4.69995C2 4.14826 2 3.70399 2.0293 3.34546C2.05907 2.98121 2.12167 2.66102 2.27246 2.36499C2.51215 1.89467 2.89489 1.51187 3.36523 1.27222C3.6613 1.12143 3.9814 1.05882 4.3457 1.02905C4.70429 0.999757 5.1484 0.999756 5.7002 0.999756H10.2998ZM5.7002 1.99976C5.1319 1.99976 4.73518 1.99995 4.42676 2.02515C4.12478 2.04984 3.9509 2.09592 3.81934 2.16284C3.53716 2.30662 3.3069 2.53694 3.16309 2.81909C3.09615 2.95063 3.0501 3.12461 3.02539 3.42651C3.0002 3.73489 3 4.13178 3 4.69995V11.2996C3 11.8677 3.00021 12.2646 3.02539 12.573C3.05008 12.8749 3.09619 13.0489 3.16309 13.1804C3.30688 13.4626 3.53714 13.6929 3.81934 13.8367C3.95091 13.9036 4.12472 13.9497 4.42676 13.9744C4.73518 13.9996 5.13189 13.9998 5.7002 13.9998H10.2998C10.8681 13.9998 11.2648 13.9996 11.5732 13.9744C11.8753 13.9497 12.0491 13.9036 12.1807 13.8367C12.4629 13.6929 12.6931 13.4626 12.8369 13.1804C12.9038 13.0489 12.9499 12.8749 12.9746 12.573C12.9998 12.2646 13 11.8677 13 11.2996V7.08179L10.1045 9.97827C9.92476 10.1579 9.71207 10.3019 9.47852 10.4021L8.41797 10.8562C8.04215 11.0172 7.60552 10.9334 7.31641 10.6443C7.0274 10.3551 6.94345 9.9185 7.10449 9.54272L7.55957 8.48218C7.65976 8.24865 7.80373 8.0359 7.9834 7.8562L12.4434 3.39624C12.5853 3.25439 12.7486 3.1471 12.9229 3.07397C12.8998 2.96926 12.872 2.88811 12.8369 2.81909C12.6931 2.53694 12.4628 2.30662 12.1807 2.16284C12.0491 2.09592 11.8752 2.04984 11.5732 2.02515C11.2648 1.99995 10.8681 1.99976 10.2998 1.99976H5.7002ZM10.5 11.9998C10.7761 11.9998 10.9999 12.2237 11 12.4998C11 12.7759 10.7761 12.9998 10.5 12.9998H5.5C5.22386 12.9998 5 12.7759 5 12.4998C5.00013 12.2237 5.22394 11.9998 5.5 11.9998H10.5ZM13.8574 4.10327C13.6622 3.90822 13.3456 3.90822 13.1504 4.10327L8.69043 8.56323L8.62695 8.63452C8.56644 8.70781 8.5161 8.78906 8.47852 8.87671L8.02344 9.93726L9.08496 9.48315C9.17253 9.44557 9.25392 9.39519 9.32715 9.33472L9.39746 9.27124L13.8574 4.8103C14.0525 4.61503 14.0526 4.29848 13.8574 4.10327Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "1929ccd325666ff74b0534b6d99d0351e085ee6a396865d59fe5583daec9f37c",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10.2998 1C10.8516 1 11.2957 0.999999 11.6543 1.0293C12.0186 1.05907 12.3387 1.12164 12.6348 1.27246C12.9601 1.43825 13.242 1.67347 13.4648 1.95801C13.8616 1.94773 14.2616 2.09368 14.5645 2.39648C15.1502 2.98226 15.1502 3.93179 14.5645 4.51758L14 5.08203V11.2998C14 11.8516 14 12.2957 13.9707 12.6543C13.9409 13.0186 13.8784 13.3387 13.7275 13.6348C13.4879 14.1051 13.1052 14.4879 12.6348 14.7275C12.3387 14.8784 12.0186 14.9409 11.6543 14.9707C11.2957 15 10.8516 15 10.2998 15H5.7002C5.1484 15 4.70429 15 4.3457 14.9707C3.98137 14.9409 3.66132 14.8784 3.36523 14.7275C2.89484 14.4879 2.51215 14.1051 2.27246 13.6348C2.12164 13.3387 2.05907 13.0186 2.0293 12.6543C2 12.2957 2 11.8516 2 11.2998V4.7002C2 4.14842 2 3.70428 2.0293 3.3457C2.05906 2.98138 2.12165 2.66131 2.27246 2.36523C2.51214 1.89484 2.89484 1.51215 3.36523 1.27246C3.66132 1.12163 3.98136 1.05907 4.3457 1.0293C4.70429 0.999999 5.14839 1 5.7002 1H10.2998ZM5.7002 2C5.13189 2 4.73518 2.00019 4.42676 2.02539C4.12471 2.05009 3.95091 2.09613 3.81934 2.16309C3.5371 2.3069 3.30689 2.5371 3.16309 2.81934C3.09615 2.95091 3.05009 3.12474 3.02539 3.42676C3.0002 3.73517 3 4.13193 3 4.7002V11.2998C3 11.8681 3.00019 12.2648 3.02539 12.5732C3.05009 12.8753 3.09614 13.0491 3.16309 13.1807C3.3069 13.4629 3.53711 13.6931 3.81934 13.8369C3.95091 13.9039 4.12473 13.9499 4.42676 13.9746C4.73518 13.9998 5.1319 14 5.7002 14H10.2998C10.8681 14 11.2648 13.9998 11.5732 13.9746C11.8753 13.9499 12.0491 13.9039 12.1807 13.8369C12.4629 13.6931 12.6931 13.4629 12.8369 13.1807C12.9039 13.0491 12.9499 12.8753 12.9746 12.5732C12.9998 12.2648 13 11.8681 13 11.2998V6.08203L9.10449 9.97754C8.92467 10.1574 8.71224 10.3021 8.47852 10.4023L7.41797 10.8564C7.0422 11.0173 6.60546 10.9336 6.31641 10.6445C6.02737 10.3555 5.94359 9.91873 6.10449 9.54297L6.55859 8.48242C6.65881 8.24871 6.80359 8.03626 6.9834 7.85645L12.4434 2.39648C12.4543 2.38553 12.4663 2.37578 12.4775 2.36523C12.3871 2.28697 12.2884 2.21796 12.1807 2.16309C12.0491 2.09613 11.8753 2.05009 11.5732 2.02539C11.2648 2.00019 10.8681 2 10.2998 2H5.7002ZM10.5 12C10.7761 12 11 12.2239 11 12.5C11 12.7761 10.7761 13 10.5 13H5.5C5.22388 13 5.00003 12.7761 5 12.5C5 12.2239 5.22386 12 5.5 12H10.5ZM13.8574 3.10352C13.6622 2.9083 13.3456 2.9083 13.1504 3.10352L7.69043 8.56348L7.62695 8.63379C7.5665 8.70697 7.5161 8.78847 7.47852 8.87598L7.02441 9.9375L8.08496 9.48242C8.17248 9.44483 8.25396 9.39444 8.32715 9.33398L8.39746 9.27051L13.8574 3.81055C14.0526 3.61528 14.0527 3.29877 13.8574 3.10352Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "2403c52b43e0bb170c764bc4e7f92802e5664862a94abe111d37b96cd3b9274c",
       "duplicate": false,
       "variantCount": 1
     },
@@ -8860,8 +8884,8 @@
         "698-351.svg"
       ],
       "file": "icons/cloud-plus-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M6.5 2.99976C7.36573 2.99976 8.15628 3.31706 8.76562 3.83667H8.7666C8.79646 3.86195 8.83947 3.87172 8.87695 3.86206C9.15459 3.78971 9.44731 3.74976 9.75 3.74976C11.683 3.74976 13.2498 5.31694 13.25 7.24976C13.2499 7.53876 13.2121 7.81908 13.1455 8.08667C14.2129 8.37159 14.9999 9.34276 15 10.4998C14.9997 11.8802 13.8805 12.9998 12.5 12.9998H4.5C2.60906 12.9998 1.00037 11.5844 1 9.74976C1.00013 8.42786 1.84262 7.32096 3.01465 6.80933C3.00559 6.70759 3.00002 6.60398 3 6.49976C3.00016 4.56695 4.56705 2.99976 6.5 2.99976ZM6.5 3.99976C5.11943 3.99976 4.00014 5.11911 4 6.49976C4.00004 6.68134 4.01956 6.85946 4.05664 7.03101C4.11136 7.28583 3.96159 7.54009 3.71191 7.61499C2.69229 7.92025 2.00012 8.78093 2 9.74976C2.00037 10.9521 3.07769 11.9998 4.5 11.9998H12.5C13.3282 11.9998 13.9997 11.3279 14 10.4998C13.9999 9.67136 13.3283 8.99976 12.5 8.99976H12.4746C12.3044 8.99976 12.1457 8.91245 12.0537 8.76929C11.962 8.62605 11.9497 8.44539 12.0205 8.29077C12.1669 7.97212 12.2499 7.62018 12.25 7.24976C12.2499 5.8691 11.1306 4.74976 9.75 4.74976C9.5366 4.74976 9.3285 4.7778 9.12891 4.82983V4.83081C8.77524 4.92269 8.39607 4.83499 8.11816 4.59839V4.59741C7.68122 4.22453 7.11733 3.99976 6.5 3.99976ZM7.99512 6.49976C8.27118 6.49976 8.49499 6.72373 8.49512 6.99976V7.99487H9.5C9.77606 7.99487 9.99987 8.21884 10 8.49487C10 8.77102 9.77614 8.99487 9.5 8.99487H8.49512V9.99976C8.49512 10.2759 8.27126 10.4998 7.99512 10.4998C7.71898 10.4998 7.49512 10.2759 7.49512 9.99976V8.99487H6.5C6.22386 8.99487 6 8.77102 6 8.49487C6.00013 8.21884 6.22394 7.99487 6.5 7.99487H7.49512V6.99976C7.49525 6.72373 7.71906 6.49976 7.99512 6.49976Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "4d93d28b55a0392de2f5fb82c0e0df040c03faec56950b4731b981211c3ada9a",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M6.5 2.99976C7.36573 2.99976 8.15628 3.31706 8.76562 3.83667H8.7666C8.79646 3.86195 8.83947 3.87172 8.87695 3.86206C9.15459 3.78971 9.44731 3.74976 9.75 3.74976C11.683 3.74976 13.2498 5.31694 13.25 7.24976C13.2499 7.53876 13.2121 7.81908 13.1455 8.08667C14.2129 8.37159 14.9999 9.34276 15 10.4998C14.9997 11.8802 13.8805 12.9998 12.5 12.9998H4.5C2.60906 12.9998 1.00037 11.5844 1 9.74976C1.00013 8.42786 1.84262 7.32096 3.01465 6.80933C3.00559 6.70759 3.00002 6.60398 3 6.49976C3.00016 4.56695 4.56705 2.99976 6.5 2.99976ZM6.5 3.99976C5.11943 3.99976 4.00014 5.11911 4 6.49976C4.00004 6.68134 4.01956 6.85946 4.05664 7.03101C4.11136 7.28583 3.9616 7.54009 3.71191 7.61499C2.69229 7.92025 2.00012 8.78093 2 9.74976C2.00037 10.9521 3.07769 11.9998 4.5 11.9998H12.5C13.3282 11.9998 13.9997 11.3279 14 10.4998C13.9999 9.67136 13.3283 8.99976 12.5 8.99976H12.4746C12.3044 8.99976 12.1457 8.91245 12.0537 8.76929C11.962 8.62605 11.9497 8.44539 12.0205 8.29077C12.1669 7.97212 12.2499 7.62018 12.25 7.24976C12.2499 5.8691 11.1306 4.74976 9.75 4.74976C9.5366 4.74976 9.3285 4.7778 9.12891 4.82983V4.83081C8.77524 4.92269 8.39607 4.83499 8.11816 4.59839V4.59741C7.68122 4.22453 7.11733 3.99976 6.5 3.99976ZM7.99512 5.99976C8.27118 5.99976 8.49499 6.22373 8.49512 6.49976V7.99487H10C10.2761 7.99487 10.4999 8.21884 10.5 8.49487C10.5 8.77102 10.2761 8.99487 10 8.99487H8.49512V10.4998C8.49512 10.7759 8.27126 10.9998 7.99512 10.9998C7.71897 10.9998 7.49512 10.7759 7.49512 10.4998V8.99487H6C5.72386 8.99487 5.5 8.77102 5.5 8.49487C5.50013 8.21884 5.72394 7.99487 6 7.99487H7.49512V6.49976C7.49525 6.22373 7.71906 5.99976 7.99512 5.99976Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "ac5c4a7fdb81a39f1abf80b767f7494afb2c25a6161a919a4f8bb19cc81240ca",
       "duplicate": false,
       "variantCount": 1
     },
@@ -10881,8 +10905,8 @@
         "376-6585.svg"
       ],
       "file": "icons/presentation-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 2C8.27614 2 8.5 2.22386 8.5 2.5V3H12.5C12.7761 3 13 3.22386 13 3.5V9.5C13 10.3284 12.3284 11 11.5 11H10.0732L10.9658 13.3213C11.0643 13.5788 10.9361 13.8687 10.6787 13.9678C10.4214 14.0666 10.1317 13.9377 10.0322 13.6807L9.00098 11H6.99805L5.9668 13.6807C5.86728 13.9375 5.5776 14.0666 5.32031 13.9678C5.06291 13.8687 4.93472 13.5788 5.0332 13.3213L5.92578 11H4.5C3.67157 11 3 10.3284 3 9.5V3.5C3 3.22386 3.22386 3 3.5 3H7.5V2.5C7.5 2.22386 7.72386 2 8 2ZM4 9.5C4 9.77614 4.22386 10 4.5 10H11.5C11.7761 10 12 9.77614 12 9.5V4H4V9.5Z\" fill=\"black\"/>\n<path d=\"M13.5 3.5H2.5\" stroke=\"black\" stroke-linecap=\"round\"/>\n</svg>\n",
-      "sha256": "628c2f835ee148468266cef05fa9fd939409889760e597c8f9e2e2dee0032308",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 2C8.27614 2 8.5 2.22386 8.5 2.5V3H13.5C13.7761 3 14 3.22386 14 3.5V9.5C14 10.3284 13.3284 11 12.5 11H11.0723L11.9648 13.3213C12.0634 13.5788 11.9351 13.8687 11.6777 13.9678C11.4204 14.0665 11.1306 13.9377 11.0312 13.6807L10 11H8.5V12.501C8.49951 12.7767 8.27578 13.0009 8 13.001C7.72416 13.001 7.5005 12.7767 7.5 12.501V11H5.99707L4.96582 13.6807C4.8663 13.9375 4.57662 14.0666 4.31934 13.9678C4.06193 13.8687 3.93375 13.5788 4.03223 13.3213L4.9248 11H3.5C2.67157 11 2 10.3284 2 9.5V3.5C2 3.22386 2.22386 3 2.5 3H7.5V2.5C7.5 2.22386 7.72386 2 8 2ZM3 9.5C3 9.77614 3.22386 10 3.5 10H12.5C12.7761 10 13 9.77614 13 9.5V4H3V9.5Z\" fill=\"black\"/>\n<path d=\"M14.5 3.5H1.5\" stroke=\"black\" stroke-linecap=\"round\"/>\n</svg>\n",
+      "sha256": "492dad5d741f18ef34abccdb5e27dc66b4bb31f824c93db767669bbab656ec46",
       "duplicate": false,
       "variantCount": 1
     },
@@ -11519,8 +11543,8 @@
         "carets-diagonal-16.svg"
       ],
       "file": "icons/carets-maximize-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.2929 13C7.73835 13 7.96144 12.4614 7.64646 12.1464L3.85356 8.3535C3.53857 8.03852 3 8.2616 3 8.70706V12.5C3 12.7761 3.22386 13 3.5 13H7.2929ZM13 7.29284C13 7.73829 12.4614 7.96138 12.1464 7.6464L8.35356 3.85355C8.03858 3.53857 8.26166 3 8.70712 3H12.5C12.7761 3 13 3.22386 13 3.5V7.29284Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "cfe7b28bf4830e3d68b1ab126069022c751e64d92b082e80a273935aa4ed74d5",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.2929 12C8.73835 12 8.96144 11.4614 8.64646 11.1464L4.85356 7.3535C4.53857 7.03852 4 7.2616 4 7.70706V11.5C4 11.7761 4.22386 12 4.5 12H8.2929ZM12 8.29284C12 8.73829 11.4614 8.96138 11.1464 8.6464L7.35356 4.85355C7.03858 4.53857 7.26166 4 7.70712 4H11.5C11.7761 4 12 4.22386 12 4.5V8.29284Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "5842499e4abfb047ffa556faa8f3098e10276f8527f3053308b4846e76250509",
       "duplicate": false,
       "variantCount": 1
     },
@@ -11899,8 +11923,8 @@
         "343-9460.svg"
       ],
       "file": "icons/download-square-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10.5 4.00049C11.8807 4.00049 13 5.11978 13 6.50049V11.5005C12.9997 12.881 11.8805 14.0005 10.5 14.0005H5.5C4.11945 14.0005 3.00026 12.881 3 11.5005V6.50049C3 5.11978 4.11929 4.00049 5.5 4.00049C5.77614 4.00049 6 4.22435 6 4.50049C5.99974 4.77641 5.77598 5.00049 5.5 5.00049C4.67157 5.00049 4 5.67206 4 6.50049V11.5005C4.00026 12.3287 4.67174 13.0005 5.5 13.0005H10.5C11.3283 13.0005 11.9997 12.3287 12 11.5005V6.50049C12 5.67206 11.3284 5.00049 10.5 5.00049C10.224 5.00049 10.0003 4.77641 10 4.50049C10 4.22435 10.2239 4.00049 10.5 4.00049ZM8 0.999512C8.27614 0.999512 8.5 1.22435 8.5 1.50049V9.79346L10.1465 8.14697C10.3417 7.95171 10.6583 7.95171 10.8535 8.14697C11.0485 8.34225 11.0487 8.65882 10.8535 8.854L8.35352 11.354C8.25977 11.4476 8.13249 11.5005 8 11.5005C7.90066 11.5005 7.80414 11.4708 7.72266 11.4165L7.64648 11.354L5.14648 8.854C4.9513 8.65882 4.95147 8.34225 5.14648 8.14697C5.34175 7.95171 5.65825 7.95171 5.85352 8.14697L7.5 9.79346V1.50049C7.5 1.22435 7.72386 0.999512 8 0.999512Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "9545d21c40c0bae0b9128dbaf86357e944112a858b4168db1a7c481a37a6025c",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.5 4.00049C5.77614 4.00049 6 4.22435 6 4.50049C5.99974 4.77641 5.77598 5.00049 5.5 5.00049H4.5C3.67157 5.00049 3 5.67206 3 6.50049V11.5005C3.00026 12.3287 3.67174 13.0005 4.5 13.0005H11.5C12.3283 13.0005 12.9997 12.3287 13 11.5005V6.50049C13 5.67206 12.3284 5.00049 11.5 5.00049H10.5C10.224 5.00049 10.0003 4.77641 10 4.50049C10 4.22435 10.2239 4.00049 10.5 4.00049H11.5C12.8807 4.00049 14 5.11978 14 6.50049V11.5005C13.9997 12.881 12.8805 14.0005 11.5 14.0005H4.5C3.11945 14.0005 2.00026 12.881 2 11.5005V6.50049C2 5.11978 3.11929 4.00049 4.5 4.00049H5.5ZM8 1.99951C8.27614 1.99951 8.5 2.22435 8.5 2.50049V8.79346L10.1465 7.14697C10.3417 6.95171 10.6583 6.95171 10.8535 7.14697C11.0485 7.34225 11.0487 7.65882 10.8535 7.854L8.35352 10.354C8.25977 10.4476 8.13249 10.5005 8 10.5005C7.90066 10.5005 7.80414 10.4708 7.72266 10.4165L7.64648 10.354L5.14648 7.854C4.9513 7.65882 4.95147 7.34225 5.14648 7.14697C5.34175 6.95171 5.65825 6.95171 5.85352 7.14697L7.5 8.79346V2.50049C7.5 2.22435 7.72386 1.99951 8 1.99951Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "c0841d5ffdec0438507e46bc5f50925641f1b3d20d3b84e43cb8c3a24d93e991",
       "duplicate": false,
       "variantCount": 1
     },
@@ -12037,8 +12061,8 @@
         "upload-square-16.svg"
       ],
       "file": "icons/share-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.5 5.00049C5.77614 5.00049 6 5.22435 6 5.50049C5.99974 5.77641 5.77598 6.00049 5.5 6.00049H5C4.44772 6.00049 4 6.4482 4 7.00049V12.0005C4.00026 12.5525 4.44788 13.0005 5 13.0005H11C11.5521 13.0005 11.9997 12.5525 12 12.0005V7.00049C12 6.4482 11.5523 6.00049 11 6.00049H10.5C10.224 6.00049 10.0003 5.77641 10 5.50049C10 5.22435 10.2239 5.00049 10.5 5.00049H11C12.1046 5.00049 13 5.89592 13 7.00049V12.0005C12.9997 13.1048 12.1044 14.0005 11 14.0005H5C3.89559 14.0005 3.00026 13.1048 3 12.0005V7.00049C3 5.89592 3.89543 5.00049 5 5.00049H5.5ZM8.02441 0.501465C8.04276 0.50238 8.06093 0.504401 8.0791 0.507324C8.08996 0.509054 8.10071 0.510766 8.11133 0.513184C8.13459 0.518504 8.15723 0.525993 8.17969 0.534668C8.18586 0.537051 8.1922 0.538886 8.19824 0.541504C8.20239 0.543301 8.20683 0.544472 8.21094 0.546387L8.2793 0.585449L8.28125 0.586426C8.30664 0.603745 8.33098 0.623493 8.35352 0.645996L10.8535 3.14697C11.0485 3.34225 11.0487 3.65883 10.8535 3.854C10.6583 4.04893 10.3417 4.04893 10.1465 3.854L8.5 2.20752V8.50049C8.49974 8.77641 8.27598 9.00049 8 9.00049C7.72402 9.00049 7.50026 8.77641 7.5 8.50049V2.20752L5.85352 3.854C5.65832 4.04893 5.34168 4.04893 5.14648 3.854C4.95131 3.65883 4.95148 3.34225 5.14648 3.14697L7.6416 0.650879C7.66581 0.626034 7.69277 0.603871 7.72168 0.584473L7.72461 0.58252C7.77657 0.548208 7.83373 0.525044 7.89258 0.512207C7.90222 0.510093 7.91203 0.508873 7.92188 0.507324C7.94103 0.504325 7.96015 0.502232 7.97949 0.501465C7.98631 0.501189 7.99312 0.499512 8 0.499512C8.0082 0.499512 8.01631 0.501075 8.02441 0.501465Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "adc1cb6f77378e885e0f8c59e81092714ed157ada886351173c6312b4ed39101",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.5 6C5.77614 6 6 6.22386 6 6.5C6 6.77614 5.77614 7 5.5 7H5C4.44772 7 4 7.44772 4 8V13C4 13.5523 4.44772 14 5 14H11C11.5523 14 12 13.5523 12 13V8C12 7.44772 11.5523 7 11 7H10.5C10.2239 7 10 6.77614 10 6.5C10 6.22386 10.2239 6 10.5 6H11C12.1046 6 13 6.89543 13 8V13C13 14.1046 12.1046 15 11 15H5C3.89543 15 3 14.1046 3 13V8C3 6.89543 3.89543 6 5 6H5.5ZM8.01562 1.50098C8.03625 1.50164 8.05672 1.50363 8.07715 1.50684C8.0907 1.50894 8.10402 1.51148 8.11719 1.51465C8.13539 1.51904 8.15318 1.52479 8.1709 1.53125C8.18031 1.53468 8.19008 1.53705 8.19922 1.54102C8.20309 1.5427 8.2071 1.54411 8.21094 1.5459L8.2793 1.58496C8.2814 1.58638 8.28308 1.5884 8.28516 1.58984C8.30909 1.60653 8.33217 1.62514 8.35352 1.64648L10.8535 4.14648C11.0488 4.34175 11.0488 4.65826 10.8535 4.85352C10.6583 5.04876 10.3417 5.04876 10.1465 4.85352L8.5 3.20703V9.5C8.5 9.77614 8.27614 10 8 10C7.72386 10 7.5 9.77614 7.5 9.5V3.20703L5.85352 4.85352C5.65826 5.04876 5.34174 5.04876 5.14648 4.85352C4.95123 4.65826 4.95123 4.34175 5.14648 4.14648L7.64648 1.64648L7.72461 1.58203C7.74996 1.56529 7.77633 1.55069 7.80371 1.53906C7.80748 1.53745 7.81161 1.53667 7.81543 1.53516C7.84061 1.52519 7.86638 1.51743 7.89258 1.51172C7.90092 1.50989 7.90948 1.50922 7.91797 1.50781C7.94067 1.50408 7.96338 1.50157 7.98633 1.50098C7.99088 1.50085 7.99542 1.5 8 1.5C8.00524 1.5 8.01043 1.50082 8.01562 1.50098Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "49cd69ceac9d57e6f6859b213c42ba3f0be5c0610fe04eda6d5cd457f5b13a7f",
       "duplicate": false,
       "variantCount": 1
     },
@@ -16630,8 +16654,8 @@
         "500-2240.svg"
       ],
       "file": "icons/box-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.24414 1.44051C7.71108 1.16833 8.28897 1.1682 8.75586 1.44051L13.2559 4.06551C13.7166 4.33426 13.9999 4.82804 14 5.36141V10.6388L13.9873 10.836C13.9269 11.2917 13.6592 11.6994 13.2559 11.9347L8.75586 14.5597L8.5752 14.6485C8.20687 14.8016 7.79212 14.8017 7.42383 14.6485L7.24414 14.5597L2.74414 11.9347C2.34084 11.6994 2.07313 11.2917 2.0127 10.836L2 10.6388V5.36141C2.00011 4.82805 2.28342 4.33428 2.74414 4.06551L7.24414 1.44051ZM3 10.6388C3.00007 10.8165 3.09455 10.9808 3.24805 11.0704L7.5 13.5499V7.80868L3 5.55868V10.6388ZM8.5 7.80868V13.5499L12.752 11.0704C12.9055 10.9808 12.9999 10.8165 13 10.6388V5.55868L8.5 7.80868ZM8.25195 2.30477C8.09636 2.21404 7.90367 2.21411 7.74805 2.30477L3.58398 4.73251L8 6.94051L12.415 4.73251L8.25195 2.30477Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "a1d2c96cec021f14bc0a10d5317d8e4c3982a4dc23bcd3ae8eab89634a4b7cd8",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.24414 1.44043C7.71108 1.16825 8.28897 1.16811 8.75586 1.44043L13.2559 4.06543C13.7166 4.33418 13.9999 4.82795 14 5.36133V10.6387L13.9873 10.8359C13.9269 11.2916 13.6592 11.6993 13.2559 11.9346L8.75586 14.5596L8.5752 14.6484C8.20687 14.8015 7.79212 14.8016 7.42383 14.6484L7.24414 14.5596L2.74414 11.9346C2.34084 11.6993 2.07313 11.2916 2.0127 10.8359L2 10.6387V5.36133C2.00011 4.82796 2.28342 4.3342 2.74414 4.06543L7.24414 1.44043ZM3 10.6387C3.00007 10.8164 3.09455 10.9807 3.24805 11.0703L7.5 13.5498V7.80859L3 5.55859V10.6387ZM8.5 7.80859V13.5498L12.752 11.0703C12.9055 10.9807 12.9999 10.8164 13 10.6387V5.55859L8.5 7.80859ZM8.25195 2.30469C8.09636 2.21395 7.90367 2.21402 7.74805 2.30469L3.58398 4.73242L8 6.94043L12.415 4.73242L8.25195 2.30469Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "c3e6f4ae20f8f9d217c1972d5c6a226895b1b249c7d2087a0694a67ffa0cfa82",
       "duplicate": false,
       "variantCount": 1
     },
@@ -17224,8 +17248,8 @@
         "346-9954.svg"
       ],
       "file": "icons/pin-vertical-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.00018 1.46631C9.03778 1.46635 10.1108 1.72531 10.9152 2.28369C11.3505 2.58586 11.4928 3.09453 11.4484 3.52881L11.0715 7.20557C11.2495 7.30834 11.4888 7.45788 11.7346 7.646C12.2003 8.00248 12.8249 8.59775 12.925 9.37158C12.9905 9.87889 12.5817 10.1749 12.3234 10.311C12.0245 10.4684 11.6232 10.5829 11.1896 10.6685C10.6931 10.7664 10.1054 10.8338 9.48162 10.8755C9.49194 10.9155 9.50018 10.9572 9.50018 11.0005V11.5972C9.50008 12.6188 9.15209 13.6109 8.51385 14.4087L8.3908 14.563L8.00018 15.0513L7.60955 14.563L7.48651 14.4087C6.84826 13.6109 6.50027 12.6188 6.50018 11.5972V11.0005C6.50018 10.9574 6.50651 10.9154 6.51678 10.8755C5.89361 10.8338 5.30678 10.7663 4.81072 10.6685C4.37721 10.5829 3.9768 10.4684 3.67791 10.311C3.41972 10.1751 3.0108 9.87936 3.07635 9.37158C3.17648 8.59787 3.80012 8.00246 4.2658 7.646C4.51114 7.45826 4.75 7.30828 4.92791 7.20557L4.55193 3.52881C4.50754 3.0945 4.64985 2.58587 5.08514 2.28369C5.88957 1.72541 6.96263 1.46631 8.00018 1.46631ZM8.50701 10.9185C8.33832 10.9221 8.16908 10.9253 8.00018 10.9253C7.83071 10.9253 7.66064 10.9221 7.49139 10.9185C7.49578 10.9451 7.50018 10.9726 7.50018 11.0005V11.5972C7.50025 12.2333 7.67632 12.8533 8.00018 13.394C8.32403 12.8533 8.5001 12.2333 8.50018 11.5972V11.0005C8.50018 10.9727 8.50264 10.945 8.50701 10.9185ZM8.00018 2.46631C7.1078 2.46631 6.24992 2.69251 5.65545 3.10498C5.59189 3.1491 5.52877 3.25752 5.54608 3.42725L5.95721 7.43604C5.97873 7.64617 5.86558 7.84795 5.67498 7.93896H5.67303C5.67095 7.93997 5.66708 7.94242 5.66229 7.94482C5.65209 7.94989 5.63613 7.95847 5.61541 7.96924C5.57314 7.99119 5.51036 8.02437 5.43475 8.06787C5.28217 8.15568 5.07902 8.28322 4.8742 8.43994C4.47775 8.74336 4.18025 9.07957 4.091 9.39307C4.1055 9.40196 4.12201 9.41483 4.14373 9.42627C4.3145 9.51613 4.60344 9.60775 5.00506 9.68701C5.79726 9.84329 6.89025 9.92529 8.00018 9.92529C9.11028 9.92528 10.2041 9.84335 10.9963 9.68701C11.3975 9.60779 11.686 9.51607 11.8566 9.42627C11.8776 9.41518 11.8942 9.40271 11.9084 9.39404C11.8194 9.08045 11.5237 8.74352 11.1271 8.43994C10.9222 8.28309 10.7183 8.15574 10.5656 8.06787C10.4899 8.02432 10.4273 7.99122 10.3849 7.96924C10.3641 7.95841 10.3483 7.94991 10.3381 7.94482C10.3331 7.94236 10.3294 7.94001 10.3273 7.93896H10.3254L10.258 7.8999C10.1086 7.79765 10.0243 7.62014 10.0431 7.43604L10.4543 3.42725C10.4716 3.25757 10.4084 3.14911 10.3449 3.10498C9.75047 2.69241 8.89262 2.46635 8.00018 2.46631Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "eb44a2a92f596aab736cd2ee436b2ae7a8a4056ec3f6c876970ecbf7a21c6f57",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.00067 1.46631C9.03827 1.46635 10.1113 1.72531 10.9157 2.28369C11.351 2.58586 11.4933 3.09453 11.4489 3.52881L11.0729 7.20361C11.2529 7.30614 11.4943 7.455 11.7419 7.64307C12.2096 7.99848 12.8411 8.59805 12.9265 9.38135C12.9791 9.86613 12.6478 10.1917 12.3561 10.3745C12.0527 10.5646 11.6454 10.7024 11.2077 10.8052C10.7103 10.9219 10.1231 11.0032 9.50067 11.0532V11.5972C9.50058 12.6188 9.15259 13.6109 8.51434 14.4087L8.3913 14.563L8.00067 15.0513L7.61005 14.563L7.487 14.4087C6.84876 13.6109 6.50077 12.6188 6.50067 11.5972V11.0532C5.87808 11.0032 5.29111 10.9219 4.79364 10.8052C4.35587 10.7024 3.94871 10.5646 3.6452 10.3745C3.35353 10.1917 3.02227 9.86627 3.07489 9.38135L3.09735 9.23682C3.23868 8.52425 3.82094 7.97628 4.25946 7.64307C4.50657 7.45535 4.74765 7.30609 4.92743 7.20361L4.55243 3.52881C4.50803 3.0945 4.65034 2.58587 5.08563 2.28369C5.89006 1.72541 6.96313 1.46631 8.00067 1.46631ZM8.50067 11.106C8.33419 11.1102 8.16723 11.1128 8.00067 11.1128C7.8342 11.1128 7.66707 11.1102 7.50067 11.106V11.5972C7.50075 12.2333 7.67682 12.8533 8.00067 13.394C8.32453 12.8533 8.5006 12.2333 8.50067 11.5972V11.106ZM8.00067 2.46631C7.1083 2.46631 6.25042 2.69251 5.65595 3.10498C5.59239 3.1491 5.52927 3.25752 5.54657 3.42725L5.9577 7.43604C5.97663 7.62085 5.89115 7.79883 5.74091 7.90088L5.67255 7.93994L5.67157 7.94092C5.66949 7.94191 5.6649 7.94337 5.65985 7.9458C5.64951 7.95086 5.63317 7.95938 5.612 7.97021C5.56918 7.99213 5.50587 8.0254 5.42938 8.06885C5.27517 8.15646 5.06977 8.28359 4.86395 8.43994C4.4359 8.76528 4.13247 9.12489 4.07684 9.45068C4.09289 9.46687 4.12229 9.49292 4.17645 9.52686C4.34252 9.63087 4.62473 9.73822 5.02216 9.83154C5.807 10.0158 6.89422 10.1128 8.00067 10.1128C9.10714 10.1128 10.1944 10.0158 10.9792 9.83154C11.3765 9.73823 11.6589 9.63085 11.8249 9.52686C11.8783 9.49339 11.9074 9.46686 11.9235 9.45068C11.8679 9.1249 11.5654 8.76526 11.1374 8.43994C10.9315 8.28349 10.7262 8.15651 10.572 8.06885C10.4954 8.02536 10.4322 7.99215 10.3893 7.97021C10.368 7.95932 10.3519 7.95088 10.3415 7.9458C10.3367 7.94345 10.3329 7.94196 10.3308 7.94092L10.3288 7.93994L10.2604 7.90088C10.11 7.79886 10.0247 7.62095 10.0436 7.43604L10.4548 3.42725C10.472 3.25757 10.4089 3.14911 10.3454 3.10498C9.75096 2.69241 8.89311 2.46635 8.00067 2.46631Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "9465a0961ba091810386800a1fe9f62ae5347c9da8301b51221ce2b6ed4c63a2",
       "duplicate": false,
       "variantCount": 1
     },
@@ -17246,8 +17270,8 @@
         "811-9149.svg"
       ],
       "file": "icons/pin-vertical-fill-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.00098 1.46582C9.03846 1.46593 10.1117 1.72489 10.916 2.2832C11.3511 2.58527 11.4934 3.09415 11.4492 3.52832L11.0723 7.20508C11.2503 7.30785 11.4896 7.45743 11.7354 7.64551C12.201 8.00194 12.8256 8.59746 12.9258 9.37109C12.9912 9.8781 12.5825 10.1743 12.3242 10.3105C12.0254 10.4679 11.6239 10.5824 11.1904 10.668C10.3116 10.8414 9.14734 10.9248 8.00098 10.9248C6.85463 10.9248 5.69049 10.8414 4.81152 10.668C4.37806 10.5824 3.97759 10.4678 3.67871 10.3105C3.42052 10.1746 3.0116 9.87887 3.07715 9.37109C3.17746 8.5976 3.80101 8.0019 4.2666 7.64551C4.51179 7.45793 4.7509 7.30774 4.92871 7.20508L4.55273 3.52832C4.50845 3.0941 4.65077 2.5853 5.08594 2.2832C5.89032 1.72514 6.96362 1.46582 8.00098 1.46582Z\" fill=\"black\"/>\n<path d=\"M7 12.3469V11.5H9V12.3469C9 13.2552 8.69088 14.1364 8.12348 14.8457L8 15L7.87652 14.8457C7.30912 14.1364 7 13.2552 7 12.3469Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "ab0d2dd1825e97fb680ebe317c6e9ecb1f814d844dc851ac1e40d0ecca6f3af1",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 1.46582C9.03741 1.46587 10.1107 1.72503 10.915 2.2832C11.3502 2.58528 11.4925 3.09411 11.4482 3.52832L11.0723 7.20312C11.2521 7.30559 11.4938 7.45465 11.7412 7.64258C12.2089 7.99792 12.8402 8.59777 12.9258 9.38086C12.9784 9.86561 12.6471 10.1912 12.3555 10.374C12.052 10.5641 11.6447 10.7019 11.207 10.8047C10.3207 11.0127 9.14998 11.1123 8 11.1123C6.85002 11.1123 5.67925 11.0127 4.79297 10.8047C4.35536 10.7019 3.94793 10.5641 3.64453 10.374C3.35296 10.1912 3.02162 9.86554 3.07422 9.38086L3.09668 9.23633C3.23811 8.52398 3.82035 7.97575 4.25879 7.64258C4.5058 7.45494 4.74701 7.30559 4.92676 7.20312L4.55176 3.52832C4.50751 3.09415 4.64992 2.58529 5.08496 2.2832C5.88928 1.72503 6.96261 1.46589 8 1.46582Z\" fill=\"black\"/>\n<path d=\"M7 12.3469V12H9V12.3469C9 13.2552 8.69088 14.1364 8.12348 14.8457L8 15L7.87652 14.8457C7.30912 14.1364 7 13.2552 7 12.3469Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "b3e7f2ce7a6b41bd709a0d65c711e4e90b17231469564b441344cb5efb48a9f6",
       "duplicate": false,
       "variantCount": 1
     },
@@ -17312,8 +17336,8 @@
         "748-4931.svg"
       ],
       "file": "icons/map-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.06543 2.09424C5.37125 2.01785 5.69365 2.03967 5.98633 2.15674L10.3857 3.9165C10.4831 3.95534 10.5906 3.96242 10.6924 3.93701L13.1357 3.32568C14.0825 3.089 15 3.80588 15 4.78174V11.7192C14.9998 12.4072 14.5317 13.0083 13.8643 13.1753L10.9346 13.9067C10.6288 13.9831 10.3063 13.9612 10.0137 13.8442L5.61426 12.0845C5.51678 12.0456 5.40945 12.0385 5.30762 12.064L2.86426 12.6753C1.91771 12.9119 1.00027 12.1948 1 11.2192V4.28174C1 3.59359 1.46823 2.99278 2.13574 2.82568L5.06543 2.09424ZM13.3789 4.29639L11 4.89014V12.8599L13.6211 12.2046C13.8435 12.149 13.9998 11.9485 14 11.7192V4.78174C14 4.45649 13.6944 4.21758 13.3789 4.29639ZM6 11.1616L10 12.7622V4.83838L6 3.23779V11.1616ZM2.37891 3.79639C2.15638 3.85207 2 4.05234 2 4.28174V11.2192C2.00027 11.5442 2.30573 11.7833 2.62109 11.7046L5 11.1099V3.14014L2.37891 3.79639Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "7e087ad151a556019c15284ac8f8258c3f9e2be45e8ff96f0b4f8d4a2fd5edcd",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.06543 2.09375C5.37125 2.01736 5.69365 2.03918 5.98633 2.15625L10.3857 3.91602C10.4832 3.95488 10.5906 3.96195 10.6924 3.93652L13.7578 3.16992C14.3888 3.01244 15 3.49019 15 4.14062V12.1094C14.9999 12.5681 14.6873 12.9688 14.2422 13.0801L10.9346 13.9062C10.6288 13.9826 10.3063 13.9608 10.0137 13.8438L5.61426 12.084C5.51678 12.0451 5.40945 12.038 5.30762 12.0635L2.24219 12.8301C1.61128 12.9875 1.00015 12.5097 1 11.8594V3.89062C1 3.43178 1.31268 3.03123 1.75781 2.91992L5.06543 2.09375ZM11 4.88965V12.8594L14 12.1094V4.14062L11 4.88965ZM6 11.1611L10 12.7617V4.83789L6 3.2373V11.1611ZM2 3.89062V11.8594L5 11.1094V3.13965L2 3.89062Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "c9a97ea844f90cb2b07ac7bcff5fb2a9a4f5c3be7fac7d499f121db8bd38a1e1",
       "duplicate": false,
       "variantCount": 1
     },
@@ -17339,8 +17363,8 @@
       },
       "variantSetId": "659:223",
       "file": "icons/moon-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M6.99512 2.08579C7.20243 2.0509 7.40904 2.14995 7.5127 2.33286C7.61632 2.51585 7.5946 2.74426 7.45801 2.90415C6.86071 3.60336 6.50004 4.50879 6.5 5.49985C6.5 7.70899 8.29086 9.49985 10.5 9.49985C11.4911 9.49985 12.3962 9.13861 13.0957 8.54087C13.2555 8.40434 13.4841 8.38185 13.667 8.4852C13.85 8.58883 13.9489 8.79641 13.9141 9.00376C13.4359 11.8391 10.9721 13.9999 8 13.9999C4.68629 13.9999 2 11.3136 2 7.99985C2.00009 5.02829 4.16033 2.56437 6.99512 2.08579ZM5.94238 3.44321C4.2073 4.22723 3.00007 5.9725 3 7.99985C3 10.7613 5.23858 12.9999 8 12.9999C10.0279 12.9999 11.772 11.7914 12.5557 10.0555C11.9286 10.3395 11.2333 10.4999 10.5 10.4999C7.73858 10.4999 5.5 8.26128 5.5 5.49985C5.50003 4.76673 5.65857 4.07046 5.94238 3.44321Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "52bdc7b84e7b074fc5996f8aa38e1dd11f9de18b0a4c2093dd507efdcce17485",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.3584 1.03083C7.56624 1.01209 7.76424 1.12488 7.85449 1.31306C7.94456 1.50134 7.90763 1.72632 7.7627 1.87654C6.98092 2.68664 6.50011 3.78632 6.5 4.99958C6.5 7.48486 8.51472 9.49958 11 9.49958C12.2139 9.49958 13.3137 9.01836 14.124 8.23591C14.2742 8.09092 14.4992 8.05406 14.6875 8.14411C14.8758 8.23429 14.9884 8.43233 14.9697 8.64021C14.6458 12.206 11.6502 14.9996 8 14.9996C4.13401 14.9996 1 11.8656 1 7.99958C1.00021 4.34999 3.79351 1.35537 7.3584 1.03083ZM6.22754 2.26814C3.77931 3.02371 2.00018 5.30341 2 7.99958C2 11.3133 4.68629 13.9996 8 13.9996C10.6971 13.9996 12.9763 12.2193 13.7314 9.77009C12.9267 10.2324 11.995 10.4996 11 10.4996C7.96243 10.4996 5.5 8.03715 5.5 4.99958C5.50008 4.00503 5.76553 3.07264 6.22754 2.26814Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "5db8ea8f018299269dbea3f71fa1f50b9d676d787766353ffa0427af19beaa65",
       "duplicate": true,
       "variantCount": 2
     },
@@ -17366,8 +17390,8 @@
       },
       "variantSetId": "659:223",
       "file": "icons/moon-fill-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M6.99512 2.08553C7.20234 2.05067 7.409 2.14983 7.5127 2.3326C7.61629 2.51552 7.59448 2.744 7.45801 2.90389C6.86077 3.60303 6.50011 4.50864 6.5 5.49959C6.5 7.70873 8.29086 9.49959 10.5 9.49959C11.4911 9.49959 12.3962 9.13835 13.0957 8.54061C13.2554 8.40421 13.4841 8.3817 13.667 8.48494C13.8499 8.58852 13.9488 8.79624 13.9141 9.0035C13.4359 11.8389 10.9721 13.9996 8 13.9996C4.68629 13.9996 2 11.3133 2 7.99959C2.00023 5.02815 4.16042 2.56409 6.99512 2.08553Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "d5c6c67e22efc8a7552b01d380d38e6415a294043d23f99d32846ff384d9a5a9",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.3584 1.02863C7.56616 1.00991 7.7642 1.12281 7.85449 1.31086C7.94455 1.49911 7.90756 1.72412 7.7627 1.87433C6.98066 2.68428 6.50012 3.78535 6.5 4.99933C6.5 7.48461 8.51472 9.49933 11 9.49933C12.2138 9.49933 13.3137 9.01805 14.124 8.23566C14.2742 8.09084 14.4993 8.05392 14.6875 8.14386C14.8757 8.234 14.9883 8.4322 14.9697 8.63996C14.6457 12.2056 11.6501 14.9993 8 14.9993C4.13401 14.9993 1 11.8653 1 7.99933C1.00024 4.34988 3.79327 1.3531 7.3584 1.02863Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "b76f737de83ba9540871464c86b03eaec191c32056d56d8a7903ae63ade1f879",
       "duplicate": true,
       "variantCount": 2
     },
@@ -17868,8 +17892,8 @@
         "search-1-16.svg"
       ],
       "file": "icons/search-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M6.5 1C9.53757 1 12 3.46243 12 6.5C12 7.83872 11.5206 9.06482 10.7256 10.0186L11.4902 10.7832C11.8238 10.6941 12.1943 10.7803 12.4561 11.042L14.707 13.293C15.0976 13.6835 15.0976 14.3165 14.707 14.707C14.3165 15.0976 13.6835 15.0976 13.293 14.707L11.042 12.4561C10.7803 12.1943 10.6941 11.8238 10.7832 11.4902L10.0186 10.7256C9.06482 11.5206 7.83872 12 6.5 12C3.46243 12 1 9.53757 1 6.5C1 3.46243 3.46243 1 6.5 1ZM6.5 2C4.01472 2 2 4.01472 2 6.5C2 8.98528 4.01472 11 6.5 11C8.98528 11 11 8.98528 11 6.5C11 4.01472 8.98528 2 6.5 2Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "9549215fcf32c03ae1cb30b94b8f234822f73f63cf063a192184a6e3036f22cb",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M6.5 1C9.53757 1 12 3.46243 12 6.5C12 7.83872 11.5206 9.06482 10.7256 10.0186L11.2412 10.5342C11.5748 10.4451 11.9453 10.5313 12.207 10.793L14.707 13.293C15.0976 13.6835 15.0976 14.3165 14.707 14.707C14.3165 15.0976 13.6835 15.0976 13.293 14.707L10.793 12.207C10.5313 11.9453 10.4451 11.5748 10.5342 11.2412L10.0186 10.7256C9.06482 11.5206 7.83872 12 6.5 12C3.46243 12 1 9.53757 1 6.5C1 3.46243 3.46243 1 6.5 1ZM6.5 2C4.01472 2 2 4.01472 2 6.5C2 8.98528 4.01472 11 6.5 11C8.98528 11 11 8.98528 11 6.5C11 4.01472 8.98528 2 6.5 2Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "1d2e82a6537e9792e555b6094cb1b92921b9dea0e3709c6aee01d03ef59df2d5",
       "duplicate": false,
       "variantCount": 1
     },
@@ -18070,8 +18094,8 @@
         "617-12487.svg"
       ],
       "file": "icons/ampersand-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.29673 3.44007C5.82728 2.27286 7.16352 1.70708 8.37095 2.13831L8.43443 2.16077C9.65616 2.59726 10.3227 3.91418 9.95005 5.15687C9.77132 5.7523 9.37136 6.25732 8.83287 6.568L7.82603 7.14808L10.0604 9.91858L12.0995 7.20081C12.2651 6.98 12.5788 6.93482 12.7997 7.10022C13.0202 7.26589 13.0656 7.57962 12.9002 7.80042L10.7098 10.7194C11.408 11.5305 12.4257 12.0006 13.4999 12.0006C13.7759 12.0007 13.9999 12.2245 13.9999 12.5006C13.9996 12.7765 13.7758 13.0005 13.4999 13.0006C12.2073 13.0006 10.9791 12.4653 10.0985 11.5338L9.2606 12.652C8.6241 13.5005 7.62504 14.0006 6.56431 14.0006C4.84826 14.0004 3.40703 12.7055 3.2147 11.0026C3.06417 9.6671 3.71924 8.36442 4.88462 7.69202L6.31431 6.86683L5.62193 6.00843C5.03669 5.28273 4.91111 4.28883 5.29673 3.44007ZM5.38365 8.55823C4.56442 9.0311 4.10282 9.94879 4.20884 10.8903C4.34438 12.0898 5.35943 13.0004 6.56431 13.0006C7.31026 13.0006 8.01315 12.6491 8.4608 12.0524L9.44126 10.7438L6.94908 7.65394L5.38365 8.55823ZM8.03501 3.07972C7.31735 2.82341 6.52243 3.15955 6.20689 3.85315C5.97769 4.35769 6.0524 4.9491 6.40025 5.3805L7.19029 6.36097L8.33384 5.70179C8.65116 5.51855 8.88666 5.22071 8.99205 4.86976C9.21192 4.13679 8.81906 3.35968 8.09849 3.10218L8.03501 3.07972Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "ea237efd57f3b68b821de8f35244255bbcd1b934290a5f94ffd8972a9585cee7",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M5.28906 3.45557C5.8237 2.27942 7.17098 1.70967 8.3877 2.14404L8.43457 2.16064C9.65647 2.59704 10.3229 3.91396 9.9502 5.15674C9.77147 5.7522 9.37152 6.25718 8.83301 6.56787L7.76074 7.18604L9.96582 10.0444L12.0996 7.20068C12.2652 6.97993 12.5789 6.93483 12.7998 7.1001C13.0206 7.26571 13.0658 7.5794 12.9004 7.80029L10.5996 10.8667L11.5234 12.064C11.979 12.6544 12.6829 13.0004 13.4287 13.0005H13.5C13.7761 13.0005 14 13.2243 14 13.5005C13.9999 13.7765 13.7761 14.0005 13.5 14.0005H13.4287C12.3729 14.0004 11.3763 13.5103 10.7314 12.6743L9.97656 11.6958L9.26074 12.6519C8.62421 13.5004 7.6252 14.0005 6.56445 14.0005C4.84848 14.0001 3.40702 12.7054 3.21484 11.0024C3.06433 9.66709 3.71957 8.36435 4.88477 7.69189L6.27051 6.89209L5.58398 6.00244C5.02194 5.27381 4.9084 4.29334 5.28906 3.45557ZM5.38379 8.55811C4.56475 9.03103 4.10298 9.94878 4.20898 10.8901C4.34437 12.0896 5.35964 13.0001 6.56445 13.0005C7.31041 13.0005 8.01326 12.6489 8.46094 12.0522L9.34277 10.8745L6.88574 7.69092L5.38379 8.55811ZM8.05078 3.08545C7.32379 2.82621 6.51864 3.1669 6.19922 3.86963C5.97194 4.3702 6.04019 4.95579 6.37598 5.39111L7.14453 6.38721L8.33398 5.70166C8.65133 5.51841 8.88681 5.22061 8.99219 4.86963C9.21208 4.13658 8.81937 3.35946 8.09863 3.10205L8.05078 3.08545Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "12ccc708bb0819645863d6d1e3ea36ad5486bd2bfb56481bc8f99414a4d01add",
       "duplicate": false,
       "variantCount": 1
     },
@@ -18094,8 +18118,8 @@
         "asterisk-6-16.svg"
       ],
       "file": "icons/asterisk-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.00069 1.00098C8.4058 1.00116 8.72583 1.3449 8.69698 1.74902L8.28584 7.50586L13.0661 4.27148C13.4017 4.04441 13.8595 4.15015 14.0622 4.50098C14.2646 4.85191 14.1268 5.30144 13.7624 5.47852L8.571 8.00098L13.7624 10.5225C14.1269 10.6996 14.2649 11.15 14.0622 11.501C13.8595 11.8517 13.4017 11.9565 13.0661 11.7295L8.28487 8.49512L8.69698 14.252C8.72586 14.6562 8.40499 15 7.99971 15C7.59472 14.9997 7.27457 14.656 7.30342 14.252L7.71358 8.49512L2.93428 11.7305C2.59868 11.9572 2.14072 11.8508 1.93819 11.5C1.73594 11.1491 1.87369 10.7005 2.23799 10.5234L7.4294 8L2.23799 5.47852C1.87364 5.3015 1.736 4.85189 1.93819 4.50098C2.14086 4.15031 2.59874 4.04464 2.93428 4.27148L7.71455 7.50586L7.30342 1.74902C7.27453 1.34477 7.5954 1.00098 8.00069 1.00098Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "e8b371e1d0e44d8bd8f4dff09101fc046d1c30355f12c2890d6482a14c1070ad",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 1.00098C8.40756 1.00098 8.73176 1.34302 8.70996 1.75L8.41309 7.28418L13.0586 4.25977C13.4 4.03774 13.8587 4.14836 14.0625 4.50098C14.2658 4.85385 14.1317 5.30572 13.7686 5.49023L8.82617 8L13.7686 10.5107C14.1317 10.6953 14.2659 11.1471 14.0625 11.5C13.8587 11.853 13.4001 11.9626 13.0586 11.7402L8.41406 8.7168L8.71094 14.251C8.73273 14.6577 8.40823 14.9996 8.00098 15C7.59342 15 7.26921 14.658 7.29102 14.251L7.58691 8.71582L2.94238 11.7412C2.60096 11.9635 2.14237 11.8536 1.93848 11.501C1.7347 11.148 1.86909 10.6963 2.23242 10.5117L7.17285 8.00098L2.23242 5.49023C1.86917 5.30568 1.73493 4.85389 1.93848 4.50098C2.14231 4.14816 2.60089 4.03841 2.94238 4.26074L7.58594 7.28516L7.29004 1.75C7.26824 1.34313 7.5926 1.00116 8 1.00098Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "9571513fac447777600b6b3b17d1e1fe7c6cfe83046606e178caf13565a01692",
       "duplicate": false,
       "variantCount": 1
     },
@@ -18118,8 +18142,8 @@
         "asterisk-star-16.svg"
       ],
       "file": "icons/asterisk-simple-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.00133 1.00098C8.34946 1.00114 8.63057 1.2867 8.62438 1.63477L8.50817 7.89062L14.4203 5.84766C14.7496 5.73381 15.1095 5.91275 15.2172 6.24414C15.3242 6.57503 15.1396 6.93046 14.807 7.03223L8.81969 8.85547L12.5912 13.8467C12.8011 14.1247 12.7422 14.5218 12.4603 14.7266C12.1786 14.9309 11.7829 14.8652 11.5834 14.5801L7.9984 9.4502L4.41832 14.5781C4.2188 14.8638 3.82328 14.9304 3.54137 14.7256C3.25987 14.5208 3.19995 14.1246 3.40953 13.8467L7.18004 8.85254L1.19664 7.03223C0.863295 6.93075 0.677844 6.57456 0.785511 6.24316C0.893238 5.91223 1.25139 5.73339 1.58043 5.84668L7.4945 7.88867L7.37828 1.63574C7.37178 1.28735 7.65288 1.00099 8.00133 1.00098Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "4a6d6152a10efa02a241ff0366a29f8b395b6a70f7222c2ef2f8a96985ae744a",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.99938 1C8.41632 1 8.75198 1.34197 8.7445 1.75879L8.63414 7.71289L14.264 5.76855C14.658 5.63269 15.0872 5.84691 15.2162 6.24316C15.3448 6.63957 15.1235 7.06384 14.725 7.18555L9.0277 8.9209L12.6175 13.6748C12.8683 14.0075 12.7972 14.4815 12.4603 14.7266C12.123 14.9716 11.6504 14.8924 11.4115 14.5508L7.99938 9.66699L4.58922 14.5508C4.35046 14.8921 3.87765 14.9719 3.5404 14.7275C3.20308 14.4825 3.13211 14.0076 3.38317 13.6748L6.97106 8.92188L1.27477 7.18652C0.876194 7.06488 0.654043 6.63957 0.782583 6.24316C0.911514 5.84687 1.34077 5.63377 1.73473 5.76953L7.36364 7.71387L7.25426 1.75879C7.24679 1.34213 7.58265 1.00025 7.99938 1Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "a37fe32a7bbaf77074052c781be9f4d31e6a2c02213b52cd533b15106fb92667",
       "duplicate": false,
       "variantCount": 1
     },
@@ -20272,64 +20296,6 @@
       "variantCount": 1
     },
     {
-      "id": "698:1498",
-      "name": "quotes-alt-fill",
-      "originalName": "fill=true",
-      "baseName": "quotes-alt",
-      "width": 16,
-      "height": 16,
-      "filename": "quotes-alt-fill-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-1498",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconQuotesAltFill",
-      "aliases": [
-        "698-1498.svg",
-        "quote-fill",
-        "quote-fill-16.svg"
-      ],
-      "variantSetName": "quotes-alt",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "698:1501",
-      "file": "icons/quotes-alt-fill-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M4.00098 3C5.65759 3.00003 7.00063 4.34372 7.00098 6.00098C7.00098 6.00568 7.00102 6.01093 7.00098 6.01562C7.00243 6.01717 7.00488 6.01818 7.00488 6.02051V7.01074C7.00446 9.77181 4.76605 12.0107 2.00488 12.0107H1.8125C1.36705 12.0107 1.00534 11.6494 1.00488 11.2041C1.00488 10.8474 1.2444 10.5412 1.56348 10.3818C2.21166 10.0582 2.74567 9.53914 3.08789 8.90234C1.87783 8.5455 1.00115 7.49941 1.00098 6.26367C1.00098 6.22165 1.0019 6.17927 1.00391 6.1377C1.0019 6.09271 1.00098 6.04646 1.00098 6.00098C1.00133 4.34375 2.34441 3.00009 4.00098 3ZM12.001 3C12.7995 3.00002 13.523 3.32754 14.0605 3.85742C14.634 4.40024 14.9957 5.16496 15.001 6.01562C15.0024 6.01717 15.0049 6.01818 15.0049 6.02051V7.01074C15.0045 9.77181 12.766 12.0107 10.0049 12.0107H9.8125C9.36705 12.0107 9.00534 11.6494 9.00488 11.2041C9.00488 10.8474 9.2444 10.5412 9.56348 10.3818C10.1552 10.0864 10.6508 9.62743 10.9932 9.06543C9.83285 8.63377 9.00113 7.4819 9.00098 6.125C9.00098 6.10953 9.00173 6.09354 9.00195 6.07812C9.00174 6.06369 9.00099 6.04867 9.00098 6.03418C9.00103 5.17638 9.3632 4.40416 9.94043 3.85742C10.478 3.32726 11.2023 3.00005 12.001 3Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "554bbbc3152c23655ce181c8d8e81b34a8a6d847fd7f0f75764837c6da726090",
-      "duplicate": true,
-      "variantCount": 2
-    },
-    {
-      "id": "698:1499",
-      "name": "quotes-alt",
-      "originalName": "fill=false",
-      "baseName": "quotes-alt",
-      "width": 16,
-      "height": 16,
-      "filename": "quotes-alt-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=698-1499",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconQuotesAlt",
-      "aliases": [
-        "698-1499.svg",
-        "quote",
-        "quote-16.svg"
-      ],
-      "variantSetName": "quotes-alt",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "698:1501",
-      "file": "icons/quotes-alt-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<mask id=\"path-1-inside-1_698_1499\" fill=\"white\">\n<path d=\"M4.00098 3C2.34441 3.00009 1.00131 4.39972 1.00098 6.12598C1.00098 6.14991 1.00144 6.17443 1.00195 6.19824C1.00141 6.21993 1.00098 6.24187 1.00098 6.26367C1.00098 6.64042 1.08297 6.99972 1.23047 7.32715C1.55386 8.13657 2.19529 8.77148 2.99121 9.06836C2.64892 9.62911 2.15424 10.0869 1.56348 10.3818C1.24433 10.5412 1.00488 10.8474 1.00488 11.2041C1.00515 11.6496 1.36693 12.0107 1.8125 12.0107H2.00488C4.76617 12.0107 7.00466 9.77197 7.00488 7.01074V6.02051C7.00488 6.01681 7.00201 6.01533 6.99902 6.01367C6.94197 4.33939 5.62152 3.00003 4.00098 3Z\"/>\n</mask>\n<path d=\"M4.00098 3L4.00092 2H4.001L4.00098 3ZM1.00098 6.12598H0.000976562V6.12578L1.00098 6.12598ZM1.00195 6.19824L2.00172 6.17663C2.00206 6.19221 2.00203 6.2078 2.00164 6.22338L1.00195 6.19824ZM1.00098 6.26367H0.000976562V6.26351L1.00098 6.26367ZM1.23047 7.32715L2.14223 6.91642C2.14813 6.92953 2.15376 6.94277 2.15909 6.95613L1.23047 7.32715ZM2.99121 9.06836L3.3407 8.13142C3.62035 8.23573 3.83879 8.45952 3.93632 8.74161C4.03385 9.02371 4.00027 9.33462 3.84475 9.58938L2.99121 9.06836ZM1.56348 10.3818L2.01019 11.2765L2.01018 11.2765L1.56348 10.3818ZM1.00488 11.2041L0.00488281 11.2047V11.2041H1.00488ZM7.00488 7.01074H8.00488V7.01082L7.00488 7.01074ZM6.99902 6.01367L6.51344 6.88786C6.20658 6.71741 6.01156 6.39855 5.9996 6.04773L6.99902 6.01367ZM4.00098 3L4.00103 4C2.93517 4.00006 2.00121 4.91278 2.00098 6.12617L1.00098 6.12598L0.000976562 6.12578C0.00141191 3.88666 1.75364 2.00013 4.00092 2L4.00098 3ZM1.00098 6.12598H2.00098C2.00098 6.13832 2.00122 6.1536 2.00172 6.17663L1.00195 6.19824L0.00218678 6.21985C0.0016551 6.19526 0.000976562 6.16151 0.000976562 6.12598H1.00098ZM1.00195 6.19824L2.00164 6.22338C2.00117 6.24193 2.00098 6.25429 2.00098 6.26383L1.00098 6.26367L0.000976562 6.26351C0.000982285 6.22944 0.00164509 6.19793 0.00226927 6.17311L1.00195 6.19824ZM1.00098 6.26367H2.00098C2.00098 6.49354 2.05069 6.71321 2.14223 6.91642L1.23047 7.32715L0.318711 7.73788C0.11525 7.28622 0.000976562 6.78731 0.000976562 6.26367H1.00098ZM1.23047 7.32715L2.15909 6.95613C2.38118 7.512 2.81724 7.93616 3.3407 8.13142L2.99121 9.06836L2.64172 10.0053C1.57334 9.60679 0.726542 8.76115 0.301843 7.69817L1.23047 7.32715ZM2.99121 9.06836L3.84475 9.58938C3.40577 10.3085 2.77091 10.8967 2.01019 11.2765L1.56348 10.3818L1.11677 9.48716C1.53757 9.27705 1.89207 8.94968 2.13767 8.54734L2.99121 9.06836ZM1.56348 10.3818L2.01018 11.2765C1.99976 11.2817 1.99141 11.2875 1.98563 11.2923C1.97984 11.2972 1.9789 11.2993 1.98097 11.2963C1.98316 11.2933 1.98923 11.2838 1.99486 11.2671C2.0007 11.2497 2.00488 11.228 2.00488 11.2041H1.00488H0.00488281C0.00488281 10.3766 0.549324 9.77047 1.11677 9.48715L1.56348 10.3818ZM1.00488 11.2041L2.00488 11.2035C2.00482 11.0962 1.91822 11.0107 1.8125 11.0107V12.0107V13.0107C0.815629 13.0107 0.00547171 12.203 0.00488281 11.2047L1.00488 11.2041ZM1.8125 12.0107V11.0107H2.00488V12.0107V13.0107H1.8125V12.0107ZM2.00488 12.0107V11.0107C4.2138 11.0107 6.0047 9.21975 6.00488 7.01066L7.00488 7.01074L8.00488 7.01082C8.00461 10.3242 5.31853 13.0107 2.00488 13.0107V12.0107ZM7.00488 7.01074H6.00488V6.02051H7.00488H8.00488V7.01074H7.00488ZM7.00488 6.02051H6.00488C6.00488 6.15421 6.03202 6.29751 6.09631 6.43691C6.15924 6.57336 6.24237 6.67282 6.31352 6.74056C6.38106 6.80487 6.4428 6.84522 6.47234 6.86363C6.49853 6.87995 6.52574 6.8947 6.51344 6.88786L6.99902 6.01367L7.48461 5.13948C7.44307 5.11641 7.57801 5.18296 7.69263 5.29209C7.76487 5.36087 7.84891 5.4615 7.91247 5.59932C7.97739 5.74008 8.00488 5.88496 8.00488 6.02051H7.00488ZM6.99902 6.01367L5.9996 6.04773C5.95957 4.87281 5.04396 4.00002 4.00096 4L4.00098 3L4.001 2C6.19908 2.00004 7.92437 3.80598 7.99844 5.97961L6.99902 6.01367Z\" fill=\"black\" mask=\"url(#path-1-inside-1_698_1499)\"/>\n<mask id=\"path-3-inside-2_698_1499\" fill=\"white\">\n<path d=\"M12 3C10.3434 3.00009 9.00034 4.39972 9 6.12598C9 6.14991 9.00046 6.17443 9.00098 6.19824C9.00043 6.21993 9 6.24187 9 6.26367C9 6.64042 9.08199 6.99972 9.22949 7.32715C9.55289 8.13657 10.1943 8.77148 10.9902 9.06836C10.6479 9.62911 10.1533 10.0869 9.5625 10.3818C9.24335 10.5412 9.00391 10.8474 9.00391 11.2041C9.00417 11.6496 9.36595 12.0107 9.81152 12.0107H10.0039C12.7652 12.0107 15.0037 9.77197 15.0039 7.01074V6.02051C15.0039 6.01681 15.001 6.01533 14.998 6.01367C14.941 4.33939 13.6205 3.00003 12 3Z\"/>\n</mask>\n<path d=\"M12 3L11.9999 2H12L12 3ZM9 6.12598H8V6.12578L9 6.12598ZM9.00098 6.19824L10.0007 6.17663C10.0011 6.19221 10.0011 6.2078 10.0007 6.22338L9.00098 6.19824ZM9 6.26367H8V6.26351L9 6.26367ZM9.22949 7.32715L10.1412 6.91642C10.1472 6.92953 10.1528 6.94277 10.1581 6.95613L9.22949 7.32715ZM10.9902 9.06836L11.3397 8.13142C11.6194 8.23573 11.8378 8.45952 11.9353 8.74161C12.0329 9.02371 11.9993 9.33462 11.8438 9.58938L10.9902 9.06836ZM9.5625 10.3818L10.0092 11.2765L10.0092 11.2765L9.5625 10.3818ZM9.00391 11.2041L8.00391 11.2047V11.2041H9.00391ZM15.0039 7.01074H16.0039V7.01082L15.0039 7.01074ZM14.998 6.01367L14.5125 6.88786C14.2056 6.71741 14.0106 6.39855 13.9986 6.04773L14.998 6.01367ZM12 3L12.0001 4C10.9342 4.00006 10.0002 4.91278 10 6.12617L9 6.12598L8 6.12578C8.00044 3.88666 9.75267 2.00013 11.9999 2L12 3ZM9 6.12598H10C10 6.13832 10.0002 6.1536 10.0007 6.17663L9.00098 6.19824L8.00121 6.21985C8.00068 6.19526 8 6.16151 8 6.12598H9ZM9.00098 6.19824L10.0007 6.22338C10.0002 6.24193 10 6.25429 10 6.26383L9 6.26367L8 6.26351C8.00001 6.22944 8.00067 6.19793 8.00129 6.17311L9.00098 6.19824ZM9 6.26367H10C10 6.49354 10.0497 6.71321 10.1412 6.91642L9.22949 7.32715L8.31773 7.73788C8.11427 7.28622 8 6.78731 8 6.26367H9ZM9.22949 7.32715L10.1581 6.95613C10.3802 7.512 10.8163 7.93616 11.3397 8.13142L10.9902 9.06836L10.6407 10.0053C9.57237 9.60679 8.72557 8.76115 8.30087 7.69817L9.22949 7.32715ZM10.9902 9.06836L11.8438 9.58938C11.4048 10.3085 10.7699 10.8967 10.0092 11.2765L9.5625 10.3818L9.11579 9.48716C9.5366 9.27705 9.89109 8.94968 10.1367 8.54734L10.9902 9.06836ZM9.5625 10.3818L10.0092 11.2765C9.99878 11.2817 9.99043 11.2875 9.98466 11.2923C9.97886 11.2972 9.97792 11.2993 9.97999 11.2963C9.98218 11.2933 9.98826 11.2838 9.99388 11.2671C9.99973 11.2497 10.0039 11.228 10.0039 11.2041H9.00391H8.00391C8.00391 10.3766 8.54835 9.77047 9.1158 9.48715L9.5625 10.3818ZM9.00391 11.2041L10.0039 11.2035C10.0038 11.0962 9.91725 11.0107 9.81152 11.0107V12.0107V13.0107C8.81465 13.0107 8.0045 12.203 8.00391 11.2047L9.00391 11.2041ZM9.81152 12.0107V11.0107H10.0039V12.0107V13.0107H9.81152V12.0107ZM10.0039 12.0107V11.0107C12.2128 11.0107 14.0037 9.21975 14.0039 7.01066L15.0039 7.01074L16.0039 7.01082C16.0036 10.3242 13.3176 13.0107 10.0039 13.0107V12.0107ZM15.0039 7.01074H14.0039V6.02051H15.0039H16.0039V7.01074H15.0039ZM15.0039 6.02051H14.0039C14.0039 6.15421 14.031 6.29751 14.0953 6.43691C14.1583 6.57336 14.2414 6.67282 14.3125 6.74056C14.3801 6.80487 14.4418 6.84522 14.4714 6.86363C14.4976 6.87995 14.5248 6.8947 14.5125 6.88786L14.998 6.01367L15.4836 5.13948C15.4421 5.11641 15.577 5.18296 15.6917 5.29209C15.7639 5.36087 15.8479 5.4615 15.9115 5.59932C15.9764 5.74008 16.0039 5.88496 16.0039 6.02051H15.0039ZM14.998 6.01367L13.9986 6.04773C13.9586 4.87281 13.043 4.00002 12 4L12 3L12 2C14.1981 2.00004 15.9234 3.80598 15.9975 5.97961L14.998 6.01367Z\" fill=\"black\" mask=\"url(#path-3-inside-2_698_1499)\"/>\n</svg>\n",
-      "sha256": "b0ffdb1f9d7e667ae3c33e433253891f31f9a12821eb41546de5e85c41977e7b",
-      "duplicate": true,
-      "variantCount": 2
-    },
-    {
       "id": "701:1548",
       "name": "share-arrow",
       "originalName": "fill=false",
@@ -20596,8 +20562,8 @@
         "811-9093.svg"
       ],
       "file": "icons/hourglass-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M4.49942 1.5L4.4996 3.66671C4.49967 4.53216 4.78043 5.37425 5.29975 6.06658L6.41238 7.54989C6.61244 7.81661 6.61241 8.18337 6.41231 8.45006L5.09951 10.1997C4.70974 10.7192 4.49906 11.3511 4.49914 12.0005L4.49942 14.5\" stroke=\"black\"/>\n<path d=\"M7.3831 5H8.6169C9.00555 5 9.24561 5.42399 9.04565 5.75725L8.42875 6.78542C8.23454 7.10909 7.76545 7.10909 7.57125 6.78542L6.95435 5.75725C6.75439 5.42399 6.99445 5 7.3831 5Z\" fill=\"black\"/>\n<path d=\"M6.16125 11.7972C6.05624 11.9285 5.99902 12.0916 5.99902 12.2597C5.99902 12.6686 6.33047 13 6.73934 13H9.25871C9.66757 13 9.99902 12.6686 9.99902 12.2597C9.99902 12.0916 9.94181 11.9285 9.8368 11.7972L8.58467 10.2321C8.28443 9.85676 7.71362 9.85676 7.41337 10.2321L6.16125 11.7972Z\" fill=\"black\"/>\n<path d=\"M12.5 1.5H3.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M12.5 14.5H3.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M11.5 1.5V3.66667C11.5 4.53215 11.2193 5.37428 10.7 6.06667L9.58752 7.54997C9.38751 7.81665 9.38752 8.18334 9.58755 8.45001L10.9001 10.1998C11.2897 10.7192 11.5003 11.351 11.5002 12.0002L11.5 14.5\" stroke=\"black\"/>\n</svg>\n",
-      "sha256": "34923e20b9c7146e42dfb0ba4c58a6def82c86267d9382ee0c3023684feaa217",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M4.49942 1.5L4.4996 3.66671C4.49967 4.53216 4.78043 5.37425 5.29975 6.06658L6.41238 7.54989C6.61244 7.81661 6.61241 8.18337 6.41231 8.45006L5.09951 10.1997C4.70974 10.7192 4.49906 11.3511 4.49914 12.0005L4.49942 14.5\" stroke=\"black\"/>\n<path d=\"M6.25 5H9.75L8.61442 6.62225C8.31585 7.04879 7.68415 7.04879 7.38558 6.62225L6.25 5Z\" fill=\"black\"/>\n<path d=\"M6.16337 11.7946C6.05698 11.9275 5.99902 12.0928 5.99902 12.2631V13H9.99902V12.2631C9.99902 12.0928 9.94106 11.9275 9.83467 11.7946L8.58467 10.2321C8.28443 9.85676 7.71362 9.85676 7.41337 10.2321L6.16337 11.7946Z\" fill=\"black\"/>\n<path d=\"M12.5 1.5H3.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M12.5 14.5H3.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M11.5 1.5V3.66667C11.5 4.53215 11.2193 5.37428 10.7 6.06667L9.58752 7.54997C9.38751 7.81665 9.38752 8.18334 9.58755 8.45001L10.9001 10.1998C11.2897 10.7192 11.5003 11.351 11.5002 12.0002L11.5 14.5\" stroke=\"black\"/>\n</svg>\n",
+      "sha256": "cd4295da7ed5d904ea9b9c3eec06d8e587817da414cbd3a512d5998503e30ee9",
       "duplicate": false,
       "variantCount": 1
     },
@@ -22402,8 +22368,8 @@
         "816-11019.svg"
       ],
       "file": "icons/chevrons-maximize-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.49981 12.0351C7.77587 12.0351 7.99962 12.259 7.99975 12.5351C7.99975 12.8112 7.77595 13.035 7.49981 13.035L3.46433 13.035C3.33177 13.035 3.20451 12.9823 3.11077 12.8886C3.01712 12.7949 2.96438 12.6676 2.96438 12.5351L2.96438 8.49959C2.96456 8.22363 3.18835 7.9997 3.46433 7.99964C3.74034 7.99967 3.9641 8.22361 3.96427 8.49959L3.96427 12.0351L7.49981 12.0351ZM12.8887 3.11066C12.9823 3.20435 13.0351 3.33177 13.0351 3.46421L13.0351 7.49969C13.0348 7.7756 12.8112 7.99965 12.5352 7.99964C12.2593 7.99953 12.0355 7.77553 12.0352 7.49969L12.0352 3.96416L8.4997 3.96416C8.22388 3.96394 7.99998 3.74003 7.99975 3.46421C7.99992 3.18834 8.22384 2.96448 8.4997 2.96427L12.5352 2.96427C12.6677 2.96426 12.795 3.01704 12.8887 3.11066Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "09b45c461c869b9d6de99e2c16b92407c12ce6c441faf29e6ea5f65679d3b234",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.49932 12.0354C7.77539 12.0354 7.99921 12.2592 7.99926 12.5353C7.99926 12.8114 7.77542 13.0352 7.49932 13.0353H3.46384C3.33124 13.0353 3.20405 12.9826 3.11028 12.8889C3.01652 12.7951 2.96389 12.6679 2.96389 12.5353L2.96389 8.49983C2.96399 8.22377 3.18775 7.99988 3.46384 7.99988C3.73986 7.99995 3.96368 8.22381 3.96378 8.49983L3.96378 12.0354H7.49932ZM12.8876 3.11021C12.9812 3.2039 13.0339 3.33127 13.0339 3.46376V7.49924C13.0339 7.77534 12.8101 7.9992 12.534 7.99919C12.2582 7.99882 12.0341 7.7751 12.0341 7.49924V3.96371L8.49852 3.96371C8.22279 3.96323 7.99858 3.73961 7.99857 3.46376C7.99878 3.18809 8.22291 2.96429 8.49852 2.96382L12.534 2.96382C12.6663 2.96381 12.7938 3.0168 12.8876 3.11021Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "40aae30c4d1c8efb788634f0873c4eec197873d1a4e26bb88e24f4ae958ac264",
       "duplicate": false,
       "variantCount": 1
     },
@@ -22512,8 +22478,8 @@
         "820-11248.svg"
       ],
       "file": "icons/file-svg-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.46484 1C8.26036 1.0001 9.02342 1.31639 9.58594 1.87891L12.4141 4.70703C12.7891 5.08205 12.9999 5.59074 13 6.12109V7.5C13 7.77614 12.7761 8 12.5 8C12.2239 8 12 7.77614 12 7.5V6.12109C12 6.08039 11.9971 6.03999 11.9922 6H9.5C9.10217 6 8.72076 5.84185 8.43945 5.56055C8.15815 5.27924 8 4.89783 8 4.5V2.07422C7.82712 2.02613 7.64741 2.00003 7.46484 2H5C4.44772 2 4 2.44772 4 3V7.5C4 7.77614 3.77614 8 3.5 8C3.22386 8 3 7.77614 3 7.5V3C3 1.89543 3.89543 1 5 1H7.46484ZM9 4.5C9 4.63261 9.05272 4.75975 9.14648 4.85352C9.24025 4.94728 9.36739 5 9.5 5H11.293L9 2.70703V4.5Z\" fill=\"black\"/>\n<path d=\"M14.25 10.3505C13.8182 9.73505 13.3612 9.48518 12.6958 9.50068C11.5489 9.52738 10.6926 10.7101 10.753 12.1777C10.8106 13.5762 11.6958 14.5 12.75 14.5C13.8042 14.5 14.5 13.7215 14.5 13.3203C14.5 13.0976 14.5 12.5553 14.5 12.5553H13.25\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M3.71719 9.92501C2.73492 9.2557 1.40951 9.60515 1.37037 10.6359C1.33927 11.4549 2.12397 11.6526 2.81848 11.8931C3.59556 12.1623 4.18781 12.3621 4.18781 13.1993C4.18781 14.0219 3.5 14.4999 2.75 14.4999C1.74253 14.4999 1.25 13.7066 1.25 13.7066\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M5.25 9.5L7.5 14.5L9.75 9.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
-      "sha256": "3f2f404241d621248bedcfafc1fbba103a7309843d2aa7f777f8b9e23bd1c674",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.46484 1C8.26036 1.0001 9.02342 1.31639 9.58594 1.87891L12.4141 4.70703C12.7891 5.08205 12.9999 5.59074 13 6.12109V7.5C13 7.77614 12.7761 8 12.5 8C12.2239 8 12 7.77614 12 7.5V6.12109C12 6.08039 11.9971 6.03999 11.9922 6H9.5C9.10217 6 8.72076 5.84185 8.43945 5.56055C8.15815 5.27924 8 4.89783 8 4.5V2.07422C7.82712 2.02613 7.64741 2.00003 7.46484 2H5C4.44772 2 4 2.44772 4 3V7.5C4 7.77614 3.77614 8 3.5 8C3.22386 8 3 7.77614 3 7.5V3C3 1.89543 3.89543 1 5 1H7.46484ZM9 4.5C9 4.63261 9.05272 4.75975 9.14648 4.85352C9.24025 4.94728 9.36739 5 9.5 5H11.293L9 2.70703V4.5Z\" fill=\"black\"/>\n<path d=\"M13.3101 10.1816C12.935 9.68837 12.538 9.48813 11.9599 9.50054C10.9636 9.52194 10.4505 10.4698 10.5029 11.646C10.553 12.7668 11.16 13.635 12.1152 13.625C12.9674 13.6161 13.4211 12.9135 13.4883 11.9762C13.4982 11.8385 13.3851 11.7262 13.2471 11.7262H12.1152\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M5.27083 9.94241C4.37042 9.18531 2.89621 9.36675 2.86034 10.4126C2.83788 11.0672 3.56288 11.3608 4.18778 11.4171C4.6531 11.4591 5.5 11.7193 5.5 12.3882C5.5 13.0455 4.8125 13.4999 4.125 13.4999C3.20149 13.4999 2.75 12.866 2.75 12.866\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M6.5 9.5L7.76283 13.2885C7.8388 13.5164 8.1612 13.5164 8.23717 13.2885L9.5 9.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+      "sha256": "471b39ad3d6b9c26185a24fb7e8dea7a2d9d0e96366628631656bd550bd0918c",
       "duplicate": false,
       "variantCount": 1
     },
@@ -23464,8 +23430,8 @@
         "845-14105.svg"
       ],
       "file": "icons/picture-in-picture-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M13 3C14.1046 3 15 3.89543 15 5V11C15 12.1046 14.1046 13 13 13H3C1.89543 13 1 12.1046 1 11V5C1 3.89543 1.89543 3 3 3H13ZM9.25 9C9.11193 9 9 9.11193 9 9.25V12H13C13.5523 12 14 11.5523 14 11V9H9.25ZM3 4C2.44772 4 2 4.44772 2 5V11C2 11.5523 2.44772 12 3 12H8V9.25C8 8.55964 8.55964 8 9.25 8H14V5C14 4.44772 13.5523 4 13 4H3Z\" fill=\"black\"/>\n<path d=\"M3.5 5.5L5.5 7.5\" stroke=\"black\" stroke-linecap=\"round\"/>\n<path d=\"M7 6.20711V8.5C7 8.77614 6.77614 9 6.5 9H4.20711C3.76165 9 3.53857 8.46143 3.85355 8.14645L6.14645 5.85355C6.46143 5.53857 7 5.76165 7 6.20711Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "5aa0cfd2539d8e88880656fcdb46c60440e383a58b3a55a04a22ab9b06bbd89b",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M13 3C14.1046 3 15 3.89543 15 5V11C15 12.1046 14.1046 13 13 13H3C1.89543 13 1 12.1046 1 11V8.5C1 8.22386 1.22386 8 1.5 8C1.77614 8 2 8.22386 2 8.5V11C2 11.5523 2.44772 12 3 12H13C13.5523 12 14 11.5523 14 11V5C14 4.44772 13.5523 4 13 4H9.5C9.22386 4 9 3.77614 9 3.5C9 3.22386 9.22386 3 9.5 3H13ZM12.5 7C12.7761 7 13 7.22386 13 7.5V10.5C13 10.7761 12.7761 11 12.5 11H9.5C9.22386 11 9 10.7761 9 10.5V7.5C9 7.22386 9.22386 7 9.5 7H12.5ZM10 10H12V8H10V10Z\" fill=\"black\"/>\n<path d=\"M2.5 2.5L5.5 5.5\" stroke=\"black\" stroke-linecap=\"round\"/>\n<path d=\"M7 4.20711V6.5C7 6.77614 6.77614 7 6.5 7H4.20711C3.76165 7 3.53857 6.46143 3.85355 6.14645L6.14645 3.85355C6.46143 3.53857 7 3.76165 7 4.20711Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "7bf8aa25a7fe165542cfb913fc9d4fa81d2fae267961276f9fe29cad4187175b",
       "duplicate": false,
       "variantCount": 1
     },
@@ -23838,8 +23804,8 @@
         "856-19494.svg"
       ],
       "file": "icons/chart-donut-16.svg",
-      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 1C8.91911 1.00006 9.82956 1.18147 10.6787 1.5332C11.5278 1.88498 12.3003 2.39992 12.9502 3.0498C13.6 3.69974 14.1151 4.47216 14.4668 5.32129C14.8185 6.17048 15 7.08085 15 8V8.5H13.9775C13.9259 9.11642 13.7805 9.72252 13.543 10.2959C13.2414 11.0238 12.7993 11.6851 12.2422 12.2422C11.6851 12.7993 11.0238 13.2415 10.2959 13.543C9.65896 13.8068 8.98201 13.9583 8.29492 13.9922L8 14C6.4087 14 4.88303 13.3674 3.75781 12.2422C2.63259 11.117 2 9.5913 2 8C2 6.4087 2.63259 4.88303 3.75781 3.75781C4.76454 2.75108 6.09196 2.14027 7.5 2.02246V1H8ZM7.5 3.02441C6.35761 3.13926 5.28394 3.64575 4.46484 4.46484C3.52716 5.40253 3 6.67392 3 8C3 9.32608 3.52716 10.5975 4.46484 11.5352C5.28392 12.3542 6.35764 12.8597 7.5 12.9746V11.4639C5.8039 11.2212 4.5 9.7632 4.5 8C4.5 6.23675 5.80383 4.77775 7.5 4.53516V3.02441ZM11.4639 8.5C11.2446 10.0328 10.0328 11.2446 8.5 11.4639V12.9736C8.9849 12.9248 9.46113 12.8063 9.91309 12.6191C10.5197 12.3679 11.0709 11.9994 11.5352 11.5352C11.9994 11.0709 12.3679 10.5196 12.6191 9.91309C12.8063 9.46116 12.9257 8.98487 12.9746 8.5H11.4639ZM8 5.5C6.61929 5.5 5.5 6.61929 5.5 8C5.5 9.38071 6.61929 10.5 8 10.5C9.38071 10.5 10.5 9.38071 10.5 8C10.5 6.61929 9.38071 5.5 8 5.5ZM8.5 4.53516C10.0328 4.75439 11.2446 5.96719 11.4639 7.5H13.9775C13.9259 6.88353 13.7804 6.27753 13.543 5.7041C13.2415 4.97628 12.7992 4.3149 12.2422 3.75781C11.6851 3.20077 11.0237 2.75856 10.2959 2.45703C9.72258 2.21956 9.11636 2.07416 8.5 2.02246V4.53516Z\" fill=\"black\"/>\n</svg>\n",
-      "sha256": "60a98b60f7b1bb09dd1a8b16d16c4e6f1f21deb6bbd5298f37d62daf56c394a9",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 1C8.91911 1.00006 9.82956 1.18147 10.6787 1.5332C11.5278 1.88498 12.3003 2.39992 12.9502 3.0498C13.6 3.69974 14.1151 4.47216 14.4668 5.32129C14.8185 6.17048 15 7.08085 15 8V9H13.915C13.8036 9.65906 13.5838 10.2962 13.2617 10.8838C12.883 11.5746 12.3711 12.1844 11.7568 12.6777C11.1425 13.1711 10.437 13.539 9.68066 13.7598C9.13776 13.9182 8.57609 13.9967 8.0127 13.998C8.00846 13.9982 8.00426 14 8 14C7.99186 14 7.98372 13.9991 7.97559 13.999C7.90917 13.9988 7.84279 13.9966 7.77637 13.9941C7.74443 13.9929 7.71253 13.9919 7.68066 13.9902C7.62169 13.9871 7.56283 13.9824 7.50391 13.9775C7.46316 13.9742 7.42245 13.971 7.38184 13.9668C7.37082 13.9657 7.35964 13.966 7.34863 13.9648C7.34364 13.9643 7.33893 13.9616 7.33398 13.9609C5.98791 13.8105 4.72486 13.2092 3.75781 12.2422C2.63259 11.117 2 9.5913 2 8C2 6.4087 2.63259 4.88303 3.75781 3.75781C4.76454 2.75108 6.09196 2.14027 7.5 2.02246V1H8ZM7.5 3.02441C6.35761 3.13926 5.28394 3.64575 4.46484 4.46484C3.52716 5.40253 3 6.67392 3 8C3 9.32608 3.52716 10.5975 4.46484 11.5352C5.27853 12.3488 6.3436 12.8525 7.47754 12.9717C7.48501 12.9725 7.49252 12.9729 7.5 12.9736V11.4639C5.8039 11.2212 4.5 9.7632 4.5 8C4.5 6.23675 5.80383 4.77775 7.5 4.53516V3.02441ZM11.3545 9C10.9703 10.2908 9.86178 11.269 8.5 11.4639V12.9727C8.80407 12.942 9.10568 12.8858 9.40039 12.7998C10.0306 12.6159 10.619 12.3095 11.1309 11.8984C11.6427 11.4873 12.0692 10.979 12.3848 10.4033C12.6259 9.96333 12.7984 9.48991 12.8984 9H11.3545ZM8 5.5C6.61929 5.5 5.5 6.61929 5.5 8C5.5 9.38071 6.61929 10.5 8 10.5C9.38071 10.5 10.5 9.38071 10.5 8C10.5 6.61929 9.38071 5.5 8 5.5ZM8.5 4.53516C10.1962 4.77775 11.5 6.23675 11.5 8H14C14 7.2122 13.8444 6.43195 13.543 5.7041C13.2415 4.97628 12.7992 4.3149 12.2422 3.75781C11.6851 3.20077 11.0237 2.75856 10.2959 2.45703C9.72258 2.21956 9.11636 2.07416 8.5 2.02246V4.53516Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "329da1b09235da914d935a4f34af717d509d93e44257f246996a1839f6eaefa4",
       "duplicate": false,
       "variantCount": 1
     },
@@ -23911,21 +23877,23 @@
     },
     {
       "id": "886:30451",
-      "name": "french-easel",
-      "originalName": "french-easel",
-      "baseName": "french-easel",
+      "name": "easel",
+      "originalName": "easel",
+      "baseName": "easel",
       "width": 16,
       "height": 16,
-      "filename": "french-easel-16.svg",
+      "filename": "easel-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=886-30451",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconFrenchEasel",
+      "componentName": "IconEasel",
       "aliases": [
-        "886-30451.svg"
+        "886-30451.svg",
+        "french-easel",
+        "french-easel-16.svg"
       ],
-      "file": "icons/french-easel-16.svg",
+      "file": "icons/easel-16.svg",
       "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.5 1C9.32843 1 10 1.67157 10 2.5V3H12C12.5523 3 13 3.44772 13 4V9H13.5C13.7761 9 14 9.22386 14 9.5C14 9.77614 13.7761 10 13.5 10H11.1406L11.9844 13.3799C12.0507 13.6475 11.8877 13.9195 11.6201 13.9863C11.3527 14.0527 11.0808 13.8893 11.0137 13.6221L10.1094 10H5.88965L4.98438 13.6221C4.91698 13.8893 4.64547 14.0522 4.37793 13.9854C4.11072 13.9184 3.94768 13.6472 4.01367 13.3799L4.8584 10H2.5C2.22386 10 2 9.77614 2 9.5C2 9.22386 2.22386 9 2.5 9H3V4C3 3.44772 3.44772 3 4 3H6V2.5C6 1.67157 6.67157 1 7.5 1H8.5ZM4 9H12V4H4V9ZM7.5 2C7.22386 2 7 2.22386 7 2.5V3H9V2.5C9 2.22386 8.77614 2 8.5 2H7.5Z\" fill=\"black\"/>\n<path d=\"M11 11.5H5\" stroke=\"black\" stroke-linecap=\"round\"/>\n</svg>\n",
       "sha256": "44f5aa8c37c8dcc0ba12a0b6504911c7fd625ffe74d4dd953ea3d0d4af6a66bd",
       "duplicate": false,
@@ -23952,10 +23920,252 @@
       "sha256": "4177e3406e17a4c4c31f7ca48441fbb767bdb379b049d841750785010d54e3c5",
       "duplicate": false,
       "variantCount": 1
+    },
+    {
+      "id": "892:30476",
+      "name": "copied-fill",
+      "originalName": "copied-fill",
+      "baseName": "copied-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "copied-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=892-30476",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconCopiedFill",
+      "aliases": [
+        "892-30476.svg"
+      ],
+      "file": "icons/copied-fill-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M9.5 1C10.8807 1 12 2.11929 12 3.5V4H12.5C13.8807 4 15 5.11929 15 6.5V12.5C15 13.8807 13.8807 15 12.5 15H6.5C5.11929 15 4 13.8807 4 12.5V12H3.5C2.11929 12 1 10.8807 1 9.5V3.5C1 2.11929 2.11929 1 3.5 1H9.5ZM12 9.5C12 10.8807 10.8807 12 9.5 12H5V12.5C5 13.3284 5.67157 14 6.5 14H12.5C13.3284 14 14 13.3284 14 12.5V6.5C14 5.67157 13.3284 5 12.5 5H12V9.5ZM8.74512 4.06445C8.50451 3.92925 8.19983 4.01436 8.06445 4.25488L6.16016 7.63867L4.87598 6.1709C4.69413 5.96331 4.37864 5.94232 4.1709 6.12402C3.96327 6.30584 3.94237 6.62133 4.12402 6.8291L5.87402 8.8291C5.98085 8.95105 6.14049 9.01371 6.30176 8.99707C6.46296 8.98022 6.60604 8.88637 6.68555 8.74512L8.93555 4.74512C9.07086 4.50454 8.98557 4.19991 8.74512 4.06445Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "6dbaceb5a47d16ab2e2c0540df8b8f62975813824695277e48b2f259f04f8970",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "892:30460",
+      "name": "duplicate-check-fill",
+      "originalName": "duplicate-check-fill",
+      "baseName": "duplicate-check-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "duplicate-check-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=892-30460",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconDuplicateCheckFill",
+      "aliases": [
+        "892-30460.svg"
+      ],
+      "file": "icons/duplicate-check-fill-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M9.5 1C10.8807 1 12 2.11929 12 3.5V4H12.5C13.8807 4 15 5.11929 15 6.5V12.5C14.9999 13.8807 13.8807 15 12.5 15H6.5C5.11933 15 4.00007 13.8807 4 12.5V12H3.5C2.11937 12 1.00013 10.8806 1 9.5V3.5C1 2.11929 2.11929 1 3.5 1H9.5ZM11.7451 7.06445C11.5045 6.92925 11.1998 7.01436 11.0645 7.25488L9.16016 10.6387L7.87598 9.1709C7.69413 8.96331 7.37864 8.94232 7.1709 9.12402C6.96327 9.30584 6.94237 9.62133 7.12402 9.8291L8.87402 11.8291C8.98085 11.951 9.14049 12.0137 9.30176 11.9971C9.46296 11.9802 9.60604 11.8864 9.68555 11.7451L11.9355 7.74512C12.0709 7.50454 11.9856 7.19991 11.7451 7.06445ZM3.5 2C2.67157 2 2 2.67157 2 3.5V9.5C2.00013 10.3283 2.67165 11 3.5 11H4V6.5C4 5.11929 5.11929 4 6.5 4H11V3.5C11 2.67157 10.3284 2 9.5 2H3.5Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "5845721b8a9aba0572b1d7376aa359cc725ab8cd197c9d3a75be7bfea5ce93ec",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "892:30534",
+      "name": "file-zip",
+      "originalName": "file-zip",
+      "baseName": "file-zip",
+      "width": 16,
+      "height": 16,
+      "filename": "file-zip-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=892-30534",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFileZip",
+      "aliases": [
+        "892-30534.svg"
+      ],
+      "file": "icons/file-zip-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.46484 1C8.26036 1.0001 9.02342 1.31639 9.58594 1.87891L12.4141 4.70703C12.7891 5.08205 12.9999 5.59074 13 6.12109V13C13 14.1046 12.1046 15 11 15H5C3.89543 15 3 14.1046 3 13V3C3 1.89543 3.89543 1 5 1H7.46484ZM8 13H7V12H8V13ZM7 12H6V11H7V12ZM8 11H7V10H8V11ZM7 10H6V9H7V10ZM8.08789 4.00781C8.28924 4.04384 8.45235 4.20125 8.49121 4.4082L9.01953 7.22363C9.19259 8.1466 8.48495 8.99978 7.5459 9H7.45605C6.51707 8.99991 5.80863 8.1466 5.98145 7.22363L6.50879 4.4082L6.53223 4.32227C6.6042 4.13263 6.78671 4.00207 6.99512 4V5H7.99512V4H7V2H5C4.44772 2 4 2.44772 4 3V13C4 13.5523 4.44772 14 5 14H6V13H7V14H11C11.5523 14 12 13.5523 12 13V6.12109C11.9999 5.85596 11.8945 5.60155 11.707 5.41406L8.87891 2.58594C8.63302 2.34005 8.32929 2.16581 8 2.07422V4L8.08789 4.00781ZM7.49707 7C7.22099 7.00008 6.99707 7.2239 6.99707 7.5C6.99707 7.7761 7.22099 7.99992 7.49707 8C7.77311 7.99988 7.99707 7.77607 7.99707 7.5C7.99707 7.22393 7.77311 7.00012 7.49707 7Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "96847f328c9fd7d4a83c973f8b1037dfdce0463d41eaf65e6b847948b516afbc",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "895:30970",
+      "name": "chart-donut-fill",
+      "originalName": "chart-donut-fill",
+      "baseName": "chart-donut-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "chart-donut-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-30970",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconChartDonutFill",
+      "aliases": [
+        "895-30970.svg"
+      ],
+      "file": "icons/chart-donut-fill-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7 5.17383C5.83532 5.58594 5 6.69415 5 8C5 9.48647 6.08118 10.7199 7.5 10.958V13.9766C4.42035 13.7224 2 11.1453 2 8C2 5.02706 4.16237 2.56013 7 2.08398V5.17383ZM13.915 9C13.4658 11.6768 11.2459 13.7499 8.5 13.9766V10.958C9.58379 10.7762 10.4678 10.0127 10.8262 9H13.915ZM8 1C8.91918 1 9.82949 1.1805 10.6787 1.53223C11.528 1.88401 12.3002 2.39979 12.9502 3.0498C13.6001 3.69979 14.115 4.47206 14.4668 5.32129C14.8185 6.17053 15 7.0808 15 8H11C11 6.34315 9.65685 5 8 5V1Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "489c205cb18dd07769a2ecc2a2cd1dfec7ba458c098d25323fbdf867fd61b567",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "895:30680",
+      "name": "angle",
+      "originalName": "angle",
+      "baseName": "angle",
+      "width": 16,
+      "height": 16,
+      "filename": "angle-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-30680",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconAngle",
+      "aliases": [
+        "895-30680.svg"
+      ],
+      "file": "icons/angle-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M2.5 2C2.77614 2 3 2.22386 3 2.5V5.01465L3.41797 5.0498C3.83458 5.09505 4.24715 5.17126 4.65234 5.27734C4.86018 5.33176 5 5.52344 5 5.73828C4.99968 6.07578 4.66517 6.3122 4.33789 6.22949C4.00923 6.1463 3.67495 6.08586 3.33789 6.04785L3 6.01758V10.0361C3.28781 10.0777 3.57011 10.1549 3.83984 10.2666C4.26425 10.4425 4.64974 10.7006 4.97461 11.0254C5.29945 11.3502 5.55751 11.7358 5.7334 12.1602C5.8451 12.4298 5.92229 12.7123 5.96387 13H9.9834C9.95308 12.5476 9.88161 12.0989 9.77051 11.6602C9.688 11.3334 9.92463 10.999 10.2617 10.999C10.476 10.9992 10.6663 11.1394 10.7207 11.3467C10.8626 11.8873 10.9521 12.441 10.9854 13H13.5C13.7761 13 14 13.2239 14 13.5C14 13.7761 13.7761 14 13.5 14H2V2.5C2 2.22386 2.22386 2 2.5 2ZM3 13H4.94922C4.91735 12.844 4.87077 12.6907 4.80957 12.543C4.68394 12.2399 4.49959 11.9644 4.26758 11.7324C4.03554 11.5004 3.76017 11.316 3.45703 11.1904C3.30928 11.1292 3.15601 11.0836 3 11.0518V13ZM8.47559 8.23047C8.6797 8.02636 9.01453 8.03534 9.19238 8.2627C9.44611 8.58707 9.67583 8.92945 9.87988 9.28711C10.0657 9.6128 9.8183 9.99894 9.44336 9.99902C9.2519 9.99902 9.07685 9.89297 8.98047 9.72754C8.81817 9.44873 8.63827 9.18039 8.44141 8.9248C8.28028 8.71564 8.28891 8.41717 8.47559 8.23047ZM6 6.55566C6.00031 6.1809 6.38716 5.93361 6.71289 6.11914C7.07011 6.32263 7.41231 6.55165 7.73633 6.80469C7.96406 6.98262 7.97285 7.31805 7.76855 7.52246C7.58163 7.70938 7.28271 7.7179 7.07324 7.55664C6.81813 7.36026 6.55069 7.1805 6.27246 7.01855C6.1069 6.92219 6 6.74722 6 6.55566Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "d96fd4c9e40cec048c305f56e7cef2cae700c08828bebfe9031086501d4d28dc",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "895:30932",
+      "name": "chart-bar-simple",
+      "originalName": "chart-bar-simple",
+      "baseName": "chart-bar-simple",
+      "width": 16,
+      "height": 16,
+      "filename": "chart-bar-simple-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-30932",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconChartBarSimple",
+      "aliases": [
+        "895-30932.svg"
+      ],
+      "file": "icons/chart-bar-simple-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M4.5 13.5V14C4.77614 14 5 13.7761 5 13.5H4.5ZM2.5 13.5H2C2 13.7761 2.22386 14 2.5 14V13.5ZM2.5 8.5V8C2.22386 8 2 8.22386 2 8.5H2.5ZM4.5 8.5H5C5 8.22386 4.77614 8 4.5 8V8.5ZM8.5 13.5V14C8.77614 14 9 13.7761 9 13.5H8.5ZM6.5 13.5H6C6 13.7761 6.22386 14 6.5 14V13.5ZM6.5 2.5V2C6.22386 2 6 2.22386 6 2.5H6.5ZM8.5 2.5H9C9 2.22386 8.77614 2 8.5 2V2.5ZM12.5 13.5V14C12.7761 14 13 13.7761 13 13.5H12.5ZM10.5 13.5H10C10 13.7761 10.2239 14 10.5 14V13.5ZM10.5 5.5V5C10.2239 5 10 5.22386 10 5.5H10.5ZM12.5 5.5H13C13 5.22386 12.7761 5 12.5 5V5.5ZM4.5 13.5V13H2.5V13.5V14H4.5V13.5ZM2.5 13.5H3V8.5H2.5H2V13.5H2.5ZM2.5 8.5V9H4.5V8.5V8H2.5V8.5ZM4.5 8.5H4V13.5H4.5H5V8.5H4.5ZM8.5 13.5V13H6.5V13.5V14H8.5V13.5ZM6.5 13.5H7V2.5H6.5H6V13.5H6.5ZM6.5 2.5V3H8.5V2.5V2H6.5V2.5ZM8.5 2.5H8V13.5H8.5H9V2.5H8.5ZM12.5 13.5V13H10.5V13.5V14H12.5V13.5ZM10.5 13.5H11V5.5H10.5H10V13.5H10.5ZM10.5 5.5V6H12.5V5.5V5H10.5V5.5ZM12.5 5.5H12V13.5H12.5H13V5.5H12.5Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "c8d8e75d6238fb05dc84bc63d94a1b97989de2985a458910fff24c7bae2d9bee",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "895:31023",
+      "name": "battery-full-charging",
+      "originalName": "battery-full-charging",
+      "baseName": "battery-full-charging",
+      "width": 16,
+      "height": 16,
+      "filename": "battery-full-charging-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-31023",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconBatteryFullCharging",
+      "aliases": [
+        "895-31023.svg"
+      ],
+      "file": "icons/battery-full-charging-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_895_31023)\">\n<path d=\"M12 3.00024C13.6568 3.00026 15 4.3434 15 6.00024C15.5523 6.00026 16 6.44797 16 7.00024V9.00024C15.9999 9.55246 15.5522 10.0002 15 10.0002C14.9999 11.657 13.6568 13.0002 12 13.0002H4C2.34319 13.0002 1.00007 11.657 1 10.0002V6.00024C1 4.34339 2.34315 3.00024 4 3.00024H12ZM4 4.00024C2.89543 4.00024 2 4.89567 2 6.00024V10.0002C2.00007 11.1048 2.89548 12.0002 4 12.0002H12C13.1045 12.0002 13.9999 11.1047 14 10.0002V6.00024C14 4.89568 13.1046 4.00026 12 4.00024H4ZM4.76465 7.24146C4.36573 7.68064 4.26307 8.31401 4.50293 8.85669C4.74317 9.39954 5.28135 9.75024 5.875 9.75024H6.00586L5.91113 10.175C5.84848 10.4573 5.87056 10.7419 5.96191 11.0002H4C3.44776 11.0002 3.00007 10.5525 3 10.0002V6.00024C3 5.44796 3.44772 5.00024 4 5.00024H6.80176L4.76465 7.24146ZM12 5.00024C12.5523 5.00026 13 5.44797 13 6.00024V10.0002C12.9999 10.5525 12.5522 11.0002 12 11.0002H8.9043L10.7861 8.70044C11.1531 8.25192 11.2286 7.63138 10.9805 7.10767C10.7405 6.60145 10.2393 6.27352 9.68262 6.2522L9.74609 6.10962C9.90705 5.74747 9.91261 5.35162 9.78809 5.00024H12Z\" fill=\"black\"/>\n<path d=\"M5.875 8.25L8.375 5.5L7.375 7.75H9.625L7.375 10.5L7.875 8.25H5.875Z\" fill=\"black\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_895_31023\">\n<rect width=\"16\" height=\"16\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+      "sha256": "b74b43fc06681131001a69259f98324b6e0b587c2eef7fc5fb52baecaaaad79a",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "895:30806",
+      "name": "circle-fill",
+      "originalName": "circle-fill",
+      "baseName": "circle-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "circle-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-30806",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconCircleFill",
+      "aliases": [
+        "895-30806.svg"
+      ],
+      "file": "icons/circle-fill-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13403 15 1 11.866 1 8C1 4.13402 4.13403 1.00002 8 1Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "4d518da1ae678e895f45b4ec3d62e4c937bb2d0155328e290a549703df8f1d80",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "895:30734",
+      "name": "bezier",
+      "originalName": "bezier",
+      "baseName": "bezier",
+      "width": 16,
+      "height": 16,
+      "filename": "bezier-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-30734",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconBezier",
+      "aliases": [
+        "895-30734.svg"
+      ],
+      "file": "icons/bezier-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M9 3C9.27614 3 9.5 3.22386 9.5 3.5V4.12305C9.99602 4.06106 10.4924 4.00002 10.9883 4H12.0869C12.293 3.41766 12.8471 3 13.5 3C14.3284 3 15 3.67157 15 4.5C15 5.32843 14.3284 6 13.5 6C12.8471 6 12.293 5.58234 12.0869 5H11.1016C11.4602 5.29427 11.7677 5.65131 11.9883 6.07324C12.6049 7.18222 12.8614 8.39455 12.959 9.59961C12.9688 9.73335 12.9762 9.86611 12.9814 10H13.5C13.7761 10 14 10.2239 14 10.5V12.5C14 12.7761 13.7761 13 13.5 13H11.5C11.2239 13 11 12.7761 11 12.5V10.5C11 10.2239 11.2239 10 11.5 10H11.9795C11.975 9.89094 11.9699 9.7807 11.9619 9.6748C11.8754 8.57682 11.6297 7.48003 11.1172 6.56445C10.7578 5.87492 10.2124 5.25483 9.52051 4.87793C9.51366 4.87707 9.50685 4.87585 9.5 4.875V5.5C9.5 5.77614 9.27614 6 9 6H7C6.72386 6 6.5 5.77614 6.5 5.5V4.875C6.49228 4.87596 6.48429 4.87696 6.47656 4.87793C5.78546 5.2549 5.24195 5.87549 4.88281 6.56445C4.37027 7.48004 4.12461 8.57679 4.03809 9.6748C4.03006 9.7807 4.02599 9.89095 4.02148 10H4.5C4.77614 10 5 10.2239 5 10.5V12.5C5 12.7761 4.77614 13 4.5 13H2.5C2.22386 13 2 12.7761 2 12.5V10.5C2 10.2239 2.22386 10 2.5 10H3.01953C3.02458 9.86612 3.03121 9.73336 3.04102 9.59961C3.13865 8.39457 3.39513 7.1822 4.01172 6.07324C4.23231 5.65138 4.53884 5.29424 4.89746 5H3.91309C3.70703 5.58234 3.15293 6 2.5 6C1.67157 6 1 5.32843 1 4.5C1 3.67157 1.67157 3 2.5 3C3.15293 3 3.70703 3.41766 3.91309 4H5.01562C5.51025 4.00006 6.00534 4.0611 6.5 4.12305V3.5C6.5 3.22386 6.72386 3 7 3H9ZM3 12H4V11H3V12ZM12 12H13V11H12V12ZM2.5 4C2.22386 4 2 4.22386 2 4.5C2 4.77614 2.22386 5 2.5 5C2.77614 5 3 4.77614 3 4.5C3 4.22386 2.77614 4 2.5 4ZM7.5 5H8.5V4H7.5V5ZM13.5 4C13.2239 4 13 4.22386 13 4.5C13 4.77614 13.2239 5 13.5 5C13.7761 5 14 4.77614 14 4.5C14 4.22386 13.7761 4 13.5 4Z\" fill=\"black\"/>\n</svg>\n",
+      "sha256": "d8bf199c7408e2de84ee991aaab5d21af127c106ce93a2123f40c30cdcc83d6f",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "895:30930",
+      "name": "shapes",
+      "originalName": "shapes",
+      "baseName": "shapes",
+      "width": 16,
+      "height": 16,
+      "filename": "shapes-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-30930",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconShapes",
+      "aliases": [
+        "895-30930.svg"
+      ],
+      "file": "icons/shapes-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"2.5\" y=\"9.5\" width=\"4\" height=\"4\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<rect x=\"9\" y=\"9\" width=\"5\" height=\"5\" rx=\"2.5\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M11.5 2L14.0981 6.5H8.90192L11.5 2Z\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M4.5 1.75L7.25 4.5L4.5 7.25L1.75 4.5L4.5 1.75Z\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+      "sha256": "34294502b7efbca3c0286b7dbe89e8ca2fdbbe727007805ab2d4175f9e00690f",
+      "duplicate": false,
+      "variantCount": 1
+    },
+    {
+      "id": "895:30733",
+      "name": "pencil-ruler",
+      "originalName": "pencil-ruler",
+      "baseName": "pencil-ruler",
+      "width": 16,
+      "height": 16,
+      "filename": "pencil-ruler-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-30733",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconPencilRuler",
+      "aliases": [
+        "895-30733.svg"
+      ],
+      "file": "icons/pencil-ruler-16.svg",
+      "svg": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M2.79038 11.7686L2.25 13.75L4.23138 13.2096C4.73506 13.0723 5.19418 12.8058 5.56335 12.4367L13 5C13.5523 4.44772 13.5523 3.55228 13 3C12.4477 2.44772 11.5523 2.44771 11 3L3.56335 10.4367C3.19418 10.8058 2.92774 11.2649 2.79038 11.7686Z\" stroke=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n<path d=\"M12.2071 13.7929L13.7929 12.2071C14.1834 11.8166 14.1834 11.1834 13.7929 10.7929L10.5 7.5L7.5 10.5L10.7929 13.7929C11.1834 14.1834 11.8166 14.1834 12.2071 13.7929Z\" stroke=\"black\" stroke-linecap=\"round\"/>\n<path d=\"M3.79289 2.20711L2.20711 3.79289C1.81658 4.18342 1.81658 4.81658 2.20711 5.20711L5.5 8.5L8.5 5.5L5.20711 2.20711C4.81658 1.81658 4.18342 1.81658 3.79289 2.20711Z\" stroke=\"black\" stroke-linecap=\"round\"/>\n<path d=\"M12.5 9.5L11.5 10.5\" stroke=\"black\" stroke-linecap=\"round\"/>\n<path d=\"M6.5 3.5L5.5 4.5\" stroke=\"black\" stroke-linecap=\"round\"/>\n<path d=\"M12.5 5.5L10.5 3.5\" stroke=\"black\" stroke-linecap=\"round\"/>\n</svg>\n",
+      "sha256": "30be519e58dcaac06b262f014e0c1227544cc67b75dabce23abe7883a3e78a6f",
+      "duplicate": false,
+      "variantCount": 1
     }
   ],
-  "count": 1012,
-  "native16Count": 1012,
+  "count": 1021,
+  "native16Count": 1021,
   "duplicateGroups": {
     "quotes": [
       {
@@ -24057,16 +24267,6 @@
         "file": "icons/bookmark-fill-16.svg"
       }
     ],
-    "align-center": [
-      {
-        "id": "521:7822",
-        "file": "icons/align-center-16.svg"
-      },
-      {
-        "id": "558:8902",
-        "file": "icons/align-center-1-16.svg"
-      }
-    ],
     "pencil-edit": [
       {
         "id": "133:4571",
@@ -24075,16 +24275,6 @@
       {
         "id": "506:2890",
         "file": "icons/pencil-edit-fill-16.svg"
-      }
-    ],
-    "text-block": [
-      {
-        "id": "498:588",
-        "file": "icons/text-block-16.svg"
-      },
-      {
-        "id": "701:1671",
-        "file": "icons/text-block-1-16.svg"
       }
     ],
     "finder": [
@@ -24705,16 +24895,6 @@
       {
         "id": "679:4229",
         "file": "icons/send-fill-16.svg"
-      }
-    ],
-    "quotes-alt": [
-      {
-        "id": "698:1498",
-        "file": "icons/quotes-alt-fill-16.svg"
-      },
-      {
-        "id": "698:1499",
-        "file": "icons/quotes-alt-16.svg"
       }
     ],
     "share-arrow": [

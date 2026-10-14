@@ -147,7 +147,7 @@ export function SidebarDemo() {
               <Toggle
                 key={name}
                 value={name}
-                className="min-h-9 w-full justify-start gap-3 px-3 font-normal pointer-coarse:min-h-11"
+                className="min-h-9 w-full justify-start gap-3 px-3 font-normal"
               >
                 <Icon
                   name={i === 0 ? 'globe' : i === 1 ? 'component' : 'folder'}
@@ -193,7 +193,6 @@ export function BreadcrumbsDemo() {
               ) : (
                 <Button
                   variant="ghost"
-                  className="pointer-coarse:min-h-11"
                   onClick={() => setDepth(i + 1)}
                 >
                   <Icon name={i === 0 ? 'home-simple' : 'folder'} />

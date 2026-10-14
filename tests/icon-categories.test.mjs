@@ -99,6 +99,324 @@ test('overlapping keywords assign each category once and each icon remains one r
   assert.deepEqual(result.categories, config.categories);
 });
 
+test('exact names match only whole names and combine with keyword memberships', () => {
+  const config = parseIconCategories({
+    categories: [
+      { ...files, keywords: ['cost'], exactNames: ['box', 'Box Shipping'] },
+      { ...actions, keywords: ['box'] },
+    ],
+  });
+  const result = categorizeIcons(
+    [
+      'box',
+      'BOX_SHIPPING',
+      'bounding-box',
+      'text-box-heading',
+      'box-storage',
+      'cost-high',
+      'box-shipping-fill',
+    ].map((name) => ({ name })),
+    config,
+  );
+  assert.deepEqual(
+    result.icons.map((icon) => icon.categories),
+    [
+      ['files', 'actions'],
+      ['files', 'actions'],
+      ['actions'],
+      ['actions'],
+      ['actions'],
+      ['files'],
+      ['actions'],
+    ],
+  );
+});
+
+test('library category rules keep the requested icon families together without loose matches', async () => {
+  const config = parseIconCategories(
+    JSON.parse(
+      await readFile(
+        new URL('../public/icon-categories.json', import.meta.url),
+        'utf8',
+      ),
+    ),
+  );
+  const { icons } = JSON.parse(
+    await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
+  );
+  const categorized = categorizeIcons(icons, config).icons;
+  const memberships = new Map(
+    categorized.map((icon) => [icon.name, icon.categories]),
+  );
+  const includes = (name, category) =>
+    assert.ok(
+      memberships.get(name)?.includes(category),
+      `${name} should be in ${category}`,
+    );
+  const excludes = (name, category) => {
+    assert.ok(memberships.has(name), `Unknown icon ${name}`);
+    assert.ok(
+      !memberships.get(name).includes(category),
+      `${name} should not be in ${category}`,
+    );
+  };
+  for (const name of [
+    'box',
+    'box-shipping',
+    'cost-low',
+    'cost-medium',
+    'cost-high',
+    'dollar-sign',
+  ])
+    includes(name, 'commerce');
+  for (const name of [
+    'bounding-box',
+    'text-box',
+    'text-box-heading',
+    'box-storage',
+  ])
+    excludes(name, 'commerce');
+  for (const name of [
+    'map',
+    'map-pin',
+    'map-pin-fill',
+    'location-pin',
+    'location-pin-round',
+    'luggage',
+    'luggage-rolling',
+    'suitcase',
+  ])
+    includes(name, 'travel');
+  for (const name of [
+    'pin',
+    'pin-fill',
+    'pin-vertical',
+    'pin-vertical-fill',
+    'layout-pin',
+    'layout-pinned',
+    'clock',
+    'calendar',
+  ])
+    excludes(name, 'travel');
+  for (const name of [
+    'image-add',
+    'folder-add',
+    'folder-check',
+    'cowboy-hat',
+    'top-hat',
+  ])
+    excludes(name, 'people-identity');
+  includes('graduation-cap', 'accessories');
+  excludes('graduation-cap', 'files');
+  for (const name of ['hat', 'hat-side', 'cowboy-hat', 'top-hat']) {
+    includes(name, 'accessories');
+    excludes(name, 'objects');
+    excludes(name, 'system');
+  }
+  for (const icon of icons.filter(({ name }) =>
+    /^(picture-in-picture|seek(?:-|$)|(?:video-)?camera)/.test(name),
+  ))
+    includes(icon.name, 'media');
+  for (const name of [
+    'beaker',
+    'atom',
+    'atom-simple',
+    'atom-spiral',
+    'atom-tilt',
+    'planet',
+    'rocket',
+    'sun',
+    'moon',
+  ])
+    includes(name, 'science');
+  for (const name of [
+    'phone',
+    'printer',
+    'computer',
+    'keyboard',
+    'plug',
+    'projector-screen',
+    'presentation',
+    'switches',
+    'switch-off',
+    'switch-on',
+  ])
+    includes(name, 'devices');
+  for (const icon of icons.filter(({ name }) =>
+    name.split('-').includes('quotes'),
+  )) {
+    includes(icon.name, 'typography');
+    excludes(icon.name, 'communication');
+  }
+  for (const name of ['text', 'text-box', 'font-family', 'line-height'])
+    includes(name, 'typography');
+  for (const name of ['pencil', 'brush-tip', 'eyedropper', 'eraser']) {
+    includes(name, 'design');
+    excludes(name, 'typography');
+  }
+  for (const name of ['row-expand', 'checklist']) {
+    includes(name, 'layout-interface');
+    excludes(name, 'typography');
+  }
+  includes('scissors', 'objects');
+  excludes('scissors', 'typography');
+  assert.equal(
+    config.categories.find(({ id }) => id === 'files').name,
+    'Files',
+  );
+});
+
+test('category boundaries follow icon meaning rather than generic name fragments', async () => {
+  const config = parseIconCategories(
+    JSON.parse(
+      await readFile(
+        new URL('../public/icon-categories.json', import.meta.url),
+        'utf8',
+      ),
+    ),
+  );
+  const { icons } = JSON.parse(
+    await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
+  );
+  const result = categorizeIcons(icons, config);
+  // Families include their filled, slashed, and named variants.
+  const families = [
+    [
+      /^(loader|spinner|history)$|^arrow-revert-history$/,
+      ['time'],
+      ['status-feedback'],
+    ],
+    [/^scroll(?:-|$)/, ['files', 'objects'], ['system']],
+    [/^credit-card$/, ['commerce'], ['layout-interface']],
+    [/^card-open$/, ['objects'], ['layout-interface']],
+    [/^browser(?:-|$)/, ['devices'], ['layout-interface', 'shapes-symbols']],
+    [
+      /^(frame|bounding-box|border|layers)(?:-|$)/,
+      ['design'],
+      ['layout-interface'],
+    ],
+    [/^home(?:-|$)/, ['travel', 'navigation-actions'], ['layout-interface']],
+    [
+      /^(hand|pointer|pointers|selection)(?:-|$)/,
+      ['system'],
+      ['layout-interface', 'people-identity'],
+    ],
+    [
+      /^ellipsis(?:-|$)/,
+      ['typography', 'navigation-actions'],
+      ['layout-interface'],
+    ],
+    [/^kbd-/, ['system', 'shapes-symbols'], ['devices']],
+    [/^microchip$/, ['objects'], ['devices']],
+    [/^crown(?:-|$)/, ['objects'], ['status-feedback']],
+    [
+      /^wand(?:-|$)/,
+      ['ai', 'objects'],
+      config.categories
+        .map((c) => c.id)
+        .filter((id) => !['ai', 'objects'].includes(id)),
+    ],
+    [/^input(?:-|$)/, ['design', 'security'], ['layout-interface']],
+    [/^chart-/, ['science'], ['development-data']],
+    [/^(language|translate)$/, ['travel'], []],
+    [/^postage-/, ['commerce'], []],
+    [/^(emoji|skull|ghost)(?:-|$)/, ['emoji'], ['objects', 'people-identity']],
+    [
+      /^(hat|cowboy-hat|top-hat|graduation-cap)(?:-|$)/,
+      ['accessories'],
+      ['objects'],
+    ],
+    [
+      /^(circle-(play|pause|stop|record)|arrows-(repeat|shuffle))(?:-|$)/,
+      ['media'],
+      ['status-feedback', 'shapes-symbols'],
+    ],
+    [
+      /^(chat|file|folder|clipboard|cloud|duplicate)-(check|plus)(?:-|$)/,
+      [],
+      ['status-feedback'],
+    ],
+    [
+      /^(camera-square|article-square|code-(square|block)|terminal-square|footer-square|header-square|text-block|videos-square|subtitles-square|plug-at-sign|file-minus)(?:-|$)/,
+      [],
+      ['shapes-symbols'],
+    ],
+    [/^(circle-(access|no-entry|null)|slash)(?:-|$)/, ['shapes-symbols'], []],
+    [
+      /^(point-(up|down))$/,
+      ['arrows', 'navigation-actions'],
+      ['development-data'],
+    ],
+    [
+      /^square-rotate$/,
+      ['design', 'navigation-actions'],
+      ['development-data', 'shapes-symbols'],
+    ],
+    [/^(database|memory|merge)(?:-|$)/, ['development-data'], []],
+    [/^(page|sheet|collection|article)(?:-|$)/, ['files'], []],
+    [/^easel$/, ['design', 'objects'], []],
+    [/^linked$/, ['navigation-actions'], []],
+    [/^purse$/, ['accessories', 'commerce'], []],
+    [/^trophy$/, ['objects', 'status-feedback'], []],
+  ];
+  for (const [pattern, included, excluded] of families) {
+    const matching = result.icons.filter((icon) => pattern.test(icon.name));
+    assert.ok(matching.length, `No icons found for ${pattern}`);
+    for (const icon of matching) {
+      for (const id of included)
+        assert.ok(
+          icon.categories.includes(id),
+          `${icon.name} should be in ${id}`,
+        );
+      for (const id of excluded)
+        assert.ok(
+          !icon.categories.includes(id),
+          `${icon.name} should not be in ${id}`,
+        );
+    }
+  }
+  assert.deepEqual(
+    result.icons
+      .filter((icon) => icon.categories.includes('uncategorized'))
+      .map((icon) => icon.name),
+    [],
+  );
+  assert.ok(
+    !result.categories.some((category) => category.id === 'uncategorized'),
+  );
+});
+
+test('filled and slashed variants stay with their unmodified counterparts', async () => {
+  const config = parseIconCategories(
+    JSON.parse(
+      await readFile(
+        new URL('../public/icon-categories.json', import.meta.url),
+        'utf8',
+      ),
+    ),
+  );
+  const { icons } = JSON.parse(
+    await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
+  );
+  const categorized = categorizeIcons(icons, config).icons;
+  const byName = new Map(categorized.map((icon) => [icon.name, icon]));
+  const variants = categorized.filter((icon) =>
+    /-(fill|slash)(?:-|$)/.test(icon.name),
+  );
+  let compared = 0;
+  for (const icon of variants) {
+    const base = byName.get(icon.name.replace(/-(fill|slash)(?=-|$)/g, ''));
+    if (!base) continue;
+    compared++;
+    assert.deepEqual(
+      icon.categories,
+      base.categories,
+      `${icon.name} should stay with ${base.name}`,
+    );
+  }
+  assert.ok(compared > 100, 'Check variants across the full catalog');
+});
+
 test('new variants and renames use current names without an assignment sync or alias matches', () => {
   const config = parseIconCategories({ categories: [files] });
   assert.deepEqual(
@@ -181,6 +499,15 @@ test('invalid rules and legacy assignment maps are rejected', () => {
       ['arrow-up', 'arrow_up'],
     ].map((keywords) => ({ categories: [{ ...files, keywords }] })),
     { categories: [{ ...files, include: ['anchor'] }] },
+    ...[
+      null,
+      'box',
+      [null],
+      [''],
+      ['box*'],
+      ['box', 'BOX'],
+      ['box-shipping', 'BOX_SHIPPING'],
+    ].map((exactNames) => ({ categories: [{ ...files, exactNames }] })),
     { categories: [files], icons: { anchor: ['files'] } },
   ])
     assert.throws(() => parseIconCategories(value), JSON.stringify(value));

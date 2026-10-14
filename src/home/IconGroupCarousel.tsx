@@ -59,13 +59,13 @@ export function IconGroupCarousel() {
     <section aria-labelledby="icon-groups-heading" className="mt-16 sm:mt-24">
       <div className="mb-6 flex items-center justify-between gap-6">
         <h2 id="icon-groups-heading" className="text-base font-medium">
-          What’s included
+          Preview
         </h2>
         <div className="flex gap-1">
           <Button
             variant="ghost"
             size="icon"
-            className="size-11 rounded-full"
+            className="rounded-full"
             aria-label="Previous icon group"
             disabled={edges.start}
             onClick={() => scrollToGroup('previous')}
@@ -75,7 +75,7 @@ export function IconGroupCarousel() {
           <Button
             variant="ghost"
             size="icon"
-            className="size-11 rounded-full"
+            className="rounded-full"
             aria-label="Next icon group"
             disabled={edges.end}
             onClick={() => scrollToGroup('next')}
@@ -86,7 +86,7 @@ export function IconGroupCarousel() {
       </div>
       <div
         ref={track}
-        className="relative flex scroll-fade-x snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pt-1 pb-5 scroll-fade-12 focus-visible:-outline-offset-2 motion-reduce:scroll-auto sm:gap-6"
+        className="relative flex scroll-fade-x snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-5 scroll-fade-12 focus-visible:-outline-offset-2 motion-reduce:scroll-auto sm:gap-6"
         role="region"
         aria-roledescription="carousel"
         aria-label="Icon groups"
@@ -96,7 +96,7 @@ export function IconGroupCarousel() {
         {iconGroups.map((group, index) => (
           <figure
             key={group.id}
-            className="m-0 flex h-108 w-72 max-w-full shrink-0 snap-start scroll-ms-0 flex-col gap-2 rounded-2xl bg-inset p-4 sm:w-80"
+            className="m-0 flex h-108 w-72 max-w-full shrink-0 snap-start scroll-ms-8 flex-col gap-2 rounded-2xl bg-canvas p-4 sm:w-80"
             data-figma-id={group.id}
             role="group"
             aria-roledescription="slide"

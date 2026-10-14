@@ -39,7 +39,7 @@ export function createCategorySchema(iconNames: readonly string[]) {
               type: 'array',
               uniqueItems: true,
               description:
-                'Match ANY keyword against complete, consecutive name segments, ignoring case. Use an empty array to match nothing.',
+                'Match ANY keyword against complete, consecutive name segments, ignoring case. Optional exactNames also match whole names.',
               items: {
                 type: 'string',
                 pattern: '^\\s*[a-zA-Z0-9]+(?:[-_\\s]+[a-zA-Z0-9]+)*\\s*$',
@@ -48,6 +48,21 @@ export function createCategorySchema(iconNames: readonly string[]) {
                 examples: [
                   ...new Set(iconNames.flatMap((name) => name.split('-'))),
                 ].sort(),
+              },
+            },
+            exactNames: {
+              type: 'array',
+              uniqueItems: true,
+              description:
+                'Optional whole-name matches, in addition to keywords. For example, box matches only Box, not BoundingBox or TextBox. Case and separators are normalized.',
+              items: {
+                anyOf: [
+                  { $ref: '#/definitions/iconName' },
+                  {
+                    type: 'string',
+                    pattern: '^\\s*[a-zA-Z0-9]+(?:[-_\\s]+[a-zA-Z0-9]+)*\\s*$',
+                  },
+                ],
               },
             },
           },

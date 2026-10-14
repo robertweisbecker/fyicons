@@ -103,9 +103,7 @@ export function FileTree({
         <Collapsible.Trigger
           className={cn(
             'flex w-full min-w-0 items-center gap-2 px-2 text-left hover:bg-current/5 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-muted',
-            compact
-              ? 'h-7 rounded-md text-xs'
-              : 'min-h-9 rounded-lg text-sm pointer-coarse:min-h-11',
+            compact ? 'h-7 rounded-md text-xs' : 'min-h-9 rounded-lg text-sm',
           )}
           aria-label={`${node.path} folder`}
         >

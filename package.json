@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npm run generate:icons && vite --host 127.0.0.1",
-    "build": "npm run generate:icons && tsc -b && vite build && node scripts/compact-build-schema.mjs && node scripts/measure-build.mjs",
+    "build": "npm run generate:icons && tsc -b && vite build && node scripts/compact-build-json.mjs && node scripts/measure-build.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "sync-icons": "node scripts/sync-icons.mjs",
     "generate:icons": "node scripts/generate-icons.mjs",

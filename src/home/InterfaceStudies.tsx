@@ -116,13 +116,7 @@ export function RichTextStudy() {
               ['text-strikethrough', 'Strikethrough'],
               ['text-underline', 'Underline'],
             ].map(([icon, label]) => (
-              <DemoToggle
-                key={icon}
-                icon={icon}
-                label={label}
-                size="icon-sm"
-                className="pointer-coarse:size-11"
-              />
+              <DemoToggle key={icon} icon={icon} label={label} size="icon-sm" />
             ))}
           </div>
           <span aria-hidden className="h-3 w-px shrink-0 bg-line" />
@@ -138,20 +132,13 @@ export function RichTextStudy() {
                   icon={icon}
                   label={label}
                   size="icon-sm"
-                  className="pointer-coarse:size-11"
                 />
               ))}
             </ToggleGroup>
             <Menu>
               <MenuTrigger
                 aria-label="More formatting"
-                render={
-                  <Button
-                    variant="ghost"
-                    size="icon-sm"
-                    className="pointer-coarse:size-11"
-                  />
-                }
+                render={<Button variant="ghost" size="icon-sm" />}
               >
                 <Icon name="ellipsis" />
               </MenuTrigger>
@@ -182,7 +169,6 @@ export function RichTextStudy() {
                 icon={'text-align-' + value}
                 label={'Align ' + value}
                 size="icon-sm"
-                className="pointer-coarse:size-11"
               />
             ))}
           </ToggleGroup>
@@ -191,13 +177,7 @@ export function RichTextStudy() {
         <Menu>
           <MenuTrigger
             aria-label="Insert"
-            render={
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                className="pointer-coarse:size-11"
-              />
-            }
+            render={<Button variant="ghost" size="icon-sm" />}
           >
             <Icon name="circle-plus-fill" />
           </MenuTrigger>
@@ -209,7 +189,7 @@ export function RichTextStudy() {
                 ['heading-1', 'Heading 1'],
                 ['heading-2', 'Heading 2'],
                 ['heading-3', 'Heading 3'],
-                ['text-block-1', 'Text'],
+                ['text-paragraph', 'Text'],
                 ['text-blockquote', 'Blockquote'],
                 ['code-rectangle', 'Inline code'],
                 ['code-block', 'Code block'],

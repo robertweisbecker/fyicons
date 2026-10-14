@@ -1,19 +1,12 @@
 import { useId } from 'react';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/Icon';
-import { copy, download } from '@/lib/downloads';
+import { download } from '@/lib/downloads';
 import type { IconRecord } from '@/lib/catalog';
-import { IconButton } from './IconButton';
-import { ToggleIcon } from './ToggleIcon';
+import { IconCopyButton } from './IconCopyButton';
 import { Badge } from './ui/badge';
 
-export function IconUsage({
-  item,
-  notify,
-}: {
-  item: IconRecord;
-  notify: (message: string) => void;
-}) {
+export function IconUsage({ item }: { item: IconRecord }) {
   const headingId = useId();
   const jsx = `import {\n  ${item.componentName},\n} from '@/icons';\n\n<${item.componentName} size={16} />`;
 
@@ -35,20 +28,7 @@ export function IconUsage({
             SVG
           </Badge>
           <div className="flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              aria-label="Copy SVG"
-              onClick={async () =>
-                notify(
-                  (await copy(item.svg))
-                    ? 'SVG copied'
-                    : 'Clipboard unavailable. Use Download SVG.',
-                )
-              }
-            >
-              <Icon name="copy-sm" />
-            </Button>
+            <IconCopyButton key={item.id} item={item} />
             <Button
               variant="ghost"
               size="icon-sm"
@@ -64,19 +44,13 @@ export function IconUsage({
             <Badge icon="atom" iconClass="text-sky-400" variant="unstyled">
               JSX
             </Badge>
-            <IconButton
-              icon={'copy-sm'}
+            <IconCopyButton
+              key={item.id}
+              item={item}
+              text={jsx}
               label="Copy JSX"
               size="icon-xs"
-              variant="ghost"
-              onClick={async () =>
-                notify(
-                  (await copy(jsx))
-                    ? 'JSX copied'
-                    : 'Clipboard unavailable. Select and copy the code.',
-                )
-              }
-            ></IconButton>
+            />
           </div>
 
           <pre

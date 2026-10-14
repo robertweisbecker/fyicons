@@ -7,7 +7,7 @@ import type { MouseEvent } from 'react';
 import { githubHref, pageHref, type Page } from '../lib/navigation';
 
 const navLinkClassName =
-  'inline-flex min-h-7 items-center gap-1.5 rounded-full px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink max-[360px]:text-xs sm:px-3 pointer-coarse:min-h-11';
+  'inline-flex min-h-7 items-center gap-1.5 rounded-full px-1.5 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink max-[360px]:text-xs sm:px-3';
 
 export function SiteHeader({
   page,
@@ -34,13 +34,12 @@ export function SiteHeader({
     >
       <div
         className={cn(
-          'mx-auto flex h-14 items-center gap-2 px-3 max-[360px]:gap-1 max-[360px]:px-2 sm:gap-6 sm:px-6',
-          page === 'home' ? 'max-w-7xl' : 'max-w-400',
+          'mx-auto flex h-14 max-w-400 items-center gap-2 px-3 max-[360px]:gap-1 max-[360px]:px-2 sm:gap-6 sm:px-6',
         )}
       >
         <a
           className={cn(
-            'flex shrink-0 items-center justify-center gap-2 text-sm font-semibold tracking-normal pointer-coarse:min-h-11 pointer-coarse:min-w-11',
+            'flex shrink-0 items-center justify-center gap-2 text-sm font-semibold tracking-normal',
           )}
           aria-label="FYIcons home"
           href={pageHref('home')}
@@ -77,33 +76,27 @@ export function SiteHeader({
             rel="noreferrer"
             aria-label="GitHub"
             title="GitHub"
-            className={cn(navLinkClassName, 'shrink-0 pointer-coarse:min-w-11')}
+            className={cn(navLinkClassName, 'shrink-0')}
           >
             <span className="hidden md:inline">GitHub</span>
             <Icon name="arrow-up-right" />
           </a>
         </nav>
         <div className={cn('flex shrink-0 items-center gap-1 sm:gap-2')}>
-          <IconButton
-            icon="search"
-            label="Search all icons"
-            onClick={search}
-            className="pointer-coarse:size-11"
-          />
+          <IconButton icon="search" label="Search all icons" onClick={search} />
           <IconButton
             icon={theme === 'dark' ? 'sun' : 'moon'}
             label={
               'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme'
             }
             onClick={toggleTheme}
-            className="pointer-coarse:size-11"
           />
           <Button
             variant="default"
             disabled={packing}
             onClick={download}
             aria-label={packing ? 'Preparing download' : 'Download'}
-            className="size-9 p-0 sm:w-auto sm:px-3 pointer-coarse:size-11"
+            className="size-9 p-0 sm:w-auto sm:px-3"
           >
             <Icon name="download-square" />
             <span className="hidden sm:inline">

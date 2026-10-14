@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot from './base';
+const IconDuplicateCheckFill = React.forwardRef<SVGSVGElement, IconProps>(function IconDuplicateCheckFill(props, ref) {
+  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.5 1C10.8807 1 12 2.11929 12 3.5V4H12.5C13.8807 4 15 5.11929 15 6.5V12.5C14.9999 13.8807 13.8807 15 12.5 15H6.5C5.11933 15 4.00007 13.8807 4 12.5V12H3.5C2.11937 12 1.00013 10.8806 1 9.5V3.5C1 2.11929 2.11929 1 3.5 1H9.5ZM11.7451 7.06445C11.5045 6.92925 11.1998 7.01436 11.0645 7.25488L9.16016 10.6387L7.87598 9.1709C7.69413 8.96331 7.37864 8.94232 7.1709 9.12402C6.96327 9.30584 6.94237 9.62133 7.12402 9.8291L8.87402 11.8291C8.98085 11.951 9.14049 12.0137 9.30176 11.9971C9.46296 11.9802 9.60604 11.8864 9.68555 11.7451L11.9355 7.74512C12.0709 7.50454 11.9856 7.19991 11.7451 7.06445ZM3.5 2C2.67157 2 2 2.67157 2 3.5V9.5C2.00013 10.3283 2.67165 11 3.5 11H4V6.5C4 5.11929 5.11929 4 6.5 4H11V3.5C11 2.67157 10.3284 2 9.5 2H3.5Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconDuplicateCheckFill;

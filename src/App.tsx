@@ -450,7 +450,6 @@ export function App({ categoryError }: { categoryError?: string }) {
           docked={inspectorDocked}
           onDockedChange={changeInspectorDocked}
           toggleSelection={toggleSelection}
-          notify={notify}
           finalFocus={() =>
             view === 'library'
               ? (document.querySelector<HTMLElement>(

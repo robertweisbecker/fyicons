@@ -57,7 +57,7 @@ export function MenuContent({
 }
 
 const menuItemVariants = cva(
-  'relative flex cursor-default items-center outline-none data-disabled:pointer-events-none data-disabled:opacity-40 data-highlighted:bg-hover pointer-coarse:min-h-11',
+  'relative flex cursor-default items-center outline-none data-disabled:pointer-events-none data-disabled:opacity-40 data-highlighted:bg-hover',
   {
     variants: {
       size: {

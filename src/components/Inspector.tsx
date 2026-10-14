@@ -39,7 +39,7 @@ import {
 } from '@/lib/catalog';
 import { useMobile, usePreference } from '@/lib/preferences';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
-import { copy } from '@/lib/downloads';
+import { IconCopyButton } from './IconCopyButton';
 import './MobileInspector.css';
 
 type Props = {
@@ -50,7 +50,6 @@ type Props = {
   navigate: (step: number) => void;
   close: () => void;
   toggleSelection: (id: string) => void;
-  notify: (message: string) => void;
   finalFocus: () => HTMLElement | false;
   docked: boolean;
   onDockedChange: (docked: boolean) => void;
@@ -92,7 +91,6 @@ function PreviewGridControl({
         title={grid ? 'Hide grid' : 'Show grid'}
         pressed={grid}
         onPressedChange={setGrid}
-        className="pointer-coarse:min-h-11"
       >
         <ToggleIcon icon="eye-closed" activeIcon="eye" />
         Grid
@@ -119,13 +117,11 @@ function Details({
   selected,
   select,
   toggleSelection,
-  notify,
 }: {
   item: IconRecord;
   selected: boolean;
   select: Props['select'];
   toggleSelection?: () => void;
-  notify: Props['notify'];
 }) {
   const variants = item.duplicate
     ? icons.filter((icon) => icon.baseName === item.baseName)
@@ -134,7 +130,7 @@ function Details({
     <>
       <div className="flex flex-col gap-4 px-4 py-3">
         <div className="flex flex-col gap-5">
-          <IconUsage item={item} notify={notify} />
+          <IconUsage item={item} />
           <DrawerDescription className="text-xs text-muted">
             {getIconCategoryLabel(item)}
           </DrawerDescription>
@@ -224,7 +220,6 @@ export function Inspector(props: Props) {
     close,
     finalFocus,
     selectedIds,
-    notify,
     toggleSelection,
     navigate,
   } = props;
@@ -271,7 +266,6 @@ export function Inspector(props: Props) {
       selected={selectedIds.includes(item.id)}
       select={props.select}
       toggleSelection={mobile ? undefined : () => toggleSelection(item.id)}
-      notify={notify}
     />
   );
   function keyboard(event: React.KeyboardEvent) {
@@ -390,18 +384,7 @@ export function Inspector(props: Props) {
                   className="mobile-inspector-actions absolute top-8 right-2 flex gap-0.5"
                   data-base-ui-swipe-ignore
                 >
-                  <IconButton
-                    icon="copy-sm"
-                    label="Copy SVG"
-                    size="icon-xs"
-                    onClick={async () =>
-                      notify(
-                        (await copy(item.svg))
-                          ? 'SVG copied'
-                          : 'Clipboard unavailable',
-                      )
-                    }
-                  />
+                  <IconCopyButton key={item.id} item={item} size="icon-xs" />
                 </div>
               </header>
               <DrawerScroll

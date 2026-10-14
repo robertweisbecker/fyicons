@@ -48,10 +48,7 @@ export function StateDemo() {
           ],
         ] as const
       ).map(([label, items]) => (
-        <div
-          key={label}
-          className="flex items-center justify-between gap-3 pointer-coarse:min-h-11"
-        >
+        <div key={label} className="flex items-center justify-between gap-3">
           <span className="text-sm text-muted">{label}</span>
           <ToggleGroup
             multiple={label !== 'Feedback'}
@@ -118,7 +115,7 @@ export function SettingsDemo() {
           </Field.Root>
         ))}
       </div>
-      <Field.Root className="mt-auto flex items-center justify-between gap-3 pointer-coarse:min-h-11">
+      <Field.Root className="mt-auto flex items-center justify-between gap-3">
         <Field.Label className="flex items-center gap-2 text-sm">
           <Icon name={sync ? 'cloud-check' : 'cloud-slash'} />
           Sync across devices

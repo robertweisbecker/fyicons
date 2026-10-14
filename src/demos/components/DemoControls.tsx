@@ -27,8 +27,6 @@ export function DemoHint({
     </Tooltip.Root>
   );
 }
-const touchControl =
-  'touch-manipulation pointer-coarse:min-h-11 pointer-coarse:min-w-11';
 export function DemoIconButton({
   label,
   icon,
@@ -121,7 +119,7 @@ export function CopyButton({
       <Button
         variant="ghost"
         size={showLabel ? 'sm' : 'icon'}
-        className={cn(touchControl, showLabel && 'min-w-24', className)}
+        className={cn('touch-manipulation', showLabel && 'min-w-24', className)}
         disabled={state === 'pending'}
         aria-label={status}
         onClick={handleCopy}

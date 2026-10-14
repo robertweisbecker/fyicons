@@ -123,7 +123,7 @@ export function BadgesDemo() {
         <Select value={status} onValueChange={setStatus}>
           <SelectTrigger
             aria-label="Task status"
-            className="min-h-8 gap-2 rounded-full pointer-coarse:min-h-11"
+            className="min-h-8 gap-2 rounded-full"
           >
             <Icon
               name={
@@ -270,7 +270,7 @@ export function SharingDemo() {
           <Button
             variant="text"
             size="sm"
-            className="mt-1 h-auto min-h-6 justify-start p-0 text-xs font-normal pointer-coarse:min-h-11"
+            className="mt-1 h-auto min-h-6 justify-start p-0 text-xs font-normal"
             onClick={() => setPrivateLink(!privateLink)}
           >
             {privateLink ? 'Enable link sharing' : 'Restrict access'}
@@ -279,7 +279,7 @@ export function SharingDemo() {
         <Select value={access} onValueChange={setAccess}>
           <SelectTrigger
             aria-label="Link permission"
-            className="min-h-8 gap-2 border-0 bg-transparent p-0 text-xs pointer-coarse:min-h-11"
+            className="min-h-8 gap-2 border-0 bg-transparent p-0 text-xs"
           >
             <Icon name={access === 'Can edit' ? 'pencil-edit' : 'eye'} />
             <SelectValue />

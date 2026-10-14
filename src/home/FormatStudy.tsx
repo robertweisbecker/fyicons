@@ -6,7 +6,7 @@ import { Glyph, panel } from './Study';
 
 export function FormatStudy() {
   return (
-    <div className={cn(panel, 'w-full max-w-72 p-4 pointer-coarse:max-w-80')}>
+    <div className={cn(panel, 'w-full max-w-72 p-4')}>
       <FormatControls />
     </div>
   );

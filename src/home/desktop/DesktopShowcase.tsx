@@ -1,18 +1,19 @@
 import { Tabs } from '@base-ui/react/tabs';
 import { Icon } from '@/components/Icon';
-import { ProfileStudy } from '../SocialStudy';
 import { DesignApp } from './DesignApp';
 import { FilesApp } from './FilesApp';
 import { CodeApp } from './CodeApp';
 import { MusicApp } from './MusicApp';
-import { BrowserWindow } from './Window';
+import { SocialApp } from './SocialApp';
+import { AgentsApp } from './AgentsApp';
 
 const apps = [
   { id: 'design', name: 'Design', icon: 'pen-tool' },
-  { id: 'files', name: 'Files', icon: 'folder-open' },
+  { id: 'files', name: 'Files', icon: 'files-tilt' },
   { id: 'code', name: 'Code', icon: 'code' },
-  { id: 'social', name: 'Social', icon: 'chat-round' },
-  { id: 'music', name: 'Music', icon: 'headphones' },
+  { id: 'agents', name: 'Agents', icon: 'agent' },
+  { id: 'social', name: 'Social', icon: 'thumbs-up' },
+  { id: 'music', name: 'Media', icon: 'headphones' },
 ] as const;
 
 function DesktopStatusBar() {
@@ -56,15 +57,15 @@ export function DesktopShowcase() {
       <Tabs.Root defaultValue="design">
         <Tabs.List
           aria-label="Demo apps"
-          className="mx-auto my-4 flex max-w-xl gap-1"
+          className="mx-auto my-4 flex max-w-2xl gap-1 rounded-full bg-canvas"
         >
           {apps.map((app) => (
             <Tabs.Tab
               key={app.id}
               value={app.id}
-              className="flex min-h-14 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-sm text-muted sm:min-h-11 sm:flex-row sm:gap-2 data-active:bg-surface data-active:text-ink data-active:shadow-sm"
+              className="flex min-h-14 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-full px-2 py-2 text-muted hover:text-ink not-data-active:hover:bg-hover sm:min-h-11 sm:flex-row sm:gap-2 data-active:bg-surface data-active:text-ink data-active:shadow-sm data-active:ring data-active:ring-muted/30"
             >
-              <Icon name={app.icon} />
+              <Icon name={app.icon} size={20} />
               {app.name}
             </Tabs.Tab>
           ))}
@@ -94,13 +95,18 @@ export function DesktopShowcase() {
               <CodeApp />
             </Tabs.Panel>
             <Tabs.Panel
+              value="agents"
+              keepMounted
+              className="grid h-full min-w-0 place-items-center p-3 data-hidden:hidden sm:p-6 lg:p-8"
+            >
+              <AgentsApp />
+            </Tabs.Panel>
+            <Tabs.Panel
               value="social"
               keepMounted
               className="grid h-full min-w-0 place-items-center p-3 data-hidden:hidden sm:p-6 lg:p-8"
             >
-              <BrowserWindow>
-                <ProfileStudy />
-              </BrowserWindow>
+              <SocialApp />
             </Tabs.Panel>
             <Tabs.Panel
               value="music"

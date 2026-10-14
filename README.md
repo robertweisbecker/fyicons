@@ -1,6 +1,6 @@
 # FYIcons
 
-1,012 icons at 16 × 16 px, with a minimal homepage featuring five app demos and an icon carousel, a searchable library, an inspector, SVG downloads, and standalone component examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
+1,021 icons at 16 × 16 px, with a minimal homepage featuring six app demos and an icon carousel, a searchable library, an inspector, SVG downloads, and standalone component examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
 
 ## Development
 
@@ -100,7 +100,7 @@ Edit [`public/icon-categories.json`](public/icon-categories.json). Each category
     },
     {
       "id": "files",
-      "name": "Files & knowledge",
+      "name": "Files",
       "icon": "folder",
       "keywords": ["file", "files", "folder", "book"]
     }
@@ -108,17 +108,21 @@ Edit [`public/icon-categories.json`](public/icon-categories.json). Each category
 }
 ```
 
-An icon belongs to every category where **any** keyword matches complete, consecutive name segments, ignoring case. `file` matches `file-add` and `file-filled`, but not `profile` or `files`; list singular and plural forms separately. `arrow-up` matches `circle-arrow-up-fill`, but not `arrow-right-up`. Hyphens, underscores, and spaces separate segments. Keywords are plain text, with no regex or wildcard syntax. An empty `keywords` array matches nothing.
+An icon belongs to every category where **any** keyword matches complete, consecutive name segments, ignoring case. `file` matches `file-add` and `file-filled`, but not `profile` or `files`; list singular and plural forms separately. `arrow-up` matches `circle-arrow-up-fill`, but not `arrow-right-up`. Hyphens, underscores, and spaces separate segments. Keywords are plain text, with no regex or wildcard syntax. An empty `keywords` array adds no keyword matches.
+
+For narrow exceptions, add optional `exactNames` in the same category definition. Commerce uses `"exactNames": ["box", "box-shipping"]` alongside its keywords: it includes Box and BoxShipping without matching BoundingBox, TextBox, or BoxStorage. Exact names use the same case/separator normalization, but match the entire name and do not automatically include variants. A match from either list adds the category.
+
+Choose keywords for an icon's meaning, not its surrounding shape or an incidental modifier. For example, `browser` includes browser variants in Devices, while `circle` would also collect playback controls, users, and alerts. Use exact names for standalone shapes and symbols, and include their filled variants explicitly. Slashed variants should remain with their unslashed counterparts. The category tests cover these boundaries and flag uncategorized additions to the current catalog.
 
 New icons and variants pick up matching categories automatically. Renaming an icon can change its memberships; aliases and Figma IDs do not participate in keyword matching. Rename a category or change its sidebar icon in its one definition. Each icon appears once in All, while search, the inspector, and category filters use every matching category. Category counts may add up to more than the total icon count. `all` and `uncategorized` are reserved IDs.
 
-The JSON's `$schema` documents the rules and provides sidebar icon completions and example keyword suggestions in supporting JSON editors. New keywords are allowed before matching artwork exists. There are no category IDs to keep synchronized elsewhere. The dev and preview servers refresh the generated `public/icon-categories.schema.json` when the icon inventory changes; category edits do not require schema regeneration. Without a running server, use `npm run generate:category-schema` to refresh inventory suggestions.
+The JSON's `$schema` documents the rules and provides sidebar icon and exact-name completions and example keyword suggestions in supporting JSON editors. New keywords are allowed before matching artwork exists. There are no category IDs to keep synchronized elsewhere. The dev and preview servers refresh the generated `public/icon-categories.schema.json` when the icon inventory changes; category edits do not require schema regeneration. Without a running server, use `npm run generate:category-schema` to refresh inventory suggestions.
 
 Save and refresh the page. **No generation, build, or server restart is needed** with `npm run dev` or `npm run preview`.
 
 The browser fetches this JSON without caching on page load. Filters, counts, search, inspector labels, and downloaded manifests all use the computed memberships. Icons with no matching keywords appear under Uncategorized, which is shown only when needed. If the JSON is invalid or unavailable, all icons remain available and the library shows a notice. An unknown sidebar icon falls back to the tag; source checks report the invalid icon name. `npm run check:icons` validates rules and sidebar references without requiring generated artwork files to change; unmatched icons are allowed.
 
-A production build copies this file unchanged to `dist/icon-categories.json`. On a static host, publish the updated JSON at that same URL; compiled JavaScript does not need rebuilding. The existing GitHub Pages workflow still performs a full build when deploying repository changes.
+A production build minifies this file to `dist/icon-categories.json`, keeping its data unchanged and the editable source readable. On a static host, publish the updated JSON at that same URL; compiled JavaScript does not need rebuilding. The existing GitHub Pages workflow still performs a full build when deploying repository changes.
 
 Downloaded manifests include category definitions, keyword rules, and each icon's computed category ID array. See [the October 8 sync record](docs/icon-sync-2026-10-08.md) for the source scope, name changes, additions, removals, and known source naming collisions.
 
@@ -132,7 +136,7 @@ This is an explicit full import: it replaces the editable SVG source files and m
 
 Export selected downloads a ZIP containing only the selected SVGs and their manifest. Existing shortlists are retained as selections.
 
-The Examples page uses a responsive bento grid of standalone navigation, composer, editor, settings, and feedback demos. The homepage combines the design, code review, and music examples into app windows, alongside Files and Social. Interactions use local simulated state and do not connect to external services. The editor shows static sample text; its toolbar buttons only toggle their selected states.
+The Examples page uses a responsive bento grid of standalone navigation, composer, editor, settings, and feedback demos. The homepage combines Design, Files, Code, Agents, Social, and Music into app windows. Social fills its own Bird App window; Agents uses the browser chrome with a sample conversation and the goal composer. Interactions use local simulated state and do not connect to external services. The editor shows static sample text; its toolbar buttons only toggle their selected states.
 
 ## GitHub Pages
 

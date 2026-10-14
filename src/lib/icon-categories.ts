@@ -1,6 +1,6 @@
 export type IconCategory = { id: string; name: string; icon: string };
 export type IconCategories = {
-  categories: (IconCategory & { keywords: string[] })[];
+  categories: (IconCategory & { keywords: string[]; exactNames?: string[] })[];
 };
 
 export const uncategorized: IconCategory = {
@@ -14,6 +14,18 @@ function normalizeName(value: string) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
+}
+
+function isNameList(value: unknown): value is string[] {
+  return (
+    Array.isArray(value) &&
+    value.every(
+      (name) =>
+        typeof name === 'string' &&
+        /^[a-z0-9]+(?:[-_\s]+[a-z0-9]+)*$/i.test(name.trim()),
+    ) &&
+    new Set(value.map(normalizeName)).size === value.length
+  );
 }
 
 /** Validate the editable runtime rules before categorizing the catalog. */
@@ -42,7 +54,8 @@ export function parseIconCategories(value: unknown): IconCategories {
       typeof category.icon !== 'string' ||
       !category.icon.trim() ||
       Object.keys(category).some(
-        (key) => !['id', 'name', 'icon', 'keywords'].includes(key),
+        (key) =>
+          !['id', 'name', 'icon', 'keywords', 'exactNames'].includes(key),
       )
     )
       throw new Error(
@@ -51,35 +64,34 @@ export function parseIconCategories(value: unknown): IconCategories {
     ids.add(category.id);
     names.add(category.name);
     if (
-      !Array.isArray(category.keywords) ||
-      category.keywords.some(
-        (keyword) =>
-          typeof keyword !== 'string' ||
-          !/^[a-z0-9]+(?:[-_\s]+[a-z0-9]+)*$/i.test(keyword.trim()),
-      ) ||
-      new Set(category.keywords.map(normalizeName)).size !==
-        category.keywords.length
+      !isNameList(category.keywords) ||
+      ('exactNames' in category && !isNameList(category.exactNames))
     )
       throw new Error(
-        `Invalid keywords for ${category.name}; use an array of unique words or name segments.`,
+        `Invalid rules for ${category.name}; keywords and exactNames must be arrays of unique names or segments.`,
       );
   }
   return { categories };
 }
 
-/** Match any keyword as complete, consecutive name segments; allow every matching category. */
+/** Match name segments or explicit whole names; allow every matching category. */
 export function categorizeIcons<T extends { name: string }>(
   icons: readonly T[],
   config: IconCategories,
 ) {
-  const rules = config.categories.map(({ id, keywords }) => ({
+  const rules = config.categories.map(({ id, keywords, exactNames = [] }) => ({
     id,
     keywords: keywords.map((keyword) => `-${normalizeName(keyword)}-`),
+    exactNames: new Set(exactNames.map(normalizeName)),
   }));
   const categorized = icons.map((icon) => {
-    const name = `-${normalizeName(icon.name)}-`;
+    const name = normalizeName(icon.name);
     const memberships = rules
-      .filter((rule) => rule.keywords.some((keyword) => name.includes(keyword)))
+      .filter(
+        (rule) =>
+          rule.exactNames.has(name) ||
+          rule.keywords.some((keyword) => `-${name}-`.includes(keyword)),
+      )
       .map(({ id }) => id);
     return {
       ...icon,
