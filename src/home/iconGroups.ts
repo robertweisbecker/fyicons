@@ -136,7 +136,7 @@ export const iconGroups = [
         'earth',
       ],
       [
-        'globe-alt',
+        'globe-complex',
         'globe-stand',
         'appearance',
         'chat-closed-captions',

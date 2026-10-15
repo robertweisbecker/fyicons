@@ -222,7 +222,7 @@ test('library category rules keep the requested icon families together without l
     'atom',
     'atom-simple',
     'atom-spiral',
-    'atom-tilt',
+    'atom-react',
     'planet',
     'rocket',
     'sun',

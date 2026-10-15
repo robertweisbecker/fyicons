@@ -84,7 +84,7 @@ function PreviewGridControl({
 }) {
   return (
     <div
-      className="pointer-events-none absolute top-3 right-2 rounded-md bg-surface opacity-0 shadow-xs transition-opacity duration-150 ease-out group-focus-within/preview-container:pointer-events-auto group-focus-within/preview-container:opacity-100 group-hover/preview-container:pointer-events-auto group-hover/preview-container:opacity-100 pointer-coarse:pointer-events-auto pointer-coarse:opacity-100"
+      className="surface pointer-events-none absolute top-3 right-2 opacity-0 transition-opacity duration-150 ease-out group-focus-within/preview-container:pointer-events-auto group-focus-within/preview-container:opacity-100 group-hover/preview-container:pointer-events-auto group-hover/preview-container:opacity-100 pointer-coarse:pointer-events-auto pointer-coarse:opacity-100"
       data-base-ui-swipe-ignore
     >
       <Toggle
@@ -327,13 +327,13 @@ export function Inspector(props: Props) {
           onKeyDown={keyboard}
         >
           {item && (
-            <div className="mobile-inspector-frame pointer-events-auto flex flex-col overflow-hidden rounded-2xl bg-surface shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
+            <div className="mobile-inspector-frame pointer-events-auto flex flex-col overflow-hidden rounded-2xl bg-dialog shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
               <div className="relative z-10 h-9 shrink-0">
                 <div
                   aria-hidden="true"
                   className="flex h-full touch-none items-center justify-center"
                 >
-                  <span className="h-1 w-9 rounded-full bg-neutral-400" />
+                  <span className="h-1 w-14 rounded-full bg-border" />
                 </div>
                 <DrawerClose
                   render={

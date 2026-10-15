@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconChevronDown = React.forwardRef<SVGSVGElement, IconProps>(function IconChevronDown(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M12.1484 6.14644C12.3436 5.95119 12.6602 5.95119 12.8554 6.14644C13.0507 6.3417 13.0507 6.65821 12.8554 6.85347L8.35542 11.3535C8.16016 11.5487 7.84365 11.5487 7.64839 11.3535L3.14839 6.85347C2.95315 6.65821 2.95313 6.34169 3.14839 6.14644C3.34364 5.95121 3.66016 5.95121 3.85542 6.14644L8.0019 10.2929L12.1484 6.14644Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M12.1479 6.14644C12.3432 5.95119 12.6597 5.95119 12.8549 6.14644C13.0502 6.3417 13.0502 6.65821 12.8549 6.85347L8.35493 11.3535C8.15967 11.5487 7.84316 11.5487 7.6479 11.3535L3.1479 6.85347C2.95266 6.65821 2.95265 6.34169 3.1479 6.14644C3.34316 5.95121 3.65967 5.95121 3.85493 6.14644L8.00142 10.2929L12.1479 6.14644Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconChevronDown;

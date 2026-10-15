@@ -11,7 +11,7 @@ const apps = [
   { id: 'design', name: 'Design', icon: 'pen-tool' },
   { id: 'files', name: 'Files', icon: 'files-tilt' },
   { id: 'code', name: 'Code', icon: 'code' },
-  { id: 'agents', name: 'Agents', icon: 'agent' },
+  { id: 'agents', name: 'Chat', icon: 'chat-sparkles' },
   { id: 'social', name: 'Social', icon: 'thumbs-up' },
   { id: 'music', name: 'Media', icon: 'headphones' },
 ] as const;
@@ -57,13 +57,13 @@ export function DesktopShowcase() {
       <Tabs.Root defaultValue="design">
         <Tabs.List
           aria-label="Demo apps"
-          className="mx-auto my-4 flex max-w-2xl gap-1 rounded-full bg-canvas"
+          className="mx-auto my-4 flex w-fit max-w-2xl gap-1 rounded-full bg-neutral-700 p-1 dark:bg-dialog"
         >
           {apps.map((app) => (
             <Tabs.Tab
               key={app.id}
               value={app.id}
-              className="flex min-h-14 min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-full px-2 py-2 text-muted hover:text-ink not-data-active:hover:bg-hover sm:min-h-11 sm:flex-row sm:gap-2 data-active:bg-surface data-active:text-ink data-active:shadow-sm data-active:ring data-active:ring-muted/30"
+              className="sm:min-h-unset flex min-h-8 min-w-0 flex-col items-center justify-center gap-2 rounded-full px-1 py-2 text-xs text-white/72 outline-offset-2 transition-colors duration-150 ease-out hover:text-white not-data-active:hover:bg-current/5 focus-visible:outline-2 sm:flex-row sm:gap-1 sm:px-3 sm:text-sm data-active:bg-current/10 data-active:text-white data-active:shadow-[inset_0_2px_1px_-1px_--alpha(currentColor_/_10%),var(--shadow-md)] data-active:ring-1 data-active:ring-black/20 data-active:outline-focus"
             >
               <Icon name={app.icon} size={20} />
               {app.name}
