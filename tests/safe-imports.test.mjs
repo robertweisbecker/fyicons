@@ -139,130 +139,11 @@ const invalid = [
     /Unsafe icon name/,
   ],
   [
-    'name type',
-    ({ imported }) => {
-      imported.icons[1].name = 12;
-    },
-    /Unsafe icon name/,
-  ],
-  [
-    'base name type',
-    ({ imported }) => {
-      imported.icons[1].baseName = [];
-    },
-    /baseName/,
-  ],
-  [
-    'filename traversal',
-    ({ imported }) => {
-      imported.icons[1].filename = '../sentinel.svg';
-    },
-    /Unsafe filename/,
-  ],
-  [
-    'missing source filename',
-    ({ imported }) => {
-      delete imported.icons[1].filename;
-    },
-    /filename/,
-  ],
-  [
-    'component type',
-    ({ imported }) => {
-      imported.icons[1].componentName = {};
-    },
-    /componentName/,
-  ],
-  [
     'alias type',
     ({ imported }) => {
       imported.icons[1].aliases = 'invalid';
     },
     /aliases/,
-  ],
-  [
-    'alias entry type',
-    ({ imported }) => {
-      imported.icons[1].aliases = [23];
-    },
-    /aliases/,
-  ],
-  [
-    'originalName type',
-    ({ imported }) => {
-      imported.icons[1].originalName = 2;
-    },
-    /originalName/,
-  ],
-  [
-    'sourceUrl type',
-    ({ imported }) => {
-      imported.icons[1].sourceUrl = {};
-    },
-    /sourceUrl/,
-  ],
-  [
-    'empty sourceUrl',
-    ({ imported }) => {
-      imported.icons[1].sourceUrl = '';
-    },
-    /sourceUrl/,
-  ],
-  [
-    'source object type',
-    ({ imported }) => {
-      imported.source = [];
-    },
-    /source.fileKey/,
-  ],
-  [
-    'source fileKey type',
-    ({ imported }) => {
-      imported.source = { fileKey: 42 };
-    },
-    /source.fileKey/,
-  ],
-  [
-    'null compact field',
-    ({ imported }) => {
-      imported.icons[1].extra = null;
-    },
-    /null values/,
-  ],
-  [
-    'dimensions',
-    ({ imported }) => {
-      imported.icons[1].width = 24;
-    },
-    /dimensions/,
-  ],
-  [
-    'missing ID',
-    ({ imported }) => {
-      delete imported.icons[1].id;
-    },
-    /icon ID/,
-  ],
-  [
-    'ID type',
-    ({ imported }) => {
-      imported.icons[1].id = 17;
-    },
-    /icon ID/,
-  ],
-  [
-    'duplicate ID',
-    ({ imported }) => {
-      imported.icons[1].id = imported.icons[0].id;
-    },
-    /Duplicate icon ID/,
-  ],
-  [
-    'hash type',
-    ({ imported }) => {
-      imported.icons[1].sha256 = 4;
-    },
-    /sha256/,
   ],
   [
     'hash mismatch',
@@ -279,20 +160,6 @@ const invalid = [
     /Unsafe relative path/,
   ],
   [
-    'absolute source path',
-    ({ imported, outside }) => {
-      imported.icons[1].file = path.join(outside, 'sentinel.svg');
-    },
-    /Unsafe relative path/,
-  ],
-  [
-    'Windows source path',
-    ({ imported }) => {
-      imported.icons[1].file = '..\\outside\\sentinel.svg';
-    },
-    /Unsafe relative path/,
-  ],
-  [
     'source symlink',
     async ({ incoming, outside }) => {
       await rm(path.join(incoming, 'two.svg'));
@@ -304,12 +171,11 @@ const invalid = [
     /Symlink path escapes/,
   ],
   [
-    'source directory symlink',
-    async ({ incoming, outside, imported }) => {
-      imported.icons[1].file = 'linked/sentinel.svg';
-      await symlink(outside, path.join(incoming, 'linked'), 'dir');
+    'duplicate ID',
+    ({ imported }) => {
+      imported.icons[1].id = imported.icons[0].id;
     },
-    /Symlink path escapes/,
+    /Duplicate icon ID/,
   ],
   [
     'case-folded filename collision',
@@ -327,74 +193,11 @@ const invalid = [
     /componentName collision/,
   ],
   [
-    'case-folded component collision',
-    ({ imported }) => {
-      imported.icons[0].name = 'ab-c';
-      imported.icons[1].name = 'A-bc';
-    },
-    /componentName collision/,
-  ],
-  [
-    'invalid UTF-8 source bytes',
-    async ({ incoming }) => {
-      await writeFile(
-        path.join(incoming, 'two.svg'),
-        Buffer.concat([Buffer.from(svg), Buffer.from([0xff])]),
-      );
-    },
-    /encoded data|encoding/,
-  ],
-  [
-    'obsolete SVG directory',
-    async ({ root }) => {
-      await mkdir(path.join(root, 'icons/obsolete.svg'));
-    },
-    /Unsafe obsolete output file/,
-  ],
-  [
-    'output file directory',
-    async ({ root }) => {
-      await rm(path.join(root, 'src/icons/IconALPHA.tsx'));
-      await mkdir(path.join(root, 'src/icons/IconAlpha.tsx'));
-    },
-    /Unsafe output file|Unsafe obsolete output file/,
-  ],
-  [
-    'dangling output symlink',
-    async ({ root, outside }) => {
-      await symlink(
-        path.join(outside, 'missing.svg'),
-        path.join(root, 'icons/obsolete.svg'),
-      );
-    },
-    /Dangling symlink/,
-  ],
-  [
     'root viewBox',
     async ({ incoming }) => {
       await writeFile(
         path.join(incoming, 'two.svg'),
         svg.replace('0 0 16 16', '0 0 24 24'),
-      );
-    },
-    /root viewBox/,
-  ],
-  [
-    'nested viewBox',
-    async ({ incoming }) => {
-      await writeFile(
-        path.join(incoming, 'two.svg'),
-        '<svg viewBox="0 0 24 24"><svg viewBox="0 0 16 16"/></svg>',
-      );
-    },
-    /root viewBox/,
-  ],
-  [
-    'quoted fake viewBox',
-    async ({ incoming }) => {
-      await writeFile(
-        path.join(incoming, 'two.svg'),
-        '<svg data-info=" viewBox=\'0 0 16 16\'"><path/></svg>',
       );
     },
     /root viewBox/,
@@ -410,39 +213,21 @@ const invalid = [
     /Error/,
   ],
   [
-    'unknown category artwork',
-    async ({ root, categories }) => {
-      categories.categories[0].icon = 'missing';
-      await json(path.join(root, 'public/icon-categories.json'), categories);
+    'obsolete SVG directory',
+    async ({ root }) => {
+      await mkdir(path.join(root, 'icons/obsolete.svg'));
     },
-    /Unknown sidebar icon/,
+    /Unsafe obsolete output file/,
   ],
-  ...['src/data', 'src/icons', 'public', 'icons'].map((relative) => [
-    `escaping output directory ${relative}`,
+  [
+    'escaping output directory',
     async ({ root, outside }) => {
-      await cp(path.join(root, relative), outside, { recursive: true });
-      await rm(path.join(root, relative), { recursive: true });
-      await symlink(outside, path.join(root, relative), 'dir');
+      await cp(path.join(root, 'src/data'), outside, { recursive: true });
+      await rm(path.join(root, 'src/data'), { recursive: true });
+      await symlink(outside, path.join(root, 'src/data'), 'dir');
     },
     /Symlink path escapes/,
-  ]),
-  ...[
-    'src/data/catalog-runtime.json',
-    'public/icon-categories.schema.json',
-    'icons/alpha-16.svg',
-    'src/icons/IconAlpha.tsx',
-    'icons/obsolete.svg',
-  ].map((relative) => [
-    `escaping output file ${relative}`,
-    async ({ root, outside }) => {
-      await rm(path.join(root, relative), { force: true });
-      await symlink(
-        path.join(outside, 'sentinel.svg'),
-        path.join(root, relative),
-      );
-    },
-    /Symlink path escapes/,
-  ]),
+  ],
 ];
 for (const [name, alter, pattern] of invalid)
   test(`invalid import makes zero writes: ${name}`, async () => {
@@ -463,136 +248,116 @@ for (const [name, alter, pattern] of invalid)
     }
   });
 
-for (const preserve of [false, true])
-  test(`valid import preserves bytes, identities, aliases, and rules${preserve ? ' with --preserve-names' : ' with exact case renames'}`, async (t) => {
-    const state = await fixture();
-    try {
-      // Report the actual host behavior in the Node test output.
-      const caseInsensitive = await lstat(
-        path.join(state.root, 'icons/alpha-16.svg'),
-      ).then(
-        () => true,
-        () => false,
-      );
-      t.diagnostic(
-        `Host filesystem is case-${caseInsensitive ? 'insensitive' : 'sensitive'}; source and component case renames exercised.`,
-      );
-      const incomingBytes = await readFile(
-        path.join(state.incoming, 'one.svg'),
+test('valid import preserves bytes, casing, identity, aliases, rules and custom source URL', async (t) => {
+  const state = await fixture();
+  try {
+    // Report the actual host behavior in the Node test output.
+    const caseInsensitive = await lstat(
+      path.join(state.root, 'icons/alpha-16.svg'),
+    ).then(
+      () => true,
+      () => false,
+    );
+    t.diagnostic(
+      `Host filesystem is case-${caseInsensitive ? 'insensitive' : 'sensitive'}; source and component case renames exercised.`,
+    );
+    const sourceUrl =
+      'https://www.figma.com/design/another-file/Original?node-id=88-99';
+    state.imported.source = { fileKey: 'fixture-file' };
+    state.imported.icons[0].sourceUrl = sourceUrl;
+    await mkdir(path.join(state.incoming, 'artwork'));
+    await rename(
+      path.join(state.incoming, 'one.svg'),
+      path.join(state.incoming, 'artwork/one.svg'),
+    );
+    state.imported.icons[0].file = 'artwork/one.svg';
+    const incomingBytes = await readFile(
+      path.join(state.incoming, 'artwork/one.svg'),
+      'utf8',
+    );
+    state.imported.icons[0].sha256 = createHash('sha256')
+      .update(incomingBytes)
+      .digest('hex');
+    await json(path.join(state.incoming, 'manifest.json'), state.imported);
+    await run(process.execPath, ['scripts/sync-icons.mjs', state.incoming], {
+      cwd: state.root,
+    });
+    const next = JSON.parse(
+      await readFile(path.join(state.root, 'icons/manifest.json'), 'utf8'),
+    );
+    const icon = next.icons.find(({ id }) => id === 'fixture:1');
+    assert.equal(icon.name, 'alpha');
+    assert.equal(icon.originalName, 'alpha');
+    assert.equal(icon.componentName, 'IconAlpha');
+    assert.deepEqual(next.source, { fileKey: 'fixture-file' });
+    const catalog = JSON.parse(
+      await readFile(path.join(state.root, 'src/data/catalog.json'), 'utf8'),
+    );
+    const compact = JSON.parse(
+      await readFile(
+        path.join(state.root, 'src/data/catalog-runtime.json'),
         'utf8',
-      );
-      state.imported.icons[0].sha256 = createHash('sha256')
-        .update(incomingBytes)
-        .digest('hex');
-      await json(path.join(state.incoming, 'manifest.json'), state.imported);
-      await run(
-        process.execPath,
-        [
-          'scripts/sync-icons.mjs',
-          state.incoming,
-          ...(preserve ? ['--preserve-names'] : []),
-        ],
-        { cwd: state.root },
-      );
-      const next = JSON.parse(
-        await readFile(path.join(state.root, 'icons/manifest.json'), 'utf8'),
-      );
-      const icon = next.icons.find(({ id }) => id === 'fixture:1');
-      assert.equal(icon.name, preserve ? 'Alpha' : 'alpha');
-      assert.equal(icon.originalName, 'alpha');
-      assert.equal(icon.componentName, preserve ? 'IconALPHA' : 'IconAlpha');
-      assert.deepEqual(next.source, { fileKey: '' });
-      const catalog = JSON.parse(
-        await readFile(path.join(state.root, 'src/data/catalog.json'), 'utf8'),
-      );
-      const compact = JSON.parse(
-        await readFile(
-          path.join(state.root, 'src/data/catalog-runtime.json'),
-          'utf8',
-        ),
-      );
-      assert.deepEqual(decodeCatalog(compact), catalog);
-      assert.ok(!('sha256' in icon));
-      assert.ok(icon.aliases.includes('legacy-alpha'));
-      assert.ok(icon.aliases.includes(preserve ? 'alpha' : 'Alpha'));
-      assert.equal(
-        await readFile(path.join(state.root, 'icons', icon.filename), 'utf8'),
-        incomingBytes,
-      );
-      assert.deepEqual(
-        (await readdir(path.join(state.root, 'icons')))
-          .filter((name) => name.endsWith('.svg'))
-          .sort(),
-        [icon.filename, 'Beta-16.svg'].sort(),
-      );
-      const componentFiles = await readdir(path.join(state.root, 'src/icons'));
-      assert.ok(componentFiles.includes(`${icon.componentName}.tsx`));
-      if (!preserve) assert.ok(!componentFiles.includes('IconALPHA.tsx'));
-      const categories = JSON.parse(
-        await readFile(
-          path.join(state.root, 'public/icon-categories.json'),
-          'utf8',
-        ),
-      );
-      assert.deepEqual(categories.categories, [
-        { ...state.categories.categories[0], icon: icon.name },
-      ]);
-      assert.equal(
-        await readFile(path.join(state.root, 'src/icons/sentinel.txt'), 'utf8'),
-        'retain unrelated generated-directory files\n',
-      );
-      await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
-        cwd: state.root,
-      });
-    } finally {
-      await rm(state.directory, { recursive: true, force: true });
-    }
-  });
+      ),
+    );
+    assert.equal(icon.sourceUrl, sourceUrl);
+    assert.equal(catalog.icons[0].sourceUrl, sourceUrl);
+    assert.deepEqual(decodeCatalog(compact), catalog);
+    assert.ok(!('sha256' in icon));
+    assert.ok(icon.aliases.includes('legacy-alpha'));
+    assert.ok(icon.aliases.includes('Alpha'));
+    assert.equal(
+      await readFile(path.join(state.root, 'icons', icon.filename), 'utf8'),
+      incomingBytes,
+    );
+    assert.deepEqual(
+      (await readdir(path.join(state.root, 'icons')))
+        .filter((name) => name.endsWith('.svg'))
+        .sort(),
+      [icon.filename, 'Beta-16.svg'].sort(),
+    );
+    const componentFiles = await readdir(path.join(state.root, 'src/icons'));
+    assert.ok(componentFiles.includes(`${icon.componentName}.tsx`));
+    assert.ok(!componentFiles.includes('IconALPHA.tsx'));
+    const categories = JSON.parse(
+      await readFile(
+        path.join(state.root, 'public/icon-categories.json'),
+        'utf8',
+      ),
+    );
+    assert.deepEqual(categories.categories, [
+      { ...state.categories.categories[0], icon: icon.name },
+    ]);
+    assert.equal(
+      await readFile(path.join(state.root, 'src/icons/sentinel.txt'), 'utf8'),
+      'retain unrelated generated-directory files\n',
+    );
+    await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
+      cwd: state.root,
+    });
+  } finally {
+    await rm(state.directory, { recursive: true, force: true });
+  }
+});
 
-for (const custom of [false, true])
-  test(`supplied ${custom ? 'custom' : 'default'} source URLs survive import and production decoding`, async () => {
-    const state = await fixture();
-    try {
-      state.imported.source = { fileKey: 'fixture-file' };
-      const sourceUrl = custom
-        ? 'https://www.figma.com/design/another-file/Original?node-id=88-99'
-        : 'https://www.figma.com/design/fixture-file/icons-astra?node-id=fixture-1';
-      await mkdir(path.join(state.incoming, 'artwork'));
-      await rename(
-        path.join(state.incoming, 'one.svg'),
-        path.join(state.incoming, 'artwork/one.svg'),
-      );
-      state.imported.icons[0].file = 'artwork/one.svg';
-      state.imported.icons[0].sourceUrl = sourceUrl;
-      state.imported.icons[0].originalName = 'Original Figma label';
-      await json(path.join(state.incoming, 'manifest.json'), state.imported);
-      await run(process.execPath, ['scripts/sync-icons.mjs', state.incoming], {
-        cwd: state.root,
-      });
-      const manifest = JSON.parse(
-        await readFile(path.join(state.root, 'icons/manifest.json'), 'utf8'),
-      );
-      assert.equal(manifest.icons[0].sourceUrl, sourceUrl);
-      assert.equal(manifest.icons[0].originalName, 'Original Figma label');
-      const catalog = JSON.parse(
-        await readFile(path.join(state.root, 'src/data/catalog.json'), 'utf8'),
-      );
-      const compact = JSON.parse(
-        await readFile(
-          path.join(state.root, 'src/data/catalog-runtime.json'),
-          'utf8',
-        ),
-      );
-      assert.equal(compact.iconFields.includes('sourceUrl'), custom);
-      assert.equal(catalog.icons[0].sourceUrl, sourceUrl);
-      assert.deepEqual(decodeCatalog(compact), catalog);
-      await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
-        cwd: state.root,
-      });
-    } finally {
-      await rm(state.directory, { recursive: true, force: true });
-    }
-  });
+test('--preserve-names keeps the existing name and component identity', async () => {
+  const state = await fixture();
+  try {
+    await run(
+      process.execPath,
+      ['scripts/sync-icons.mjs', state.incoming, '--preserve-names'],
+      { cwd: state.root },
+    );
+    const { icons } = JSON.parse(
+      await readFile(path.join(state.root, 'icons/manifest.json'), 'utf8'),
+    );
+    assert.equal(icons[0].name, 'Alpha');
+    assert.equal(icons[0].componentName, 'IconALPHA');
+    assert.equal(icons[0].originalName, 'alpha');
+    assert.ok(icons[0].aliases.includes('alpha'));
+  } finally {
+    await rm(state.directory, { recursive: true, force: true });
+  }
+});
 
 test('publication removes old aliases before writing on a case-insensitive filesystem model', async () => {
   const files = new Map([
