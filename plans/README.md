@@ -10,6 +10,8 @@ lines before execution.
 
 Status: **implementation complete**. Eight reviewed implementation plans resolve
 all twelve confirmed findings and are integrated on local main through `a569249`.
+The requested test-pruning follow-up is complete as `9e3ca91`: **80 essential
+contract and regression tests**, with verification recorded in plan 011 below.
 The reviewer owns this index, validates executor
 changes, and integrates accepted commits onto `main`. Executors use fresh-context
 GPT-6.1 Sol agents at High reasoning in isolated worktrees. Plans 009 and 010 are
@@ -29,6 +31,7 @@ GPT-6.1 Sol agents at High reasoning in isolated worktrees. Plans 009 and 010 ar
 | [008](008-contract-documentation.md) | Align CI and naming documentation with behavior | F08 | 002, 005 | DONE — a569249 |
 | [009](009-import-dry-run.md) | Preview import changes using the prepared result | Direction: dry-run import report; PLAN ONLY by user instruction | 002, 008 | TODO — plan only |
 | [010](010-react-source-download-spike.md) | Decide a portable selected React-source bundle | Direction: design spike; PLAN ONLY by user instruction | 001, 004 | TODO — plan only |
+| [011](011-essential-test-contracts.md) | Prune redundant cases and test infrastructure | Follow-up requested by user | 001–008 | DONE — 9e3ca91 |
 
 Initial parallel batch: 001, 003 and 006. Import preparation waits for generator
 review; category readiness waits for app fixes, shared decoder and navigation
@@ -75,7 +78,7 @@ Visual report with three before/after architecture candidates:
 The report is temporary; this index preserves its findings. Opening the report
 in Codex was queued, but its rendered appearance could not be verified.
 
-## Implementation review evidence
+## Implementation review evidence before test pruning
 
 - **001**: reviewed literal AST composition, naming precedence, generated changes,
   and fresh-map rendering; reviewer reran six React cases (all 1,021 icons) and
@@ -113,7 +116,7 @@ in Codex was queued, but its rendered appearance could not be verified.
 - **008**: reviewed exact four-file diff against CI and importer behavior. Parsed
   both generated catalogs and confirmed only duplicatePolicy changed. Reviewer
   reran all final gates in the isolated checkout before integration.
-- **Final combined verification**: 143 tests passed, zero failed/skipped; all 1,021
+- **Pre-pruning combined verification**: 143 tests passed, zero failed/skipped; all 1,021
   icon outputs and schema fresh; standalone TypeScript passed; production build
   passed at 3,152,108 bytes / 3.01 MiB against the 4 MiB limit. Vite retains its
   advisory warning for chunks over 500 kB. Build left no tracked changes.
@@ -128,6 +131,29 @@ in Codex was queued, but its rendered appearance could not be verified.
   toast/prototypes work remains unstaged. No push or PR was requested or performed.
 - Isolated review worktrees are retained; the app refused earlier archive attempts
   because the task/workspace is pinned. No pin or workspace settings were changed.
+
+## Test-pruning follow-up verification
+
+[Plan 011](011-essential-test-contracts.md) records the exact retained inventory.
+The suite decreased from **143 to 80 tests** and from **3,542 to 3,028 test/helper
+lines**. Redundant import, preference, navigation and readiness permutations were
+removed; shared DOM setup replaced duplication. Generator tests assert rendered
+references rather than AST construction, allowing removal of the direct
+`@babel/parser` declaration. No package versions or transitive lock records changed.
+
+The executor passed all required gates and a clean offline dependency install.
+The reviewer inspected the full diff and independently passed the integrated
+main suite (**80/80**, none skipped), all 1,021 icons' freshness, standalone
+TypeScript and production build (**3,163,070 bytes / 3.02 MiB**, below 4 MiB).
+The existing Vite chunk-size advisory remains. Five deliberately reintroduced
+regressions fail retained tests: literal references, explicit accessible names,
+case-only publication, invalid preferences and stale debounced URLs.
+
+All **2,151 files** in the pre-pruning production/source/canonical snapshot remain
+byte-identical. Current homepage work (`Landing.tsx`, `IconSpecimen.tsx`,
+`IconSpecimen.css`) is preserved and unstaged. This follow-up changed only tests,
+package declarations and plan records. Plans 009/010 remain plan only; no push or
+PR was performed.
 
 ## Original audit verification evidence
 
