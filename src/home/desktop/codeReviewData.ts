@@ -25,7 +25,7 @@ export const reviewChanges = [
 export const reviewFiles: ProjectFile[] = [
   ...reviewChanges.map(({ path }) => ({
     path,
-    icon: 'atom-tilt',
+    icon: 'atom-react',
     change: 'M',
   })),
   { path: 'docs/TODO.md', icon: 'markdown-fill' },

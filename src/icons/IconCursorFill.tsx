@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconCursorFill = React.forwardRef<SVGSVGElement, IconProps>(function IconCursorFill(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M1.69487 3.60374C1.28785 2.42169 2.42056 1.29016 3.6021 1.69749L13.065 4.96018C14.4641 5.44303 14.3926 7.44675 12.9624 7.82834L11.0445 8.33909L13.3521 10.6467C14.0993 11.3943 14.0992 12.6063 13.3521 13.3537C12.6046 14.1008 11.3925 14.1008 10.6451 13.3537L8.33549 11.0442L7.82475 12.9651C7.44263 14.3943 5.44164 14.4658 4.95854 13.0676L1.69487 3.60374Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M1.69536 3.60374C1.28834 2.42169 2.42105 1.29016 3.60258 1.69749L13.0655 4.96018C14.4646 5.44303 14.3931 7.44675 12.9629 7.82834L11.045 8.33909L13.3526 10.6467C14.0998 11.3943 14.0997 12.6063 13.3526 13.3537C12.6051 14.1008 11.393 14.1008 10.6456 13.3537L8.33598 11.0442L7.82524 12.9651C7.44312 14.3943 5.44213 14.4658 4.95903 13.0676L1.69536 3.60374Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconCursorFill;

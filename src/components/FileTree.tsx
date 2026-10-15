@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 export type ProjectFile = { path: string; icon: string; change?: string };
 export const fileIconColors: Record<string, string> = {
   atom: 'text-sky-400',
-  'atom-tilt': 'text-sky-400',
+  'atom-react': 'text-sky-400',
   'markdown-fill': 'text-zinc-300',
 };
 type Node = {

@@ -1,6 +1,6 @@
 {
   "name": "FYIcons",
-  "version": "2026-10-14",
+  "version": "2026-10-15",
   "source": {
     "fileKey": "KA61XWs3LqkOU2bzzvjEeW",
     "sectionId": "646:192",
@@ -8,8 +8,8 @@
     "pageId": "82:2415",
     "pageName": "export",
     "exportMethod": "Figma MCP exportAsync SVG_STRING, svgSimplifyStroke=false",
-    "scope": "Complete Icons section snapshot, including components in variant sets and the nested Updated section. All 1021 SVG exports verified against Figma SHA-256 checksums.",
-    "exportedAt": "2026-10-14"
+    "scope": "Complete Icons section inventory, including component-set variants. All 1031 eligible 16 × 16 SVG exports verified against live Figma SHA-256 checksums. Retained the previous 16 × 16 copy-sm (610:12055), whose live component is now 12 × 12; no sources removed.",
+    "exportedAt": "2026-10-15"
   },
   "icons": [
     {
@@ -5563,23 +5563,25 @@
     },
     {
       "id": "97:1821",
-      "name": "panel-left-open",
-      "originalName": "panel-left-open",
-      "baseName": "panel-left-open",
+      "name": "panel-left",
+      "originalName": "panel-left",
+      "baseName": "panel-left",
       "width": 16,
       "height": 16,
-      "filename": "panel-left-open-16.svg",
+      "filename": "panel-left-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=97-1821",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconPanelLeftOpen",
+      "componentName": "IconPanelLeft",
       "aliases": [
         "97-1821.svg",
         "panel-left-closed",
         "panel-left-closed-16.svg",
         "panel-left-docked",
-        "panel-left-docked-16.svg"
+        "panel-left-docked-16.svg",
+        "panel-left-open",
+        "panel-left-open-16.svg"
       ]
     },
     {
@@ -12863,19 +12865,21 @@
     },
     {
       "id": "620:429",
-      "name": "sequence-stacked",
-      "originalName": "sequence-stacked",
-      "baseName": "sequence-stacked",
+      "name": "flow-step",
+      "originalName": "flow-step",
+      "baseName": "flow-step",
       "width": 16,
       "height": 16,
-      "filename": "sequence-stacked-16.svg",
+      "filename": "flow-step-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=620-429",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconSequenceStacked",
+      "componentName": "IconFlowStep",
       "aliases": [
-        "620-429.svg"
+        "620-429.svg",
+        "sequence-stacked",
+        "sequence-stacked-16.svg"
       ]
     },
     {
@@ -14363,19 +14367,21 @@
     },
     {
       "id": "360:11316",
-      "name": "atom-tilt",
-      "originalName": "atom-tilt",
-      "baseName": "atom-tilt",
+      "name": "atom-react",
+      "originalName": "atom-react",
+      "baseName": "atom-react",
       "width": 16,
       "height": 16,
-      "filename": "atom-tilt-16.svg",
+      "filename": "atom-react-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=360-11316",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconAtomTilt",
+      "componentName": "IconAtomReact",
       "aliases": [
-        "360-11316.svg"
+        "360-11316.svg",
+        "atom-tilt",
+        "atom-tilt-16.svg"
       ]
     },
     {
@@ -17151,13 +17157,15 @@
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
       "aliases": [
-        "767-383.svg"
+        "767-383.svg",
+        "globe-alt",
+        "globe-alt-16.svg"
       ],
-      "name": "globe-alt",
-      "originalName": "globe-alt",
-      "baseName": "globe-alt",
-      "filename": "globe-alt-16.svg",
-      "componentName": "IconGlobeAlt"
+      "name": "globe-complex",
+      "originalName": "globe-complex",
+      "baseName": "globe-complex",
+      "filename": "globe-complex-16.svg",
+      "componentName": "IconGlobeComplex"
     },
     {
       "id": "767:391",
@@ -18291,36 +18299,40 @@
     },
     {
       "id": "841:13376",
-      "name": "arrows-rotate-cw",
-      "originalName": "arrows-rotate-cw",
-      "baseName": "arrows-rotate-cw",
+      "name": "arrow-rotate-cw",
+      "originalName": "arrow-rotate-cw",
+      "baseName": "arrow-rotate-cw",
       "width": 16,
       "height": 16,
-      "filename": "arrows-rotate-cw-16.svg",
+      "filename": "arrow-rotate-cw-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13376",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowsRotateCw",
+      "componentName": "IconArrowRotateCw",
       "aliases": [
-        "841-13376.svg"
+        "841-13376.svg",
+        "arrows-rotate-cw",
+        "arrows-rotate-cw-16.svg"
       ]
     },
     {
       "id": "841:13377",
-      "name": "arrows-rotate-ccw",
-      "originalName": "arrows-rotate-ccw",
-      "baseName": "arrows-rotate-ccw",
+      "name": "arrow-rotate-ccw",
+      "originalName": "arrow-rotate-ccw",
+      "baseName": "arrow-rotate-ccw",
       "width": 16,
       "height": 16,
-      "filename": "arrows-rotate-ccw-16.svg",
+      "filename": "arrow-rotate-ccw-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=841-13377",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowsRotateCcw",
+      "componentName": "IconArrowRotateCcw",
       "aliases": [
-        "841-13377.svg"
+        "841-13377.svg",
+        "arrows-rotate-ccw",
+        "arrows-rotate-ccw-16.svg"
       ]
     },
     {
@@ -19056,6 +19068,193 @@
       "componentName": "IconPencilRuler",
       "aliases": [
         "895-30733.svg"
+      ]
+    },
+    {
+      "id": "915:31701",
+      "name": "scale",
+      "originalName": "scale",
+      "baseName": "scale",
+      "width": 16,
+      "height": 16,
+      "filename": "scale-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=915-31701",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconScale",
+      "aliases": [
+        "915-31701.svg"
+      ]
+    },
+    {
+      "id": "918:31737",
+      "name": "archive-full",
+      "originalName": "archive-full",
+      "baseName": "archive-full",
+      "width": 16,
+      "height": 16,
+      "filename": "archive-full-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=918-31737",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconArchiveFull",
+      "aliases": [
+        "918-31737.svg"
+      ]
+    },
+    {
+      "id": "918:31776",
+      "name": "sparkles-three",
+      "originalName": "sparkles-three",
+      "baseName": "sparkles-three",
+      "width": 16,
+      "height": 16,
+      "filename": "sparkles-three-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=918-31776",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconSparklesThree",
+      "aliases": [
+        "918-31776.svg"
+      ]
+    },
+    {
+      "id": "918:31793",
+      "name": "book-open-full",
+      "originalName": "book-open-full",
+      "baseName": "book-open-full",
+      "width": 16,
+      "height": 16,
+      "filename": "book-open-full-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=918-31793",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconBookOpenFull",
+      "aliases": [
+        "918-31793.svg"
+      ]
+    },
+    {
+      "id": "919:31926",
+      "name": "ruler-measure",
+      "originalName": "ruler-measure",
+      "baseName": "ruler-measure",
+      "width": 16,
+      "height": 16,
+      "filename": "ruler-measure-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=919-31926",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconRulerMeasure",
+      "aliases": [
+        "919-31926.svg"
+      ]
+    },
+    {
+      "id": "919:32763",
+      "name": "flower",
+      "originalName": "flower",
+      "baseName": "flower",
+      "width": 16,
+      "height": 16,
+      "filename": "flower-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=919-32763",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconFlower",
+      "aliases": [
+        "919-32763.svg"
+      ]
+    },
+    {
+      "id": "919:32764",
+      "name": "height",
+      "originalName": "height",
+      "baseName": "height",
+      "width": 16,
+      "height": 16,
+      "filename": "height-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=919-32764",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconHeight",
+      "aliases": [
+        "919-32764.svg"
+      ]
+    },
+    {
+      "id": "919:32781",
+      "name": "width",
+      "originalName": "width",
+      "baseName": "width",
+      "width": 16,
+      "height": 16,
+      "filename": "width-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=919-32781",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconWidth",
+      "aliases": [
+        "919-32781.svg"
+      ]
+    },
+    {
+      "id": "919:32842",
+      "name": "letter-spacing",
+      "originalName": "letter-spacing",
+      "baseName": "letter-spacing",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-spacing-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=919-32842",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconLetterSpacing",
+      "aliases": [
+        "919-32842.svg"
+      ]
+    },
+    {
+      "id": "919:32915",
+      "name": "car-front",
+      "originalName": "car-front",
+      "baseName": "car-front",
+      "width": 16,
+      "height": 16,
+      "filename": "car-front-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=919-32915",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconCarFront",
+      "aliases": [
+        "919-32915.svg"
+      ]
+    },
+    {
+      "id": "920:32985",
+      "name": "clipboard-file",
+      "originalName": "clipboard-file",
+      "baseName": "clipboard-file",
+      "width": 16,
+      "height": 16,
+      "filename": "clipboard-file-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=920-32985",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "componentName": "IconClipboardFile",
+      "aliases": [
+        "920-32985.svg"
       ]
     }
   ]

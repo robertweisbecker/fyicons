@@ -142,6 +142,17 @@ Export selected downloads a ZIP containing only the selected SVGs and their mani
 
 The Examples page uses a responsive bento grid of standalone navigation, composer, editor, settings, and feedback demos. The homepage combines Design, Files, Code, Agents, Social, and Music into app windows. Social fills its own Bird App window; Agents uses the browser chrome with a sample conversation and the goal composer. Interactions use local simulated state and do not connect to external services. The editor shows static sample text; its toolbar buttons only toggle their selected states.
 
+## Fonts
+
+The site self-hosts Inter Variable 4.1 (upright and italic, weights 100–900) and Paper Mono 1.000 (weights 100–800) as WOFF2 files in `src/assets/fonts/`. Their SIL Open Font License notices are included in `public/licenses/` and the deployed site.
+
+`src/styles.css` sets Tailwind's `--font-sans` and `--font-mono` variables and their corresponding `--font-feature-settings` companion tokens. Use `font-sans` or `font-mono` so each family receives its own features; code blocks inherit the mono settings through Tailwind's base styles.
+
+- [Inter](https://rsms.me/inter/#features): `cv11` for single-storey a, `dlig` for discretionary ligatures, `ss01` for open/alternate digits, and `ss03` for round quotes and commas. Standard ligatures and contextual alternates remain enabled.
+- [Paper Mono](https://paper.design/mono): `cv01` for single-storey a, `ss02` for duospace characters, and `ss03` for narrow spaces.
+
+The main Inter face is preloaded from each HTML entry. Vite fingerprints font assets and emits relative URLs for both root and project-subpath deployments.
+
 ## GitHub Pages
 
 In **Settings → Pages → Build and deployment**, select **GitHub Actions**. The workflow tests and publishes `dist/` from `main`. Pull requests are tested without publishing. Documentation-only changes do not rebuild the site; manual dispatch remains available. Build artifacts expire after one day.
@@ -163,6 +174,6 @@ The apex `bob.fyi` records do not need to change. With Actions-based publishing,
 
 ## Deployment size
 
-This is a static client application with no server functions, image processing, or external API requests. Categories load from a standalone JSON file on the same host. The current production output is approximately **3 MiB**, including the full icon catalog. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 4 MiB output budget.
+This is a static client application with no server functions, image processing, or external API requests. Categories load from a standalone JSON file on the same host. The current production output is approximately **3.8 MiB**, including the full icon catalog and fonts. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 4 MiB output budget.
 
 GitHub Pages does not consume Vercel deployment storage or bandwidth. An optional `vercel.json` makes the same source deployable as a Vite site, but connecting it to Vercel would consume Vercel storage and transfer for retained deployments. This repository does not create or configure a Vercel project.

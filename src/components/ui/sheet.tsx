@@ -9,7 +9,7 @@ export const SheetTitle = Drawer.Title;
 export const SheetDescription = Drawer.Description;
 
 const sheetVariants = cva(
-  'flex max-w-full flex-col bg-surface text-ink translate-x-[var(--drawer-swipe-movement-x,0px)] transition-[translate,opacity] duration-[calc(240ms*var(--drawer-swipe-strength,1))] ease-out data-swiping:transition-none data-swiping:select-none data-ending-style:translate-x-[calc(100%+2rem)]',
+  'flex max-w-full flex-col bg-dialog text-ink translate-x-[var(--drawer-swipe-movement-x,0px)] transition-[translate,opacity] duration-[calc(240ms*var(--drawer-swipe-strength,1))] ease-out data-swiping:transition-none data-swiping:select-none data-ending-style:translate-x-[calc(100%+2rem)]',
   {
     variants: {
       side: { left: 'left-0', right: 'right-0' },

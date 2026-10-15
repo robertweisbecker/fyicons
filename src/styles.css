@@ -1,7 +1,41 @@
 @import 'tailwindcss';
 @import 'shadcn/tailwind.css';
 
+@font-face {
+  font-family: 'Inter Variable';
+  src: url('./assets/fonts/InterVariable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Variable';
+  src: url('./assets/fonts/InterVariable-Italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paper Mono';
+  src: url('./assets/fonts/PaperMono-Variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is([data-theme='dark'] *));
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Single-storey a, discretionary ligatures, open digits, round quotes/commas. */
+  --font-sans--font-feature-settings:
+    'cv11' 1, 'dlig' 1, 'ss01' 1, 'ss03' 1, 'liga' 1, 'calt' 1;
+  --font-mono: 'Paper Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Single-storey a, duospace characters, narrow spaces. */
+  --font-mono--font-feature-settings: 'cv01' 1, 'ss02' 1, 'ss03' 1;
+}
 
 @theme inline {
   --color-inset: var(--inset);
@@ -45,9 +79,9 @@
 .dark {
   --inset: var(--color-black);
   --canvas: var(--color-neutral-950);
-  --bg: var(--color-neutral-950);
+  --bg: var(--color-neutral-900);
   --surface: var(--color-neutral-900);
-  --dialog: var(--color-neutral-700);
+  --dialog: var(--color-neutral-800);
   --text: var(--color-neutral-100);
   --muted: var(--color-neutral-400);
   --border: --alpha(var(--text) / 12%);
@@ -109,6 +143,8 @@
 
 @layer components {
   .desktop-wallpaper {
+    /* Keep the status bar's backdrop local to this window, excluding hero animations. */
+    clip-path: inset(0 round var(--radius-2xl));
     background-image: radial-gradient(
       ellipse at 40% 30%,
       var(--color-orange-200),
