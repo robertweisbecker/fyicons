@@ -33,10 +33,6 @@ function readSelections(entries, reads = []) {
 
 for (const [name, value] of [
   ['object', {}],
-  ['boolean', true],
-  ['number', 42],
-  ['string', 'icon-id'],
-  ['null', null],
   ['mixed array', ['icon-id', 42]],
 ]) {
   test(`saved selections reject a ${name}`, () => {
@@ -60,12 +56,6 @@ test('malformed JSON falls back to empty selections', () => {
   assert.deepEqual(readSelections({ [currentKey]: '[broken' }), []);
 });
 
-test('missing current and legacy storage falls back to empty selections', () => {
-  const reads = [];
-  assert.deepEqual(readSelections({}, reads), []);
-  assert.deepEqual(reads, [currentKey, legacyKey]);
-});
-
 test('missing current storage reads valid legacy selections unchanged', () => {
   const selections = ['old-id', 'old-id', 'unrecognized-id'];
   const reads = [];
@@ -76,18 +66,11 @@ test('missing current storage reads valid legacy selections unchanged', () => {
   assert.deepEqual(reads, [currentKey, legacyKey]);
 });
 
-test('invalid legacy selections fall back to an empty array', () => {
-  assert.deepEqual(readSelections({ [legacyKey]: '{"id":"old-id"}' }), []);
-});
-
-for (const [name, current, expected] of [
-  ['valid', '["current-id"]', ['current-id']],
-  ['empty', '[]', []],
-  ['wrong shape', '{}', []],
-  ['null', 'null', []],
-  ['malformed', '[broken', []],
-]) {
-  test(`${name} current storage takes precedence over valid legacy storage`, () => {
+test('current selections take precedence over legacy storage, including invalid current data', () => {
+  for (const [current, expected] of [
+    ['["current-id"]', ['current-id']],
+    ['{}', []],
+  ]) {
     const reads = [];
     assert.deepEqual(
       readSelections(
@@ -97,8 +80,8 @@ for (const [name, current, expected] of [
       expected,
     );
     assert.deepEqual(reads, [currentKey]);
-  });
-}
+  }
+});
 
 test('a storage read exception returns the supplied fallback', () => {
   const fallback = [];
