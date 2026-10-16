@@ -10,7 +10,7 @@ export const iconGroups = [
         'arrows-swap',
         'arrows-rotate-lg',
         'arrows-expand',
-        'arrows-compress',
+        'arrows-collapse',
       ],
       ['arrow-left', 'arrow-up', 'arrow-down', 'arrow-right', 'arrow-up-right'],
       [
