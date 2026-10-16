@@ -47,6 +47,7 @@
   --color-line: var(--line);
   --color-border: var(--border);
   --color-hover: var(--hover);
+  --color-active: var(--active);
   --color-selection: var(--accent-bg);
   --color-control-accent: var(--control-accent);
   --color-control-track: var(--track);
@@ -66,6 +67,7 @@
   --border: --alpha(var(--text) / 14%);
   --line: --alpha(var(--text) / 8%);
   --hover: --alpha(var(--text) / 5%);
+  --active: --alpha(var(--text) / 10%);
   --accent-bg: var(--color-blue-100);
   --grid: var(--color-blue-200);
   --control-accent: var(--color-blue-500);
@@ -86,7 +88,8 @@
   --muted: var(--color-neutral-400);
   --border: --alpha(var(--text) / 12%);
   --line: --alpha(var(--text) / 8%);
-  --hover: var(--color-neutral-800);
+  --hover: --alpha(var(--text) / 10%);
+  --active: --alpha(var(--text) / 6%);
   --accent-bg: var(--color-blue-950);
   --grid: var(--color-blue-700);
   --focus: var(--color-blue-300);

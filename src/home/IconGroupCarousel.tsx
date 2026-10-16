@@ -58,8 +58,11 @@ export function IconGroupCarousel() {
   return (
     <section aria-labelledby="icon-groups-heading" className="mt-16 sm:mt-24">
       <div className="mb-6 flex items-center justify-between gap-6">
-        <h2 id="icon-groups-heading" className="text-base font-medium">
-          Preview
+        <h2
+          id="icon-groups-heading"
+          className="text-2xl font-medium tracking-tight"
+        >
+          What we're working with
         </h2>
         <div className="flex gap-1">
           <Button

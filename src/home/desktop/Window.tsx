@@ -71,7 +71,37 @@ export function BrowserWindow({
   children: ReactNode;
 }) {
   return (
-    <Window title={title} className="max-w-3xl">
+    <Window
+      title={title}
+      className="max-w-3xl"
+      header={
+        <div
+          aria-label="Browser tabs"
+          className="flex h-11 shrink-0 items-center gap-1 border-b border-line bg-bg pr-2 text-xs text-muted"
+        >
+          <WindowControls />
+          <div className="flex h-8 max-w-44 min-w-0 flex-[1.2] items-center gap-2 rounded-lg bg-dialog px-2 text-ink shadow-xs ring-1 ring-line">
+            <Icon name="truck-moving" className="text-orange-500" />
+            <span className="min-w-0 flex-1 truncate">{title}</span>
+            <Icon name="xmark-sm" className="text-muted" />
+          </div>
+          <div
+            className="flex h-8 max-w-44 min-w-0 flex-1 items-center gap-2 px-2"
+            title="Witness MeTube"
+          >
+            <Icon name="videos" />
+            <span className="truncate">Witness MeTube</span>
+          </div>
+          <span
+            role="img"
+            aria-label="New tab"
+            className="ms-auto flex size-7 shrink-0 items-center justify-center"
+          >
+            <Icon name="plus" />
+          </span>
+        </div>
+      }
+    >
       <div className="flex shrink-0 items-center gap-2 border-b border-line bg-canvas px-3 py-2 text-xs">
         <Icon name="arrow-left" />
         <Icon name="arrow-right" className="opacity-30" />
@@ -93,9 +123,7 @@ export function BrowserWindow({
         <Icon name="circle-user-fill" />
         <Icon name="ellipsis-v" />
       </div>
-      <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain">
-        {children}
-      </div>
+      <div className="min-h-0 flex-1 overflow-hidden">{children}</div>
     </Window>
   );
 }

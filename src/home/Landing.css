@@ -7,7 +7,7 @@
   font-weight: 500;
   line-height: 1.125;
   letter-spacing: -0.035em;
-  color: color-mix(in srgb, var(--muted) 60%, transparent);
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
 }
 
 .hero-headline-line {

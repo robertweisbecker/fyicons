@@ -96,12 +96,10 @@ export function SiteHeader({
             disabled={packing}
             onClick={download}
             aria-label={packing ? 'Preparing download' : 'Download'}
-            className="size-9 p-0 sm:w-auto sm:px-3"
+            className="hidden h-9 px-3 md:inline-flex"
           >
             <Icon name="download-square" />
-            <span className="hidden sm:inline">
-              {packing ? 'Preparing…' : 'Download'}
-            </span>
+            <span>{packing ? 'Preparing…' : 'Download'}</span>
           </Button>
         </div>
       </div>
