@@ -21,22 +21,13 @@
       "id": "people-identity",
       "name": "People & identity",
       "icon": "circle-user",
-      "keywords": [
-        "user",
-        "users"
-      ]
+      "keywords": ["user", "users"]
     },
     {
       "id": "emoji",
       "name": "Emoji",
       "icon": "emoji-smile",
-      "keywords": [
-        "emoji",
-        "ghost",
-        "heart",
-        "skull",
-        "thumbs"
-      ]
+      "keywords": ["emoji", "ghost", "heart", "skull", "thumbs"]
     },
     {
       "id": "files",
@@ -116,11 +107,7 @@
         "bezier",
         "shapes"
       ],
-      "exactNames": [
-        "height",
-        "scale",
-        "width"
-      ]
+      "exactNames": ["height", "scale", "width"]
     },
     {
       "id": "typography",
@@ -212,7 +199,8 @@
         "sizes",
         "stack",
         "table"
-      ]
+      ],
+      "exactNames": ["overflow", "wrap"]
     },
     {
       "id": "shapes-symbols",
@@ -410,6 +398,7 @@
         "picture-in-picture",
         "play",
         "queue",
+        "replay",
         "seek",
         "skip-backward",
         "skip-forward",
@@ -434,7 +423,7 @@
         "arrow-restart",
         "arrow-revert",
         "arrow-undo",
-        "arrows-compress",
+        "arrows-collapse",
         "arrows-expand",
         "arrows-maximize",
         "arrows-minimize",
@@ -636,10 +625,7 @@
         "truck",
         "wallet"
       ],
-      "exactNames": [
-        "box",
-        "box-shipping"
-      ]
+      "exactNames": ["box", "box-shipping"]
     },
     {
       "id": "time",

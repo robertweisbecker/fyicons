@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot from './base';
 const IconPlayFill = React.forwardRef<SVGSVGElement, IconProps>(function IconPlayFill(props, ref) {
   const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path fillRule="evenodd" clipRule="evenodd" d="M4 3.7C4 2.52319 5.29328 1.80471 6.29245 2.42641L13.5443 6.93868C14.3305 7.42785 14.3305 8.57215 13.5443 9.06132L6.29245 13.5736C5.29328 14.1953 4 13.4768 4 12.3V3.7Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M4 3.97681C4 2.61095 5.49497 1.77159 6.66113 2.48267L13.2598 6.5061C14.3783 7.1882 14.3783 8.81234 13.2598 9.49438L6.66113 13.5178C5.49504 14.2288 4.00014 13.3894 4 12.0237V3.97681Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconPlayFill;

@@ -1,6 +1,6 @@
 {
   "name": "FYIcons",
-  "version": "2026-10-15",
+  "version": "2026-10-16",
   "source": {
     "fileKey": "KA61XWs3LqkOU2bzzvjEeW",
     "sectionId": "646:192",
@@ -8,8 +8,8 @@
     "pageId": "82:2415",
     "pageName": "export",
     "exportMethod": "Figma MCP exportAsync SVG_STRING, svgSimplifyStroke=false",
-    "scope": "Complete Icons section inventory, including component-set variants. All 1031 eligible 16 × 16 SVG exports verified against live Figma SHA-256 checksums. Retained the previous 16 × 16 copy-sm (610:12055), whose live component is now 12 × 12; no sources removed.",
-    "exportedAt": "2026-10-15"
+    "scope": "Complete Icons section inventory, including component-set variants. All 1038 eligible 16 × 16 SVG exports verified against live Figma SHA-256 checksums. Retained the previous 16 × 16 copy-sm (610:12055), whose live component is 12 × 12. Two absent home-wide component IDs replaced by newly created components with the same names.",
+    "exportedAt": "2026-10-16"
   },
   "icons": [
     {
@@ -561,11 +561,11 @@
         "quote-alt",
         "quote-alt-16.svg"
       ],
+      "variantSetId": "659:228",
       "variantSetName": "quotes",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:228"
+      }
     },
     {
       "id": "580:357",
@@ -585,11 +585,11 @@
         "quote-alt-fill",
         "quote-alt-fill-16.svg"
       ],
+      "variantSetId": "659:228",
       "variantSetName": "quotes",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:228"
+      }
     },
     {
       "id": "286:19856",
@@ -691,11 +691,11 @@
       "aliases": [
         "282-16070.svg"
       ],
+      "variantSetId": "567:466",
       "variantSetName": "send-tilt",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "567:466"
+      }
     },
     {
       "id": "469:2073",
@@ -713,11 +713,11 @@
       "aliases": [
         "469-2073.svg"
       ],
+      "variantSetId": "567:466",
       "variantSetName": "send-tilt",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "567:466"
+      }
     },
     {
       "id": "282:15956",
@@ -737,11 +737,11 @@
         "send",
         "send-16.svg"
       ],
+      "variantSetId": "659:229",
       "variantSetName": "send-straight",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:229"
+      }
     },
     {
       "id": "469:2061",
@@ -761,11 +761,11 @@
         "send-fill",
         "send-fill-16.svg"
       ],
+      "variantSetId": "659:229",
       "variantSetName": "send-straight",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:229"
+      }
     },
     {
       "id": "282:17058",
@@ -1301,11 +1301,11 @@
       "aliases": [
         "101-2293.svg"
       ],
+      "variantSetId": "659:240",
       "variantSetName": "user",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:240"
+      }
     },
     {
       "id": "328:6260",
@@ -1325,11 +1325,11 @@
         "user-filled",
         "user-filled-16.svg"
       ],
+      "variantSetId": "659:240",
       "variantSetName": "user",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:240"
+      }
     },
     {
       "id": "303:6170",
@@ -1349,11 +1349,11 @@
         "user-2-filled",
         "user-2-filled-16.svg"
       ],
+      "variantSetId": "659:241",
       "variantSetName": "user-2",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:241"
+      }
     },
     {
       "id": "303:6171",
@@ -1371,11 +1371,11 @@
       "aliases": [
         "303-6171.svg"
       ],
+      "variantSetId": "659:241",
       "variantSetName": "user-2",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:241"
+      }
     },
     {
       "id": "328:6231",
@@ -1393,11 +1393,11 @@
       "aliases": [
         "328-6231.svg"
       ],
+      "variantSetId": "659:242",
       "variantSetName": "user-3",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:242"
+      }
     },
     {
       "id": "328:6232",
@@ -1417,11 +1417,11 @@
         "user-3-filled",
         "user-3-filled-16.svg"
       ],
+      "variantSetId": "659:242",
       "variantSetName": "user-3",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:242"
+      }
     },
     {
       "id": "505:647",
@@ -1441,11 +1441,11 @@
         "user-group",
         "user-group-16.svg"
       ],
+      "variantSetId": "659:243",
       "variantSetName": "users-group",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:243"
+      }
     },
     {
       "id": "578:2616",
@@ -1465,11 +1465,11 @@
         "user-group-fill",
         "user-group-fill-16.svg"
       ],
+      "variantSetId": "659:243",
       "variantSetName": "users-group",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:243"
+      }
     },
     {
       "id": "606:5303",
@@ -1489,11 +1489,11 @@
         "users-three",
         "users-three-16.svg"
       ],
+      "variantSetId": "606:5305",
       "variantSetName": "users-team",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "606:5305"
+      }
     },
     {
       "id": "606:5304",
@@ -1513,11 +1513,11 @@
         "users-three-fill",
         "users-three-fill-16.svg"
       ],
+      "variantSetId": "606:5305",
       "variantSetName": "users-team",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "606:5305"
+      }
     },
     {
       "id": "469:1440",
@@ -1537,11 +1537,11 @@
         "users-two",
         "users-two-16.svg"
       ],
+      "variantSetId": "659:244",
       "variantSetName": "users",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:244"
+      }
     },
     {
       "id": "487:1492",
@@ -1561,11 +1561,11 @@
         "users-two-fill",
         "users-two-fill-16.svg"
       ],
+      "variantSetId": "659:244",
       "variantSetName": "users",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:244"
+      }
     },
     {
       "id": "114:2146",
@@ -1823,11 +1823,11 @@
       "aliases": [
         "124-2571.svg"
       ],
+      "variantSetId": "659:212",
       "variantSetName": "bookmark",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:212"
+      }
     },
     {
       "id": "506:2914",
@@ -1845,11 +1845,11 @@
       "aliases": [
         "506-2914.svg"
       ],
+      "variantSetId": "659:212",
       "variantSetName": "bookmark",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:212"
+      }
     },
     {
       "id": "96:1510",
@@ -3491,11 +3491,11 @@
       "aliases": [
         "133-4571.svg"
       ],
+      "variantSetId": "659:225",
       "variantSetName": "pencil-edit",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:225"
+      }
     },
     {
       "id": "506:2890",
@@ -3513,11 +3513,11 @@
       "aliases": [
         "506-2890.svg"
       ],
+      "variantSetId": "659:225",
       "variantSetName": "pencil-edit",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:225"
+      }
     },
     {
       "id": "60:2291",
@@ -6147,11 +6147,11 @@
       "aliases": [
         "563-9135.svg"
       ],
+      "variantSetId": "566:266",
       "variantSetName": "finder",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "566:266"
+      }
     },
     {
       "id": "564:9157",
@@ -6169,11 +6169,11 @@
       "aliases": [
         "564-9157.svg"
       ],
+      "variantSetId": "566:266",
       "variantSetName": "finder",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "566:266"
+      }
     },
     {
       "id": "310:6303",
@@ -6191,11 +6191,11 @@
       "aliases": [
         "310-6303.svg"
       ],
+      "variantSetId": "659:216",
       "variantSetName": "cursor",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:216"
+      }
     },
     {
       "id": "578:3008",
@@ -6213,11 +6213,11 @@
       "aliases": [
         "578-3008.svg"
       ],
+      "variantSetId": "659:216",
       "variantSetName": "cursor",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:216"
+      }
     },
     {
       "id": "140:6033",
@@ -6237,11 +6237,11 @@
         "cursor-arrow",
         "cursor-arrow-16.svg"
       ],
+      "variantSetId": "659:217",
       "variantSetName": "pointer",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:217"
+      }
     },
     {
       "id": "498:2179",
@@ -6261,11 +6261,11 @@
         "cursor-arrow-fill",
         "cursor-arrow-fill-16.svg"
       ],
+      "variantSetId": "659:217",
       "variantSetName": "pointer",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:217"
+      }
     },
     {
       "id": "475:427",
@@ -6529,11 +6529,11 @@
       "aliases": [
         "60-2302.svg"
       ],
+      "variantSetId": "659:230",
       "variantSetName": "settings",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:230"
+      }
     },
     {
       "id": "578:2559",
@@ -6551,11 +6551,11 @@
       "aliases": [
         "578-2559.svg"
       ],
+      "variantSetId": "659:230",
       "variantSetName": "settings",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:230"
+      }
     },
     {
       "id": "178:12405",
@@ -6575,11 +6575,11 @@
         "settings-small-off",
         "settings-small-off-16.svg"
       ],
+      "variantSetId": "578:2531",
       "variantSetName": "settings-small",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2531"
+      }
     },
     {
       "id": "178:12414",
@@ -6599,11 +6599,11 @@
         "settings-small-on",
         "settings-small-on-16.svg"
       ],
+      "variantSetId": "578:2531",
       "variantSetName": "settings-small",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2531"
+      }
     },
     {
       "id": "328:6275",
@@ -6746,11 +6746,11 @@
         "device-laptop",
         "device-laptop-16.svg"
       ],
+      "variantSetId": "659:222",
       "variantSetName": "laptop",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:222"
+      }
     },
     {
       "id": "193:13034",
@@ -6770,11 +6770,11 @@
         "device-laptop-2",
         "device-laptop-2-16.svg"
       ],
+      "variantSetId": "659:222",
       "variantSetName": "laptop",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:222"
+      }
     },
     {
       "id": "59:9598",
@@ -6828,11 +6828,11 @@
       "aliases": [
         "596-4380.svg"
       ],
+      "variantSetId": "596:4390",
       "variantSetName": "phone",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "596:4390"
+      }
     },
     {
       "id": "596:4389",
@@ -6850,11 +6850,11 @@
       "aliases": [
         "596-4389.svg"
       ],
+      "variantSetId": "596:4390",
       "variantSetName": "phone",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "596:4390"
+      }
     },
     {
       "id": "486:595",
@@ -7279,11 +7279,11 @@
       "aliases": [
         "498-490.svg"
       ],
+      "variantSetId": "659:250",
       "variantSetName": "wifi",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:250"
+      }
     },
     {
       "id": "498:491",
@@ -7301,11 +7301,11 @@
       "aliases": [
         "498-491.svg"
       ],
+      "variantSetId": "659:250",
       "variantSetName": "wifi",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:250"
+      }
     },
     {
       "id": "101:4288",
@@ -7561,11 +7561,11 @@
         "plug-3-fill",
         "plug-3-fill-16.svg"
       ],
+      "variantSetId": "659:227",
       "variantSetName": "plug-side",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:227"
+      }
     },
     {
       "id": "520:5330",
@@ -7585,11 +7585,11 @@
         "plug-3",
         "plug-3-16.svg"
       ],
+      "variantSetId": "659:227",
       "variantSetName": "plug-side",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:227"
+      }
     },
     {
       "id": "297:4809",
@@ -7730,11 +7730,11 @@
       "aliases": [
         "46-897.svg"
       ],
+      "variantSetId": "659:246",
       "variantSetName": "volume-high",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:246"
+      }
     },
     {
       "id": "46:898",
@@ -7752,11 +7752,11 @@
       "aliases": [
         "46-898.svg"
       ],
+      "variantSetId": "659:246",
       "variantSetName": "volume-high",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:246"
+      }
     },
     {
       "id": "472:595",
@@ -7776,11 +7776,11 @@
         "volume-med",
         "volume-med-16.svg"
       ],
+      "variantSetId": "659:247",
       "variantSetName": "volume-low",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:247"
+      }
     },
     {
       "id": "498:688",
@@ -7800,11 +7800,11 @@
         "volume-med-fill",
         "volume-med-fill-16.svg"
       ],
+      "variantSetId": "659:247",
       "variantSetName": "volume-low",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:247"
+      }
     },
     {
       "id": "472:608",
@@ -7824,11 +7824,11 @@
         "volume-low",
         "volume-low-16.svg"
       ],
+      "variantSetId": "659:248",
       "variantSetName": "volume-none",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:248"
+      }
     },
     {
       "id": "546:8639",
@@ -7848,11 +7848,11 @@
         "volume-low-fill",
         "volume-low-fill-16.svg"
       ],
+      "variantSetId": "659:248",
       "variantSetName": "volume-none",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:248"
+      }
     },
     {
       "id": "472:629",
@@ -7870,11 +7870,11 @@
       "aliases": [
         "472-629.svg"
       ],
+      "variantSetId": "659:249",
       "variantSetName": "volume-slash",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:249"
+      }
     },
     {
       "id": "498:748",
@@ -7892,11 +7892,11 @@
       "aliases": [
         "498-748.svg"
       ],
+      "variantSetId": "659:249",
       "variantSetName": "volume-slash",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:249"
+      }
     },
     {
       "id": "498:674",
@@ -7969,11 +7969,11 @@
         "rectangle-audio-descriptions",
         "rectangle-audio-descriptions-16.svg"
       ],
+      "variantSetId": "580:320",
       "variantSetName": "audio-description",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "580:320"
+      }
     },
     {
       "id": "380:9408",
@@ -7993,11 +7993,11 @@
         "rectangle-audio-descriptions-fill",
         "rectangle-audio-descriptions-fill-16.svg"
       ],
+      "variantSetId": "580:320",
       "variantSetName": "audio-description",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "580:320"
+      }
     },
     {
       "id": "372:5686",
@@ -8017,11 +8017,11 @@
         "rectangle-closed-captions",
         "rectangle-closed-captions-16.svg"
       ],
+      "variantSetId": "659:215",
       "variantSetName": "closed-captions",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:215"
+      }
     },
     {
       "id": "380:9409",
@@ -8041,11 +8041,11 @@
         "rectangle-closed-captions-fill",
         "rectangle-closed-captions-fill-16.svg"
       ],
+      "variantSetId": "659:215",
       "variantSetName": "closed-captions",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:215"
+      }
     },
     {
       "id": "344:9604",
@@ -8203,11 +8203,11 @@
         "video",
         "video-16.svg"
       ],
+      "variantSetId": "659:245",
       "variantSetName": "video-camera",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:245"
+      }
     },
     {
       "id": "310:6525",
@@ -8229,11 +8229,11 @@
         "video-fill",
         "video-fill-16.svg"
       ],
+      "variantSetId": "659:245",
       "variantSetName": "video-camera",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:245"
+      }
     },
     {
       "id": "96:1649",
@@ -8251,11 +8251,11 @@
       "aliases": [
         "96-1649.svg"
       ],
+      "variantSetId": "569:573",
       "variantSetName": "eject",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "569:573"
+      }
     },
     {
       "id": "343:9339",
@@ -8275,11 +8275,11 @@
         "eject-filled",
         "eject-filled-16.svg"
       ],
+      "variantSetId": "569:573",
       "variantSetName": "eject",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "569:573"
+      }
     },
     {
       "id": "535:8506",
@@ -8297,11 +8297,11 @@
       "aliases": [
         "535-8506.svg"
       ],
+      "variantSetId": "659:218",
       "variantSetName": "fast-backward",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:218"
+      }
     },
     {
       "id": "535:8507",
@@ -8319,11 +8319,11 @@
       "aliases": [
         "535-8507.svg"
       ],
+      "variantSetId": "659:218",
       "variantSetName": "fast-backward",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:218"
+      }
     },
     {
       "id": "125:2607",
@@ -8341,11 +8341,11 @@
       "aliases": [
         "125-2607.svg"
       ],
+      "variantSetId": "659:219",
       "variantSetName": "fast-forward",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:219"
+      }
     },
     {
       "id": "129:6652",
@@ -8363,11 +8363,11 @@
       "aliases": [
         "129-6652.svg"
       ],
+      "variantSetId": "659:219",
       "variantSetName": "fast-forward",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:219"
+      }
     },
     {
       "id": "59:9599",
@@ -8385,11 +8385,11 @@
       "aliases": [
         "59-9599.svg"
       ],
+      "variantSetId": "659:224",
       "variantSetName": "pause",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:224"
+      }
     },
     {
       "id": "101:4347",
@@ -8409,11 +8409,11 @@
         "pause-filled",
         "pause-filled-16.svg"
       ],
+      "variantSetId": "659:224",
       "variantSetName": "pause",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:224"
+      }
     },
     {
       "id": "311:9873",
@@ -8431,11 +8431,11 @@
       "aliases": [
         "311-9873.svg"
       ],
+      "variantSetId": "659:226",
       "variantSetName": "play",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:226"
+      }
     },
     {
       "id": "311:10178",
@@ -8455,11 +8455,11 @@
         "play-filled",
         "play-filled-16.svg"
       ],
+      "variantSetId": "659:226",
       "variantSetName": "play",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:226"
+      }
     },
     {
       "id": "619:12605",
@@ -8477,11 +8477,11 @@
       "aliases": [
         "619-12605.svg"
       ],
+      "variantSetId": "659:232",
       "variantSetName": "skip-backward",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:232"
+      }
     },
     {
       "id": "619:12629",
@@ -8499,11 +8499,11 @@
       "aliases": [
         "619-12629.svg"
       ],
+      "variantSetId": "659:232",
       "variantSetName": "skip-backward",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:232"
+      }
     },
     {
       "id": "619:12595",
@@ -8521,11 +8521,11 @@
       "aliases": [
         "619-12595.svg"
       ],
+      "variantSetId": "659:233",
       "variantSetName": "skip-forward",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:233"
+      }
     },
     {
       "id": "619:12628",
@@ -8543,11 +8543,11 @@
       "aliases": [
         "619-12628.svg"
       ],
+      "variantSetId": "659:233",
       "variantSetName": "skip-forward",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:233"
+      }
     },
     {
       "id": "101:4352",
@@ -8567,11 +8567,11 @@
         "stop-filled",
         "stop-filled-16.svg"
       ],
+      "variantSetId": "659:236",
       "variantSetName": "stop",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:236"
+      }
     },
     {
       "id": "311:10593",
@@ -8589,11 +8589,11 @@
       "aliases": [
         "311-10593.svg"
       ],
+      "variantSetId": "659:236",
       "variantSetName": "stop",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:236"
+      }
     },
     {
       "id": "376:6585",
@@ -9690,19 +9690,21 @@
     },
     {
       "id": "129:6740",
-      "name": "arrows-compress",
-      "originalName": "arrows-compress",
-      "baseName": "arrows-compress",
+      "name": "arrows-collapse",
+      "originalName": "arrows-collapse",
+      "baseName": "arrows-collapse",
       "width": 16,
       "height": 16,
-      "filename": "arrows-compress-16.svg",
+      "filename": "arrows-collapse-16.svg",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=129-6740",
       "notes": [],
       "sourceSectionId": "646:192",
       "sourcePageId": "82:2415",
-      "componentName": "IconArrowsCompress",
+      "componentName": "IconArrowsCollapse",
       "aliases": [
-        "129-6740.svg"
+        "129-6740.svg",
+        "arrows-compress",
+        "arrows-compress-16.svg"
       ]
     },
     {
@@ -10361,11 +10363,11 @@
         "square-check-solid",
         "square-check-solid-16.svg"
       ],
+      "variantSetId": "659:234",
       "variantSetName": "square-check",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:234"
+      }
     },
     {
       "id": "245:15216",
@@ -10383,11 +10385,11 @@
       "aliases": [
         "245-15216.svg"
       ],
+      "variantSetId": "659:234",
       "variantSetName": "square-check",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:234"
+      }
     },
     {
       "id": "484:437",
@@ -10405,11 +10407,11 @@
       "aliases": [
         "484-437.svg"
       ],
+      "variantSetId": "659:214",
       "variantSetName": "circle-access",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:214"
+      }
     },
     {
       "id": "487:1571",
@@ -10427,11 +10429,11 @@
       "aliases": [
         "487-1571.svg"
       ],
+      "variantSetId": "659:214",
       "variantSetName": "circle-access",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:214"
+      }
     },
     {
       "id": "158:11585",
@@ -10449,11 +10451,11 @@
       "aliases": [
         "158-11585.svg"
       ],
+      "variantSetId": "578:2495",
       "variantSetName": "circle-check",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2495"
+      }
     },
     {
       "id": "506:2715",
@@ -10471,11 +10473,11 @@
       "aliases": [
         "506-2715.svg"
       ],
+      "variantSetId": "578:2495",
       "variantSetName": "circle-check",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2495"
+      }
     },
     {
       "id": "578:2505",
@@ -10493,11 +10495,11 @@
       "aliases": [
         "578-2505.svg"
       ],
+      "variantSetId": "578:2504",
       "variantSetName": "circle-null",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2504"
+      }
     },
     {
       "id": "578:2509",
@@ -10515,11 +10517,11 @@
       "aliases": [
         "578-2509.svg"
       ],
+      "variantSetId": "578:2504",
       "variantSetName": "circle-null",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2504"
+      }
     },
     {
       "id": "96:1634",
@@ -10537,11 +10539,11 @@
       "aliases": [
         "96-1634.svg"
       ],
+      "variantSetId": "578:2496",
       "variantSetName": "circle-pause",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2496"
+      }
     },
     {
       "id": "578:2366",
@@ -10559,11 +10561,11 @@
       "aliases": [
         "578-2366.svg"
       ],
+      "variantSetId": "578:2496",
       "variantSetName": "circle-pause",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2496"
+      }
     },
     {
       "id": "124:2541",
@@ -10581,11 +10583,11 @@
       "aliases": [
         "124-2541.svg"
       ],
+      "variantSetId": "578:2497",
       "variantSetName": "circle-play",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2497"
+      }
     },
     {
       "id": "578:2376",
@@ -10603,11 +10605,11 @@
       "aliases": [
         "578-2376.svg"
       ],
+      "variantSetId": "578:2497",
       "variantSetName": "circle-play",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2497"
+      }
     },
     {
       "id": "124:2591",
@@ -10625,11 +10627,11 @@
       "aliases": [
         "124-2591.svg"
       ],
+      "variantSetId": "578:2498",
       "variantSetName": "circle-question",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2498"
+      }
     },
     {
       "id": "578:2391",
@@ -10647,11 +10649,11 @@
       "aliases": [
         "578-2391.svg"
       ],
+      "variantSetId": "578:2498",
       "variantSetName": "circle-question",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2498"
+      }
     },
     {
       "id": "124:2540",
@@ -10669,11 +10671,11 @@
       "aliases": [
         "124-2540.svg"
       ],
+      "variantSetId": "578:2499",
       "variantSetName": "circle-stop",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2499"
+      }
     },
     {
       "id": "578:2402",
@@ -10691,11 +10693,11 @@
       "aliases": [
         "578-2402.svg"
       ],
+      "variantSetId": "578:2499",
       "variantSetName": "circle-stop",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2499"
+      }
     },
     {
       "id": "752:4179",
@@ -10713,11 +10715,11 @@
       "aliases": [
         "752-4179.svg"
       ],
+      "variantSetId": "752:4178",
       "variantSetName": "circle-no-entry",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "752:4178"
+      }
     },
     {
       "id": "752:4183",
@@ -10735,11 +10737,11 @@
       "aliases": [
         "752-4183.svg"
       ],
+      "variantSetId": "752:4178",
       "variantSetName": "circle-no-entry",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "752:4178"
+      }
     },
     {
       "id": "390:10591",
@@ -10757,11 +10759,11 @@
       "aliases": [
         "390-10591.svg"
       ],
+      "variantSetId": "578:2500",
       "variantSetName": "circle-user",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2500"
+      }
     },
     {
       "id": "390:10592",
@@ -10779,11 +10781,11 @@
       "aliases": [
         "390-10592.svg"
       ],
+      "variantSetId": "578:2500",
       "variantSetName": "circle-user",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2500"
+      }
     },
     {
       "id": "158:11592",
@@ -10801,11 +10803,11 @@
       "aliases": [
         "158-11592.svg"
       ],
+      "variantSetId": "569:569",
       "variantSetName": "circle-x",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "569:569"
+      }
     },
     {
       "id": "297:3620",
@@ -10825,11 +10827,11 @@
         "circle-x-solid",
         "circle-x-solid-16.svg"
       ],
+      "variantSetId": "569:569",
       "variantSetName": "circle-x",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "569:569"
+      }
     },
     {
       "id": "721:395",
@@ -10847,11 +10849,11 @@
       "aliases": [
         "721-395.svg"
       ],
+      "variantSetId": "721:394",
       "variantSetName": "circle-plus",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "721:394"
+      }
     },
     {
       "id": "721:399",
@@ -10869,11 +10871,11 @@
       "aliases": [
         "721-399.svg"
       ],
+      "variantSetId": "721:394",
       "variantSetName": "circle-plus",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "721:394"
+      }
     },
     {
       "id": "721:304",
@@ -10891,11 +10893,11 @@
       "aliases": [
         "721-304.svg"
       ],
+      "variantSetId": "721:303",
       "variantSetName": "circle-arrow-down",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "721:303"
+      }
     },
     {
       "id": "721:308",
@@ -10913,11 +10915,11 @@
       "aliases": [
         "721-308.svg"
       ],
+      "variantSetId": "721:303",
       "variantSetName": "circle-arrow-down",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "721:303"
+      }
     },
     {
       "id": "721:354",
@@ -10935,11 +10937,11 @@
       "aliases": [
         "721-354.svg"
       ],
+      "variantSetId": "721:353",
       "variantSetName": "circle-arrow-left",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "721:353"
+      }
     },
     {
       "id": "721:360",
@@ -10957,11 +10959,11 @@
       "aliases": [
         "721-360.svg"
       ],
+      "variantSetId": "721:353",
       "variantSetName": "circle-arrow-left",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "721:353"
+      }
     },
     {
       "id": "721:367",
@@ -10979,11 +10981,11 @@
       "aliases": [
         "721-367.svg"
       ],
+      "variantSetId": "721:366",
       "variantSetName": "circle-arrow-right",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "721:366"
+      }
     },
     {
       "id": "721:373",
@@ -11001,11 +11003,11 @@
       "aliases": [
         "721-373.svg"
       ],
+      "variantSetId": "721:366",
       "variantSetName": "circle-arrow-right",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "721:366"
+      }
     },
     {
       "id": "721:380",
@@ -11023,11 +11025,11 @@
       "aliases": [
         "721-380.svg"
       ],
+      "variantSetId": "721:379",
       "variantSetName": "circle-arrow-up",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "721:379"
+      }
     },
     {
       "id": "721:386",
@@ -11045,11 +11047,11 @@
       "aliases": [
         "721-386.svg"
       ],
+      "variantSetId": "721:379",
       "variantSetName": "circle-arrow-up",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "721:379"
+      }
     },
     {
       "id": "375:6429",
@@ -11183,11 +11185,11 @@
         "heart",
         "heart-16.svg"
       ],
+      "variantSetId": "569:567",
       "variantSetName": "heart-alt",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "569:567"
+      }
     },
     {
       "id": "378:8265",
@@ -11207,11 +11209,11 @@
         "heart-filled",
         "heart-filled-16.svg"
       ],
+      "variantSetId": "569:567",
       "variantSetName": "heart-alt",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "569:567"
+      }
     },
     {
       "id": "378:8262",
@@ -11231,11 +11233,11 @@
         "heart-3",
         "heart-3-16.svg"
       ],
+      "variantSetId": "578:2493",
       "variantSetName": "heart",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2493"
+      }
     },
     {
       "id": "485:557",
@@ -11255,11 +11257,11 @@
         "heart-3-filled",
         "heart-3-filled-16.svg"
       ],
+      "variantSetId": "578:2493",
       "variantSetName": "heart",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2493"
+      }
     },
     {
       "id": "416:11887",
@@ -11277,11 +11279,11 @@
       "aliases": [
         "416-11887.svg"
       ],
+      "variantSetId": "578:2501",
       "variantSetName": "heart-wide",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2501"
+      }
     },
     {
       "id": "416:11888",
@@ -11301,11 +11303,11 @@
         "heart-wide-filled",
         "heart-wide-filled-16.svg"
       ],
+      "variantSetId": "578:2501",
       "variantSetName": "heart-wide",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2501"
+      }
     },
     {
       "id": "132:4339",
@@ -11327,11 +11329,11 @@
         "info-2",
         "info-2-16.svg"
       ],
+      "variantSetId": "659:221",
       "variantSetName": "info",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:221"
+      }
     },
     {
       "id": "487:1519",
@@ -11349,11 +11351,11 @@
       "aliases": [
         "487-1519.svg"
       ],
+      "variantSetId": "659:221",
       "variantSetName": "info",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:221"
+      }
     },
     {
       "id": "593:3665",
@@ -11609,11 +11611,11 @@
       "aliases": [
         "127-4125.svg"
       ],
+      "variantSetId": "659:235",
       "variantSetName": "star",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:235"
+      }
     },
     {
       "id": "652:850",
@@ -11631,11 +11633,11 @@
       "aliases": [
         "652-850.svg"
       ],
+      "variantSetId": "659:235",
       "variantSetName": "star",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:235"
+      }
     },
     {
       "id": "364:5299",
@@ -11653,11 +11655,11 @@
       "aliases": [
         "364-5299.svg"
       ],
+      "variantSetId": "659:238",
       "variantSetName": "thumbs-down",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:238"
+      }
     },
     {
       "id": "520:5603",
@@ -11675,11 +11677,11 @@
       "aliases": [
         "520-5603.svg"
       ],
+      "variantSetId": "659:238",
       "variantSetName": "thumbs-down",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:238"
+      }
     },
     {
       "id": "171:11842",
@@ -11697,11 +11699,11 @@
       "aliases": [
         "171-11842.svg"
       ],
+      "variantSetId": "659:239",
       "variantSetName": "thumbs-up",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:239"
+      }
     },
     {
       "id": "520:5594",
@@ -11719,11 +11721,11 @@
       "aliases": [
         "520-5594.svg"
       ],
+      "variantSetId": "659:239",
       "variantSetName": "thumbs-up",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:239"
+      }
     },
     {
       "id": "364:5388",
@@ -12201,11 +12203,11 @@
         "check-verified",
         "check-verified-16.svg"
       ],
+      "variantSetId": "569:566",
       "variantSetName": "verified",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "569:566"
+      }
     },
     {
       "id": "282:17261",
@@ -12225,11 +12227,11 @@
         "check-verified-solid",
         "check-verified-solid-16.svg"
       ],
+      "variantSetId": "569:566",
       "variantSetName": "verified",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "569:566"
+      }
     },
     {
       "id": "592:3588",
@@ -12900,11 +12902,11 @@
         "terminal-square",
         "terminal-square-16.svg"
       ],
+      "variantSetId": "659:237",
       "variantSetName": "terminal-rectangle",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:237"
+      }
     },
     {
       "id": "604:5222",
@@ -12924,11 +12926,11 @@
         "terminal-fill",
         "terminal-fill-16.svg"
       ],
+      "variantSetId": "659:237",
       "variantSetName": "terminal-rectangle",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:237"
+      }
     },
     {
       "id": "193:13796",
@@ -13465,11 +13467,11 @@
         "home-3-fill",
         "home-3-fill-16.svg"
       ],
+      "variantSetId": "569:568",
       "variantSetName": "home",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "569:568"
+      }
     },
     {
       "id": "545:8586",
@@ -13489,11 +13491,11 @@
         "home-3-1",
         "home-3-1-16.svg"
       ],
+      "variantSetId": "569:568",
       "variantSetName": "home",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "569:568"
+      }
     },
     {
       "id": "282:16541",
@@ -13513,11 +13515,11 @@
         "home",
         "home-16.svg"
       ],
+      "variantSetId": "659:220",
       "variantSetName": "home-simple",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:220"
+      }
     },
     {
       "id": "487:1759",
@@ -13537,11 +13539,11 @@
         "home-fill",
         "home-fill-16.svg"
       ],
+      "variantSetId": "659:220",
       "variantSetName": "home-simple",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:220"
+      }
     },
     {
       "id": "376:6544",
@@ -13716,11 +13718,11 @@
       "aliases": [
         "364-5390.svg"
       ],
+      "variantSetId": "659:223",
       "variantSetName": "moon",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "659:223"
+      }
     },
     {
       "id": "591:3549",
@@ -13738,11 +13740,11 @@
       "aliases": [
         "591-3549.svg"
       ],
+      "variantSetId": "659:223",
       "variantSetName": "moon",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "659:223"
+      }
     },
     {
       "id": "372:5452",
@@ -14453,11 +14455,11 @@
         "dot",
         "dot-16.svg"
       ],
+      "variantSetId": "578:2494",
       "variantSetName": "dot",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "578:2494"
+      }
     },
     {
       "id": "506:3143",
@@ -14477,11 +14479,11 @@
         "dot-empty",
         "dot-empty-16.svg"
       ],
+      "variantSetId": "578:2494",
       "variantSetName": "dot",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "578:2494"
+      }
     },
     {
       "id": "233:14814",
@@ -15342,11 +15344,11 @@
       "aliases": [
         "158-11590.svg"
       ],
+      "variantSetId": "667:488",
       "variantSetName": "circle-record",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "667:488"
+      }
     },
     {
       "id": "667:487",
@@ -15364,11 +15366,11 @@
       "aliases": [
         "667-487.svg"
       ],
+      "variantSetId": "667:488",
       "variantSetName": "circle-record",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "667:488"
+      }
     },
     {
       "id": "101:2291",
@@ -15386,11 +15388,11 @@
       "aliases": [
         "101-2291.svg"
       ],
+      "variantSetId": "667:568",
       "variantSetName": "warning",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "667:568"
+      }
     },
     {
       "id": "667:582",
@@ -15408,11 +15410,11 @@
       "aliases": [
         "667-582.svg"
       ],
+      "variantSetId": "667:568",
       "variantSetName": "warning",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "667:568"
+      }
     },
     {
       "id": "667:563",
@@ -15430,11 +15432,11 @@
       "aliases": [
         "667-563.svg"
       ],
+      "variantSetId": "667:569",
       "variantSetName": "circle-warning",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "667:569"
+      }
     },
     {
       "id": "667:570",
@@ -15452,11 +15454,11 @@
       "aliases": [
         "667-570.svg"
       ],
+      "variantSetId": "667:569",
       "variantSetName": "circle-warning",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "667:569"
+      }
     },
     {
       "id": "749:5281",
@@ -15474,11 +15476,11 @@
       "aliases": [
         "749-5281.svg"
       ],
+      "variantSetId": "749:5280",
       "variantSetName": "square-warning",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "749:5280"
+      }
     },
     {
       "id": "749:5287",
@@ -15496,11 +15498,11 @@
       "aliases": [
         "749-5287.svg"
       ],
+      "variantSetId": "749:5280",
       "variantSetName": "square-warning",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "749:5280"
+      }
     },
     {
       "id": "313:17365",
@@ -15520,11 +15522,11 @@
         "home-2",
         "home-2-16.svg"
       ],
+      "variantSetId": "667:677",
       "variantSetName": "home-birdhouse",
       "variantProperties": {
         "Property 1": "Default"
-      },
-      "variantSetId": "667:677"
+      }
     },
     {
       "id": "667:678",
@@ -15542,11 +15544,11 @@
       "aliases": [
         "667-678.svg"
       ],
+      "variantSetId": "667:677",
       "variantSetName": "home-birdhouse",
       "variantProperties": {
         "Property 1": "true"
-      },
-      "variantSetId": "667:677"
+      }
     },
     {
       "id": "100:2285",
@@ -15564,11 +15566,11 @@
       "aliases": [
         "100-2285.svg"
       ],
+      "variantSetId": "667:683",
       "variantSetName": "sun",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "667:683"
+      }
     },
     {
       "id": "667:696",
@@ -15586,11 +15588,11 @@
       "aliases": [
         "667-696.svg"
       ],
+      "variantSetId": "667:683",
       "variantSetName": "sun",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "667:683"
+      }
     },
     {
       "id": "529:8017",
@@ -15612,11 +15614,11 @@
         "sun-alt",
         "sun-alt-16.svg"
       ],
+      "variantSetId": "667:690",
       "variantSetName": "sun-lg",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "667:690"
+      }
     },
     {
       "id": "667:691",
@@ -15636,11 +15638,11 @@
         "sun-alt-fill",
         "sun-alt-fill-16.svg"
       ],
+      "variantSetId": "667:690",
       "variantSetName": "sun-lg",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "667:690"
+      }
     },
     {
       "id": "604:5134",
@@ -15660,11 +15662,11 @@
         "terminal",
         "terminal-16.svg"
       ],
+      "variantSetId": "667:1165",
       "variantSetName": "terminal-square",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "667:1165"
+      }
     },
     {
       "id": "667:1166",
@@ -15686,11 +15688,11 @@
         "terminal-fill",
         "terminal-fill-16.svg"
       ],
+      "variantSetId": "667:1165",
       "variantSetName": "terminal-square",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "667:1165"
+      }
     },
     {
       "id": "749:5049",
@@ -15865,11 +15867,11 @@
         "send-2",
         "send-2-16.svg"
       ],
+      "variantSetId": "679:4228",
       "variantSetName": "send",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "679:4228"
+      }
     },
     {
       "id": "679:4229",
@@ -15889,11 +15891,11 @@
         "send-fill-1",
         "send-fill-1-16.svg"
       ],
+      "variantSetId": "679:4228",
       "variantSetName": "send",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "679:4228"
+      }
     },
     {
       "id": "693:381",
@@ -16047,11 +16049,11 @@
       "aliases": [
         "701-1548.svg"
       ],
+      "variantSetId": "701:1553",
       "variantSetName": "share-arrow",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "701:1553"
+      }
     },
     {
       "id": "816:11042",
@@ -16069,11 +16071,11 @@
       "aliases": [
         "816-11042.svg"
       ],
+      "variantSetId": "701:1553",
       "variantSetName": "share-arrow",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "701:1553"
+      }
     },
     {
       "id": "698:1533",
@@ -16125,11 +16127,11 @@
       "aliases": [
         "245-15235.svg"
       ],
+      "variantSetId": "716:3693",
       "variantSetName": "Clock",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "716:3693"
+      }
     },
     {
       "id": "716:3694",
@@ -16147,11 +16149,11 @@
       "aliases": [
         "716-3694.svg"
       ],
+      "variantSetId": "716:3693",
       "variantSetName": "Clock",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "716:3693"
+      }
     },
     {
       "id": "716:3738",
@@ -16186,11 +16188,11 @@
       "aliases": [
         "299-6105.svg"
       ],
+      "variantSetId": "716:3756",
       "variantSetName": "timer",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "716:3756"
+      }
     },
     {
       "id": "716:3755",
@@ -16208,11 +16210,11 @@
       "aliases": [
         "716-3755.svg"
       ],
+      "variantSetId": "716:3756",
       "variantSetName": "timer",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "716:3756"
+      }
     },
     {
       "id": "811:8906",
@@ -16249,52 +16251,6 @@
       ]
     },
     {
-      "id": "313:17405",
-      "name": "home-wide",
-      "originalName": "fill=false",
-      "baseName": "home-wide",
-      "width": 16,
-      "height": 16,
-      "filename": "home-wide-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=313-17405",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconHomeWide",
-      "aliases": [
-        "313-17405.svg",
-        "home-3",
-        "home-3-16.svg"
-      ],
-      "variantSetName": "home-wide",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "variantSetId": "716:3773"
-    },
-    {
-      "id": "716:3772",
-      "name": "home-wide-fill",
-      "originalName": "fill=true",
-      "baseName": "home-wide",
-      "width": 16,
-      "height": 16,
-      "filename": "home-wide-fill-16.svg",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=716-3772",
-      "notes": [],
-      "sourceSectionId": "646:192",
-      "sourcePageId": "82:2415",
-      "componentName": "IconHomeWideFill",
-      "aliases": [
-        "716-3772.svg"
-      ],
-      "variantSetName": "home-wide",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "variantSetId": "716:3773"
-    },
-    {
       "id": "96:1603",
       "name": "calendar-fill",
       "originalName": "fill=true",
@@ -16314,11 +16270,11 @@
         "calendar",
         "calendar-16.svg"
       ],
+      "variantSetId": "716:3796",
       "variantSetName": "calendar",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "716:3796"
+      }
     },
     {
       "id": "344:9669",
@@ -16340,11 +16296,11 @@
         "calendar-simple",
         "calendar-simple-16.svg"
       ],
+      "variantSetId": "716:3796",
       "variantSetName": "calendar",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "716:3796"
+      }
     },
     {
       "id": "716:3809",
@@ -16396,11 +16352,11 @@
       "aliases": [
         "102-5518.svg"
       ],
+      "variantSetId": "717:4007",
       "variantSetName": "lightning-bolt",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "717:4007"
+      }
     },
     {
       "id": "717:4006",
@@ -16418,11 +16374,11 @@
       "aliases": [
         "717-4006.svg"
       ],
+      "variantSetId": "717:4007",
       "variantSetName": "lightning-bolt",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "717:4007"
+      }
     },
     {
       "id": "583:3487",
@@ -16440,11 +16396,11 @@
       "aliases": [
         "583-3487.svg"
       ],
+      "variantSetId": "718:226",
       "variantSetName": "hd",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "718:226"
+      }
     },
     {
       "id": "718:225",
@@ -16462,11 +16418,11 @@
       "aliases": [
         "718-225.svg"
       ],
+      "variantSetId": "718:226",
       "variantSetName": "hd",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "718:226"
+      }
     },
     {
       "id": "727:254",
@@ -16520,11 +16476,11 @@
       "aliases": [
         "732-455.svg"
       ],
+      "variantSetId": "732:485",
       "variantSetName": "crown",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "732:485"
+      }
     },
     {
       "id": "732:484",
@@ -16542,11 +16498,11 @@
       "aliases": [
         "732-484.svg"
       ],
+      "variantSetId": "732:485",
       "variantSetName": "crown",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "732:485"
+      }
     },
     {
       "id": "737:7261",
@@ -16615,11 +16571,11 @@
       "aliases": [
         "378-9037.svg"
       ],
+      "variantSetId": "739:7572",
       "variantSetName": "subtitles",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "739:7572"
+      }
     },
     {
       "id": "739:7571",
@@ -16637,11 +16593,11 @@
       "aliases": [
         "739-7571.svg"
       ],
+      "variantSetId": "739:7572",
       "variantSetName": "subtitles",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "739:7572"
+      }
     },
     {
       "id": "102:4392",
@@ -16659,11 +16615,11 @@
       "aliases": [
         "102-4392.svg"
       ],
+      "variantSetId": "741:7712",
       "variantSetName": "folder",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "741:7712"
+      }
     },
     {
       "id": "741:7685",
@@ -16681,11 +16637,11 @@
       "aliases": [
         "741-7685.svg"
       ],
+      "variantSetId": "741:7712",
       "variantSetName": "folder",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "741:7712"
+      }
     },
     {
       "id": "102:4393",
@@ -16703,11 +16659,11 @@
       "aliases": [
         "102-4393.svg"
       ],
+      "variantSetId": "741:7762",
       "variantSetName": "folder-open",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "741:7762"
+      }
     },
     {
       "id": "741:7694",
@@ -16725,11 +16681,11 @@
       "aliases": [
         "741-7694.svg"
       ],
+      "variantSetId": "741:7762",
       "variantSetName": "folder-open",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "741:7762"
+      }
     },
     {
       "id": "58:9539",
@@ -16747,11 +16703,11 @@
       "aliases": [
         "58-9539.svg"
       ],
+      "variantSetId": "748:4675",
       "variantSetName": "microphone",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "748:4675"
+      }
     },
     {
       "id": "748:4674",
@@ -16769,11 +16725,11 @@
       "aliases": [
         "748-4674.svg"
       ],
+      "variantSetId": "748:4675",
       "variantSetName": "microphone",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "748:4675"
+      }
     },
     {
       "id": "485:547",
@@ -16791,11 +16747,11 @@
       "aliases": [
         "485-547.svg"
       ],
+      "variantSetId": "748:4676",
       "variantSetName": "microphone-narrow",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "748:4676"
+      }
     },
     {
       "id": "748:4673",
@@ -16813,11 +16769,11 @@
       "aliases": [
         "748-4673.svg"
       ],
+      "variantSetId": "748:4676",
       "variantSetName": "microphone-narrow",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "748:4676"
+      }
     },
     {
       "id": "416:12064",
@@ -16835,11 +16791,11 @@
       "aliases": [
         "416-12064.svg"
       ],
+      "variantSetId": "748:4677",
       "variantSetName": "microphone-wide",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "748:4677"
+      }
     },
     {
       "id": "748:4672",
@@ -16857,11 +16813,11 @@
       "aliases": [
         "748-4672.svg"
       ],
+      "variantSetId": "748:4677",
       "variantSetName": "microphone-wide",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "748:4677"
+      }
     },
     {
       "id": "749:5010",
@@ -16896,11 +16852,11 @@
       "aliases": [
         "738-7465.svg"
       ],
+      "variantSetId": "749:4987",
       "variantSetName": "folder-view",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "749:4987"
+      }
     },
     {
       "id": "749:4998",
@@ -16918,11 +16874,11 @@
       "aliases": [
         "749-4998.svg"
       ],
+      "variantSetId": "749:4987",
       "variantSetName": "folder-view",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "749:4987"
+      }
     },
     {
       "id": "752:3991",
@@ -16974,11 +16930,11 @@
       "aliases": [
         "101-4339.svg"
       ],
+      "variantSetId": "752:4248",
       "variantSetName": "lock",
       "variantProperties": {
         "fill": "false"
-      },
-      "variantSetId": "752:4248"
+      }
     },
     {
       "id": "752:4245",
@@ -16996,11 +16952,11 @@
       "aliases": [
         "752-4245.svg"
       ],
+      "variantSetId": "752:4248",
       "variantSetName": "lock",
       "variantProperties": {
         "fill": "true"
-      },
-      "variantSetId": "752:4248"
+      }
     },
     {
       "id": "193:13627",
@@ -17018,11 +16974,11 @@
       "aliases": [
         "193-13627.svg"
       ],
+      "variantSetId": "752:4269",
       "variantSetName": "lock-open",
       "variantProperties": {
         "Property 1": "false"
-      },
-      "variantSetId": "752:4269"
+      }
     },
     {
       "id": "752:4267",
@@ -17040,11 +16996,11 @@
       "aliases": [
         "752-4267.svg"
       ],
+      "variantSetId": "752:4269",
       "variantSetName": "lock-open",
       "variantProperties": {
         "Property 1": "true"
-      },
-      "variantSetId": "752:4269"
+      }
     },
     {
       "id": "705:2147",
@@ -19256,6 +19212,159 @@
       "aliases": [
         "920-32985.svg"
       ]
+    },
+    {
+      "id": "944:33003",
+      "name": "list-thumbnails-fill",
+      "originalName": "list-thumbnails-fill",
+      "baseName": "list-thumbnails-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "list-thumbnails-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=944-33003",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "944-33003.svg"
+      ],
+      "componentName": "IconListThumbnailsFill"
+    },
+    {
+      "id": "957:33091",
+      "name": "wrap",
+      "originalName": "wrap",
+      "baseName": "wrap",
+      "width": 16,
+      "height": 16,
+      "filename": "wrap-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=957-33091",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "957-33091.svg"
+      ],
+      "componentName": "IconWrap"
+    },
+    {
+      "id": "957:33092",
+      "name": "overflow",
+      "originalName": "overflow",
+      "baseName": "overflow",
+      "width": 16,
+      "height": 16,
+      "filename": "overflow-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=957-33092",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "957-33092.svg"
+      ],
+      "componentName": "IconOverflow"
+    },
+    {
+      "id": "957:33306",
+      "name": "home-wide",
+      "originalName": "home-wide",
+      "baseName": "home-wide",
+      "width": 16,
+      "height": 16,
+      "filename": "home-wide-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=957-33306",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "957-33306.svg"
+      ],
+      "componentName": "IconHomeWide"
+    },
+    {
+      "id": "958:33417",
+      "name": "folder-square",
+      "originalName": "folder-square",
+      "baseName": "folder-square",
+      "width": 16,
+      "height": 16,
+      "filename": "folder-square-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=958-33417",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "958-33417.svg"
+      ],
+      "componentName": "IconFolderSquare"
+    },
+    {
+      "id": "959:33671",
+      "name": "home-wide-fill",
+      "originalName": "home-wide-fill",
+      "baseName": "home-wide-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "home-wide-fill-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=959-33671",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "959-33671.svg"
+      ],
+      "componentName": "IconHomeWideFill"
+    },
+    {
+      "id": "959:33673",
+      "name": "arrows-repeat-one-alt",
+      "originalName": "arrows-repeat-one-alt",
+      "baseName": "arrows-repeat-one-alt",
+      "width": 16,
+      "height": 16,
+      "filename": "arrows-repeat-one-alt-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=959-33673",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "959-33673.svg"
+      ],
+      "componentName": "IconArrowsRepeatOneAlt"
+    },
+    {
+      "id": "959:33674",
+      "name": "arrows-repeat-alt",
+      "originalName": "arrows-repeat-alt",
+      "baseName": "arrows-repeat-alt",
+      "width": 16,
+      "height": 16,
+      "filename": "arrows-repeat-alt-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=959-33674",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "959-33674.svg"
+      ],
+      "componentName": "IconArrowsRepeatAlt"
+    },
+    {
+      "id": "959:33695",
+      "name": "replay",
+      "originalName": "replay",
+      "baseName": "replay",
+      "width": 16,
+      "height": 16,
+      "filename": "replay-16.svg",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=959-33695",
+      "notes": [],
+      "sourceSectionId": "646:192",
+      "sourcePageId": "82:2415",
+      "aliases": [
+        "959-33695.svg"
+      ],
+      "componentName": "IconReplay"
     }
   ]
 }
