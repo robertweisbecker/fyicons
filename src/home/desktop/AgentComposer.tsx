@@ -11,15 +11,25 @@ import {
 } from '@/components/ui/menu';
 import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
 
-export function AgentActivity() {
+export function AgentActivity({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
   return (
-    <Collapsible.Root className="text-xs leading-4 text-muted">
+    <Collapsible.Root
+      open={open}
+      onOpenChange={onOpenChange}
+      className="shrink-0 text-xs leading-4 text-muted"
+    >
       <Collapsible.Trigger
         render={
           <Button
             variant="ghost"
             size="unstyled"
-            className="group w-fit justify-start gap-1 rounded-sm text-xs leading-4 font-normal hover:text-ink"
+            className="group hover:bg-unset w-fit justify-start gap-1 rounded-sm text-xs leading-4 font-normal hover:text-ink"
           />
         }
       >
@@ -49,23 +59,25 @@ export function AgentActivity() {
 }
 
 export function AgentComposer() {
-  const [mode, setMode] = useState('Plan');
+  const [mode, setMode] = useState('Goal');
   return (
     <div className="w-full text-muted">
-      <div className="mb-2 flex flex-wrap items-center gap-1 rounded-lg bg-ink/8 p-2 text-xs text-ink">
+      <div className="mb-2 flex flex-wrap items-center gap-2.5 rounded-xl bg-dialog px-2 py-1.5 text-xs text-ink shadow-xs ring-1 ring-line">
         <Icon name="target-bullseye" />
-        <span className="mr-auto">Pursuing goal</span>
-        <span className="inline-flex items-center gap-0.5 rounded-full bg-ink/8 pr-1.5 pl-0.5 text-muted">
-          <Icon name="agent-subagent" size={14} />2
+        <span className="mr-auto">
+          Pursuing <span className="line-through opacity-30">goal</span>{' '}
+          Immortan Joe
         </span>
-        <span className="inline-flex items-center gap-0.5 rounded-full bg-ink/8 pr-1.5 pl-0.5 text-muted">
-          <Icon name="clock" size={12} />
-          1:13
+        <span className="inline-flex items-center gap-1">
+          <Icon name="agent-subagent" />2
+        </span>
+        <span className="inline-flex items-center gap-1">
+          <Icon name="clock" />
+          1:47:02
         </span>
         <div className="flex w-full items-center justify-end gap-1 @md/window:w-auto">
           <Icon
             name="line-vertical"
-            size={12}
             className="hidden text-border @md/window:block"
           />
           <DemoIconButton label="Edit goal" icon="pencil" size="icon-xs" />
@@ -88,14 +100,14 @@ export function AgentComposer() {
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-1">
             <DemoIconButton
-              label="Add attachment"
+              label="Add"
               icon="plus"
               variant="neutral"
               size="icon-xs"
               className="rounded-full"
             />
             <DemoIconButton
-              label="Security options"
+              label="Approval"
               icon="shield-code"
               size="icon-xs"
             />
@@ -103,9 +115,10 @@ export function AgentComposer() {
             <Menu>
               <MenuTrigger
                 aria-label="Agent mode"
-                render={<Button variant="ghost" size="icon-xs" />}
+                render={<Button variant="ghost" size="xs" />}
               >
-                <Icon name="lightbulb-sm" />
+                <Icon name="target-bullseye" className="text-muted" />
+                Goal
               </MenuTrigger>
               <MenuContent side="top" className="w-40">
                 <MenuRadioGroup
@@ -129,24 +142,24 @@ export function AgentComposer() {
           </div>
           <div className="flex items-center gap-1">
             <DemoIconButton
-              label="Response speed"
+              label="Effort"
               icon="gauge-simple-high"
               size="icon-xs"
             />
             <DemoToggle
-              label="Quick action"
+              label="Speed"
               icon="lightning-bolt"
               activeIcon="lightning-bolt-fill"
               size="icon-xs"
             />
             <DemoToggle
-              label="Voice input"
+              label="Dictate"
               icon="microphone"
               activeIcon="microphone-fill"
               size="icon-xs"
             />
             <DemoIconButton
-              label="Send message"
+              label="Send"
               icon="arrow-up"
               variant="default"
               size="icon-xs"

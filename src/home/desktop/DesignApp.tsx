@@ -65,7 +65,7 @@ export function DesignApp() {
             aria-expanded={inspectorOpen}
             aria-controls={inspectorId}
             onClick={() => setInspectorOpen(!inspectorOpen)}
-            className="mr-1 ml-auto aria-expanded:bg-inset @lg/window:hidden"
+            className="mr-1 ml-auto aria-expanded:bg-inset @2xl/window:hidden"
           >
             <Icon
               name={inspectorOpen ? 'sidebar-right-open' : 'sidebar-right'}
@@ -79,7 +79,7 @@ export function DesignApp() {
         <div
           className={cn(
             'relative isolate min-h-0 min-w-0 flex-1 place-items-center bg-inset p-4 pb-28',
-            inspectorOpen ? 'hidden @lg/window:grid' : 'grid',
+            inspectorOpen ? 'hidden @2xl/window:grid' : 'grid',
           )}
           role="region"
           aria-label="Design canvas"
@@ -122,16 +122,16 @@ export function DesignApp() {
               160 × 176
             </span>
           </div>
-          <div className="absolute inset-x-3 bottom-4 flex justify-center">
+          <div className="absolute inset-x-2 bottom-4 flex justify-center">
             <div
-              className="flex w-fit max-w-full flex-wrap items-center justify-center gap-1 rounded-xl bg-surface p-1 shadow-md ring ring-line"
+              className="flex w-fit max-w-full items-center gap-1 overflow-x-auto overscroll-x-contain rounded-xl bg-surface p-1 shadow-md ring ring-line"
               aria-label="Canvas toolbar"
             >
               <ToggleGroup
                 aria-label="Canvas tools"
                 value={tool}
                 onValueChange={(v) => v.length && setTool(v)}
-                className="max-w-full flex-wrap justify-center gap-0.5"
+                className="shrink-0 gap-0.5"
               >
                 {tools.map(([icon, label]) => (
                   <DemoToggle
@@ -147,7 +147,7 @@ export function DesignApp() {
               <ToggleGroup
                 defaultValue={['pointer-rulers']}
                 aria-label="Canvas mode"
-                className="gap-0 rounded-md bg-canvas p-px"
+                className="shrink-0 gap-0 rounded-md bg-canvas p-px"
               >
                 {[
                   ['scribble', 'Draw'],
@@ -175,8 +175,8 @@ export function DesignApp() {
           onFillVisibleChange={setFillVisible}
           className={
             inspectorOpen
-              ? 'flex flex-1 @lg/window:flex-none'
-              : 'hidden @lg/window:flex'
+              ? 'flex flex-1 @2xl/window:flex-none'
+              : 'hidden @2xl/window:flex'
           }
           onKeyDown={(event) => {
             if (

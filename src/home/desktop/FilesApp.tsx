@@ -4,12 +4,13 @@ import { ToggleGroup } from '@/components/ui/toggle-group';
 import { DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
+import { Badge } from '@/components/ui/badge';
 
 const locations = [
   ['home-simple', 'Home'],
   ['collection', 'Projects'],
   ['hard-drive', 'My Drive'],
-  ['devices', 'Devices'],
+  ['devices', 'Computers'],
   ['users-group', 'Shared with me'],
   ['clock', 'Recent'],
   ['star', 'Starred'],
@@ -28,35 +29,41 @@ const files = [
 
 function DriveLocations() {
   return (
-    <div className="flex min-h-full flex-col gap-3 px-2 text-sm @2xl/window:px-3">
-      <span
-        title="New"
-        className="flex min-h-9 items-center justify-center gap-2 rounded-lg border border-border bg-surface shadow-xs"
-      >
-        <Icon name="circle-plus-fill" />
-        <span className="sr-only @2xl/window:not-sr-only">New</span>
-      </span>
-      <ul className="space-y-1">
+    <div className="flex min-h-full flex-col gap-1 text-xs @2xl/window:ps-2">
+      <div className="px-1 pt-px">
+        <div
+          title="New"
+          className="flex min-h-8 w-fit items-center gap-2 rounded-lg bg-surface px-2 text-xs font-medium shadow-xs ring ring-border"
+        >
+          <Icon name="plus" />
+          <span className="sr-only flex px-2 @2xl/window:not-sr-only">New</span>
+        </div>
+      </div>
+      <ul className="space-y-px">
         {locations.map(([icon, label]) => (
           <li
             key={label}
             title={label}
-            className="flex min-h-8 items-center justify-center gap-2 px-2 @2xl/window:justify-start"
+            className="flex min-h-7 items-center justify-center gap-2 rounded-full px-3 hover:bg-hover @2xl/window:justify-start"
           >
             <Icon name={icon} />
             <span className="sr-only @2xl/window:not-sr-only">{label}</span>
           </li>
         ))}
       </ul>
-      <span
-        title="Storage: 50% used"
-        className="mt-auto flex items-center justify-center gap-2 py-2 @2xl/window:justify-start"
-      >
+      <div className="h-px bg-line" />
+      <span className="flex min-h-7 items-center justify-center gap-2 rounded-full px-3 hover:bg-hover @2xl/window:justify-start">
         <Icon name="cloud" />
         <span className="sr-only @2xl/window:not-sr-only">Storage</span>
-        <span className="sr-only ml-auto text-xs whitespace-nowrap text-muted @2xl/window:not-sr-only">
-          50% used
-        </span>
+        <Badge
+          variant="elevated"
+          size="sm"
+          icon="gauge-simple"
+          iconClass="size-3"
+          className="ms-auto -me-2 @max-2xl:hidden"
+        >
+          50%
+        </Badge>
       </span>
     </div>
   );
@@ -69,7 +76,7 @@ export function FilesApp() {
     <Window title="Files" className="bg-canvas">
       <div className="flex min-w-0 shrink-0 items-center gap-2 p-3">
         <div className="flex shrink-0 items-center gap-2 @2xl/window:w-40">
-          <Icon name="truck-moving" />
+          <Icon name="car-front" />
           <span className="hidden @sm/window:inline">Drive</span>
         </div>
         <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-inset px-3 py-2 text-xs text-muted">

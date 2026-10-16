@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import { Icon } from '@/components/Icon';
+import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Bubble, BubbleContent } from '@/components/ui/bubble';
 import {
   Message,
@@ -10,8 +12,7 @@ import { Glyph } from '../Study';
 import { AgentActivity, AgentComposer } from './AgentComposer';
 import { BrowserWindow } from './Window';
 
-const response =
-  'Group icons by what they do: navigation, files, editing, and media. Use clear names, keep related variants together, and check each icon at 16 × 16 px.';
+const response = "It'll take two weeks to skirt the wall of mountains.";
 
 function ResponseActions() {
   return (
@@ -20,14 +21,23 @@ function ResponseActions() {
       <span role="img" aria-label="Read aloud" title="Read aloud">
         <Glyph name="volume-high" className="size-8" />
       </span>
-      <DemoToggle
-        label="Helpful response"
-        icon="thumbs-up-down"
-        activeIcon="thumbs-up-fill"
-      />
+      <ToggleGroup aria-label="Rate response" className="gap-0">
+        <DemoToggle
+          value="up"
+          label="Good response"
+          icon="thumbs-up"
+          activeIcon="thumbs-up-fill"
+        />
+        <DemoToggle
+          value="down"
+          label="Bad response"
+          icon="thumbs-down"
+          activeIcon="thumbs-down-fill"
+        />
+      </ToggleGroup>
       {[
-        ['arrows-expand', 'Expand response'],
-        ['pencil-edit', 'Edit response'],
+        ['fork-horizontal', 'Fork in new chat'],
+        ['notebook', 'Referenced memory'],
       ].map(([icon, label]) => (
         <span key={icon} role="img" aria-label={label} title={label}>
           <Glyph name={icon} className="size-8" />
@@ -41,9 +51,19 @@ function ResponseActions() {
 }
 
 export function AgentsApp() {
+  const [thinkingOpen, setThinkingOpen] = useState(false);
+  const conversation = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (thinkingOpen) {
+      const element = conversation.current;
+      element?.scrollTo({ top: element.scrollHeight });
+    }
+  }, [thinkingOpen]);
+
   return (
     <BrowserWindow title="Gas Town" address="gas.town">
-      <div className="flex min-h-full flex-col">
+      <div className="flex h-full min-h-0 flex-col">
         <div className="flex h-11 shrink-0 items-center gap-2 px-3">
           <Glyph name="sidebar-left" />
           <Glyph name="pencil-edit" />
@@ -56,20 +76,12 @@ export function AgentsApp() {
             <Glyph name="ellipsis" />
           </span>
         </div>
-        <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-4 @lg/window:px-6">
+        <div className="mx-auto flex min-h-0 w-full max-w-xl flex-1 flex-col">
           <section
+            ref={conversation}
             aria-label="Conversation"
-            className="flex flex-1 flex-col gap-4 pt-2"
+            className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-y-contain scroll-smooth px-4 pt-2 pb-4 motion-reduce:scroll-auto @lg/window:px-6"
           >
-            <Message align="end" aria-label="Your message">
-              <MessageContent>
-                <Bubble>
-                  <BubbleContent>
-                    How should I organize this icon library?
-                  </BubbleContent>
-                </Bubble>
-              </MessageContent>
-            </Message>
             <Message aria-label="Assistant response">
               <MessageContent>
                 <Bubble variant="ghost">
@@ -78,9 +90,22 @@ export function AgentsApp() {
                 <ResponseActions />
               </MessageContent>
             </Message>
-            <AgentActivity />
+            <Message align="end" aria-label="Your message">
+              <MessageContent>
+                <Bubble>
+                  <BubbleContent>
+                    <span className="text-focus">/goal</span> So we take the War
+                    Rig and charge it right through the middle of them. We can
+                    decouple the tanker at the pass, shut it off behind us.
+                  </BubbleContent>
+                </Bubble>
+              </MessageContent>
+            </Message>
+            <AgentActivity open={thinkingOpen} onOpenChange={setThinkingOpen} />
           </section>
-          <AgentComposer />
+          <div className="relative z-1 shrink-0 bg-surface px-4 pt-2 pb-4 @lg/window:px-6">
+            <AgentComposer />
+          </div>
         </div>
       </div>
     </BrowserWindow>

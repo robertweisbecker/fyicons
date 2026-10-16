@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { Icon } from '../Icon';
 const badgeVariants = cva(
-  'inline-flex w-fit items-center rounded-full px-1 py-px  font-normal tabular-nums',
+  'inline-flex w-fit h-fit items-center rounded-full px-1 font-normal tabular-nums',
   {
     variants: {
       tone: {
@@ -17,13 +17,13 @@ const badgeVariants = cva(
       variant: {
         default: 'bg-current/5',
         elevated:
-          'bg-surface outline outline-current/5 shadow-sm dark:outline-current/10 dark:-outline-offset-1 text-ink',
-        outline: 'border border-current/8 bg-current/2 text-current/64',
+          'bg-surface outline outline-current/5 shadow-xs/10 dark:shadow-xs/50 dark:outline-current/10 dark:-outline-offset-1 text-ink',
+        outline: 'outline-1 outline-current/20 bg-current/2 text-current/72',
         solid: 'bg-ink text-canvas',
         unstyled: '',
       },
       size: {
-        sm: 'px-1 py-px text-[11px]',
+        sm: 'px-1 py-0 text-[11px]',
         md: 'px-1 py-0.5 text-xs',
         lg: 'px-2 py-1.5 text-sm',
       },

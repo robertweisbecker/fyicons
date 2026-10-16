@@ -55,7 +55,7 @@ export function FormatControls({ compact = false }: { compact?: boolean }) {
           value={list}
           onValueChange={(v) => v.length && setList(v)}
           aria-label="List style"
-          className="w-fit gap-px rounded-lg bg-bg p-0"
+          className="w-fit gap-px rounded-md bg-inset p-0"
         >
           <DemoToggle
             value="none"
@@ -94,22 +94,35 @@ export function FormatControls({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function TextAlignment({ compact = false }: { compact?: boolean }) {
+export function TextAlignment({
+  compact = false,
+  className,
+}: {
+  compact?: boolean;
+  className?: string;
+}) {
   const [align, setAlign] = useState(['start']);
   const [vertical, setVertical] = useState(['top']);
   const size = compact ? 'icon-xs' : 'icon';
   return (
-    <div className={compact ? 'flex items-center gap-1' : 'space-y-2'}>
+    <div
+      className={cn(
+        compact
+          ? 'grid w-full flex-1 grid-cols-2 items-center gap-x-1'
+          : 'space-y-2',
+        className,
+      )}
+    >
       <ToggleGroup
         value={align}
         onValueChange={(v) => v.length && setAlign(v)}
         aria-label="Text alignment"
         className={cn(
-          'w-fit rounded-lg bg-bg p-0',
-          compact ? 'gap-0' : 'gap-px',
+          'rounded-md bg-inset p-0',
+          compact ? 'flex-1 gap-0' : 'w-fit gap-px',
         )}
       >
-        {['start', 'center', 'end', 'justify'].map((value) => (
+        {['start', 'center', 'end'].map((value) => (
           <DemoToggle
             key={value}
             value={value}
@@ -117,6 +130,7 @@ export function TextAlignment({ compact = false }: { compact?: boolean }) {
             label={'Align ' + value}
             size={size}
             variant="elevated"
+            className="flex-1"
           />
         ))}
       </ToggleGroup>
@@ -126,8 +140,8 @@ export function TextAlignment({ compact = false }: { compact?: boolean }) {
           onValueChange={(v) => v.length && setVertical(v)}
           aria-label="Vertical alignment"
           className={cn(
-            'w-fit rounded-lg bg-bg p-0',
-            compact ? 'gap-0' : 'gap-px',
+            'w-fit rounded-md bg-inset p-0',
+            compact ? 'flex-1 gap-0' : 'gap-px',
           )}
         >
           {['top', 'middle', 'bottom'].map((value) => (
@@ -141,7 +155,11 @@ export function TextAlignment({ compact = false }: { compact?: boolean }) {
             />
           ))}
         </ToggleGroup>
-        <Glyph name="sliders-v" className={compact ? 'size-6' : 'size-8'} />
+        <Glyph
+          name="sliders-v"
+
+          className={cn(compact ? 'size-6' : 'size-8', 'text-xs text-muted')}
+        />
       </div>
     </div>
   );

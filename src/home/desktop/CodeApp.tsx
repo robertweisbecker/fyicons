@@ -3,7 +3,7 @@ import { Icon } from '@/components/Icon';
 import { FileTree, fileFolders } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
 import { CodeChanges } from './CodeChanges';
@@ -12,6 +12,7 @@ import { reviewFiles } from './codeReviewData';
 export function CodeApp() {
   const [selected, setSelected] = useState(reviewFiles[0].path);
   const [expanded, setExpanded] = useState(true);
+  const [wrapLines, setWrapLines] = useState(false);
   const [openFolders, setOpenFolders] = useState([
     'src',
     'src/components',
@@ -56,17 +57,6 @@ export function CodeApp() {
           <Icon name="chevron-down-sm" />
         </span>
         <div className="ml-auto flex items-center gap-2 text-muted">
-          <span className="flex items-center gap-1" aria-hidden>
-            {[
-              'ellipsis',
-              'file-search',
-              'arrows-rotate',
-              'arrow-wrap',
-              'list-expand',
-            ].map((icon) => (
-              <Icon key={icon} name={icon} />
-            ))}
-          </span>
           {[false, true].map((wide) => (
             <ToggleGroup
               key={String(wide)}
@@ -177,10 +167,46 @@ export function CodeApp() {
           <CodeChanges
             selected={selected}
             expanded={expanded}
+            wrapLines={wrapLines}
             onSelect={(path) =>
               path === selected ? setExpanded(!expanded) : selectFile(path)
             }
           />
+          <footer
+            aria-label="Diff actions"
+            className="flex shrink-0 items-center justify-end gap-1 border-t border-line bg-bg px-2 py-1 text-muted"
+          >
+            <DemoIconButton
+              label="More diff actions"
+              icon="ellipsis"
+              size="icon-sm"
+            />
+            <DemoIconButton
+              label="Search changes"
+              icon="file-search"
+              size="icon-sm"
+            />
+            <DemoIconButton
+              label="Refresh changes"
+              icon="arrows-rotate"
+              size="icon-sm"
+            />
+            <DemoToggle
+              label="Wrap lines"
+              icon="arrow-wrap"
+              size="icon-sm"
+              pressed={wrapLines}
+              onPressedChange={setWrapLines}
+            />
+            <DemoToggle
+              label="Expand selected diff"
+              icon="list-expand"
+              activeIcon="list-collapse"
+              size="icon-sm"
+              pressed={expanded}
+              onPressedChange={setExpanded}
+            />
+          </footer>
         </section>
       </div>
     </Window>

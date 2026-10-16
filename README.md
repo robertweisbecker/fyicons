@@ -1,179 +1,108 @@
 # FYIcons
 
-1,021 icons at 16 × 16 px, with a minimal homepage featuring six app demos and an icon carousel, a searchable library, an inspector, SVG downloads, and standalone component examples. Built with React, TypeScript, Tailwind CSS, and Base UI.
+FYIcons is a collection of SVG icons. Each icon has a 16 × 16 px canvas.
+Use the icons in websites, applications, and design files.
 
-## Development
+[Open the icon library](https://icons.bob.fyi/library/) · [See examples](https://icons.bob.fyi/examples/)
 
-Use Node 24 (`nvm use` if available).
+## Get SVG icons
 
-```sh
-npm ci
-npm run dev
+1. Open the [icon library](https://icons.bob.fyi/library/).
+2. Search for an icon, or select a category.
+3. Select an icon to open its details.
+4. Use **Copy SVG** to copy the SVG code.
+
+Use **Download** in the site header to download all icons as a ZIP file.
+To download a group of icons on a desktop screen:
+
+1. Select the checkboxes for the icons you need.
+2. Open **Selected**.
+3. Select **Download**.
+
+The ZIP file contains SVG files, a README, and a `manifest.json` file.
+The manifest contains icon names, source links, category data, and SHA-256 checksums.
+The ZIP file does not contain React components.
+
+You can also get the SVG files from the [icons folder](icons/).
+
+## Use an SVG file
+
+Put an SVG file in your project. Set the image path to that file:
+
+```html
+<img src="./icons/sun-16.svg" width="16" height="16" alt="Light mode" />
 ```
 
-```sh
-npm run build
-npm test
-npm run preview
-```
+If an image adds no information, set `alt=""`.
+You can also put the SVG code directly in an HTML document.
 
-Tests cover source SVG and manifest integrity, generated React components, regeneration, instance-safe SVG definitions, and byte-exact full and selected ZIP exports. UI styling, layout, copy, and demo interactions are outside the test contract.
+The size control in the library changes the preview size.
+It does not change the SVG files.
 
-## Components and styling
+## Use React source files
 
-Component styles live beside their JSX as Tailwind utilities. `cn` combines `clsx` with `tailwind-merge` so a caller's `className` can override defaults.
+Use a React project with TypeScript and TSX support.
+Copy the [src/icons folder](src/icons/) into your project as `icons/`.
+Keep the icon files, `base.tsx`, `types.ts`, and `index.ts` in the same folder.
 
-- `src/components/ui/`: reusable Base UI controls. Button, Checkbox, Toggle, and Switch expose typed CVA size/variant props; Select and Sheet expose composable parts. ToggleGroup provides roving keyboard focus, and Toast owns live announcements and dismissal.
-- `src/components/IconButton.tsx` and `FilterSelect.tsx`: app composition using the shared controls.
-- Import shared controls directly with `@/components/ui/...`; the `@/` alias resolves to `src/` in TypeScript and Vite.
-- `src/components/Inspector.tsx`: drawer layout, controls, pixel grid, and bounds.
-- `src/demos/`: one file per demo, including its layout and state styles.
-- `src/styles.css`: Tailwind entry point, theme tokens, and base rules only.
-
-Use `variant` and `size` for supported appearances; exported `buttonVariants`, `toggleVariants`, `checkboxVariants`, and `switchVariants` provide the same styles for composition. Native Base UI props, including refs, `disabled`, `defaultChecked` / `defaultPressed`, and controlled callbacks, pass through. Checkbox sizes adjust the hit area while keeping the checkmark at 16px; touch targets remain 44px.
+Use a relative import from your component file:
 
 ```tsx
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Toggle } from '@/components/ui/toggle';
-import { Switch } from '@/components/ui/switch';
+import { IconSun, IconArrowUpRight } from './icons';
 
-<Button variant="outline" size="sm">Download</Button>
-<Checkbox aria-label="Select icon" checked={selected} onCheckedChange={setSelected} />
-<Toggle size="icon" aria-label="Bold" pressed={bold} onPressedChange={setBold}>
-  <Icon name="text-bold" />
-</Toggle>
-<Switch aria-label="Show labels" checked={labels} onCheckedChange={setLabels} />
-```
-
-Switch supports `default` (36 × 20px) and `sm` (28 × 16px) sizes. Its thumb animates for 200ms with reduced-motion support; nested design settings use `sm`. Toggle backgrounds use translucent `currentColor`, and `ToggleIcon` pairs catalog variants with the primitive’s pressed state.
-
-Custom demo buttons can use the explicit `variant="unstyled" size="unstyled"` escape hatch. Styles stay co-located; the shared primitives do not own catalog selection or demo state.
-
-Use `npm run format` to format code and sort Tailwind utilities. Keep conditional class names complete so Tailwind can detect them.
-
-The fixed 56px header links to the overview at `/`, the library at `/library/`, and `/examples/`. All three routes have static HTML entry points for GitHub Pages reloads; old `#library` and `#examples` links still work. The supplied multicolor atom is shared by the site logo and SVG favicon. The overview studies live in `src/home/` and reuse the shared Base UI controls; file navigation, type formatting, playback previews, and social reactions all use local state. Categories live in a sticky sidebar at `lg` (1024px), with a modal sheet on smaller screens. The inspector floats above the grid by default without changing its columns or scroll position. From `md` (768px), its Dock inspector toggle moves it into a sticky layout column; toggling again returns it to the overlay. Docking preserves the visible grid row. Below `md`, it uses a full-screen modal sheet. Both modes have independently scrolling content and footer navigation. Demo palettes use Tailwind color tokens; the design demo’s editable color-input value remains RGB hex.
-
-The library slider previews icons at 16–64px in 4px steps. Homepage examples preserve their Figma copy and use Tailwind typography, spacing, radii, and color tokens. Most icons render at 16px, with larger icons used for thumbnails and the carousel. Interactions are limited to toggles, icon swaps, and contained disclosures. Selection controls and subset downloads are available from 768px; smaller screens retain browsing and previews without selection checkboxes. Saved desktop selections are preserved.
-
-## Icons and exports
-
-The editable source is [`icons/`](icons/): one SVG per icon, with artwork metadata and names in `icons/manifest.json`. Category keyword rules live separately in `public/icon-categories.json`. Replace a file in place to edit its artwork. Keep its 16×16 viewBox, filename, and manifest identity, then run:
-
-```sh
-npm run generate:icons
-```
-
-This rebuilds `src/icons/`, `src/data/catalog.json`, and the compact browser catalog `src/data/catalog-runtime.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. The browser catalog compresses both the SVG payload and metadata rows, storing metadata field names once; it reconstructs the exact original SVG bytes and full metadata at runtime. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and both catalog JSON files are generated; edit the standalone SVGs instead.
-
-`npm run dev` and `npm run build` generate automatically at startup. While the dev server is running, run `npm run generate:icons` after an SVG edit; Vite picks up the generated changes. Run `npm run check:icons` independently to validate the source inventory and category rules and detect stale or obsolete generated components, catalogs, and category schema without changing files. `npm run test:icons` checks generation and React behavior. CI runs `npm ci`, then `npm run build` to regenerate and build, followed by `npm test`.
-
-### React components
-
-```tsx
-import { IconSun, IconArrowUpRight } from '@/icons';
-// A direct import also works:
-// import IconSun from '@/icons/IconSun';
-
-<IconSun size={16} className="text-amber-500" title="Light mode" />
-<IconArrowUpRight size={20} aria-label="Open link" />
-```
-
-Components default to 16px, inherit `currentColor`, and accept `size`, `color`, `className`, `style`, `width`, `height`, accessibility attributes, event handlers, and SVG refs. Decorative icons are hidden from assistive technology by default; use `title` or an accessible label for meaningful standalone icons. A `strokeWidth` prop cannot change shapes drawn as filled contours.
-
-Generated components share the SVG sizing, accessibility, and ref handling in `src/icons/base.tsx` while retaining instance-safe SVG definition IDs. The barrel exports named components; the site uses a separate registry for dynamic lookup. Names follow the Figma components, with filled variants named from their component set. Duplicate names receive numeric suffixes to disambiguate the current inventory; suffixes may change when the inventory changes. Figma IDs remain in metadata, and previous names remain lookup aliases for compatibility. To add an icon, add an SVG and a manifest entry with a unique name, ID, filename, and component name, then generate. Category membership is calculated automatically from its name.
-
-See [the SVG optimization assessment](docs/svg-optimization-assessment.md) for the next step on selective stroke conversion and optimized outputs.
-
-### Editing categories
-
-Edit [`public/icon-categories.json`](public/icon-categories.json). Each category has an `id`, a display `name`, an `icon` using a catalog icon name, and a `keywords` array. Their order controls both the sidebar and mobile menu. There is no per-icon assignment map:
-
-```json
-{
-  "categories": [
-    {
-      "id": "communication",
-      "name": "Communication",
-      "icon": "chat",
-      "keywords": ["chat", "chats", "envelope", "send"]
-    },
-    {
-      "id": "files",
-      "name": "Files",
-      "icon": "folder",
-      "keywords": ["file", "files", "folder", "book"]
-    }
-  ]
+export function Example() {
+  return (
+    <>
+      <IconSun size={16} title="Light mode" />
+      <IconArrowUpRight size={20} aria-label="Open link" />
+    </>
+  );
 }
 ```
 
-An icon belongs to every category where **any** keyword matches complete, consecutive name segments, ignoring case. `file` matches `file-add` and `file-filled`, but not `profile` or `files`; list singular and plural forms separately. `arrow-up` matches `circle-arrow-up-fill`, but not `arrow-right-up`. Hyphens, underscores, and spaces separate segments. Keywords are plain text, with no regex or wildcard syntax. An empty `keywords` array adds no keyword matches.
+Change the import path if your component is in a different folder.
+To import one icon directly, use `import IconSun from './icons/IconSun'`.
 
-For narrow exceptions, add optional `exactNames` in the same category definition. Commerce uses `"exactNames": ["box", "box-shipping"]` alongside its keywords: it includes Box and BoxShipping without matching BoundingBox, TextBox, or BoxStorage. Exact names use the same case/separator normalization, but match the entire name and do not automatically include variants. A match from either list adds the category.
+### Set size and color
 
-Choose keywords for an icon's meaning, not its surrounding shape or an incidental modifier. For example, `browser` includes browser variants in Devices, while `circle` would also collect playback controls, users, and alerts. Use exact names for standalone shapes and symbols, and include their filled variants explicitly. Slashed variants should remain with their unslashed counterparts. The category tests cover these boundaries and flag uncategorized additions to the current catalog.
+React icons use a size of 16 px unless you supply a different value.
+Each icon uses `currentColor`. Set `color` to change the icon color:
 
-New icons and variants pick up matching categories automatically. Renaming an icon can change its memberships; aliases and Figma IDs do not participate in keyword matching. Rename a category or change its sidebar icon in its one definition. Each icon appears once in All, while search, the inspector, and category filters use every matching category. Category counts may add up to more than the total icon count. `all` and `uncategorized` are reserved IDs.
-
-The JSON's `$schema` documents the rules and provides sidebar icon and exact-name completions and example keyword suggestions in supporting JSON editors. New keywords are allowed before matching artwork exists. There are no category IDs to keep synchronized elsewhere. The dev and preview servers refresh the generated `public/icon-categories.schema.json` when the icon inventory changes; category edits do not require schema regeneration. Without a running server, use `npm run generate:category-schema` to refresh inventory suggestions.
-
-Save and refresh the page. **No generation, build, or server restart is needed** with `npm run dev` or `npm run preview`.
-
-The browser fetches this JSON without caching on page load. Filters, counts, search, inspector labels, and downloaded manifests all use the computed memberships. Icons with no matching keywords appear under Uncategorized, which is shown only when needed. If the JSON is invalid or unavailable, all icons remain available and the library shows a notice. An unknown sidebar icon falls back to the tag; source checks report the invalid icon name. `npm run check:icons` validates rules and sidebar references without requiring generated artwork files to change; unmatched icons are allowed.
-
-A production build minifies this file to `dist/icon-categories.json`, keeping its data unchanged and the editable source readable. On a static host, publish the updated JSON at that same URL; compiled JavaScript does not need rebuilding. The existing GitHub Pages workflow still performs a full build when deploying repository changes.
-
-Downloaded manifests include category definitions, keyword rules, and each icon's computed category ID array. See [the October 8 sync record](docs/icon-sync-2026-10-08.md) for the source scope, name changes, additions, removals, and known source naming collisions.
-
-To import a fresh catalog from the existing FYIcons export process:
-
-```sh
-npm run sync-icons -- /absolute/path/to/outputs/fyicons
+```tsx
+<IconSun size={24} color="#2563eb" />
 ```
 
-This is an explicit full import: it replaces the editable SVG source files and metadata, using the current Figma names for known IDs, then regenerates the React components and catalog. Keep any manual artwork edits you want before importing. The importer checks supplied hashes and validates metadata and SVGs. Local category definitions and keywords remain authoritative; incoming category metadata is ignored and is no longer required. Sidebar icon references follow existing Figma IDs through renames and fall back to grid if their artwork is removed. Memberships are recalculated from the resulting icon names, with no assignment map to synchronize. Previous names remain lookup aliases; pass `--preserve-names` only when deliberately retaining the earlier naming. Normal development and builds need no Figma credentials or external workspace.
+| Prop                            | Function                                              |
+| ------------------------------- | ----------------------------------------------------- |
+| `size`                          | Sets width and height. Accepts a number or a string.  |
+| `width`, `height`               | Set width or height instead of the value from `size`. |
+| `color`                         | Sets the icon color.                                  |
+| `className`, `style`            | Apply CSS styles.                                     |
+| `title`                         | Adds an SVG title and an accessible name.             |
+| `aria-label`, `aria-labelledby` | Set an accessible name.                               |
+| `ref`                           | Gives access to the SVG element.                      |
 
-Before changing any file, sync prepares the complete inventory, React components, both catalogs, and category schema. It validates metadata types, IDs, aliases, dimensions, the actual SVG root viewBox, supplied hashes, category references, case-insensitive filename/component collisions, and source/output path containment (including symlinks). A validation failure leaves every source and generated file unchanged. Valid case-only renames publish the exact new filename casing. Publication uses ordinary filesystem writes; a crash or filesystem error during publication can leave partial output, so this is not a crash-atomic import.
+The components also accept standard React SVG props and event handlers.
+Many icons use filled paths. The `strokeWidth` prop does not change the thickness of these paths.
 
-Legacy manifests may omit `source.fileKey` and `originalName`: the file key defaults to an empty string (unknown Figma provenance), and the original name defaults to the imported icon name. Supplied values must be strings; `originalName` must be nonempty. Missing aliases default to an empty array. Supplied source URLs must be nonempty strings and remain intact in both catalogs; missing URLs use the standard Figma URL derived from the file key and ID. `npm run check:icons` also checks the generated category schema against the inventory.
+### Set accessible names
 
-Export selected downloads a ZIP containing only the selected SVGs and their manifest. Existing shortlists are retained as selections.
+React icons have `aria-hidden="true"` unless you supply a title or an accessible name.
+For an icon that adds information, supply `title`, `aria-label`, or `aria-labelledby`.
 
-The Examples page uses a responsive bento grid of standalone navigation, composer, editor, settings, and feedback demos. The homepage combines Design, Files, Code, Agents, Social, and Music into app windows. Social fills its own Bird App window; Agents uses the browser chrome with a sample conversation and the goal composer. Interactions use local simulated state and do not connect to external services. The editor shows static sample text; its toolbar buttons only toggle their selected states.
+For a button that contains only an icon, give the button an accessible name:
 
-## Fonts
+```tsx
+<button type="button" aria-label="Light mode">
+  <IconSun />
+</button>
+```
 
-The site self-hosts Inter Variable 4.1 (upright and italic, weights 100–900) and Paper Mono 1.000 (weights 100–800) as WOFF2 files in `src/assets/fonts/`. Their SIL Open Font License notices are included in `public/licenses/` and the deployed site.
+## Icon names
 
-`src/styles.css` sets Tailwind's `--font-sans` and `--font-mono` variables and their corresponding `--font-feature-settings` companion tokens. Use `font-sans` or `font-mono` so each family receives its own features; code blocks inherit the mono settings through Tailwind's base styles.
+Some icons have the same source name. A number after the name identifies each icon.
+These numbers can change when the collection changes.
+Check the names when you update your copy of the icons.
 
-- [Inter](https://rsms.me/inter/#features): `cv11` for single-storey a, `dlig` for discretionary ligatures, `ss01` for open/alternate digits, and `ss03` for round quotes and commas. Standard ligatures and contextual alternates remain enabled.
-- [Paper Mono](https://paper.design/mono): `cv01` for single-storey a, `ss02` for duospace characters, and `ss03` for narrow spaces.
-
-The main Inter face is preloaded from each HTML entry. Vite fingerprints font assets and emits relative URLs for both root and project-subpath deployments.
-
-## GitHub Pages
-
-In **Settings → Pages → Build and deployment**, select **GitHub Actions**. The workflow tests and publishes `dist/` from `main`. Pull requests are tested without publishing. Documentation-only changes do not rebuild the site; manual dispatch remains available. Build artifacts expire after one day.
-
-Vite uses relative asset URLs, so the same build works at the project URL (`https://robertweisbecker.github.io/fyicons/`) and at a custom domain.
-
-### icons.bob.fyi
-
-1. Set **Settings → Pages → Custom domain** to `icons.bob.fyi`.
-2. At the DNS provider for `bob.fyi`, add:
-
-   | Type  | Name    | Target                       |
-   | ----- | ------- | ---------------------------- |
-   | CNAME | `icons` | `robertweisbecker.github.io` |
-
-3. Once GitHub confirms DNS and issues the certificate, enable **Enforce HTTPS**.
-
-The apex `bob.fyi` records do not need to change. With Actions-based publishing, the custom domain is stored in repository settings, not a `CNAME` file. See [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
-
-## Deployment size
-
-This is a static client application with no server functions, image processing, or external API requests. Categories load from a standalone JSON file on the same host. The current production output is approximately **3.8 MiB**, including the full icon catalog and fonts. Only `dist/` is deployed. ZIPs are generated in the browser on demand; source SVG folders, screenshots, tests, and dependencies are not copied into the deployment. The build fails above a 4 MiB output budget.
-
-GitHub Pages does not consume Vercel deployment storage or bandwidth. An optional `vercel.json` makes the same source deployable as a Vite site, but connecting it to Vercel would consume Vercel storage and transfer for retained deployments. This repository does not create or configure a Vercel project.
+The manifest keeps previous names as aliases for lookup in the library.
+These aliases do not preserve previous React export names.

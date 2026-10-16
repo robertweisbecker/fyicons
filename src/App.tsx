@@ -11,7 +11,9 @@ import {
 } from 'react';
 import { Icon } from './components/Icon';
 import { Button } from '@/components/ui/button';
-import { FilterSelect } from '@/components/FilterSelect';
+import { Popover } from '@base-ui/react/popover';
+import { Switch } from '@/components/ui/switch';
+import { SelectedIconsDialog } from '@/components/SelectedIconsDialog';
 import { GlobalSearch, Search } from './components/Search';
 import { searchIcons } from './lib/icon-search';
 import { IconTile } from './components/IconTile';
@@ -25,7 +27,6 @@ import { Inspector } from './components/Inspector';
 import { byId, icons, type IconRecord } from './lib/catalog';
 import { downloadIcons } from './lib/downloads';
 import { isStringArray, useMobile, usePreference } from './lib/preferences';
-import { Badge } from './components/ui/badge';
 
 const Examples = lazy(() => import('./demos/Examples'));
 const Landing = lazy(() => import('./home/Landing'));
@@ -33,7 +34,7 @@ const editable = (target: EventTarget | null) =>
   target instanceof HTMLElement &&
   (target.matches('input, textarea, select, [contenteditable=true]') ||
     !!target.closest(
-      '[role=combobox], [role=listbox], [role=menu], [data-slot=toggle-group], [role=slider], [role=separator]',
+      '[role=combobox], [role=listbox], [role=menu], [data-slot=toggle-group], [role=slider], [role=separator], [data-selection-dialog], [data-display-popover]',
     ));
 
 export function App() {
@@ -51,8 +52,7 @@ export function App() {
   const { categoryReadiness } = library;
   const activeCategory =
     query.trim() || categoryReadiness.status === 'loading' ? 'all' : category;
-  const [review, setReview] = useState('all');
-  const activeReview = mobile && review === 'selected' ? 'all' : review;
+  const [showFilled, setShowFilled] = useState(true);
   const [previewSize, setPreviewSize] = useState(16);
   const [inspectorDocked, setInspectorDocked] = useState(false);
   const gridAnchor = useRef<{ element: HTMLElement; top: number } | null>(null);
@@ -72,20 +72,19 @@ export function App() {
         (icon) =>
           (activeCategory === 'all' ||
             icon.categories.includes(activeCategory)) &&
-          (activeReview === 'all' ||
-            (activeReview === 'duplicates'
-              ? icon.duplicate
-              : selectedIds.includes(icon.id))),
+          (showFilled || !icon.name.split('-').includes('fill')),
       ),
       query,
     );
-  }, [
-    query,
-    activeCategory,
-    activeReview,
-    selectedIds,
-    categoryReadiness.version,
-  ]);
+  }, [query, activeCategory, showFilled, categoryReadiness.version]);
+  const selectedIcons = useMemo(
+    () =>
+      selectedIds.flatMap((id) => {
+        const icon = byId.get(id);
+        return icon ? [icon] : [];
+      }),
+    [selectedIds],
+  );
   const current = byId.get(inspectedId ?? '') ?? null;
   // Keep the inspected tile (or the first visible tile) in place when columns reflow.
   function preserveGridPosition(preferredId = inspectedId) {
@@ -169,24 +168,24 @@ export function App() {
     window.scrollTo(0, 0);
   }
   async function exportIcons(onlySelected = false) {
-    if (onlySelected && mobile) return;
+    if (onlySelected && (mobile || !selectedIcons.length)) return false;
     setPacking(true);
     try {
       await downloadIcons(
-        onlySelected
-          ? icons.filter((icon) => selectedIds.includes(icon.id))
-          : icons,
+        onlySelected ? selectedIcons : icons,
         onlySelected ? 'fyicons-selected.zip' : 'fyicons.zip',
       );
+      return true;
     } catch {
       notify('Download failed. Please try again.');
+      return false;
     } finally {
       setPacking(false);
     }
   }
   function reset() {
     library.reset();
-    setReview('all');
+    setShowFilled(true);
     search.current?.focus();
   }
   useEffect(() => {
@@ -245,6 +244,32 @@ export function App() {
   useEffect(() => {
     document.title = `FYIcons — ${view === 'home' ? '16 × 16 px icons' : view === 'examples' ? 'Examples' : 'Library'}`;
   }, [view]);
+  const displayOptions = (
+    <>
+      <PreviewSizeControl value={previewSize} onChange={setPreviewSize} />
+      <label className="flex cursor-pointer items-center justify-between gap-3 text-xs text-ink">
+        Show Filled variants
+        <Switch
+          size="sm"
+          checked={showFilled}
+          onCheckedChange={setShowFilled}
+        />
+      </label>
+    </>
+  );
+  const displayControls = !mobile && (
+    <aside
+      aria-label="Library display"
+      className={cn(
+        'flex flex-wrap items-center gap-x-8 gap-y-4',
+        current && inspectorDocked
+          ? 'mb-5'
+          : 'order-1 lg:sticky lg:top-20 lg:order-3 lg:flex-col lg:items-stretch lg:gap-6 lg:self-start',
+      )}
+    >
+      {displayOptions}
+    </aside>
+  );
   return (
     <div
       className={cn(
@@ -277,7 +302,7 @@ export function App() {
         onOpenChange={setSearchOpen}
         select={(icon) => {
           if (!current && inspectorDocked) preserveGridPosition(icon.id);
-          setReview('all');
+          setShowFilled(true);
           lastSelected.current = icon.id;
           library.openSearchResult(icon.id);
         }}
@@ -294,7 +319,12 @@ export function App() {
           >
             {view === 'home' ? (
               <Suspense
-                fallback={<p className="py-20 text-sm text-muted">Loading…</p>}
+                fallback={
+                  <p className="mx-auto py-20 text-center text-sm text-muted">
+                    <Icon name="spinner" className="inline animate-spin" />{' '}
+                    Loading…
+                  </p>
+                }
               >
                 <Landing navigate={changeView} />
               </Suspense>
@@ -307,7 +337,9 @@ export function App() {
                   value={activeCategory}
                   onValueChange={setCategory}
                 />
-                <div className="w-full max-w-5xl min-w-0">
+                {!(current && inspectorDocked) && displayControls}
+                <div className="order-2 w-full max-w-5xl min-w-0">
+                  {current && inspectorDocked && displayControls}
                   {categoryReadiness.error && (
                     <p role="alert" className="mb-4 text-sm text-muted">
                       {categoryReadiness.error}
@@ -328,22 +360,40 @@ export function App() {
                         select={select}
                       />
                     </div>
-                    <FilterSelect
-                      label="Icon filter"
-                      value={activeReview}
-                      onValueChange={setReview}
-                      options={[
-                        { value: 'all', label: 'All' },
-                        { value: 'duplicates', label: 'Variant Pairs' },
-                        ...(!mobile
-                          ? [{ value: 'selected', label: 'Selected' }]
-                          : []),
-                      ]}
-                    />
-                    <PreviewSizeControl
-                      value={previewSize}
-                      onChange={setPreviewSize}
-                    />
+                    {mobile && (
+                      <Popover.Root>
+                        <Popover.Trigger
+                          aria-label="Display options"
+                          render={
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className="size-10 data-popup-open:bg-hover"
+                            />
+                          }
+                        >
+                          <Icon name="sliders" />
+                        </Popover.Trigger>
+                        <Popover.Portal>
+                          <Popover.Positioner
+                            align="end"
+                            sideOffset={8}
+                            collisionPadding={16}
+                            className="z-70"
+                          >
+                            <Popover.Popup
+                              data-display-popover=""
+                              className="flex w-60 max-w-[calc(100vw-2rem)] flex-col gap-5 rounded-xl bg-surface p-4 text-ink shadow-xl outline-1 outline-ink/10 [&>div]:w-full"
+                            >
+                              <Popover.Title className="sr-only">
+                                Display options
+                              </Popover.Title>
+                              {displayOptions}
+                            </Popover.Popup>
+                          </Popover.Positioner>
+                        </Popover.Portal>
+                      </Popover.Root>
+                    )}
                   </div>
                   <div
                     className={cn(
@@ -354,20 +404,13 @@ export function App() {
                       {visible.length} of {icons.length} icons
                     </p>
                     {!mobile && (
-                      <Button
-                        variant="text"
-                        size="sm"
-                        disabled={
-                          packing || !selectedIds.some((id) => byId.has(id))
-                        }
-                        onClick={() => exportIcons(true)}
-                      >
-                        <Icon name="download-square" />
-                        Selected
-                        <Badge variant="elevated">
-                          {selectedIds.filter((id) => byId.has(id)).length}
-                        </Badge>
-                      </Button>
+                      <SelectedIconsDialog
+                        icons={selectedIcons}
+                        onRemove={toggleSelection}
+                        onClear={() => setSelectedIds([])}
+                        onDownload={() => exportIcons(true)}
+                        packing={packing}
+                      />
                     )}
                   </div>
                   <div
