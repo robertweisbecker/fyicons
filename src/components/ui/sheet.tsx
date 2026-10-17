@@ -17,7 +17,7 @@ const sheetVariants = cva(
         overlay:
           'fixed m-4 rounded-xl z-50 shadow-2xl outline-1 outline-ink/10 outline-offset-(--surface-outline-offset) data-starting-style:translate-x-6 data-starting-style:opacity-0 data-ending-style:opacity-0 inset-y-4',
         docked:
-          'relative z-20 h-[calc(100dvh-3.5rem)] border-s-line outline-none',
+          'relative z-20 h-[calc(100dvh-var(--site-header-height))] border-s-line outline-none',
       },
       variant: {
         default: 'w-80',
@@ -25,7 +25,11 @@ const sheetVariants = cva(
       },
     },
     compoundVariants: [
-      { variant: 'inspector', presentation: 'overlay', className: 'md:top-14' },
+      {
+        variant: 'inspector',
+        presentation: 'overlay',
+        className: 'md:top-(--site-header-height)',
+      },
       { side: 'left', presentation: 'docked', className: 'border-r' },
       { side: 'right', presentation: 'docked', className: 'border-l' },
     ],

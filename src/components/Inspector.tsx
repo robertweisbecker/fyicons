@@ -446,7 +446,7 @@ export function Inspector(props: Props) {
           duration: reducedMotion ? 0 : 0.24,
           ease: [0.32, 0.72, 0, 1],
         }}
-        className="sticky top-14 shrink-0 self-start"
+        className="sticky top-(--site-header-height) shrink-0 self-start"
       />
       <Sheet
         open={!!item}
