@@ -45,7 +45,7 @@ export function CategorySidebar({ value, onValueChange }: Props) {
     <>
       <aside
         aria-label="Categories"
-        className="sticky top-20 hidden max-h-[calc(100dvh-6rem)] w-[var(--category-sidebar-width,13rem)] shrink-0 self-start overflow-y-auto overscroll-contain pr-4 lg:block"
+        className="sticky top-[calc(var(--site-header-height)+1.5rem)] hidden max-h-[calc(100dvh-var(--site-header-height)-2.5rem)] w-[var(--category-sidebar-width,13rem)] shrink-0 self-start overflow-y-auto overscroll-contain pr-4 lg:block"
       >
         <h2 className="mb-3 ps-2 text-xs text-muted">Categories</h2>
         <ToggleGroup
