@@ -74,6 +74,7 @@
   --focus: var(--color-blue-400);
   --track: var(--color-neutral-300);
   --inspector-width: calc(var(--spacing) * 96);
+  --site-header-height: calc(3.5rem + env(safe-area-inset-top));
   --surface-outline-offset: 0px;
   color-scheme: light;
 }
@@ -103,12 +104,35 @@
   }
 }
 @layer base {
+  html {
+    /* Safari uses the root color above the page. Match the opaque header. */
+    background-color: var(--canvas);
+    scroll-padding-top: var(--site-header-height);
+  }
   body {
     position: relative;
+    min-height: 100svh;
     @apply m-0 bg-bg font-sans text-ink antialiased;
   }
   #root {
     isolation: isolate;
+  }
+  /* Safari samples a full-width fixed color near the viewport edge. The
+     floating inspector must not supply this color: its rounded card is inset
+     from the edge and moves during a swipe. Keep this outside its transform,
+     below portal backdrops, and use the page color rather than the card color.
+     See https://joshpuckett.me/seamless-mobile-safari. */
+  @media (width < 768px) {
+    /* Larger layouts can dock the inspector against the viewport bottom. */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: auto 0 0;
+      height: max(12px, env(safe-area-inset-bottom));
+      z-index: 40;
+      pointer-events: none;
+      background-color: var(--bg);
+    }
   }
   button,
   a,
