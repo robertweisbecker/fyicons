@@ -59,8 +59,7 @@
         "post",
         "posts",
         "save",
-        "scroll",
-        "sheet"
+        "scroll"
       ]
     },
     {
@@ -141,7 +140,7 @@
         "text-indent",
         "text-outdent",
         "text-prose",
-        "text-select",
+        "window-text",
         "text-strikethrough",
         "text-underline",
         "text-wrap",
@@ -297,7 +296,12 @@
         "circle-fill",
         "paragraph",
         "shapes",
-        "sparkles-three"
+        "sparkles-three",
+        "sparkles-three-fill",
+        "cube",
+        "star-half-fill",
+        "star-half-piece",
+        "star-half-piece-fill"
       ]
     },
     {
@@ -317,7 +321,10 @@
         "triangle-down",
         "triangle-left",
         "triangle-right",
-        "triangle-up"
+        "triangle-up",
+        "repeat",
+        "shuffle",
+        "loop"
       ]
     },
     {
@@ -379,8 +386,8 @@
       "name": "Media",
       "icon": "circle-play",
       "keywords": [
-        "arrows-repeat",
-        "arrows-shuffle",
+        "repeat",
+        "shuffle",
         "audio-description",
         "camera",
         "circle-record",
@@ -409,7 +416,8 @@
         "video",
         "videos",
         "volume",
-        "waveform"
+        "waveform",
+        "loop"
       ]
     },
     {
@@ -516,7 +524,10 @@
         "verified",
         "verified-fill",
         "warning",
-        "warning-fill"
+        "warning-fill",
+        "star-half-fill",
+        "star-half-piece",
+        "star-half-piece-fill"
       ]
     },
     {
@@ -550,7 +561,7 @@
         "diff",
         "flow",
         "folder-view",
-        "folder-worktree",
+        "folder-git",
         "fork",
         "git",
         "memory",
@@ -582,17 +593,19 @@
         "sparkles",
         "brain",
         "thought-bubble",
-        "workflow"
+        "workflow",
+        "user-bot",
+        "user-clank"
       ],
       "exactNames": [
         "pointer",
-        "pointer-select",
+        "window-pointer",
         "pointer-swarm",
         "pointers",
         "sync",
         "apps-connected",
         "selection",
-        "text-select",
+        "window-text",
         "pointer-fill"
       ]
     },
@@ -716,7 +729,7 @@
         "scissors",
         "scroll",
         "sticker",
-        "sheet",
+        "linen",
         "toolbox",
         "treasure-chest",
         "trophy",

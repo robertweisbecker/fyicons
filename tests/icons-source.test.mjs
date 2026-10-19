@@ -71,6 +71,36 @@ test('current SVG bytes are used for generated checksums', async () => {
   }
 });
 
+test('all downloadable icons inherit foreground color without altering definition paint', async () => {
+  const { JSDOM } = await import('jsdom');
+  const dom = new JSDOM(
+    catalog.icons
+      .map((icon) => `<div data-icon-id="${icon.id}">${icon.svg}</div>`)
+      .join(''),
+  );
+  try {
+    for (const element of dom.window.document.querySelectorAll('svg, svg *')) {
+      if (element.closest('defs, mask, clipPath')) continue;
+      const name = element
+        .closest('[data-icon-id]')
+        .getAttribute('data-icon-id');
+      const paints = [
+        element.getAttribute('fill'),
+        element.getAttribute('stroke'),
+        element.style.fill,
+        element.style.stroke,
+      ];
+      for (const paint of paints.filter(Boolean))
+        assert.ok(
+          /^(?:none|currentcolor|url\(.*\))$/i.test(paint),
+          `${name} has fixed foreground paint ${paint}`,
+        );
+    }
+  } finally {
+    dom.window.close();
+  }
+});
+
 test('replacing a source regenerates its component and derived catalog hash', async () => {
   const temp = await mkdtemp(path.join(tmpdir(), 'fyicons-generation-'));
   const run = promisify(execFile);

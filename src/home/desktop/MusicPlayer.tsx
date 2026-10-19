@@ -63,7 +63,7 @@ export function MusicPlayer({
         <div className="ml-1 flex items-center gap-1">
           <DemoToggle
             label="Shuffle"
-            icon="arrows-shuffle"
+            icon="shuffle"
             size="icon-sm"
             pressed={shuffle}
             onPressedChange={setShuffle}
@@ -94,7 +94,7 @@ export function MusicPlayer({
           />
           <DemoIconButton
             label={repeatLabel}
-            icon={repeat === 2 ? 'arrows-repeat-one' : 'arrows-repeat'}
+            icon={repeat === 2 ? 'repeat-one' : 'repeat'}
             size="icon-sm"
             aria-pressed={repeat > 0}
             onClick={() => setRepeat((current) => (current + 1) % 3)}

@@ -18,7 +18,7 @@ export const iconGroups = [
         'chevron-up',
         'chevron-down',
         'chevron-right',
-        'chevrons-maximize',
+        'chevrons-expand',
       ],
       ['caret-left', 'caret-up', 'caret-down', 'caret-right', 'triangle-right'],
       [
@@ -54,7 +54,7 @@ export const iconGroups = [
       [
         'pointer-swarm',
         'pointer-sm',
-        'pointer-select',
+        'window-pointer',
         'browser-pointer',
         'brain',
       ],
@@ -112,7 +112,7 @@ export const iconGroups = [
         'git-worktree-alt',
         'git-worktree-horizontal',
       ],
-      ['fork-horizontal', 'fork', 'folder-worktree', 'braces', 'brackets'],
+      ['fork-horizontal', 'fork', 'folder-git', 'braces', 'brackets'],
       ['parentheses', 'variable', 'vector-path', 'terminal-bash', 'terminal'],
     ],
   },

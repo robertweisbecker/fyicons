@@ -1,19 +1,34 @@
 import { transform } from '@svgr/core';
 
-const darkPaint = new Set([
-  'black',
-  '#000',
-  '#000000',
-  '#18181b',
-  '#090909',
-  '#0c0c0c',
-  '#131313',
-  '#191919',
-  '#171717',
-  '#040404',
+const paintKeywords = new Set([
+  'none',
+  'currentcolor',
+  'transparent',
+  'inherit',
+  'initial',
+  'unset',
+  'revert',
+  'revert-layer',
+  'context-fill',
+  'context-stroke',
 ]);
 
-function normalizeDisplayPaint(svg) {
+function isOpaquePaint(value) {
+  const paint = value.trim().toLowerCase();
+  if (paintKeywords.has(paint)) return false;
+  if (/^#[\da-f]{3}(?:[\da-f]{3})?$/.test(paint)) return true;
+  if (/^[a-z]+$/.test(paint)) return true;
+  const functional =
+    /^(?:rgb|hsl|hwb|lab|lch|oklab|oklch|color)\(([^)]+)\)$/.exec(paint);
+  // Keep alpha-bearing paint intact; replacing it would discard its opacity.
+  return (
+    !!functional &&
+    !functional[1].includes('/') &&
+    functional[1].split(',').length <= 3
+  );
+}
+
+export function normalizeDisplayPaint(svg) {
   // Only rewrite artwork paint. Definitions, masks and clip paths retain their
   // source paint because it can affect luminance or masking semantics.
   let protectedDepth = 0;
@@ -29,12 +44,10 @@ function normalizeDisplayPaint(svg) {
     const insideProtected = protectedDepth > 0;
     if (protectedElement && !tag.endsWith('/>')) protectedDepth++;
     if (insideProtected || protectedElement) return tag;
-    const changedPaint = new Set();
     const painted = tag.replace(
       /\b(fill|stroke)=(['"])(.*?)\2/gi,
       (attribute, key, quote, value) => {
-        if (!darkPaint.has(value.toLowerCase())) return attribute;
-        changedPaint.add(key.toLowerCase());
+        if (!isOpaquePaint(value)) return attribute;
         return `${key}=${quote}currentColor${quote}`;
       },
     );
@@ -44,10 +57,7 @@ function normalizeDisplayPaint(svg) {
         const next = value.replace(
           /(^|;)\s*(fill|stroke)\s*:\s*([^;]+)/gi,
           (decl, lead, key, paint) =>
-            changedPaint.has(key.toLowerCase()) ||
-            darkPaint.has(paint.trim().toLowerCase())
-              ? `${lead}${key}:currentColor`
-              : decl,
+            isOpaquePaint(paint) ? `${lead}${key}:currentColor` : decl,
         );
         return `style=${quote}${next}${quote}`;
       },

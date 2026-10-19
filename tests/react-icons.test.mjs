@@ -1,7 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { renderReactIconFiles } from '../scripts/lib/react-icons.mjs';
+import {
+  normalizeDisplayPaint,
+  renderReactIconFiles,
+} from '../scripts/lib/react-icons.mjs';
 
 const catalog = JSON.parse(
   await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'),
@@ -70,6 +73,24 @@ test('Collection and Home Fill inherit color without dark paint overrides', asyn
     assert.match(html, /fill="currentColor"/, name);
     assert.doesNotMatch(html, /display-p3|#131313|#0C0C0C/i, name);
   }
+});
+
+test('foreground normalization preserves geometry, opacity, and mask paint', () => {
+  const source = `<svg viewBox="0 0 16 16" fill="none"><defs><mask id="cut"><path fill="white" d="M0 0h16v16H0Z"/><path fill="black" d="M4 4h8v8H4Z"/></mask><clipPath id="clip"><path fill="#1D1D1B" d="M1 1h14v14H1Z"/></clipPath></defs><path fill="#1D1D1B" style="fill:color(display-p3 0.114 0.114 0.106);fill-opacity:0.5" d="M2 2h12v12H2Z" mask="url(#cut)"/><path fill="none" stroke="#1d1d1b" stroke-opacity="0.4" d="M3 3h10"/></svg>`;
+  const expected = source
+    .replace(
+      'fill="#1D1D1B" style="fill:color(display-p3 0.114 0.114 0.106)',
+      'fill="currentColor" style="fill:currentColor',
+    )
+    .replace('stroke="#1d1d1b"', 'stroke="currentColor"');
+  assert.equal(normalizeDisplayPaint(source), expected);
+  assert.equal(normalizeDisplayPaint(expected), expected);
+});
+
+test('foreground colors inherit independently of the exported palette', () => {
+  const source = `<svg><path fill="#0D0D0D" stroke="#F02D2D"/><path fill="#00C950"/><path fill="navy"/><path style="fill:color(display-p3 0.1 0.2 0.3);stroke:rgb(12,34,56)"/><path fill="none" stroke="transparent"/><path fill="var(--paint)"/><path fill="url(#paint)"/><path fill="rgb(0 0 0 / 0.5)"/><path fill="black" style="fill:none"/><path fill="black" style="fill:rgb(0 0 0 / 0.5)"/></svg>`;
+  const expected = `<svg><path fill="currentColor" stroke="currentColor"/><path fill="currentColor"/><path fill="currentColor"/><path style="fill:currentColor;stroke:currentColor"/><path fill="none" stroke="transparent"/><path fill="var(--paint)"/><path fill="url(#paint)"/><path fill="rgb(0 0 0 / 0.5)"/><path fill="currentColor" style="fill:none"/><path fill="currentColor" style="fill:rgb(0 0 0 / 0.5)"/></svg>`;
+  assert.equal(normalizeDisplayPaint(source), expected);
 });
 
 test('rendered components honor SVG props and keep repeated definition and title IDs unique', async () => {
