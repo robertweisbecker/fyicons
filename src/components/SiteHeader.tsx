@@ -78,7 +78,7 @@ export function SiteHeader({
             title="GitHub"
             className={cn(navLinkClassName, 'shrink-0')}
           >
-            <span className="hidden md:inline">GitHub</span>
+            GitHub
             <Icon name="arrow-up-right" />
           </a>
         </nav>

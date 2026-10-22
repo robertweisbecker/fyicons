@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { Icon } from '../Icon';
@@ -32,6 +32,8 @@ const badgeVariants = cva(
   },
 );
 export function Badge({
+  render,
+  ref,
   className,
   variant,
   size,
@@ -40,15 +42,23 @@ export function Badge({
   icon,
   iconClass,
   ...props
-}: ComponentProps<'span'> &
+}: useRender.ComponentProps<'span'> &
   VariantProps<typeof badgeVariants> & { icon?: string; iconClass?: string }) {
-  return (
-    <span
-      {...props}
-      className={cn(badgeVariants({ variant, tone, size }), className)}
-    >
-      {icon && <Icon name={icon} className={cn('-my-1', iconClass)} />}
-      <span className="flex items-center gap-1 px-1 py-0.5">{children}</span>
-    </span>
-  );
+  return useRender({
+    defaultTagName: 'span',
+    render,
+    ref,
+    props: {
+      ...props,
+      className: cn(badgeVariants({ variant, tone, size }), className),
+      children: (
+        <>
+          {icon && <Icon name={icon} className={cn('-my-1', iconClass)} />}
+          <span className="flex items-center gap-1 px-1 py-0.5">
+            {children}
+          </span>
+        </>
+      ),
+    },
+  });
 }

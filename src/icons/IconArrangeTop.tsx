@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconArrangeTop = React.forwardRef<SVGSVGElement, IconProps>(function IconArrangeTop(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const idPrefix = useIdPrefix();
   return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M14 3.5C14 3.77614 13.7761 4 13.5 4H2.5C2.22386 4 2 3.77614 2 3.5C2 3.22386 2.22386 3 2.5 3H13.5C13.7761 3 14 3.22386 14 3.5ZM7 13.5C7 13.7761 6.77614 14 6.5 14H5.5C5.22386 14 5 13.7761 5 13.5V5.5C5 5.22386 5.22386 5 5.5 5H6.5C6.77614 5 7 5.22386 7 5.5V13.5ZM11 9.5C11 9.77614 10.7761 10 10.5 10H9.5C9.22386 10 9 9.77614 9 9.5V5.5C9 5.22386 9.22386 5 9.5 5H10.5C10.7761 5 11 5.22386 11 5.5V9.5Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconArrangeTop;

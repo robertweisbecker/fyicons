@@ -44,7 +44,7 @@ export function ResizableWorkspaceDemo() {
               else sidebar.current?.collapse();
             }}
           >
-            <Icon name={collapsed ? 'panel-left' : 'panel-left-closed'} />
+            <Icon name={collapsed ? 'panel-left-closed' : 'panel-left'} />
           </Button>
           <span className="text-xs font-medium">Icon workspace</span>
         </header>

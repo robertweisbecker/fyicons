@@ -48,7 +48,8 @@ function DesktopStatusBar() {
           <Icon name="battery" />
         </span>
         <Icon name="wifi-fill" />
-        <Icon name="switches" />
+        <Icon name="atom-spiral" />
+        <Icon name="switches-ios" />
         <span className="hidden whitespace-nowrap @2xl/desktop:inline">
           Tue Oct 6 6:31 PM
         </span>

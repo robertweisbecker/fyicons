@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconPinVerticalFill = React.forwardRef<SVGSVGElement, IconProps>(function IconPinVerticalFill(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const idPrefix = useIdPrefix();
   return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 1.46582C9.03741 1.46587 10.1107 1.72503 10.915 2.2832C11.3502 2.58528 11.4925 3.09411 11.4482 3.52832L11.0723 7.20312C11.2521 7.30559 11.4938 7.45465 11.7412 7.64258C12.2089 7.99792 12.8402 8.59777 12.9258 9.38086C12.9784 9.86561 12.6471 10.1912 12.3555 10.374C12.052 10.5641 11.6447 10.7019 11.207 10.8047C10.3207 11.0127 9.14998 11.1123 8 11.1123C6.85002 11.1123 5.67925 11.0127 4.79297 10.8047C4.35536 10.7019 3.94793 10.5641 3.64453 10.374C3.35296 10.1912 3.02162 9.86554 3.07422 9.38086L3.09668 9.23633C3.23811 8.52398 3.82035 7.97575 4.25879 7.64258C4.5058 7.45494 4.74701 7.30559 4.92676 7.20312L4.55176 3.52832C4.50751 3.09415 4.64992 2.58529 5.08496 2.2832C5.88928 1.72503 6.96261 1.46589 8 1.46582Z" fill="currentColor" /><path d="M7 12.3469V12H9V12.3469C9 13.2552 8.69088 14.1364 8.12348 14.8457L8 15L7.87652 14.8457C7.30912 14.1364 7 13.2552 7 12.3469Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconPinVerticalFill;

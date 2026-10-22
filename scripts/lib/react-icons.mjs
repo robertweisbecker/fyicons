@@ -201,6 +201,10 @@ export async function renderReactIconFiles(icons) {
     `import * as React from 'react';
 import type { IconProps } from './types';
 
+export function useIdPrefix() {
+  return React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+}
+
 const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }>(function SvgRoot(
   { size = 16, color, title, idPrefix, children, ...svgProps }, ref,
 ) {
@@ -247,9 +251,9 @@ export default SvgRoot;
           return tpl`
           import * as React from 'react';
           import type { IconProps } from './types';
-          import SvgRoot from './base';
+          import SvgRoot, { useIdPrefix } from './base';
           const ${variables.componentName} = React.forwardRef<SVGSVGElement, IconProps>(function ${variables.componentName}(props, ref) {
-            const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+            const idPrefix = useIdPrefix();
             return ${variables.jsx};
           });
           export default ${variables.componentName};

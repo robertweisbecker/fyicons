@@ -10,7 +10,7 @@ import { Window } from './Window';
 function SocialPost() {
   return (
     <div className="w-full">
-      <p className="mb-3 text-base leading-5">
+      <p className="mb-3 text-base leading-5 text-ink">
         “i'm not owned! im not owned!!”, i continue to insist as i slowly shrink
         and transform into a corn cob
       </p>
@@ -78,7 +78,7 @@ export function SocialApp() {
         </div>
         <div className="mb-3 flex items-center gap-2 @md/window:gap-3">
           <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-sky-300 text-sky-950 @min-[18rem]/window:size-10 @md/window:size-14">
-            <Icon name="emoji-melting" className="size-6 @md/window:size-8" />
+            <Icon name="emoji-melt" className="size-6 @md/window:size-8" />
           </div>
           <div className="min-w-0 flex-1">
             <p className="flex items-center gap-1 text-sm font-semibold text-ink @md/window:text-base">
@@ -107,13 +107,13 @@ export function SocialApp() {
               className="rounded-full border border-line"
             />
             <Button
-              size="sm"
               aria-label={following ? 'Following wint' : 'Follow wint'}
               aria-pressed={following}
               onClick={() => setFollowing(!following)}
-              className="h-8 w-24 gap-0.5 rounded-full"
+              className="rounded-full ps-2"
+              variant={following ? 'default' : 'outline'}
             >
-              <Icon name={following ? 'check-sm' : 'plus-sm'} />
+              <Icon name={following ? 'check' : 'plus'} />
               {following ? 'Following' : 'Follow'}
             </Button>
           </div>
@@ -124,7 +124,7 @@ export function SocialApp() {
             Entertainment &amp; Recreation
           </span>
           <span className="inline-flex items-center gap-1">
-            <Icon name="location-pin-round" />
+            <Icon name="map-marker-round" />
             LA
           </span>
           <span className="inline-flex items-center gap-1">
@@ -137,13 +137,13 @@ export function SocialApp() {
             <Icon name="chevron-right" />
           </span>
           <span className="flex items-center gap-1">
-            <Icon name="users-group-fill" />
+            <Icon name="user-group-fill" />
             <span>
               <b className="text-ink">408</b> following
             </span>
           </span>
           <span className="flex items-center gap-1">
-            <Icon name="users-team-fill" />
+            <Icon name="user-team-fill" />
             <span>
               <b className="text-ink">1.6M</b> followers
             </span>

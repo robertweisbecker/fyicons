@@ -52,25 +52,29 @@ export function SelectedIconsDialog({
                 tabIndex={-1}
                 className="text-base font-semibold outline-none"
               >
-                Selected icons
+                <Icon name="file-zip" className="me-2 inline size-[1lh]" />
+                Download{' '}
+                {icons.length &&
+                  `${icons.length} ${icons.length === 1 ? 'icon' : 'icons'}`}
               </Dialog.Title>
               <Button
-                variant="text"
-                size="sm"
+                variant="ghost"
+                className="text-red-500 dark:text-red-400"
                 disabled={!icons.length || packing}
                 onClick={() => {
                   cancel.current?.focus();
                   onClear();
                 }}
               >
-                Clear all
+                <Icon name="trash" />
+                Clear
               </Button>
             </div>
-            <Dialog.Description className="mt-1 text-sm text-muted">
-              {icons.length
-                ? `${icons.length} ${icons.length === 1 ? 'icon' : 'icons'} ready to download.`
-                : 'Select icons from the library to build your download.'}
-            </Dialog.Description>
+            {/* {icons.length && (
+              <Dialog.Description className="mt-1 text-sm text-muted">
+                {`${icons.length} ${icons.length === 1 ? 'icon' : 'icons'} ready to download.`}
+              </Dialog.Description>
+            )} */}
           </div>
           {icons.length ? (
             <ul
@@ -83,14 +87,14 @@ export function SelectedIconsDialog({
                 return (
                   <li
                     key={icon.id}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-hover"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2"
                   >
                     <Icon name={icon.id} />
                     <span
                       className="min-w-0 flex-1 truncate text-sm"
                       title={name}
                     >
-                      {name}
+                      {name} ∙ {icon.id}.svg
                     </span>
                     <Button
                       variant="ghost"
@@ -99,7 +103,7 @@ export function SelectedIconsDialog({
                       disabled={packing}
                       onClick={(event) => remove(icon.id, event)}
                     >
-                      <Icon name="minus" />
+                      <Icon name="circle-minus" />
                     </Button>
                   </li>
                 );
@@ -108,7 +112,7 @@ export function SelectedIconsDialog({
           ) : (
             <div className="flex min-h-40 flex-col items-center justify-center gap-3 p-6 text-sm text-muted">
               <Icon name="files-tilt" size={32} />
-              No icons selected
+              No icons selected.
             </div>
           )}
           <div className="flex shrink-0 justify-end gap-2 border-t border-line p-4">

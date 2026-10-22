@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconToolbox = React.forwardRef<SVGSVGElement, IconProps>(function IconToolbox(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const idPrefix = useIdPrefix();
   return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.5 2C10.3284 2 11 2.67157 11 3.5V4H11.5C13.433 4 15 5.567 15 7.5V11.5C15 12.3284 14.3284 13 13.5 13H2.5C1.67157 13 1 12.3284 1 11.5V7.5C1 5.567 2.567 4 4.5 4H5V3.5C5 2.67157 5.67157 2 6.5 2H9.5ZM11 9V9.5C11 9.77614 10.7761 10 10.5 10C10.2239 10 10 9.77614 10 9.5V9H6V9.5C6 9.77614 5.77614 10 5.5 10C5.22386 10 5 9.77614 5 9.5V9H2V11.5C2 11.7761 2.22386 12 2.5 12H13.5C13.7761 12 14 11.7761 14 11.5V9H11ZM4.5 5C3.11929 5 2 6.11929 2 7.5V8H5V7.5C5 7.22386 5.22386 7 5.5 7C5.77614 7 6 7.22386 6 7.5V8H10V7.5C10 7.22386 10.2239 7 10.5 7C10.7761 7 11 7.22386 11 7.5V8H14V7.5C14 6.11929 12.8807 5 11.5 5H11V5.5C11 5.77614 10.7761 6 10.5 6C10.2239 6 10 5.77614 10 5.5V5H6V5.5C6 5.77614 5.77614 6 5.5 6C5.22386 6 5 5.77614 5 5.5V5H4.5ZM6.5 3C6.22386 3 6 3.22386 6 3.5V4H10V3.5C10 3.22386 9.77614 3 9.5 3H6.5Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconToolbox;

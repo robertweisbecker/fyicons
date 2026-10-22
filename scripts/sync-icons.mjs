@@ -66,6 +66,11 @@ const pascal = (text) =>
     .map((part) => part[0].toUpperCase() + part.slice(1))
     .join('');
 const normalized = [];
+const syncedAt = new Date().toISOString();
+const sortedProperties = (properties = {}) =>
+  JSON.stringify(
+    Object.entries(properties).sort(([a], [b]) => a.localeCompare(b)),
+  );
 for (const [baseName, group] of groups) {
   group.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
   for (const icon of group) {
@@ -89,14 +94,36 @@ for (const [baseName, group] of groups) {
       icon.filename || path.posix.basename(icon.file || ''),
     );
     const svg = await readSvgFile(source, icon.file || originalFilename);
+    // Dates belong to the component ID, not its generated name or export time.
+    // Keep unknown legacy history absent, and preserve dates from archived imports.
+    const dates = {};
+    const history = existing ?? icon;
+    for (const field of ['addedAt', 'updatedAt'])
+      if (history[field] !== undefined) dates[field] = history[field];
+    if (!existing && !dates.addedAt && !dates.updatedAt)
+      dates.addedAt = syncedAt;
+    if (!existing) dates.updatedAt ??= syncedAt;
+    else {
+      const previousSvg = await readSvgFile(root, `icons/${existing.filename}`);
+      const sourceChanged =
+        ['originalName', 'baseName', 'variantSetName'].some(
+          (field) => existing[field] !== icon[field],
+        ) ||
+        sortedProperties(existing.variantProperties) !==
+          sortedProperties(icon.variantProperties);
+      if (svg !== previousSvg || sourceChanged) dates.updatedAt = syncedAt;
+    }
     const {
       svg: _svg,
       category: _category,
       categories: _categories,
+      addedAt: _addedAt,
+      updatedAt: _updatedAt,
       ...metadata
     } = icon;
     normalized.push({
       ...metadata,
+      ...dates,
       id: icon.id,
       name,
       baseName: icon.baseName || existing?.baseName || baseName,

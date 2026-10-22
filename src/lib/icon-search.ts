@@ -26,20 +26,18 @@ export function searchIcons(items: IconRecord[], query: string) {
               )
             ? 2
             : 3;
-      return { icon, rank };
+      // Keep numeric suffixes with their word: bell-2-slash sorts as bell2-slash.
+      const sortName = icon.name.replace(/-(?=\d)/g, '');
+      return { icon, rank, sortName };
     })
     .filter(({ rank }) => rank < 3)
     .sort(
       (a, b) =>
         a.rank - b.rank ||
-        getIconDisplayName(a.icon).localeCompare(
-          getIconDisplayName(b.icon),
-          'en',
-          {
-            numeric: true,
-            sensitivity: 'base',
-          },
-        ),
+        a.sortName.localeCompare(b.sortName, 'en', {
+          numeric: true,
+          sensitivity: 'base',
+        }),
     )
     .map(({ icon }) => icon);
 }

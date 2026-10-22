@@ -392,7 +392,7 @@ export function IconSpecimen() {
                       <GuideShape shape={shape} />
                     </svg>
                     <span
-                      className="invisible text-[9px] leading-[14px] text-muted group-data-active/legend:visible"
+                      className="invisible text-[9px] leading-3.5 text-muted group-data-active/legend:visible"
                       aria-hidden="true"
                     >
                       {item.width} × {item.height}
@@ -413,7 +413,7 @@ export function IconSpecimen() {
           <button
             type="button"
             key={sample.name}
-            className="specimen-choice group/choice relative grid h-10 place-items-center rounded-[7px] text-muted hover:bg-hover hover:text-ink aria-pressed:text-ink"
+            className="specimen-choice group/choice relative grid h-9 place-items-center rounded-lg text-muted hover:bg-hover hover:text-ink aria-pressed:text-ink"
             aria-label={`Preview ${sample.label}`}
             aria-pressed={state.index === index}
             title={sample.label}
@@ -422,12 +422,12 @@ export function IconSpecimen() {
             {state.index === index && (
               <Icon
                 name="point-down"
-                className="pointer-events-none absolute -top-3 left-1/2 size-3 -translate-x-1/2 text-ink"
+                className="pointer-events-none absolute -top-3 left-1/2 -translate-x-1/2 text-ink"
               />
             )}
             <Icon
               name={sample.name}
-              className="size-4.5 transition-transform duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-active/choice:scale-[0.97] min-[900px]:size-5"
+              className="transition-transform duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-active/choice:scale-[0.97]"
             />
           </button>
         ))}

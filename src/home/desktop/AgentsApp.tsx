@@ -62,15 +62,11 @@ export function AgentsApp() {
   }, [thinkingOpen]);
 
   return (
-    <BrowserWindow title="Gas Town" address="gas.town">
+    <BrowserWindow title="MaxGPT" address="gas.town">
       <div className="flex h-full min-h-0 flex-col">
         <div className="flex h-11 shrink-0 items-center gap-2 px-3">
-          <Glyph name="sidebar-left" />
-          <Glyph name="pencil-edit" />
-          <span className="ml-1 flex items-center gap-1 font-medium">
-            GasTown
-            <Icon name="chevron-down-sm" className="text-muted" />
-          </span>
+          <Glyph name="panel-left-closed" />
+          <Glyph name="chat-round-plus" />
           <span className="ml-auto flex items-center gap-2 text-muted">
             <Glyph name="share" />
             <Glyph name="ellipsis" />
@@ -80,7 +76,7 @@ export function AgentsApp() {
           <section
             ref={conversation}
             aria-label="Conversation"
-            className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-y-contain scroll-smooth px-4 pt-2 pb-4 motion-reduce:scroll-auto @lg/window:px-6"
+            className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-y-contain scroll-smooth px-2 pt-2 pb-4 motion-reduce:scroll-auto @lg/window:px-4"
           >
             <Message aria-label="Assistant response">
               <MessageContent>
@@ -103,7 +99,7 @@ export function AgentsApp() {
             </Message>
             <AgentActivity open={thinkingOpen} onOpenChange={setThinkingOpen} />
           </section>
-          <div className="relative z-1 shrink-0 bg-surface px-4 pt-2 pb-4 @lg/window:px-6">
+          <div className="relative z-1 shrink-0 bg-surface px-2 pt-0 pb-4 @lg/window:px-4">
             <AgentComposer />
           </div>
         </div>

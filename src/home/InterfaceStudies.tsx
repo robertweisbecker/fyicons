@@ -189,7 +189,7 @@ export function RichTextStudy() {
                 ['heading-1', 'Heading 1'],
                 ['heading-2', 'Heading 2'],
                 ['heading-3', 'Heading 3'],
-                ['text-paragraph', 'Text'],
+                ['paragraph', 'Text'],
                 ['text-blockquote', 'Blockquote'],
                 ['code-rectangle', 'Inline code'],
                 ['code-block', 'Code block'],

@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconNewsFeed = React.forwardRef<SVGSVGElement, IconProps>(function IconNewsFeed(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M12 2C13.1046 2 14 2.89543 14 4V12C14 13.1046 13.1046 14 12 14H3.5C2.67157 14 2 13.3284 2 12.5V6.5C2 6.22386 2.22386 6 2.5 6H4V4C4 2.89543 4.89543 2 6 2H12ZM3 12.5C3 12.7761 3.22386 13 3.5 13C3.77614 13 4 12.7761 4 12.5V7H3V12.5ZM6 3C5.44772 3 5 3.44772 5 4V12.5C5 12.6755 4.96847 12.8435 4.91309 13H12C12.5523 13 13 12.5523 13 12V4C13 3.44772 12.5523 3 12 3H6ZM8.5 9C8.77614 9 9 9.22386 9 9.5C9 9.77614 8.77614 10 8.5 10H6.5C6.22386 10 6 9.77614 6 9.5C6 9.22386 6.22386 9 6.5 9H8.5ZM11.5 7C11.7761 7 12 7.22386 12 7.5C12 7.77614 11.7761 8 11.5 8H6.5C6.22386 8 6 7.77614 6 7.5C6 7.22386 6.22386 7 6.5 7H11.5ZM10.5 5C10.7761 5 11 5.22386 11 5.5C11 5.77614 10.7761 6 10.5 6H6.5C6.22386 6 6 5.77614 6 5.5C6 5.22386 6.22386 5 6.5 5H10.5Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconNewsFeed;

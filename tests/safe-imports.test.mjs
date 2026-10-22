@@ -132,6 +132,28 @@ async function snapshot(directory) {
 }
 const invalid = [
   [
+    'invalid date type',
+    ({ imported }) => {
+      imported.icons[1].addedAt = 123;
+    },
+    /Invalid addedAt/,
+  ],
+  [
+    'impossible calendar date',
+    ({ imported }) => {
+      imported.icons[1].updatedAt = '2026-02-30T12:00:00.000Z';
+    },
+    /Invalid updatedAt/,
+  ],
+  [
+    'date order',
+    ({ imported }) => {
+      imported.icons[1].addedAt = '2026-10-20T00:00:00.000Z';
+      imported.icons[1].updatedAt = '2026-10-19T00:00:00.000Z';
+    },
+    /Invalid date order/,
+  ],
+  [
     'unsafe name',
     ({ imported }) => {
       imported.icons[1].name = '../sentinel';

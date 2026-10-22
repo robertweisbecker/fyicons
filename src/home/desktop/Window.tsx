@@ -80,16 +80,16 @@ export function BrowserWindow({
           className="flex h-11 shrink-0 items-center gap-1 border-b border-line bg-bg pr-2 text-xs text-muted"
         >
           <WindowControls />
-          <div className="flex h-8 max-w-44 min-w-0 flex-[1.2] items-center gap-2 rounded-lg bg-dialog px-2 text-ink shadow-xs ring-1 ring-line">
-            <Icon name="truck-moving" className="text-orange-500" />
+          <div className="flex h-6 max-w-44 min-w-0 flex-[1.2] items-center gap-2 rounded-lg bg-dialog px-1.5 text-ink shadow-xs ring-1 ring-line">
+            <Icon name="gas" className="text-focus" />
             <span className="min-w-0 flex-1 truncate">{title}</span>
-            <Icon name="xmark-sm" className="text-muted" />
+            <Icon name="circle-x-fill" className="text-muted/72" />
           </div>
           <div
             className="flex h-8 max-w-44 min-w-0 flex-1 items-center gap-2 px-2"
             title="Witness MeTube"
           >
-            <Icon name="videos" />
+            <Icon name="video-fill" className="text-red-400" />
             <span className="truncate">Witness MeTube</span>
           </div>
           <span
@@ -104,10 +104,10 @@ export function BrowserWindow({
     >
       <div className="flex shrink-0 items-center gap-2 border-b border-line bg-canvas px-3 py-2 text-xs">
         <Icon name="arrow-left" />
-        <Icon name="arrow-right" className="opacity-30" />
-        <Icon name="arrow-reload" />
-        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-md bg-inset px-1.5 py-1">
-          <Icon name="sliders" />
+        <Icon name="arrow-right" className="opacity-40" />
+        <Icon name="arrow-redo" />
+        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-hover px-1.5 py-1.5">
+          <Icon name="info" />
           <span className="min-w-0 flex-1 gap-1 truncate">
             <span className="hidden text-muted @lg/window:inline">
               https://
@@ -115,12 +115,12 @@ export function BrowserWindow({
             {address}
           </span>
           <Icon name="zoom-in" className="ml-auto" />
-          <Icon name="star" />
+          <Icon name="star-fill" className="text-focus" />
         </div>
         <span className="hidden @lg/window:inline-flex">
           <Icon name="puzzle" />
         </span>
-        <Icon name="circle-user-fill" />
+        <Icon name="circle-user-fill" className="text-violet-400" />
         <Icon name="ellipsis-v" />
       </div>
       <div className="min-h-0 flex-1 overflow-hidden">{children}</div>

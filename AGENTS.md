@@ -31,6 +31,8 @@ Use the checks appropriate to the change:
 
 The build regenerates tracked artifacts. Check the diff before and after it. Use targeted Prettier checks for manually edited files; do not reformat generated TSX. Finish with `git diff --check`.
 
+Verify exports in memory with `node --test tests/icon-archive.test.mjs tests/catalog-codec.test.mjs`. These tests compare source SVG bytes, decoded catalog metadata, and full/selected ZIP contents. Do not click Download controls, wait for browser download events, or open Save As dialogs during verification.
+
 ## Development
 
 Use Node 24 (`nvm use` if available).
@@ -93,7 +95,7 @@ The editable source is [`icons/`](icons/): one SVG per icon, with artwork metada
 npm run generate:icons
 ```
 
-This rebuilds `src/icons/`, `src/data/catalog.json`, and the compact browser catalog `src/data/catalog-runtime.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. The browser catalog compresses both the SVG payload and metadata rows, storing metadata field names once; it reconstructs the exact original SVG bytes and full metadata at runtime. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and both catalog JSON files are generated; edit the standalone SVGs instead.
+This rebuilds `src/icons/`, `src/data/catalog.json`, and the compact browser catalog `src/data/catalog-runtime.json` from the current SVG bytes. The website, clipboard, individual downloads, and ZIP exports all use the regenerated catalog. The browser catalog compresses the SVG payload, collection metadata, and icon metadata rows, storing metadata field names once; it reconstructs the exact original SVG bytes and full metadata at runtime. Neither file optimization nor geometry changes are applied to source SVGs. `src/icons/` and both catalog JSON files are generated; edit the standalone SVGs instead.
 
 `npm run dev` and `npm run build` generate automatically at startup. While the dev server is running, run `npm run generate:icons` after an SVG edit; Vite picks up the generated changes. Run `npm run check:icons` independently to validate the source inventory and category rules and detect stale or obsolete generated components, catalogs, and category schema without changing files. `npm run test:icons` checks generation and React behavior. CI runs `npm ci`, then `npm run build` to regenerate and build, followed by `npm test`.
 
@@ -168,6 +170,8 @@ This is an explicit full import: it replaces the editable SVG source files and m
 Before changing any file, sync prepares the complete inventory, React components, both catalogs, and category schema. It validates metadata types, IDs, aliases, dimensions, the actual SVG root viewBox, supplied hashes, category references, case-insensitive filename/component collisions, and source/output path containment (including symlinks). A validation failure leaves every source and generated file unchanged. Valid case-only renames publish the exact new filename casing. Publication uses ordinary filesystem writes; a crash or filesystem error during publication can leave partial output, so this is not a crash-atomic import.
 
 Legacy manifests may omit `source.fileKey` and `originalName`: the file key defaults to an empty string (unknown Figma provenance), and the original name defaults to the imported icon name. Supplied values must be strings; `originalName` must be nonempty. Missing aliases default to an empty array. Supplied source URLs must be nonempty strings and remain intact in both catalogs; missing URLs use the standard Figma URL derived from the file key and ID. `npm run check:icons` also checks the generated category schema against the inventory.
+
+Sync tracks optional `addedAt` and `updatedAt` metadata as UTC ISO timestamps (`YYYY-MM-DDTHH:mm:ss.sssZ`). These dates describe library imports, not Figma's creation or edit history. A new component ID gets both dates. Known dates stay with that ID through renames; a change to SVG bytes, source name, or variant labels advances `updatedAt`. A no-op sync, regenerated duplicate suffix, category edit, or build does not change dates. Existing icons with unknown history remain undated until a change supplies an `updatedAt`; an unknown `addedAt` stays absent. Archived imports can carry known dates for IDs that are not yet in the library. Supplied dates must be valid and `addedAt` must not follow `updatedAt`. Dates pass through both catalogs and ZIP manifests. The inspector shows known dates below its code block in month/day format (for example, `10/21`), separated by `∙` when both exist. The underlying timestamp remains intact.
 
 The Selected dialog downloads a ZIP containing only the selected SVGs, their manifest, and a README. The header Download action downloads the full collection. Existing saved selections are retained.
 

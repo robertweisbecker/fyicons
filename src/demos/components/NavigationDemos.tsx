@@ -101,7 +101,7 @@ export function SidebarDemo() {
       >
         {[
           ['Home', 'home-wide', 'home-wide-fill', ''],
-          ['Priority', 'circle-warning', 'circle-warning-fill', '8'],
+          ['Priority', 'circle-alert', 'circle-alert-fill', '8'],
           ['Calls', 'phone', 'phone-fill', ''],
           ['Calendar', 'calendar', 'calendar-fill', '3'],
           ['Saved', 'bookmark', 'bookmark-fill', ''],
@@ -191,10 +191,7 @@ export function BreadcrumbsDemo() {
                   {part}
                 </span>
               ) : (
-                <Button
-                  variant="ghost"
-                  onClick={() => setDepth(i + 1)}
-                >
+                <Button variant="ghost" onClick={() => setDepth(i + 1)}>
                   <Icon name={i === 0 ? 'home-simple' : 'folder'} />
                   {part}
                 </Button>

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconPaperclipWideTilt = React.forwardRef<SVGSVGElement, IconProps>(function IconPaperclipWideTilt(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const idPrefix = useIdPrefix();
   return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><g clipPath={"url(#" + idPrefix + "clip0_315_17553)"}><path d="M14.0103 4.11072C15.3771 5.47755 15.3771 7.69363 14.0103 9.06047L10.1212 12.9496C8.16855 14.9022 5.00272 14.9022 3.0501 12.9496C1.09768 10.9969 1.09755 7.83104 3.0501 5.87849L5.52498 3.40361C5.72017 3.20842 6.0368 3.20855 6.23208 3.40361C6.42734 3.59888 6.42734 3.91546 6.23208 4.11072L3.75721 6.58559C2.19518 8.14763 2.19531 10.6803 3.75721 12.2424C5.31931 13.8045 7.85196 13.8045 9.41406 12.2424L13.3031 8.35336C14.2795 7.37705 14.2795 5.79414 13.3031 4.81783C12.3268 3.84171 10.7439 3.84158 9.76762 4.81783L5.87853 8.70691C5.48807 9.09737 5.4882 9.73059 5.87853 10.1211C6.26905 10.5117 6.90222 10.5117 7.29274 10.1211L10.1819 7.23193C10.3771 7.03684 10.6938 7.0369 10.889 7.23193C11.0843 7.42716 11.0842 7.74377 10.889 7.93904L7.99985 10.8282C7.2188 11.6093 5.95247 11.6093 5.17142 10.8282C4.39057 10.0472 4.39044 8.78079 5.17142 7.99981L9.06051 4.11072C10.4273 2.74395 12.6434 2.74408 14.0103 4.11072Z" fill="currentColor" /></g><defs><clipPath id={idPrefix + "clip0_315_17553"}><rect width={16} height={16} fill="white" /></clipPath></defs></SvgRoot>;
 });
 export default IconPaperclipWideTilt;

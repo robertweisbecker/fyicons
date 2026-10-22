@@ -128,7 +128,7 @@ export function ComposerDemo() {
               <Icon
                 name={
                   mode === 'Quick'
-                    ? 'lightning-bolt'
+                    ? 'bolt'
                     : mode === 'Research'
                       ? 'binoculars'
                       : 'brain'

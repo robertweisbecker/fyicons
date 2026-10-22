@@ -72,7 +72,7 @@ export const iconGroups = [
     name: 'Tools.',
     caption: 'With some tilt.',
     rows: [
-      ['pencil', 'pen', 'brush-wide', 'brush-filbert', 'paint-bucket'],
+      ['pencil', 'pen', 'brush', 'paint-brush', 'paint-bucket'],
       ['highlighter', 'pen-tool', 'pen-tool-alt', 'eyedropper', 'eraser'],
       ['ruler', 'flashlight', 'wrench-tilt', 'wrench-side', 'hammer'],
       [
@@ -140,7 +140,7 @@ export const iconGroups = [
         'globe-stand',
         'appearance',
         'chat-closed-captions',
-        'subtitles-square',
+        'subtitles-fill',
       ],
       [
         'subtitles',
@@ -157,22 +157,16 @@ export const iconGroups = [
     name: 'Emoji.',
     caption: 'Tiny things & weird guys!',
     rows: [
-      ['skull', 'ghost', 'agent', 'bug-2', 'bug-1'],
-      ['bug-3', 'emoji-scared', 'emoji-happy', 'emoji-grin', 'emoji-smile'],
+      ['skull', 'ghost', 'agent', 'bug-ant', 'bug'],
+      ['bug-beetle', 'emoji-scared', 'emoji-beam', 'emoji-grin', 'emoji-smile'],
       [
         'emoji-diagonal',
         'emoji-neutral',
         'emoji-frown',
         'emoji-angry',
-        'emoji-melting',
+        'emoji-melt',
       ],
-      [
-        'lightning-bolt-tilt',
-        'crown',
-        'treasure-chest',
-        'crystal-ball',
-        'sparkles',
-      ],
+      ['voltage', 'crown', 'treasure-chest', 'crystal-ball', 'sparkles'],
       ['hand', 'thumbs-up', 'thumbs-up-down', 'thumbs-down'],
     ],
   },
@@ -195,7 +189,7 @@ export const iconGroups = [
     rows: [
       ['pound-sign', 'at-sign', 'asterisk', 'asterisk-simple', 'star'],
       ['sparkle', 'kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt'],
-      ['kbd-return', 'eject', 'kbd-shift', 'kbd-caps', 'power'],
+      ['kbd-return', 'eject', 'kbd-shift', 'kbd-caps-lock', 'power'],
       ['parentheses', 'brackets', 'braces', 'heart', 'ampersand'],
       ['broadcast-live', 'menu', 'menu-simple', 'ban', 'markdown-fill'],
     ],
@@ -244,8 +238,8 @@ export const iconGroups = [
     caption: 'Check back later, Windows gang.',
     rows: [
       ['kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt', 'kbd-return'],
-      ['eject', 'kbd-shift', 'kbd-caps', 'power', 'wifi'],
-      ['bluetooth', 'cursor-text', 'cursor', 'hand-pointing', 'hand-grab'],
+      ['eject', 'kbd-shift', 'kbd-caps-lock', 'power', 'wifi'],
+      ['bluetooth', 'cursor-text', 'cursor', 'hand-pointer', 'hand-grab'],
       ['hand-grabbing', 'phone', 'mobile', 'mobile', 'desktop-simple'],
       ['desktop', 'laptop-simple', 'laptop', 'computer', 'television'],
       [
@@ -263,10 +257,10 @@ export const iconGroups = [
     caption: 'With states!',
     rows: [
       ['circle-question', 'info', 'warning'],
-      ['circle-warning', 'circle-check', 'circle-x'],
+      ['circle-alert', 'circle-check', 'circle-x'],
       ['circle-null', 'verified', 'lock'],
       ['circle-question-fill', 'info-fill', 'warning-fill'],
-      ['circle-warning-fill', 'circle-check-fill', 'circle-x-fill'],
+      ['circle-alert-fill', 'circle-check-fill', 'circle-x-fill'],
       ['circle-null-fill', 'verified-fill', 'lock-fill'],
     ],
   },

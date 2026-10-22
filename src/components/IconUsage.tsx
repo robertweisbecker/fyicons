@@ -6,6 +6,12 @@ import type { IconRecord } from '@/lib/catalog';
 import { IconCopyButton } from './IconCopyButton';
 import { Badge } from './ui/badge';
 
+const dateFormat = new Intl.DateTimeFormat('en-US', {
+  month: 'numeric',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+
 export function IconUsage({ item }: { item: IconRecord }) {
   const headingId = useId();
   const jsx = `import {\n  ${item.componentName},\n} from '@/icons';\n\n<${item.componentName} size={16} />`;
@@ -71,6 +77,27 @@ export function IconUsage({ item }: { item: IconRecord }) {
             <code>{jsx}</code>
           </pre>
         </div>
+        {(item.addedAt || item.updatedAt) && (
+          <p className="px-3 py-2 text-xs text-muted">
+            {item.addedAt && (
+              <span className="inline-block">
+                Added{' '}
+                <time dateTime={item.addedAt}>
+                  {dateFormat.format(new Date(item.addedAt))}
+                </time>
+              </span>
+            )}
+            {item.addedAt && item.updatedAt && ' ∙ '}
+            {item.updatedAt && (
+              <span className="inline-block">
+                Updated{' '}
+                <time dateTime={item.updatedAt}>
+                  {dateFormat.format(new Date(item.updatedAt))}
+                </time>
+              </span>
+            )}
+          </p>
+        )}
       </div>
     </section>
   );

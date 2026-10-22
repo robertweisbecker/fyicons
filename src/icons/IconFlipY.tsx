@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconFlipY = React.forwardRef<SVGSVGElement, IconProps>(function IconFlipY(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.61426 11.2188C7.81426 10.976 8.18574 10.976 8.38574 11.2188L10.8262 14.1826C11.0946 14.5088 10.8629 15 10.4404 15H5.55957C5.13707 15 4.90538 14.5088 5.17383 14.1826L7.61426 11.2188ZM13.5 8C13.7761 8 14 8.22386 14 8.5C14 8.77614 13.7761 9 13.5 9H2.5C2.22386 9 2 8.77614 2 8.5C2 8.22386 2.22386 8 2.5 8H13.5ZM10.4404 2C10.8629 2 11.0946 2.4912 10.8262 2.81738L8.38574 5.78125C8.18574 6.02403 7.81426 6.02403 7.61426 5.78125L5.17383 2.81738C4.90538 2.4912 5.13707 2 5.55957 2H10.4404Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconFlipY;

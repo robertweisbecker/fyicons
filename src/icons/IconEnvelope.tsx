@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconEnvelope = React.forwardRef<SVGSVGElement, IconProps>(function IconEnvelope(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const idPrefix = useIdPrefix();
   return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M13 3C14.1046 3 15 3.89543 15 5V11C15 12.1046 14.1046 13 13 13H3C1.89543 13 1 12.1046 1 11V5C1 3.89543 1.89543 3 3 3H13ZM10.9121 8.20508L12.8535 10.1465C13.0488 10.3417 13.0488 10.6583 12.8535 10.8535C12.6583 11.0488 12.3417 11.0488 12.1465 10.8535L10.1465 8.85352C10.1457 8.8527 10.1453 8.85141 10.1445 8.85059L9.28613 9.57227C8.54236 10.197 7.45764 10.197 6.71387 9.57227L5.85449 8.85059L5.85352 8.85352L3.85352 10.8535C3.65825 11.0488 3.34175 11.0488 3.14648 10.8535C2.95122 10.6583 2.95122 10.3417 3.14648 10.1465L5.08691 8.20508L2 5.6123V11C2 11.5523 2.44772 12 3 12H13C13.5523 12 14 11.5523 14 11V5.6123L10.9121 8.20508ZM3 4C2.65197 4 2.34513 4.17756 2.16602 4.44727L7.35645 8.80664C7.72834 9.11903 8.27166 9.11903 8.64355 8.80664L13.833 4.44727C13.6539 4.17781 13.3478 4 13 4H3Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconEnvelope;

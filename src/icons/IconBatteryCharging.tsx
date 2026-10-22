@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconBatteryCharging = React.forwardRef<SVGSVGElement, IconProps>(function IconBatteryCharging(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const idPrefix = useIdPrefix();
   return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M12 3C13.6569 3 15 4.34315 15 6C15.5523 6 16 6.44772 16 7V9C16 9.55228 15.5523 10 15 10C15 11.6569 13.6569 13 12 13H4C2.34315 13 1 11.6569 1 10V6C1 4.34315 2.34315 3 4 3H12ZM4 4C2.89543 4 2 4.89543 2 6V10C2 11.1046 2.89543 12 4 12H12C13.1046 12 14 11.1046 14 10V6C14 4.89543 13.1046 4 12 4H4ZM8.12988 5.16406C8.29498 4.98246 8.56788 4.94696 8.77344 5.08105C8.97892 5.21517 9.05669 5.47888 8.95703 5.70312L8.26953 7.25H9.75C9.9432 7.25 10.1194 7.36155 10.2021 7.53613C10.2847 7.71065 10.259 7.91697 10.1367 8.06641L7.88672 10.8164C7.74008 10.9956 7.48954 11.0514 7.28125 10.9502C7.07302 10.849 6.96154 10.6176 7.01172 10.3916L7.37695 8.75H6C5.80209 8.75 5.62303 8.63314 5.54297 8.45215C5.46297 8.27128 5.49698 8.06049 5.62988 7.91406L8.12988 5.16406Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconBatteryCharging;

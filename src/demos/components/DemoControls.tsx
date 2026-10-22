@@ -129,7 +129,7 @@ export function CopyButton({
             state === 'copied'
               ? 'copied'
               : state === 'error'
-                ? 'circle-warning'
+                ? 'circle-alert'
                 : 'copy'
           }
         />

@@ -86,7 +86,7 @@ export function DesignDemo() {
             <DemoToggle
               key={name}
               value={name}
-              label={name + ' tool'}
+              label={name}
               icon={icon}
               activeIcon={activeIcon}
             />
@@ -95,7 +95,7 @@ export function DesignDemo() {
         <DemoToggle
           label="Canvas grid"
           icon="grid"
-          activeIcon="grid-lines"
+          activeIcon="grid-fill"
           pressed={grid}
           onPressedChange={setGrid}
         />
@@ -136,7 +136,7 @@ export function DesignDemo() {
               <Icon
                 name={
                   tool[0] === 'Text'
-                    ? 'font-serif'
+                    ? 'font-capital'
                     : tool[0] === 'Pen'
                       ? 'vector-path'
                       : tool[0] === 'Draw'
@@ -211,7 +211,15 @@ export function DesignDemo() {
                   );
               }}
             />
-
+            <DemoToggle
+              variant="text"
+              disabled={locked}
+              label="Lock aspect ratio"
+              icon="link-side-unlink"
+              activeIcon="link-side"
+              pressed={linked}
+              onPressedChange={setLinked}
+            />
             <Dimension
               disabled={locked}
               label="Height"
@@ -227,15 +235,6 @@ export function DesignDemo() {
                     ),
                   );
               }}
-            />
-            <DemoToggle
-              variant="text"
-              disabled={locked}
-              label="Lock aspect ratio"
-              icon="link"
-              activeIcon="links"
-              pressed={linked}
-              onPressedChange={setLinked}
             />
           </div>
           <Slider.Root
@@ -312,7 +311,7 @@ export function DesignDemo() {
               },
               {
                 label: 'Outline',
-                icon: 'border-dashed',
+                icon: 'square-dash-outer',
                 checked: border,
                 onChange: setBorder,
               },

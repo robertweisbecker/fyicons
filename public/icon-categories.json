@@ -58,8 +58,9 @@
         "paperclip",
         "post",
         "posts",
-        "save",
-        "scroll"
+        "floppy-disk",
+        "scroll",
+        "news-feed"
       ]
     },
     {
@@ -68,8 +69,8 @@
       "icon": "rulers",
       "keywords": [
         "arrange",
-        "arrow-column",
-        "arrow-row",
+        "direction-column",
+        "direction-row",
         "arrows-to-center",
         "arrows-to-middle",
         "arrows-to-origin",
@@ -104,14 +105,17 @@
         "vector-path",
         "angle",
         "bezier",
-        "shapes"
+        "shapes",
+        "blueprint",
+        "flip",
+        "square-dash"
       ],
       "exactNames": ["height", "scale", "width"]
     },
     {
       "id": "typography",
       "name": "Typography",
-      "icon": "font-family",
+      "icon": "font",
       "keywords": [
         "ampersand",
         "asterisk",
@@ -139,13 +143,17 @@
         "text-highlight",
         "text-indent",
         "text-outdent",
-        "text-prose",
+        "paragraph-prose",
         "window-text",
         "text-strikethrough",
         "text-underline",
         "text-wrap",
         "paragraph",
-        "letter-spacing"
+        "letter-spacing",
+        "text-format",
+        "text-thumbnail",
+        "text-append",
+        "text-submit"
       ],
       "exactNames": [
         "at-sign",
@@ -167,7 +175,8 @@
         "number7",
         "number8",
         "number9",
-        "text"
+        "text",
+        "text-fill"
       ]
     },
     {
@@ -213,17 +222,18 @@
         "brackets",
         "circle-access",
         "circle-check",
+        "circle-minus",
         "circle-no-entry",
         "circle-null",
         "circle-plus",
         "circle-question",
-        "circle-warning",
+        "circle-alert",
         "circle-x",
         "dot",
         "font-numeric",
         "heart",
         "kbd",
-        "lightning-bolt",
+        "bolt",
         "line-dashed",
         "line-diagonal",
         "line-horizontal",
@@ -237,10 +247,12 @@
         "square-dot",
         "square-minus",
         "square-plus",
-        "square-warning",
+        "square-alert",
         "square-x",
         "swirl",
-        "xmark"
+        "xmark",
+        "voltage",
+        "alert"
       ],
       "exactNames": [
         "at-sign",
@@ -294,14 +306,15 @@
         "star-fill",
         "angle",
         "circle-fill",
-        "paragraph",
+        "paragraph-pilcrow",
         "shapes",
         "sparkles-three",
         "sparkles-three-fill",
         "cube",
         "star-half-fill",
         "star-half-piece",
-        "star-half-piece-fill"
+        "star-half-piece-fill",
+        "dots-diamond"
       ]
     },
     {
@@ -365,6 +378,7 @@
         "browser",
         "computer",
         "desktop",
+        "d-pad",
         "devices",
         "hard-drive",
         "keyboard",
@@ -378,7 +392,8 @@
         "switch",
         "switches",
         "tablet",
-        "television"
+        "television",
+        "radar"
       ]
     },
     {
@@ -449,7 +464,7 @@
         "home",
         "import",
         "link",
-        "linked",
+        "link-linked",
         "links",
         "pin",
         "point-down",
@@ -466,9 +481,12 @@
         "undo",
         "upload",
         "xmark",
-        "arrow-rotate"
+        "arrow-clockwise",
+        "arrow-counter-clockwise"
       ],
       "exactNames": [
+        "circle-minus",
+        "circle-minus-fill",
         "circle-plus",
         "circle-plus-fill",
         "circle-x",
@@ -501,17 +519,18 @@
         "circle-check",
         "circle-progress",
         "circle-question",
-        "circle-warning",
+        "circle-alert",
         "circle-x",
         "gauge",
         "heart",
         "info",
         "life-ring",
         "square-check",
-        "square-warning",
+        "square-alert",
         "thumbs",
         "trophy",
-        "xmark"
+        "xmark",
+        "alert"
       ],
       "exactNames": [
         "check",
@@ -671,7 +690,7 @@
         "home",
         "institution",
         "language",
-        "location-pin",
+        "map-marker",
         "luggage",
         "map",
         "office",
@@ -680,8 +699,10 @@
         "suitcase",
         "ticket",
         "translate",
-        "truck"
-      ]
+        "truck",
+        "home-chimney"
+      ],
+      "exactNames": ["sign"]
     },
     {
       "id": "science",
@@ -695,13 +716,19 @@
         "chart",
         "earth",
         "globe",
-        "lightning-bolt",
+        "bolt",
         "microchip",
         "moon",
         "planet",
         "rocket",
-        "sun"
-      ]
+        "sun",
+        "radar",
+        "voltage",
+        "flame",
+        "fire",
+        "gas"
+      ],
+      "exactNames": ["bird", "bird-raven", "leaf", "droplet"]
     },
     {
       "id": "objects",
@@ -727,9 +754,10 @@
         "nut",
         "puzzle",
         "scissors",
+        "screw",
         "scroll",
         "sticker",
-        "linen",
+        "fabric",
         "toolbox",
         "treasure-chest",
         "trophy",
@@ -737,7 +765,9 @@
         "wand",
         "wheel",
         "wrench",
-        "microchip"
+        "microchip",
+        "cookie",
+        "door"
       ],
       "exactNames": [
         "pin",
@@ -745,10 +775,11 @@
         "stamp",
         "pencil",
         "pen",
-        "brush-filbert",
-        "brush-wide",
+        "paint-brush",
+        "brush",
         "box",
-        "flower"
+        "flower",
+        "sign"
       ]
     },
     {
@@ -759,6 +790,7 @@
         "backpack",
         "bag",
         "briefcase",
+        "glasses",
         "graduation-cap",
         "hat",
         "pouch",

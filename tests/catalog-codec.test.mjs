@@ -31,7 +31,7 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
     '<svg>\n  <path d="M2 2"/>\n</svg>\n',
   ];
   const compact = {
-    ...metadata,
+    metadataArchive: pack(metadata),
     iconFields: [
       'filename',
       'id',
@@ -145,7 +145,7 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
 
 test('production decoder keeps explicit source URLs and reconstructs absent URLs', () => {
   const compact = {
-    source: { fileKey: 'fixture-file' },
+    metadataArchive: pack({ source: { fileKey: 'fixture-file' } }),
     iconFields: ['id', 'filename', 'sourceUrl'],
     iconArchive: pack([
       [

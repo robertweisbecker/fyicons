@@ -62,14 +62,14 @@ export function AgentComposer() {
   const [mode, setMode] = useState('Goal');
   return (
     <div className="w-full text-muted">
-      <div className="mb-2 flex flex-wrap items-center gap-2.5 rounded-xl bg-dialog px-2 py-1.5 text-xs text-ink shadow-xs ring-1 ring-line">
+      <div className="mb-2 flex items-center gap-2.5 rounded-xl bg-hover px-2 py-1.5 text-xs text-muted shadow-sm outline outline-offset-(--surface-outline-offset) outline-line">
         <Icon name="target-bullseye" />
         <span className="mr-auto">
           Pursuing <span className="line-through opacity-30">goal</span>{' '}
           Immortan Joe
         </span>
         <span className="inline-flex items-center gap-1">
-          <Icon name="agent-subagent" />2
+          <Icon name="agent" />2
         </span>
         <span className="inline-flex items-center gap-1">
           <Icon name="clock" />
@@ -83,19 +83,26 @@ export function AgentComposer() {
           <DemoIconButton label="Edit goal" icon="pencil" size="icon-xs" />
           <DemoToggle
             label="Goal playback"
-            icon="circle-play"
-            activeIcon="circle-pause"
+            icon="circle-pause"
+            activeIcon="circle-play"
             size="icon-xs"
+            variant="text"
+            className="data-pressed:text-muted"
           />
-          <DemoIconButton label="Delete goal" icon="trash" size="icon-xs" />
+          <DemoIconButton
+            label="Delete goal"
+            icon="trash"
+            size="icon-xs"
+            className="hidden @md/window:block"
+          />
           <DemoIconButton
             label="Expand goal"
-            icon="arrows-expand"
+            icon="chevrons-maximize"
             size="icon-xs"
           />
         </div>
       </div>
-      <div className="flex min-h-28 flex-col justify-between gap-6 rounded-xl border border-border bg-surface p-3">
+      <div className="flex min-h-20 flex-col justify-between gap-6 rounded-3xl bg-dialog p-3 outline outline-offset-(--surface-outline-offset) outline-border">
         <p className="text-sm text-muted/50">Ask anything…</p>
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-1">
@@ -115,9 +122,22 @@ export function AgentComposer() {
             <Menu>
               <MenuTrigger
                 aria-label="Agent mode"
-                render={<Button variant="ghost" size="xs" />}
+                render={
+                  <Button
+                    variant="ghost"
+                    size="xs"
+                    className="group/plan rounded-full"
+                  />
+                }
               >
-                <Icon name="target-bullseye" className="text-muted" />
+                <Icon
+                  name="target-bullseye"
+                  className="text-muted group-hover/plan:hidden"
+                />
+                <Icon
+                  name="circle-x-fill"
+                  className="text-muted not-group-hover/plan:hidden"
+                />
                 Goal
               </MenuTrigger>
               <MenuContent side="top" className="w-40">
@@ -141,29 +161,33 @@ export function AgentComposer() {
             </Menu>
           </div>
           <div className="flex items-center gap-1">
-            <DemoIconButton
+            <DemoToggle
               label="Effort"
-              icon="gauge-simple-high"
+              icon="gauge-simple-low"
+              activeIcon="gauge-simple-high"
               size="icon-xs"
+              className="data-pressed:text-focus"
             />
             <DemoToggle
               label="Speed"
-              icon="lightning-bolt"
-              activeIcon="lightning-bolt-fill"
+              icon="bolt"
+              activeIcon="bolt-fill"
               size="icon-xs"
+              variant="text"
             />
             <DemoToggle
               label="Dictate"
               icon="microphone"
-              activeIcon="microphone-fill"
+              activeIcon="waveform"
               size="icon-xs"
+              variant="text"
             />
             <DemoIconButton
               label="Send"
               icon="arrow-up"
               variant="default"
               size="icon-xs"
-              className="rounded-full"
+              className="rounded-full bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700"
             />
           </div>
         </div>

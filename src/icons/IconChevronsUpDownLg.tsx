@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconChevronsUpDownLg = React.forwardRef<SVGSVGElement, IconProps>(function IconChevronsUpDownLg(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const idPrefix = useIdPrefix();
   return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.6474 10.1469C11.8427 9.95163 12.1592 9.95163 12.3544 10.1469C12.5496 10.3422 12.5497 10.6587 12.3544 10.8539L8.35444 14.8539C8.26069 14.9476 8.13346 15.0004 8.00093 15.0004C7.8684 15.0004 7.74116 14.9476 7.64741 14.8539L3.64839 10.8539C3.4532 10.6587 3.45327 10.3421 3.64839 10.1469C3.84366 9.95166 4.16018 9.95165 4.35542 10.1469L8.0019 13.7924L11.6474 10.1469ZM7.64644 1.14689C7.8417 0.951712 8.15823 0.951663 8.35347 1.14689L12.3535 5.14689C12.5487 5.34215 12.5487 5.65868 12.3535 5.85392C12.1582 6.04914 11.8417 6.04911 11.6464 5.85392L7.99995 2.20744L4.35347 5.85392C4.15826 6.0491 3.8417 6.049 3.64644 5.85392C3.45118 5.65867 3.45119 5.34215 3.64644 5.14689L7.64644 1.14689Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconChevronsUpDownLg;

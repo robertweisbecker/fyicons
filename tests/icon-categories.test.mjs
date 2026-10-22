@@ -180,8 +180,8 @@ test('library category rules keep the requested icon families together without l
     'map',
     'map-pin',
     'map-pin-fill',
-    'location-pin',
-    'location-pin-round',
+    'map-marker',
+    'map-marker-round',
     'luggage',
     'luggage-rolling',
     'suitcase',
@@ -248,7 +248,7 @@ test('library category rules keep the requested icon families together without l
     includes(icon.name, 'typography');
     excludes(icon.name, 'communication');
   }
-  for (const name of ['text', 'text-box', 'font-family', 'line-height'])
+  for (const name of ['text', 'text-box', 'font', 'line-height'])
     includes(name, 'typography');
   for (const name of ['pencil', 'brush-tip', 'eyedropper', 'eraser']) {
     includes(name, 'design');
@@ -337,7 +337,7 @@ test('category boundaries follow icon meaning rather than generic name fragments
       ['status-feedback'],
     ],
     [
-      /^(camera-square|article-square|code-(square|block)|terminal-square|footer-square|header-square|text-block|videos-square|subtitles-square|plug-at-sign|file-minus)(?:-|$)/,
+      /^(camera-square|article-square|code-(square|block)|terminal-square|footer-square|header-square|text-block|videos-square|plug-at-sign|file-minus)(?:-|$)/,
       [],
       ['shapes-symbols'],
     ],
@@ -355,7 +355,7 @@ test('category boundaries follow icon meaning rather than generic name fragments
     [/^(database|memory|merge)(?:-|$)/, ['development-data'], []],
     [/^(page|sheet|collection|article)(?:-|$)/, ['files'], []],
     [/^easel$/, ['design', 'objects'], []],
-    [/^linked$/, ['navigation-actions'], []],
+    [/^link-linked$/, ['navigation-actions'], []],
     [/^purse$/, ['accessories', 'commerce'], []],
     [/^trophy$/, ['objects', 'status-feedback'], []],
   ];

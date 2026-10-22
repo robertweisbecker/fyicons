@@ -121,7 +121,7 @@ export function CodeApp() {
                 setOpenFolders(allOpen ? [] : fileFolders(reviewFiles))
               }
             >
-              <Icon name={allOpen ? 'list-collapse' : 'list-expand'} />
+              <Icon name={allOpen ? 'folder-view-fill' : 'folder-view'} />
             </Button>
           </div>
           <nav
@@ -140,7 +140,7 @@ export function CodeApp() {
           <div className="flex shrink-0 flex-wrap gap-1 border-t border-line p-2 text-xs">
             {[
               ['agent', 'Ask'],
-              ['bug-1', 'Review'],
+              ['bug', 'Review'],
               ['git-pull-request', 'Create PR'],
             ].map(([icon, label]) => (
               <span

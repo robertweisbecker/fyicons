@@ -1,8 +1,14 @@
 import { unzlibSync, strFromU8 } from 'fflate';
 import type fullCatalog from '../data/catalog.json';
 
-export type Catalog = typeof fullCatalog;
-export type CompactCatalog = Omit<Catalog, 'icons'> & {
+export type Catalog = Omit<typeof fullCatalog, 'icons'> & {
+  icons: ((typeof fullCatalog.icons)[number] & {
+    addedAt?: string;
+    updatedAt?: string;
+  })[];
+};
+export type CompactCatalog = {
+  metadataArchive: string;
   iconFields: readonly string[];
   iconArchive: string;
   svgArchive: string;
@@ -22,7 +28,8 @@ function unpack(archive: string): unknown {
 }
 
 export function decodeCatalog(compact: CompactCatalog): Catalog {
-  const { iconFields, iconArchive, svgArchive, ...metadata } = compact;
+  const { metadataArchive, iconFields, iconArchive, svgArchive } = compact;
+  const metadata = unpack(metadataArchive) as Omit<Catalog, 'icons'>;
   const rows = unpack(iconArchive) as unknown[][];
   const sourceSvgs = unpack(svgArchive) as string[];
   return {
@@ -41,7 +48,7 @@ export function decodeCatalog(compact: CompactCatalog): Catalog {
         file: `icons/${icon.filename}`,
         sourceUrl:
           icon.sourceUrl ??
-          `https://www.figma.com/design/${compact.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
+          `https://www.figma.com/design/${metadata.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
       };
     }),
   } as unknown as Catalog;

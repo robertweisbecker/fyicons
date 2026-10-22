@@ -1,6 +1,10 @@
 import * as React from 'react';
 import type { IconProps } from './types';
 
+export function useIdPrefix() {
+  return React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+}
+
 const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }>(function SvgRoot(
   { size = 16, color, title, idPrefix, children, ...svgProps }, ref,
 ) {

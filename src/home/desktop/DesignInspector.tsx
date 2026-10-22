@@ -92,13 +92,13 @@ export function DesignInspector({
             <Icon name="text" className="text-muted" size={12} />
             <span className="flex-1">font-serif</span>
           </div>
-          <Icon name="link-break" className="ms-auto text-muted" size={14} />
+          <Icon name="link-unlink" className="ms-auto text-muted" size={14} />
         </div>
         <dl className="grid grid-cols-2 gap-1">
           <span className="flex h-6 items-center justify-between rounded-md bg-inset px-1">
             Semibold <Icon name="chevron-down-sm" className="text-muted" />
           </span>
-          <PropertyValue label="Font size" icon="font-family" value="24" />
+          <PropertyValue label="Font size" icon="font" value="24" />
           <PropertyValue label="Letter spacing" icon="line-height" value="32" />
           <PropertyValue
             label="Letter spacing"

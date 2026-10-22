@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconCaretsY = React.forwardRef<SVGSVGElement, IconProps>(function IconCaretsY(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+  const idPrefix = useIdPrefix();
   return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M10.2929 9.99995C10.7383 10 10.9614 10.5385 10.6465 10.8535L8.35349 13.1464C8.15824 13.3416 7.8417 13.3416 7.64646 13.1464L5.35349 10.8535C5.03853 10.5385 5.26161 10 5.707 9.99995H10.2929ZM7.64646 2.85347C7.84172 2.65822 8.15823 2.65821 8.35349 2.85347L10.6465 5.14644C10.9613 5.46141 10.7383 5.99985 10.2929 5.99995H5.707C5.2616 5.99993 5.0386 5.46142 5.35349 5.14644L7.64646 2.85347Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconCaretsY;

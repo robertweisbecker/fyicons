@@ -242,13 +242,13 @@ export function App() {
     return () => document.removeEventListener('keydown', key);
   });
   useEffect(() => {
-    document.title = `FYIcons — ${view === 'home' ? '16 × 16 px icons' : view === 'examples' ? 'Examples' : 'Library'}`;
+    document.title = `fyicons — ${view === 'home' ? '16×16 icons' : view === 'examples' ? 'Examples' : 'Library'}`;
   }, [view]);
   const displayOptions = (
     <>
       <PreviewSizeControl value={previewSize} onChange={setPreviewSize} />
       <label className="flex cursor-pointer items-center justify-between gap-3 text-xs text-ink">
-        Show Filled variants
+        Include filled variants
         <Switch
           size="sm"
           checked={showFilled}
@@ -495,6 +495,7 @@ export function App() {
           share={library.share}
           docked={inspectorDocked}
           onDockedChange={changeInspectorDocked}
+          onCategoryChange={setCategory}
           toggleSelection={toggleSelection}
           finalFocus={() =>
             view === 'library'

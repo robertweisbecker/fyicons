@@ -11,9 +11,11 @@ export const buttonVariants = cva(
           'border border-transparent bg-ink text-surface hover:bg-ink/92 active:bg-ink/84',
         neutral:
           'border border-transparent bg-current/5 text-ink hover:bg-current/10 active:bg-current/20',
-        outline: 'border border-line bg-surface hover:bg-hover',
-        ghost: 'hover:bg-current/5 aria-pressed:bg-current/15 text-current',
-        text: 'text-muted hover:text-ink [&>svg]:text-muted font-normal',
+        outline:
+          'border border-line bg-surface hover:bg-hover active:bg-active text-ink',
+        ghost:
+          'hover:bg-current/8 aria-pressed:bg-current/12 active:bg-current/6 text-current',
+        text: 'text-muted hover:text-ink [&>svg:not(:only-child)]:text-muted font-normal',
         unstyled: '',
       },
       size: {

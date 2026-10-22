@@ -94,7 +94,7 @@ export function DesignApp() {
               <Icon
                 name={
                   tool[0] === 'text'
-                    ? 'font-serif'
+                    ? 'font-capital'
                     : tool[0] === 'pen-tool'
                       ? 'vector-path'
                       : 'asterisk'

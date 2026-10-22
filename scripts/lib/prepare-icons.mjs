@@ -92,6 +92,23 @@ export function normalizeManifest(value, { imported = false } = {}) {
       'svg',
     ])
       if (meta[field] !== undefined) string(meta[field], field);
+    for (const field of ['addedAt', 'updatedAt']) {
+      const date = meta[field];
+      if (
+        date !== undefined &&
+        (typeof date !== 'string' ||
+          !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(date) ||
+          !Number.isFinite(Date.parse(date)) ||
+          new Date(date).toISOString() !== date)
+      )
+        throw new Error(
+          `Invalid ${field}: ${meta.name}; expected a UTC ISO timestamp.`,
+        );
+    }
+    if (meta.addedAt && meta.updatedAt && meta.addedAt > meta.updatedAt)
+      throw new Error(
+        `Invalid date order: ${meta.name}; addedAt must not follow updatedAt.`,
+      );
     if (
       meta.sha256 !== undefined &&
       (typeof meta.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(meta.sha256))
@@ -245,7 +262,10 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     'src/data/catalog-runtime.json',
     JSON.stringify(
       {
-        ...runtimeMetadata,
+        metadataArchive: deflateSync(
+          Buffer.from(JSON.stringify(runtimeMetadata)),
+          { level: 9, memLevel: 9 },
+        ).toString('base64'),
         svgArchive: deflateSync(
           Buffer.from(JSON.stringify(icons.map((icon) => icon.svg))),
           { level: 9, memLevel: 9 },

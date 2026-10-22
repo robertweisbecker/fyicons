@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import {
   useCallback,
   useEffect,
+  useId,
   useRef,
   useState,
   type CSSProperties,
@@ -22,18 +23,18 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerTitle,
-  DrawerDescription,
   DrawerScroll,
 } from '@/components/ui/drawer';
 import { Icon } from './Icon';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { IconButton } from '@/components/IconButton';
 import { IconUsage } from './IconUsage';
 import { InspectorResizeHandle } from '@/components/InspectorResizeHandle';
 import {
   getIconDisplayName,
-  getIconCategoryLabel,
+  categories,
   icons,
   type IconRecord,
 } from '@/lib/catalog';
@@ -55,6 +56,7 @@ type Props = {
   finalFocus: () => HTMLElement | false;
   docked: boolean;
   onDockedChange: (docked: boolean) => void;
+  onCategoryChange: (category: string) => void;
 };
 const compactHeight = 144;
 const snapPoints = [compactHeight, 1];
@@ -119,13 +121,16 @@ function Details({
   item,
   selected,
   select,
+  onCategoryChange,
   toggleSelection,
 }: {
   item: IconRecord;
   selected: boolean;
   select: Props['select'];
+  onCategoryChange: Props['onCategoryChange'];
   toggleSelection?: () => void;
 }) {
+  const categoriesHeadingId = useId();
   const variants = item.duplicate
     ? icons.filter((icon) => icon.baseName === item.baseName)
     : [];
@@ -134,9 +139,31 @@ function Details({
       <div className="flex flex-col gap-4 px-4 py-3">
         <div className="flex flex-col gap-5">
           <IconUsage item={item} />
-          <DrawerDescription className="text-xs text-muted">
-            {getIconCategoryLabel(item)}
-          </DrawerDescription>
+          <section
+            aria-labelledby={categoriesHeadingId}
+            className="flex min-w-0 flex-col gap-2"
+          >
+            <h3 id={categoriesHeadingId} className="text-xs font-medium">
+              Categories
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
+              {item.categories.map((id) => {
+                const name =
+                  categories.find((category) => category.id === id)?.name ?? id;
+                return (
+                  <Badge
+                    key={id}
+                    render={<Button variant="unstyled" size="unstyled" />}
+                    className="max-w-full hover:bg-current/10 active:bg-current/15"
+                    aria-label={`View ${name} category`}
+                    onClick={() => onCategoryChange(id)}
+                  >
+                    {name}
+                  </Badge>
+                );
+              })}
+            </div>
+          </section>
           {toggleSelection && (
             <Field.Root className="flex items-center gap-1 text-xs">
               <Checkbox
@@ -266,6 +293,13 @@ export function Inspector(props: Props) {
       item={item}
       selected={selectedIds.includes(item.id)}
       select={props.select}
+      onCategoryChange={(category) => {
+        props.onCategoryChange(category);
+        if (mobile) {
+          close();
+          setSnapPoint(snapPoints[0]);
+        }
+      }}
       toggleSelection={mobile ? undefined : () => toggleSelection(item.id)}
     />
   );

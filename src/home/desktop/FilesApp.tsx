@@ -11,10 +11,10 @@ const locations = [
   ['collection', 'Projects'],
   ['hard-drive', 'My Drive'],
   ['devices', 'Computers'],
-  ['users-group', 'Shared with me'],
+  ['user-group', 'Shared with me'],
   ['clock', 'Recent'],
   ['star', 'Starred'],
-  ['circle-warning', 'Spam'],
+  ['circle-alert', 'Spam'],
   ['trash', 'Trash'],
 ] as const;
 
@@ -79,7 +79,7 @@ export function FilesApp() {
           <Icon name="car-front" />
           <span className="hidden @sm/window:inline">Drive</span>
         </div>
-        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-inset px-3 py-2 text-xs text-muted">
+        <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-hover px-3 py-2 text-xs text-muted">
           <Icon name="search-simple" />
           <span>Search</span>
           <Icon name="filter-lines" className="ml-auto" />
@@ -121,7 +121,7 @@ export function FilesApp() {
               <Icon name="caret-down" />
             </span>
             <Icon
-              name="users-team-fill"
+              name="user-team-fill"
               className="hidden text-muted @3xl/window:block"
             />
             <ToggleGroup

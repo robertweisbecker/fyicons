@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { IconProps } from './types';
-import SvgRoot from './base';
+import SvgRoot, { useIdPrefix } from './base';
 const IconTextAlignStart = React.forwardRef<SVGSVGElement, IconProps>(function IconTextAlignStart(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.5 12C6.77614 12 7 12.2239 7 12.5C7 12.7761 6.77614 13 6.5 13H1.5C1.22386 13 1 12.7761 1 12.5C1 12.2239 1.22386 12 1.5 12H6.5ZM10.5 9C10.7761 9 11 9.22386 11 9.5C11 9.77614 10.7761 10 10.5 10H1.5C1.22386 10 1 9.77614 1 9.5C1 9.22386 1.22386 9 1.5 9H10.5ZM8.5 6C8.77614 6 9 6.22386 9 6.5C9 6.77614 8.77614 7 8.5 7H1.5C1.22386 7 1 6.77614 1 6.5C1 6.22386 1.22386 6 1.5 6H8.5ZM14.5 3C14.7761 3 15 3.22386 15 3.5C15 3.77614 14.7761 4 14.5 4H1.5C1.22386 4 1 3.77614 1 3.5C1 3.22386 1.22386 3 1.5 3H14.5Z" fill="currentColor" /></SvgRoot>;
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.5 12C7.77614 12 8 12.2239 8 12.5C8 12.7761 7.77614 13 7.5 13H1.5C1.22386 13 1 12.7761 1 12.5C1 12.2239 1.22386 12 1.5 12H7.5ZM10.5 9C10.7761 9 11 9.22386 11 9.5C11 9.77614 10.7761 10 10.5 10H1.5C1.22386 10 1 9.77614 1 9.5C1 9.22386 1.22386 9 1.5 9H10.5ZM8.5 6C8.77614 6 9 6.22386 9 6.5C9 6.77614 8.77614 7 8.5 7H1.5C1.22386 7 1 6.77614 1 6.5C1 6.22386 1.22386 6 1.5 6H8.5ZM14.5 3C14.7761 3 15 3.22386 15 3.5C15 3.77614 14.7761 4 14.5 4H1.5C1.22386 4 1 3.77614 1 3.5C1 3.22386 1.22386 3 1.5 3H14.5Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconTextAlignStart;
