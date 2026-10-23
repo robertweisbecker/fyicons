@@ -12,9 +12,11 @@
 
 ## Documentation
 
-Keep `README.md` and `apps/site/src/data/README.txt` focused on library users. Document available installation methods and behavior. Use [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) for public text: short sentences, active voice, direct instructions, and consistent terms. Use the STE dictionary for general words; API names, paths, and necessary software terms are technical terms. Do not claim formal compliance from sentence length alone.
+Keep the root and package READMEs and `apps/site/src/data/README.txt` focused on library users. Document available installation methods and behavior. Use writing inspired by [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/): clear sentences, active voice, direct instructions, and consistent terms. Allow natural phrasing, useful context, and examples so the text does not become terse or mechanical. Strict dictionary compliance is not required; do not claim formal STE compliance.
 
 Keep personal machine paths, private chat links, credentials, and individual account procedures out of committed docs. Public project links, license attribution, and icon source references are intentional project data. A directory such as `.agents/` is public if committed.
+
+Keep individual sync reports, release preparation notes, audit reports, and internal plans under the ignored `artifacts/` directory. Use `artifacts/icon-sync-YYYY-MM-DD.md` for sync reports and `artifacts/plans/` for plans. Do not force-add these files. Put consumer-facing changes and migration steps in Changesets and the package changelog. Review any report for public content before attaching it to a release or CI run.
 
 ## Task references
 
@@ -24,7 +26,7 @@ Read the relevant guide when the task needs it:
 - [Icon sources](docs/icon-sources.md): generation, imports, identity, dates, and categories.
 - [Releases](docs/releases.md): package boundaries, registry, changesets, diff reports, and publication.
 
-The [documentation index](docs/README.md) separates current guides from historical reports. Old plans and reports are evidence, not instructions for new work.
+The [documentation index](docs/README.md) lists the current guides. Local plans and reports under `artifacts/` are historical evidence, not instructions for new work.
 
 ## Working on changes
 

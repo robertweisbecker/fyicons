@@ -1,19 +1,20 @@
 # FYIcons
 
-FYIcons is a collection of SVG icons for React. Each icon has a 16 × 16 px canvas.
+FYIcons brings a collection of 16 × 16 SVG icons to React, with TypeScript types, accessible naming, and colors that follow your theme. Use them in compact controls, menus, toolbars, or anywhere your interface needs an icon.
 
-This package is in initial development. Icon names and React exports can change.
-Read the changelog before you update the package.
+[Browse the library](https://icons.bob.fyi/library/) · [See examples](https://icons.bob.fyi/examples/) · [Changelog](https://github.com/robertweisbecker/fyicons/blob/main/packages/fyicons/CHANGELOG.md)
 
 ## Install
 
-Use React 18.2 or React 19.
+The package supports React 18.2+ and React 19.
 
 ```sh
 npm install fyicons
 ```
 
-## Use an icon
+## Your first icon
+
+Import an icon by name and use it as a React component. Icons render at 16 px by default and inherit the surrounding text color.
 
 ```tsx
 import { IconSun } from 'fyicons';
@@ -21,48 +22,61 @@ import { IconSun } from 'fyicons';
 export function LightButton() {
   return (
     <button type="button" aria-label="Light mode">
-      <IconSun size={16} />
+      <IconSun />
     </button>
   );
 }
 ```
 
-For a direct import, use `import IconSun from 'fyicons/icons/IconSun'`.
-The package uses ESM. Your bundler can remove unused icons.
-Use the icons in Server Components or Client Components.
-Static icons do not need `use client`.
-For event handlers or refs, import the icon in a Client Component.
-
-## Set size, color, and accessible names
-
-Icons use `currentColor`. The default size is 16 px.
+The package uses ESM and supports tree shaking, so a compatible bundler can remove unused icons. Direct imports are also available:
 
 ```tsx
-<IconSun size={24} color="#2563eb" title="Light mode" />
+import IconSun from 'fyicons/icons/IconSun';
 ```
 
-| Prop                            | Function                                             |
-| ------------------------------- | ---------------------------------------------------- |
-| `size`                          | Sets width and height. Accepts a number or a string. |
-| `width`, `height`               | Set width or height instead of `size`.               |
-| `color`                         | Sets the icon color.                                 |
-| `className`, `style`            | Apply CSS styles.                                    |
-| `title`                         | Adds an SVG title and an accessible name.            |
-| `aria-label`, `aria-labelledby` | Set an accessible name.                              |
-| `ref`                           | Gives access to the SVG element.                     |
+## Size and color
 
-The components accept standard React SVG props and event handlers.
-Icons have `aria-hidden="true"` unless you supply a title or an accessible name.
-Give each button an accessible name if it contains only an icon.
-Many icons use filled paths. `strokeWidth` does not change these paths.
+Set `size` to change both dimensions. All icons use `currentColor`; leave `color` unset to follow your text color, or supply a value for a specific icon.
 
-## Get SVG files
+```tsx
+<IconSun size={24} color="#2563eb" />
+```
 
-The `svg/` folder contains the source SVG files.
-The `manifest.json` file contains names, source IDs, aliases, and source links.
-Aliases do not preserve previous React export names.
+| Prop                            | What it does                                                           |
+| ------------------------------- | ---------------------------------------------------------------------- |
+| `size`                          | Sets width and height. Accepts a number or a string; defaults to `16`. |
+| `width`, `height`               | Override the corresponding dimension from `size`.                      |
+| `color`                         | Sets the icon color. Otherwise, the icon inherits the text color.      |
+| `className`, `style`            | Apply your CSS styles.                                                 |
+| `title`                         | Adds an SVG title and an accessible name.                              |
+| `aria-label`, `aria-labelledby` | Provide an accessible name.                                            |
+| `ref`                           | Gives access to the SVG element.                                       |
 
-[Open the library](https://icons.bob.fyi/library/) to find and download icons.
+Components accept standard React SVG props and event handlers. Many icons use filled paths, so `strokeWidth` does not change their visual weight.
+
+## Accessibility
+
+Icons are decorative by default and render with `aria-hidden="true"`. When an icon conveys information on its own, give it an accessible name:
+
+```tsx
+<IconSun title="Light mode" />
+```
+
+You can also use `aria-label` or `aria-labelledby`. For an icon-only button, name the button and leave the icon decorative, as in the first example. This gives the control a clear name without repeating it for the icon.
+
+## Next.js and Server Components
+
+Use icons in either Server Components or Client Components. Static icons do not need a `use client` directive. For event handlers or refs, place the icon inside your own Client Component.
+
+## SVG files and editable source
+
+The package includes source SVG files in `svg/` and a `manifest.json` file with names, source IDs, aliases, and source links. You can also [browse and download SVGs](https://icons.bob.fyi/library/) without installing the package.
+
+If you want editable React files in your project, use the [shadcn registry](https://github.com/robertweisbecker/fyicons#add-icons-with-shadcn). It copies selected icons and their shared helpers into your components directory.
+
+## Updates
+
+FYIcons is in initial development. Names and React exports can change before version 1.0; read the changelog before upgrading. Historical names in the manifest are lookup aliases and do not preserve old React exports.
 
 ## License
 
