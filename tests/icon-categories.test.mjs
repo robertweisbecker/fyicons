@@ -6,7 +6,7 @@ import {
   categorizeIcons,
   validateCategoryIcons,
   uncategorized,
-} from '../src/lib/icon-categories.ts';
+} from '../apps/site/src/lib/icon-categories.ts';
 
 const files = {
   id: 'files',
@@ -25,7 +25,7 @@ test('editable rules validate independently of generated artwork metadata', asyn
   const config = parseIconCategories(
     JSON.parse(
       await readFile(
-        new URL('../public/icon-categories.json', import.meta.url),
+        new URL('../apps/site/public/icon-categories.json', import.meta.url),
         'utf8',
       ),
     ),
@@ -136,7 +136,7 @@ test('library category rules keep the requested icon families together without l
   const config = parseIconCategories(
     JSON.parse(
       await readFile(
-        new URL('../public/icon-categories.json', import.meta.url),
+        new URL('../apps/site/public/icon-categories.json', import.meta.url),
         'utf8',
       ),
     ),
@@ -270,7 +270,7 @@ test('category boundaries follow icon meaning rather than generic name fragments
   const config = parseIconCategories(
     JSON.parse(
       await readFile(
-        new URL('../public/icon-categories.json', import.meta.url),
+        new URL('../apps/site/public/icon-categories.json', import.meta.url),
         'utf8',
       ),
     ),
@@ -390,7 +390,7 @@ test('filled and slashed variants stay with their unmodified counterparts', asyn
   const config = parseIconCategories(
     JSON.parse(
       await readFile(
-        new URL('../public/icon-categories.json', import.meta.url),
+        new URL('../apps/site/public/icon-categories.json', import.meta.url),
         'utf8',
       ),
     ),

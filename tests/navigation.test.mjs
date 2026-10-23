@@ -17,7 +17,9 @@ test('overview, library, and examples resolve at the domain root and project sub
       ['/fyicons/', '#examples', 'examples', '/fyicons/'],
     ].entries()) {
       globalThis.location = { pathname, hash };
-      const navigation = await import(`../src/lib/navigation.ts?case=${index}`);
+      const navigation = await import(
+        `../apps/site/src/lib/navigation.ts?case=${index}`
+      );
       assert.equal(navigation.pageFromLocation(), page, pathname + hash);
       assert.equal(navigation.pageHref('home'), base);
       assert.equal(navigation.pageHref('library'), base + 'library/');

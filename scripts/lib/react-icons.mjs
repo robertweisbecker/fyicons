@@ -197,7 +197,7 @@ export async function renderReactIconFiles(icons) {
   const exports = [];
   // Share SVG prop and accessibility handling without changing each icon's artwork.
   files.set(
-    'src/icons/base.tsx',
+    'packages/fyicons/src/base.tsx',
     `import * as React from 'react';
 import type { IconProps } from './types';
 
@@ -205,7 +205,7 @@ export function useIdPrefix() {
   return React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
 }
 
-const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }>(function SvgRoot(
+const SvgRoot = /* @__PURE__ */ React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }>(function SvgRoot(
   { size = 16, color, title, idPrefix, children, ...svgProps }, ref,
 ) {
   const labeled = title || svgProps['aria-label'] || svgProps['aria-labelledby'];
@@ -233,7 +233,7 @@ export default SvgRoot;
   for (const icon of icons) {
     assertComponentName(icon.componentName);
     const componentName = icon.componentName;
-    if (files.has(`src/icons/${componentName}.tsx`)) {
+    if (files.has(`packages/fyicons/src/${componentName}.tsx`)) {
       throw new Error(`Duplicate React icon component: ${componentName}`);
     }
     const transformed = await transform(
@@ -252,7 +252,7 @@ export default SvgRoot;
           import * as React from 'react';
           import type { IconProps } from './types';
           import SvgRoot, { useIdPrefix } from './base';
-          const ${variables.componentName} = React.forwardRef<SVGSVGElement, IconProps>(function ${variables.componentName}(props, ref) {
+          const ${variables.componentName} = /* @__PURE__ */ React.forwardRef<SVGSVGElement, IconProps>(function ${variables.componentName}(props, ref) {
             const idPrefix = useIdPrefix();
             return ${variables.jsx};
           });
@@ -263,22 +263,25 @@ export default SvgRoot;
       { componentName },
     );
     const code = transformed;
-    files.set(`src/icons/${componentName}.tsx`, code.trimEnd() + '\n');
+    files.set(
+      `packages/fyicons/src/${componentName}.tsx`,
+      code.trimEnd() + '\n',
+    );
     exports.push(
       `export { default as ${componentName} } from './${componentName}';`,
     );
   }
   files.set(
-    'src/icons/types.ts',
+    'packages/fyicons/src/types.ts',
     "import type { SVGProps } from 'react';\n\nexport type IconProps = SVGProps<SVGSVGElement> & { size?: number | string; title?: string };\n",
   );
   files.set(
-    'src/icons/index.ts',
+    'packages/fyicons/src/index.ts',
     "export type { IconProps } from './types';\n" + exports.join('\n') + '\n',
   );
   files.set(
-    'src/icons/registry.ts',
-    `import type { ComponentType } from 'react';\nimport type { IconProps } from './types';\nimport * as icons from './index';\n\nexport const iconBySourceId: Record<string, ComponentType<IconProps>> = {\n${icons.map((icon) => `  ${JSON.stringify(icon.id)}: icons.${icon.componentName},`).join('\n')}\n};\n`,
+    'apps/site/src/icons/registry.ts',
+    `import type { ComponentType } from 'react';\nimport type { IconProps } from 'fyicons';\nimport * as icons from 'fyicons';\n\nexport const iconBySourceId: Record<string, ComponentType<IconProps>> = {\n${icons.map((icon) => `  ${JSON.stringify(icon.id)}: icons.${icon.componentName},`).join('\n')}\n};\n`,
   );
   return files;
 }

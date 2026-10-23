@@ -1,19 +1,20 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="3.5" y="1.5" width="9" height="8" rx="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="2.5" y="2.5" width="11" height="7" rx="1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="3.125" y="13.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
-<rect x="1.125" y="13.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="3" y="11" width="1" height="1" rx="0.5" fill="currentColor"/>
 <rect x="5.125" y="13.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
-<rect x="2.125" y="12.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="5" y="11" width="1" height="1" rx="0.5" fill="currentColor"/>
 <rect x="4.25" y="14.25" width="0.5" height="0.5" rx="0.25" fill="currentColor"/>
-<rect x="2.25" y="14.25" width="0.5" height="0.5" rx="0.25" fill="currentColor"/>
 <rect x="7.125" y="13.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="4.125" y="12.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="9.125" y="13.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="6.125" y="12.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="11.125" y="13.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
-<rect x="13.125" y="13.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
+<rect x="12.125" y="10.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
+<rect x="10.125" y="10.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
+<rect x="8.125" y="10.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
+<rect x="6.125" y="10.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
+<rect x="4.125" y="10.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="8.125" y="12.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="10.125" y="12.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>
 <rect x="12.125" y="12.125" width="0.75" height="0.75" rx="0.375" fill="currentColor"/>

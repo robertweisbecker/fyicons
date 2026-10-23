@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { isStringArray, readPreference } from '../src/lib/preferences.ts';
+import {
+  isStringArray,
+  readPreference,
+} from '../apps/site/src/lib/preferences.ts';
 
 const currentKey = 'fyicons-shortlist-v1';
 const legacyKey = 'astra-shortlist-v1';

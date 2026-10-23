@@ -7,13 +7,16 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { decodeCatalog } from '../src/lib/catalog-codec.ts';
+import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
 
 const manifest = JSON.parse(
   await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
 );
 const catalog = JSON.parse(
-  await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'),
+  await readFile(
+    new URL('../apps/site/src/data/catalog.json', import.meta.url),
+    'utf8',
+  ),
 );
 test('editable SVG sources exactly cover the manifest', async () => {
   const files = (await readdir(new URL('../icons/', import.meta.url)))
@@ -107,14 +110,14 @@ test('replacing a source regenerates its component and derived catalog hash', as
   try {
     await mkdir(path.join(temp, 'scripts/lib'), { recursive: true });
     await mkdir(path.join(temp, 'icons'), { recursive: true });
-    await mkdir(path.join(temp, 'public'));
-    await mkdir(path.join(temp, 'src/lib'), { recursive: true });
+    await mkdir(path.join(temp, 'apps/site/public'), { recursive: true });
+    await mkdir(path.join(temp, 'apps/site/src/lib'), { recursive: true });
     await cp(
-      new URL('../src/lib/icon-categories.ts', import.meta.url),
-      path.join(temp, 'src/lib/icon-categories.ts'),
+      new URL('../apps/site/src/lib/icon-categories.ts', import.meta.url),
+      path.join(temp, 'apps/site/src/lib/icon-categories.ts'),
     );
     await writeFile(
-      path.join(temp, 'public/icon-categories.json'),
+      path.join(temp, 'apps/site/public/icon-categories.json'),
       JSON.stringify({
         categories: [
           {
@@ -170,15 +173,18 @@ test('replacing a source regenerates its component and derived catalog hash', as
     await writeFile(path.join(temp, 'icons', record.filename), firstSvg);
     await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: temp });
     const firstCatalog = JSON.parse(
-      await readFile(path.join(temp, 'src/data/catalog.json'), 'utf8'),
+      await readFile(
+        path.join(temp, 'apps/site/src/data/catalog.json'),
+        'utf8',
+      ),
     );
     const firstComponent = await readFile(
-      path.join(temp, 'src/icons/Icon16Upload.tsx'),
+      path.join(temp, 'packages/fyicons/src/Icon16Upload.tsx'),
       'utf8',
     );
     // Changing keyword rules must not invalidate any generated artwork output.
     await writeFile(
-      path.join(temp, 'public/icon-categories.json'),
+      path.join(temp, 'apps/site/public/icon-categories.json'),
       JSON.stringify({
         categories: [
           { id: 'files', name: 'Documents', icon: 'grid', keywords: ['file'] },
@@ -204,15 +210,21 @@ test('replacing a source regenerates its component and derived catalog hash', as
       }),
     );
     assert.equal(
-      await readFile(path.join(temp, 'src/data/catalog.json'), 'utf8'),
+      await readFile(
+        path.join(temp, 'apps/site/src/data/catalog.json'),
+        'utf8',
+      ),
       JSON.stringify(firstCatalog, null, 2) + '\n',
     );
     await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: temp });
     const nextCatalog = JSON.parse(
-      await readFile(path.join(temp, 'src/data/catalog.json'), 'utf8'),
+      await readFile(
+        path.join(temp, 'apps/site/src/data/catalog.json'),
+        'utf8',
+      ),
     );
     const nextComponent = await readFile(
-      path.join(temp, 'src/icons/Icon16Upload.tsx'),
+      path.join(temp, 'packages/fyicons/src/Icon16Upload.tsx'),
       'utf8',
     );
     assert.notEqual(nextCatalog.icons[0].sha256, firstCatalog.icons[0].sha256);
@@ -232,7 +244,9 @@ test('replacing a source regenerates its component and derived catalog hash', as
       }),
     );
     await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: temp });
-    const componentFiles = await readdir(path.join(temp, 'src/icons'));
+    const componentFiles = await readdir(
+      path.join(temp, 'packages/fyicons/src'),
+    );
     assert.ok(componentFiles.includes('Icon16upload.tsx'));
     assert.ok(!componentFiles.includes('Icon16Upload.tsx'));
     await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
@@ -246,7 +260,7 @@ test('replacing a source regenerates its component and derived catalog hash', as
 test('compact browser catalog reconstructs complete download metadata', async () => {
   const compact = JSON.parse(
     await readFile(
-      new URL('../src/data/catalog-runtime.json', import.meta.url),
+      new URL('../apps/site/src/data/catalog-runtime.json', import.meta.url),
       'utf8',
     ),
   );

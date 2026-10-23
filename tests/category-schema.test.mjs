@@ -11,7 +11,7 @@ import {
 test('schema suggests sidebar icons and keywords without depending on category definitions', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'fyicons-schema-'));
   try {
-    await mkdir(path.join(root, 'public'));
+    await mkdir(path.join(root, 'apps/site/public'), { recursive: true });
     await mkdir(path.join(root, 'icons'));
     const saveInventory = async (names) => {
       await writeFile(
@@ -20,7 +20,7 @@ test('schema suggests sidebar icons and keywords without depending on category d
       );
       await updateCategorySchema(root);
       const content = await readFile(
-        path.join(root, 'public/icon-categories.schema.json'),
+        path.join(root, 'apps/site/public/icon-categories.schema.json'),
         'utf8',
       );
       assert.equal(
@@ -54,7 +54,7 @@ test('schema suggests sidebar icons and keywords without depending on category d
       'exact name completions share the catalog icon list',
     );
     await writeFile(
-      path.join(root, 'public/icon-categories.json'),
+      path.join(root, 'apps/site/public/icon-categories.json'),
       '{ unfinished category edit',
     );
     schema = await saveInventory(['anchor', 'arrow-up', 'file-new']);

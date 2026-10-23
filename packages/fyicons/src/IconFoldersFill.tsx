@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconFoldersFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFoldersFill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M3.68262 6C4.04294 6 4.3857 6.15567 4.62305 6.42676L6 8H10C11.1046 8 12 8.89543 12 10V13C12 14.1046 11.1046 15 10 15H2.5C1.67157 15 1 14.3284 1 13.5V8C1 6.89543 1.89543 6 3 6H3.68262ZM6.68262 1C7.04294 1 7.3857 1.15567 7.62305 1.42676L9 3H13C14.1046 3 15 3.89543 15 5V8C15 9.10457 14.1046 10 13 10C13 8.34315 11.6569 7 10 7H6.4541L5.37598 5.76855C5.01917 5.36078 4.52956 5.09996 4 5.02441V3C4 1.89543 4.89543 1 6 1H6.68262Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconFoldersFill;

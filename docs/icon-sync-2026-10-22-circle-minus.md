@@ -11,4 +11,3 @@
 - Production build: 21 files, 4,182,374 bytes, below the existing 4 MiB limit.
 - Browser: verified both variants, native 16px rendering, inherited foreground paint, dates, categories, inspector navigation, and generated JSX usage. No browser errors or horizontal overflow appeared in the checked viewport. No browser downloads were triggered.
 - Local comparison: `test-results/figma-sync-2026-10-22-circle-minus.html`.
-- No commit, push, or deployment.

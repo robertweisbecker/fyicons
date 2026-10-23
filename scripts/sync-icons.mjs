@@ -15,7 +15,7 @@ import { syncIconCategories } from './lib/sync-categories.mjs';
 import {
   parseIconCategories,
   validateCategoryIcons,
-} from '../src/lib/icon-categories.ts';
+} from '../apps/site/src/lib/icon-categories.ts';
 
 const sourceArgument = process.argv[2];
 if (!sourceArgument)
@@ -36,7 +36,10 @@ const currentManifest = normalizeManifest(
     await readFile(await confinedPath(root, 'icons/manifest.json'), 'utf8'),
   ),
 );
-const categoriesPath = await confinedPath(root, 'public/icon-categories.json');
+const categoriesPath = await confinedPath(
+  root,
+  'apps/site/public/icon-categories.json',
+);
 const currentCategorySource = await readFile(categoriesPath, 'utf8');
 const currentCategories = parseIconCategories(
   JSON.parse(currentCategorySource),
@@ -168,7 +171,7 @@ expected.set(
   JSON.stringify(prepared.manifest, null, 2) + '\n',
 );
 expected.set(
-  'public/icon-categories.json',
+  'apps/site/public/icon-categories.json',
   JSON.stringify(
     { $schema: './icon-categories.schema.json', ...nextCategories },
     null,
@@ -177,7 +180,7 @@ expected.set(
 );
 const publication = await preparePublication(root, expected, [
   'icons',
-  'src/icons',
+  'packages/fyicons/src',
 ]);
 await publishFiles(publication);
 console.log(

@@ -88,7 +88,7 @@ export async function updateCategorySchema(root: string) {
       null,
       2,
     ) + '\n';
-  const file = path.join(root, 'public/icon-categories.schema.json');
+  const file = path.join(root, 'apps/site/public/icon-categories.schema.json');
   if ((await readFile(file, 'utf8').catch(() => null)) !== content)
     await writeFile(file, content);
 }

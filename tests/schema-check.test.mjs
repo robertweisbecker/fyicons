@@ -20,13 +20,13 @@ import { fileURLToPath } from 'node:url';
 import { createCategorySchema } from '../scripts/lib/category-schema.ts';
 
 const run = promisify(execFile);
-const schemaPath = 'public/icon-categories.schema.json';
+const schemaPath = 'apps/site/public/icon-categories.schema.json';
 const serialize = (value) => JSON.stringify(value, null, 2) + '\n';
 
 async function createFixture(root) {
   await mkdir(path.join(root, 'icons'));
-  await mkdir(path.join(root, 'public'));
-  await mkdir(path.join(root, 'src/lib'), { recursive: true });
+  await mkdir(path.join(root, 'apps/site/public'), { recursive: true });
+  await mkdir(path.join(root, 'apps/site/src/lib'), { recursive: true });
   await cp(
     new URL('../scripts/', import.meta.url),
     path.join(root, 'scripts'),
@@ -35,8 +35,8 @@ async function createFixture(root) {
     },
   );
   await cp(
-    new URL('../src/lib/icon-categories.ts', import.meta.url),
-    path.join(root, 'src/lib/icon-categories.ts'),
+    new URL('../apps/site/src/lib/icon-categories.ts', import.meta.url),
+    path.join(root, 'apps/site/src/lib/icon-categories.ts'),
   );
   await symlink(
     fileURLToPath(new URL('../node_modules', import.meta.url)),
@@ -60,7 +60,7 @@ async function createFixture(root) {
     serialize({ name: 'FYIcons', icons }),
   );
   await writeFile(
-    path.join(root, 'public/icon-categories.json'),
+    path.join(root, 'apps/site/public/icon-categories.json'),
     serialize({ categories: [] }),
   );
   for (const icon of icons)
@@ -116,7 +116,10 @@ for (const state of ['missing', 'stale']) {
     await assert.rejects(generate(['--check']), (error) => {
       assert.equal(error.code, 1);
       assert.match(error.stderr, /Generated icon files are stale/);
-      assert.match(error.stderr, /^public\/icon-categories\.schema\.json$/m);
+      assert.match(
+        error.stderr,
+        /^apps\/site\/public\/icon-categories\.schema\.json$/m,
+      );
       return true;
     });
     assert.deepEqual(await snapshot(root), before);

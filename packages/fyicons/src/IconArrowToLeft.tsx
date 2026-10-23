@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconArrowToLeft = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconArrowToLeft(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M2 13.5C2 13.7761 1.77614 14 1.5 14C1.22386 14 1 13.7761 1 13.5V2.5C1 2.22386 1.22386 2 1.5 2C1.77614 2 2 2.22386 2 2.5V13.5ZM15 8.5C15 8.77614 14.7761 9 14.5 9H5.70703L8.85352 12.1465C9.04878 12.3417 9.04878 12.6583 8.85352 12.8535C8.65825 13.0488 8.34175 13.0488 8.14648 12.8535L4.14648 8.85352C3.97562 8.68265 3.95387 8.41869 4.08203 8.22461L4.14648 8.14648L8.14648 4.14648C8.34175 3.95122 8.65825 3.95122 8.85352 4.14648C9.04878 4.34175 9.04878 4.65825 8.85352 4.85352L5.70703 8H14.5C14.7761 8 15 8.22386 15 8.5Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconArrowToLeft;

@@ -4,7 +4,7 @@ import {
   emptyLibraryState,
   libraryHash,
   readLibraryHash,
-} from '../src/lib/library-url.ts';
+} from '../apps/site/src/lib/library-url.ts';
 
 const categories = new Set(['design', 'files', 'shapes-symbols']);
 const icons = new Set(['bezier', 'pencil-ruler', 'file-zip']);

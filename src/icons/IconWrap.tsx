@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconWrap = React.forwardRef<SVGSVGElement, IconProps>(function IconWrap(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M12.5 2C12.7761 2.00002 13 2.22387 13 2.5V13.5C13 13.7761 12.7761 14 12.5 14C12.2239 14 12 13.7761 12 13.5V2.5C12 2.22386 12.2239 2 12.5 2ZM7 5C8.65684 5.00002 10 6.34316 10 8C10 9.65684 8.65684 11 7 11H3.70703L4.85352 12.1465C5.04875 12.3417 5.04875 12.6583 4.85352 12.8535C4.65826 13.0488 4.34175 13.0488 4.14648 12.8535L2.14648 10.8535C1.95122 10.6583 1.95122 10.3417 2.14648 10.1465L4.14648 8.14648C4.34175 7.95124 4.65826 7.95123 4.85352 8.14648C5.04875 8.34174 5.04875 8.65826 4.85352 8.85352L3.70703 10H7C8.10455 9.99998 9 9.10456 9 8C9 6.89544 8.10455 6.00002 7 6H2.5C2.22386 6 2 5.77614 2 5.5C2 5.22386 2.22386 5 2.5 5H7Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconWrap;

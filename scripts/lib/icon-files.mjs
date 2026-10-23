@@ -67,7 +67,7 @@ export async function readSvgFile(root, relative) {
 export async function preparePublication(
   root,
   expected,
-  managed = ['src/icons'],
+  managed = ['packages/fyicons/src'],
 ) {
   const directories = new Map();
   const entries = async (directory) => {

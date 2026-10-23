@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconDuplicateSticky = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconDuplicateSticky(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M5.5 10.5L3 10.5C2.17157 10.5 1.5 9.82843 1.5 9L1.5 3C1.5 2.17157 2.17157 1.5 3 1.5L9 1.5C9.82843 1.5 10.5 2.17157 10.5 3L10.5 5.5" stroke="currentColor" strokeLinecap="round" /><path d="M5.5 7L5.5 13C5.5 13.8284 6.17157 14.5 7 14.5L11.1893 14.5C11.3883 14.5 11.579 14.421 11.7197 14.2803L14.2803 11.7197C14.421 11.579 14.5 11.3883 14.5 11.1893L14.5 7C14.5 6.17157 13.8284 5.5 13 5.5L7 5.5C6.17157 5.5 5.5 6.17157 5.5 7Z" stroke="currentColor" strokeLinecap="round" /><path d="M10.5 14.5L10.5 12C10.5 11.1716 11.1716 10.5 12 10.5L14.5 10.5" stroke="currentColor" strokeLinecap="round" /></SvgRoot>;
+});
+export default IconDuplicateSticky;

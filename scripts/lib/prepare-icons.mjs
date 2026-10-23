@@ -8,7 +8,7 @@ import { confinedPath, readSvgFile } from './icon-files.mjs';
 import {
   parseIconCategories,
   validateCategoryIcons,
-} from '../../src/lib/icon-categories.ts';
+} from '../../apps/site/src/lib/icon-categories.ts';
 
 const safeName = /^[A-Za-z0-9][A-Za-z0-9_-]*$/;
 const object = (value) =>
@@ -35,7 +35,9 @@ export function normalizeManifest(value, { imported = false } = {}) {
         (icon) => object(icon) && ('category' in icon || 'categories' in icon),
       ))
   )
-    throw new Error('Move category metadata to public/icon-categories.json.');
+    throw new Error(
+      'Move category metadata to apps/site/public/icon-categories.json.',
+    );
   const source = value.source === undefined ? { fileKey: '' } : value.source;
   if (
     !object(source) ||
@@ -241,7 +243,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
   const catalogText =
     JSON.stringify({ ...generatedManifest, icons }, null, 2) + '\n';
   const expected = new Map(reactFiles);
-  expected.set('src/data/catalog.json', catalogText);
+  expected.set('apps/site/src/data/catalog.json', catalogText);
   // Reconstruct standard fields, retaining any explicitly supplied alternate URL.
   const compactIcons = icons.map(
     ({ sourceUrl, file, width, height, svg, ...icon }) =>
@@ -259,7 +261,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     throw new Error('Icon metadata cannot contain null values.');
   const { icons: _manifestIcons, ...runtimeMetadata } = generatedManifest;
   expected.set(
-    'src/data/catalog-runtime.json',
+    'apps/site/src/data/catalog-runtime.json',
     JSON.stringify(
       {
         metadataArchive: deflateSync(
@@ -288,7 +290,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
   );
 
   expected.set(
-    'public/icon-categories.schema.json',
+    'apps/site/public/icon-categories.schema.json',
     JSON.stringify(
       createCategorySchema(icons.map(({ name }) => name)),
       null,
@@ -310,7 +312,7 @@ export async function prepareRepositoryIcons(root) {
   );
   const categoryInput = JSON.parse(
     await readFile(
-      await confinedPath(root, 'public/icon-categories.json'),
+      await confinedPath(root, 'apps/site/public/icon-categories.json'),
       'utf8',
     ),
   );

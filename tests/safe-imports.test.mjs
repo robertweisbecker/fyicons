@@ -18,7 +18,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { decodeCatalog } from '../src/lib/catalog-codec.ts';
+import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
 import { publishFiles } from '../scripts/lib/icon-files.mjs';
 
 const run = promisify(execFile);
@@ -42,8 +42,8 @@ async function fixture() {
   const incoming = path.join(directory, 'incoming');
   const outside = path.join(directory, 'outside');
   await mkdir(path.join(root, 'icons'), { recursive: true });
-  await mkdir(path.join(root, 'public'));
-  await mkdir(path.join(root, 'src/lib'), { recursive: true });
+  await mkdir(path.join(root, 'apps/site/public'), { recursive: true });
+  await mkdir(path.join(root, 'apps/site/src/lib'), { recursive: true });
   await mkdir(incoming);
   await mkdir(outside);
   await writeFile(path.join(outside, 'sentinel.svg'), svg);
@@ -53,8 +53,8 @@ async function fixture() {
     { recursive: true },
   );
   await cp(
-    new URL('../src/lib/icon-categories.ts', import.meta.url),
-    path.join(root, 'src/lib/icon-categories.ts'),
+    new URL('../apps/site/src/lib/icon-categories.ts', import.meta.url),
+    path.join(root, 'apps/site/src/lib/icon-categories.ts'),
   );
   await symlink(
     path.resolve('node_modules'),
@@ -84,12 +84,15 @@ async function fixture() {
     ],
   };
   await json(path.join(root, 'icons/manifest.json'), current);
-  await json(path.join(root, 'public/icon-categories.json'), categories);
+  await json(
+    path.join(root, 'apps/site/public/icon-categories.json'),
+    categories,
+  );
   await writeFile(path.join(root, 'icons/Alpha-16.svg'), svg);
   await writeFile(path.join(root, 'icons/Beta-16.svg'), svg);
   await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: root });
   await writeFile(
-    path.join(root, 'src/icons/sentinel.txt'),
+    path.join(root, 'packages/fyicons/src/sentinel.txt'),
     'retain unrelated generated-directory files\n',
   );
   const imported = {
@@ -244,9 +247,11 @@ const invalid = [
   [
     'escaping output directory',
     async ({ root, outside }) => {
-      await cp(path.join(root, 'src/data'), outside, { recursive: true });
-      await rm(path.join(root, 'src/data'), { recursive: true });
-      await symlink(outside, path.join(root, 'src/data'), 'dir');
+      await cp(path.join(root, 'apps/site/src/data'), outside, {
+        recursive: true,
+      });
+      await rm(path.join(root, 'apps/site/src/data'), { recursive: true });
+      await symlink(outside, path.join(root, 'apps/site/src/data'), 'dir');
     },
     /Symlink path escapes/,
   ],
@@ -313,11 +318,14 @@ test('valid import preserves bytes, casing, identity, aliases, rules and custom 
     assert.equal(icon.componentName, 'IconAlpha');
     assert.deepEqual(next.source, { fileKey: 'fixture-file' });
     const catalog = JSON.parse(
-      await readFile(path.join(state.root, 'src/data/catalog.json'), 'utf8'),
+      await readFile(
+        path.join(state.root, 'apps/site/src/data/catalog.json'),
+        'utf8',
+      ),
     );
     const compact = JSON.parse(
       await readFile(
-        path.join(state.root, 'src/data/catalog-runtime.json'),
+        path.join(state.root, 'apps/site/src/data/catalog-runtime.json'),
         'utf8',
       ),
     );
@@ -337,12 +345,14 @@ test('valid import preserves bytes, casing, identity, aliases, rules and custom 
         .sort(),
       [icon.filename, 'Beta-16.svg'].sort(),
     );
-    const componentFiles = await readdir(path.join(state.root, 'src/icons'));
+    const componentFiles = await readdir(
+      path.join(state.root, 'packages/fyicons/src'),
+    );
     assert.ok(componentFiles.includes(`${icon.componentName}.tsx`));
     assert.ok(!componentFiles.includes('IconALPHA.tsx'));
     const categories = JSON.parse(
       await readFile(
-        path.join(state.root, 'public/icon-categories.json'),
+        path.join(state.root, 'apps/site/public/icon-categories.json'),
         'utf8',
       ),
     );
@@ -350,7 +360,10 @@ test('valid import preserves bytes, casing, identity, aliases, rules and custom 
       { ...state.categories.categories[0], icon: icon.name },
     ]);
     assert.equal(
-      await readFile(path.join(state.root, 'src/icons/sentinel.txt'), 'utf8'),
+      await readFile(
+        path.join(state.root, 'packages/fyicons/src/sentinel.txt'),
+        'utf8',
+      ),
       'retain unrelated generated-directory files\n',
     );
     await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
@@ -385,17 +398,17 @@ test('publication removes old aliases before writing on a case-insensitive files
   const files = new Map([
     ['icons/alpha-16.svg', { spelling: 'icons/Alpha-16.svg', content: 'old' }],
     [
-      'src/icons/iconalpha.tsx',
-      { spelling: 'src/icons/IconALPHA.tsx', content: 'old' },
+      'packages/fyicons/src/iconalpha.tsx',
+      { spelling: 'packages/fyicons/src/IconALPHA.tsx', content: 'old' },
     ],
   ]);
   await publishFiles(
     {
       root: '/repo',
-      obsolete: ['icons/Alpha-16.svg', 'src/icons/IconALPHA.tsx'],
+      obsolete: ['icons/Alpha-16.svg', 'packages/fyicons/src/IconALPHA.tsx'],
       changed: new Map([
         ['icons/alpha-16.svg', svg],
-        ['src/icons/IconAlpha.tsx', 'replacement'],
+        ['packages/fyicons/src/IconAlpha.tsx', 'replacement'],
       ]),
     },
     {
@@ -420,7 +433,10 @@ test('publication removes old aliases before writing on a case-insensitive files
     [...files.values()],
     [
       { spelling: 'icons/alpha-16.svg', content: svg },
-      { spelling: 'src/icons/IconAlpha.tsx', content: 'replacement' },
+      {
+        spelling: 'packages/fyicons/src/IconAlpha.tsx',
+        content: 'replacement',
+      },
     ],
   );
 });

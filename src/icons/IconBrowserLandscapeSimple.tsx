@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconBrowserLandscapeSimple = React.forwardRef<SVGSVGElement, IconProps>(function IconBrowserLandscapeSimple(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M13 3C14.1046 3 15 3.89543 15 5V11C15 12.1046 14.1046 13 13 13H3C1.89543 13 1 12.1046 1 11V5C1 3.89543 1.89543 3 3 3H13ZM3 4C2.44772 4 2 4.44772 2 5V11C2 11.5523 2.44772 12 3 12H13C13.5523 12 14 11.5523 14 11V5C14 4.44772 13.5523 4 13 4H3ZM4 5.25C4.41421 5.25 4.75 5.58579 4.75 6C4.75 6.41421 4.41421 6.75 4 6.75C3.58579 6.75 3.25 6.41421 3.25 6C3.25 5.58579 3.58579 5.25 4 5.25ZM6 5.25C6.41421 5.25 6.75 5.58579 6.75 6C6.75 6.41421 6.41421 6.75 6 6.75C5.58579 6.75 5.25 6.41421 5.25 6C5.25 5.58579 5.58579 5.25 6 5.25ZM8 5.25C8.41421 5.25 8.75 5.58579 8.75 6C8.75 6.41421 8.41421 6.75 8 6.75C7.58579 6.75 7.25 6.41421 7.25 6C7.25 5.58579 7.58579 5.25 8 5.25Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconBrowserLandscapeSimple;

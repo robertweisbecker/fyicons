@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconStackHorizontal = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconStackHorizontal(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M2 3.5C2 2.67157 2.67157 2 3.5 2H8.5C9.15281 2 9.70597 2.41782 9.91211 3H10.5C11.1528 3 11.706 3.41782 11.9121 4H12.5C13.3284 4 14 4.67157 14 5.5V10.5C14 11.3284 13.3284 12 12.5 12H11.9121C11.706 12.5822 11.1528 13 10.5 13H9.91211C9.70597 13.5822 9.15281 14 8.5 14H3.5C2.67157 14 2 13.3284 2 12.5V3.5ZM12 11H12.5C12.7761 11 13 10.7761 13 10.5V5.5C13 5.22386 12.7761 5 12.5 5H12V11ZM10.5 12C10.7761 12 11 11.7761 11 11.5V4.5C11 4.22386 10.7761 4 10.5 4H10V12H10.5ZM3 12.5C3 12.7761 3.22386 13 3.5 13H8.5C8.77614 13 9 12.7761 9 12.5V3.5C9 3.22386 8.77614 3 8.5 3H3.5C3.22386 3 3 3.22386 3 3.5V12.5Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconStackHorizontal;

@@ -6,10 +6,12 @@ import { readFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
 import { transformSync } from 'rolldown/utils';
 
-const sourceRoot = new URL('../../src/', import.meta.url);
+const sourceRoot = new URL('../../apps/site/src/', import.meta.url);
 let moduleId = 0;
 const categoryConfig = JSON.parse(
-  await readFile(new URL('../../public/icon-categories.json', import.meta.url)),
+  await readFile(
+    new URL('../../apps/site/public/icon-categories.json', import.meta.url),
+  ),
 );
 
 // Adapt the production module graph and browser APIs for Node. Application
@@ -97,16 +99,22 @@ export function createDomFixture(t, url, { pending = false } = {}) {
       const url = specifier.startsWith('@/')
         ? new URL(specifier.slice(2), sourceRoot)
         : new URL(specifier, context.parentURL);
-      if (!/\.(?:tsx?|json|css|txt)$/.test(url.pathname)) {
+      const raw = url.searchParams.has('raw');
+      if (!raw && !/\.(?:tsx?|json|css|txt)$/.test(url.pathname)) {
         const ts = new URL(url);
         ts.pathname += '.ts';
         url.pathname += existsSync(ts) ? '.ts' : '.tsx';
       }
-      const raw = url.searchParams.has('raw');
       url.search = graph + (raw ? '&raw' : '');
       return { url: url.href, shortCircuit: true };
     },
     load(url, context, nextLoad) {
+      if (new URL(url).searchParams.has('raw'))
+        return {
+          format: 'module',
+          source: `export default ${JSON.stringify(readFileSync(new URL(url), 'utf8'))}`,
+          shortCircuit: true,
+        };
       if (!url.startsWith(sourceRoot.href)) return nextLoad(url, context);
       const filename = fileURLToPath(url);
       if (filename.endsWith('.css'))

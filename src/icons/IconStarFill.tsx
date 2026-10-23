@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconStarFill = React.forwardRef<SVGSVGElement, IconProps>(function IconStarFill(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.15283 1.50659C7.53692 0.883276 8.46307 0.8832 8.84717 1.50659L8.92139 1.65015L10.2759 4.86792L13.7554 5.16187C14.582 5.23285 14.9451 6.20221 14.437 6.79956L14.3237 6.91382L11.6812 9.19604L12.478 12.5955V12.5964C12.6654 13.4024 11.8576 14.0514 11.1313 13.7527L10.9868 13.6794L7.99951 11.8718L5.01318 13.6794C4.25521 14.1367 3.32187 13.4554 3.52197 12.5955L4.31592 9.19507L1.67627 6.91382C1.00853 6.33563 1.36353 5.23734 2.24561 5.16187L5.72314 4.86792L7.07861 1.65015L7.15283 1.50659Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconStarFill;

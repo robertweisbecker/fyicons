@@ -6,16 +6,19 @@ import { unzipSync, strFromU8 } from 'fflate';
 import {
   categorizeIcons,
   parseIconCategories,
-} from '../src/lib/icon-categories.ts';
-import { createIconArchive } from '../src/lib/icon-archive.ts';
+} from '../apps/site/src/lib/icon-categories.ts';
+import { createIconArchive } from '../apps/site/src/lib/icon-archive.ts';
 
 const generated = JSON.parse(
-  await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'),
+  await readFile(
+    new URL('../apps/site/src/data/catalog.json', import.meta.url),
+    'utf8',
+  ),
 );
 const assignments = parseIconCategories(
   JSON.parse(
     await readFile(
-      new URL('../public/icon-categories.json', import.meta.url),
+      new URL('../apps/site/public/icon-categories.json', import.meta.url),
       'utf8',
     ),
   ),
@@ -25,22 +28,26 @@ const catalog = {
   ...categorizeIcons(generated.icons, assignments),
 };
 const readme = await readFile(
-  new URL('../src/data/README.txt', import.meta.url),
+  new URL('../apps/site/src/data/README.txt', import.meta.url),
   'utf8',
 );
 const metadata = {
   ...catalog,
   icons: catalog.icons.map(({ svg, ...record }) => record),
 };
+const license = await readFile(new URL('../LICENSE', import.meta.url), 'utf8');
 
 function verifyArchive(selection) {
-  const archive = unzipSync(createIconArchive(selection, metadata, readme));
+  const archive = unzipSync(
+    createIconArchive(selection, metadata, readme, license),
+  );
   assert.deepEqual(
     Object.keys(archive).sort(),
     [
       ...selection.map((icon) => icon.file),
       'manifest.json',
       'README.md',
+      'LICENSE',
     ].sort(),
   );
   for (const icon of selection) {
@@ -59,6 +66,7 @@ function verifyArchive(selection) {
     selection.map(({ svg, ...record }) => record),
   );
   assert.equal(strFromU8(archive['README.md']), readme);
+  assert.equal(strFromU8(archive['LICENSE']), license);
   return exported;
 }
 

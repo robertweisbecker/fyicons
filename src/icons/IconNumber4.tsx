@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconNumber4 = React.forwardRef<SVGSVGElement, IconProps>(function IconNumber4(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11 2C12.6569 2 14 3.34315 14 5V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V5C2 3.34315 3.34315 2 5 2H11ZM5 3C3.89543 3 3 3.89543 3 5V11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V5C13 3.89543 12.1046 3 11 3H5ZM9.12012 4.9248C9.25623 4.76605 9.47767 4.70881 9.67383 4.78125C9.86969 4.854 9.99995 5.04103 10 5.25V8.25H10.5C10.776 8.25013 10.9999 8.47399 11 8.75C10.9999 9.02601 10.776 9.24987 10.5 9.25H10V10.5C9.99994 10.776 9.77599 10.9999 9.5 11C9.22401 10.9999 9.00006 10.776 9 10.5V9.25H6.5C6.30494 9.24991 6.12752 9.13615 6.0459 8.95898C5.96446 8.78174 5.9933 8.57299 6.12012 8.4248L9.12012 4.9248ZM7.58691 8.25H9V6.60156L7.58691 8.25Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconNumber4;

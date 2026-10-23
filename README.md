@@ -19,7 +19,7 @@ To download a group of icons on a desktop screen:
 2. Open **Selected**.
 3. Select **Download**.
 
-The ZIP file contains SVG files, a README, and a `manifest.json` file.
+The ZIP file contains SVG files, a README, a LICENSE, and a `manifest.json` file.
 The manifest contains icon names, source links, category data, and SHA-256 checksums.
 The ZIP file does not contain React components.
 
@@ -39,10 +39,48 @@ You can also put the SVG code directly in an HTML document.
 The size control in the library changes the preview size.
 It does not change the SVG files.
 
+## Use the npm package
+
+Install the package:
+
+```sh
+npm install fyicons
+```
+
+Use React 18.2 or React 19. Import a component with:
+
+```tsx
+import { IconSun } from 'fyicons';
+```
+
+For a direct import, use `import IconSun from 'fyicons/icons/IconSun'`.
+See the [package instructions](packages/fyicons/README.md) for the API and Next.js instructions.
+Read the [changelog](packages/fyicons/CHANGELOG.md) before you update the package.
+Icon names and React exports can change before version 1.0.
+
+## Use the shadcn registry
+
+Use a React project with TypeScript and a shadcn `components.json` file.
+Use the release tag to install an icon:
+
+```sh
+npx shadcn@latest add 'robertweisbecker/fyicons/sun#fyicons@0.1.0'
+```
+
+You can replace the release tag with a full commit SHA.
+The revision must contain `registry.json` and its source files.
+Replace `sun` with another icon name to install that icon.
+The command adds the icon, shared source files, and MIT license to your components folder under `fyicons/`.
+Import `IconSun.tsx` from that folder.
+The registry does not require the npm package.
+
+If you have an optional JSON artifact, you can install it with
+`npx shadcn@latest add /path/to/registry/sun.json`.
+
 ## Use React source files
 
 Use a React project with TypeScript and TSX support.
-Copy the [src/icons folder](src/icons/) into your project as `icons/`.
+Copy the [React source folder](packages/fyicons/src/) into your project as `icons/`.
 Keep the icon files, `base.tsx`, `types.ts`, and `index.ts` in the same folder.
 
 Use a relative import from your component file:
@@ -106,3 +144,9 @@ Check the names when you update your copy of the icons.
 
 The manifest keeps previous names as aliases for lookup in the library.
 These aliases do not preserve previous React export names.
+
+## License
+
+FYIcons uses the [MIT license](LICENSE). Keep the license with copies of the icons.
+
+To change the library, see [Contributing](CONTRIBUTING.md).

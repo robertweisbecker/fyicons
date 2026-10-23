@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconRowExpand = React.forwardRef<SVGSVGElement, IconProps>(function IconRowExpand(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M10.1462 11.1508C10.3415 10.9555 10.658 10.9555 10.8532 11.1508C11.0485 11.346 11.0485 11.6625 10.8532 11.8578L8.35616 14.3549C8.16087 14.5498 7.84428 14.55 7.64913 14.3549L5.15205 11.8578C4.95691 11.6626 4.95713 11.346 5.15205 11.1508C5.34731 10.9555 5.66382 10.9555 5.85909 11.1508L8.00264 13.2943L10.1462 11.1508ZM8.00166 2.50134C8.13417 2.50133 8.26142 2.5542 8.35518 2.64783L10.8542 5.14685C11.0494 5.34212 11.0494 5.65865 10.8542 5.85388C10.6589 6.04878 10.3423 6.04893 10.1472 5.85388L8.00264 3.70935L5.85811 5.85388C5.66295 6.04876 5.34629 6.04872 5.15108 5.85388C4.95595 5.65883 4.95538 5.34219 5.1501 5.14685L7.64815 2.64783C7.7418 2.55417 7.86922 2.50147 8.00166 2.50134Z" fill="currentColor" /><path d="M3.5 8.5H12.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
-});
-export default IconRowExpand;

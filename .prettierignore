@@ -1,9 +1,16 @@
-src/data/catalog.json
-src/data/catalog-runtime.json
-src/data/README.txt
+apps/site/src/data/catalog.json
+apps/site/src/data/catalog-runtime.json
+apps/site/src/data/README.txt
 node_modules
 dist
 test-results
 package-lock.json
 
-src/icons/
+packages/fyicons/src/
+apps/site/src/icons/registry.ts
+artifacts/
+packages/*/.build/
+packages/*/svg/
+packages/*/manifest.json
+
+registry.json

@@ -7,7 +7,10 @@ import {
 } from '../scripts/lib/react-icons.mjs';
 
 const catalog = JSON.parse(
-  await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8'),
+  await readFile(
+    new URL('../apps/site/src/data/catalog.json', import.meta.url),
+    'utf8',
+  ),
 );
 const generatedFiles = await renderReactIconFiles(catalog.icons);
 
@@ -15,7 +18,7 @@ const generatedFiles = await renderReactIconFiles(catalog.icons);
 const svgRootModule = (async () => {
   const { transformWithOxc } = await import('vite');
   const { code } = await transformWithOxc(
-    generatedFiles.get('src/icons/base.tsx'),
+    generatedFiles.get('packages/fyicons/src/base.tsx'),
     'base.tsx',
     {
       jsx: { runtime: 'classic' },
@@ -49,7 +52,9 @@ test('every generated component renders on the server at 16px', async () => {
   const { createElement } = await import('react');
   const { renderToStaticMarkup } = await import('react-dom/server');
   for (const icon of catalog.icons) {
-    const source = generatedFiles.get(`src/icons/${icon.componentName}.tsx`);
+    const source = generatedFiles.get(
+      `packages/fyicons/src/${icon.componentName}.tsx`,
+    );
     const Component = await loadComponent(source);
     const html = renderToStaticMarkup(createElement(Component));
     assert.match(html, /width="16"/, icon.name);
@@ -65,7 +70,7 @@ test('Collection and Home Fill inherit color without dark paint overrides', asyn
   for (const name of ['collection', 'home-fill']) {
     const icon = catalog.icons.find((item) => item.name === name);
     const Component = await loadComponent(
-      generatedFiles.get(`src/icons/${icon.componentName}.tsx`),
+      generatedFiles.get(`packages/fyicons/src/${icon.componentName}.tsx`),
     );
     const html = renderToStaticMarkup(
       createElement(Component, { color: '#ff00aa' }),
@@ -103,7 +108,9 @@ test('rendered components honor SVG props and keep repeated definition and title
       svg: `<svg viewBox='0 0 16 16'><defs><linearGradient id='paint'><stop stop-color='black'/></linearGradient><mask id='cut'><rect width='16' height='16' fill='white'/></mask></defs><path mask='url(#cut)' d='M1 1h14v14H1Z' fill='black' style='fill:color(display-p3 0 0 0)'/><path fill='url(#paint)' d='M2 2h2v2H2Z'/></svg>`,
     },
   ]);
-  const Component = await loadComponent(files.get('src/icons/IconFixture.tsx'));
+  const Component = await loadComponent(
+    files.get('packages/fyicons/src/IconFixture.tsx'),
+  );
   const html = renderToStaticMarkup(
     createElement(
       'div',
@@ -179,7 +186,7 @@ test('reference delimiters remain literal data in repeated rendered instances', 
         svg: `<svg viewBox="0 0 16 16" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id=${attribute(sourceId)} d="M1 1h2v2H1Z"/></defs><use href=${attribute('#' + sourceId)}/><use xlink:href=${attribute('#' + sourceId)}/><path fill=${attribute(prefix + 'url(#' + sourceId + ')' + suffix)} style=${attribute('mask:' + prefix + 'url(#' + sourceId + ')' + suffix)} d="M1 1h2v2H1Z"/></svg>`,
       },
     ]);
-    const source = files.get(`src/icons/${componentName}.tsx`);
+    const source = files.get(`packages/fyicons/src/${componentName}.tsx`);
     const Component = await loadComponent(source);
     const html = renderToStaticMarkup(
       createElement(
@@ -219,7 +226,9 @@ test('rendered accessible names honor explicit naming and decorative overrides',
   const { createElement } = await import('react');
   const { renderToStaticMarkup } = await import('react-dom/server');
   const Component = await loadComponent(
-    generatedFiles.get(`src/icons/${catalog.icons[0].componentName}.tsx`),
+    generatedFiles.get(
+      `packages/fyicons/src/${catalog.icons[0].componentName}.tsx`,
+    ),
   );
   const cases = [
     { name: 'decorative default', props: {}, hidden: 'true' },

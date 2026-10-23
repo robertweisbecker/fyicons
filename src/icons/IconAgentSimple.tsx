@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconAgentSimple = React.forwardRef<SVGSVGElement, IconProps>(function IconAgentSimple(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 1C8.9665 1 9.75 1.7835 9.75 2.75C9.75 3.5454 9.21878 4.21493 8.49219 4.42773C8.49564 4.45145 8.5 4.47533 8.5 4.5V5H11C12.1046 5 13 5.89543 13 7V10.5C13 12.433 11.433 14 9.5 14H6.5C4.567 14 3 12.433 3 10.5V7C3 5.89543 3.89543 5 5 5H7.5V4.5C7.5 4.47538 7.5034 4.4514 7.50684 4.42773C6.7807 4.21464 6.25 3.54507 6.25 2.75C6.25 1.7835 7.0335 1 8 1ZM5 6C4.44772 6 4 6.44772 4 7V10.5C4 11.8807 5.11929 13 6.5 13H9.5C10.8807 13 12 11.8807 12 10.5V7C12 6.44772 11.5523 6 11 6H8.5V6.5C8.5 6.77614 8.27614 7 8 7C7.72386 7 7.5 6.77614 7.5 6.5V6H5ZM6.5 8C6.77614 8 7 8.22386 7 8.5V10.5C7 10.7761 6.77614 11 6.5 11C6.22386 11 6 10.7761 6 10.5V8.5C6 8.22386 6.22386 8 6.5 8ZM9.5 8C9.77614 8 10 8.22386 10 8.5V10.5C10 10.7761 9.77614 11 9.5 11C9.22386 11 9 10.7761 9 10.5V8.5C9 8.22386 9.22386 8 9.5 8ZM8 2C7.58579 2 7.25 2.33579 7.25 2.75C7.25 3.16421 7.58579 3.5 8 3.5C8.41421 3.5 8.75 3.16421 8.75 2.75C8.75 2.33579 8.41421 2 8 2Z" fill="currentColor" /><path d="M14.5 8.5V9.5" stroke="currentColor" strokeLinecap="round" /><path d="M1.5 8.5V9.5" stroke="currentColor" strokeLinecap="round" /></SvgRoot>;
-});
-export default IconAgentSimple;

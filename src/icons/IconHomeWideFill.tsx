@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconHomeWideFill = React.forwardRef<SVGSVGElement, IconProps>(function IconHomeWideFill(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.00488 2.28711C7.60302 1.87293 8.39897 1.87285 8.99707 2.28711L9.12207 2.38184L14.6416 6.98145C14.9649 7.25092 15.0846 7.69506 14.9414 8.09082C14.7981 8.48618 14.4224 8.74856 14.002 8.74902V12.501C14.0011 13.3276 13.3305 13.9997 12.502 14H10.498C9.94576 14 9.49805 13.5523 9.49805 13V10.499C9.4979 9.67076 8.82632 8.99909 7.99805 8.99902C7.16971 8.99902 6.49819 9.67072 6.49805 10.499V13C6.49805 13.5522 6.05027 13.9999 5.49805 14H3.50098C2.67347 13.9992 2.00278 13.328 2.00195 12.501V8.75H2.00098C1.58006 8.75 1.20395 8.48653 1.06055 8.09082C0.917345 7.69504 1.03704 7.25094 1.36035 6.98145L6.87988 2.38184L7.00488 2.28711Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconHomeWideFill;

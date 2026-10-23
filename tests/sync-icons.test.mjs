@@ -13,9 +13,9 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { categorizeIcons } from '../src/lib/icon-categories.ts';
-import { decodeCatalog } from '../src/lib/catalog-codec.ts';
-import { createIconArchive } from '../src/lib/icon-archive.ts';
+import { categorizeIcons } from '../apps/site/src/lib/icon-categories.ts';
+import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
+import { createIconArchive } from '../apps/site/src/lib/icon-archive.ts';
 import { unzipSync, strFromU8 } from 'fflate';
 
 test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring incoming category metadata', async () => {
@@ -51,14 +51,14 @@ test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring
     await mkdir(path.join(temp, 'scripts/lib'), { recursive: true });
     await mkdir(path.join(temp, 'icons'));
     await mkdir(path.join(temp, 'incoming'));
-    await mkdir(path.join(temp, 'public'));
-    await mkdir(path.join(temp, 'src/lib'), { recursive: true });
+    await mkdir(path.join(temp, 'apps/site/public'), { recursive: true });
+    await mkdir(path.join(temp, 'apps/site/src/lib'), { recursive: true });
     await cp(
-      new URL('../src/lib/icon-categories.ts', import.meta.url),
-      path.join(temp, 'src/lib/icon-categories.ts'),
+      new URL('../apps/site/src/lib/icon-categories.ts', import.meta.url),
+      path.join(temp, 'apps/site/src/lib/icon-categories.ts'),
     );
     await writeFile(
-      path.join(temp, 'public/icon-categories.json'),
+      path.join(temp, 'apps/site/public/icon-categories.json'),
       JSON.stringify({
         categories: [
           { id: 'files', name: 'Files', icon: 'alpha', keywords: ['alpha'] },
@@ -154,7 +154,10 @@ test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring
     );
     const byId = new Map(next.icons.map((icon) => [icon.id, icon]));
     const rules = JSON.parse(
-      await readFile(path.join(temp, 'public/icon-categories.json'), 'utf8'),
+      await readFile(
+        path.join(temp, 'apps/site/public/icon-categories.json'),
+        'utf8',
+      ),
     );
     assert.deepEqual(rules, {
       $schema: './icon-categories.schema.json',
@@ -289,16 +292,27 @@ test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring
 
     // Dates survive production decoding and both full and selected ZIP manifests.
     const catalog = JSON.parse(
-      await readFile(path.join(temp, 'src/data/catalog.json'), 'utf8'),
+      await readFile(
+        path.join(temp, 'apps/site/src/data/catalog.json'),
+        'utf8',
+      ),
     );
     const compact = JSON.parse(
-      await readFile(path.join(temp, 'src/data/catalog-runtime.json'), 'utf8'),
+      await readFile(
+        path.join(temp, 'apps/site/src/data/catalog-runtime.json'),
+        'utf8',
+      ),
     );
     assert.deepEqual(decodeCatalog(compact), catalog);
     assert.deepEqual(dates(catalog), dates(final));
     for (const selection of [catalog.icons, catalog.icons.slice(0, 1)]) {
       const files = unzipSync(
-        createIconArchive(selection, catalog, 'Fixture README'),
+        createIconArchive(
+          selection,
+          catalog,
+          'Fixture README',
+          'Fixture license',
+        ),
       );
       const downloaded = JSON.parse(strFromU8(files['manifest.json']));
       assert.deepEqual(dates(downloaded), dates({ icons: selection }));

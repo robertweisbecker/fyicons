@@ -1,0 +1,55 @@
+{
+  "name": "fyicons",
+  "version": "0.1.0",
+  "description": "SVG icons for React with a 16 \u00d7 16 px canvas.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./icons/*": {
+      "types": "./dist/icons/*.d.ts",
+      "import": "./dist/icons/*.js"
+    },
+    "./svg/*": "./svg/*",
+    "./manifest.json": "./manifest.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "svg",
+    "manifest.json",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertweisbecker/fyicons.git",
+    "directory": "packages/fyicons"
+  },
+  "homepage": "https://icons.bob.fyi/",
+  "bugs": "https://github.com/robertweisbecker/fyicons/issues",
+  "keywords": [
+    "icons",
+    "svg",
+    "react",
+    "fyicons"
+  ],
+  "scripts": {
+    "prepack": "node ../../scripts/build-package.mjs",
+    "build": "node ../../scripts/build-package.mjs"
+  }
+}
