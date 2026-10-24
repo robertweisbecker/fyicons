@@ -12,7 +12,7 @@
 
 ## Documentation
 
-Keep the root and package READMEs and `apps/site/src/data/README.txt` focused on library users. Document available installation methods and behavior. Use writing inspired by [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/): clear sentences, active voice, direct instructions, and consistent terms. Allow natural phrasing, useful context, and examples so the text does not become terse or mechanical. Strict dictionary compliance is not required; do not claim formal STE compliance.
+Keep the root and package READMEs and `apps/site/src/data/README.txt` focused on library users. Document available installation methods and behavior. Aim for about 75% [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) in documentation: favor clear sentences, active voice, direct instructions, and consistent terms. Allow natural phrasing, useful context, and examples where they make the text easier to read. Treat 75% as an approximate writing target, not a measured compliance score. Strict dictionary compliance is not required; do not claim formal STE compliance.
 
 Keep personal machine paths, private chat links, credentials, and individual account procedures out of committed docs. Public project links, license attribution, and icon source references are intentional project data. A directory such as `.agents/` is public if committed.
 
@@ -29,6 +29,8 @@ Read the relevant guide when the task needs it:
 The [documentation index](docs/README.md) lists the current guides. Local plans and reports under `artifacts/` are historical evidence, not instructions for new work.
 
 ## Working on changes
+
+Use Conventional Commits for new commit subjects and PR titles. See `CONTRIBUTING.md` for types, scopes, and breaking changes. A leading `[codex]` attribution prefix is accepted for compatibility but is not required by this repository. Changesets, not commit parsing, controls package versions and release notes.
 
 Keep unrelated edits unchanged. Builds regenerate tracked files; inspect the diff before and after generation. Use the checks for the affected behavior in `CONTRIBUTING.md`. Documentation-only changes need no build or full test run. Do not repeat passing checks unless a later change or new evidence requires it.
 

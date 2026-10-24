@@ -18,7 +18,7 @@ test('overview, library, and examples resolve at the domain root and project sub
     ].entries()) {
       globalThis.location = { pathname, hash };
       const navigation = await import(
-        `../apps/site/src/lib/navigation.ts?case=${index}`
+        `../../apps/site/src/lib/navigation.ts?case=${index}`
       );
       assert.equal(navigation.pageFromLocation(), page, pathname + hash);
       assert.equal(navigation.pageHref('home'), base);

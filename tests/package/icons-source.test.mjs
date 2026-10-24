@@ -7,19 +7,19 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
+import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
 
 const manifest = JSON.parse(
-  await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
+  await readFile(new URL('../../icons/manifest.json', import.meta.url), 'utf8'),
 );
 const catalog = JSON.parse(
   await readFile(
-    new URL('../apps/site/src/data/catalog.json', import.meta.url),
+    new URL('../../apps/site/src/data/catalog.json', import.meta.url),
     'utf8',
   ),
 );
 test('editable SVG sources exactly cover the manifest', async () => {
-  const files = (await readdir(new URL('../icons/', import.meta.url)))
+  const files = (await readdir(new URL('../../icons/', import.meta.url)))
     .filter((file) => file.endsWith('.svg'))
     .sort();
   const expected = manifest.icons.map((icon) => icon.filename).sort();
@@ -53,7 +53,7 @@ test('current SVG bytes are used for generated checksums', async () => {
   for (const icon of manifest.icons) {
     const generated = catalog.icons.find(({ id }) => id === icon.id);
     const svg = await readFile(
-      new URL(`../icons/${icon.filename}`, import.meta.url),
+      new URL(`../../icons/${icon.filename}`, import.meta.url),
     );
     assert.ok(generated, `missing catalog record ${icon.id}`);
     assert.equal(
@@ -113,7 +113,7 @@ test('replacing a source regenerates its component and derived catalog hash', as
     await mkdir(path.join(temp, 'apps/site/public'), { recursive: true });
     await mkdir(path.join(temp, 'apps/site/src/lib'), { recursive: true });
     await cp(
-      new URL('../apps/site/src/lib/icon-categories.ts', import.meta.url),
+      new URL('../../apps/site/src/lib/icon-categories.ts', import.meta.url),
       path.join(temp, 'apps/site/src/lib/icon-categories.ts'),
     );
     await writeFile(
@@ -130,20 +130,20 @@ test('replacing a source regenerates its component and derived catalog hash', as
       }),
     );
     await cp(
-      new URL('../scripts/lib/category-schema.ts', import.meta.url),
+      new URL('../../scripts/lib/category-schema.ts', import.meta.url),
       path.join(temp, 'scripts/lib/category-schema.ts'),
     );
     await cp(
-      new URL('../scripts/generate-icons.mjs', import.meta.url),
+      new URL('../../scripts/generate-icons.mjs', import.meta.url),
       path.join(temp, 'scripts/generate-icons.mjs'),
     );
     await cp(
-      new URL('../scripts/lib/react-icons.mjs', import.meta.url),
+      new URL('../../scripts/lib/react-icons.mjs', import.meta.url),
       path.join(temp, 'scripts/lib/react-icons.mjs'),
     );
     for (const name of ['prepare-icons.mjs', 'icon-files.mjs'])
       await cp(
-        new URL(`../scripts/lib/${name}`, import.meta.url),
+        new URL(`../../scripts/lib/${name}`, import.meta.url),
         path.join(temp, 'scripts/lib', name),
       );
     await symlink(
@@ -260,7 +260,7 @@ test('replacing a source regenerates its component and derived catalog hash', as
 test('compact browser catalog reconstructs complete download metadata', async () => {
   const compact = JSON.parse(
     await readFile(
-      new URL('../apps/site/src/data/catalog-runtime.json', import.meta.url),
+      new URL('../../apps/site/src/data/catalog-runtime.json', import.meta.url),
       'utf8',
     ),
   );
@@ -270,7 +270,7 @@ test('compact browser catalog reconstructs complete download metadata', async ()
     assert.equal(
       icon.svg,
       await readFile(
-        new URL(`../icons/${icon.filename}`, import.meta.url),
+        new URL(`../../icons/${icon.filename}`, import.meta.url),
         'utf8',
       ),
       `${icon.filename} bytes differ after production decoding`,

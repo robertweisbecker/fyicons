@@ -4,11 +4,11 @@ import { readFile } from 'node:fs/promises';
 import {
   normalizeDisplayPaint,
   renderReactIconFiles,
-} from '../scripts/lib/react-icons.mjs';
+} from '../../scripts/lib/react-icons.mjs';
 
 const catalog = JSON.parse(
   await readFile(
-    new URL('../apps/site/src/data/catalog.json', import.meta.url),
+    new URL('../../apps/site/src/data/catalog.json', import.meta.url),
     'utf8',
   ),
 );

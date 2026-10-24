@@ -6,11 +6,11 @@ import { readFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
 import { transformSync } from 'rolldown/utils';
 
-const sourceRoot = new URL('../../apps/site/src/', import.meta.url);
+const sourceRoot = new URL('../../../apps/site/src/', import.meta.url);
 let moduleId = 0;
 const categoryConfig = JSON.parse(
   await readFile(
-    new URL('../../apps/site/public/icon-categories.json', import.meta.url),
+    new URL('../../../apps/site/public/icon-categories.json', import.meta.url),
   ),
 );
 

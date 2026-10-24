@@ -6,7 +6,7 @@ import path from 'node:path';
 import {
   createCategorySchema,
   updateCategorySchema,
-} from '../scripts/lib/category-schema.ts';
+} from '../../scripts/lib/category-schema.ts';
 
 test('schema suggests sidebar icons and keywords without depending on category definitions', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'fyicons-schema-'));

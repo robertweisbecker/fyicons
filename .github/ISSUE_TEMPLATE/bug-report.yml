@@ -1,0 +1,39 @@
+name: Report a bug
+description: Report a problem with an icon, package, registry, or website.
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - React package
+        - shadcn registry
+        - SVG artwork or downloads
+        - Website
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Describe what happened and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How can we reproduce it?
+      description: Add steps, a small code example, or a public reproduction link. Include affected icon names.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or source
+      description: Give the fyicons version, registry tag or commit, or website URL.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and supporting details
+      description: Include relevant React, framework, browser, and operating system versions. Add screenshots or error output if useful.

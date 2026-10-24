@@ -4,7 +4,7 @@ import {
   compareSnapshots,
   renderMarkdown,
   readSnapshot,
-} from '../scripts/lib/icon-diff.mjs';
+} from '../../scripts/lib/icon-diff.mjs';
 import { mkdtemp, mkdir, writeFile, rename, rm } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
@@ -13,8 +13,8 @@ import {
   compareImages,
   raster,
   views,
-} from '../scripts/lib/icon-diff-images.mjs';
-import { renderHtml } from '../scripts/lib/icon-diff-html.mjs';
+} from '../../scripts/lib/icon-diff-images.mjs';
+import { renderHtml } from '../../scripts/lib/icon-diff-html.mjs';
 import { PNG } from 'pngjs';
 import { JSDOM } from 'jsdom';
 

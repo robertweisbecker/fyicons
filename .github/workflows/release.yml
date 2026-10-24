@@ -52,8 +52,8 @@ jobs:
       - uses: changesets/action/version@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
           script: npm run version:packages
-          commit-message: '[codex] Version packages'
-          pr-title: '[codex] Version packages'
+          commit-message: 'chore(release): version packages'
+          pr-title: 'chore(release): version packages'
 
   pack:
     needs: select-mode

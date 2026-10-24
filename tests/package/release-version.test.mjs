@@ -15,7 +15,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 test('Changesets versions the library and site dependency and writes migration notes', async () => {
-  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const root = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '../..',
+  );
   const cwd = await mkdtemp(path.join(tmpdir(), 'fyicons-versions-'));
   try {
     await mkdir(path.join(cwd, 'packages/fyicons'), { recursive: true });
@@ -92,7 +95,10 @@ test('Changesets versions the library and site dependency and writes migration n
 });
 
 test('icon changesets use minor for API changes and patch for artwork fixes', async () => {
-  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const root = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    '../..',
+  );
   const cwd = await mkdtemp(path.join(tmpdir(), 'fyicons-changeset-notes-'));
   try {
     for (const [flag, expected] of [

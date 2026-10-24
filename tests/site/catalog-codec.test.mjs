@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { deflateSync } from 'node:zlib';
-import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
+import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
 
 function pack(value) {
   return deflateSync(Buffer.from(JSON.stringify(value))).toString('base64');

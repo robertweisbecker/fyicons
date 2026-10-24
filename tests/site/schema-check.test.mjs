@@ -17,7 +17,7 @@ import {
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createCategorySchema } from '../scripts/lib/category-schema.ts';
+import { createCategorySchema } from '../../scripts/lib/category-schema.ts';
 
 const run = promisify(execFile);
 const schemaPath = 'apps/site/public/icon-categories.schema.json';
@@ -28,18 +28,18 @@ async function createFixture(root) {
   await mkdir(path.join(root, 'apps/site/public'), { recursive: true });
   await mkdir(path.join(root, 'apps/site/src/lib'), { recursive: true });
   await cp(
-    new URL('../scripts/', import.meta.url),
+    new URL('../../scripts/', import.meta.url),
     path.join(root, 'scripts'),
     {
       recursive: true,
     },
   );
   await cp(
-    new URL('../apps/site/src/lib/icon-categories.ts', import.meta.url),
+    new URL('../../apps/site/src/lib/icon-categories.ts', import.meta.url),
     path.join(root, 'apps/site/src/lib/icon-categories.ts'),
   );
   await symlink(
-    fileURLToPath(new URL('../node_modules', import.meta.url)),
+    fileURLToPath(new URL('../../node_modules', import.meta.url)),
     path.join(root, 'node_modules'),
     'dir',
   );

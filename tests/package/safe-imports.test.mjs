@@ -18,8 +18,8 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
-import { publishFiles } from '../scripts/lib/icon-files.mjs';
+import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
+import { publishFiles } from '../../scripts/lib/icon-files.mjs';
 
 const run = promisify(execFile);
 const svg =
@@ -48,12 +48,12 @@ async function fixture() {
   await mkdir(outside);
   await writeFile(path.join(outside, 'sentinel.svg'), svg);
   await cp(
-    new URL('../scripts/', import.meta.url),
+    new URL('../../scripts/', import.meta.url),
     path.join(root, 'scripts'),
     { recursive: true },
   );
   await cp(
-    new URL('../apps/site/src/lib/icon-categories.ts', import.meta.url),
+    new URL('../../apps/site/src/lib/icon-categories.ts', import.meta.url),
     path.join(root, 'apps/site/src/lib/icon-categories.ts'),
   );
   await symlink(

@@ -71,7 +71,7 @@ Use `changeset:icons` to draft notes from a fixed comparison. It selects a minor
 
 Use normal `0.x` versions. Use patch changesets for fixes and minor changesets for additions or breaking changes during initial development. State breaking name changes and migration steps explicitly. `version:packages` runs Changesets, then updates the lockfile and source registry.
 
-Prerelease mode is off. The initial notes are in the changelog, and the package is already `0.1.0`. Do not run versioning again before its first publication.
+Prerelease mode is off. A commit does not require a release. Keep pending changesets until you are ready to publish, then run `npm run changeset -- status` to review them. Run `version:packages` once for that release. If a check or upload fails after versioning, fix the problem and resume the same candidate; do not increment the version just to retry.
 
 ## Release checks
 
@@ -93,24 +93,27 @@ After generating the default icon report, run `npm run verify:preview`. It needs
 
 [The verification workflow](../.github/workflows/release-prep.yml) runs these checks and uploads artifacts with 14-day retention. It has read-only repository permissions. [The Pages workflow](../.github/workflows/pages.yml) owns website deployment separately.
 
-## First publication
+## Publish a release
 
-Before making the repository public, examine its commit history for private notes and personal paths. Removing a current file does not remove earlier copies from Git history.
+Local preparation does not authorize publication. Obtain explicit approval to publish, or follow an existing instruction to publish when the checks pass. Use either manual publication or the configured release workflow for a given version.
 
-Local release preparation does not authorize publication. Before publishing:
+For a manual release:
 
-1. Make sure that npm access, authentication, and permission to use the `fyicons` name are available. A name check does not reserve the name.
-2. Review the source, release notes, and HTML comparison. Obtain explicit publication approval.
-3. Run the release checks on the approved source commit. Generate its first-release report. Review the resulting tarball and verification record.
-4. Publish that tarball with the default `latest` tag:
+1. Review the pending changesets and run `npm run version:packages` once. Check the version, changelog, lockfile, and source registry.
+2. Commit and push the intended release changes. Follow the branch rules and wait for checks on that exact commit.
+3. Run the release checks and `npm run build`. Compare the previous published release tag with the release commit, then run `npm run verify:preview`. Review the HTML report, migration notes, package file list, and tarball integrity.
+4. If a check changes tracked files, review and commit those changes. Repeat the affected checks on the final commit. Keep the checked tarball unchanged after this step.
+5. Publish that tarball with `latest`. Replace `<version>` with the version you verified:
 
    ```sh
-   npm publish artifacts/package/fyicons-0.1.0.tgz --access public
+   npm publish ./artifacts/package/fyicons-<version>.tgz --access public --tag latest --ignore-scripts
    ```
 
-5. Confirm that `latest` points to `0.1.0`.
+6. Confirm that the exact version is public, `latest` points to it, and its `dist.integrity` matches the checked tarball. An accepted upload alone does not confirm public availability.
+7. Create and push `fyicons@<version>` at the verified commit. Create its GitHub release from the reviewed notes. Attach the tarball and public icon comparison files. Review attachments for local paths and private information; upload selected files, not the whole `artifacts/` directory.
+8. Install the public npm version in a fresh consumer project outside the workspace. Test the shadcn GitHub install from the same release tag, including shared files and the license.
 
-Never use publication as a readiness check. Git tags, pushes, GitHub releases, asset uploads, and account settings are separate actions. After the initial package exists, complete the automation setup below.
+Never use publication as a readiness check. Keep existing published versions and tags unchanged. A correction to a published package needs a new version.
 
 ## Release automation
 

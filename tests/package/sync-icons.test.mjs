@@ -13,9 +13,9 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { categorizeIcons } from '../apps/site/src/lib/icon-categories.ts';
-import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
-import { createIconArchive } from '../apps/site/src/lib/icon-archive.ts';
+import { categorizeIcons } from '../../apps/site/src/lib/icon-categories.ts';
+import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
+import { createIconArchive } from '../../apps/site/src/lib/icon-archive.ts';
 import { unzipSync, strFromU8 } from 'fflate';
 
 test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring incoming category metadata', async () => {
@@ -54,7 +54,7 @@ test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring
     await mkdir(path.join(temp, 'apps/site/public'), { recursive: true });
     await mkdir(path.join(temp, 'apps/site/src/lib'), { recursive: true });
     await cp(
-      new URL('../apps/site/src/lib/icon-categories.ts', import.meta.url),
+      new URL('../../apps/site/src/lib/icon-categories.ts', import.meta.url),
       path.join(temp, 'apps/site/src/lib/icon-categories.ts'),
     );
     await writeFile(
@@ -87,7 +87,7 @@ test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring
       'lib/category-schema.ts',
     ]) {
       await cp(
-        new URL(`../scripts/${name}`, import.meta.url),
+        new URL(`../../scripts/${name}`, import.meta.url),
         path.join(temp, 'scripts', name),
       );
     }

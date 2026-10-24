@@ -6,7 +6,7 @@ import {
   categorizeIcons,
   validateCategoryIcons,
   uncategorized,
-} from '../apps/site/src/lib/icon-categories.ts';
+} from '../../apps/site/src/lib/icon-categories.ts';
 
 const files = {
   id: 'files',
@@ -25,13 +25,16 @@ test('editable rules validate independently of generated artwork metadata', asyn
   const config = parseIconCategories(
     JSON.parse(
       await readFile(
-        new URL('../apps/site/public/icon-categories.json', import.meta.url),
+        new URL('../../apps/site/public/icon-categories.json', import.meta.url),
         'utf8',
       ),
     ),
   );
   const manifest = JSON.parse(
-    await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
+    await readFile(
+      new URL('../../icons/manifest.json', import.meta.url),
+      'utf8',
+    ),
   );
   validateCategoryIcons(config, manifest.icons);
   assert.ok(!('icons' in config));
@@ -136,13 +139,16 @@ test('library category rules keep the requested icon families together without l
   const config = parseIconCategories(
     JSON.parse(
       await readFile(
-        new URL('../apps/site/public/icon-categories.json', import.meta.url),
+        new URL('../../apps/site/public/icon-categories.json', import.meta.url),
         'utf8',
       ),
     ),
   );
   const { icons } = JSON.parse(
-    await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
+    await readFile(
+      new URL('../../icons/manifest.json', import.meta.url),
+      'utf8',
+    ),
   );
   const categorized = categorizeIcons(icons, config).icons;
   const memberships = new Map(
@@ -270,13 +276,16 @@ test('category boundaries follow icon meaning rather than generic name fragments
   const config = parseIconCategories(
     JSON.parse(
       await readFile(
-        new URL('../apps/site/public/icon-categories.json', import.meta.url),
+        new URL('../../apps/site/public/icon-categories.json', import.meta.url),
         'utf8',
       ),
     ),
   );
   const { icons } = JSON.parse(
-    await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
+    await readFile(
+      new URL('../../icons/manifest.json', import.meta.url),
+      'utf8',
+    ),
   );
   const result = categorizeIcons(icons, config);
   // Families include their filled, slashed, and named variants.
@@ -390,13 +399,16 @@ test('filled and slashed variants stay with their unmodified counterparts', asyn
   const config = parseIconCategories(
     JSON.parse(
       await readFile(
-        new URL('../apps/site/public/icon-categories.json', import.meta.url),
+        new URL('../../apps/site/public/icon-categories.json', import.meta.url),
         'utf8',
       ),
     ),
   );
   const { icons } = JSON.parse(
-    await readFile(new URL('../icons/manifest.json', import.meta.url), 'utf8'),
+    await readFile(
+      new URL('../../icons/manifest.json', import.meta.url),
+      'utf8',
+    ),
   );
   const categorized = categorizeIcons(icons, config).icons;
   const byName = new Map(categorized.map((icon) => [icon.name, icon]));
