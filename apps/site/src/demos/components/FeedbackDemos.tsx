@@ -293,7 +293,7 @@ export function SharingDemo() {
         </Select>
       </div>
       <div className="mt-auto flex items-center gap-2 rounded-lg border border-line px-3 py-1.5">
-        <Icon name="link-new-tab" />
+        <Icon name="link-new-window" />
         <span className="min-w-0 flex-1 truncate text-xs text-muted">
           studio.example/project/interface-kit
         </span>

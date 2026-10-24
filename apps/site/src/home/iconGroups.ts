@@ -41,7 +41,7 @@ export const iconGroups = [
         'agent',
         'agent-clank',
         'agent-simple',
-        'agent-subagent',
+        'agent-sub',
       ],
       [
         'workflow',

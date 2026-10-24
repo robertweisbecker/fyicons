@@ -113,7 +113,7 @@
         "texture",
         "vector-path",
         "angle",
-        "bezier",
+        "vector-bezier",
         "shapes",
         "blueprint",
         "flip",
@@ -166,7 +166,7 @@
         "paragraph",
         "letter-spacing",
         "text-format",
-        "text-thumbnail",
+        "paragraph-thumbnail-start",
         "text-append",
         "text-submit"
       ],
@@ -190,8 +190,8 @@
         "number7",
         "number8",
         "number9",
-        "text",
-        "text-fill"
+        "text-title",
+        "text-title-fill"
       ]
     },
     {
@@ -333,7 +333,10 @@
         "star-half-fill",
         "star-half-piece",
         "star-half-piece-fill",
-        "dots-diamond"
+        "dots-diamond-fill",
+        "math",
+        "dots-diamond",
+        "dots-triangle"
       ]
     },
     {
@@ -461,11 +464,11 @@
       "icon": "compass",
       "keywords": [
         "arrow-corner",
-        "arrow-redo",
+        "arrow-clockwise",
         "arrow-reload",
         "arrow-restart",
         "arrow-revert",
-        "arrow-undo",
+        "arrow-counter-clockwise",
         "arrows-collapse",
         "arrows-expand",
         "arrows-maximize",
@@ -501,8 +504,8 @@
         "undo",
         "upload",
         "xmark",
-        "arrow-clockwise",
-        "arrow-counter-clockwise"
+        "arrow-clockwise-lg",
+        "arrow-counter-clockwise-lg"
       ],
       "exactNames": [
         "circle-minus",
@@ -751,7 +754,8 @@
         "voltage",
         "flame",
         "fire",
-        "gas"
+        "gas",
+        "math"
       ],
       "exactNames": [
         "bird",

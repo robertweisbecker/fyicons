@@ -14,7 +14,7 @@ const tools = [
   ['frame', 'Frame'],
   ['square', 'Rectangle'],
   ['pen-tool', 'Pen'],
-  ['text', 'Text'],
+  ['text-title', 'Text'],
   ['chat-round', 'Comment'],
   ['apps-plus', 'Actions'],
 ] as const;
@@ -93,7 +93,7 @@ export function DesignApp() {
             >
               <Icon
                 name={
-                  tool[0] === 'text'
+                  tool[0] === 'text-title'
                     ? 'font-capital'
                     : tool[0] === 'pen-tool'
                       ? 'vector-path'

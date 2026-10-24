@@ -1,6 +1,6 @@
 {
   "name": "FYIcons",
-  "version": "2026-10-23",
+  "version": "2026-10-24",
   "source": {
     "fileKey": "KA61XWs3LqkOU2bzzvjEeW",
     "sectionId": "646:192",
@@ -8,8 +8,8 @@
     "pageId": "82:2415",
     "pageName": "export",
     "exportMethod": "Figma MCP exportAsync SVG_STRING, svgSimplifyStroke=false; foreground paint normalized to currentColor",
-    "scope": "Complete Icons section: 1133 native 16 by 16 components, including 196 component-set variants.",
-    "exportedAt": "2026-10-23T02:14:05.240Z"
+    "scope": "Complete Icons section: 1143 native 16 by 16 components, including 196 component-set variants. Every live export SHA-256 verified; identical normalized files retained.",
+    "exportedAt": "2026-10-24T09:44:19.660Z"
   },
   "icons": [
     {
@@ -100,25 +100,29 @@
       "aliases": [
         "379-9063.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconBroadcastLive"
     },
     {
       "id": "343:8086",
-      "name": "broadcast-tower",
-      "baseName": "broadcast-tower",
-      "originalName": "broadcast-tower",
+      "name": "broadcast-antenna",
+      "baseName": "broadcast-antenna",
+      "originalName": "broadcast-antenna",
       "width": 16,
       "height": 16,
-      "filename": "broadcast-tower-16.svg",
+      "filename": "broadcast-antenna-16.svg",
       "file": "svgs/343-8086.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=343-8086",
       "notes": [],
       "aliases": [
-        "343-8086.svg"
+        "343-8086.svg",
+        "broadcast-tower",
+        "broadcast-tower-16.svg"
       ],
-      "componentName": "IconBroadcastTower"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconBroadcastAntenna"
     },
     {
       "id": "124:2568",
@@ -177,6 +181,44 @@
         "11-869.svg"
       ],
       "componentName": "IconChat"
+    },
+    {
+      "id": "1155:8992",
+      "name": "chat-ellipsis",
+      "baseName": "chat-ellipsis",
+      "originalName": "chat-ellipsis",
+      "width": 16,
+      "height": 16,
+      "filename": "chat-ellipsis-16.svg",
+      "file": "svgs/1155-8992.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1155-8992",
+      "aliases": [
+        "1155-8992.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconChatEllipsis"
+    },
+    {
+      "id": "1155:9019",
+      "name": "chat-round-ellipsis",
+      "baseName": "chat-round-ellipsis",
+      "originalName": "chat-round-ellipsis",
+      "width": 16,
+      "height": 16,
+      "filename": "chat-round-ellipsis-16.svg",
+      "file": "svgs/1155-9019.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1155-9019",
+      "aliases": [
+        "1155-9019.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconChatRoundEllipsis"
     },
     {
       "id": "344:9625",
@@ -1045,12 +1087,12 @@
     },
     {
       "id": "154:11363",
-      "name": "agent-subagent",
-      "baseName": "agent-subagent",
-      "originalName": "agent-subagent",
+      "name": "agent-sub",
+      "baseName": "agent-sub",
+      "originalName": "agent-sub",
       "width": 16,
       "height": 16,
-      "filename": "agent-subagent-16.svg",
+      "filename": "agent-sub-16.svg",
       "file": "svgs/154-11363.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -1059,10 +1101,12 @@
       "aliases": [
         "154-11363.svg",
         "agent-2",
-        "agent-2-16.svg"
+        "agent-2-16.svg",
+        "agent-subagent",
+        "agent-subagent-16.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
-      "componentName": "IconAgentSubagent"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconAgentSub"
     },
     {
       "id": "154:11377",
@@ -1363,7 +1407,7 @@
       "aliases": [
         "747-3750.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconImageAdd"
     },
     {
@@ -1893,7 +1937,7 @@
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconUserTeam"
     },
     {
@@ -2326,7 +2370,7 @@
       "aliases": [
         "96-1510.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconClipboard"
     },
     {
@@ -2345,7 +2389,7 @@
       "aliases": [
         "845-14174.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconClipboardText"
     },
     {
@@ -2364,7 +2408,7 @@
       "aliases": [
         "548-8748.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconClipboardCheck"
     },
     {
@@ -2744,7 +2788,7 @@
       "aliases": [
         "505-556.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFileImage"
     },
     {
@@ -2763,7 +2807,7 @@
       "aliases": [
         "1013-19504.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFilePlay"
     },
     {
@@ -2862,7 +2906,7 @@
         "file-plus-1",
         "file-plus-1-16.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFilePlus"
     },
     {
@@ -2899,7 +2943,7 @@
       "aliases": [
         "102-5434.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFileText"
     },
     {
@@ -2919,7 +2963,7 @@
         "1084-12279.svg"
       ],
       "addedAt": "2026-10-22T08:06:37.817Z",
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFileSpreadsheet"
     },
     {
@@ -2959,7 +3003,7 @@
         "1078-1650.svg"
       ],
       "addedAt": "2026-10-22T08:06:37.817Z",
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFileWaveform"
     },
     {
@@ -2979,7 +3023,7 @@
         "1056-764.svg"
       ],
       "addedAt": "2026-10-21T17:25:31.123Z",
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFileAudio"
     },
     {
@@ -3165,7 +3209,7 @@
       "aliases": [
         "534-8072.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconNotebookOpen"
     },
     {
@@ -3405,6 +3449,7 @@
         "align-bottom",
         "align-bottom-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArrowToBottom"
     },
     {
@@ -3425,6 +3470,7 @@
         "align-end",
         "align-end-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArrowToRight"
     },
     {
@@ -3469,6 +3515,7 @@
         "align-start",
         "align-start-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArrowToLeft"
     },
     {
@@ -3489,6 +3536,7 @@
         "align-top",
         "align-top-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArrowToTop"
     },
     {
@@ -3515,6 +3563,7 @@
         "align-center",
         "align-center-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArrowsToMiddle"
     },
     {
@@ -3776,7 +3825,7 @@
       "aliases": [
         "1020-10668.svg"
       ],
-      "updatedAt": "2026-10-20T19:27:54.924Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFontSize"
     },
     {
@@ -3947,6 +3996,7 @@
       "aliases": [
         "59-9592.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconHeading3"
     },
     {
@@ -3965,7 +4015,7 @@
       "aliases": [
         "748-4506.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconHeading4"
     },
     {
@@ -3984,7 +4034,7 @@
       "aliases": [
         "748-4522.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconHeading5"
     },
     {
@@ -4057,6 +4107,7 @@
       "aliases": [
         "148-6841.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconListBullet"
     },
     {
@@ -4147,22 +4198,24 @@
     },
     {
       "id": "1020:10627",
-      "name": "text-thumbnail",
-      "baseName": "text-thumbnail",
-      "originalName": "text-thumbnail",
+      "name": "paragraph-thumbnail-start",
+      "baseName": "paragraph-thumbnail-start",
+      "originalName": "paragraph-thumbnail-start",
       "width": 16,
       "height": 16,
-      "filename": "text-thumbnail-16.svg",
+      "filename": "paragraph-thumbnail-start-16.svg",
       "file": "svgs/1020-10627.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=1020-10627",
       "notes": [],
       "aliases": [
-        "1020-10627.svg"
+        "1020-10627.svg",
+        "text-thumbnail",
+        "text-thumbnail-16.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
-      "componentName": "IconTextThumbnail"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconParagraphThumbnailStart"
     },
     {
       "id": "944:33003",
@@ -4575,7 +4628,7 @@
       "aliases": [
         "378-8173.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconScissorsCut"
     },
     {
@@ -4710,7 +4763,7 @@
         "text-paragraph",
         "text-paragraph-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconParagraph"
     },
     {
@@ -5232,6 +5285,25 @@
       "componentName": "IconApps"
     },
     {
+      "id": "1123:12021",
+      "name": "apps-lg",
+      "baseName": "apps-lg",
+      "originalName": "apps-lg",
+      "width": 16,
+      "height": 16,
+      "filename": "apps-lg-16.svg",
+      "file": "svgs/1123-12021.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1123-12021",
+      "aliases": [
+        "1123-12021.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconAppsLg"
+    },
+    {
       "id": "1064:1052",
       "name": "apps-search",
       "baseName": "apps-search",
@@ -5285,6 +5357,7 @@
       "aliases": [
         "507-4379.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconAppsPlus"
     },
     {
@@ -5603,6 +5676,7 @@
         "columns-text",
         "columns-text-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconTextColumns"
     },
     {
@@ -5625,6 +5699,25 @@
       ],
       "updatedAt": "2026-10-22T08:06:37.817Z",
       "componentName": "IconParagraphProse"
+    },
+    {
+      "id": "1138:924",
+      "name": "paragraph-thumbnail",
+      "baseName": "paragraph-thumbnail",
+      "originalName": "paragraph-thumbnail",
+      "width": 16,
+      "height": 16,
+      "filename": "paragraph-thumbnail-16.svg",
+      "file": "svgs/1138-924.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1138-924",
+      "aliases": [
+        "1138-924.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconParagraphThumbnail"
     },
     {
       "id": "578:2292",
@@ -6218,7 +6311,7 @@
       "aliases": [
         "811-8650.svg"
       ],
-      "updatedAt": "2026-10-21T20:29:05.169Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconGridMasonry"
     },
     {
@@ -6256,7 +6349,7 @@
       "aliases": [
         "1012-19377.svg"
       ],
-      "updatedAt": "2026-10-21T20:29:05.169Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconGridMasonryFill"
     },
     {
@@ -7194,7 +7287,7 @@
       "aliases": [
         "671-393.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconShadowInner"
     },
     {
@@ -7337,7 +7430,7 @@
       "aliases": [
         "727-431.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArticle"
     },
     {
@@ -7621,6 +7714,7 @@
       "aliases": [
         "578-3202.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconEarth"
     },
     {
@@ -7711,7 +7805,7 @@
       "aliases": [
         "857-24307.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconImageAlt"
     },
     {
@@ -8024,6 +8118,7 @@
       "aliases": [
         "505-486.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconKbdDel"
     },
     {
@@ -8062,6 +8157,7 @@
         "kbd-caps",
         "kbd-caps-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconKbdCapsLock"
     },
     {
@@ -8270,6 +8366,7 @@
         "device-phone",
         "device-phone-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconMobile"
     },
     {
@@ -8649,7 +8746,7 @@
       "aliases": [
         "673-286.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconCloudCheck"
     },
     {
@@ -9653,6 +9750,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconVolumeHighFill"
     },
     {
@@ -9676,6 +9774,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconVolumeHigh"
     },
     {
@@ -9701,6 +9800,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconVolumeLow"
     },
     {
@@ -9726,6 +9826,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconVolumeLowFill"
     },
     {
@@ -9799,7 +9900,7 @@
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconVolumeBluetooth"
     },
     {
@@ -9823,7 +9924,7 @@
       "variantProperties": {
         "fill": "true"
       },
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconVolumeBluetoothFill"
     },
     {
@@ -10083,6 +10184,25 @@
       ],
       "updatedAt": "2026-10-22T08:06:37.817Z",
       "componentName": "IconImage"
+    },
+    {
+      "id": "1119:11985",
+      "name": "image-solid",
+      "baseName": "image-solid",
+      "originalName": "image-solid",
+      "width": 16,
+      "height": 16,
+      "filename": "image-solid-16.svg",
+      "file": "svgs/1119-11985.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1119-11985",
+      "aliases": [
+        "1119-11985.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconImageSolid"
     },
     {
       "id": "734:6316",
@@ -10804,6 +10924,7 @@
         "dir-left",
         "dir-left-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArrowLeft"
     },
     {
@@ -10824,6 +10945,7 @@
         "dir-right",
         "dir-right-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArrowRight"
     },
     {
@@ -11613,26 +11735,6 @@
       "componentName": "IconDownload"
     },
     {
-      "id": "343:9341",
-      "name": "download-wide",
-      "baseName": "download-wide",
-      "originalName": "download-wide",
-      "width": 16,
-      "height": 16,
-      "filename": "download-wide-16.svg",
-      "file": "svgs/343-9341.svg",
-      "sourcePageId": "82:2415",
-      "sourceSectionId": "646:192",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=343-9341",
-      "notes": [],
-      "aliases": [
-        "343-9341.svg",
-        "download-rect",
-        "download-rect-16.svg"
-      ],
-      "componentName": "IconDownloadWide"
-    },
-    {
       "id": "343:9460",
       "name": "download-square",
       "baseName": "download-square",
@@ -11781,6 +11883,7 @@
       "aliases": [
         "582-3458.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSignIn"
     },
     {
@@ -11799,27 +11902,8 @@
       "aliases": [
         "578-3151.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSignOut"
-    },
-    {
-      "id": "343:9458",
-      "name": "upload-wide",
-      "baseName": "upload-wide",
-      "originalName": "upload-wide",
-      "width": 16,
-      "height": 16,
-      "filename": "upload-wide-16.svg",
-      "file": "svgs/343-9458.svg",
-      "sourcePageId": "82:2415",
-      "sourceSectionId": "646:192",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=343-9458",
-      "notes": [],
-      "aliases": [
-        "343-9458.svg",
-        "upload-rect",
-        "upload-rect-16.svg"
-      ],
-      "componentName": "IconUploadWide"
     },
     {
       "id": "98:1928",
@@ -11841,7 +11925,7 @@
         "arrows-repeat",
         "arrows-repeat-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconRepeat"
     },
     {
@@ -11883,7 +11967,7 @@
         "arrows-repeat-one",
         "arrows-repeat-one-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconRepeatOne"
     },
     {
@@ -11990,12 +12074,12 @@
     },
     {
       "id": "841:13376",
-      "name": "arrow-clockwise",
-      "baseName": "arrow-clockwise",
-      "originalName": "arrow-clockwise",
+      "name": "arrow-clockwise-lg",
+      "baseName": "arrow-clockwise-lg",
+      "originalName": "arrow-clockwise-lg",
       "width": 16,
       "height": 16,
-      "filename": "arrow-clockwise-16.svg",
+      "filename": "arrow-clockwise-lg-16.svg",
       "file": "svgs/841-13376.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -12008,10 +12092,12 @@
         "arrow-rotate-cw",
         "arrow-rotate-cw-16.svg",
         "arrow-rotate",
-        "arrow-rotate-16.svg"
+        "arrow-rotate-16.svg",
+        "arrow-clockwise",
+        "arrow-clockwise-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
-      "componentName": "IconArrowClockwise"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconArrowClockwiseLg"
     },
     {
       "id": "841:13537",
@@ -12031,7 +12117,7 @@
         "seek-back-30-1",
         "seek-back-30-1-16.svg"
       ],
-      "updatedAt": "2026-10-21T20:29:05.169Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSeekBack30"
     },
     {
@@ -12050,7 +12136,7 @@
       "aliases": [
         "841-13534.svg"
       ],
-      "updatedAt": "2026-10-21T20:29:05.169Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSeek30"
     },
     {
@@ -12069,7 +12155,7 @@
       "aliases": [
         "841-13535.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSeek15"
     },
     {
@@ -12088,17 +12174,17 @@
       "aliases": [
         "841-13536.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSeekBack15"
     },
     {
       "id": "841:13377",
-      "name": "arrow-counter-clockwise",
-      "baseName": "arrow-counter-clockwise",
-      "originalName": "arrow-counter-clockwise",
+      "name": "arrow-counter-clockwise-lg",
+      "baseName": "arrow-counter-clockwise-lg",
+      "originalName": "arrow-counter-clockwise-lg",
       "width": 16,
       "height": 16,
-      "filename": "arrow-counter-clockwise-16.svg",
+      "filename": "arrow-counter-clockwise-lg-16.svg",
       "file": "svgs/841-13377.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -12111,10 +12197,12 @@
         "arrow-rotate-ccw",
         "arrow-rotate-ccw-16.svg",
         "arrow-rotate-counter",
-        "arrow-rotate-counter-16.svg"
+        "arrow-rotate-counter-16.svg",
+        "arrow-counter-clockwise",
+        "arrow-counter-clockwise-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
-      "componentName": "IconArrowCounterClockwise"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconArrowCounterClockwiseLg"
     },
     {
       "id": "841:13053",
@@ -12273,12 +12361,12 @@
     },
     {
       "id": "578:3210",
-      "name": "arrow-corner-resize",
-      "baseName": "arrow-corner-resize",
-      "originalName": "arrow-corner-resize",
+      "name": "arrow-corner-expand",
+      "baseName": "arrow-corner-expand",
+      "originalName": "arrow-corner-expand",
       "width": 16,
       "height": 16,
-      "filename": "arrow-corner-resize-16.svg",
+      "filename": "arrow-corner-expand-16.svg",
       "file": "svgs/578-3210.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -12289,9 +12377,12 @@
         "expand-from-corner",
         "expand-from-corner-16.svg",
         "corner-resize",
-        "corner-resize-16.svg"
+        "corner-resize-16.svg",
+        "arrow-corner-resize",
+        "arrow-corner-resize-16.svg"
       ],
-      "componentName": "IconArrowCornerResize"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconArrowCornerExpand"
     },
     {
       "id": "915:31701",
@@ -12309,6 +12400,7 @@
       "aliases": [
         "915-31701.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconScale"
     },
     {
@@ -12675,12 +12767,12 @@
     },
     {
       "id": "334:6678",
-      "name": "arrow-redo",
-      "baseName": "arrow-redo",
-      "originalName": "arrow-redo",
+      "name": "arrow-clockwise",
+      "baseName": "arrow-clockwise",
+      "originalName": "arrow-clockwise",
       "width": 16,
       "height": 16,
-      "filename": "arrow-redo-16.svg",
+      "filename": "arrow-clockwise-16.svg",
       "file": "svgs/334-6678.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -12689,9 +12781,12 @@
       "aliases": [
         "334-6678.svg",
         "arrow-redo-arc-lg",
-        "arrow-redo-arc-lg-16.svg"
+        "arrow-redo-arc-lg-16.svg",
+        "arrow-redo",
+        "arrow-redo-16.svg"
       ],
-      "componentName": "IconArrowRedo"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconArrowClockwise"
     },
     {
       "id": "101:4348",
@@ -12804,6 +12899,7 @@
       "aliases": [
         "618-12532.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconArrowRevertHistory"
     },
     {
@@ -12847,12 +12943,12 @@
     },
     {
       "id": "529:7942",
-      "name": "arrow-undo",
-      "baseName": "arrow-undo",
-      "originalName": "arrow-undo",
+      "name": "arrow-counter-clockwise",
+      "baseName": "arrow-counter-clockwise",
+      "originalName": "arrow-counter-clockwise",
       "width": 16,
       "height": 16,
-      "filename": "arrow-undo-16.svg",
+      "filename": "arrow-counter-clockwise-16.svg",
       "file": "svgs/529-7942.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -12861,9 +12957,12 @@
       "aliases": [
         "529-7942.svg",
         "arrow-undo-arc-lg",
-        "arrow-undo-arc-lg-16.svg"
+        "arrow-undo-arc-lg-16.svg",
+        "arrow-undo",
+        "arrow-undo-16.svg"
       ],
-      "componentName": "IconArrowUndo"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconArrowCounterClockwise"
     },
     {
       "id": "469:1424",
@@ -13316,6 +13415,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconCircleQuestion"
     },
     {
@@ -13339,6 +13439,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconCircleQuestionFill"
     },
     {
@@ -13478,6 +13579,25 @@
         "fill": "false"
       },
       "componentName": "IconCircleUser"
+    },
+    {
+      "id": "1119:11569",
+      "name": "circle-dashed-user",
+      "baseName": "circle-dashed-user",
+      "originalName": "circle-dashed-user",
+      "width": 16,
+      "height": 16,
+      "filename": "circle-dashed-user-16.svg",
+      "file": "svgs/1119-11569.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1119-11569",
+      "aliases": [
+        "1119-11569.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconCircleDashedUser"
     },
     {
       "id": "158:11592",
@@ -14393,7 +14513,7 @@
       "aliases": [
         "11-883.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSparkles"
     },
     {
@@ -14412,7 +14532,7 @@
       "aliases": [
         "856-18071.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSparklesFill"
     },
     {
@@ -14431,7 +14551,7 @@
       "aliases": [
         "732-5505.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSparkle"
     },
     {
@@ -14450,7 +14570,7 @@
       "aliases": [
         "856-18075.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSparkleFill"
     },
     {
@@ -14474,6 +14594,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconStar"
     },
     {
@@ -14497,6 +14618,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconStarFill"
     },
     {
@@ -14515,6 +14637,7 @@
       "aliases": [
         "970-7095.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconStarHalfFill"
     },
     {
@@ -14533,6 +14656,7 @@
       "aliases": [
         "970-7131.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconStarHalfPiece"
     },
     {
@@ -15144,6 +15268,7 @@
       "aliases": [
         "193-12943.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconShieldKeyhole"
     },
     {
@@ -15308,6 +15433,7 @@
       "aliases": [
         "395-11019.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconBrain"
     },
     {
@@ -15368,6 +15494,7 @@
         "bug-3",
         "bug-3-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconBugBeetle"
     },
     {
@@ -15431,6 +15558,7 @@
       "aliases": [
         "58-9531.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconCode"
     },
     {
@@ -15470,6 +15598,7 @@
         "code-block-1",
         "code-block-1-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconCodeRectangle"
     },
     {
@@ -15548,6 +15677,7 @@
         "brackets",
         "brackets-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconBraces"
     },
     {
@@ -16091,6 +16221,7 @@
       "aliases": [
         "193-13796.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconVariable"
     },
     {
@@ -17529,12 +17660,12 @@
     },
     {
       "id": "416:11628",
-      "name": "link-new-tab",
-      "baseName": "link-new-tab",
-      "originalName": "link-new-tab",
+      "name": "link-new-window",
+      "baseName": "link-new-window",
+      "originalName": "link-new-window",
       "width": 16,
       "height": 16,
-      "filename": "link-new-tab-16.svg",
+      "filename": "link-new-window-16.svg",
       "file": "svgs/416-11628.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -17543,9 +17674,12 @@
       "aliases": [
         "external-link-2",
         "external-link-2-16.svg",
-        "416-11628.svg"
+        "416-11628.svg",
+        "link-new-tab",
+        "link-new-tab-16.svg"
       ],
-      "componentName": "IconLinkNewTab"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconLinkNewWindow"
     },
     {
       "id": "158:11621",
@@ -18309,6 +18443,7 @@
       "aliases": [
         "679-3531.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconNumbers"
     },
     {
@@ -18327,6 +18462,7 @@
       "aliases": [
         "679-3552.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconNumbersTilt"
     },
     {
@@ -18687,6 +18823,7 @@
         "number-three",
         "number-three-16.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconNumber3"
     },
     {
@@ -18729,7 +18866,7 @@
         "number4-1",
         "number4-1-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconNumber4"
     },
     {
@@ -18772,7 +18909,7 @@
         "number4",
         "number4-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconNumber5"
     },
     {
@@ -18942,6 +19079,25 @@
         "667-738.svg"
       ],
       "componentName": "IconPointerSm"
+    },
+    {
+      "id": "1126:797",
+      "name": "markdown-simple",
+      "baseName": "markdown-simple",
+      "originalName": "markdown-simple",
+      "width": 16,
+      "height": 16,
+      "filename": "markdown-simple-16.svg",
+      "file": "svgs/1126-797.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1126-797",
+      "aliases": [
+        "1126-797.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconMarkdownSimple"
     },
     {
       "id": "158:11590",
@@ -19684,6 +19840,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSendFill"
     },
     {
@@ -20853,7 +21010,7 @@
       "aliases": [
         "752-3991.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconPointDown"
     },
     {
@@ -20872,7 +21029,7 @@
       "aliases": [
         "752-6295.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconPointUp"
     },
     {
@@ -21168,24 +21325,6 @@
       "componentName": "IconGift"
     },
     {
-      "id": "652:1294",
-      "name": "chat-round-question",
-      "baseName": "chat-round-question",
-      "originalName": "chat-round-question",
-      "width": 16,
-      "height": 16,
-      "filename": "chat-round-question-16.svg",
-      "file": "svgs/652-1294.svg",
-      "sourcePageId": "82:2415",
-      "sourceSectionId": "646:192",
-      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=652-1294",
-      "notes": [],
-      "aliases": [
-        "652-1294.svg"
-      ],
-      "componentName": "IconChatRoundQuestion"
-    },
-    {
       "id": "770:580",
       "name": "envelope-letter",
       "baseName": "envelope-letter",
@@ -21201,6 +21340,7 @@
       "aliases": [
         "770-580.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconEnvelopeLetter"
     },
     {
@@ -21568,6 +21708,24 @@
       "componentName": "IconWandSpellFill"
     },
     {
+      "id": "652:1294",
+      "name": "chat-round-question",
+      "baseName": "chat-round-question",
+      "originalName": "chat-round-question",
+      "width": 16,
+      "height": 16,
+      "filename": "chat-round-question-16.svg",
+      "file": "svgs/652-1294.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=652-1294",
+      "notes": [],
+      "aliases": [
+        "652-1294.svg"
+      ],
+      "componentName": "IconChatRoundQuestion"
+    },
+    {
       "id": "768:492",
       "name": "selection",
       "baseName": "selection",
@@ -21727,6 +21885,7 @@
       "aliases": [
         "811-9265.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconPostageStamp"
     },
     {
@@ -21873,7 +22032,7 @@
         "sparkles-three",
         "sparkles-three-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSparklesThreeFill"
     },
     {
@@ -21892,7 +22051,7 @@
       "aliases": [
         "996-34274.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconSparklesThree"
     },
     {
@@ -21919,22 +22078,24 @@
     },
     {
       "id": "895:30734",
-      "name": "bezier",
-      "baseName": "bezier",
-      "originalName": "bezier",
+      "name": "vector-bezier",
+      "baseName": "vector-bezier",
+      "originalName": "vector-bezier",
       "width": 16,
       "height": 16,
-      "filename": "bezier-16.svg",
+      "filename": "vector-bezier-16.svg",
       "file": "svgs/895-30734.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=895-30734",
       "notes": [],
       "aliases": [
-        "895-30734.svg"
+        "895-30734.svg",
+        "bezier",
+        "bezier-16.svg"
       ],
-      "updatedAt": "2026-10-21T20:29:05.169Z",
-      "componentName": "IconBezier"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconVectorBezier"
     },
     {
       "id": "895:30930",
@@ -21953,6 +22114,44 @@
         "895-30930.svg"
       ],
       "componentName": "IconShapes"
+    },
+    {
+      "id": "1123:12034",
+      "name": "shapes-plus",
+      "baseName": "shapes-plus",
+      "originalName": "shapes-plus",
+      "width": 16,
+      "height": 16,
+      "filename": "shapes-plus-16.svg",
+      "file": "svgs/1123-12034.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1123-12034",
+      "aliases": [
+        "1123-12034.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconShapesPlus"
+    },
+    {
+      "id": "1120:12002",
+      "name": "math",
+      "baseName": "math",
+      "originalName": "math",
+      "width": 16,
+      "height": 16,
+      "filename": "math-16.svg",
+      "file": "svgs/1120-12002.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1120-12002",
+      "aliases": [
+        "1120-12002.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconMath"
     },
     {
       "id": "895:30733",
@@ -22116,7 +22315,7 @@
       "aliases": [
         "1005-19247.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconFlame"
     },
     {
@@ -22153,6 +22352,7 @@
       "aliases": [
         "970-7180.svg"
       ],
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconStarHalfPieceFill"
     },
     {
@@ -22209,7 +22409,7 @@
       "aliases": [
         "1001-822.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconBird"
     },
     {
@@ -22247,7 +22447,7 @@
         "1068-1482.svg"
       ],
       "addedAt": "2026-10-21T17:25:31.123Z",
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconScrew"
     },
     {
@@ -22326,28 +22526,68 @@
         "1064-731.svg"
       ],
       "addedAt": "2026-10-21T17:25:31.123Z",
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconDPad"
     },
     {
       "id": "1064:757",
-      "name": "dots-diamond",
-      "baseName": "dots-diamond",
-      "originalName": "dots-diamond",
+      "name": "dots-diamond-fill",
+      "baseName": "dots-diamond-fill",
+      "originalName": "dots-diamond-fill",
       "width": 16,
       "height": 16,
-      "filename": "dots-diamond-16.svg",
+      "filename": "dots-diamond-fill-16.svg",
       "file": "svgs/1064-757.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=1064-757",
       "notes": [],
       "aliases": [
-        "1064-757.svg"
+        "1064-757.svg",
+        "dots-diamond",
+        "dots-diamond-16.svg"
       ],
       "addedAt": "2026-10-21T17:25:31.123Z",
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconDotsDiamondFill"
+    },
+    {
+      "id": "1155:8945",
+      "name": "dots-diamond",
+      "baseName": "dots-diamond",
+      "originalName": "dots-diamond",
+      "width": 16,
+      "height": 16,
+      "filename": "dots-diamond-16.svg",
+      "file": "svgs/1155-8945.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1155-8945",
+      "aliases": [
+        "1155-8945.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconDotsDiamond"
+    },
+    {
+      "id": "1155:8958",
+      "name": "dots-triangle",
+      "baseName": "dots-triangle",
+      "originalName": "dots-triangle",
+      "width": 16,
+      "height": 16,
+      "filename": "dots-triangle-16.svg",
+      "file": "svgs/1155-8958.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1155-8958",
+      "aliases": [
+        "1155-8958.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconDotsTriangle"
     },
     {
       "id": "328:6275",
@@ -22450,52 +22690,56 @@
     },
     {
       "id": "58:9540",
-      "name": "text",
-      "baseName": "text",
+      "name": "text-title",
+      "baseName": "text-title",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "filename": "text-16.svg",
+      "filename": "text-title-16.svg",
       "file": "svgs/58-9540.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=58-9540",
       "notes": [],
       "aliases": [
-        "58-9540.svg"
+        "58-9540.svg",
+        "text",
+        "text-16.svg"
       ],
       "variantSetId": "1084:12365",
-      "variantSetName": "text",
+      "variantSetName": "text-title",
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-10-22T08:06:37.817Z",
-      "componentName": "IconText"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconTextTitle"
     },
     {
       "id": "1084:12366",
-      "name": "text-fill",
-      "baseName": "text",
+      "name": "text-title-fill",
+      "baseName": "text-title",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
-      "filename": "text-fill-16.svg",
+      "filename": "text-title-fill-16.svg",
       "file": "svgs/1084-12366.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/icons-astra?node-id=1084-12366",
       "notes": [],
       "aliases": [
-        "1084-12366.svg"
+        "1084-12366.svg",
+        "text-fill",
+        "text-fill-16.svg"
       ],
       "variantSetId": "1084:12365",
-      "variantSetName": "text",
+      "variantSetName": "text-title",
       "variantProperties": {
         "fill": "true"
       },
       "addedAt": "2026-10-22T08:06:37.817Z",
-      "updatedAt": "2026-10-22T08:06:37.817Z",
-      "componentName": "IconTextFill"
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconTextTitleFill"
     },
     {
       "id": "741:8223",
@@ -22594,6 +22838,25 @@
       },
       "updatedAt": "2026-10-23T02:14:05.730Z",
       "componentName": "IconMarkdown"
+    },
+    {
+      "id": "1156:9092",
+      "name": "agent-sub-simple",
+      "baseName": "agent-sub-simple",
+      "originalName": "agent-sub-simple",
+      "width": 16,
+      "height": 16,
+      "filename": "agent-sub-simple-16.svg",
+      "file": "svgs/1156-9092.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "sourceUrl": "https://www.figma.com/design/KA61XWs3LqkOU2bzzvjEeW/FYIcons?node-id=1156-9092",
+      "aliases": [
+        "1156-9092.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "componentName": "IconAgentSubSimple"
     }
   ]
 }
