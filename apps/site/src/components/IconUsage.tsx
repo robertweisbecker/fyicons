@@ -1,9 +1,11 @@
 import { useId } from 'react';
+import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/Icon';
 import { download } from '@/lib/downloads';
 import type { IconRecord } from '@/lib/catalog';
 import { IconCopyButton } from './IconCopyButton';
+import { InstallCommand } from './InstallCommand';
 import { Badge } from './ui/badge';
 
 const dateFormat = new Intl.DateTimeFormat('en-US', {
@@ -15,6 +17,7 @@ const dateFormat = new Intl.DateTimeFormat('en-US', {
 export function IconUsage({ item }: { item: IconRecord }) {
   const headingId = useId();
   const jsx = `import {\n  ${item.componentName},\n} from '@/icons';\n\n<${item.componentName} size={16} />`;
+  const shadcnCommand = `npx shadcn@latest add 'robertweisbecker/fyicons/${item.name}#fyicons@${packageInfo.version}'`;
 
   return (
     <section
@@ -76,6 +79,13 @@ export function IconUsage({ item }: { item: IconRecord }) {
           >
             <code>{jsx}</code>
           </pre>
+        </div>
+        <div className="p-1">
+          <InstallCommand
+            command={shadcnCommand}
+            label="shadcn"
+            className="text-[11px]"
+          />
         </div>
         {(item.addedAt || item.updatedAt) && (
           <p className="px-3 py-2 text-xs text-muted">

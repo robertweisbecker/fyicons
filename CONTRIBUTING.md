@@ -82,6 +82,6 @@ The website uses local font files. Keep their notices in `apps/site/public/licen
 
 [The Pages workflow](.github/workflows/pages.yml) builds, tests, and deploys `apps/site/dist/` from `main`. Pull requests run checks without deployment. Root documentation changes do not trigger a site build. Changes to the ZIP README do trigger a build because downloads include that file.
 
-For a new GitHub Pages deployment, select **GitHub Actions** as the deployment source in the repository settings. Vite uses relative asset URLs for root and project paths. The build enforces a 4 MiB limit. Release artifacts stay outside `apps/site/dist/`.
+For a new GitHub Pages deployment, select **GitHub Actions** as the deployment source in the repository settings. Vite uses relative asset URLs for root and project paths. The build enforces a 4.5 MiB limit. Demo wallpapers load from external Raycast URLs. Release artifacts stay outside `apps/site/dist/`.
 
 Keep host credentials, DNS account details, and personal setup notes outside the repository. Use the host's documentation for domain setup.

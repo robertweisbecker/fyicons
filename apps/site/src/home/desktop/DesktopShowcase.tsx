@@ -1,20 +1,40 @@
+import { useState } from 'react';
 import { Tabs } from '@base-ui/react/tabs';
 import { ScrollArea } from '@base-ui/react/scroll-area';
 import { Icon } from '@/components/Icon';
+
 import { DesignApp } from './DesignApp';
 import { FilesApp } from './FilesApp';
 import { CodeApp } from './CodeApp';
 import { MusicApp } from './MusicApp';
 import { SocialApp } from './SocialApp';
 import { AgentsApp } from './AgentsApp';
+import { DeviceBattery, DeviceClock } from '../DeviceStatus';
+
+const glassRainbow =
+  'https://misc-assets.raycast.com/wallpapers/glass-rainbow-preview.png';
+const blossom =
+  'https://misc-assets.raycast.com/wallpapers/blossom-2-preview.png';
+const asciiHalftone =
+  'https://misc-assets.raycast.com/wallpapers/ascii_halftone_preview.png';
+const moonrise =
+  'https://misc-assets.raycast.com/wallpapers/moonrise-preview.png';
+const blueDistortion =
+  'https://misc-assets.raycast.com/wallpapers/blue_distortion_1_preview.png';
+const glaze = 'https://misc-assets.raycast.com/wallpapers/glaze_1_preview.png';
 
 const apps = [
-  { id: 'design', name: 'Design', icon: 'pen-tool' },
-  { id: 'files', name: 'Files', icon: 'files-tilt' },
-  { id: 'code', name: 'Code', icon: 'code' },
-  { id: 'agents', name: 'Chat', icon: 'chat-sparkles' },
-  { id: 'social', name: 'Social', icon: 'thumbs-up' },
-  { id: 'music', name: 'Media', icon: 'headphones' },
+  { id: 'design', name: 'Design', icon: 'pen-tool', wallpaper: glassRainbow },
+  { id: 'files', name: 'Files', icon: 'files-tilt', wallpaper: blossom },
+  { id: 'code', name: 'Code', icon: 'code', wallpaper: asciiHalftone },
+  { id: 'agents', name: 'Chat', icon: 'chat-sparkles', wallpaper: moonrise },
+  {
+    id: 'social',
+    name: 'Social',
+    icon: 'thumbs-up',
+    wallpaper: blueDistortion,
+  },
+  { id: 'music', name: 'Media', icon: 'headphones', wallpaper: glaze },
 ] as const;
 
 const panelClassName =
@@ -43,28 +63,29 @@ function DesktopStatusBar() {
             <Icon key={name} name={name} />
           ))}
         </div>
-        <span className="flex items-center gap-1">
-          <span className="hidden @sm/desktop:inline">100%</span>
-          <Icon name="battery" />
-        </span>
+        <DeviceBattery percentageClassName="hidden @sm/desktop:inline" />
         <Icon name="wifi-fill" />
         <Icon name="atom-spiral" />
         <Icon name="switches-ios" />
-        <span className="hidden whitespace-nowrap @2xl/desktop:inline">
-          Tue Oct 6 6:31 PM
-        </span>
+        <DeviceClock className="hidden @2xl/desktop:inline" />
       </div>
     </div>
   );
 }
 
 export function DesktopShowcase() {
+  const [activeApp, setActiveApp] = useState<string>('design');
+
   return (
     <section
       aria-label="Icons in use"
       className="@container/desktop mx-auto max-w-250 pb-4"
     >
-      <Tabs.Root defaultValue="design" className="group/desktop relative">
+      <Tabs.Root
+        value={activeApp}
+        onValueChange={setActiveApp}
+        className="group/desktop relative"
+      >
         <ScrollArea.Root className="absolute! bottom-2 left-1/2 z-20 w-max max-w-[calc(100%-1.5rem)] -translate-x-1/2 translate-y-1/2 rounded-full bg-neutral-700 shadow-lg ring-1 ring-white/10 dark:bg-dialog">
           <Tabs.List
             aria-label="Demo apps"
@@ -84,27 +105,42 @@ export function DesktopShowcase() {
             <Tabs.Indicator className="pointer-events-none absolute top-(--active-tab-top) left-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) rounded-full bg-white/10 text-white shadow-[inset_0_2px_1px_-1px_--alpha(currentColor_/_10%),var(--shadow-md)] ring-1 ring-black/20 transition-[translate,width] duration-150 ease-in-out group-has-[[role=tab]:focus-visible]/desktop:transition-none!" />
           </Tabs.List>
         </ScrollArea.Root>
-        <div className="desktop-wallpaper overflow-hidden rounded-2xl border border-border">
-          <DesktopStatusBar />
-          <div className="grid h-152 sm:h-144">
-            <Tabs.Panel value="design" keepMounted className={panelClassName}>
-              <DesignApp />
-            </Tabs.Panel>
-            <Tabs.Panel value="files" keepMounted className={panelClassName}>
-              <FilesApp />
-            </Tabs.Panel>
-            <Tabs.Panel value="code" keepMounted className={panelClassName}>
-              <CodeApp />
-            </Tabs.Panel>
-            <Tabs.Panel value="agents" keepMounted className={panelClassName}>
-              <AgentsApp />
-            </Tabs.Panel>
-            <Tabs.Panel value="social" keepMounted className={panelClassName}>
-              <SocialApp />
-            </Tabs.Panel>
-            <Tabs.Panel value="music" keepMounted className={panelClassName}>
-              <MusicApp />
-            </Tabs.Panel>
+        <div className="rounded-2xl border border-border">
+          {/* Clip the backdrop inside the border so it cannot cover the rounded frame. */}
+          <div className="relative isolate overflow-hidden rounded-[calc(var(--radius-2xl)-1px)] bg-neutral-900 [clip-path:inset(0_round_calc(var(--radius-2xl)-1px))]">
+            {apps.map((app) => (
+              <img
+                key={app.id}
+                src={app.wallpaper}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                data-active={activeApp === app.id ? '' : undefined}
+                className="pointer-events-none absolute inset-0 -z-10 size-full object-cover opacity-0 transition-opacity duration-200 ease-[ease] group-has-[[role=tab]:focus-visible]/desktop:transition-none! motion-reduce:transition-none data-active:opacity-100"
+              />
+            ))}
+            <DesktopStatusBar />
+            <div className="grid h-152 sm:h-144">
+              <Tabs.Panel value="design" keepMounted className={panelClassName}>
+                <DesignApp />
+              </Tabs.Panel>
+              <Tabs.Panel value="files" keepMounted className={panelClassName}>
+                <FilesApp />
+              </Tabs.Panel>
+              <Tabs.Panel value="code" keepMounted className={panelClassName}>
+                <CodeApp />
+              </Tabs.Panel>
+              <Tabs.Panel value="agents" keepMounted className={panelClassName}>
+                <AgentsApp />
+              </Tabs.Panel>
+              <Tabs.Panel value="social" keepMounted className={panelClassName}>
+                <SocialApp />
+              </Tabs.Panel>
+              <Tabs.Panel value="music" keepMounted className={panelClassName}>
+                <MusicApp />
+              </Tabs.Panel>
+            </div>
           </div>
         </div>
       </Tabs.Root>

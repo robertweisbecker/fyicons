@@ -105,7 +105,7 @@
 @layer base {
   body {
     position: relative;
-    @apply m-0 bg-bg font-sans text-ink antialiased;
+    @apply m-0 bg-canvas font-sans text-ink antialiased;
   }
   #root {
     isolation: isolate;
@@ -141,18 +141,5 @@
     scroll-behavior: auto !important;
     transition: none !important;
     animation: none !important;
-  }
-}
-
-@layer components {
-  .desktop-wallpaper {
-    /* Keep the status bar's backdrop local to this window, excluding hero animations. */
-    clip-path: inset(0 round var(--radius-2xl));
-    background-image: radial-gradient(
-      ellipse at 40% 30%,
-      var(--color-orange-200),
-      var(--color-rose-300),
-      var(--color-rose-400)
-    );
   }
 }

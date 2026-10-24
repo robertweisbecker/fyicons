@@ -10,13 +10,13 @@ import { DesignRail } from './DesignRail';
 import { Window, WindowControls } from './Window';
 
 const tools = [
-  ['pointer', 'Select'],
+  ['pointer', 'Move'],
   ['frame', 'Frame'],
   ['square', 'Rectangle'],
-  ['pen-tool', 'Vector'],
+  ['pen-tool', 'Pen'],
   ['text', 'Text'],
   ['chat-round', 'Comment'],
-  ['apps-plus', 'Resources'],
+  ['apps-plus', 'Actions'],
 ] as const;
 export function DesignApp() {
   const [tool, setTool] = useState(['pointer']);
@@ -31,7 +31,7 @@ export function DesignApp() {
       header={
         <div
           className="flex h-9 shrink-0 items-center border-b border-line bg-bg text-xs text-muted"
-          aria-label="Design file bar"
+          aria-label="Design app bar"
         >
           <WindowControls />
           <Button
@@ -45,7 +45,7 @@ export function DesignApp() {
           <Button
             variant="ghost"
             size="icon-sm"
-            aria-label="Design community"
+            aria-label="Community"
             className="mr-1"
           >
             <Icon name="globe-simple" />
@@ -53,7 +53,7 @@ export function DesignApp() {
           <div className="flex h-full min-w-0 items-center gap-2 border-x border-line bg-surface px-3 text-ink">
             <Icon name="pen-tool" className="text-control-accent" />
             <span className="min-w-0 truncate">Design</span>
-            <Glyph name="xmark-sm" className="ml-3 text-muted" />
+            <Glyph name="xmark" className="ml-3 text-muted" />
           </div>
           <Button
             ref={inspectorToggle}
@@ -138,7 +138,7 @@ export function DesignApp() {
                     key={icon}
                     value={icon}
                     icon={icon}
-                    label={`${label} canvas tool`}
+                    label={`${label}`}
                     size="icon-sm"
                     className="data-pressed:bg-control-accent data-pressed:text-white data-pressed:hover:bg-control-accent"
                   />
@@ -151,14 +151,14 @@ export function DesignApp() {
               >
                 {[
                   ['scribble', 'Draw'],
-                  ['pointer-rulers', 'Measure'],
-                  ['code', 'Code'],
+                  ['pointer-rulers', 'Design'],
+                  ['code', 'Dev Mode'],
                 ].map(([icon, label]) => (
                   <DemoToggle
                     key={icon}
                     value={icon}
                     icon={icon}
-                    label={`${label} mode`}
+                    label={`${label}`}
                     variant="elevated"
                     size="icon-sm"
                   />

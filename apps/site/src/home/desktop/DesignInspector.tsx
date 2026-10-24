@@ -71,7 +71,7 @@ export function DesignInspector({
         <Glyph name="component" />
       </div>
       <div className="space-y-2 border-b border-line p-3">
-        <h3 className="font-medium">Layout</h3>
+        <h3 className="sr-only font-medium">Layout</h3>
         <dl className="grid grid-cols-2 gap-1">
           <PropertyValue label="X position" value="0" />
           <PropertyValue label="Y position" value="0" />
@@ -86,7 +86,7 @@ export function DesignInspector({
         </dl>
       </div>
       <div className="space-y-2 border-b border-line p-3">
-        <h3 className="font-medium">Typography</h3>
+        <h3 className="sr-only font-medium">Typography</h3>
         <div className="flex h-6 items-center gap-2 rounded-md bg-inset px-0.5 py-px pe-1">
           <div className="flex h-5 grow items-center gap-2 rounded-md bg-surface ps-1.5 pe-2 ring ring-border">
             <Icon name="text" className="text-muted" size={12} />
@@ -111,8 +111,9 @@ export function DesignInspector({
       </div>
       <div className="space-y-2 border-b border-line p-3">
         <div className="flex items-center justify-between">
-          <h3 className="flex items-center gap-2 font-medium">Fill</h3>
-          <Icon name="swatch" className="text-muted" />
+          <h3 className="sr-only flex items-center gap-2 font-medium">Fill</h3>
+          <Glyph name="swatch" className="ms-auto text-muted" />
+          <Glyph name="apps" className="text-muted" />
         </div>
         <div className="flex items-center gap-2">
           <Glyph name="paint-bucket" className="text-muted" />
@@ -149,7 +150,7 @@ export function DesignInspector({
             size="icon-xs"
             className="ml-auto"
           />
-          <Icon name="minus" className="text-muted" />
+          <Glyph name="minus" className="text-muted" />
         </div>
       </div>
       <div className="flex items-center justify-between border-b border-line px-3 py-2">

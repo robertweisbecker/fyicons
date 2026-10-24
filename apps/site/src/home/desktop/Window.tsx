@@ -45,7 +45,7 @@ export function Window({
   return (
     <div
       className={cn(
-        '@container/window flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl bg-surface text-sm text-ink shadow-xl ring ring-line',
+        '@container/window flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl bg-surface text-sm text-ink shadow-xl outline outline-offset-(--surface-outline-offset) outline-border',
         className,
       )}
     >

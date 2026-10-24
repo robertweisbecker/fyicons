@@ -58,7 +58,7 @@ type Props = {
   onDockedChange: (docked: boolean) => void;
   onCategoryChange: (category: string) => void;
 };
-const compactHeight = 144;
+const compactHeight = 112;
 const snapPoints = [compactHeight, 1];
 function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
   return (
@@ -80,13 +80,18 @@ function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
 function PreviewGridControl({
   grid,
   setGrid,
+  className,
 }: {
   grid: boolean;
   setGrid: (value: boolean) => void;
+  className?: string;
 }) {
   return (
     <div
-      className="surface pointer-events-none absolute top-3 right-2 opacity-0 transition-opacity duration-150 ease-out group-focus-within/preview-container:pointer-events-auto group-focus-within/preview-container:opacity-100 group-hover/preview-container:pointer-events-auto group-hover/preview-container:opacity-100 pointer-coarse:pointer-events-auto pointer-coarse:opacity-100"
+      className={cn(
+        'surface pointer-events-none absolute top-3 right-2 opacity-0 transition-opacity duration-150 ease-out group-focus-within/preview-container:pointer-events-auto group-focus-within/preview-container:opacity-100 group-hover/preview-container:pointer-events-auto group-hover/preview-container:opacity-100 pointer-coarse:pointer-events-auto pointer-coarse:opacity-100',
+        className,
+      )}
       data-base-ui-swipe-ignore
     >
       <Toggle
@@ -207,35 +212,43 @@ function Details({
     </>
   );
 }
-function Pagination({
+function PaginationButtons({
   item,
   visible,
   navigate,
 }: Pick<Props, 'item' | 'visible' | 'navigate'>) {
   const index = visible.findIndex((icon) => icon.id === item?.id);
   return (
-    <footer
+    <div
+      role="group"
       aria-label="Icon pagination"
-      className="flex shrink-0 items-center justify-between gap-3 py-2 ps-2 pe-5"
+      className="flex gap-1"
+      data-base-ui-swipe-ignore
     >
-      <div className="flex gap-1">
-        <IconButton
-          icon="chevron-left"
-          label="Previous icon"
-          disabled={index <= 0}
-          onClick={() => navigate(-1)}
-        />
-        <IconButton
-          icon="chevron-right"
-          label="Next icon"
-          disabled={index < 0 || index >= visible.length - 1}
-          onClick={() => navigate(1)}
-        />
-      </div>
+      <IconButton
+        icon="chevron-left"
+        label="Previous icon"
+        disabled={index <= 0}
+        onClick={() => navigate(-1)}
+      />
+      <IconButton
+        icon="chevron-right"
+        label="Next icon"
+        disabled={index < 0 || index >= visible.length - 1}
+        onClick={() => navigate(1)}
+      />
+    </div>
+  );
+}
+function Pagination(props: Pick<Props, 'item' | 'visible' | 'navigate'>) {
+  const index = props.visible.findIndex((icon) => icon.id === props.item?.id);
+  return (
+    <footer className="flex shrink-0 items-center justify-between gap-3 py-2 ps-2 pe-5">
+      <PaginationButtons {...props} />
       <span aria-live="polite" className="text-xs text-muted tabular-nums">
         {index < 0
           ? 'Outside current filters'
-          : `${index + 1} of ${visible.length}`}
+          : `${index + 1} of ${props.visible.length}`}
       </span>
     </footer>
   );
@@ -374,38 +387,20 @@ export function Inspector(props: Props) {
                     <IconButton
                       icon="xmark"
                       label="Close icon details"
-                      className="absolute top-1 right-2"
+                      className="absolute top-1 left-2"
                       data-base-ui-swipe-ignore
                     />
                   }
                 />
-              </div>
-              <div
-                className="mobile-inspector-header-metadata text-center"
-                inert={!expanded}
-              >
-                <DrawerTitle
-                  className="truncate text-base font-semibold"
-                  aria-label={getIconDisplayName(item)}
-                  title={getIconDisplayName(item)}
+                <div
+                  className="absolute top-1 right-2"
+                  data-base-ui-swipe-ignore
                 >
-                  {expanded ? (
-                    <InspectorLink
-                      key={item.id}
-                      name={getIconDisplayName(item)}
-                      share={props.share}
-                    />
-                  ) : (
-                    getIconDisplayName(item)
-                  )}
-                </DrawerTitle>
-                <NativeSizePreview
-                  item={item}
-                  className="mt-1 justify-center"
-                />
+                  <IconCopyButton key={item.id} item={item} size="icon" />
+                </div>
               </div>
-              <header className="mobile-inspector-hero">
-                <div className="mobile-inspector-art group/preview-container rounded-xl bg-canvas outline outline-line">
+              <header className="mobile-inspector-hero group/preview-container">
+                <div className="mobile-inspector-art rounded-xl bg-canvas outline outline-line">
                   <Button
                     variant="unstyled"
                     size="unstyled"
@@ -418,37 +413,42 @@ export function Inspector(props: Props) {
                   >
                     <IconPreview item={item} grid={grid} />
                   </Button>
-                  {expanded && (
-                    <PreviewGridControl grid={grid} setGrid={setGrid} />
-                  )}
                 </div>
-                <div
-                  className="mobile-inspector-metadata pr-2"
-                  aria-hidden={expanded || undefined}
-                  inert={expanded}
-                >
-                  <div
-                    className="truncate text-sm font-semibold"
+                <div className="mobile-inspector-metadata flex items-center">
+                  <DrawerTitle
+                    className="w-full text-sm font-semibold"
+                    aria-label={getIconDisplayName(item)}
                     title={getIconDisplayName(item)}
                   >
-                    {!expanded ? (
-                      <InspectorLink
-                        key={item.id}
-                        name={getIconDisplayName(item)}
-                        share={props.share}
-                      />
-                    ) : (
-                      getIconDisplayName(item)
-                    )}
-                  </div>
-                  <NativeSizePreview item={item} className="mt-1" />
+                    <Button
+                      variant="unstyled"
+                      size="unstyled"
+                      className="group/link max-w-full min-w-0 justify-start rounded-sm font-semibold"
+                      aria-label={`Open details for ${getIconDisplayName(item)}`}
+                      aria-expanded={expanded}
+                      onClick={() => {
+                        props.share();
+                        setSnapPoint(1);
+                      }}
+                      data-base-ui-swipe-ignore
+                    >
+                      <span className="truncate underline-offset-4 group-hover/link:underline">
+                        {getIconDisplayName(item)}
+                      </span>
+                      <Icon name="link" className="shrink-0 text-muted" />
+                    </Button>
+                  </DrawerTitle>
                 </div>
-                <div
-                  className="mobile-inspector-actions absolute top-8 right-2 flex gap-0.5"
-                  data-base-ui-swipe-ignore
-                >
-                  <IconCopyButton key={item.id} item={item} size="icon-xs" />
+                <div className="absolute top-5 right-3">
+                  <PaginationButtons {...props} />
                 </div>
+                {expanded && (
+                  <PreviewGridControl
+                    grid={grid}
+                    setGrid={setGrid}
+                    className="top-16"
+                  />
+                )}
               </header>
               <DrawerScroll
                 inert={!expanded}
@@ -459,7 +459,6 @@ export function Inspector(props: Props) {
               >
                 {details}
               </DrawerScroll>
-              <Pagination {...props} />
             </div>
           )}
         </DrawerContent>

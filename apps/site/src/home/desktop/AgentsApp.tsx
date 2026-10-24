@@ -81,7 +81,9 @@ export function AgentsApp() {
             <Message aria-label="Assistant response">
               <MessageContent>
                 <Bubble variant="ghost">
-                  <BubbleContent>{response}</BubbleContent>
+                  <BubbleContent className="text-xs leading-relaxed">
+                    {response}
+                  </BubbleContent>
                 </Bubble>
                 <ResponseActions />
               </MessageContent>
@@ -89,7 +91,7 @@ export function AgentsApp() {
             <Message align="end" aria-label="Your message">
               <MessageContent>
                 <Bubble>
-                  <BubbleContent>
+                  <BubbleContent className="text-xs leading-relaxed">
                     <span className="text-focus">/goal</span> So we take the War
                     Rig and charge it right through the middle of them. We can
                     decouple the tanker at the pass, shut it off behind us.

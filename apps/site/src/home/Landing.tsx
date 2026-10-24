@@ -2,8 +2,9 @@ import packageInfo from 'fyicons/package.json';
 import { type MouseEvent } from 'react';
 import { Tooltip } from '@base-ui/react/tooltip';
 import { Icon } from '@/components/Icon';
+import { InstallCommand } from '@/components/InstallCommand';
 import { icons } from '@/lib/catalog';
-import { githubHref, pageHref, type Page } from '@/lib/navigation';
+import { pageHref, type Page } from '@/lib/navigation';
 import { DesktopShowcase } from './desktop/DesktopShowcase';
 import { IconGroupCarousel } from './IconGroupCarousel';
 import { IconSpecimen } from './IconSpecimen';
@@ -63,22 +64,14 @@ export default function Landing({
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
                 <a
-                  className="inline-flex min-h-11 items-center gap-1.5 underline decoration-1 underline-offset-4 hover:text-ink"
+                  className="inline-flex items-center gap-1.5 underline decoration-1 underline-offset-4 hover:text-ink"
                   href={pageHref('library')}
                   onClick={(event) => navigate('library', event)}
                 >
                   View library
                   <Icon name="arrow-right" />
                 </a>
-                <a
-                  className="inline-flex min-h-11 items-center gap-1.5 underline decoration-1 underline-offset-4 hover:text-ink"
-                  href={githubHref}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub
-                  <Icon name="arrow-up-right" />
-                </a>
+                <InstallCommand command="npm i fyicons" label="npm" />
               </div>
             </div>
           </div>

@@ -43,8 +43,7 @@ function DriveLocations() {
         {locations.map(([icon, label]) => (
           <li
             key={label}
-            title={label}
-            className="flex min-h-7 items-center justify-center gap-2 rounded-full px-3 hover:bg-hover @2xl/window:justify-start"
+            className="flex min-h-7 items-center justify-center gap-2 rounded-full px-3 text-muted hover:bg-hover hover:text-ink @2xl/window:justify-start"
           >
             <Icon name={icon} />
             <span className="sr-only @2xl/window:not-sr-only">{label}</span>
@@ -52,7 +51,7 @@ function DriveLocations() {
         ))}
       </ul>
       <div className="h-px bg-line" />
-      <span className="flex min-h-7 items-center justify-center gap-2 rounded-full px-3 hover:bg-hover @2xl/window:justify-start">
+      <span className="flex min-h-7 items-center justify-center gap-2 rounded-full px-3 text-muted hover:bg-hover hover:text-ink @2xl/window:justify-start">
         <Icon name="cloud" />
         <span className="sr-only @2xl/window:not-sr-only">Storage</span>
         <Badge

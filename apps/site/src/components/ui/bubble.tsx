@@ -24,7 +24,7 @@ export function BubbleContent({ className, ...props }: ComponentProps<'div'>) {
     <div
       data-slot="bubble-content"
       className={cn(
-        'rounded-xl bg-canvas px-3 py-2 text-sm wrap-break-word group-data-[variant=ghost]/bubble:rounded-none group-data-[variant=ghost]/bubble:bg-transparent group-data-[variant=ghost]/bubble:p-0 group-data-[variant=primary]/bubble:bg-focus/8 group-data-[variant=primary]/bubble:text-ink',
+        'rounded-xl bg-hover px-3 py-2 text-sm wrap-break-word group-data-[variant=ghost]/bubble:rounded-none group-data-[variant=ghost]/bubble:bg-transparent group-data-[variant=ghost]/bubble:p-0 group-data-[variant=primary]/bubble:bg-focus/8 group-data-[variant=primary]/bubble:text-ink',
         className,
       )}
       {...props}

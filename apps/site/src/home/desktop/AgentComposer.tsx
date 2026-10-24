@@ -61,21 +61,21 @@ export function AgentActivity({
 export function AgentComposer() {
   const [mode, setMode] = useState('Goal');
   return (
-    <div className="w-full text-muted">
-      <div className="mb-2 flex items-center gap-2.5 rounded-xl bg-hover px-2 py-1.5 text-xs text-muted shadow-sm outline outline-offset-(--surface-outline-offset) outline-line">
+    <div className="w-full">
+      <div className="no-wrap mb-2 flex items-center gap-2.5 rounded-xl bg-surface px-2 py-1.5 text-xs shadow-sm outline outline-offset-(--surface-outline-offset) outline-line">
         <Icon name="target-bullseye" />
-        <span className="mr-auto">
-          Pursuing <span className="line-through opacity-30">goal</span>{' '}
+        <span className="mr-auto truncate">
+          Pursuing <span className="line-through opacity-50">goal</span>{' '}
           Immortan Joe
         </span>
         <span className="inline-flex items-center gap-1">
           <Icon name="agent" />2
         </span>
         <span className="inline-flex items-center gap-1">
-          <Icon name="clock" />
+          <Icon name="timer" />
           1:47:02
         </span>
-        <div className="flex w-full items-center justify-end gap-1 @md/window:w-auto">
+        <div className="no-wrap flex w-full items-center justify-end gap-1 @md/window:w-auto">
           <Icon
             name="line-vertical"
             className="hidden text-border @md/window:block"
@@ -86,14 +86,14 @@ export function AgentComposer() {
             icon="circle-pause"
             activeIcon="circle-play"
             size="icon-xs"
-            variant="text"
-            className="data-pressed:text-muted"
+            // variant="ghost"
+            className="data-pressed:bg-transparent"
           />
           <DemoIconButton
             label="Delete goal"
             icon="trash"
             size="icon-xs"
-            className="hidden @md/window:block"
+            className="@max-md/window:hidden"
           />
           <DemoIconButton
             label="Expand goal"

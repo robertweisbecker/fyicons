@@ -51,7 +51,7 @@
 .mobile-inspector-hero {
   position: relative;
   container-type: inline-size;
-  height: calc(60px + 212px * var(--inspector-progress));
+  height: calc(76px + 196px * var(--inspector-progress));
   flex-shrink: 0;
 }
 .mobile-inspector-art {
@@ -76,7 +76,7 @@
         ((100cqw - (48px + 96px * var(--art-progress))) * 0.5 - 16px) *
           var(--center-progress)
       ),
-      calc(64px * clamp(0, calc(var(--inspector-progress) * 6), 1)),
+      calc(96px * clamp(0, calc(var(--inspector-progress) * 6), 1)),
       0
     )
     scale(calc(0.333333 + 0.666667 * var(--art-progress)));
@@ -85,26 +85,15 @@
   outline-offset: calc(-3px + 2px * var(--art-progress));
   border-radius: calc(24px - 12px * var(--art-progress));
 }
-/* Distinct text lanes avoid sending the label through the growing preview.
-   The compact label leaves before the centered header arrives. */
+/* Keep the same title button mounted as the artwork moves down and grows,
+   so expanding from the title preserves keyboard focus. */
 .mobile-inspector-metadata {
   position: absolute;
   left: 80px;
   top: 12px;
-  width: calc(100% - 180px);
-  opacity: clamp(0, calc(1 - var(--inspector-progress) * 10), 1);
-  transform: translateY(calc(-8px * var(--inspector-progress)));
-}
-.mobile-inspector-header-metadata {
-  position: absolute;
-  top: 30px;
-  left: 88px;
-  right: 88px;
-  opacity: clamp(0, calc((var(--inspector-progress) - 0.2) * 5), 1);
-  transform: translateY(calc(8px * (1 - var(--inspector-progress))));
-}
-.mobile-inspector-actions {
-  transform: translateY(calc(44px * var(--inspector-progress)));
+  height: 48px;
+  width: calc(100% - 176px + 64px * var(--inspector-progress));
+  transform: translateX(calc(-64px * var(--inspector-progress)));
 }
 .inspector-scroll {
   -webkit-overflow-scrolling: touch;

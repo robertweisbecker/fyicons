@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
 import { MusicPlayer } from './MusicPlayer';
@@ -11,40 +11,131 @@ export function MusicApp() {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(84);
-  const [queueOpen, setQueueOpen] = useState(false);
+  const [wide, setWide] = useState(false);
+  const [queuePreference, setQueuePreference] = useState<boolean | null>(null);
+  const [libraryOpen, setLibraryOpen] = useState(false);
+  const [albumSaved, setAlbumSaved] = useState(false);
+  const [miniPlayer, setMiniPlayer] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const player = useRef<HTMLDivElement>(null);
+  const activeTrack = useRef<HTMLButtonElement>(null);
+  const queueOpen = queuePreference ?? wide;
   const queueId = useId();
+  const libraryId = useId();
   const queueToggle = useRef<HTMLButtonElement>(null);
   const queuePanel = useRef<HTMLElement>(null);
   const track = tracks[index];
 
   useEffect(() => {
-    if (queueOpen) queuePanel.current?.focus({ preventScroll: true });
-  }, [queueOpen]);
+    const observer = new ResizeObserver(([entry]) => {
+      // Inactive app tabs are hidden; keep the last visible layout preference.
+      if (entry.contentRect.width) setWide(entry.contentRect.width >= 768);
+    });
+    if (player.current) observer.observe(player.current);
+    return () => observer.disconnect();
+  }, []);
+
+  function showNowPlaying() {
+    setMiniPlayer(false);
+    if (!wide) setQueuePreference(false);
+    requestAnimationFrame(() => {
+      activeTrack.current?.scrollIntoView({ block: 'nearest' });
+      activeTrack.current?.focus({ preventScroll: true });
+    });
+  }
 
   function selectTrack(next: number) {
     setIndex(next);
     setPosition(0);
     setPlaying(true);
-    if (queueOpen) queueToggle.current?.focus();
-    setQueueOpen(false);
+    if (!wide && queueOpen) {
+      queueToggle.current?.focus({ preventScroll: true });
+      setQueuePreference(false);
+    }
   }
 
   return (
-    <div className="dark h-full w-full" data-theme="dark">
-      <Window title="Music">
-        <div className="flex min-h-0 flex-1">
+    <div
+      ref={player}
+      className={cn(
+        'dark flex h-full w-full items-end justify-end',
+        expanded && 'absolute inset-x-2 top-11 bottom-10 z-10 h-auto w-auto',
+      )}
+      data-theme="dark"
+      onKeyDown={(event) => {
+        if (event.key === 'Escape' && !event.defaultPrevented) {
+          setExpanded(false);
+          setMiniPlayer(false);
+        }
+      }}
+    >
+      <Window title="Music" className={cn(miniPlayer && 'h-auto max-w-80')}>
+        <div
+          hidden={miniPlayer}
+          className="flex min-h-0 flex-1 gap-2 bg-neutral-950 px-2 pt-2"
+        >
+          <aside
+            aria-label="Music library"
+            className={cn(
+              'hidden shrink-0 flex-col gap-2 rounded-lg bg-surface p-2 @md/window:flex',
+              libraryOpen ? 'w-40' : 'w-12',
+            )}
+          >
+            <Button
+              variant="ghost"
+              size="unstyled"
+              aria-label={libraryOpen ? 'Collapse library' : 'Expand library'}
+              aria-expanded={libraryOpen}
+              aria-controls={libraryId}
+              onClick={() => setLibraryOpen(!libraryOpen)}
+              className="h-8 justify-start gap-2 rounded-md px-1.5 text-muted"
+            >
+              <Icon name="library-simple" size={20} />
+              <span
+                id={libraryId}
+                hidden={!libraryOpen}
+                className="text-xs whitespace-nowrap"
+              >
+                Your library
+              </span>
+            </Button>
+            <DemoToggle
+              label="Save album to your library"
+              icon="plus"
+              activeIcon="check"
+              size="icon"
+              pressed={albumSaved}
+              onPressedChange={setAlbumSaved}
+              className="text-muted data-pressed:text-green-400"
+            />
+            <Button
+              variant="ghost"
+              size="unstyled"
+              aria-label="Open Soft Signal album"
+              onClick={showNowPlaying}
+              className="mt-1 justify-start gap-2 rounded-md"
+            >
+              <AlbumArtwork className="size-8" decorative />
+              <span
+                hidden={!libraryOpen}
+                className="min-w-0 truncate text-xs text-green-400"
+              >
+                Soft Signal
+              </span>
+            </Button>
+          </aside>
           <section
             aria-label="Album"
             className={cn(
-              'min-h-0 min-w-0 flex-1 overflow-y-auto overscroll-y-contain bg-bg',
-              queueOpen ? 'hidden @lg/window:block' : 'block',
+              'min-h-0 min-w-0 flex-1 overflow-y-auto overscroll-y-contain rounded-lg bg-surface',
+              queueOpen ? 'hidden @2xl/window:block' : 'block',
             )}
           >
-            <div className="flex items-end gap-4 p-4 pb-3">
+            <div className="flex items-end gap-4 bg-linear-to-b from-sky-900/50 to-sky-900/10 p-4 pb-4">
               <AlbumArtwork className="size-20 @lg/window:size-28" />
               <div className="min-w-0">
                 <p className="text-xs text-muted">Album</p>
-                <h2 className="mt-1 text-2xl font-semibold tracking-tight">
+                <h2 className="mt-1 text-2xl font-semibold tracking-tight @3xl/window:text-4xl">
                   Soft Signal
                 </h2>
                 <p className="mt-2 text-xs">The Quiet Hours</p>
@@ -56,7 +147,7 @@ export function MusicApp() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3 px-4 pb-3">
+            <div className="flex items-center gap-3 p-4">
               <Button
                 variant="unstyled"
                 size="icon"
@@ -71,6 +162,8 @@ export function MusicApp() {
                 icon="circle-plus"
                 activeIcon="circle-check-fill"
                 size="icon-sm"
+                pressed={albumSaved}
+                onPressedChange={setAlbumSaved}
                 className="data-pressed:text-green-400"
               />
               <Icon name="ellipsis" className="text-muted" />
@@ -91,6 +184,7 @@ export function MusicApp() {
                 {tracks.map((item, i) => (
                   <li key={item.title}>
                     <Button
+                      ref={index === i ? activeTrack : undefined}
                       variant="ghost"
                       size="unstyled"
                       aria-label={`Play ${item.title}`}
@@ -130,18 +224,28 @@ export function MusicApp() {
             aria-label="Queue"
             onKeyDown={(event) => {
               if (event.key === 'Escape' && queueOpen) {
-                setQueueOpen(false);
+                event.stopPropagation();
+                setQueuePreference(false);
                 queueToggle.current?.focus();
               }
             }}
             className={cn(
-              'min-h-0 min-w-0 flex-col border-l border-line bg-surface p-3 text-xs @lg/window:w-48 @lg/window:flex-none',
-              queueOpen ? 'flex flex-1' : 'hidden @3xl/window:flex',
+              'min-h-0 min-w-0 flex-col rounded-lg bg-surface p-3 text-xs @2xl/window:w-48 @2xl/window:flex-none',
+              queueOpen ? 'flex flex-1' : 'hidden',
             )}
           >
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-sm font-medium">Queue</h3>
-              <Icon name="queue-play" className="text-muted" />
+              <DemoIconButton
+                label="Close queue"
+                icon="xmark"
+                size="icon-xs"
+                onClick={() => {
+                  setQueuePreference(false);
+                  queueToggle.current?.focus({ preventScroll: true });
+                }}
+                className="text-muted"
+              />
             </div>
             <div className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-y-contain">
               <div>
@@ -202,10 +306,29 @@ export function MusicApp() {
             );
             setPosition(0);
           }}
-          queueOpen={queueOpen}
-          onQueueChange={setQueueOpen}
+          queueOpen={queueOpen && !miniPlayer}
+          onQueueChange={(open) => {
+            setMiniPlayer(false);
+            setQueuePreference(open);
+            if (open) {
+              requestAnimationFrame(() => {
+                queuePanel.current?.focus({ preventScroll: true });
+              });
+            }
+          }}
           queueId={queueId}
           queueToggle={queueToggle}
+          onNowPlaying={showNowPlaying}
+          miniPlayer={miniPlayer}
+          onMiniPlayerChange={(mini) => {
+            setMiniPlayer(mini);
+            if (mini) setExpanded(false);
+          }}
+          expanded={expanded}
+          onExpandedChange={(next) => {
+            setExpanded(next);
+            if (next) setMiniPlayer(false);
+          }}
         />
       </Window>
     </div>

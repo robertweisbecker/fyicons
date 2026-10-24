@@ -12,6 +12,7 @@ import { ToggleGroup } from '@/components/ui/toggle-group';
 import { DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Glyph, panel } from './Study';
+import { DeviceBattery, DeviceClock } from './DeviceStatus';
 
 export function StatusBarStudy() {
   return (
@@ -20,14 +21,11 @@ export function StatusBarStudy() {
         {['sticky-note-2', 'keys', 'keyboard', 'bluetooth'].map((name) => (
           <Icon key={name} name={name} />
         ))}
-        <span className="flex items-center gap-1">
-          100%
-          <Icon name="battery" />
-        </span>
+        <DeviceBattery />
         <Icon name="wifi-fill" />
         <Icon name="switches" />
       </div>
-      <span className="whitespace-nowrap">Tue Oct 6 6:31 PM</span>
+      <DeviceClock />
     </div>
   );
 }
