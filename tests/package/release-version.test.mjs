@@ -32,9 +32,12 @@ test('Changesets versions the library and site dependency and writes migration n
         dependencies: { fyicons: '0.1.0' },
       }),
     );
-    await cp(path.join(root, '.changeset'), path.join(cwd, '.changeset'), {
-      recursive: true,
-    });
+    // Use the project configuration without importing its pending release notes.
+    await mkdir(path.join(cwd, '.changeset'));
+    await cp(
+      path.join(root, '.changeset/config.json'),
+      path.join(cwd, '.changeset/config.json'),
+    );
     await writeFile(
       path.join(cwd, 'package.json'),
       JSON.stringify({
