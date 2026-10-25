@@ -24,7 +24,25 @@ export function safeFilename(value) {
   return value;
 }
 
-/** Missing legacy provenance is explicit; supplied provenance must have valid types. */
+/** Keep a stable collection identity without publishing its private file key. */
+export function normalizeSource(source = {}) {
+  if (
+    !object(source) ||
+    (source.fileKey !== undefined && typeof source.fileKey !== 'string') ||
+    (source.id !== undefined &&
+      (typeof source.id !== 'string' ||
+        (source.id !== '' && !/^sha256:[a-f0-9]{64}$/.test(source.id))))
+  )
+    throw new Error('Invalid source identity.');
+  const derived = source.fileKey
+    ? `sha256:${createHash('sha256').update(source.fileKey).digest('hex')}`
+    : '';
+  if (derived && source.id && source.id !== derived)
+    throw new Error('Source identity does not match the imported file key.');
+  return { id: derived || source.id || '' };
+}
+
+/** Accept legacy imports, but keep private provenance out of public metadata. */
 export function normalizeManifest(value, { imported = false } = {}) {
   if (!object(value) || value.name !== 'FYIcons' || !Array.isArray(value.icons))
     throw new Error('Expected a FYIcons manifest with icons.');
@@ -38,12 +56,7 @@ export function normalizeManifest(value, { imported = false } = {}) {
     throw new Error(
       'Move category metadata to apps/site/public/icon-categories.json.',
     );
-  const source = value.source === undefined ? { fileKey: '' } : value.source;
-  if (
-    !object(source) ||
-    ('fileKey' in source && typeof source.fileKey !== 'string')
-  )
-    throw new Error('Invalid source.fileKey; expected a string.');
+  const source = normalizeSource(value.source);
   const ids = new Set();
   const icons = value.icons.map((meta) => {
     if (
@@ -130,8 +143,9 @@ export function normalizeManifest(value, { imported = false } = {}) {
         ))
     )
       throw new Error(`Invalid variantProperties: ${meta.name}`);
+    const { sourceUrl: _sourceUrl, ...publicMetadata } = meta;
     return {
-      ...meta,
+      ...publicMetadata,
       ...(imported && meta.baseName === undefined ? {} : { baseName }),
       originalName: meta.originalName ?? meta.name,
       aliases: meta.aliases ?? [],
@@ -139,7 +153,7 @@ export function normalizeManifest(value, { imported = false } = {}) {
   });
   return {
     ...value,
-    source: { ...source, fileKey: source.fileKey ?? '' },
+    source,
     icons,
   };
 }
@@ -199,13 +213,9 @@ export async function prepareIcons(input, categoryInput, readSvg) {
       const sha256 = createHash('sha256').update(svg).digest('hex');
       if (meta.sha256 !== undefined && meta.sha256 !== sha256)
         throw new Error(`Checksum mismatch: ${meta.name}`);
-      const sourceUrl =
-        meta.sourceUrl ??
-        `https://www.figma.com/design/${manifest.source.fileKey}/icons-astra?node-id=${meta.id.replace(':', '-')}`;
       const { sha256: _suppliedHash, ...metadata } = meta;
       return {
         ...metadata,
-        sourceUrl,
         file: `icons/${meta.filename}`,
         svg,
         sha256,
@@ -244,13 +254,9 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     JSON.stringify({ ...generatedManifest, icons }, null, 2) + '\n';
   const expected = new Map(reactFiles);
   expected.set('apps/site/src/data/catalog.json', catalogText);
-  // Reconstruct standard fields, retaining any explicitly supplied alternate URL.
+  // Reconstruct standard fields without retaining private source links.
   const compactIcons = icons.map(
-    ({ sourceUrl, file, width, height, svg, ...icon }) =>
-      sourceUrl ===
-      `https://www.figma.com/design/${manifest.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`
-        ? icon
-        : { ...icon, sourceUrl },
+    ({ file, width, height, svg, ...icon }) => icon,
   );
   // Store field names once rather than repeating every metadata key per icon.
   // Null marks an absent optional field; icon metadata does not contain null values.
@@ -305,11 +311,17 @@ export async function prepareIcons(input, categoryInput, readSvg) {
 }
 
 export async function prepareRepositoryIcons(root) {
-  const manifest = normalizeManifest(
-    JSON.parse(
-      await readFile(await confinedPath(root, 'icons/manifest.json'), 'utf8'),
-    ),
+  const input = JSON.parse(
+    await readFile(await confinedPath(root, 'icons/manifest.json'), 'utf8'),
   );
+  const manifest = normalizeManifest(input);
+  if (
+    Object.keys(input.source ?? {}).some((key) => key !== 'id') ||
+    input.icons.some((icon) => 'sourceUrl' in icon)
+  )
+    throw new Error(
+      'Private source metadata is not allowed in icons/manifest.json. Keep it in an ignored local export and import through sync-icons.',
+    );
   const categoryInput = JSON.parse(
     await readFile(
       await confinedPath(root, 'apps/site/public/icon-categories.json'),

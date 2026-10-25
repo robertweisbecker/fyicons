@@ -135,6 +135,13 @@ async function snapshot(directory) {
 }
 const invalid = [
   [
+    'private file key used as public identity',
+    ({ imported }) => {
+      imported.source = { id: 'private-file-key' };
+    },
+    /Invalid source identity/,
+  ],
+  [
     'invalid date type',
     ({ imported }) => {
       imported.icons[1].addedAt = 123;
@@ -275,7 +282,7 @@ for (const [name, alter, pattern] of invalid)
     }
   });
 
-test('valid import preserves bytes, casing, identity, aliases, rules and custom source URL', async (t) => {
+test('valid import preserves artwork and identity while removing private provenance', async (t) => {
   const state = await fixture();
   try {
     // Report the actual host behavior in the Node test output.
@@ -290,7 +297,11 @@ test('valid import preserves bytes, casing, identity, aliases, rules and custom 
     );
     const sourceUrl =
       'https://www.figma.com/design/another-file/Original?node-id=88-99';
-    state.imported.source = { fileKey: 'fixture-file' };
+    state.imported.source = {
+      fileKey: 'fixture-file',
+      url: sourceUrl,
+      scope: 'private collection',
+    };
     state.imported.icons[0].sourceUrl = sourceUrl;
     await mkdir(path.join(state.incoming, 'artwork'));
     await rename(
@@ -316,7 +327,9 @@ test('valid import preserves bytes, casing, identity, aliases, rules and custom 
     assert.equal(icon.name, 'alpha');
     assert.equal(icon.originalName, 'alpha');
     assert.equal(icon.componentName, 'IconAlpha');
-    assert.deepEqual(next.source, { fileKey: 'fixture-file' });
+    assert.deepEqual(next.source, {
+      id: `sha256:${createHash('sha256').update('fixture-file').digest('hex')}`,
+    });
     const catalog = JSON.parse(
       await readFile(
         path.join(state.root, 'apps/site/src/data/catalog.json'),
@@ -329,8 +342,14 @@ test('valid import preserves bytes, casing, identity, aliases, rules and custom 
         'utf8',
       ),
     );
-    assert.equal(icon.sourceUrl, sourceUrl);
-    assert.equal(catalog.icons[0].sourceUrl, sourceUrl);
+    assert.doesNotMatch(
+      JSON.stringify(next),
+      /sourceUrl|fileKey|figma\.com|fixture-file|private collection/,
+    );
+    assert.doesNotMatch(
+      JSON.stringify(catalog),
+      /sourceUrl|fileKey|figma\.com|fixture-file|private collection/,
+    );
     assert.deepEqual(decodeCatalog(compact), catalog);
     assert.ok(!('sha256' in icon));
     assert.ok(icon.aliases.includes('legacy-alpha'));
@@ -369,6 +388,32 @@ test('valid import preserves bytes, casing, identity, aliases, rules and custom 
     await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
       cwd: state.root,
     });
+  } finally {
+    await rm(state.directory, { recursive: true, force: true });
+  }
+});
+
+test('freshness checks reject private provenance in tracked sources without writes', async () => {
+  const state = await fixture();
+  try {
+    const file = path.join(state.root, 'icons/manifest.json');
+    const original = JSON.parse(await readFile(file, 'utf8'));
+    for (const field of ['fileKey', 'sourceUrl']) {
+      const input = structuredClone(original);
+      if (field === 'fileKey') input.source = { fileKey: 'private-file-key' };
+      else
+        input.icons[0].sourceUrl =
+          'https://www.figma.com/design/private-file-key';
+      await json(file, input);
+      const before = await snapshot(state.directory);
+      await assert.rejects(
+        run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
+          cwd: state.root,
+        }),
+        /Private source metadata is not allowed/,
+      );
+      assert.deepEqual(await snapshot(state.directory), before);
+    }
   } finally {
     await rm(state.directory, { recursive: true, force: true });
   }

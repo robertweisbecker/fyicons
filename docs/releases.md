@@ -53,7 +53,7 @@ npm run diff:icons -- --base empty --head HEAD --output artifacts/initial-releas
 
 The command resolves refs to full commit SHAs. Reports exclude working-tree edits. Prepare the final comparison from the approved source commit.
 
-Each report includes standalone HTML, `changes.json`, and `summary.md`. It tracks additions, removals, names, exports, aliases, metadata, name reassignments, category rules, and generator hashes. Figma file keys and node IDs establish identity. Similar geometry does not establish a rename.
+Each report includes standalone HTML, `changes.json`, and `summary.md`. It tracks additions, removals, names, exports, aliases, metadata, name reassignments, category rules, and generator hashes. An opaque source identity and component IDs establish identity. Older file keys are converted to the same identity before comparison. Reports omit private source links and export scope, including data from older commits. Similar geometry does not establish a rename.
 
 SVG-byte changes and pixel changes are separate results. Pinned resvg renders at 16 and 64 px on light and dark backgrounds. Preview foreground colors follow the background theme, with the same paint conversion as React icons. Masks, gradients, and transparent paint keep their source values. Source byte checks keep the original colors. This does not compare React output or prove identical behavior in every browser. The HTML embeds PNG images; it does not execute raw SVG. External SVG resources are rejected.
 

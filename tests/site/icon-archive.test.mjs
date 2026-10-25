@@ -61,6 +61,10 @@ function verifyArchive(selection) {
     );
   }
   const exported = JSON.parse(strFromU8(archive['manifest.json']));
+  assert.doesNotMatch(
+    JSON.stringify(exported),
+    /"(?:sourceUrl|fileKey)"|figma\.com\/(?:design|file)\//,
+  );
   assert.deepEqual(exported.categories, catalog.categories);
   assert.equal(exported.count, selection.length);
   assert.equal(exported.native16Count, selection.length);

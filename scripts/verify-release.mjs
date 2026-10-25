@@ -151,6 +151,11 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
     await readFile(path.join(installed, 'manifest.json'), 'utf8'),
   );
   assert.equal(packagedManifest.packageVersion, pkg.version);
+  assert.doesNotMatch(
+    JSON.stringify(packagedManifest),
+    /"(?:sourceUrl|fileKey)"|figma\.com\/(?:design|file)\//,
+  );
+  assert.deepEqual(packagedManifest.source, manifest.source);
   assert.deepEqual(packagedManifest.icons, manifest.icons);
   for (const icon of manifest.icons)
     assert.deepEqual(

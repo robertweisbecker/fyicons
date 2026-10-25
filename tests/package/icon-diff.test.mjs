@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import {
   compareSnapshots,
@@ -138,6 +139,40 @@ test('identity survives a rename and flags reassigned names and exports', () => 
     ).changes.length,
     2,
   );
+});
+
+test('legacy source keys match opaque identities without leaking into reports', () => {
+  const fileKey = 'private-fixture-file';
+  const before = snapshot(
+    [
+      icon('1', 'Old', {
+        sourceUrl: `https://www.figma.com/design/${fileKey}`,
+      }),
+    ],
+    fileKey,
+  );
+  before.manifest.source.scope = 'private collection';
+  const after = snapshot([icon('1', 'New')]);
+  after.manifest.source = {
+    id: `sha256:${createHash('sha256').update(fileKey).digest('hex')}`,
+  };
+  const result = compareSnapshots(before, after);
+  assert.deepEqual(result.changes[0].flags, [
+    'renamed',
+    'export-changed',
+    'file-renamed',
+  ]);
+  assert.equal(result.changes.length, 1);
+  assert.equal(result.collectionChanged, false);
+  for (const output of [
+    JSON.stringify(result),
+    renderMarkdown(result),
+    renderHtml(result, [{}]),
+  ])
+    assert.doesNotMatch(
+      output,
+      /private-fixture-file|sourceUrl|fileKey|figma\.com|private collection/,
+    );
 });
 test('byte-only edits do not cause pixel changes; masks and gradients render', () => {
   const source =
