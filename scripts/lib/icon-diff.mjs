@@ -1,6 +1,10 @@
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { normalizeManifest, safeFilename } from './prepare-icons.mjs';
+import {
+  normalizeManifest,
+  normalizeSource,
+  safeFilename,
+} from './prepare-icons.mjs';
 
 const hash = (text) => createHash('sha256').update(text).digest('hex');
 const stable = (value) =>
@@ -77,7 +81,7 @@ export function readSnapshot(root, ref) {
 
 export function compareSnapshots(before, after) {
   const identity = (snapshot, icon) =>
-    JSON.stringify([snapshot.manifest.source?.fileKey ?? '', icon.id]);
+    JSON.stringify([normalizeSource(snapshot.manifest.source).id, icon.id]);
   const old = new Map(
     before.icons.map((icon) => [identity(before, icon), icon]),
   );
@@ -90,9 +94,16 @@ export function compareSnapshots(before, after) {
   const oldExports = new Map(
     before.icons.map((icon) => [icon.componentName, identity(before, icon)]),
   );
-  const metadata = ({ svg, sha256, name, filename, componentName, ...rest }) =>
-    rest;
-  const record = ({ svg, ...rest }) => rest;
+  const metadata = ({
+    svg,
+    sha256,
+    name,
+    filename,
+    componentName,
+    sourceUrl,
+    ...rest
+  }) => rest;
+  const record = ({ svg, sourceUrl, ...rest }) => rest;
   const changes = [];
   for (const key of [...new Set([...old.keys(), ...next.keys()])].sort()) {
     const a = old.get(key),
@@ -126,6 +137,8 @@ export function compareSnapshots(before, after) {
   }
   const { icons: _oldIcons, ...oldCollection } = before.manifest;
   const { icons: _newIcons, ...newCollection } = after.manifest;
+  oldCollection.source = normalizeSource(oldCollection.source);
+  newCollection.source = normalizeSource(newCollection.source);
   return {
     schemaVersion: 1,
     base: before.revision,

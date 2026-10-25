@@ -6,7 +6,7 @@
 - Generate `packages/fyicons/src/`, `apps/site/src/icons/registry.ts`, both `apps/site/src/data/catalog*.json` files, `apps/site/public/icon-categories.schema.json`, and `registry.json` from their sources. Do not edit these outputs by hand.
 - Keep SVG bytes, geometry, the 16 × 16 viewBox, and instance-safe SVG references unless the task requires an artwork change.
 - Normalize visible foreground paint to `currentColor` before an SVG import. Preserve mask and clip definition paint, geometry, and transparency. Source downloads and React icons must follow this color policy.
-- Use Figma file keys and component IDs as identities. Current Figma names are authoritative. Keep historical lookup aliases. Numeric duplicate suffixes can change; they do not provide stable React export names.
+- Use Figma file keys and component IDs as identities during private imports. Public manifests keep an opaque `source.id` derived from the file key and retain component IDs. Keep raw file keys, source URLs, and export scope in ignored local artifacts or local skills. Current Figma names are authoritative. Keep historical lookup aliases. Numeric duplicate suffixes can change; they do not provide stable React export names.
 - Imports must validate and prepare all outputs before writing. Rejected input must leave source and generated files unchanged. Ordinary file writes do not provide crash-atomic publication.
 - Keep the root package private. The library is `packages/fyicons`; `registry.json` is the shadcn source registry. Keep the MIT license and use normal versions starting at `0.1.0` unless the task changes that policy.
 
@@ -14,7 +14,7 @@
 
 Keep the root and package READMEs and `apps/site/src/data/README.txt` focused on library users. Document available installation methods and behavior. Aim for about 75% [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) in documentation: favor clear sentences, active voice, direct instructions, and consistent terms. Allow natural phrasing, useful context, and examples where they make the text easier to read. Treat 75% as an approximate writing target, not a measured compliance score. Strict dictionary compliance is not required; do not claim formal STE compliance.
 
-Keep personal machine paths, private chat links, credentials, and individual account procedures out of committed docs. Public project links, license attribution, and icon source references are intentional project data. A directory such as `.agents/` is public if committed.
+Keep personal machine paths, private chat links, credentials, individual account procedures, and private Figma file links out of committed files and public artifacts. Public project links and license attribution are intentional project data. A directory such as `.agents/` is public if committed.
 
 Keep individual sync reports, release preparation notes, audit reports, and internal plans under the ignored `artifacts/` directory. Use `artifacts/icon-sync-YYYY-MM-DD.md` for sync reports and `artifacts/plans/` for plans. Do not force-add these files. Put consumer-facing changes and migration steps in Changesets and the package changelog. Review any report for public content before attaching it to a release or CI run.
 

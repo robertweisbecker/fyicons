@@ -8,12 +8,13 @@ import { JSDOM } from 'jsdom';
 import { loadRegistryItem } from 'shadcn/registry';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const run = (command, args, cwd = root) =>
+const run = (command, args, cwd = root, env = {}) =>
   execFileSync(command, args, {
     cwd,
     stdio: 'inherit',
     env: {
       ...process.env,
+      ...env,
       NEXT_TELEMETRY_DISABLED: '1',
       npm_config_cache: path.join(root, 'artifacts/npm-cache'),
     },
@@ -80,7 +81,7 @@ const write = async (cwd, file, content) => {
   );
 };
 const smoke = `import assert from 'node:assert/strict';
-import { createElement, createRef } from 'react';
+import { act, createElement, createRef } from 'react';
 import { renderToString } from 'react-dom/server';
 import { hydrateRoot } from 'react-dom/client';
 import { IconSun } from 'fyicons';
@@ -97,12 +98,13 @@ assert.match(renderToString(createElement(IconSun)), /aria-hidden="true"/);
 const dom = new JSDOM('<div id="root">'+html+'</div>', {url:'http://localhost'});
 globalThis.window=dom.window;globalThis.document=dom.window.document;
 globalThis.HTMLElement=dom.window.HTMLElement;globalThis.SVGElement=dom.window.SVGElement;
-const errors=[]; const mounted=hydrateRoot(document.querySelector('#root'),tree,{onRecoverableError:error=>errors.push(error)});
-await new Promise(resolve=>setTimeout(resolve,100));
+globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+const errors=[]; let mounted;
+await act(async()=>{mounted=hydrateRoot(document.querySelector('#root'),tree,{onRecoverableError:error=>errors.push(error)})});
 assert.deepEqual(errors,[]); assert.equal(ref.current.tagName,'svg');
 ref.current.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));assert.equal(clicks,1);
 const ids=[...document.querySelectorAll('[id]')].map(node=>node.id);assert.equal(new Set(ids).size,ids.length);
-mounted.unmount();dom.window.close(); console.log('SSR, hydration, refs, event handlers, labels, and direct imports passed.');
+await act(async()=>mounted.unmount());dom.window.close(); console.log('SSR, hydration, refs, event handlers, labels, and direct imports passed.');
 `;
 for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
   const cwd = path.join(scratch, `react-${reactVersion}`);
@@ -151,6 +153,11 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
     await readFile(path.join(installed, 'manifest.json'), 'utf8'),
   );
   assert.equal(packagedManifest.packageVersion, pkg.version);
+  assert.doesNotMatch(
+    JSON.stringify(packagedManifest),
+    /"(?:sourceUrl|fileKey)"|figma\.com\/(?:design|file)\//,
+  );
+  assert.deepEqual(packagedManifest.source, manifest.source);
   assert.deepEqual(packagedManifest.icons, manifest.icons);
   for (const icon of manifest.icons)
     assert.deepEqual(
@@ -158,7 +165,8 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
       await readFile(path.join(root, 'icons', icon.filename)),
     );
   await write(cwd, 'smoke.mjs', smoke);
-  run(process.execPath, ['smoke.mjs'], cwd);
+  // act is development-only; an earlier Vite build can change NODE_ENV.
+  run(process.execPath, ['smoke.mjs'], cwd, { NODE_ENV: 'development' });
   await write(
     cwd,
     'typecheck.tsx',

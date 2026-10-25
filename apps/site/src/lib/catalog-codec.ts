@@ -34,8 +34,9 @@ export function decodeCatalog(compact: CompactCatalog): Catalog {
   const sourceSvgs = unpack(svgArchive) as string[];
   return {
     ...metadata,
+    source: { id: metadata.source?.id ?? '' },
     icons: rows.map((row, index) => {
-      const icon = Object.fromEntries(
+      const { sourceUrl: _sourceUrl, ...icon } = Object.fromEntries(
         iconFields.flatMap((field, index) =>
           row[index] === null ? [] : [[field, row[index]]],
         ),
@@ -46,9 +47,6 @@ export function decodeCatalog(compact: CompactCatalog): Catalog {
         width: 16,
         height: 16,
         file: `icons/${icon.filename}`,
-        sourceUrl:
-          icon.sourceUrl ??
-          `https://www.figma.com/design/${metadata.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`,
       };
     }),
   } as unknown as Catalog;

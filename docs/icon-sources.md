@@ -12,7 +12,7 @@ After an artwork or metadata edit, run:
 npm run generate:icons
 ```
 
-This writes `packages/fyicons/src/`, `apps/site/src/data/catalog.json`, `apps/site/src/data/catalog-runtime.json`, and the category schema. The compact catalog stores compressed SVG data and metadata. The browser decoder restores the source SVG bytes and full metadata.
+This writes `packages/fyicons/src/`, `apps/site/src/data/catalog.json`, `apps/site/src/data/catalog-runtime.json`, and the category schema. The compact catalog stores compressed SVG data and public metadata. The browser decoder restores the source SVG bytes and public metadata.
 
 `dev` and `build` generate at startup. During a running development session, run the generation command after an SVG edit. `npm run check:icons` does checks of source validity and generated file freshness without writing files.
 
@@ -20,7 +20,9 @@ See [Contributing](../CONTRIBUTING.md#choose-checks-for-the-change) for verifica
 
 ## Identity and names
 
-Use Figma file keys and component IDs to identify icons through renames. Current Figma names determine library names and React exports. Keep previous names as lookup aliases. A current name takes precedence over an alias.
+Use Figma file keys and component IDs to identify icons through private imports. The public manifest stores `source.id` as `sha256:` followed by the SHA-256 hash of the file key. This opaque identity and the component ID keep rename comparisons stable without exposing the file link. Current Figma names determine library names and React exports. Keep previous names as lookup aliases. A current name takes precedence over an alias.
+
+Keep raw file keys, source URLs, and export scope in ignored local files, such as `artifacts/figma-source.json`. Do not commit or attach these files to public releases. The importer removes private source details before writing the tracked manifest, catalogs, and package metadata. Generation checks reject private source fields in the tracked manifest. Diff reports also remove them when reading older commits.
 
 Numeric suffixes resolve duplicate names in the current inventory. They can change when the inventory changes. An alias does not keep an old named React export available. Review name reassignments as well as renames when preparing release notes.
 
@@ -36,7 +38,7 @@ The importer uses current source names for known IDs and keeps old lookup aliase
 
 The importer validates metadata, hashes, viewBoxes, names, collisions, and paths before writing. It prepares source files, React output, catalogs, and the category schema together. Invalid input must leave all existing files unchanged. Publication uses ordinary file writes; a crash or filesystem error can leave partial output.
 
-Legacy input can omit `source.fileKey`, `originalName`, and aliases. The defaults are an unknown file key, the imported name, and an empty alias list. Supplied source URLs stay intact; missing URLs use the Figma file key and component ID.
+Local import input can supply `source.fileKey` or the existing opaque `source.id`. If both are supplied, they must match. Missing source identity stays unknown. Legacy input can omit `originalName` and aliases; the defaults are the imported name and an empty alias list. Supplied `sourceUrl` values are discarded, and missing URLs are not reconstructed.
 
 ## Import dates
 

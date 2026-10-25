@@ -12,14 +12,7 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
     name: 'Catalogue café ☕',
     version: 'fixture-version',
     source: {
-      fileKey: 'fixture-file',
-      sectionId: '1:2',
-      sectionName: 'Éléments',
-      pageId: '3:4',
-      pageName: '図形',
-      exportMethod: 'fixture',
-      scope: 'Two fixture icons',
-      exportedAt: '2026-10-14',
+      id: `sha256:${'a'.repeat(64)}`,
     },
     count: 2,
     native16Count: 2,
@@ -115,8 +108,6 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
         width: 16,
         height: 16,
         file: 'icons/café-16.svg',
-        sourceUrl:
-          'https://www.figma.com/design/fixture-file/icons-astra?node-id=12-34',
       },
       {
         filename: 'second-16.svg',
@@ -136,14 +127,12 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
         width: 16,
         height: 16,
         file: 'icons/second-16.svg',
-        sourceUrl:
-          'https://www.figma.com/design/fixture-file/icons-astra?node-id=90-12',
       },
     ],
   });
 });
 
-test('production decoder keeps explicit source URLs and reconstructs absent URLs', () => {
+test('production decoder discards legacy private provenance and never reconstructs links', () => {
   const compact = {
     metadataArchive: pack({ source: { fileKey: 'fixture-file' } }),
     iconFields: ['id', 'filename', 'sourceUrl'],
@@ -158,12 +147,14 @@ test('production decoder keeps explicit source URLs and reconstructs absent URLs
     ]),
     svgArchive: pack(['<svg/>', '<svg/>', '<svg/>']),
   };
+  const decoded = decodeCatalog(compact);
+  assert.deepEqual(decoded.source, { id: '' });
   assert.deepEqual(
-    decodeCatalog(compact).icons.map(({ sourceUrl }) => sourceUrl),
-    [
-      'https://www.figma.com/design/other-file/source?node-id=9-8',
-      'https://www.figma.com/design/fixture-file/icons-astra?node-id=3-4',
-      '',
-    ],
+    decoded.icons.map(({ id }) => id),
+    ['1:2', '3:4', '5:6'],
+  );
+  assert.doesNotMatch(
+    JSON.stringify(decoded),
+    /sourceUrl|fileKey|figma\.com|fixture-file|other-file/,
   );
 });
