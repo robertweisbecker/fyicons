@@ -162,21 +162,25 @@ export function repairFillStrokeSeams(svg) {
           ),
         );
       if (!following) continue;
+      const fillRule = inherited(fill, 'fill-rule', 'nonzero');
+      const outlineRule = inherited(outline, 'fill-rule', 'nonzero');
+      if (
+        ![fillRule, outlineRule].every((rule) =>
+          ['nonzero', 'evenodd'].includes(rule),
+        )
+      )
+        continue;
       const scope = new paper.PaperScope();
       scope.setup(new paper.Size(16, 16));
       try {
-        const makePath = (node) => {
-          const rule = inherited(node, 'fill-rule', 'nonzero');
-          if (!['nonzero', 'evenodd'].includes(rule))
-            throw new Error('Unsupported fill rule.');
-          return new scope.CompoundPath({
+        const makePath = (node, rule) =>
+          new scope.CompoundPath({
             pathData: node.getAttribute('d'),
             fillRule: rule,
             insert: false,
           });
-        };
-        const a = makePath(fill),
-          b = makePath(outline);
+        const a = makePath(fill, fillRule),
+          b = makePath(outline, outlineRule);
         const bounds = ['x', 'y', 'width', 'height'].map((key) =>
           Number(mask.getAttribute(key)),
         );
@@ -191,7 +195,8 @@ export function repairFillStrokeSeams(svg) {
         if (!contained(a) || !contained(b)) continue;
         const union = a.unite(b, { insert: false });
         const d = union.getPathData(null, 12);
-        if (!d || /NaN|Infinity/.test(d))
+        if (!d) continue;
+        if (/NaN|Infinity/.test(d))
           throw new Error('Invalid filled stroke union.');
         edits.push({
           start: source.index,

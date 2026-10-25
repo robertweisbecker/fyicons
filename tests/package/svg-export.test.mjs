@@ -196,3 +196,23 @@ test('mask guards recognize equivalent references and require explicit bounds', 
     assert.equal(repairFillStrokeSeams(omitted), omitted);
   }
 });
+
+test('valid CSS-wide fill rules and empty geometry pass through unchanged', () => {
+  for (const rule of [
+    'inherit',
+    'initial',
+    'unset',
+    'revert',
+    'revert-layer',
+  ]) {
+    const rootRule = source.replace('<svg ', `<svg fill-rule="${rule}" `);
+    assert.equal(repairFillStrokeSeams(rootRule), rootRule);
+    const outlineRule = source.replace(
+      'mask="url(#outside)"',
+      `fill-rule="${rule}" mask="url(#outside)"`,
+    );
+    assert.equal(repairFillStrokeSeams(outlineRule), outlineRule);
+  }
+  const empty = source.replace(/\bd="[^"]*"/g, 'd=""');
+  assert.equal(repairFillStrokeSeams(empty), empty);
+});
