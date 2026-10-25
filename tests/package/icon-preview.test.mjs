@@ -181,6 +181,53 @@ test('comment groups changes, uses immutable PNG links and rejects markup and un
   );
 });
 
+test('only additions and rendered changes include images; other entries keep their names', () => {
+  const body = renderPreviewComment(
+    {
+      ...report,
+      changes: [
+        change,
+        { before: null, after: 'Sun', flags: ['added'], image: '0001.png' },
+        {
+          before: 'OldName',
+          after: 'NewName',
+          flags: ['renamed', 'export-changed'],
+          image: '0002.png',
+        },
+        {
+          before: 'Tagged',
+          after: 'Tagged',
+          flags: ['metadata-changed'],
+          image: '0003.png',
+        },
+        {
+          before: 'Deleted',
+          after: null,
+          flags: ['removed'],
+          image: '0004.png',
+        },
+        {
+          before: 'SamePixels',
+          after: 'SamePixels',
+          flags: ['svg-bytes-changed'],
+          image: '0005.png',
+        },
+      ],
+    },
+    destination,
+  );
+  assert.equal((body.match(/!\[/g) ?? []).length, 2);
+  assert.match(body, /0000\.png/); // A rename with changed artwork still gets a comparison.
+  assert.match(body, /0001\.png/);
+  assert.doesNotMatch(body, /000[2345]\.png/);
+  assert.match(body, /- `OldName` → `NewName`/);
+  for (const name of ['Tagged', 'Deleted', 'SamePixels'])
+    assert.ok(body.includes(`- \`${name}\``));
+  for (const section of body.matchAll(/<details>([\s\S]*?)<\/details>/g))
+    if (/<summary>(Renamed|Removed|Metadata only)/.test(section[1]))
+      assert.doesNotMatch(section[1], /!\[|Before → After/);
+});
+
 test('publisher creates once then updates only its marked bot comment', async () => {
   let saved,
     uploads = 0;
