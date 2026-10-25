@@ -2,7 +2,10 @@ import { PNG } from 'pngjs';
 
 // Keep labels in Markdown; PNGs contain only the existing report's raster data.
 export function previewImage(views) {
-  const output = new PNG({ width: 384, height: 192 });
+  const hasOverlay = Object.values(views).some(
+    (view) => view.overlayBefore && view.overlayAfter,
+  );
+  const output = new PNG({ width: hasOverlay ? 576 : 384, height: 192 });
   for (const [row, theme] of ['light', 'dark'].entries()) {
     const shade = row ? 23 : 255;
     for (let y = row * 96; y < (row + 1) * 96; y++)
@@ -25,6 +28,31 @@ export function previewImage(views) {
         );
       }
     }
+    if (hasOverlay) {
+      for (const size of [16, 64]) {
+        const view = views[`${theme}-${size}`];
+        const x = 384 + (size === 16 ? 24 : 72);
+        const y = row * 96 + (96 - size) / 2;
+        // Match the HTML report: pink before, then blue after, each at 50%.
+        // Retain each source pixel's alpha so masks and translucent paint work.
+        for (const url of [view.overlayBefore, view.overlayAfter]) {
+          if (!url) continue;
+          const layer = PNG.sync.read(Buffer.from(url.split(',')[1], 'base64'));
+          for (let py = 0; py < size; py++) {
+            for (let px = 0; px < size; px++) {
+              const source = (py * size + px) * 4;
+              const target = ((y + py) * output.width + x + px) * 4;
+              const alpha = (layer.data[source + 3] / 255) * 0.5;
+              for (let channel = 0; channel < 3; channel++)
+                output.data[target + channel] = Math.round(
+                  layer.data[source + channel] * alpha +
+                    output.data[target + channel] * (1 - alpha),
+                );
+            }
+          }
+        }
+      }
+    }
   }
   return PNG.sync.write(output);
 }
@@ -38,6 +66,7 @@ export function previewManifest(report) {
       after: change.after?.componentName ?? null,
       flags: change.flags,
       image: `${String(index).padStart(4, '0')}.png`,
+      overlay: change.flags.includes('pixels-changed'),
     })),
   };
 }

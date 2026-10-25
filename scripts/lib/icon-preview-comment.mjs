@@ -34,7 +34,12 @@ export function validatePreview(report) {
       !/^\d{4}\.png$/.test(change.image) ||
       seen.has(change.image) ||
       !Array.isArray(change.flags) ||
-      change.flags.some((flag) => !flags.has(flag))
+      change.flags.some((flag) => !flags.has(flag)) ||
+      (change.overlay !== undefined && typeof change.overlay !== 'boolean') ||
+      (change.overlay &&
+        (!change.before ||
+          !change.after ||
+          !change.flags.includes('pixels-changed')))
     )
       throw new Error('Invalid preview entry.');
     seen.add(change.image);
@@ -66,15 +71,16 @@ export function renderPreviewComment(
   const header =
     `${commentMarker}\n## Icon changes\n\n` +
     `Compared \`${report.base.slice(0, 7)}\` → \`${report.head.slice(0, 7)}\`. **${report.changes.length} icons with changes.**\n\n` +
-    `Images show **before on the left, after on the right**, each at 16 px and 64 px. Light backgrounds are above dark backgrounds. A blank half means the icon was added or removed.\n\n`;
+    `Images show **before → after → overlay** from left to right, each at 16 px and 64 px. Artwork changes include the overlay: **pink = before, blue = after**, each at 50% opacity. Light backgrounds are above dark backgrounds. Added or removed icons have a blank before or after panel and no overlay.\n\n`;
   const sections = groups
     .map((label) => {
       const changes = report.changes.filter(
         (change) => group(change) === label,
       );
       if (!changes.length) return '';
+      const hasOverlay = changes.some((change) => change.overlay);
       return (
-        `<details>\n<summary>${label} (${changes.length})</summary>\n\n| Icon | Before → After |\n| --- | --- |\n` +
+        `<details>\n<summary>${label} (${changes.length})</summary>\n\n| Before → After${hasOverlay ? ' → Overlay' : ''} |\n| --- |\n` +
         changes
           .map((change) => {
             const name =
@@ -82,7 +88,7 @@ export function renderPreviewComment(
                 ? `\`${change.before}\` → \`${change.after}\``
                 : `\`${change.after ?? change.before}\``;
             const url = `https://raw.githubusercontent.com/${repository}/${imageCommit}/pr-${number}/${change.image}`;
-            return `| ${name} | ![Before and after](${url}) |`;
+            return `| ${name}<br>![Before and after${change.overlay ? ' with pink and blue overlay' : ''}](${url}) |`;
           })
           .join('\n') +
         '\n\n</details>\n'
