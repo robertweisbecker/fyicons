@@ -8,12 +8,13 @@ import { JSDOM } from 'jsdom';
 import { loadRegistryItem } from 'shadcn/registry';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const run = (command, args, cwd = root) =>
+const run = (command, args, cwd = root, env = {}) =>
   execFileSync(command, args, {
     cwd,
     stdio: 'inherit',
     env: {
       ...process.env,
+      ...env,
       NEXT_TELEMETRY_DISABLED: '1',
       npm_config_cache: path.join(root, 'artifacts/npm-cache'),
     },
@@ -164,7 +165,8 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
       await readFile(path.join(root, 'icons', icon.filename)),
     );
   await write(cwd, 'smoke.mjs', smoke);
-  run(process.execPath, ['smoke.mjs'], cwd);
+  // act is development-only; an earlier Vite build can change NODE_ENV.
+  run(process.execPath, ['smoke.mjs'], cwd, { NODE_ENV: 'development' });
   await write(
     cwd,
     'typecheck.tsx',
