@@ -102,7 +102,7 @@ export function BadgesDemo() {
             {tag}
             <DemoIconButton
               label={'Remove ' + tag + ' tag'}
-              icon="xmark"
+              icon="x"
               size="icon-sm"
               className="-m-1 -me-1.5 size-5 rounded-full"
               onClick={() => setTags(tags.filter((value) => value !== tag))}

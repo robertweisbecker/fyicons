@@ -9,7 +9,7 @@ export function WindowControls() {
       aria-hidden
     >
       {[
-        ['xmark', 'bg-red-400'],
+        ['x', 'bg-red-400'],
         ['minus', 'bg-yellow-400'],
         ['carets-maximize', 'bg-green-500'],
       ].map(([icon, color]) => (
@@ -118,7 +118,7 @@ export function BrowserWindow({
           <Icon name="star-fill" className="text-focus" />
         </div>
         <span className="hidden @lg/window:inline-flex">
-          <Icon name="puzzle" />
+          <Icon name="puzzle-piece" />
         </span>
         <Icon name="circle-user-fill" className="text-violet-400" />
         <Icon name="ellipsis-v" />

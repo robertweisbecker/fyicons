@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconPointUp = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconPointUp(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.16429 3.52173L3.26803 9.45082C2.83105 10.1158 3.30804 11 4.10374 11H11.8963C12.692 11 13.1689 10.1158 12.732 9.45082L8.83571 3.52173C8.4407 2.92063 7.5593 2.92063 7.16429 3.52173Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.13864 3.71058L3.13932 10.492C2.74619 11.1586 3.22678 12 4.00069 12H11.9993C12.7732 12 13.2538 11.1586 12.8607 10.492L8.86137 3.71058C8.47448 3.05456 7.52552 3.05455 7.13864 3.71058Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconPointUp;

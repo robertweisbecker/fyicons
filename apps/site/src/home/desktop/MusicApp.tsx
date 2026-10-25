@@ -238,7 +238,7 @@ export function MusicApp() {
               <h3 className="text-sm font-medium">Queue</h3>
               <DemoIconButton
                 label="Close queue"
-                icon="xmark"
+                icon="x"
                 size="icon-xs"
                 onClick={() => {
                   setQueuePreference(false);

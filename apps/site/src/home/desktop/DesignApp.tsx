@@ -53,7 +53,7 @@ export function DesignApp() {
           <div className="flex h-full min-w-0 items-center gap-2 border-x border-line bg-surface px-3 text-ink">
             <Icon name="pen-tool" className="text-control-accent" />
             <span className="min-w-0 truncate">Design</span>
-            <Glyph name="xmark" className="ml-3 text-muted" />
+            <Glyph name="x" className="ml-3 text-muted" />
           </div>
           <Button
             ref={inspectorToggle}

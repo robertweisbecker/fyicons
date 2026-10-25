@@ -25,7 +25,7 @@ export const iconGroups = [
         'arrow-x',
         'arrow-y',
         'chevrons-up-down',
-        'arrow-up-arrow-down',
+        'sort-arrows',
         'chevrons-down-up',
       ],
     ],
@@ -158,7 +158,13 @@ export const iconGroups = [
     caption: 'Tiny things & weird guys!',
     rows: [
       ['skull', 'ghost', 'agent', 'bug-ant', 'bug'],
-      ['bug-beetle', 'emoji-scared', 'emoji-beam', 'emoji-grin', 'emoji-smile'],
+      [
+        'bug-beetle',
+        'emoji-scared',
+        'emoji-grin',
+        'emoji-happy',
+        'emoji-smile',
+      ],
       [
         'emoji-diagonal',
         'emoji-neutral',

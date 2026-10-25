@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconMouseCupertino = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconMouseCupertino(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.5 7.87143C11.5 6.74766 11.4061 5.32004 11.3105 4.15858C11.2072 2.90188 10.2533 1.89077 9.01091 1.67531C8.34273 1.55944 7.65843 1.55923 6.99024 1.67511C5.74704 1.8907 4.79681 2.90572 4.69439 4.16331C4.59718 5.35687 4.5 6.81449 4.5 7.87143C4.5 10.1793 4.5 12.5 5.5 13.6857C6.39181 14.7431 9.54564 14.8174 10.5 13.6857C11.5 12.5 11.5 9.98571 11.5 7.87143Z" stroke="currentColor" /><path d="M7 11.5C7 11.2239 7.22386 11 7.5 11H8.5C8.77614 11 9 11.2239 9 11.5V12C9 12.5523 8.55228 13 8 13C7.44772 13 7 12.5523 7 12V11.5Z" fill="currentColor" /><path d="M8 11L8.25 10.75" stroke="currentColor" strokeWidth={0.5} strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
+});
+export default IconMouseCupertino;

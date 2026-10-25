@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconPaperclipSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconPaperclipSimple(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M8.5 0C9.88071 0 11 1.11929 11 2.5V12.5C11 14.433 9.433 16 7.5 16C5.567 16 4 14.433 4 12.5V6.5C4 6.22386 4.22386 6 4.5 6C4.77614 6 5 6.22386 5 6.5V12.5C5 13.8807 6.11929 15 7.5 15C8.88071 15 10 13.8807 10 12.5V2.5C10 1.67157 9.32843 1 8.5 1C7.67157 1 7 1.67157 7 2.5V9.5C7 9.77614 6.77614 10 6.5 10C6.22386 10 6 9.77614 6 9.5V2.5C6 1.11929 7.11929 0 8.5 0Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconPaperclipSimple;

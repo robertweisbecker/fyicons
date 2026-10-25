@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconEar = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconEar(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M10 11L7.27184 13.8292C6.8585 14.2579 6.28861 14.5 5.69313 14.5C4.4819 14.5 3.5 13.5181 3.5 12.3069V6C3.5 3.51472 5.51472 1.5 8 1.5C10.4853 1.5 12.5 3.51472 12.5 6V6.17584C12.5 7.66398 11.9088 9.09116 10.8566 10.1434L10 11Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M9.5 6.5V6C9.5 5.17157 8.82843 4.5 8 4.5C7.17157 4.5 6.5 5.17157 6.5 6V6.62132C6.5 7.18393 6.7235 7.7235 7.12132 8.12132L7.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M5.5 10.5C6.60457 10.5 7.5 9.60457 7.5 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
+});
+export default IconEar;

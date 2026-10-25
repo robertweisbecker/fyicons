@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconSortArrows = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSortArrows(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M5.49887 6.00014C5.77501 6.00014 5.99887 6.224 5.99887 6.50014V12.0001H7.35824C7.79412 12.0001 8.02108 12.5187 7.72543 12.839L5.86801 14.8517C5.67003 15.0662 5.33064 15.0662 5.13266 14.8517L3.27524 12.839C2.97959 12.5187 3.20655 12.0001 3.64242 12.0001H4.99887V6.50014C4.99887 6.22413 5.22291 6.00035 5.49887 6.00014ZM10.1327 1.1476C10.3306 0.933252 10.6701 0.93319 10.868 1.1476L12.7254 3.16127C13.0209 3.48157 12.7941 4.00014 12.3582 4.00014H10.9998V9.50014C10.9998 9.77621 10.7759 10.0001 10.4998 10.0001C10.2239 9.99993 9.99994 9.77608 9.99985 9.50014V4.00014H8.64242C8.20656 4.00014 7.97964 3.48156 8.27524 3.16127L10.1327 1.1476Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconSortArrows;

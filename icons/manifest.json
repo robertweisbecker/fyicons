@@ -1,6 +1,6 @@
 {
   "name": "FYIcons",
-  "version": "2026-10-24",
+  "version": "2026-10-25",
   "source": {
     "id": "sha256:b727b72e59b4359b61b1a32b4e0dddabd8150bb2dab37491bb9353d5cc6aa618"
   },
@@ -1081,7 +1081,7 @@
       "aliases": [
         "477-612.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconAgentClank"
     },
     {
@@ -1155,6 +1155,7 @@
       "aliases": [
         "224-14538.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconEmojiAngry"
     },
     {
@@ -1172,6 +1173,7 @@
       "aliases": [
         "360-11253.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconEmojiDiagonal"
     },
     {
@@ -1193,29 +1195,32 @@
     },
     {
       "id": "224:14540",
+      "name": "emoji-happy",
+      "baseName": "emoji-happy",
+      "originalName": "emoji-happy",
+      "width": 16,
+      "height": 16,
+      "filename": "emoji-happy-16.svg",
+      "file": "svgs/224-14540.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "notes": [],
+      "aliases": [
+        "224-14540.svg",
+        "emoji-grin",
+        "emoji-grin-16.svg"
+      ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconEmojiHappy"
+    },
+    {
+      "id": "356:10032",
       "name": "emoji-grin",
       "baseName": "emoji-grin",
       "originalName": "emoji-grin",
       "width": 16,
       "height": 16,
       "filename": "emoji-grin-16.svg",
-      "file": "svgs/224-14540.svg",
-      "sourcePageId": "82:2415",
-      "sourceSectionId": "646:192",
-      "notes": [],
-      "aliases": [
-        "224-14540.svg"
-      ],
-      "componentName": "IconEmojiGrin"
-    },
-    {
-      "id": "356:10032",
-      "name": "emoji-beam",
-      "baseName": "emoji-beam",
-      "originalName": "emoji-beam",
-      "width": 16,
-      "height": 16,
-      "filename": "emoji-beam-16.svg",
       "file": "svgs/356-10032.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -1223,9 +1228,12 @@
       "aliases": [
         "356-10032.svg",
         "emoji-happy",
-        "emoji-happy-16.svg"
+        "emoji-happy-16.svg",
+        "emoji-beam",
+        "emoji-beam-16.svg"
       ],
-      "componentName": "IconEmojiBeam"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconEmojiGrin"
     },
     {
       "id": "360:11297",
@@ -1347,6 +1355,7 @@
       "aliases": [
         "747-3749.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconFolderAdd"
     },
     {
@@ -1368,6 +1377,7 @@
         "folder-verified",
         "folder-verified-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconFolderApprove"
     },
     {
@@ -1402,6 +1412,7 @@
       "aliases": [
         "845-14204.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconFolderPlus"
     },
     {
@@ -1637,6 +1648,7 @@
       "aliases": [
         "970-11080.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconUserClank"
     },
     {
@@ -1928,6 +1940,7 @@
       "aliases": [
         "114-2146.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconArchive"
     },
     {
@@ -1945,6 +1958,7 @@
       "aliases": [
         "732-380.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconArchiveOpen"
     },
     {
@@ -1962,6 +1976,7 @@
       "aliases": [
         "918-31737.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconArchiveFull"
     },
     {
@@ -2033,6 +2048,7 @@
       "aliases": [
         "329-6351.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBookBookmark"
     },
     {
@@ -2054,6 +2070,7 @@
         "book-bookmark-wide",
         "book-bookmark-wide-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBookWideBookmark"
     },
     {
@@ -2338,6 +2355,7 @@
         "copy-lg",
         "copy-lg-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCopy"
     },
     {
@@ -3080,7 +3098,7 @@
         "note-1",
         "note-1-16.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconNotePad"
     },
     {
@@ -3136,6 +3154,7 @@
         "paperclip-1",
         "paperclip-1-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPaperclip"
     },
     {
@@ -3155,6 +3174,7 @@
         "paperclip-tilt-2",
         "paperclip-tilt-2-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPaperclipTilt"
     },
     {
@@ -3504,6 +3524,7 @@
         "brush-filbert",
         "brush-filbert-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPaintBrush"
     },
     {
@@ -3540,6 +3561,7 @@
         "brush-wide",
         "brush-wide-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBrush"
     },
     {
@@ -3807,7 +3829,7 @@
       "aliases": [
         "748-4506.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconHeading4"
     },
     {
@@ -3877,6 +3899,7 @@
       "aliases": [
         "129-6693.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconHighlighter"
     },
     {
@@ -3914,7 +3937,7 @@
         "list-task",
         "list-task-16.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconChecklist"
     },
     {
@@ -3937,7 +3960,7 @@
         "checklist-started-16.svg",
         "checklist"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconChecklist1"
     },
     {
@@ -3981,12 +4004,12 @@
     },
     {
       "id": "1020:10627",
-      "name": "paragraph-thumbnail-start",
-      "baseName": "paragraph-thumbnail-start",
-      "originalName": "paragraph-thumbnail-start",
+      "name": "paragraph-thumbnail",
+      "baseName": "paragraph-thumbnail",
+      "originalName": "paragraph-thumbnail",
       "width": 16,
       "height": 16,
-      "filename": "paragraph-thumbnail-start-16.svg",
+      "filename": "paragraph-thumbnail-16.svg",
       "file": "svgs/1020-10627.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
@@ -3994,10 +4017,32 @@
       "aliases": [
         "1020-10627.svg",
         "text-thumbnail",
-        "text-thumbnail-16.svg"
+        "text-thumbnail-16.svg",
+        "paragraph-thumbnail-start",
+        "paragraph-thumbnail-start-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconParagraphThumbnail"
+    },
+    {
+      "id": "1138:924",
+      "name": "paragraph-thumbnail-1",
+      "baseName": "paragraph-thumbnail",
+      "originalName": "paragraph-thumbnail",
+      "width": 16,
+      "height": 16,
+      "filename": "paragraph-thumbnail-1-16.svg",
+      "file": "svgs/1138-924.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1138-924.svg",
+        "paragraph-thumbnail",
+        "paragraph-thumbnail-16.svg"
+      ],
+      "addedAt": "2026-10-24T09:44:30.696Z",
       "updatedAt": "2026-10-24T09:44:30.696Z",
-      "componentName": "IconParagraphThumbnailStart"
+      "componentName": "IconParagraphThumbnail1"
     },
     {
       "id": "944:33003",
@@ -4087,6 +4132,7 @@
         "list-menu",
         "list-menu-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconMenu"
     },
     {
@@ -4125,7 +4171,7 @@
         "checklist-done",
         "checklist-done-16.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconChecklistChecked"
     },
     {
@@ -4143,6 +4189,7 @@
       "aliases": [
         "11-868.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPen"
     },
     {
@@ -4213,6 +4260,7 @@
       "aliases": [
         "132-2419.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPencil"
     },
     {
@@ -4910,23 +4958,6 @@
       "componentName": "IconTexture"
     },
     {
-      "id": "328:6267",
-      "name": "texture-refraction",
-      "baseName": "texture-refraction",
-      "originalName": "texture-refraction",
-      "width": 16,
-      "height": 16,
-      "filename": "texture-refraction-16.svg",
-      "file": "svgs/328-6267.svg",
-      "sourcePageId": "82:2415",
-      "sourceSectionId": "646:192",
-      "notes": [],
-      "aliases": [
-        "328-6267.svg"
-      ],
-      "componentName": "IconTextureRefraction"
-    },
-    {
       "id": "137:4863",
       "name": "highlighter-tip",
       "baseName": "highlighter-tip",
@@ -4941,6 +4972,7 @@
       "aliases": [
         "137-4863.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconHighlighterTip"
     },
     {
@@ -4958,6 +4990,7 @@
       "aliases": [
         "137-4865.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconMarkerTip"
     },
     {
@@ -4992,6 +5025,7 @@
       "aliases": [
         "137-4864.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPencilTip"
     },
     {
@@ -5268,6 +5302,7 @@
       "aliases": [
         "506-4097.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBrowserSimple"
     },
     {
@@ -5344,7 +5379,7 @@
         "1075-1620.svg"
       ],
       "addedAt": "2026-10-21T20:29:05.169Z",
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLayoutTabs"
     },
     {
@@ -5405,24 +5440,6 @@
       ],
       "updatedAt": "2026-10-22T08:06:37.817Z",
       "componentName": "IconParagraphProse"
-    },
-    {
-      "id": "1138:924",
-      "name": "paragraph-thumbnail",
-      "baseName": "paragraph-thumbnail",
-      "originalName": "paragraph-thumbnail",
-      "width": 16,
-      "height": 16,
-      "filename": "paragraph-thumbnail-16.svg",
-      "file": "svgs/1138-924.svg",
-      "sourcePageId": "82:2415",
-      "sourceSectionId": "646:192",
-      "aliases": [
-        "1138-924.svg"
-      ],
-      "addedAt": "2026-10-24T09:44:30.696Z",
-      "updatedAt": "2026-10-24T09:44:30.696Z",
-      "componentName": "IconParagraphThumbnail"
     },
     {
       "id": "578:2292",
@@ -6360,7 +6377,7 @@
         "layout-header-sidebar",
         "layout-header-sidebar-16.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLayoutApp"
     },
     {
@@ -6601,6 +6618,7 @@
       "aliases": [
         "604-5223.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconMenuAlt"
     },
     {
@@ -6618,6 +6636,7 @@
       "aliases": [
         "604-5010.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconMenuSimple"
     },
     {
@@ -7916,6 +7935,7 @@
         "device-computer",
         "device-computer-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconComputer"
     },
     {
@@ -8052,6 +8072,7 @@
       "aliases": [
         "845-14081.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLaptopSimple"
     },
     {
@@ -8110,6 +8131,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPhone"
     },
     {
@@ -8278,7 +8300,7 @@
         "cloud-download-1",
         "cloud-download-1-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCloudDownloadAlt"
     },
     {
@@ -8296,7 +8318,7 @@
       "aliases": [
         "673-286.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCloudCheck"
     },
     {
@@ -8349,6 +8371,7 @@
       "aliases": [
         "698-405.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCloudBolt"
     },
     {
@@ -8366,7 +8389,7 @@
       "aliases": [
         "698-420.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCloudX"
     },
     {
@@ -8384,7 +8407,7 @@
       "aliases": [
         "667-471.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCloudSlash"
     },
     {
@@ -8698,6 +8721,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconWifiFill"
     },
     {
@@ -8745,7 +8769,7 @@
         "fill": "true"
       },
       "addedAt": "2026-10-21T17:25:31.123Z",
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconWifiErrorFill"
     },
     {
@@ -9192,7 +9216,7 @@
       "aliases": [
         "193-13000.svg"
       ],
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPrinter"
     },
     {
@@ -10252,7 +10276,7 @@
       "aliases": [
         "472-546.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconProjectorScreen"
     },
     {
@@ -10433,20 +10457,23 @@
     },
     {
       "id": "620:506",
-      "name": "arrow-up-arrow-down",
-      "baseName": "arrow-up-arrow-down",
-      "originalName": "arrow-up-arrow-down",
+      "name": "sort-arrows",
+      "baseName": "sort-arrows",
+      "originalName": "sort-arrows",
       "width": 16,
       "height": 16,
-      "filename": "arrow-up-arrow-down-16.svg",
+      "filename": "sort-arrows-16.svg",
       "file": "svgs/620-506.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "notes": [],
       "aliases": [
-        "620-506.svg"
+        "620-506.svg",
+        "arrow-up-arrow-down",
+        "arrow-up-arrow-down-16.svg"
       ],
-      "componentName": "IconArrowUpArrowDown"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconSortArrows"
     },
     {
       "id": "510:4785",
@@ -10465,6 +10492,7 @@
         "16-upload",
         "16-upload-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconUpload"
     },
     {
@@ -11137,6 +11165,7 @@
         "arrow-down-bracket",
         "arrow-down-bracket-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconDownload"
     },
     {
@@ -11159,54 +11188,63 @@
     },
     {
       "id": "416:11644",
-      "name": "external-link",
-      "baseName": "external-link",
-      "originalName": "external-link",
+      "name": "arrow-external",
+      "baseName": "arrow-external",
+      "originalName": "arrow-external",
       "width": 16,
       "height": 16,
-      "filename": "external-link-16.svg",
+      "filename": "arrow-external-16.svg",
       "file": "svgs/416-11644.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "notes": [],
       "aliases": [
-        "416-11644.svg"
+        "416-11644.svg",
+        "external-link",
+        "external-link-16.svg"
       ],
-      "componentName": "IconExternalLink"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconArrowExternal"
     },
     {
       "id": "158:11664",
-      "name": "external-link-lg",
-      "baseName": "external-link-lg",
-      "originalName": "external-link-lg",
+      "name": "arrow-external-lg",
+      "baseName": "arrow-external-lg",
+      "originalName": "arrow-external-lg",
       "width": 16,
       "height": 16,
-      "filename": "external-link-lg-16.svg",
+      "filename": "arrow-external-lg-16.svg",
       "file": "svgs/158-11664.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "notes": [],
       "aliases": [
-        "158-11664.svg"
+        "158-11664.svg",
+        "external-link-lg",
+        "external-link-lg-16.svg"
       ],
-      "componentName": "IconExternalLinkLg"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconArrowExternalLg"
     },
     {
       "id": "590:3530",
-      "name": "file-download",
-      "baseName": "file-download",
-      "originalName": "file-download",
+      "name": "file-down",
+      "baseName": "file-down",
+      "originalName": "file-down",
       "width": 16,
       "height": 16,
-      "filename": "file-download-16.svg",
+      "filename": "file-down-16.svg",
       "file": "svgs/590-3530.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "notes": [],
       "aliases": [
-        "590-3530.svg"
+        "590-3530.svg",
+        "file-download",
+        "file-download-16.svg"
       ],
-      "componentName": "IconFileDownload"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconFileDown"
     },
     {
       "id": "578:3196",
@@ -11223,6 +11261,7 @@
       "aliases": [
         "578-3196.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconImport"
     },
     {
@@ -11338,7 +11377,7 @@
       "aliases": [
         "994-34136.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLoop"
     },
     {
@@ -11503,7 +11542,7 @@
         "seek-back-30-1",
         "seek-back-30-1-16.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconSeekBack30"
     },
     {
@@ -11521,7 +11560,7 @@
       "aliases": [
         "841-13534.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconSeek30"
     },
     {
@@ -11655,6 +11694,7 @@
         "arrows-compress",
         "arrows-compress-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconArrowsCollapse"
     },
     {
@@ -11674,6 +11714,7 @@
         "arrows-compress-all",
         "arrows-compress-all-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconArrowsMinimize"
     },
     {
@@ -11691,6 +11732,7 @@
       "aliases": [
         "129-6741.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconArrowsExpand"
     },
     {
@@ -11710,6 +11752,7 @@
         "arrows-expand-all",
         "arrows-expand-all-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconArrowsMaximize"
     },
     {
@@ -11943,6 +11986,7 @@
       "aliases": [
         "388-10428.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconSortDown"
     },
     {
@@ -11960,6 +12004,7 @@
       "aliases": [
         "388-10349.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconSortUp"
     },
     {
@@ -13243,6 +13288,7 @@
         "gauge-high",
         "gauge-high-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconGaugeSimpleHigh"
     },
     {
@@ -13260,6 +13306,7 @@
       "aliases": [
         "821-11540.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconGaugeSimpleMax"
     },
     {
@@ -13277,6 +13324,7 @@
       "aliases": [
         "821-11555.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconGaugeSimpleMin"
     },
     {
@@ -13315,6 +13363,7 @@
         "gauge-low",
         "gauge-low-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconGaugeSimpleLow"
     },
     {
@@ -13353,6 +13402,7 @@
         "gauge-medium",
         "gauge-medium-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconGaugeSimple"
     },
     {
@@ -13596,6 +13646,7 @@
       "aliases": [
         "620-416.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLoader"
     },
     {
@@ -13766,6 +13817,7 @@
       "aliases": [
         "506-2043.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCircleProgressTodo"
     },
     {
@@ -14029,54 +14081,63 @@
     },
     {
       "id": "506:3897",
-      "name": "xmark",
-      "baseName": "xmark",
-      "originalName": "xmark",
+      "name": "x",
+      "baseName": "x",
+      "originalName": "x",
       "width": 16,
       "height": 16,
-      "filename": "xmark-16.svg",
+      "filename": "x-16.svg",
       "file": "svgs/506-3897.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "notes": [],
       "aliases": [
-        "506-3897.svg"
+        "506-3897.svg",
+        "xmark",
+        "xmark-16.svg"
       ],
-      "componentName": "IconXmark"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconX"
     },
     {
       "id": "506:3883",
-      "name": "xmark-lg",
-      "baseName": "xmark-lg",
-      "originalName": "xmark-lg",
+      "name": "x-lg",
+      "baseName": "x-lg",
+      "originalName": "x-lg",
       "width": 16,
       "height": 16,
-      "filename": "xmark-lg-16.svg",
+      "filename": "x-lg-16.svg",
       "file": "svgs/506-3883.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "notes": [],
       "aliases": [
-        "506-3883.svg"
+        "506-3883.svg",
+        "xmark-lg",
+        "xmark-lg-16.svg"
       ],
-      "componentName": "IconXmarkLg"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconXLg"
     },
     {
       "id": "506:3896",
-      "name": "xmark-sm",
-      "baseName": "xmark-sm",
-      "originalName": "xmark-sm",
+      "name": "x-sm",
+      "baseName": "x-sm",
+      "originalName": "x-sm",
       "width": 16,
       "height": 16,
-      "filename": "xmark-sm-16.svg",
+      "filename": "x-sm-16.svg",
       "file": "svgs/506-3896.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "notes": [],
       "aliases": [
-        "506-3896.svg"
+        "506-3896.svg",
+        "xmark-sm",
+        "xmark-sm-16.svg"
       ],
-      "componentName": "IconXmarkSm"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconXSm"
     },
     {
       "id": "224:14594",
@@ -14165,6 +14226,7 @@
       "aliases": [
         "1001-768.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconRadar"
     },
     {
@@ -14274,7 +14336,7 @@
         "eye-open",
         "eye-open-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconEye"
     },
     {
@@ -14396,7 +14458,7 @@
         "reticle",
         "reticle-16.svg"
       ],
-      "updatedAt": "2026-10-22T08:06:37.817Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconTargetReticle"
     },
     {
@@ -14414,6 +14476,7 @@
       "aliases": [
         "698-618.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconTargetCrosshair"
     },
     {
@@ -14482,6 +14545,7 @@
       "aliases": [
         "193-13727.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconShieldCode"
     },
     {
@@ -14572,6 +14636,7 @@
       "aliases": [
         "193-13698.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconShieldX"
     },
     {
@@ -14639,6 +14704,7 @@
       "aliases": [
         "592-3588.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBeaker"
     },
     {
@@ -14656,7 +14722,7 @@
       "aliases": [
         "395-11019.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBrain"
     },
     {
@@ -14775,7 +14841,7 @@
       "aliases": [
         "58-9531.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCode"
     },
     {
@@ -15901,27 +15967,6 @@
       "componentName": "IconAirplaneDiagonal"
     },
     {
-      "id": "96:1548",
-      "name": "calendar-small",
-      "baseName": "calendar-small",
-      "originalName": "CalendarSmall",
-      "width": 16,
-      "height": 16,
-      "filename": "calendar-small-16.svg",
-      "file": "svgs/96-1548.svg",
-      "sourcePageId": "82:2415",
-      "sourceSectionId": "646:192",
-      "notes": [],
-      "aliases": [
-        "96-1548.svg",
-        "calendar-2",
-        "calendar-2-16.svg",
-        "calendar-alt",
-        "calendar-alt-16.svg"
-      ],
-      "componentName": "IconCalendarSmall"
-    },
-    {
       "id": "322:6085",
       "name": "compass-alt",
       "baseName": "compass-alt",
@@ -16017,7 +16062,7 @@
       "variantProperties": {
         "fill": "true"
       },
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconHomeFill"
     },
     {
@@ -16042,7 +16087,7 @@
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-10-23T02:14:05.730Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconHome"
     },
     {
@@ -16152,6 +16197,7 @@
       "aliases": [
         "171-11869.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPin"
     },
     {
@@ -16169,6 +16215,7 @@
       "aliases": [
         "811-9143.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPinFill"
     },
     {
@@ -16186,6 +16233,7 @@
       "aliases": [
         "346-9954.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPinVertical"
     },
     {
@@ -16203,6 +16251,7 @@
       "aliases": [
         "811-9149.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPinVerticalFill"
     },
     {
@@ -16627,7 +16676,7 @@
       "aliases": [
         "58-9555.svg"
       ],
-      "updatedAt": "2026-10-20T19:27:54.924Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLink"
     },
     {
@@ -16702,6 +16751,7 @@
       "aliases": [
         "747-267.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLinkSlash"
     },
     {
@@ -16725,7 +16775,7 @@
         "linked",
         "linked-16.svg"
       ],
-      "updatedAt": "2026-10-20T19:27:54.924Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLinkLinked"
     },
     {
@@ -16745,7 +16795,7 @@
         "link-break",
         "link-break-16.svg"
       ],
-      "updatedAt": "2026-10-20T19:27:54.924Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLinkUnlink"
     },
     {
@@ -16765,6 +16815,7 @@
         "link-connected",
         "link-connected-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLinks"
     },
     {
@@ -17055,6 +17106,7 @@
       "aliases": [
         "919-32763.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconFlower"
     },
     {
@@ -17246,6 +17298,7 @@
         "lightning-bolt-alt",
         "lightning-bolt-alt-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBoltFlash"
     },
     {
@@ -17373,6 +17426,7 @@
       "aliases": [
         "475-520.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLineHorizontal"
     },
     {
@@ -17390,6 +17444,7 @@
       "aliases": [
         "749-5321.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconLineDashed"
     },
     {
@@ -17621,6 +17676,7 @@
         "square-stack",
         "square-stack-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconSquares"
     },
     {
@@ -17912,7 +17968,7 @@
         "number4-1",
         "number4-1-16.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconNumber4"
     },
     {
@@ -17973,6 +18029,7 @@
         "number-zero",
         "number-zero-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconNumber0"
     },
     {
@@ -18026,6 +18083,7 @@
         "binoculars-1",
         "binoculars-1-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBinoculars"
     },
     {
@@ -18066,20 +18124,23 @@
     },
     {
       "id": "123:2474",
-      "name": "puzzle",
-      "baseName": "puzzle",
-      "originalName": "puzzle",
+      "name": "puzzle-piece",
+      "baseName": "puzzle-piece",
+      "originalName": "puzzle-piece",
       "width": 16,
       "height": 16,
-      "filename": "puzzle-16.svg",
+      "filename": "puzzle-piece-16.svg",
       "file": "svgs/123-2474.svg",
       "sourcePageId": "82:2415",
       "sourceSectionId": "646:192",
       "notes": [],
       "aliases": [
-        "123-2474.svg"
+        "123-2474.svg",
+        "puzzle",
+        "puzzle-16.svg"
       ],
-      "componentName": "IconPuzzle"
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconPuzzlePiece"
     },
     {
       "id": "392:10979",
@@ -18197,6 +18258,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconWarning"
     },
     {
@@ -18219,6 +18281,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconWarningFill"
     },
     {
@@ -18335,6 +18398,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconSquareAlert"
     },
     {
@@ -18359,6 +18423,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconSquareAlertFill"
     },
     {
@@ -18926,7 +18991,7 @@
       "aliases": [
         "731-313.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconEllipsisFold"
     },
     {
@@ -18944,7 +19009,7 @@
       "aliases": [
         "731-312.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconEllipsisUnfold"
     },
     {
@@ -19307,6 +19372,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCalendarFill"
     },
     {
@@ -19333,6 +19399,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCalendar"
     },
     {
@@ -19391,6 +19458,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconBolt"
     },
     {
@@ -19557,6 +19625,7 @@
       "aliases": [
         "737-7261.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconCollection"
     },
     {
@@ -19608,6 +19677,7 @@
       "aliases": [
         "738-7329.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconArchiveAlt"
     },
     {
@@ -19676,6 +19746,7 @@
       "variantProperties": {
         "fill": "false"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconFolder"
     },
     {
@@ -19698,6 +19769,7 @@
       "variantProperties": {
         "fill": "true"
       },
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconFolderFill"
     },
     {
@@ -19954,7 +20026,7 @@
       "aliases": [
         "752-3991.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPointDown"
     },
     {
@@ -19972,7 +20044,7 @@
       "aliases": [
         "752-6295.svg"
       ],
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconPointUp"
     },
     {
@@ -20962,6 +21034,7 @@
         "linen",
         "linen-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconFabric"
     },
     {
@@ -21139,6 +21212,7 @@
         "house-chimney",
         "house-chimney-16.svg"
       ],
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconHomeChimney"
     },
     {
@@ -21333,7 +21407,7 @@
       "aliases": [
         "1020-10458.svg"
       ],
-      "updatedAt": "2026-10-21T17:25:31.123Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconGas"
     },
     {
@@ -21375,25 +21449,6 @@
       "componentName": "IconHandRecieve"
     },
     {
-      "id": "1064:731",
-      "name": "d-pad",
-      "baseName": "d-pad",
-      "originalName": "d-pad",
-      "width": 16,
-      "height": 16,
-      "filename": "d-pad-16.svg",
-      "file": "svgs/1064-731.svg",
-      "sourcePageId": "82:2415",
-      "sourceSectionId": "646:192",
-      "notes": [],
-      "aliases": [
-        "1064-731.svg"
-      ],
-      "addedAt": "2026-10-21T17:25:31.123Z",
-      "updatedAt": "2026-10-24T09:44:30.696Z",
-      "componentName": "IconDPad"
-    },
-    {
       "id": "1064:757",
       "name": "dots-diamond-fill",
       "baseName": "dots-diamond-fill",
@@ -21411,7 +21466,7 @@
         "dots-diamond-16.svg"
       ],
       "addedAt": "2026-10-21T17:25:31.123Z",
-      "updatedAt": "2026-10-24T09:44:30.696Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
       "componentName": "IconDotsDiamondFill"
     },
     {
@@ -21707,6 +21762,384 @@
       "addedAt": "2026-10-24T09:44:30.696Z",
       "updatedAt": "2026-10-24T09:44:30.696Z",
       "componentName": "IconAgentSubSimple"
+    },
+    {
+      "id": "1163:11150",
+      "name": "extensions-lg",
+      "baseName": "extensions-lg",
+      "originalName": "extensions-lg",
+      "width": 16,
+      "height": 16,
+      "filename": "extensions-lg-16.svg",
+      "file": "svgs/1163-11150.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1163-11150.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconExtensionsLg"
+    },
+    {
+      "id": "1163:11151",
+      "name": "extensions",
+      "baseName": "extensions",
+      "originalName": "extensions",
+      "width": 16,
+      "height": 16,
+      "filename": "extensions-16.svg",
+      "file": "svgs/1163-11151.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1163-11151.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconExtensions"
+    },
+    {
+      "id": "1163:11207",
+      "name": "emoji-beam",
+      "baseName": "emoji-beam",
+      "originalName": "emoji-beam",
+      "width": 16,
+      "height": 16,
+      "filename": "emoji-beam-16.svg",
+      "file": "svgs/1163-11207.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1163-11207.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconEmojiBeam"
+    },
+    {
+      "id": "1165:958",
+      "name": "paperclip-simple",
+      "baseName": "paperclip-simple",
+      "originalName": "paperclip-simple",
+      "width": 16,
+      "height": 16,
+      "filename": "paperclip-simple-16.svg",
+      "file": "svgs/1165-958.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1165-958.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconPaperclipSimple"
+    },
+    {
+      "id": "1167:1162",
+      "name": "dots-triangle-fill",
+      "baseName": "dots-triangle-fill",
+      "originalName": "dots-triangle-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "dots-triangle-fill-16.svg",
+      "file": "svgs/1167-1162.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1167-1162.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconDotsTriangleFill"
+    },
+    {
+      "id": "1167:1437",
+      "name": "diamond",
+      "baseName": "diamond",
+      "originalName": "diamond",
+      "width": 16,
+      "height": 16,
+      "filename": "diamond-16.svg",
+      "file": "svgs/1167-1437.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1167-1437.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconDiamond"
+    },
+    {
+      "id": "1167:1446",
+      "name": "diamond-fill",
+      "baseName": "diamond-fill",
+      "originalName": "diamond-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "diamond-fill-16.svg",
+      "file": "svgs/1167-1446.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1167-1446.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconDiamondFill"
+    },
+    {
+      "id": "1167:1488",
+      "name": "gas-fill",
+      "baseName": "gas-fill",
+      "originalName": "gas-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "gas-fill-16.svg",
+      "file": "svgs/1167-1488.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1167-1488.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconGasFill"
+    },
+    {
+      "id": "1170:2216",
+      "name": "square-percent",
+      "baseName": "square-percent",
+      "originalName": "square-percent",
+      "width": 16,
+      "height": 16,
+      "filename": "square-percent-16.svg",
+      "file": "svgs/1170-2216.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2216.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconSquarePercent"
+    },
+    {
+      "id": "1170:2273",
+      "name": "mailbox",
+      "baseName": "mailbox",
+      "originalName": "mailbox",
+      "width": 16,
+      "height": 16,
+      "filename": "mailbox-16.svg",
+      "file": "svgs/1170-2273.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2273.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconMailbox"
+    },
+    {
+      "id": "1170:2274",
+      "name": "stars",
+      "baseName": "stars",
+      "originalName": "stars",
+      "width": 16,
+      "height": 16,
+      "filename": "stars-16.svg",
+      "file": "svgs/1170-2274.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2274.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconStars"
+    },
+    {
+      "id": "1170:2291",
+      "name": "music-note",
+      "baseName": "music-note",
+      "originalName": "music-note",
+      "width": 16,
+      "height": 16,
+      "filename": "music-note-16.svg",
+      "file": "svgs/1170-2291.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2291.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconMusicNote"
+    },
+    {
+      "id": "1170:2292",
+      "name": "notification",
+      "baseName": "notification",
+      "originalName": "notification",
+      "width": 16,
+      "height": 16,
+      "filename": "notification-16.svg",
+      "file": "svgs/1170-2292.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2292.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconNotification"
+    },
+    {
+      "id": "1170:2293",
+      "name": "brain-side",
+      "baseName": "brain-side",
+      "originalName": "brain-side",
+      "width": 16,
+      "height": 16,
+      "filename": "brain-side-16.svg",
+      "file": "svgs/1170-2293.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2293.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconBrainSide"
+    },
+    {
+      "id": "1170:2294",
+      "name": "ear",
+      "baseName": "ear",
+      "originalName": "ear",
+      "width": 16,
+      "height": 16,
+      "filename": "ear-16.svg",
+      "file": "svgs/1170-2294.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2294.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconEar"
+    },
+    {
+      "id": "1170:2295",
+      "name": "mouse-modern",
+      "baseName": "mouse-modern",
+      "originalName": "mouse-modern",
+      "width": 16,
+      "height": 16,
+      "filename": "mouse-modern-16.svg",
+      "file": "svgs/1170-2295.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2295.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconMouseModern"
+    },
+    {
+      "id": "1170:2296",
+      "name": "mouse-cupertino",
+      "baseName": "mouse-cupertino",
+      "originalName": "mouse-cupertino",
+      "width": 16,
+      "height": 16,
+      "filename": "mouse-cupertino-16.svg",
+      "file": "svgs/1170-2296.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2296.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconMouseCupertino"
+    },
+    {
+      "id": "1170:2297",
+      "name": "mouse",
+      "baseName": "mouse",
+      "originalName": "mouse",
+      "width": 16,
+      "height": 16,
+      "filename": "mouse-16.svg",
+      "file": "svgs/1170-2297.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2297.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconMouse"
+    },
+    {
+      "id": "1170:2298",
+      "name": "watch",
+      "baseName": "watch",
+      "originalName": "watch",
+      "width": 16,
+      "height": 16,
+      "filename": "watch-16.svg",
+      "file": "svgs/1170-2298.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2298.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconWatch"
+    },
+    {
+      "id": "1170:2299",
+      "name": "watch-smart",
+      "baseName": "watch-smart",
+      "originalName": "watch-smart",
+      "width": 16,
+      "height": 16,
+      "filename": "watch-smart-16.svg",
+      "file": "svgs/1170-2299.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2299.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconWatchSmart"
+    },
+    {
+      "id": "1170:2300",
+      "name": "infinity-sign",
+      "baseName": "infinity-sign",
+      "originalName": "infinity-sign",
+      "width": 16,
+      "height": 16,
+      "filename": "infinity-sign-16.svg",
+      "file": "svgs/1170-2300.svg",
+      "sourcePageId": "82:2415",
+      "sourceSectionId": "646:192",
+      "aliases": [
+        "1170-2300.svg"
+      ],
+      "addedAt": "2026-10-25T21:05:47.178Z",
+      "updatedAt": "2026-10-25T21:05:47.178Z",
+      "componentName": "IconInfinitySign"
     }
   ]
 }
