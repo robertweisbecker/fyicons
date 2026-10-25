@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+import { normalizeSvgExport } from './lib/svg-export.mjs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import {
@@ -96,7 +98,13 @@ for (const [baseName, group] of groups) {
     const originalFilename = safeFilename(
       icon.filename || path.posix.basename(icon.file || ''),
     );
-    const svg = await readSvgFile(source, icon.file || originalFilename);
+    const rawSvg = await readSvgFile(source, icon.file || originalFilename);
+    if (
+      icon.sha256 &&
+      icon.sha256 !== createHash('sha256').update(rawSvg).digest('hex')
+    )
+      throw new Error(`Checksum mismatch: ${icon.name}`);
+    const svg = normalizeSvgExport(rawSvg);
     // Dates belong to the component ID, not its generated name or export time.
     // Keep unknown legacy history absent, and preserve dates from archived imports.
     const dates = {};
@@ -118,6 +126,7 @@ for (const [baseName, group] of groups) {
     }
     const {
       svg: _svg,
+      sha256: _sha256,
       category: _category,
       categories: _categories,
       addedAt: _addedAt,
@@ -126,6 +135,7 @@ for (const [baseName, group] of groups) {
     } = icon;
     normalized.push({
       ...metadata,
+      sha256: createHash('sha256').update(svg).digest('hex'),
       ...dates,
       id: icon.id,
       name,

@@ -4,7 +4,7 @@
 
 The editable artwork is in [`icons/`](../icons/). Each icon has one SVG file and one entry in [`icons/manifest.json`](../icons/manifest.json). Category rules are in [`apps/site/public/icon-categories.json`](../apps/site/public/icon-categories.json).
 
-Normalize visible foreground paint to `currentColor` before import. Use `normalizeDisplayPaint` from `scripts/lib/react-icons.mjs`. Keep mask and clip definition paint, geometry, transparency, and the 16 × 16 viewBox. Generated catalogs and SVG downloads keep these normalized source bytes. React output gives each rendered instance its own SVG definition IDs.
+Normalize visible foreground paint to `currentColor` before import. The importer applies `normalizeSvgExport` from `scripts/lib/svg-export.mjs`. Keep the raw export and its checksum in local staging. This function applies the foreground color policy and repairs supported fill/stroke combinations. Keep the 16 × 16 viewBox, clips, and transparency. Generated catalogs and SVG downloads keep these normalized source bytes. React output gives each rendered instance its own SVG definition IDs.
 
 After an artwork or metadata edit, run:
 
@@ -17,6 +17,14 @@ This writes `packages/fyicons/src/`, `apps/site/src/data/catalog.json`, `apps/si
 `dev` and `build` generate at startup. During a running development session, run the generation command after an SVG edit. `npm run check:icons` does checks of source validity and generated file freshness without writing files.
 
 See [Contributing](../CONTRIBUTING.md#choose-checks-for-the-change) for verification. See [Releases](releases.md) when a source change also affects the package or registry.
+
+## Fill and stroke exports
+
+Keep `svgSimplifyStroke: false` for Figma exports. The simplify option can approximate inside and outside strokes. It does not always remove masks or combine fill and stroke geometry.
+
+After foreground color normalization, the importer joins an expanded outside stroke with its matching opaque fill when it can verify the redundant inverse-mask structure. Skia PathOps computes one filled outline. This removes the internal compositing seam and duplicate path data. The operation preserves holes and shared group opacity. It leaves unsupported masks, alpha-bearing paint, layer transparency, transformed layers, and clipped bounds unchanged. It does not edit the Figma document or run a general SVG optimizer.
+
+Review the Chromium comparison after an import. A vector union can change edge antialiasing and numeric path representation. A smaller file alone does not establish visual correctness. PathKit is a build dependency; it is not included in the icon package or website bundle.
 
 ## Identity and names
 
@@ -36,7 +44,7 @@ This command replaces the editable inventory and regenerates its outputs. Save a
 
 The importer uses current source names for known IDs and keeps old lookup aliases. Use `--preserve-names` only when the task requires the earlier names. Repository category rules remain authoritative; incoming category assignments are ignored. Sidebar icon references follow known IDs through renames and use a fallback when their source is removed.
 
-The importer validates metadata, hashes, viewBoxes, names, collisions, and paths before writing. It prepares source files, React output, catalogs, and the category schema together. Invalid input must leave all existing files unchanged. Publication uses ordinary file writes; a crash or filesystem error can leave partial output.
+The importer checks supplied hashes against raw input bytes before normalization. It computes output hashes from the normalized SVGs. It validates metadata, viewBoxes, names, collisions, and paths before writing. It prepares source files, React output, catalogs, and the category schema together. Invalid input must leave all existing files unchanged. Publication uses ordinary file writes; a crash or filesystem error can leave partial output.
 
 Local import input can supply `source.fileKey` or the existing opaque `source.id`. If both are supplied, they must match. Missing source identity stays unknown. Legacy input can omit `originalName` and aliases; the defaults are the imported name and an empty alias list. Supplied `sourceUrl` values are discarded, and missing URLs are not reconstructed.
 

@@ -81,6 +81,7 @@ test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring
       'sync-icons.mjs',
       'generate-icons.mjs',
       'lib/react-icons.mjs',
+      'lib/svg-export.mjs',
       'lib/prepare-icons.mjs',
       'lib/icon-files.mjs',
       'lib/sync-categories.mjs',
