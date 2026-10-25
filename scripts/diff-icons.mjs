@@ -9,10 +9,12 @@ import {
 } from './lib/icon-diff.mjs';
 import { compareImages } from './lib/icon-diff-images.mjs';
 import { renderHtml } from './lib/icon-diff-html.mjs';
+import { previewImage, previewManifest } from './lib/icon-preview-images.mjs';
 
 const { values } = parseArgs({
   options: {
     base: { type: 'string' },
+    'pr-preview': { type: 'boolean', default: false },
     head: { type: 'string', default: 'HEAD' },
     output: { type: 'string', default: 'artifacts/icon-diff' },
   },
@@ -60,6 +62,20 @@ await writeFile(
 );
 await writeFile(path.join(output, 'summary.md'), renderMarkdown(report));
 await writeFile(path.join(output, 'index.html'), renderHtml(report, previews));
+if (values['pr-preview']) {
+  const directory = path.join(output, 'pr-preview');
+  await mkdir(directory, { recursive: true });
+  const manifest = previewManifest(report);
+  for (const [index, change] of manifest.changes.entries())
+    await writeFile(
+      path.join(directory, change.image),
+      previewImage(previews[index]),
+    );
+  await writeFile(
+    path.join(directory, 'manifest.json'),
+    JSON.stringify(manifest, null, 2) + '\n',
+  );
+}
 console.log(
   `Compared ${report.base} → ${report.head}: ${report.totals.changed} icons with changes. See ${output}/index.html.`,
 );

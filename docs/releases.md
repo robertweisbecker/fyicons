@@ -59,6 +59,16 @@ SVG-byte changes and pixel changes are separate results. Pinned resvg renders at
 
 The table shows both sizes by default. The overlay uses pink for the old icon and blue for the new icon. Each layer starts at 50% opacity. Added and removed icons have no pixel comparison. Keep reports outside the website build and package tarball.
 
+### Review icons in a pull request
+
+The [icon preview workflow](../.github/workflows/icon-preview.yml) produces before-and-after PNGs after each push to a pull request. For branches in this repository, a [separate publisher](../.github/workflows/icon-preview-comment.yml) updates one bot comment. Expand a section to see images at 16 and 64 px on light and dark backgrounds. Renamed exports appear together. The comment compares the PR merge-base with its current head; outdated runs do not replace a newer report.
+
+Images live on the separate `codex/icon-previews` branch and use immutable commit URLs. They do not enter the website or npm package. No HTML hosting or artifact download is needed to view the comment. The interactive HTML report remains in the release-check artifact.
+
+Rendering has read-only permissions. The publisher runs trusted default-branch code, validates the report and PNGs as data, and installs no dependencies. Only it can write preview images and PR comments. Fork PRs still produce a read-only artifact but do not publish a comment. No personal token or additional repository settings are needed. The publisher workflow must be on the default branch before it can run.
+
+For a local preview bundle, add `--pr-preview` to `diff:icons`. This writes PNGs and a public manifest under `artifacts/icon-diff/pr-preview/` without publishing them.
+
 ## Prepare release notes
 
 ```sh
