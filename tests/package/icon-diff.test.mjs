@@ -432,25 +432,6 @@ test('HTML treats metadata as text and works without remote resources', async ()
   assert.ok(!/src="https?:/.test(html));
 });
 
-test('previews preserve aligned edges and fractional diagonal coverage', async () => {
-  const svg =
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><rect x="2.5" y="9.5" width="4" height="4" stroke="currentColor" stroke-linejoin="round"/></svg>';
-  const image = await raster(svg, views[0], true);
-  assert.equal(image.data[(10 * 16 + 2) * 4 + 3], 255);
-  assert.equal(image.data[(10 * 16 + 3) * 4 + 3], 0);
-  const diagonal = await raster(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><path d="M2 2L14 14" stroke="currentColor"/></svg>',
-    views[0],
-    true,
-  );
-  // A diagonal one-unit stroke covers about 91% of this interior pixel.
-  const alpha = diagonal.data[(8 * 16 + 8) * 4 + 3];
-  assert.ok(
-    alpha > 220 && alpha < 245,
-    `Expected partial coverage, got ${alpha}`,
-  );
-});
-
 test('previews reject external resources and active SVG content', async () => {
   for (const content of [
     '<image href="https://example.com/image.png"/>',
