@@ -80,7 +80,7 @@ const write = async (cwd, file, content) => {
   );
 };
 const smoke = `import assert from 'node:assert/strict';
-import { createElement, createRef } from 'react';
+import { act, createElement, createRef } from 'react';
 import { renderToString } from 'react-dom/server';
 import { hydrateRoot } from 'react-dom/client';
 import { IconSun } from 'fyicons';
@@ -97,12 +97,13 @@ assert.match(renderToString(createElement(IconSun)), /aria-hidden="true"/);
 const dom = new JSDOM('<div id="root">'+html+'</div>', {url:'http://localhost'});
 globalThis.window=dom.window;globalThis.document=dom.window.document;
 globalThis.HTMLElement=dom.window.HTMLElement;globalThis.SVGElement=dom.window.SVGElement;
-const errors=[]; const mounted=hydrateRoot(document.querySelector('#root'),tree,{onRecoverableError:error=>errors.push(error)});
-await new Promise(resolve=>setTimeout(resolve,100));
+globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+const errors=[]; let mounted;
+await act(async()=>{mounted=hydrateRoot(document.querySelector('#root'),tree,{onRecoverableError:error=>errors.push(error)})});
 assert.deepEqual(errors,[]); assert.equal(ref.current.tagName,'svg');
 ref.current.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));assert.equal(clicks,1);
 const ids=[...document.querySelectorAll('[id]')].map(node=>node.id);assert.equal(new Set(ids).size,ids.length);
-mounted.unmount();dom.window.close(); console.log('SSR, hydration, refs, event handlers, labels, and direct imports passed.');
+await act(async()=>mounted.unmount());dom.window.close(); console.log('SSR, hydration, refs, event handlers, labels, and direct imports passed.');
 `;
 for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
   const cwd = path.join(scratch, `react-${reactVersion}`);
