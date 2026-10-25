@@ -62,7 +62,6 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps --only-shell chromium
       - run: npm run check:icons
       - run: npm run check:registry
       - run: npm test
@@ -87,7 +86,6 @@ jobs:
           fi
           npm run diff:icons -- --base "$base" --head HEAD
           cat artifacts/icon-diff/summary.md >> "$GITHUB_STEP_SUMMARY"
-      - run: npm run verify:preview
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: fyicons-release-${{ github.sha }}
@@ -95,6 +93,5 @@ jobs:
             artifacts/package/
             artifacts/icon-diff/
             artifacts/verification.json
-            artifacts/screenshots/
           if-no-files-found: error
           retention-days: 14
