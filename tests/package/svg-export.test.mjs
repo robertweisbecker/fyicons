@@ -137,3 +137,36 @@ test('union retains holes and skips shapes clipped by the mask bounds', async ()
     );
   assert.equal(repairFillStrokeSeams(clipped), clipped);
 });
+
+test('complex overlapping curve exports retain the full opaque silhouette', async () => {
+  const raw = await readFile(
+    new URL('./fixtures/filled-curve-stroke.svg', import.meta.url),
+    'utf8',
+  );
+  const repaired = normalizeSvgExport(raw);
+  assert.doesNotMatch(repaired, /<mask/);
+  // This fixture's inverse masks remove only regions covered by opaque fills.
+  // The unmasked layers provide a separate raster reference for coverage.
+  const overlapping = raw.replace(/ mask="url\(#[^"]+\)"/g, '');
+  for (const size of [16, 64, 256]) {
+    const view = { ...views[0], size };
+    const reference = await renderer.raster(overlapping, view, true);
+    const result = await renderer.raster(repaired, view, true);
+    for (let y = 1; y < size - 1; y++)
+      for (let x = 1; x < size - 1; x++) {
+        const alpha = reference.data[(y * size + x) * 4 + 3];
+        if (alpha !== 0 && alpha !== 255) continue;
+        let interior = true;
+        for (let dy = -1; dy <= 1; dy++)
+          for (let dx = -1; dx <= 1; dx++)
+            if (reference.data[((y + dy) * size + x + dx) * 4 + 3] !== alpha)
+              interior = false;
+        if (interior)
+          assert.equal(
+            result.data[(y * size + x) * 4 + 3],
+            alpha,
+            `Unexpected hole or extra region at ${size}px (${x}, ${y})`,
+          );
+      }
+  }
+});

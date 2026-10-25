@@ -22,9 +22,9 @@ See [Contributing](../CONTRIBUTING.md#choose-checks-for-the-change) for verifica
 
 Keep `svgSimplifyStroke: false` for Figma exports. The simplify option can approximate inside and outside strokes. It does not always remove masks or combine fill and stroke geometry.
 
-After foreground color normalization, the importer joins an expanded outside stroke with its matching opaque fill when it can verify the redundant inverse-mask structure. Skia PathOps computes one filled outline. This removes the internal compositing seam and duplicate path data. The operation preserves holes and shared group opacity. It leaves unsupported masks, alpha-bearing paint, layer transparency, transformed layers, and clipped bounds unchanged. It does not edit the Figma document or run a general SVG optimizer.
+After foreground color normalization, the importer joins an expanded outside stroke with its matching opaque fill when it can verify the redundant inverse-mask structure. Paper.js computes one filled outline. This removes the internal compositing seam and duplicate path data. The operation preserves holes and shared group opacity. It leaves unsupported masks, alpha-bearing paint, layer transparency, transformed layers, and clipped bounds unchanged. It does not edit the Figma document or run a general SVG optimizer.
 
-Review the Chromium comparison after an import. A vector union can change edge antialiasing and numeric path representation. A smaller file alone does not establish visual correctness. PathKit is a build dependency; it is not included in the icon package or website bundle.
+Review the Chromium comparison after an import. A vector union can change edge antialiasing and numeric path representation. A smaller file alone does not establish visual correctness. Paper.js is a build dependency; it is not included in the icon package or website bundle.
 
 ## Identity and names
 

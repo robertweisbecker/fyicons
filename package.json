@@ -53,7 +53,7 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "fflate": "0.8.3",
-    "pathkit-wasm": "1.0.0"
+    "paper": "0.16.0"
   },
   "license": "MIT",
   "workspaces": [

@@ -1,13 +1,5 @@
 import { JSDOM } from 'jsdom';
-import PathKitInit from 'pathkit-wasm';
-import { readFile } from 'node:fs/promises';
-import { createRequire } from 'node:module';
-
-const pathKit = await PathKitInit({
-  wasmBinary: await readFile(
-    createRequire(import.meta.url).resolve('pathkit-wasm/bin/pathkit.wasm'),
-  ),
-});
+import paper from 'paper';
 import { normalizeDisplayPaint } from './react-icons.mjs';
 
 const attributesOnly = (node, allowed) =>
@@ -153,52 +145,44 @@ export function repairFillStrokeSeams(svg) {
           ),
         );
       if (!following) continue;
-      const a = pathKit.FromSVGString(fill.getAttribute('d'));
-      const b = pathKit.FromSVGString(outline.getAttribute('d'));
+      const scope = new paper.PaperScope();
+      scope.setup(new paper.Size(16, 16));
       try {
-        if (!a || !b) throw new Error('Cannot parse filled stroke geometry.');
-        for (const [path, node] of [
-          [a, fill],
-          [b, outline],
-        ]) {
+        const makePath = (node) => {
           const rule = inherited(node, 'fill-rule', 'nonzero');
           if (!['nonzero', 'evenodd'].includes(rule))
             throw new Error('Unsupported fill rule.');
-          path.setFillType(
-            rule === 'evenodd'
-              ? pathKit.FillType.EVENODD
-              : pathKit.FillType.WINDING,
-          );
-        }
+          return new scope.CompoundPath({
+            pathData: node.getAttribute('d'),
+            fillRule: rule,
+            insert: false,
+          });
+        };
+        const a = makePath(fill),
+          b = makePath(outline);
         const bounds = ['x', 'y', 'width', 'height'].map((key) =>
           Number(mask.getAttribute(key)),
         );
         if (!bounds.every(Number.isFinite) || bounds[2] <= 0 || bounds[3] <= 0)
           continue;
         const [x, y, width, height] = bounds;
-        const contained = (path) => {
-          const box = path.computeTightBounds();
-          return (
-            box.fLeft >= x &&
-            box.fTop >= y &&
-            box.fRight <= x + width &&
-            box.fBottom <= y + height
-          );
-        };
+        const contained = (path) =>
+          path.bounds.left >= x &&
+          path.bounds.top >= y &&
+          path.bounds.right <= x + width &&
+          path.bounds.bottom <= y + height;
         if (!contained(a) || !contained(b)) continue;
-        if (!a.op(b, pathKit.PathOp.UNION))
-          throw new Error('Filled stroke union failed.');
-        const d = a.toSVGString();
+        const union = a.unite(b, { insert: false });
+        const d = union.getPathData(null, 12);
         if (!d || /NaN|Infinity/.test(d))
           throw new Error('Invalid filled stroke union.');
         edits.push({
           start: source.index,
           length: source[0].length + following[0].length,
-          replacement: `<path d="${d}" fill="${paint}" fill-rule="${a.getFillTypeString()}"/>`,
+          replacement: `<path d="${d}" fill="${paint}" fill-rule="${union.fillRule}"/>`,
         });
       } finally {
-        a?.delete();
-        b?.delete();
+        scope.remove();
       }
     }
     for (const { start, length, replacement } of edits.reverse())
