@@ -26,6 +26,20 @@ export function repairFillStrokeSeams(svg) {
   try {
     const document = dom.window.document;
     const masks = [...document.querySelectorAll('mask')];
+    const references = [...document.querySelectorAll('[mask]')].map((node) => {
+      const value = node.getAttribute('mask').trim();
+      if (value === 'none') return { node, id: null };
+      const match =
+        /^url\(\s*(?:'(#[-\w.:]+)'|"(#[-\w.:]+)"|(#[-\w.:]+))\s*\)$/i.exec(
+          value,
+        );
+      return {
+        node,
+        id: match ? (match[1] || match[2] || match[3]).slice(1) : undefined,
+      };
+    });
+    // Unknown CSS URL syntax may reference a candidate mask. Keep its definition.
+    if (references.some(({ id }) => id === undefined)) return svg;
     const sources = [
       ...svg.matchAll(
         new RegExp(`<mask\\b${tagAttributes}>[\\s\\S]*?<\\/mask\\s*>`, 'g'),
@@ -64,7 +78,10 @@ export function repairFillStrokeSeams(svg) {
       // Preserve the original mask viewport and its rectangular coverage.
       if (
         !['x', 'y', 'width', 'height'].every(
-          (key) => white.getAttribute(key) === mask.getAttribute(key),
+          (key) =>
+            mask.hasAttribute(key) &&
+            white.hasAttribute(key) &&
+            white.getAttribute(key) === mask.getAttribute(key),
         )
       )
         continue;
@@ -75,9 +92,9 @@ export function repairFillStrokeSeams(svg) {
           .length !== 1
       )
         continue;
-      const uses = [...document.querySelectorAll('[mask]')].filter(
-        (node) => node.getAttribute('mask') === `url(#${id})`,
-      );
+      const uses = references
+        .filter((reference) => reference.id === id)
+        .map((reference) => reference.node);
       if (uses.length !== 1) continue;
       const outline = uses[0],
         fill = outline.previousElementSibling;

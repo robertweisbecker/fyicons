@@ -170,3 +170,29 @@ test('complex overlapping curve exports retain the full opaque silhouette', asyn
       }
   }
 });
+
+test('mask guards recognize equivalent references and require explicit bounds', () => {
+  for (const reference of [
+    "url('#outside')",
+    'url( \"#outside\" )',
+    'url( #outside )',
+    'url(#out\\73 ide)',
+  ]) {
+    const quoted = reference.replaceAll('"', '&quot;');
+    const shared = source.replace(
+      '</svg>',
+      `<rect width="16" height="16" mask="${quoted}"/></svg>`,
+    );
+    assert.equal(repairFillStrokeSeams(shared), shared);
+  }
+  const quotedTarget = source.replace('url(#outside)', "url( '#outside' )");
+  assert.doesNotMatch(repairFillStrokeSeams(quotedTarget), /<mask/);
+  const extended = source
+    .replaceAll('10.75', '14.5')
+    .replaceAll('11.25', '15')
+    .replaceAll('10.25', '14');
+  for (const attr of ['x="0"', 'y="0"', 'width="16"', 'height="16"']) {
+    const omitted = extended.replaceAll(' ' + attr, '');
+    assert.equal(repairFillStrokeSeams(omitted), omitted);
+  }
+});
