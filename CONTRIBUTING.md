@@ -59,7 +59,7 @@ Run `npm test` for both suites. CI keeps running both suites. The separate relea
 
 For a focused icon check, use `npm run test:icons`. Those tests are also part of `npm test`; there is no need to run both for the same change. For a TypeScript check without a build, use `npm run typecheck`.
 
-Icon comparison tests use the Chromium headless shell bundled with the pinned Playwright dependency. Before running those tests or generating previews, run `npx playwright install --only-shell chromium`. The `--only-shell` option skips the full browser download. This tooling is used for tests and previews; it is not included in the published package or website bundle. Install it again after a Playwright update. Linux CI uses `npx playwright install --with-deps --only-shell chromium` to include system dependencies.
+Icon comparison tests and PNG previews use the pinned Sharp dependency. `npm ci` installs its native renderer; no browser installation is required. This tooling is not included in the published package or website bundle. For visual review, open the HTML report in an existing browser. Browser antialiasing can differ from the generated PNGs.
 
 Tests use temporary fixtures and in-memory archives. Use tests for ZIP contents; do not use browser download controls or Save As dialogs for verification. Test observable behavior and actual generated output. Do not duplicate production logic in tests.
 

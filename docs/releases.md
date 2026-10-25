@@ -55,7 +55,7 @@ The command resolves refs to full commit SHAs. Reports exclude working-tree edit
 
 Each report includes standalone HTML, `changes.json`, and `summary.md`. It tracks additions, removals, names, exports, aliases, metadata, name reassignments, category rules, and generator hashes. An opaque source identity and component IDs establish identity. Older file keys are converted to the same identity before comparison. Reports omit private source links and export scope, including data from older commits. Similar geometry does not establish a rename.
 
-SVG-byte changes and pixel changes are separate results. Playwright’s pinned Chromium renders at 16 and 64 px on light and dark backgrounds, with a device scale factor of 1. Install it with `npx playwright install --only-shell chromium`. Each report records the Chromium and Playwright versions. Preview foreground colors follow the background theme, with the same paint conversion as React icons. Masks, gradients, and transparent paint keep their source values. Source byte checks keep the original colors. This does not compare React output or prove identical behavior in every browser. The HTML embeds PNG images; it does not execute raw SVG. External SVG resources, scripts, animation, and text are rejected. The renderer uses an offline browser context with network requests blocked.
+SVG-byte changes and pixel changes are separate results. The pinned Sharp renderer creates PNGs at 16 and 64 px on light and dark backgrounds. `npm ci` installs the renderer; no browser download is required. Each report records the Sharp, libvips, and librsvg versions. Both sides use the same renderer. Preview foreground colors follow the background theme, with the same paint conversion as React icons. Masks, gradients, and transparent paint keep their source values. Source byte checks keep the original colors. This does not compare React output or promise identical antialiasing in Figma or every browser. The HTML embeds PNG images; it does not execute raw SVG. External SVG resources, scripts, animation, and text are rejected.
 
 The table shows both sizes by default. The overlay uses pink for the old icon and blue for the new icon. Each layer starts at 50% opacity. Added and removed icons have no pixel comparison. Keep reports outside the website build and package tarball.
 
@@ -99,7 +99,7 @@ The registry fixture uses shadcn's source loader for two icons. It writes two te
 
 The Next.js fixture covers an async Server Component and a Client Component. Its tests make sure that title IDs are unique and static icons create no client references. These checks need network access for public dependencies. They do not need an account and do not publish. `artifacts/verification.json` records the tarball integrity and consumer results.
 
-After generating the default icon report, run `npm run verify:preview`. It needs a Playwright Chromium installation. It tests report controls, images, keyboard access, scrolling, screen widths, and browser errors. Record any check that cannot run; do not report it as passed.
+After generating the icon report, open its HTML file in an existing browser. Review the 16 px and 64 px images, before/after overlays, and light/dark backgrounds. For report UI changes, also check search, filters, opacity controls, keyboard access, and horizontal scrolling on narrow and wide screens. Automated tests cover report data and image generation; browser review is a separate manual check.
 
 [The verification workflow](../.github/workflows/release-prep.yml) runs these checks and uploads artifacts with 14-day retention. It has read-only repository permissions. [The Pages workflow](../.github/workflows/pages.yml) owns website deployment separately.
 
@@ -111,7 +111,7 @@ For a manual release:
 
 1. Review the pending changesets and run `npm run version:packages` once. Check the version, changelog, lockfile, and source registry.
 2. Commit and push the intended release changes. Follow the branch rules and wait for checks on that exact commit.
-3. Run the release checks and `npm run build`. Compare the previous published release tag with the release commit, then run `npm run verify:preview`. Review the HTML report, migration notes, package file list, and tarball integrity.
+3. Run the release checks and `npm run build`. Compare the previous published release tag with the release commit, then open the HTML report in an existing browser. Review the images, migration notes, package file list, and tarball integrity.
 4. If a check changes tracked files, review and commit those changes. Repeat the affected checks on the final commit. Keep the checked tarball unchanged after this step.
 5. Publish that tarball with `latest`. Replace `<version>` with the version you verified:
 

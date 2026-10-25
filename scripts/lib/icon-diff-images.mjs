@@ -1,5 +1,4 @@
-import { chromium } from '@playwright/test';
-import { createRequire } from 'node:module';
+import sharp from 'sharp';
 import { PNG } from 'pngjs';
 import { normalizeDisplayPaint } from './react-icons.mjs';
 
@@ -10,83 +9,45 @@ export const views = [
   { name: 'dark-64', size: 64, background: '#171717', color: '#ffffff' },
 ];
 
-// One browser per report (or test suite), closed by the caller even on failure.
 export async function createIconRenderer() {
-  const browser = await chromium.launch();
-  try {
-    const context = await browser.newContext({
-      deviceScaleFactor: 1,
-      offline: true,
-      serviceWorkers: 'block',
-    });
-    await context.route('**/*', (route) => route.abort());
-    const page = await context.newPage();
-    const raster = async (svg, view, transparent = false) => {
-      if (
-        svg &&
-        /<(?:script|image|foreignObject|style|text|animate\w*|set)\b|<!DOCTYPE|<\?xml-stylesheet|\bon\w+\s*=|(?:href\s*=\s*['"](?!#))|@import|url\((?!\s*['"]?#)/i.test(
-          svg,
-        )
+  const raster = async (svg, view, transparent = false) => {
+    if (
+      svg &&
+      /<(?:script|image|foreignObject|style|text|animate\w*|set)\b|<!DOCTYPE|<\?xml-stylesheet|\bon\w+\s*=|(?:href\s*=\s*['"](?!#))|@import|url\((?!\s*['"]?#)/i.test(
+        svg,
       )
-        throw new Error('Diff previews require self-contained SVG artwork.');
-      const source = svg
-        ? normalizeDisplayPaint(svg).replace(
-            /<svg\b/,
-            `<svg color="${view.color}"`,
-          )
-        : '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"/>';
-      const encoded = await page.evaluate(
-        async ({ source, view, transparent }) => {
-          const url = URL.createObjectURL(
-            new Blob([source], { type: 'image/svg+xml' }),
-          );
-          try {
-            const image = new Image();
-            image.src = url;
-            await image.decode();
-            const canvas = document.createElement('canvas');
-            canvas.width = canvas.height = view.size;
-            const ctx = canvas.getContext('2d');
-            if (!transparent) {
-              ctx.fillStyle = view.background;
-              ctx.fillRect(0, 0, view.size, view.size);
-            }
-            ctx.drawImage(image, 0, 0, view.size, view.size);
-            return canvas.toDataURL('image/png').split(',')[1];
-          } finally {
-            URL.revokeObjectURL(url);
-          }
-        },
-        { source, view, transparent },
-      );
-      const png = Buffer.from(encoded, 'base64');
-      const image = PNG.sync.read(png);
-      return {
-        data: image.data,
-        png,
-        width: image.width,
-        height: image.height,
-      };
-    };
-    return {
-      raster,
-      compareImages: (before, after) => compareImages(raster, before, after),
-      metadata: {
-        name: 'Chromium',
-        version: browser.version(),
-        playwright: createRequire(import.meta.url)(
-          '@playwright/test/package.json',
-        ).version,
-        sizes: [16, 64],
-        deviceScaleFactor: 1,
-        source: 'source SVG with theme foreground paint',
-      },
-      close: () => browser.close(),
-    };
-  } catch (error) {
-    await browser.close();
-    throw error;
-  }
+    )
+      throw new Error('Diff previews require self-contained SVG artwork.');
+    const source = normalizeDisplayPaint(
+      svg || '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"/>',
+    ).replace(/<svg\b[^>]*>/, (root) =>
+      root
+        .replace(/\s(?:width|height|color)\s*=\s*(?:"[^"]*"|'[^']*')/g, '')
+        .replace(
+          '<svg',
+          `<svg width="${view.size}" height="${view.size}" color="${view.color}"`,
+        ),
+    );
+    // Set the SVG viewport before rasterization; resizing a PNG would blur pixels.
+    let output = sharp(Buffer.from(source)).ensureAlpha();
+    if (!transparent) output = output.flatten({ background: view.background });
+    const png = await output.png().toBuffer();
+    const image = PNG.sync.read(png);
+    return { data: image.data, png, width: image.width, height: image.height };
+  };
+  return {
+    raster,
+    compareImages: (before, after) => compareImages(raster, before, after),
+    metadata: {
+      name: 'Sharp',
+      version: sharp.versions.sharp,
+      libvips: sharp.versions.vips,
+      librsvg: sharp.versions.rsvg,
+      sizes: [16, 64],
+      source: 'source SVG with theme foreground paint',
+    },
+    close: async () => {},
+  };
 }
 
 export function pixelDiff(before, after, background = '#ffffff') {
