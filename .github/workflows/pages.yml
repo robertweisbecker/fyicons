@@ -48,6 +48,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
       # Generated files are derived artifacts: rebuild from canonical SVG sources.
       - run: npm run build
       - run: npm test

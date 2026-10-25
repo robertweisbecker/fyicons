@@ -1,4 +1,4 @@
-import test from 'node:test';
+import test, { before, after } from 'node:test';
 import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import {
@@ -11,13 +11,22 @@ import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import {
-  compareImages,
-  raster,
+  createIconRenderer,
   views,
 } from '../../scripts/lib/icon-diff-images.mjs';
 import { renderHtml } from '../../scripts/lib/icon-diff-html.mjs';
 import { PNG } from 'pngjs';
 import { JSDOM } from 'jsdom';
+
+let renderer;
+before(async () => {
+  renderer = await createIconRenderer();
+});
+after(async () => {
+  await renderer?.close();
+});
+const compareImages = (...args) => renderer.compareImages(...args);
+const raster = (...args) => renderer.raster(...args);
 
 const icon = (id, name, extra = {}) => ({
   id,
@@ -174,10 +183,13 @@ test('legacy source keys match opaque identities without leaking into reports', 
       /private-fixture-file|sourceUrl|fileKey|figma\.com|private collection/,
     );
 });
-test('byte-only edits do not cause pixel changes; masks and gradients render', () => {
+test('byte-only edits do not cause pixel changes; masks and gradients render', async () => {
   const source =
     '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><defs><linearGradient id="g"><stop stop-color="red"/><stop offset="1" stop-color="blue"/></linearGradient><mask id="m"><rect width="16" height="16" fill="white"/><circle cx="8" cy="8" r="2" fill="black"/></mask></defs><rect width="16" height="16" fill="url(#g)" mask="url(#m)" opacity=".5"/></svg>';
-  const same = compareImages(source, source.replace('><defs>', '>\n<defs>'));
+  const same = await compareImages(
+    source,
+    source.replace('><defs>', '>\n<defs>'),
+  );
   assert.ok(Object.values(same).every((view) => view.changedPixels === 0));
   assert.ok(
     Object.values(same).every(
@@ -187,9 +199,9 @@ test('byte-only edits do not cause pixel changes; masks and gradients render', (
         view.overlayAfter === null,
     ),
   );
-  const changed = compareImages(source, source.replace('r="2"', 'r="4"'));
+  const changed = await compareImages(source, source.replace('r="2"', 'r="4"'));
   assert.ok(Object.values(changed).every((view) => view.changedPixels > 0));
-  assert.throws(
+  await assert.rejects(
     () =>
       compareImages(source, '<svg><image href="file:///etc/passwd"/></svg>'),
     /self-contained/,
@@ -199,16 +211,16 @@ test('byte-only edits do not cause pixel changes; masks and gradients render', (
 const rectangle = (x) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect x="${x}" y="4" width="6" height="8" fill="currentColor" opacity=".5"/></svg>`;
 
-test('source foreground paint uses the preview theme without hiding geometry changes', () => {
+test('source foreground paint uses the preview theme without hiding geometry changes', async () => {
   const source = rectangle(2).replace('currentColor', 'black');
-  const same = compareImages(source, rectangle(2));
+  const same = await compareImages(source, rectangle(2));
   assert.ok(Object.values(same).every((view) => view.changedPixels === 0));
-  const changed = compareImages(
+  const changed = await compareImages(
     source,
     rectangle(4).replace('currentColor', 'black'),
   );
   assert.ok(Object.values(changed).every((view) => view.changedPixels > 0));
-  const dark = raster(
+  const dark = await raster(
     source,
     views.find((view) => view.name === 'dark-16'),
   );
@@ -218,12 +230,12 @@ test('source foreground paint uses the preview theme without hiding geometry cha
   );
 });
 
-test('added and removed icons have no fabricated image or pixel comparison', () => {
+test('added and removed icons have no fabricated image or pixel comparison', async () => {
   for (const [before, after] of [
     [null, rectangle(2)],
     [rectangle(2), null],
   ]) {
-    const previews = compareImages(before, after);
+    const previews = await compareImages(before, after);
     for (const image of Object.values(previews)) {
       assert.equal(image.changedPixels, null);
       assert.equal(image.diff, null);
@@ -235,10 +247,10 @@ test('added and removed icons have no fabricated image or pixel comparison', () 
   }
 });
 
-test('pink and blue overlay layers preserve source transparency and pixel alignment', () => {
+test('pink and blue overlay layers preserve source transparency and pixel alignment', async () => {
   const before = rectangle(2),
     after = rectangle(4);
-  const previews = compareImages(before, after);
+  const previews = await compareImages(before, after);
   assert.equal(previews['light-16'].changedPixels, 32);
   assert.equal(previews['dark-16'].changedPixels, 32);
   for (const view of views) {
@@ -249,7 +261,7 @@ test('pink and blue overlay layers preserve source transparency and pixel alignm
       const actual = PNG.sync.read(
         Buffer.from(previews[view.name][key].split(',')[1], 'base64'),
       );
-      const source = raster(svg, view, true);
+      const source = await raster(svg, view, true);
       assert.equal(actual.width, source.width);
       assert.equal(actual.height, source.height);
       for (let offset = 0; offset < actual.data.length; offset += 4) {
@@ -270,7 +282,7 @@ test('pink and blue overlay layers preserve source transparency and pixel alignm
   }
 });
 
-test('comparison table distinguishes missing and unchanged artwork and keeps controls independent', () => {
+test('comparison table distinguishes missing and unchanged artwork and keeps controls independent', async () => {
   const before = [
     icon('1', 'Changed'),
     icon('2', 'Removed'),
@@ -282,10 +294,12 @@ test('comparison table distinguishes missing and unchanged artwork and keeps con
     icon('4', 'Added'),
   ];
   const report = compareSnapshots(snapshot(before), snapshot(after));
-  const previews = report.changes.map((change) =>
-    compareImages(
-      change.before ? rectangle(2) : null,
-      change.after ? rectangle(change.after.id === '1' ? 4 : 2) : null,
+  const previews = await Promise.all(
+    report.changes.map((change) =>
+      compareImages(
+        change.before ? rectangle(2) : null,
+        change.after ? rectangle(change.after.id === '1' ? 4 : 2) : null,
+      ),
     ),
   );
   const dom = new JSDOM(renderHtml(report, previews), {
@@ -401,13 +415,13 @@ test('comparison table distinguishes missing and unchanged artwork and keeps con
     dom.window.close();
   }
 });
-test('HTML treats metadata as text and works without remote resources', () => {
+test('HTML treats metadata as text and works without remote resources', async () => {
   const report = compareSnapshots(
     snapshot([]),
     snapshot([icon('1', '<script>alert(1)</script>')]),
   );
   const previews = [
-    compareImages(
+    await compareImages(
       null,
       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"/>',
     ),
@@ -416,4 +430,34 @@ test('HTML treats metadata as text and works without remote resources', () => {
   assert.ok(!html.includes('<script>alert(1)</script>'));
   assert.ok(html.includes('&lt;script&gt;'));
   assert.ok(!/src="https?:/.test(html));
+});
+
+test('Chromium preserves a pixel-aligned straight stroke beside a rounded corner', async () => {
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><rect x="2.5" y="9.5" width="4" height="4" stroke="currentColor" stroke-linejoin="round"/></svg>';
+  const image = await raster(svg, views[0], true);
+  assert.equal(image.data[(10 * 16 + 2) * 4 + 3], 255);
+  assert.equal(image.data[(10 * 16 + 3) * 4 + 3], 0);
+  assert.equal(renderer.metadata.name, 'Chromium');
+});
+
+test('previews reject external resources and active SVG content', async () => {
+  for (const content of [
+    '<image href="https://example.com/image.png"/>',
+    '<use href="file:///etc/passwd#icon"/>',
+    '<script>alert(1)</script>',
+    '<rect onload="alert(1)"/>',
+    '<rect fill="url(https://example.com/paint)"/>',
+    '<animate attributeName="opacity"/>',
+    '<style>@import "https://example.com/style.css";</style>',
+    '<text>Local font</text>',
+  ])
+    await assert.rejects(
+      () => raster(`<svg>${content}</svg>`, views[0]),
+      /self-contained/,
+    );
+  const local =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><linearGradient id="g"><stop stop-color="black"/></linearGradient></defs><rect width="16" height="16" fill="url( &quot;#g&quot; )"/></svg>';
+  // A normal local definition remains supported.
+  await raster(local.replace('url( &quot;#g&quot; )', 'url(#g)'), views[0]);
 });

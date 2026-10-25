@@ -6,6 +6,7 @@ Use Node 24, as specified in [`.nvmrc`](.nvmrc). Run these commands from the rep
 
 ```sh
 npm ci
+npx playwright install chromium
 npm run dev
 ```
 
@@ -58,6 +59,8 @@ Tests are separated by the behavior they protect:
 Run `npm test` for both suites. CI keeps running both suites. The separate release consumer and icon-preview checks remain documented in [Releases](docs/releases.md#release-checks).
 
 For a focused icon check, use `npm run test:icons`. Those tests are also part of `npm test`; there is no need to run both for the same change. For a TypeScript check without a build, use `npm run typecheck`.
+
+Icon comparison tests use the Chromium version bundled with the pinned Playwright dependency. Install it again after a Playwright update. Linux CI uses `npx playwright install --with-deps chromium` to include system dependencies.
 
 Tests use temporary fixtures and in-memory archives. Use tests for ZIP contents; do not use browser download controls or Save As dialogs for verification. Test observable behavior and actual generated output. Do not duplicate production logic in tests.
 

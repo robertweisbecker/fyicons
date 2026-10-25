@@ -1,7 +1,7 @@
-import test from 'node:test';
+import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { PNG } from 'pngjs';
-import { compareImages } from '../../scripts/lib/icon-diff-images.mjs';
+import { createIconRenderer } from '../../scripts/lib/icon-diff-images.mjs';
 import {
   previewImage,
   previewManifest,
@@ -12,6 +12,15 @@ import {
   validatePreview,
 } from '../../scripts/lib/icon-preview-comment.mjs';
 import { publishPreview } from '../../scripts/publish-icon-preview.mjs';
+
+let renderer;
+before(async () => {
+  renderer = await createIconRenderer();
+});
+after(async () => {
+  await renderer?.close();
+});
+const compareImages = (...args) => renderer.compareImages(...args);
 
 const head = 'a'.repeat(40),
   base = 'b'.repeat(40),
@@ -37,10 +46,13 @@ const pr = {
   base: { sha: base, repo: { full_name: repository } },
 };
 
-test('comment PNGs preserve both render sizes, sides and themes', () => {
+test('comment PNGs preserve both render sizes, sides and themes', async () => {
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="16" height="16" fill="currentColor"/></svg>';
-  const images = compareImages(svg, svg.replace('width="16"', 'width="8"'));
+  const images = await compareImages(
+    svg,
+    svg.replace('width="16"', 'width="8"'),
+  );
   const png = PNG.sync.read(previewImage(images));
   assert.equal(png.width, 576);
   assert.equal(png.height, 192);
@@ -61,24 +73,27 @@ test('comment PNGs preserve both render sizes, sides and themes', () => {
             source.data.subarray(line * size * 4, (line + 1) * size * 4),
           );
       }
-  const added = PNG.sync.read(previewImage(compareImages(null, svg)));
+  const added = PNG.sync.read(previewImage(await compareImages(null, svg)));
   assert.equal(added.width, 384);
   assert.equal(
-    PNG.sync.read(previewImage(compareImages(svg, null))).width,
+    PNG.sync.read(previewImage(await compareImages(svg, null))).width,
     384,
   );
-  assert.equal(PNG.sync.read(previewImage(compareImages(svg, svg))).width, 384);
+  assert.equal(
+    PNG.sync.read(previewImage(await compareImages(svg, svg))).width,
+    384,
+  );
   assert.deepEqual(
     [...added.data.subarray((40 * 384 + 24) * 4, (40 * 384 + 24) * 4 + 4)],
     [255, 255, 255, 255],
   );
 });
 
-test('overlay colors distinguish old, new and overlapping geometry at both sizes and themes', () => {
+test('overlay colors distinguish old, new and overlapping geometry at both sizes and themes', async () => {
   const rectangle = (x, opacity = 1) =>
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="${x}" y="2" width="6" height="12" fill="currentColor" opacity="${opacity}"/></svg>`;
   const png = PNG.sync.read(
-    previewImage(compareImages(rectangle(2), rectangle(4))),
+    previewImage(await compareImages(rectangle(2), rectangle(4))),
   );
   const pixel = (x, y) => [
     ...png.data.subarray((y * png.width + x) * 4, (y * png.width + x) * 4 + 3),
@@ -104,7 +119,7 @@ test('overlay colors distinguish old, new and overlapping geometry at both sizes
     }
   }
   const translucent = PNG.sync.read(
-    previewImage(compareImages(rectangle(2, 0.5), rectangle(4, 0.5))),
+    previewImage(await compareImages(rectangle(2, 0.5), rectangle(4, 0.5))),
   );
   const index = (48 * translucent.width + 408 + 3) * 4;
   assert.deepEqual(
