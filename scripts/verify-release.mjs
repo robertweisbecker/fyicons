@@ -90,7 +90,7 @@ import { JSDOM } from ${JSON.stringify(import.meta.resolve('jsdom'))};
 assert.equal(IconSun, DirectSun);
 const ref = createRef();
 let clicks = 0;
-const tree = createElement('div', null, createElement(IconSun, {title:'Light mode', ref, size:24, onClick:()=>clicks++}), createElement(DirectSun, {title:'Other light'}));
+const tree = createElement('div', null, createElement(IconSun, {title:'Light mode', 'aria-label':'Light mode', className:'consumer-icon', ref, size:24, onClick:()=>clicks++}), createElement(DirectSun, {title:'Other light'}));
 const html = renderToString(tree);
 assert.match(html, /width="24"/);
 assert.match(html, /role="img"/);
@@ -102,9 +102,18 @@ globalThis.IS_REACT_ACT_ENVIRONMENT=true;
 const errors=[]; let mounted;
 await act(async()=>{mounted=hydrateRoot(document.querySelector('#root'),tree,{onRecoverableError:error=>errors.push(error)})});
 assert.deepEqual(errors,[]); assert.equal(ref.current.tagName,'svg');
+assert.equal(ref.current.getAttribute('aria-label'),'Light mode');
+assert.equal(ref.current.getAttribute('role'),'img');
+assert.equal(ref.current.hasAttribute('aria-hidden'),false);
+assert.equal(ref.current.getAttribute('class'),'fy-icon fy-sun consumer-icon');
+const decorative=document.querySelectorAll('svg')[1];
+assert.equal(decorative.getAttribute('aria-hidden'),'true');
+assert.equal(decorative.hasAttribute('aria-label'),false);
+assert.equal(decorative.hasAttribute('role'),false);
+assert.equal(decorative.getAttribute('class'),'fy-icon fy-sun');
 ref.current.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));assert.equal(clicks,1);
 const ids=[...document.querySelectorAll('[id]')].map(node=>node.id);assert.equal(new Set(ids).size,ids.length);
-await act(async()=>mounted.unmount());dom.window.close(); console.log('SSR, hydration, refs, event handlers, labels, and direct imports passed.');
+await act(async()=>mounted.unmount());dom.window.close(); console.log('SSR, hydration, refs, event handlers, labels, classes, and direct imports passed.');
 `;
 for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
   const cwd = path.join(scratch, `react-${reactVersion}`);
@@ -301,12 +310,12 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
     await write(
       cwd,
       'app/page.tsx',
-      `import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../src/components/fyicons/IconSun';export default async function Page(){await Promise.resolve();return <main><h1>FYIcons consumer</h1><IconSun title="Package icon"/><DirectSun title="Direct icon"/><RegistrySun title="Registry icon"/></main>}`,
+      `import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../src/components/fyicons/IconSun';export default async function Page(){await Promise.resolve();return <main><h1>FYIcons consumer</h1><IconSun title="Package icon" aria-label="Package icon"/><DirectSun title="Direct icon" aria-label="Direct icon"/><RegistrySun title="Registry icon" aria-label="Registry icon" className="consumer-icon"/></main>}`,
     );
     await write(
       cwd,
       'app/interactive/page.tsx',
-      `'use client';import {useRef,useState} from 'react';import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../../src/components/fyicons/IconSun';export default function Page(){const ref=useRef<SVGSVGElement>(null);const [clicks,setClicks]=useState(0);return <main><button type="button" onClick={()=>setClicks(clicks+1)}><IconSun ref={ref} title="Package icon"/><DirectSun title="Direct icon"/><RegistrySun title="Registry icon"/></button><output>{clicks}</output></main>}`,
+      `'use client';import {useRef,useState} from 'react';import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../../src/components/fyicons/IconSun';export default function Page(){const ref=useRef<SVGSVGElement>(null);const [clicks,setClicks]=useState(0);return <main><button type="button" onClick={()=>setClicks(clicks+1)}><IconSun ref={ref} title="Package icon" aria-label="Package icon"/><DirectSun title="Direct icon" aria-label="Direct icon"/><RegistrySun title="Registry icon" aria-label="Registry icon" className="consumer-icon"/></button><output>{clicks}</output></main>}`,
     );
     run(
       process.execPath,
@@ -345,11 +354,17 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
       assert.equal(new Set(ids).size, icons.length);
       for (const icon of icons) {
         assert.equal(
-          icon.getAttribute('aria-labelledby'),
-          icon.querySelector('title').id,
+          icon.getAttribute('aria-label'),
+          icon.querySelector('title').textContent,
         );
+        assert.equal(icon.hasAttribute('aria-labelledby'), false);
+        assert.equal(icon.hasAttribute('aria-hidden'), false);
         assert.equal(icon.getAttribute('role'), 'img');
       }
+      assert.deepEqual(
+        icons.map((icon) => icon.getAttribute('class')),
+        ['fy-icon fy-sun', 'fy-icon fy-sun', 'fy-icon fy-sun consumer-icon'],
+      );
       dom.window.close();
     }
   }
@@ -371,6 +386,7 @@ await write(path.join(root, 'artifacts'), 'verification.json', {
     'refs',
     'event handlers',
     'accessible names',
+    'decorative defaults and icon classes',
     'NodeNext types',
     'Bundler types',
     'Vite tree shaking',

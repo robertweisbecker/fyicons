@@ -42,27 +42,38 @@ Set `size` to change both dimensions. All icons use `currentColor`; leave `color
 <IconSun size={24} color="#2563eb" />
 ```
 
-| Prop                            | What it does                                                           |
-| ------------------------------- | ---------------------------------------------------------------------- |
-| `size`                          | Sets width and height. Accepts a number or a string; defaults to `16`. |
-| `width`, `height`               | Override the corresponding dimension from `size`.                      |
-| `color`                         | Sets the icon color. Otherwise, the icon inherits the text color.      |
-| `className`, `style`            | Apply your CSS styles.                                                 |
-| `title`                         | Adds an SVG title and an accessible name.                              |
-| `aria-label`, `aria-labelledby` | Provide an accessible name.                                            |
-| `ref`                           | Gives access to the SVG element.                                       |
+| Prop              | What it does                                                           |
+| ----------------- | ---------------------------------------------------------------------- |
+| `size`            | Sets width and height. Accepts a number or a string; defaults to `16`. |
+| `width`, `height` | Override the corresponding dimension from `size`.                      |
+| `color`           | Sets the icon color. Otherwise, the icon inherits the text color.      |
+| `className`       | Adds your classes after the default icon classes.                      |
+| `style`           | Applies inline CSS styles.                                             |
+| `title`           | Adds an SVG title.                                                     |
+| `aria-label`      | Names the icon and sets `role="img"` by default.                       |
+| `aria-labelledby` | Passes through an external label reference.                            |
+| `ref`             | Gives access to the SVG element.                                       |
 
 Components accept standard React SVG props and event handlers. Many icons use filled paths, so `strokeWidth` does not change their visual weight.
 
-## Accessibility
-
-Icons are decorative by default and render with `aria-hidden="true"`. When an icon conveys information on its own, give it an accessible name:
+Every icon has `fy-icon` and `fy-{icon-name}` classes. The icon name matches the catalog, including variant suffixes. Your `className` adds to these defaults:
 
 ```tsx
-<IconSun title="Light mode" />
+<IconSun className="toolbar-icon" />
+// Renders class="fy-icon fy-sun toolbar-icon"
 ```
 
-You can also use `aria-label` or `aria-labelledby`. For an icon-only button, name the button and leave the icon decorative, as in the first example. This gives the control a clear name without repeating it for the icon.
+## Accessibility
+
+Icons without a non-empty `aria-label` are decorative and render with `aria-hidden="true"`. Add `aria-label` when an icon conveys information on its own. The component passes the label to the SVG and sets `role="img"`:
+
+```tsx
+<IconSun aria-label="Light mode" />
+```
+
+A `title` or `aria-labelledby` alone does not change the decorative default. Use `aria-label` for automatic accessible naming. Explicit `role` and `aria-hidden` props override the defaults; for an external label, set `aria-labelledby`, `role="img"`, and `aria-hidden={false}` together. Empty or whitespace-only labels remain decorative.
+
+For an icon-only button, name the button and leave the icon decorative, as in the first example. This gives the control a clear name without repeating it for the icon.
 
 ## Next.js and Server Components
 

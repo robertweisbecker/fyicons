@@ -48,7 +48,7 @@ async function loadComponent(source) {
   ).default;
 }
 
-test('every generated component renders on the server at 16px', async () => {
+test('every generated component renders with default sizing, accessibility, and classes', async () => {
   const { createElement } = await import('react');
   const { renderToStaticMarkup } = await import('react-dom/server');
   for (const icon of catalog.icons) {
@@ -61,6 +61,24 @@ test('every generated component renders on the server at 16px', async () => {
     assert.match(html, /height="16"/, icon.name);
     assert.match(html, /viewBox="0 0 16 16"/, icon.name);
     assert.match(html, /xmlns="http:\/\/www.w3.org\/2000\/svg"/, icon.name);
+    assert.match(html, /aria-hidden="true"/, icon.name);
+    assert.doesNotMatch(html, /role=|iconName=|idPrefix=/, icon.name);
+    assert.ok(html.includes(`class="fy-icon fy-${icon.name}"`), icon.name);
+    const labeledHtml = renderToStaticMarkup(
+      createElement(Component, {
+        'aria-label': 'Status',
+        className: 'custom text-blue-500',
+      }),
+    );
+    assert.match(labeledHtml, /role="img"/, icon.name);
+    assert.match(labeledHtml, /aria-label="Status"/, icon.name);
+    assert.doesNotMatch(labeledHtml, /aria-hidden=/, icon.name);
+    assert.ok(
+      labeledHtml.includes(
+        `class="fy-icon fy-${icon.name} custom text-blue-500"`,
+      ),
+      icon.name,
+    );
   }
 });
 
@@ -104,6 +122,7 @@ test('rendered components honor SVG props and keep repeated definition and title
   const files = await renderReactIconFiles([
     {
       id: 'fixture:2',
+      name: 'fixture',
       componentName: 'IconFixture',
       svg: `<svg viewBox='0 0 16 16'><defs><linearGradient id='paint'><stop stop-color='black'/></linearGradient><mask id='cut'><rect width='16' height='16' fill='white'/></mask></defs><path mask='url(#cut)' d='M1 1h14v14H1Z' fill='black' style='fill:color(display-p3 0 0 0)'/><path fill='url(#paint)' d='M2 2h2v2H2Z'/></svg>`,
     },
@@ -121,6 +140,7 @@ test('rendered components honor SVG props and keep repeated definition and title
         color: 'red',
         className: 'sample',
         title: 'Sample',
+        'aria-label': 'Sample',
         style: { opacity: 0.5 },
         'data-test': 'first',
         viewBox: '0 0 32 24',
@@ -131,7 +151,7 @@ test('rendered components honor SVG props and keep repeated definition and title
   assert.match(html, /width="32"/);
   assert.match(html, /height="24"/);
   assert.match(html, /color="red"/);
-  assert.match(html, /class="sample"/);
+  assert.match(html, /class="fy-icon fy-fixture sample"/);
   assert.match(html, /style="opacity:0.5"/);
   assert.match(html, /data-test="first"/);
   assert.match(html, /viewBox="0 0 32 24"/);
@@ -182,6 +202,7 @@ test('reference delimiters remain literal data in repeated rendered instances', 
     const files = await renderReactIconFiles([
       {
         id: `fixture:literal-references-${index}`,
+        name: `literal-references-${index}`,
         componentName,
         svg: `<svg viewBox="0 0 16 16" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id=${attribute(sourceId)} d="M1 1h2v2H1Z"/></defs><use href=${attribute('#' + sourceId)}/><use xlink:href=${attribute('#' + sourceId)}/><path fill=${attribute(prefix + 'url(#' + sourceId + ')' + suffix)} style=${attribute('mask:' + prefix + 'url(#' + sourceId + ')' + suffix)} d="M1 1h2v2H1Z"/></svg>`,
       },
@@ -222,7 +243,7 @@ test('reference delimiters remain literal data in repeated rendered instances', 
   }
 });
 
-test('rendered accessible names honor explicit naming and decorative overrides', async () => {
+test('aria-label controls accessibility defaults while explicit SVG attributes pass through', async () => {
   const { createElement } = await import('react');
   const { renderToStaticMarkup } = await import('react-dom/server');
   const Component = await loadComponent(
@@ -235,9 +256,7 @@ test('rendered accessible names honor explicit naming and decorative overrides',
     {
       name: 'title only',
       props: { title: 'Artwork' },
-      label: 'Artwork',
-      titleLink: true,
-      role: 'img',
+      hidden: 'true',
     },
     {
       name: 'aria-label only',
@@ -249,7 +268,7 @@ test('rendered accessible names honor explicit naming and decorative overrides',
       name: 'aria-labelledby only',
       props: { 'aria-labelledby': 'external-name' },
       labelledby: 'external-name',
-      role: 'img',
+      hidden: 'true',
     },
     {
       name: 'title with aria-label',
@@ -260,9 +279,8 @@ test('rendered accessible names honor explicit naming and decorative overrides',
     {
       name: 'title with aria-labelledby',
       props: { title: 'Artwork', 'aria-labelledby': 'external-name' },
-      label: 'Artwork',
       labelledby: 'external-name',
-      role: 'img',
+      hidden: 'true',
     },
     {
       name: 'title with both explicit names',
@@ -279,14 +297,40 @@ test('rendered accessible names honor explicit naming and decorative overrides',
       name: 'empty explicit aria-label',
       props: { title: 'Artwork', 'aria-label': '' },
       label: '',
-      role: 'img',
+      hidden: 'true',
+    },
+    {
+      name: 'whitespace-only aria-label',
+      props: { 'aria-label': '   ' },
+      label: '   ',
+      hidden: 'true',
+    },
+    {
+      name: 'undefined aria-label',
+      props: { 'aria-label': undefined },
+      hidden: 'true',
+    },
+    {
+      name: 'null aria-label',
+      props: { 'aria-label': null },
+      hidden: 'true',
     },
     {
       name: 'empty explicit aria-labelledby',
       props: { title: 'Artwork', 'aria-labelledby': '' },
-      label: 'Artwork',
       labelledby: '',
+      hidden: 'true',
+    },
+    {
+      name: 'explicit external label and visibility',
+      props: {
+        'aria-labelledby': 'external-name',
+        role: 'img',
+        'aria-hidden': false,
+      },
+      labelledby: 'external-name',
       role: 'img',
+      hidden: 'false',
     },
     {
       name: 'explicit role and hidden',
@@ -307,15 +351,7 @@ test('rendered accessible names honor explicit naming and decorative overrides',
       hidden: 'false',
     },
   ];
-  for (const {
-    name,
-    props,
-    label,
-    labelledby,
-    titleLink,
-    role,
-    hidden,
-  } of cases) {
+  for (const { name, props, label, labelledby, role, hidden } of cases) {
     const html = renderToStaticMarkup(createElement(Component, props));
     const root = html.match(/^<svg\b([^>]*)>/)[1];
     const attributes = Object.fromEntries(
@@ -327,12 +363,21 @@ test('rendered accessible names honor explicit naming and decorative overrides',
     const titleId = html.match(/<title id="([^"]+)">Artwork<\/title>/)?.[1];
     assert.equal(Boolean(titleId), Boolean(props.title), name);
     assert.equal(attributes['aria-label'], label, name);
-    assert.equal(
-      attributes['aria-labelledby'],
-      titleLink ? titleId : labelledby,
-      name,
-    );
+    assert.equal(attributes['aria-labelledby'], labelledby, name);
     assert.equal(attributes.role, role, name);
     assert.equal(attributes['aria-hidden'], hidden, name);
   }
+});
+
+test('empty user classes retain both default classes without trailing spaces', async () => {
+  const { createElement } = await import('react');
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const icon = catalog.icons.find((item) => item.name === 'arrow-up-right');
+  const Component = await loadComponent(
+    generatedFiles.get(`packages/fyicons/src/${icon.componentName}.tsx`),
+  );
+  const html = renderToStaticMarkup(
+    createElement(Component, { className: '' }),
+  );
+  assert.match(html, /class="fy-icon fy-arrow-up-right"/);
 });
