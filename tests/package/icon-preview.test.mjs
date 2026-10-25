@@ -22,6 +22,7 @@ const change = {
   after: 'Bell2',
   flags: ['export-changed', 'pixels-changed'],
   image: '0000.png',
+  overlay: true,
 };
 const report = { base, head, changes: [change] };
 const destination = {
@@ -41,7 +42,7 @@ test('comment PNGs preserve both render sizes, sides and themes', () => {
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="16" height="16" fill="currentColor"/></svg>';
   const images = compareImages(svg, svg.replace('width="16"', 'width="8"'));
   const png = PNG.sync.read(previewImage(images));
-  assert.equal(png.width, 384);
+  assert.equal(png.width, 576);
   assert.equal(png.height, 192);
   for (const [row, theme] of ['light', 'dark'].entries())
     for (const [col, side] of ['before', 'after'].entries())
@@ -54,16 +55,61 @@ test('comment PNGs preserve both render sizes, sides and themes', () => {
         for (let line = 0; line < size; line++)
           assert.deepEqual(
             png.data.subarray(
-              ((y + line) * 384 + x) * 4,
-              ((y + line) * 384 + x + size) * 4,
+              ((y + line) * png.width + x) * 4,
+              ((y + line) * png.width + x + size) * 4,
             ),
             source.data.subarray(line * size * 4, (line + 1) * size * 4),
           );
       }
   const added = PNG.sync.read(previewImage(compareImages(null, svg)));
+  assert.equal(added.width, 384);
+  assert.equal(
+    PNG.sync.read(previewImage(compareImages(svg, null))).width,
+    384,
+  );
+  assert.equal(PNG.sync.read(previewImage(compareImages(svg, svg))).width, 384);
   assert.deepEqual(
     [...added.data.subarray((40 * 384 + 24) * 4, (40 * 384 + 24) * 4 + 4)],
     [255, 255, 255, 255],
+  );
+});
+
+test('overlay colors distinguish old, new and overlapping geometry at both sizes and themes', () => {
+  const rectangle = (x, opacity = 1) =>
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="${x}" y="2" width="6" height="12" fill="currentColor" opacity="${opacity}"/></svg>`;
+  const png = PNG.sync.read(
+    previewImage(compareImages(rectangle(2), rectangle(4))),
+  );
+  const pixel = (x, y) => [
+    ...png.data.subarray((y * png.width + x) * 4, (y * png.width + x) * 4 + 3),
+  ];
+  for (const [row, colors] of [
+    [
+      [240, 155, 192],
+      [128, 188, 235],
+      [120, 138, 204],
+    ],
+    [
+      [124, 39, 76],
+      [12, 72, 119],
+      [62, 80, 146],
+    ],
+  ].entries()) {
+    for (const size of [16, 64]) {
+      const x = 384 + (size === 16 ? 24 : 72);
+      const y = row * 96 + (96 - size) / 2 + size / 2;
+      assert.deepEqual(pixel(x + (3 * size) / 16, y), colors[0]);
+      assert.deepEqual(pixel(x + (9 * size) / 16, y), colors[1]);
+      assert.deepEqual(pixel(x + (5 * size) / 16, y), colors[2]);
+    }
+  }
+  const translucent = PNG.sync.read(
+    previewImage(compareImages(rectangle(2, 0.5), rectangle(4, 0.5))),
+  );
+  const index = (48 * translucent.width + 408 + 3) * 4;
+  assert.deepEqual(
+    [...translucent.data.subarray(index, index + 4)],
+    [247, 205, 223, 255],
   );
 });
 
@@ -86,6 +132,7 @@ test('public preview metadata excludes identity and private source fields', () =
     /private|sourceUrl|identity|fileKey/,
   );
   assert.equal(preview.changes[0].image, '0000.png');
+  assert.equal(preview.changes[0].overlay, false);
   assert.equal(validatePreview(preview), preview);
 });
 
@@ -105,11 +152,16 @@ test('comment groups changes, uses immutable PNG links and rejects markup and un
   assert.match(body, /<summary>Added \(1\)<\/summary>/);
   assert.match(body, /<summary>Removed \(1\)<\/summary>/);
   assert.match(body, /`Bell` → `Bell2`/);
+  assert.match(body, /Before → After → Overlay/);
+  assert.match(body, /pink = before, blue = after/);
+  assert.match(body, /with pink and blue overlay/);
   assert.ok(body.includes(`/${imageCommit}/pr-2/0000.png`));
   for (const patch of [
     { after: '<img src=x>' },
     { image: '../../x.png' },
     { flags: ['<script>'] },
+    { overlay: 'true' },
+    { before: null, flags: ['added'], overlay: true },
   ])
     assert.throws(
       () =>
