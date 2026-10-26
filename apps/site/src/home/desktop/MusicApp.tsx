@@ -90,7 +90,7 @@ export function MusicApp() {
               onClick={() => setLibraryOpen(!libraryOpen)}
               className="h-8 justify-start gap-2 rounded-md px-1.5 text-muted"
             >
-              <Icon name="library-simple" size={20} />
+              <Icon name="library-lines" size={20} />
               <span
                 id={libraryId}
                 hidden={!libraryOpen}

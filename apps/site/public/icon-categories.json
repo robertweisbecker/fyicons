@@ -61,7 +61,8 @@
         "posts",
         "floppy-disk",
         "scroll",
-        "news-feed"
+        "news-feed",
+        "journal"
       ]
     },
     {
@@ -329,7 +330,8 @@
         "dots-triangle-fill",
         "square-percent",
         "stars",
-        "infinity-sign"
+        "infinity-sign",
+        "percent"
       ]
     },
     {
@@ -754,7 +756,8 @@
         "flame",
         "fire",
         "gas",
-        "math"
+        "math",
+        "thermometer"
       ],
       "exactNames": ["bird", "bird-raven", "leaf", "droplet"]
     },

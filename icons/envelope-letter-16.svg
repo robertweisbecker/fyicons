@@ -3,6 +3,6 @@
 <path d="M1.5 6.49988L5.5 9.49988M14.5 6.5L10.5 9.49988" stroke="currentColor" stroke-linejoin="round"/>
 <path d="M12.4995 11.4998L10.7225 9.62381C9.24345 8.06236 6.75689 8.06226 5.27771 9.62358L3.5 11.5" stroke="currentColor" stroke-linecap="round"/>
 <path d="M1.5 6.49988L1.5 11.9999C1.5 12.8283 2.17157 13.4999 3 13.4999H13C13.8284 13.4999 14.5 12.8283 14.5 11.9999V6.49988" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.5 6.5H12.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.5 6.5H1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.5 6.5L12.5 4.5V8L14.5 6.5Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1.5 6.5L3.5 4.5V8L1.5 6.5Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

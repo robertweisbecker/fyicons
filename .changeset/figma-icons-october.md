@@ -2,9 +2,9 @@
 'fyicons': minor
 ---
 
-Add 33 icons: `IconAgentSubSimple`, `IconAppsLg`, `IconBrainSide`, `IconChatEllipsis`, `IconChatRoundEllipsis`, `IconCircleDashedUser`, `IconDiamond`, `IconDiamondFill`, `IconDotsDiamond`, `IconDotsTriangle`, `IconDotsTriangleFill`, `IconEar`, `IconEmojiBeam`, `IconExtensions`, `IconExtensionsLg`, `IconGasFill`, `IconImageSolid`, `IconInfinitySign`, `IconMailbox`, `IconMarkdownSimple`, `IconMath`, `IconMouse`, `IconMouseCupertino`, `IconMouseModern`, `IconMusicNote`, `IconNotification`, `IconPaperclipSimple`, `IconParagraphThumbnail1`, `IconShapesPlus`, `IconSquarePercent`, `IconStars`, `IconWatch`, `IconWatchSmart`.
+Add 41 icons: `IconAgentSubSimple`, `IconAppsLg`, `IconBrainSide`, `IconChatEllipsis`, `IconChatRoundEllipsis`, `IconCircleDashedUser`, `IconDiamondFill`, `IconDiamond`, `IconDotsDiamond`, `IconDotsTriangleFill`, `IconDotsTriangle`, `IconEarSlash`, `IconEar`, `IconEmojiBeam`, `IconExtensionsLg`, `IconExtensions`, `IconFireFlame`, `IconFolderSparkles`, `IconFolderZip`, `IconGasFill`, `IconImageSolid`, `IconInfinitySign`, `IconJournalOpen`, `IconJournal`, `IconMailbox`, `IconMarkdownSimple`, `IconMath`, `IconMouseCupertino`, `IconMouseModern`, `IconMouse`, `IconMusicNote`, `IconNotification`, `IconPaperclipSimple`, `IconParagraphThumbnail1`, `IconPercent`, `IconShapesPlus`, `IconSquarePercent`, `IconStars`, `IconThermometer`, `IconWatchSmart`, `IconWatch`.
 
-Update 199 SVG sources, including visual refinements to 192 existing icons. The collection now contains 1,161 icons.
+Refresh existing artwork. The collection now contains 1,169 icons.
 
 This release changes exported names and shadcn registry names. Update imports and install commands using this table:
 
@@ -12,7 +12,6 @@ This release changes exported names and shadcn registry names. Update imports an
 | --------------------------- | ----------------------------- | ---------------------------- |
 | `IconAgentSubagent`         | `IconAgentSub`                | `agent-sub`                  |
 | `IconArrowClockwise`        | `IconArrowClockwiseLg`        | `arrow-clockwise-lg`         |
-| `IconArrowCornerResize`     | `IconArrowCornerExpand`       | `arrow-corner-expand`        |
 | `IconArrowCounterClockwise` | `IconArrowCounterClockwiseLg` | `arrow-counter-clockwise-lg` |
 | `IconArrowRedo`             | `IconArrowClockwise`          | `arrow-clockwise`            |
 | `IconArrowUndo`             | `IconArrowCounterClockwise`   | `arrow-counter-clockwise`    |
@@ -25,6 +24,8 @@ This release changes exported names and shadcn registry names. Update imports an
 | `IconExternalLink`          | `IconArrowExternal`           | `arrow-external`             |
 | `IconExternalLinkLg`        | `IconArrowExternalLg`         | `arrow-external-lg`          |
 | `IconFileDownload`          | `IconFileDown`                | `file-down`                  |
+| `IconLibrary2`              | `IconLibrarySimple`           | `library-simple`             |
+| `IconLibrarySimple`         | `IconLibraryLines`            | `library-lines`              |
 | `IconLinkNewTab`            | `IconLinkNewWindow`           | `link-new-window`            |
 | `IconPuzzle`                | `IconPuzzlePiece`             | `puzzle-piece`               |
 | `IconText`                  | `IconTextTitle`               | `text-title`                 |
@@ -34,16 +35,14 @@ This release changes exported names and shadcn registry names. Update imports an
 | `IconXmarkLg`               | `IconXLg`                     | `x-lg`                       |
 | `IconXmarkSm`               | `IconXSm`                     | `x-sm`                       |
 
-`IconArrowClockwise` and `IconArrowCounterClockwise` now refer to the former redo and undo icons. Use their `Lg` versions to keep the previous artwork. `IconDotsDiamond` is now the outline icon; use `IconDotsDiamondFill` to keep the previous filled artwork.
-
-`IconEmojiGrin` now refers to the former `IconEmojiBeam` artwork, while `IconEmojiBeam` is a new icon. Use `IconEmojiHappy` to keep the previous `IconEmojiGrin` artwork. Apply the table to your original imports once, without chaining replacements.
+Apply this mapping to the original imports once, without chaining replacements. These names now refer to different artwork: `IconArrowClockwise`, `IconArrowCounterClockwise`, `IconDotsDiamond`, `IconEmojiBeam`, `IconEmojiGrin`, `IconLibrarySimple`. Use the table to retain the previous artwork.
 
 Remove these imports and registry installs. The icons are no longer included:
 
+- `IconTextureRefraction` / `texture-refraction`.
+- `IconDownloadWide` / `download-wide`.
+- `IconUploadWide` / `upload-wide`.
 - `IconCalendarSmall` / `calendar-small`.
 - `IconDPad` / `d-pad`.
-- `IconDownloadWide` / `download-wide`.
-- `IconTextureRefraction` / `texture-refraction`.
-- `IconUploadWide` / `upload-wide`.
 
 Historical lookup aliases remain where they do not conflict with current names. React exports and registry installs use the new names.
