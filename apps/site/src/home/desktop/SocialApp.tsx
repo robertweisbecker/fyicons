@@ -137,13 +137,13 @@ export function SocialApp() {
             <Icon name="chevron-right" />
           </span>
           <span className="flex items-center gap-1">
-            <Icon name="user-group-fill" />
+            <Icon name="users-two-fill" />
             <span>
               <b className="text-ink">408</b> following
             </span>
           </span>
           <span className="flex items-center gap-1">
-            <Icon name="user-team-fill" />
+            <Icon name="users-three-fill" />
             <span>
               <b className="text-ink">1.6M</b> followers
             </span>

@@ -11,7 +11,7 @@ const locations = [
   ['collection', 'Projects'],
   ['hard-drive', 'My Drive'],
   ['devices', 'Computers'],
-  ['user-group', 'Shared with me'],
+  ['users-two', 'Shared with me'],
   ['clock', 'Recent'],
   ['star', 'Starred'],
   ['circle-alert', 'Spam'],
@@ -120,7 +120,7 @@ export function FilesApp() {
               <Icon name="caret-down" />
             </span>
             <Icon
-              name="user-team-fill"
+              name="users-three-fill"
               className="hidden text-muted @3xl/window:block"
             />
             <ToggleGroup
