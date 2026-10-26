@@ -80,8 +80,8 @@ export function EditorDemo() {
         </div>
       </div>
       <div className="flex items-center gap-1 text-muted">
-        <DemoToggle label="Undo text edit" icon="arrow-undo" />
-        <DemoToggle label="Redo text edit" icon="arrow-redo" />
+        <DemoToggle label="Undo text edit" icon="arrow-counter-clockwise" />
+        <DemoToggle label="Redo text edit" icon="arrow-clockwise" />
         <span className="ml-auto text-xs tabular-nums">{wordCount} words</span>
         <ControlDivider />
         <Icon name="eye" />

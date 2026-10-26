@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconArrowClockwiseLg = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconArrowClockwiseLg(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8.24 1.004a7 7 0 0 1 4.32 1.687l.588-.586a.5.5 0 0 1 .853.353v2.043a.5.5 0 0 1-.5.5h-2.043a.5.5 0 0 1-.353-.853l.746-.747a6 6 0 1 0 2.137 4.214.5.5 0 0 1 .999-.063A7 7 0 1 1 8.24 1.004" /></SvgRoot>;
+});
+export default IconArrowClockwiseLg;
