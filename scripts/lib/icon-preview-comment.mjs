@@ -47,16 +47,30 @@ export function validatePreview(report) {
   return report;
 }
 
-const groups = ['Added', 'Changed', 'Renamed', 'Removed', 'Metadata only'];
+const groups = [
+  ['added', 'Added'],
+  ['changed', 'Updated artwork'],
+  ['renamed', 'Renamed'],
+  ['removed', 'Removed'],
+  ['metadata', 'Metadata only'],
+];
 function group(change) {
-  if (!change.before) return 'Added';
-  if (!change.after) return 'Removed';
-  if (change.flags.includes('pixels-changed')) return 'Changed';
-  if (change.before !== change.after) return 'Renamed';
-  return 'Metadata only';
+  if (!change.before) return 'added';
+  if (!change.after) return 'removed';
+  if (change.flags.includes('pixels-changed')) return 'changed';
+  if (change.before !== change.after) return 'renamed';
+  return 'metadata';
 }
 
-export function renderPreviewComment(
+export function getPreviewCommentMarker(body) {
+  return (
+    /^<!-- fyicons-icon-preview(?::(?:added|changed|renamed|removed|metadata)-[1-9]\d*)? -->(?=\n|$)/.exec(
+      body,
+    )?.[0] ?? null
+  );
+}
+
+export function renderPreviewComments(
   report,
   { repository, number, imageCommit, runUrl },
 ) {
@@ -68,49 +82,73 @@ export function renderPreviewComment(
     !sha.test(imageCommit)
   )
     throw new Error('Invalid preview destination.');
-  const header =
-    `${commentMarker}\n## Icon changes\n\n` +
-    `Compared \`${report.base.slice(0, 7)}\` → \`${report.head.slice(0, 7)}\`. **${report.changes.length} icons with changes.**\n\n` +
-    `Images show **before → after → overlay** from left to right, each at 16 px and 64 px. Artwork changes include the overlay: **pink = before, blue = after**, each at 50% opacity. Light backgrounds are above dark backgrounds. Added or removed icons have a blank before or after panel and no overlay.\n\n`;
-  const sections = groups
-    .map((label) => {
-      const changes = report.changes.filter(
-        (change) => group(change) === label,
-      );
-      if (!changes.length) return '';
-      const hasOverlay = changes.some((change) => change.overlay);
-      return (
-        `<details>\n<summary>${label} (${changes.length})</summary>\n\n| Before → After${hasOverlay ? ' → Overlay' : ''} |\n| --- |\n` +
-        changes
-          .map((change) => {
-            const name =
-              change.before && change.after && change.before !== change.after
-                ? `\`${change.before}\` → \`${change.after}\``
-                : `\`${change.after ?? change.before}\``;
-            const url = `https://raw.githubusercontent.com/${repository}/${imageCommit}/pr-${number}/${change.image}`;
-            return `| ${name}<br>![Before and after${change.overlay ? ' with pink and blue overlay' : ''}](${url}) |`;
-          })
-          .join('\n') +
-        '\n\n</details>\n'
-      );
-    })
-    .join('\n');
-  let body =
-    header +
-    sections +
-    '\nUpdated automatically after each push. The comparison uses the PR merge-base.\n';
-  if (runUrl) {
-    if (
-      !new RegExp(
-        `^https://github\\.com/${repository.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/actions/runs/\\d+$`,
-      ).test(runUrl)
+  if (
+    runUrl &&
+    !new RegExp(
+      `^https://github\\.com/${repository.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/actions/runs/\\d+$`,
+    ).test(runUrl)
+  )
+    throw new Error('Invalid workflow URL.');
+
+  const comparison = `Compared \`${report.base.slice(0, 7)}\` → \`${report.head.slice(0, 7)}\`.`;
+  const legend =
+    'Images show **before → after → overlay** from left to right, each at 16 px and 64 px. **Pink = before, blue = after**, each at 50% opacity. Light backgrounds are above dark backgrounds. New icons have a blank before panel and no overlay.';
+  const footer =
+    `\n\n[All comparison PNGs](https://github.com/${repository}/tree/${imageCommit}/pr-${number})` +
+    (runUrl ? ` · [Workflow run](${runUrl})` : '') +
+    '\n\nThe full interactive HTML report is in the release-check artifacts. The comparison uses the PR merge-base.\n';
+  const counts = groups
+    .map(
+      ([key, label]) =>
+        `${label}: ${report.changes.filter((change) => group(change) === key).length}`,
     )
-      throw new Error('Invalid workflow URL.');
-    body += `\n[Workflow run](${runUrl}) · The full interactive HTML report remains available in the release-check artifacts.\n`;
+    .join(' · ');
+  const comments = [
+    {
+      marker: commentMarker,
+      body: `${commentMarker}\n## Icon changes\n\n${comparison} **${report.changes.length} icons with changes.**\n\n${counts}\n\n${legend}\n\nEach change type has separate comments below. Large groups span numbered comments; every icon is included. Renames without artwork changes, removals, and metadata-only changes use text lists.${footer}`,
+    },
+  ];
+
+  for (const [key, label] of groups) {
+    const changes = report.changes.filter((change) => group(change) === key);
+    if (!changes.length) continue;
+    const showImages = key === 'added' || key === 'changed';
+    const pages = [];
+    let rows = [],
+      length = 0;
+    for (const change of changes) {
+      const name =
+        change.before && change.after && change.before !== change.after
+          ? `\`${change.before}\` → \`${change.after}\``
+          : `\`${change.after ?? change.before}\``;
+      const url = `https://raw.githubusercontent.com/${repository}/${imageCommit}/pr-${number}/${change.image}`;
+      const row = showImages
+        ? `| ${name}<br>![Before and after${change.overlay ? ' with pink and blue overlay' : ''}](${url}) |`
+        : `- ${name}`;
+      // Reserve room for labels and links below GitHub's 65,536-character limit.
+      if (length + row.length + 1 > 50000) {
+        pages.push(rows);
+        rows = [];
+        length = 0;
+      }
+      rows.push(row);
+      length += row.length + 1;
+    }
+    pages.push(rows);
+    for (const [index, page] of pages.entries()) {
+      const marker = `<!-- fyicons-icon-preview:${key}-${index + 1} -->`;
+      const title = `${label} (${changes.length}) · Part ${index + 1} of ${pages.length}`;
+      const table = showImages
+        ? `| Before → After${key === 'changed' ? ' → Overlay' : ''} |\n| --- |\n`
+        : '';
+      comments.push({
+        marker,
+        body: `${marker}\n## ${title}\n\n${comparison}\n\n${showImages ? legend + '\n\n' : ''}<details>\n<summary>${title}</summary>\n\n${table}${page.join('\n')}\n\n</details>${footer}`,
+      });
+    }
   }
-  if (body.length > 65000)
-    throw new Error(
-      'Preview exceeds the GitHub comment limit; split the icon change into smaller PRs.',
-    );
-  return body;
+  if (comments.some(({ body }) => body.length > 65000))
+    throw new Error('Preview exceeds the GitHub comment limit.');
+  return comments;
 }

@@ -1,17 +1,26 @@
-import test from 'node:test';
+import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { PNG } from 'pngjs';
-import { compareImages } from '../../scripts/lib/icon-diff-images.mjs';
+import { createIconRenderer } from '../../scripts/lib/icon-diff-images.mjs';
 import {
   previewImage,
   previewManifest,
 } from '../../scripts/lib/icon-preview-images.mjs';
 import {
   commentMarker,
-  renderPreviewComment,
+  renderPreviewComments,
   validatePreview,
 } from '../../scripts/lib/icon-preview-comment.mjs';
 import { publishPreview } from '../../scripts/publish-icon-preview.mjs';
+
+let renderer;
+before(async () => {
+  renderer = await createIconRenderer();
+});
+after(async () => {
+  await renderer?.close();
+});
+const compareImages = (...args) => renderer.compareImages(...args);
 
 const head = 'a'.repeat(40),
   base = 'b'.repeat(40),
@@ -25,6 +34,10 @@ const change = {
   overlay: true,
 };
 const report = { base, head, changes: [change] };
+const renderBodies = (...args) =>
+  renderPreviewComments(...args)
+    .map(({ body }) => body)
+    .join('\n');
 const destination = {
   repository,
   number: 2,
@@ -37,10 +50,13 @@ const pr = {
   base: { sha: base, repo: { full_name: repository } },
 };
 
-test('comment PNGs preserve both render sizes, sides and themes', () => {
+test('comment PNGs preserve both render sizes, sides and themes', async () => {
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="16" height="16" fill="currentColor"/></svg>';
-  const images = compareImages(svg, svg.replace('width="16"', 'width="8"'));
+  const images = await compareImages(
+    svg,
+    svg.replace('width="16"', 'width="8"'),
+  );
   const png = PNG.sync.read(previewImage(images));
   assert.equal(png.width, 576);
   assert.equal(png.height, 192);
@@ -61,24 +77,27 @@ test('comment PNGs preserve both render sizes, sides and themes', () => {
             source.data.subarray(line * size * 4, (line + 1) * size * 4),
           );
       }
-  const added = PNG.sync.read(previewImage(compareImages(null, svg)));
+  const added = PNG.sync.read(previewImage(await compareImages(null, svg)));
   assert.equal(added.width, 384);
   assert.equal(
-    PNG.sync.read(previewImage(compareImages(svg, null))).width,
+    PNG.sync.read(previewImage(await compareImages(svg, null))).width,
     384,
   );
-  assert.equal(PNG.sync.read(previewImage(compareImages(svg, svg))).width, 384);
+  assert.equal(
+    PNG.sync.read(previewImage(await compareImages(svg, svg))).width,
+    384,
+  );
   assert.deepEqual(
     [...added.data.subarray((40 * 384 + 24) * 4, (40 * 384 + 24) * 4 + 4)],
     [255, 255, 255, 255],
   );
 });
 
-test('overlay colors distinguish old, new and overlapping geometry at both sizes and themes', () => {
+test('overlay colors distinguish old, new and overlapping geometry at both sizes and themes', async () => {
   const rectangle = (x, opacity = 1) =>
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="${x}" y="2" width="6" height="12" fill="currentColor" opacity="${opacity}"/></svg>`;
   const png = PNG.sync.read(
-    previewImage(compareImages(rectangle(2), rectangle(4))),
+    previewImage(await compareImages(rectangle(2), rectangle(4))),
   );
   const pixel = (x, y) => [
     ...png.data.subarray((y * png.width + x) * 4, (y * png.width + x) * 4 + 3),
@@ -104,7 +123,7 @@ test('overlay colors distinguish old, new and overlapping geometry at both sizes
     }
   }
   const translucent = PNG.sync.read(
-    previewImage(compareImages(rectangle(2, 0.5), rectangle(4, 0.5))),
+    previewImage(await compareImages(rectangle(2, 0.5), rectangle(4, 0.5))),
   );
   const index = (48 * translucent.width + 408 + 3) * 4;
   assert.deepEqual(
@@ -137,7 +156,7 @@ test('public preview metadata excludes identity and private source fields', () =
 });
 
 test('comment groups changes, uses immutable PNG links and rejects markup and unsafe paths', () => {
-  const body = renderPreviewComment(
+  const body = renderBodies(
     {
       ...report,
       changes: [
@@ -149,11 +168,11 @@ test('comment groups changes, uses immutable PNG links and rejects markup and un
     destination,
   );
   assert.ok(body.startsWith(commentMarker));
-  assert.match(body, /<summary>Added \(1\)<\/summary>/);
-  assert.match(body, /<summary>Removed \(1\)<\/summary>/);
+  assert.match(body, /<summary>Added \(1\) · Part 1 of 1<\/summary>/);
+  assert.match(body, /<summary>Removed \(1\) · Part 1 of 1<\/summary>/);
   assert.match(body, /`Bell` → `Bell2`/);
   assert.match(body, /Before → After → Overlay/);
-  assert.match(body, /pink = before, blue = after/);
+  assert.match(body, /Pink = before, blue = after/);
   assert.match(body, /with pink and blue overlay/);
   assert.ok(body.includes(`/${imageCommit}/pr-2/0000.png`));
   for (const patch of [
@@ -165,7 +184,7 @@ test('comment groups changes, uses immutable PNG links and rejects markup and un
   ])
     assert.throws(
       () =>
-        renderPreviewComment(
+        renderBodies(
           { ...report, changes: [{ ...change, ...patch }] },
           destination,
         ),
@@ -173,7 +192,7 @@ test('comment groups changes, uses immutable PNG links and rejects markup and un
     );
   assert.throws(
     () =>
-      renderPreviewComment(report, {
+      renderBodies(report, {
         ...destination,
         repository: 'bad/path/extra',
       }),
@@ -181,25 +200,128 @@ test('comment groups changes, uses immutable PNG links and rejects markup and un
   );
 });
 
-test('publisher creates once then updates only its marked bot comment', async () => {
-  let saved,
-    uploads = 0;
-  const writes = [];
+test('only additions and rendered changes include images; other entries keep their names', () => {
+  const body = renderBodies(
+    {
+      ...report,
+      changes: [
+        change,
+        { before: null, after: 'Sun', flags: ['added'], image: '0001.png' },
+        {
+          before: 'OldName',
+          after: 'NewName',
+          flags: ['renamed', 'export-changed'],
+          image: '0002.png',
+        },
+        {
+          before: 'Tagged',
+          after: 'Tagged',
+          flags: ['metadata-changed'],
+          image: '0003.png',
+        },
+        {
+          before: 'Deleted',
+          after: null,
+          flags: ['removed'],
+          image: '0004.png',
+        },
+        {
+          before: 'SamePixels',
+          after: 'SamePixels',
+          flags: ['svg-bytes-changed'],
+          image: '0005.png',
+        },
+      ],
+    },
+    destination,
+  );
+  assert.equal((body.match(/!\[/g) ?? []).length, 2);
+  assert.match(body, /0000\.png/); // A rename with changed artwork still gets a comparison.
+  assert.match(body, /0001\.png/);
+  assert.doesNotMatch(body, /000[2345]\.png/);
+  assert.match(body, /- `OldName` → `NewName`/);
+  for (const name of ['Tagged', 'Deleted', 'SamePixels'])
+    assert.ok(body.includes(`- \`${name}\``));
+  for (const section of body.matchAll(/<details>([\s\S]*?)<\/details>/g))
+    if (/<summary>(Renamed|Removed|Metadata only)/.test(section[1]))
+      assert.doesNotMatch(section[1], /!\[|Before → After/);
+});
+
+test('large groups split below the comment limit without dropping or duplicating icons', () => {
+  const changes = [
+    { before: null, after: 'Sun', flags: ['added'], image: '0000.png' },
+    ...Array.from({ length: 1200 }, (_, i) => ({
+      ...change,
+      before: `IconBefore${'x'.repeat(180)}${i}`,
+      after: `IconAfter${'x'.repeat(180)}${i}`,
+      image: `${String(i + 1).padStart(4, '0')}.png`,
+    })),
+    ...Array.from({ length: 800 }, (_, i) => ({
+      before: `Icon${'x'.repeat(180)}${i}`,
+      after: `Icon${'x'.repeat(180)}${i}`,
+      flags: ['metadata-changed'],
+      image: `${String(i + 1201).padStart(4, '0')}.png`,
+    })),
+  ];
+  const comments = renderPreviewComments({ ...report, changes }, destination);
+  assert.equal(new Set(comments.map((c) => c.marker)).size, comments.length);
+  assert.ok(comments.filter((c) => c.marker.includes(':changed-')).length > 1);
+  assert.ok(comments.filter((c) => c.marker.includes(':metadata-')).length > 1);
+  for (const { marker, body } of comments) {
+    assert.ok(body.startsWith(marker));
+    assert.ok(body.length < 65000);
+  }
+  const added = comments.find((c) => c.marker.includes(':added-'));
+  assert.match(added.body, /0000\.png/);
+  assert.doesNotMatch(added.body, /IconBefore/);
+  const body = comments.map((c) => c.body).join('\n');
+  assert.deepEqual(
+    [...body.matchAll(/\/pr-2\/(\d{4}\.png)/g)].map((m) => m[1]),
+    changes.slice(0, 1201).map((c) => c.image),
+  );
+  assert.deepEqual(
+    [...body.matchAll(/^- `([^`]+)`$/gm)].map((m) => m[1]),
+    changes.slice(1201).map((c) => c.after),
+  );
+});
+
+test('publisher reuses its comments across pages and removes unused bot pages only', async () => {
+  let uploads = 0,
+    nextId = 200;
+  // Existing bot comments will fall beyond the first API page on the second run.
+  const unrelated = Array.from({ length: 100 }, (_, id) => ({
+    id,
+    user: { login: id === 0 ? 'github-actions[bot]' : 'contributor' },
+    body: id === 0 ? 'Unrelated bot report' : commentMarker,
+  }));
+  const saved = new Map(),
+    writes = [];
   const api = async (method, pathname, payload) => {
     if (pathname.endsWith('/pulls/2')) return pr;
-    if (method === 'GET')
-      return [
-        { id: 99, user: { login: 'contributor' }, body: commentMarker },
-        ...(saved ? [saved] : []),
-      ];
+    if (method === 'GET') {
+      const page = Number(
+        new URL(pathname, 'https://api.github.com').searchParams.get('page'),
+      );
+      return [...unrelated, ...saved.values()].slice(
+        (page - 1) * 100,
+        page * 100,
+      );
+    }
     writes.push({ method, pathname, payload });
-    saved = {
-      id: 1,
+    const id =
+      method === 'POST' ? nextId++ : Number(pathname.split('/').at(-1));
+    assert.ok(id >= 200, 'Must not change human or unrelated bot comments');
+    if (method === 'DELETE') {
+      saved.delete(id);
+      return null;
+    }
+    saved.set(id, {
+      id,
       user: { login: 'github-actions[bot]' },
       body: payload.body,
-    };
+    });
     return {
-      html_url: 'https://github.com/example/icons/pull/2#issuecomment-1',
+      html_url: `https://github.com/example/icons/pull/2#issuecomment-${id}`,
     };
   };
   const options = {
@@ -212,14 +334,22 @@ test('publisher creates once then updates only its marked bot comment', async ()
       return imageCommit;
     },
   };
-  await publishPreview(options);
+  const first = await publishPreview(options);
   await publishPreview(options);
   assert.equal(uploads, 2);
+  assert.equal(first.urls.length, 2);
   assert.deepEqual(
-    writes.map(({ method }) => method),
-    ['POST', 'PATCH'],
+    writes.map((w) => w.method),
+    ['POST', 'POST', 'PATCH', 'PATCH'],
   );
-  assert.ok(writes[1].pathname.endsWith('/issues/comments/1'));
+  await publishPreview({ ...options, report: { ...report, changes: [] } });
+  assert.equal(uploads, 2);
+  assert.deepEqual(
+    writes.slice(-2).map((w) => w.method),
+    ['PATCH', 'DELETE'],
+  );
+  assert.equal(saved.size, 1);
+  assert.match([...saved.values()][0].body, /0 icons with changes/);
 });
 
 test('publisher skips stale, closed and forked PRs, including pushes during upload', async () => {
