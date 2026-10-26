@@ -4,9 +4,9 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
-  commentMarker,
+  getPreviewCommentMarker,
   previewBranch,
-  renderPreviewComment,
+  renderPreviewComments,
   validatePreview,
 } from './lib/icon-preview-comment.mjs';
 
@@ -31,8 +31,8 @@ export async function publishPreview({
   const prPath = `/repos/${repository}/pulls/${number}`;
   const initial = await api('GET', prPath);
   if (!isCurrentPreview(initial, report, repository)) return { skipped: true };
-  // Validate the full comment before uploading anything.
-  renderPreviewComment(report, {
+  // Validate all comments before uploading anything.
+  renderPreviewComments(report, {
     repository,
     number,
     imageCommit: report.head,
@@ -45,35 +45,50 @@ export async function publishPreview({
     current.base.sha !== initial.base.sha
   )
     return { skipped: true };
-  let existing;
+  const existing = [];
   for (let page = 1; ; page++) {
     const comments = await api(
       'GET',
       `/repos/${repository}/issues/${number}/comments?per_page=100&page=${page}`,
     );
-    existing = comments.find(
-      (comment) =>
-        comment.user.login === 'github-actions[bot]' &&
-        comment.body.startsWith(commentMarker),
+    existing.push(
+      ...comments.filter(
+        (comment) =>
+          comment.user.login === 'github-actions[bot]' &&
+          getPreviewCommentMarker(comment.body),
+      ),
     );
-    if (existing || comments.length < 100) break;
+    if (comments.length < 100) break;
   }
-  const body = renderPreviewComment(report, {
+  const comments = renderPreviewComments(report, {
     repository,
     number,
     imageCommit,
     runUrl,
   });
-  const comment = existing
-    ? await api(
-        'PATCH',
-        `/repos/${repository}/issues/comments/${existing.id}`,
-        { body },
-      )
-    : await api('POST', `/repos/${repository}/issues/${number}/comments`, {
-        body,
-      });
-  return { url: comment.html_url };
+  const retained = new Set(),
+    urls = [];
+  for (const { marker, body } of comments) {
+    const previous = existing.find(
+      (comment) => getPreviewCommentMarker(comment.body) === marker,
+    );
+    const saved = previous
+      ? await api(
+          'PATCH',
+          `/repos/${repository}/issues/comments/${previous.id}`,
+          { body },
+        )
+      : await api('POST', `/repos/${repository}/issues/${number}/comments`, {
+          body,
+        });
+    if (previous) retained.add(previous.id);
+    urls.push(saved.html_url);
+  }
+  // A smaller comparison can leave unused pages. Remove only our marked bot comments.
+  for (const comment of existing)
+    if (!retained.has(comment.id))
+      await api('DELETE', `/repos/${repository}/issues/comments/${comment.id}`);
+  return { url: urls[0], urls };
 }
 
 // Publish only validated PNGs to a data-only branch. No package installation,
@@ -171,7 +186,7 @@ async function main() {
     });
     if (!response.ok)
       throw new Error(`GitHub ${method} ${pathname}: ${response.status}`);
-    return response.json();
+    return response.status === 204 ? null : response.json();
   };
   const event = JSON.parse(
     await readFile(process.env.GITHUB_EVENT_PATH, 'utf8'),
