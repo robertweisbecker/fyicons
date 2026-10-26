@@ -90,23 +90,14 @@ export function renderPreviewComments(
   )
     throw new Error('Invalid workflow URL.');
 
-  const comparison = `Compared \`${report.base.slice(0, 7)}\` → \`${report.head.slice(0, 7)}\`.`;
-  const legend =
-    'Images show **before → after → overlay** from left to right, each at 16 px and 64 px. **Pink = before, blue = after**, each at 50% opacity. Light backgrounds are above dark backgrounds. New icons have a blank before panel and no overlay.';
-  const footer =
-    `\n\n[All comparison PNGs](https://github.com/${repository}/tree/${imageCommit}/pr-${number})` +
-    (runUrl ? ` · [Workflow run](${runUrl})` : '') +
-    '\n\nThe full interactive HTML report is in the release-check artifacts. The comparison uses the PR merge-base.\n';
-  const counts = groups
-    .map(
-      ([key, label]) =>
-        `${label}: ${report.changes.filter((change) => group(change) === key).length}`,
-    )
-    .join(' · ');
+  const comparison = `\`${report.base.slice(0, 7)}\` → \`${report.head.slice(0, 7)}\``;
+  const links =
+    `[Images](https://github.com/${repository}/tree/${imageCommit}/pr-${number})` +
+    (runUrl ? ` · [Run](${runUrl})` : '');
   const comments = [
     {
       marker: commentMarker,
-      body: `${commentMarker}\n## Icon changes\n\n${comparison} **${report.changes.length} icons with changes.**\n\n${counts}\n\n${legend}\n\nEach change type has separate comments below. Large groups span numbered comments; every icon is included. Renames without artwork changes, removals, and metadata-only changes use text lists.${footer}`,
+      body: `${commentMarker}\n## Icon changes (${report.changes.length})\n\n${comparison} · ${links}\n`,
     },
   ];
 
@@ -124,7 +115,7 @@ export function renderPreviewComments(
           : `\`${change.after ?? change.before}\``;
       const url = `https://raw.githubusercontent.com/${repository}/${imageCommit}/pr-${number}/${change.image}`;
       const row = showImages
-        ? `| ${name}<br>![Before and after${change.overlay ? ' with pink and blue overlay' : ''}](${url}) |`
+        ? `| ${name}<br>![${change.overlay ? 'Overlay and before/after at 16 and 64 px' : 'Before/after at 16 and 64 px'}](${url}) |`
         : `- ${name}`;
       // Reserve room for labels and links below GitHub's 65,536-character limit.
       if (length + row.length + 1 > 50000) {
@@ -138,13 +129,11 @@ export function renderPreviewComments(
     pages.push(rows);
     for (const [index, page] of pages.entries()) {
       const marker = `<!-- fyicons-icon-preview:${key}-${index + 1} -->`;
-      const title = `${label} (${changes.length}) · Part ${index + 1} of ${pages.length}`;
-      const table = showImages
-        ? `| Before → After${key === 'changed' ? ' → Overlay' : ''} |\n| --- |\n`
-        : '';
+      const title = `${label} (${changes.length})${pages.length > 1 ? ` · ${index + 1}/${pages.length}` : ''}`;
+      const table = showImages ? '| Preview |\n| --- |\n' : '';
       comments.push({
         marker,
-        body: `${marker}\n## ${title}\n\n${comparison}\n\n${showImages ? legend + '\n\n' : ''}<details>\n<summary>${title}</summary>\n\n${table}${page.join('\n')}\n\n</details>${footer}`,
+        body: `${marker}\n<details>\n<summary>${title}</summary>\n\n${table}${page.join('\n')}\n\n</details>\n`,
       });
     }
   }
