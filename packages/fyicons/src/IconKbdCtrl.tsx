@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconKbdCtrl = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconKbdCtrl(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.72451 2.58117C7.91853 2.45312 8.18258 2.4749 8.35342 2.64562L12.8534 7.14562C13.0486 7.34084 13.0486 7.65738 12.8534 7.85265C12.6582 8.04792 12.3416 8.04792 12.1464 7.85265L7.9999 3.70617L3.85342 7.85265C3.65815 8.04792 3.34165 8.04792 3.14639 7.85265C2.95125 7.65738 2.95116 7.34084 3.14639 7.14562L7.64639 2.64562L7.72451 2.58117Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M7.725 2.581a.5.5 0 0 1 .628.065l4.5 4.5a.5.5 0 0 1-.707.707L8 3.706 3.853 7.853a.5.5 0 1 1-.707-.707l4.5-4.5z" /></SvgRoot>;
 });
 export default IconKbdCtrl;

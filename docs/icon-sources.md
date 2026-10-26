@@ -4,7 +4,7 @@
 
 The editable artwork is in [`icons/`](../icons/). Each icon has one SVG file and one entry in [`icons/manifest.json`](../icons/manifest.json). Category rules are in [`apps/site/public/icon-categories.json`](../apps/site/public/icon-categories.json).
 
-Normalize visible foreground paint to `currentColor` before import. The importer applies `normalizeSvgExport` from `scripts/lib/svg-export.mjs`. Keep the raw export and its checksum in local staging. This function applies the foreground color policy and repairs supported fill/stroke combinations. Keep the 16 × 16 viewBox, clips, and transparency. Generated catalogs and SVG downloads keep these normalized source bytes. React output gives each rendered instance its own SVG definition IDs.
+Normalize visible foreground paint to `currentColor` before import. The importer applies `normalizeSvgExport` from `scripts/lib/svg-export.mjs`. Keep the raw export and its checksum in local staging. This function applies the foreground color policy, repairs supported fill/stroke combinations, and runs SVGO at three decimal places. Keep the 16 × 16 viewBox, clips, and transparency. Generated catalogs and SVG downloads keep these normalized source bytes. React output gives each rendered instance its own SVG definition IDs.
 
 After an artwork or metadata edit, run:
 
@@ -22,9 +22,11 @@ See [Contributing](../CONTRIBUTING.md#choose-checks-for-the-change) for verifica
 
 Keep `svgSimplifyStroke: false` for Figma exports. The simplify option can approximate inside and outside strokes. It does not always remove masks or combine fill and stroke geometry.
 
-After foreground color normalization, the importer joins an expanded outside stroke with its matching opaque fill when it can verify the redundant inverse-mask structure. Paper.js computes one filled outline. This removes the internal compositing seam and duplicate path data. The operation preserves holes and shared group opacity. It leaves unsupported masks, alpha-bearing paint, layer transparency, transformed layers, and clipped bounds unchanged. It does not edit the Figma document or run a general SVG optimizer.
+After foreground color normalization, the importer joins an expanded outside stroke with its matching opaque fill when it can verify the redundant inverse-mask structure. Paper.js computes one filled outline. This removes the internal compositing seam and duplicate path data. The operation preserves holes and shared group opacity. It leaves unsupported masks, alpha-bearing paint, layer transparency, transformed layers, and clipped bounds unchanged. It does not edit the Figma document.
 
-Review the generated PNG comparison after an import, using an existing browser for SVG spot checks when needed. A vector union can change edge antialiasing and numeric path representation. A smaller file alone does not establish visual correctness. Paper.js is a build dependency; it is not included in the icon package or website bundle.
+Review the generated PNG comparison after an import, using an existing browser for SVG spot checks when needed. A vector union can change edge antialiasing and numeric path representation. A smaller file alone does not establish visual correctness. Paper.js and SVGO are development dependencies; neither is included in the icon package or website bundle.
+
+After the repair, the pinned SVGO version runs its default preset with multiple passes and three-decimal precision. ID cleanup and color conversion are disabled. This reduces path data while keeping the viewBox, reference IDs, and paint policy. It can slightly change curves and edge antialiasing, so review the 16 px and 64 px comparisons when the optimizer or its settings change. Use the same normalizer for all imported icons; do not optimize generated React files separately.
 
 ## Identity and names
 

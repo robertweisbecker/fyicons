@@ -243,6 +243,22 @@ test('only additions and rendered changes include images; other entries keep the
       assert.doesNotMatch(section[1], /!\[|Before → After/);
 });
 
+test('large icon updates fit one comment and link to the complete comparisons', () => {
+  const changes = Array.from({ length: 1200 }, (_, i) => ({
+    ...change,
+    before: `IconBefore${i}`,
+    after: `IconAfter${i}`,
+    image: `${String(i).padStart(4, '0')}.png`,
+  }));
+  const body = renderPreviewComment({ ...report, changes }, destination);
+  assert.ok(body.length < 65000);
+  assert.match(body, /1200 icons with changes/);
+  const shown = (body.match(/!\[/g) ?? []).length;
+  assert.ok(shown > 0 && shown < changes.length);
+  assert.ok(body.includes(`${changes.length - shown} more entries`));
+  assert.ok(body.includes(`/tree/${imageCommit}/pr-2`));
+});
+
 test('publisher creates once then updates only its marked bot comment', async () => {
   let saved,
     uploads = 0;

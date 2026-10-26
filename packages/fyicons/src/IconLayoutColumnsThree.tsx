@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconLayoutColumnsThree = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconLayoutColumnsThree(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M13 3C14.1046 3 15 3.89543 15 5V11C15 12.1046 14.1046 13 13 13H3C1.89543 13 1 12.1046 1 11V5C1 3.89543 1.89543 3 3 3H13ZM11 12H13C13.5523 12 14 11.5523 14 11V5C14 4.44772 13.5523 4 13 4H11V12ZM6 12H10V4H6V12ZM3 4C2.44772 4 2 4.44772 2 5V11C2 11.5523 2.44772 12 3 12H5V4H3Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M13 3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-2 9h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2zm-5 0h4V4H6zM3 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2V4z" /></SvgRoot>;
 });
 export default IconLayoutColumnsThree;

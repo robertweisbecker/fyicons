@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconUserSilhouetteFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconUserSilhouetteFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.99722 1C9.47398 1 10.999 1.88226 10.9992 4.08789C10.9992 5.79516 10.6419 7.34247 9.81312 8.22634C9.65846 8.39128 9.72564 8.71191 9.94289 8.77458C11.8531 9.32567 13.4271 10.6681 14.2873 12.4248C14.9248 13.7271 13.747 14.9999 12.297 15H3.70133C2.25134 14.9999 1.07352 13.7271 1.71109 12.4248C2.5709 10.6687 4.14401 9.32619 6.0533 8.77465C6.27044 8.71192 6.33755 8.39154 6.18304 8.22659C5.35512 7.34276 4.99918 5.7953 4.99918 4.08789C4.99934 1.8824 6.52056 1.00011 7.99722 1Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M7.997 1C9.474 1 11 1.882 11 4.088c0 1.707-.357 3.254-1.186 4.138-.155.165-.087.486.13.549a7 7 0 0 1 4.344 3.65c.638 1.302-.54 2.575-1.99 2.575H3.701c-1.45 0-2.627-1.273-1.99-2.575a7 7 0 0 1 4.342-3.65c.217-.063.285-.383.13-.548-.828-.884-1.184-2.432-1.184-4.14C5 1.883 6.521 1 7.997 1" /></SvgRoot>;
 });
 export default IconUserSilhouetteFill;

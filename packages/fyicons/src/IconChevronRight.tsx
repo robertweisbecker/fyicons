@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconChevronRight = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconChevronRight(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.14648 3.14648C6.34175 2.95122 6.65825 2.95122 6.85352 3.14648L11.3535 7.64648C11.5487 7.84175 11.5488 8.15827 11.3535 8.35352L6.85352 12.8535C6.65827 13.0488 6.34175 13.0487 6.14648 12.8535C5.95122 12.6583 5.95122 12.3417 6.14648 12.1465L10.293 8L6.14648 3.85352C5.95122 3.65825 5.95122 3.34175 6.14648 3.14648Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M6.146 3.146a.5.5 0 0 1 .708 0l4.5 4.5a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1-.708-.707L10.293 8 6.146 3.854a.5.5 0 0 1 0-.708" /></SvgRoot>;
 });
 export default IconChevronRight;

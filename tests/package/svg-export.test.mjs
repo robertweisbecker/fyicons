@@ -1,5 +1,6 @@
 import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
+import { JSDOM } from 'jsdom';
 import { readFile } from 'node:fs/promises';
 import {
   repairFillStrokeSeams,
@@ -148,4 +149,30 @@ test('valid CSS-wide fill rules and empty geometry pass through unchanged', () =
   }
   const empty = source.replace(/\bd="[^"]*"/g, 'd=""');
   assert.equal(repairFillStrokeSeams(empty), empty);
+});
+
+test('optimization rounds coordinates while retaining mask IDs, paint and transparency', () => {
+  const normalized = normalizeSvgExport(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><defs><mask id="stroke-mask" maskUnits="userSpaceOnUse"><rect width="16" height="16" fill="white"/><path fill="black" d="M4 4H12V12H4Z"/></mask></defs><path mask="url(#stroke-mask)" opacity=".5" fill="black" d="M1.123456 1H15V15H1.123456Z"/></svg>',
+  );
+  const dom = new JSDOM(normalized, { contentType: 'image/svg+xml' });
+  try {
+    const svg = dom.window.document.documentElement;
+    const mask = svg.querySelector('mask');
+    const artwork = svg.querySelector('[mask]');
+    assert.equal(svg.getAttribute('viewBox'), '0 0 16 16');
+    assert.equal(mask.id, 'stroke-mask');
+    assert.deepEqual(
+      [...mask.children].map((node) => node.getAttribute('fill')),
+      ['white', 'black'],
+    );
+    assert.equal(artwork.getAttribute('mask'), 'url(#stroke-mask)');
+    assert.equal(artwork.getAttribute('fill'), 'currentColor');
+    assert.equal(Number(artwork.getAttribute('opacity')), 0.5);
+    assert.match(artwork.getAttribute('d'), /1\.123(?: |[A-Za-z])/);
+    assert.doesNotMatch(artwork.getAttribute('d'), /\.\d{4}/);
+    assert.equal(normalizeSvgExport(normalized), normalized);
+  } finally {
+    dom.window.close();
+  }
 });

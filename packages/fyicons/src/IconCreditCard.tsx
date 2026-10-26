@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCreditCard = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCreditCard(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M12.5 3C13.8807 3 15 4.11929 15 5.5V10.5C15 11.8807 13.8807 13 12.5 13H3.5C2.11929 13 1 11.8807 1 10.5V5.5C1 4.11929 2.11929 3 3.5 3H12.5ZM2 10.5C2 11.3284 2.67157 12 3.5 12H12.5C13.3284 12 14 11.3284 14 10.5V7H2V10.5ZM5.5 10C5.77614 10 6 10.2239 6 10.5C6 10.7761 5.77614 11 5.5 11H3.5C3.22386 11 3 10.7761 3 10.5C3 10.2239 3.22386 10 3.5 10H5.5ZM12.5 9C12.7761 9 13 9.22386 13 9.5V10.5C13 10.7761 12.7761 11 12.5 11H10.5C10.2239 11 10 10.7761 10 10.5V9.5C10 9.22386 10.2239 9 10.5 9H12.5ZM3.5 4C2.84707 4 2.29297 4.41766 2.08691 5H13.9131C13.707 4.41766 13.1529 4 12.5 4H3.5Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M12.5 3A2.5 2.5 0 0 1 15 5.5v5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 10.5v-5A2.5 2.5 0 0 1 3.5 3zM2 10.5A1.5 1.5 0 0 0 3.5 12h9a1.5 1.5 0 0 0 1.5-1.5V7H2zm3.5-.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm7-1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-9-5a1.5 1.5 0 0 0-1.413 1h11.826A1.5 1.5 0 0 0 12.5 4z" /></SvgRoot>;
 });
 export default IconCreditCard;

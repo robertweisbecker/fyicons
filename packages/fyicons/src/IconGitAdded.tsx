@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconGitAdded = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconGitAdded(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11 2C12.6569 2 14 3.34315 14 5V11C14 12.6569 12.6569 14 11 14H5C3.34315 14 2 12.6569 2 11V5C2 3.34315 3.34315 2 5 2H11ZM5 3C3.89543 3 3 3.89543 3 5V11C3 12.1046 3.89543 13 5 13H11C12.1046 13 13 12.1046 13 11V5C13 3.89543 12.1046 3 11 3H5ZM7.34766 5.35938C7.62803 4.85547 8.37197 4.85547 8.65234 5.35938L8.70508 5.47559L10.4697 10.3291C10.5641 10.5886 10.4304 10.8753 10.1709 10.9697C9.91141 11.0641 9.62467 10.9304 9.53027 10.6709L9.14941 9.625H6.85059L6.46973 10.6709C6.37533 10.9304 6.08859 11.0641 5.8291 10.9697C5.56964 10.8753 5.43591 10.5886 5.53027 10.3291L7.29492 5.47559L7.34766 5.35938ZM7.12305 8.875H8.87695L8 6.46387L7.12305 8.875Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M11 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zM5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm2.348 2.36a.752.752 0 0 1 1.304 0l.053.116 1.765 4.853a.5.5 0 1 1-.94.342l-.38-1.046h-2.3l-.38 1.046a.5.5 0 1 1-.94-.342l1.765-4.853zm-.225 3.515h1.754L8 6.464z" /></SvgRoot>;
 });
 export default IconGitAdded;

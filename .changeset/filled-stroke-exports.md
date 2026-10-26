@@ -1,5 +1,5 @@
 ---
-"fyicons": patch
+'fyicons': patch
 ---
 
-Remove the inner rendering seam from QuotesFill and reduce its SVG size.
+Reduce SVG and React bundle sizes with three-decimal path optimization. Remove the inner rendering seam from QuotesFill.

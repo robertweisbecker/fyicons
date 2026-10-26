@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconLineDiagonal = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconLineDiagonal(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M2.14742 2.14621C2.34272 1.95143 2.65935 1.9511 2.85445 2.14621L13.8545 13.1462C14.0496 13.3413 14.0492 13.6579 13.8545 13.8532C13.6592 14.0485 13.3427 14.0485 13.1474 13.8532L2.14742 2.85324C1.95216 2.65797 1.95216 2.34147 2.14742 2.14621Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M2.147 2.146a.5.5 0 0 1 .707 0l11 11a.5.5 0 0 1-.707.707l-11-11a.5.5 0 0 1 0-.707" /></SvgRoot>;
 });
 export default IconLineDiagonal;

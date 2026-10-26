@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconMicrophoneNarrow = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconMicrophoneNarrow(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.5 6C11.7761 6 12 6.22386 12 6.5V8C12 10.0411 10.471 11.7234 8.49609 11.9678C8.49678 11.9785 8.5 11.9891 8.5 12V13H9.5C9.77614 13 10 13.2239 10 13.5C10 13.7761 9.77614 14 9.5 14H6.5C6.22386 14 6 13.7761 6 13.5C6 13.2239 6.22386 13 6.5 13H7.5V12C7.5 11.9891 7.50225 11.9785 7.50293 11.9678C5.52845 11.7229 4 10.0407 4 8V6.5C4 6.22386 4.22386 6 4.5 6C4.77614 6 5 6.22386 5 6.5V8C5 9.65685 6.34315 11 8 11C9.65685 11 11 9.65685 11 8V6.5C11 6.22386 11.2239 6 11.5 6ZM8 2C9.10457 2 10 2.89543 10 4V8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8V4C6 2.89543 6.89543 2 8 2ZM8 3C7.44772 3 7 3.44772 7 4V8C7 8.55228 7.44772 9 8 9C8.55228 9 9 8.55228 9 8V4C9 3.44772 8.55228 3 8 3Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M11.5 6a.5.5 0 0 1 .5.5V8a4 4 0 0 1-3.504 3.968c0 .01.004.021.004.032v1h1a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1h1v-1l.003-.032A4 4 0 0 1 4 8V6.5a.5.5 0 0 1 1 0V8a3 3 0 0 0 6 0V6.5a.5.5 0 0 1 .5-.5M8 2a2 2 0 0 1 2 2v4a2 2 0 1 1-4 0V4a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V4a1 1 0 0 0-1-1" /></SvgRoot>;
 });
 export default IconMicrophoneNarrow;

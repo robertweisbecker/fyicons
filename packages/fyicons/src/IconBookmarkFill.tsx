@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconBookmarkFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBookmarkFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11 1C12.1046 1 13 1.89543 13 3V13.5518C12.9998 14.7379 11.5986 15.367 10.7119 14.5791L8 12.1689L5.28809 14.5791C4.4014 15.367 3.00019 14.7379 3 13.5518V3C3 1.89543 3.89543 1 5 1H11Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M11 1a2 2 0 0 1 2 2v10.552c0 1.186-1.401 1.815-2.288 1.027L8 12.17l-2.712 2.41C4.401 15.367 3 14.738 3 13.552V3a2 2 0 0 1 2-2z" /></SvgRoot>;
 });
 export default IconBookmarkFill;

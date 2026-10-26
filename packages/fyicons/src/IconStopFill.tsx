@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconStopFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconStopFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><rect x={3} y={3} width={10} height={10} rx={1} fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><rect width={10} height={10} x={3} y={3} fill="currentColor" rx={1} /></SvgRoot>;
 });
 export default IconStopFill;

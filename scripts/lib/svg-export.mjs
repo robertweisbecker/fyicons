@@ -1,5 +1,6 @@
 import { JSDOM } from 'jsdom';
 import paper from 'paper';
+import { optimize } from 'svgo';
 import { normalizeDisplayPaint } from './react-icons.mjs';
 
 const attributesOnly = (node, allowed) =>
@@ -215,7 +216,21 @@ export function repairFillStrokeSeams(svg) {
   }
 }
 
-/** Apply the monochrome export policy, then repair eligible opaque layers. */
+/** Apply the color policy, repair eligible layers, then optimize for distribution. */
 export function normalizeSvgExport(svg) {
-  return repairFillStrokeSeams(normalizeDisplayPaint(svg));
+  return (
+    optimize(repairFillStrokeSeams(normalizeDisplayPaint(svg)), {
+      multipass: true,
+      floatPrecision: 3,
+      plugins: [
+        {
+          name: 'preset-default',
+          params: {
+            // Keep definition IDs and foreground/mask paint under our control.
+            overrides: { cleanupIds: false, convertColors: false },
+          },
+        },
+      ],
+    }).data + '\n'
+  );
 }

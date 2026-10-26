@@ -282,7 +282,7 @@ for (const [name, alter, pattern] of invalid)
     }
   });
 
-test('valid import preserves artwork and identity while removing private provenance', async (t) => {
+test('valid import normalizes artwork and preserves identity while removing private provenance', async (t) => {
   const state = await fixture();
   try {
     // Report the actual host behavior in the Node test output.
@@ -356,7 +356,7 @@ test('valid import preserves artwork and identity while removing private provena
     assert.ok(icon.aliases.includes('Alpha'));
     assert.equal(
       await readFile(path.join(state.root, 'icons', icon.filename), 'utf8'),
-      incomingBytes,
+      '<svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 3h2" data-label="é ⚡"/></svg>\n',
     );
     assert.deepEqual(
       (await readdir(path.join(state.root, 'icons')))

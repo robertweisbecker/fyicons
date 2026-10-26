@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconVolumeSlashFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconVolumeSlashFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.4424 13.2095C11.1868 14.0308 10.1249 14.3898 9.41992 13.7632L6.31055 10.9995H4C3.1716 10.9995 2.50004 10.3279 2.5 9.49951V6.49951C2.50023 5.89606 2.85714 5.37619 3.37109 5.13818L11.4424 13.2095ZM9.41992 2.23584C10.2259 1.5197 11.4995 2.09137 11.5 3.16943V9.73193L6.55176 4.78369L9.41992 2.23584Z" fill="currentColor" /><path d="M2.5 2.5L13.5 13.5" stroke="currentColor" strokeLinecap="round" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M11.442 13.21c-.255.82-1.317 1.18-2.022.553L6.31 11H4a1.5 1.5 0 0 1-1.5-1.5v-3a1.5 1.5 0 0 1 .871-1.36zM9.42 2.236c.806-.716 2.08-.145 2.08.933v6.563L6.552 4.784z" /><path stroke="currentColor" strokeLinecap="round" d="m2.5 2.5 11 11" /></SvgRoot>;
 });
 export default IconVolumeSlashFill;

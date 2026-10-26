@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCaretUp = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCaretUp(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.2603 8.16782C11.5469 8.49027 11.318 9 10.8866 9H5.11342C4.682 9 4.45309 8.49027 4.73972 8.16782L7.6263 4.92042C7.82519 4.69666 8.17481 4.69666 8.3737 4.92042L11.2603 8.16782Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M11.26 8.168a.5.5 0 0 1-.373.832H5.113a.5.5 0 0 1-.373-.832L7.626 4.92a.5.5 0 0 1 .748 0z" /></SvgRoot>;
 });
 export default IconCaretUp;

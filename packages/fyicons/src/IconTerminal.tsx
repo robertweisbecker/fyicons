@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconTerminal = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconTerminal(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M2.12815 4.1715C2.31004 3.96398 2.62552 3.94288 2.83323 4.12462L6.83323 7.62462C6.94162 7.71951 7.00407 7.85655 7.00413 8.0006C7.00413 8.14463 6.94154 8.28164 6.83323 8.37658L2.83323 11.8766C2.62544 12.0584 2.31 12.0375 2.12815 11.8297C1.94633 11.6219 1.96727 11.3065 2.17503 11.1246L5.74534 8.0006L2.17503 4.87658C1.96727 4.69473 1.94633 4.37929 2.12815 4.1715ZM13.5002 10.9996C13.7763 10.9996 14.0002 11.2235 14.0002 11.4996C14.0002 11.7758 13.7764 11.9996 13.5002 11.9996H7.50022C7.22414 11.9996 7.00022 11.7757 7.00022 11.4996C7.00026 11.2236 7.22416 10.9997 7.50022 10.9996H13.5002Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M2.128 4.172a.5.5 0 0 1 .705-.047l4 3.5a.5.5 0 0 1 0 .752l-4 3.5a.5.5 0 1 1-.658-.752L5.745 8l-3.57-3.124a.5.5 0 0 1-.047-.705M13.5 11a.5.5 0 0 1 0 1h-6a.5.5 0 0 1 0-1z" /></SvgRoot>;
 });
 export default IconTerminal;

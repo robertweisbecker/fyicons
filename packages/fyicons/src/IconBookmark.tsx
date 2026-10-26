@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconBookmark = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBookmark(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11 1C12.1046 1 13 1.89543 13 3V13.5518C12.9998 14.7379 11.5986 15.367 10.7119 14.5791L8 12.1689L5.28809 14.5791C4.4014 15.367 3.00019 14.7379 3 13.5518V3C3 1.89543 3.89543 1 5 1H11ZM5 2C4.44772 2 4 2.44772 4 3V13.5518C4.00019 13.8751 4.38224 14.0467 4.62402 13.832L7.66797 11.126L7.74316 11.0713C7.92722 10.9608 8.16628 10.9788 8.33203 11.126L11.376 13.832C11.6178 14.0467 11.9998 13.8751 12 13.5518V3C12 2.44772 11.5523 2 11 2H5Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M11 1a2 2 0 0 1 2 2v10.552c0 1.186-1.401 1.815-2.288 1.027L8 12.17l-2.712 2.41C4.401 15.367 3 14.738 3 13.552V3a2 2 0 0 1 2-2zM5 2a1 1 0 0 0-1 1v10.552c0 .323.382.495.624.28l3.044-2.706.075-.055a.5.5 0 0 1 .589.055l3.044 2.706a.375.375 0 0 0 .624-.28V3a1 1 0 0 0-1-1z" /></SvgRoot>;
 });
 export default IconBookmark;

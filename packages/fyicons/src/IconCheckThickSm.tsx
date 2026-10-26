@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCheckThickSm = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCheckThickSm(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M9.85678 5.36448C10.0699 5.00953 10.531 4.89383 10.8861 5.10667C11.241 5.31974 11.3566 5.78091 11.1439 6.13597L8.14389 11.136C8.02113 11.3406 7.80721 11.475 7.56967 11.4973C7.33219 11.5193 7.09827 11.4265 6.93978 11.2483L4.93978 8.99827C4.66471 8.68868 4.69274 8.21483 5.00228 7.93968C5.31188 7.66479 5.78578 7.6927 6.06088 8.00218L7.38217 9.4885L9.85678 5.36448Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M9.857 5.364a.751.751 0 0 1 1.287.772l-3 5a.753.753 0 0 1-1.204.112l-2-2.25a.75.75 0 0 1 1.12-.996l1.322 1.486z" /></SvgRoot>;
 });
 export default IconCheckThickSm;

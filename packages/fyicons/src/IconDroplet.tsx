@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconDroplet = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconDroplet(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.8103 7.36194L8 1.5L4.18974 7.36194C2.74148 9.59003 3.50571 12.58 5.84548 13.8399C7.19053 14.5641 8.80947 14.5641 10.1545 13.8399C12.4943 12.58 13.2585 9.59003 11.8103 7.36194Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M11.81 7.362 8 1.5 4.19 7.362a4.544 4.544 0 1 0 7.62 0" /></SvgRoot>;
 });
 export default IconDroplet;

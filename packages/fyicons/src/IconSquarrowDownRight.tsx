@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSquarrowDownRight = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSquarrowDownRight(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M10.5 10.5L5.91421 5.91422C4.65428 4.65429 2.5 5.54662 2.5 7.32843L2.5 11.5C2.5 12.6046 3.39543 13.5 4.5 13.5L11.5 13.5C12.6046 13.5 13.5 12.6046 13.5 11.5L13.5 4.5C13.5 3.39543 12.6046 2.5 11.5 2.5L7.5 2.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M6.5 10.5L10.5 10.5L10.5 6.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M10.5 10.5 5.914 5.914C4.654 4.654 2.5 5.547 2.5 7.328V11.5a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M6.5 10.5h4v-4" /></SvgRoot>;
 });
 export default IconSquarrowDownRight;

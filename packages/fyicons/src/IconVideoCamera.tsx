@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconVideoCamera = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconVideoCamera(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M9 3C10.1046 3 11 3.89543 11 5V5.99902L13.4004 4.2002C14.0596 3.70596 15 4.17602 15 5V11C15 11.824 14.0596 12.294 13.4004 11.7998L11 10V11C11 12.1046 10.1046 13 9 13H3C1.89543 13 1 12.1046 1 11V5C1 3.89543 1.89543 3 3 3H9ZM3 4C2.44772 4 2 4.44772 2 5V11C2 11.5523 2.44772 12 3 12H9C9.55228 12 10 11.5523 10 11V5C10 4.44772 9.55228 4 9 4H3ZM11.2002 7.09961C11.0743 7.19404 11 7.34262 11 7.5V8.5C11 8.65738 11.0743 8.80596 11.2002 8.90039L14 11V5L11.2002 7.09961Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M9 3a2 2 0 0 1 2 2v.999L13.4 4.2A1 1 0 0 1 15 5v6a1 1 0 0 1-1.6.8L11 10v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM3 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm8.2 3.1a.5.5 0 0 0-.2.4v1a.5.5 0 0 0 .2.4L14 11V5z" /></SvgRoot>;
 });
 export default IconVideoCamera;
