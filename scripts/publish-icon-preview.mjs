@@ -134,7 +134,10 @@ async function uploadImages(directory, report, repository, number, token) {
         bytes.length > 256 * 1024 ||
         bytes.length < 24 ||
         !bytes.subarray(0, 8).equals(Buffer.from('89504e470d0a1a0a', 'hex')) ||
-        bytes.readUInt32BE(16) !== (change.overlay ? 576 : 384) ||
+        // Accept the previous layout while open branches adopt the new renderer.
+        !(change.overlay ? [480, 576] : [384]).includes(
+          bytes.readUInt32BE(16),
+        ) ||
         bytes.readUInt32BE(20) !== 192
       )
         throw new Error(`Invalid PNG preview: ${change.image}`);

@@ -58,7 +58,7 @@ test('comment PNGs preserve both render sizes, sides and themes', async () => {
     svg.replace('width="16"', 'width="8"'),
   );
   const png = PNG.sync.read(previewImage(images));
-  assert.equal(png.width, 576);
+  assert.equal(png.width, 480);
   assert.equal(png.height, 192);
   for (const [row, theme] of ['light', 'dark'].entries())
     for (const [col, side] of ['before', 'after'].entries())
@@ -66,7 +66,7 @@ test('comment PNGs preserve both render sizes, sides and themes', async () => {
         const source = PNG.sync.read(
           Buffer.from(images[`${theme}-${size}`][side].split(',')[1], 'base64'),
         );
-        const x = col * 192 + (size === 16 ? 24 : 72),
+        const x = (1 + (size === 16 ? 0 : 2) + col) * 96 + (96 - size) / 2,
           y = row * 96 + (96 - size) / 2;
         for (let line = 0; line < size; line++)
           assert.deepEqual(
@@ -88,12 +88,12 @@ test('comment PNGs preserve both render sizes, sides and themes', async () => {
     384,
   );
   assert.deepEqual(
-    [...added.data.subarray((40 * 384 + 24) * 4, (40 * 384 + 24) * 4 + 4)],
+    [...added.data.subarray((40 * 384 + 40) * 4, (40 * 384 + 40) * 4 + 4)],
     [255, 255, 255, 255],
   );
 });
 
-test('overlay colors distinguish old, new and overlapping geometry at both sizes and themes', async () => {
+test('overlay colors distinguish old, new and overlapping geometry in both themes', async () => {
   const rectangle = (x, opacity = 1) =>
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="${x}" y="2" width="6" height="12" fill="currentColor" opacity="${opacity}"/></svg>`;
   const png = PNG.sync.read(
@@ -114,18 +114,16 @@ test('overlay colors distinguish old, new and overlapping geometry at both sizes
       [62, 80, 146],
     ],
   ].entries()) {
-    for (const size of [16, 64]) {
-      const x = 384 + (size === 16 ? 24 : 72);
-      const y = row * 96 + (96 - size) / 2 + size / 2;
-      assert.deepEqual(pixel(x + (3 * size) / 16, y), colors[0]);
-      assert.deepEqual(pixel(x + (9 * size) / 16, y), colors[1]);
-      assert.deepEqual(pixel(x + (5 * size) / 16, y), colors[2]);
-    }
+    const x = 16;
+    const y = row * 96 + 48;
+    assert.deepEqual(pixel(x + 3 * 4, y), colors[0]);
+    assert.deepEqual(pixel(x + 9 * 4, y), colors[1]);
+    assert.deepEqual(pixel(x + 5 * 4, y), colors[2]);
   }
   const translucent = PNG.sync.read(
     previewImage(await compareImages(rectangle(2, 0.5), rectangle(4, 0.5))),
   );
-  const index = (48 * translucent.width + 408 + 3) * 4;
+  const index = (48 * translucent.width + 16 + 3 * 4) * 4;
   assert.deepEqual(
     [...translucent.data.subarray(index, index + 4)],
     [247, 205, 223, 255],
@@ -168,12 +166,10 @@ test('comment groups changes, uses immutable PNG links and rejects markup and un
     destination,
   );
   assert.ok(body.startsWith(commentMarker));
-  assert.match(body, /<summary>Added \(1\) · Part 1 of 1<\/summary>/);
-  assert.match(body, /<summary>Removed \(1\) · Part 1 of 1<\/summary>/);
+  assert.match(body, /<summary>Added \(1\)<\/summary>/);
+  assert.match(body, /<summary>Removed \(1\)<\/summary>/);
   assert.match(body, /`Bell` → `Bell2`/);
-  assert.match(body, /Before → After → Overlay/);
-  assert.match(body, /Pink = before, blue = after/);
-  assert.match(body, /with pink and blue overlay/);
+  assert.match(body, /Overlay and before\/after at 16 and 64 px/);
   assert.ok(body.includes(`/${imageCommit}/pr-2/0000.png`));
   for (const patch of [
     { after: '<img src=x>' },
@@ -349,7 +345,7 @@ test('publisher reuses its comments across pages and removes unused bot pages on
     ['PATCH', 'DELETE'],
   );
   assert.equal(saved.size, 1);
-  assert.match([...saved.values()][0].body, /0 icons with changes/);
+  assert.match([...saved.values()][0].body, /Icon changes \(0\)/);
 });
 
 test('publisher skips stale, closed and forked PRs, including pushes during upload', async () => {
@@ -406,6 +402,6 @@ test('an empty comparison clears a prior report without uploading images', async
     },
     upload: async () => assert.fail('No images to upload'),
   });
-  assert.match(body, /0 icons with changes/);
+  assert.match(body, /Icon changes \(0\)/);
   assert.doesNotMatch(body, /!\[Before and after\]/);
 });
