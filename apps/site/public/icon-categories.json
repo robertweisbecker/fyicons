@@ -14,8 +14,7 @@
         "inbox",
         "postage",
         "send",
-        "thought-bubble",
-        "mailbox"
+        "thought-bubble"
       ]
     },
     {
@@ -24,8 +23,7 @@
       "icon": "circle-user",
       "keywords": [
         "user",
-        "users",
-        "ear"
+        "users"
       ]
     },
     {
@@ -71,8 +69,7 @@
         "posts",
         "floppy-disk",
         "scroll",
-        "news-feed",
-        "journal"
+        "news-feed"
       ]
     },
     {
@@ -116,13 +113,13 @@
         "texture",
         "vector-path",
         "angle",
+        "bezier",
         "shapes",
         "blueprint",
         "flip",
         "square-dash",
         "gradient",
-        "vector-curve",
-        "vector-bezier"
+        "vector-curve"
       ],
       "exactNames": [
         "height",
@@ -169,9 +166,9 @@
         "paragraph",
         "letter-spacing",
         "text-format",
+        "text-thumbnail",
         "text-append",
-        "text-submit",
-        "paragraph-thumbnail"
+        "text-submit"
       ],
       "exactNames": [
         "at-sign",
@@ -193,8 +190,8 @@
         "number7",
         "number8",
         "number9",
-        "text-title",
-        "text-title-fill"
+        "text",
+        "text-fill"
       ]
     },
     {
@@ -272,6 +269,7 @@
         "square-alert",
         "square-x",
         "swirl",
+        "xmark",
         "voltage",
         "alert"
       ],
@@ -335,20 +333,7 @@
         "star-half-fill",
         "star-half-piece",
         "star-half-piece-fill",
-        "dots-diamond",
-        "dots-diamond-fill",
-        "math",
-        "dots-triangle",
-        "x",
-        "x-lg",
-        "x-sm",
-        "diamond",
-        "diamond-fill",
-        "dots-triangle-fill",
-        "square-percent",
-        "stars",
-        "infinity-sign",
-        "percent"
+        "dots-diamond"
       ]
     },
     {
@@ -401,9 +386,7 @@
         "signal",
         "sliders",
         "wifi",
-        "zoom",
-        "extensions",
-        "notification"
+        "zoom"
       ]
     },
     {
@@ -414,6 +397,7 @@
         "browser",
         "computer",
         "desktop",
+        "d-pad",
         "devices",
         "hard-drive",
         "keyboard",
@@ -429,9 +413,7 @@
         "tablet",
         "television",
         "radar",
-        "controller",
-        "mouse",
-        "watch"
+        "controller"
       ]
     },
     {
@@ -470,9 +452,7 @@
         "videos",
         "volume",
         "waveform",
-        "loop",
-        "music",
-        "ear"
+        "loop"
       ]
     },
     {
@@ -481,9 +461,11 @@
       "icon": "compass",
       "keywords": [
         "arrow-corner",
+        "arrow-redo",
         "arrow-reload",
         "arrow-restart",
         "arrow-revert",
+        "arrow-undo",
         "arrows-collapse",
         "arrows-expand",
         "arrows-maximize",
@@ -497,6 +479,7 @@
         "download",
         "duplicate",
         "duplicated",
+        "external-link",
         "filter",
         "home",
         "import",
@@ -517,11 +500,9 @@
         "triangle",
         "undo",
         "upload",
+        "xmark",
         "arrow-clockwise",
-        "arrow-counter-clockwise",
-        "arrow-external",
-        "arrow-clockwise-lg",
-        "arrow-counter-clockwise-lg"
+        "arrow-counter-clockwise"
       ],
       "exactNames": [
         "circle-minus",
@@ -546,10 +527,7 @@
         "square-minus",
         "square-plus",
         "square-x",
-        "stamp",
-        "x",
-        "x-lg",
-        "x-sm"
+        "stamp"
       ]
     },
     {
@@ -571,8 +549,8 @@
         "square-alert",
         "thumbs",
         "trophy",
-        "alert",
-        "notification"
+        "xmark",
+        "alert"
       ],
       "exactNames": [
         "check",
@@ -588,10 +566,7 @@
         "warning-fill",
         "star-half-fill",
         "star-half-piece",
-        "star-half-piece-fill",
-        "x",
-        "x-lg",
-        "x-sm"
+        "star-half-piece-fill"
       ]
     },
     {
@@ -704,8 +679,7 @@
       ],
       "exactNames": [
         "box",
-        "box-shipping",
-        "square-percent"
+        "box-shipping"
       ]
     },
     {
@@ -720,8 +694,7 @@
         "hourglass",
         "loader",
         "spinner",
-        "timer",
-        "watch"
+        "timer"
       ]
     },
     {
@@ -778,9 +751,7 @@
         "voltage",
         "flame",
         "fire",
-        "gas",
-        "math",
-        "thermometer"
+        "gas"
       ],
       "exactNames": [
         "bird",
@@ -811,6 +782,7 @@
         "lego",
         "lightbulb",
         "nut",
+        "puzzle",
         "scissors",
         "screw",
         "scroll",
@@ -825,8 +797,7 @@
         "wrench",
         "microchip",
         "cookie",
-        "door",
-        "puzzle-piece"
+        "door"
       ],
       "exactNames": [
         "pin",

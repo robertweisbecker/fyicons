@@ -89,7 +89,7 @@ export function DesignInspector({
         <h3 className="sr-only font-medium">Typography</h3>
         <div className="flex h-6 items-center gap-2 rounded-md bg-inset px-0.5 py-px pe-1">
           <div className="flex h-5 grow items-center gap-2 rounded-md bg-surface ps-1.5 pe-2 ring ring-border">
-            <Icon name="text-title" className="text-muted" size={12} />
+            <Icon name="text" className="text-muted" size={12} />
             <span className="flex-1">font-serif</span>
           </div>
           <Icon name="link-unlink" className="ms-auto text-muted" size={14} />

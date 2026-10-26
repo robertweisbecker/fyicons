@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconEmojiGrin = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconEmojiGrin(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2m3.722 7.031c.353-.142.747.12.66.491a4.5 4.5 0 0 1-8.763.001c-.086-.37.307-.633.66-.49a10 10 0 0 0 3.722.717c1.315 0 2.57-.256 3.72-.719M6 5c.552 0 1 .672 1 1.5 0 .3-.06.58-.162.813-.038.087-.155.089-.215.016C6.453 7.123 6.236 7 6 7s-.453.123-.624.33c-.06.072-.177.07-.215-.017A2.1 2.1 0 0 1 5 6.5C5 5.672 5.448 5 6 5m4 0c.552 0 1 .672 1 1.5 0 .3-.06.58-.162.813-.038.087-.155.089-.215.016C10.453 7.123 10.236 7 10 7s-.453.123-.624.33c-.06.072-.177.07-.215-.017A2.1 2.1 0 0 1 9 6.5c0-.828.448-1.5 1-1.5" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2m3.123 7.89c.371-.121.75.182.61.547a4 4 0 0 1-7.466 0c-.14-.364.239-.667.61-.545 2.026.664 4.22.663 6.246-.001M6 5c.552 0 1 .672 1 1.5S6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5m4 0c.552 0 1 .672 1 1.5S10.552 8 10 8s-1-.672-1-1.5S9.448 5 10 5" /></SvgRoot>;
 });
 export default IconEmojiGrin;

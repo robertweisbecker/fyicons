@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconArrowCounterClockwise = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconArrowCounterClockwise(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M9.167 2.115A6.003 6.003 0 0 0 1.997 8H.638a.5.5 0 0 0-.367.84l1.858 2.012a.5.5 0 0 0 .734 0l1.86-2.012A.5.5 0 0 0 4.356 8h-1.36a5 5 0 0 1 3.087-4.62 5 5 0 0 1 5.448 1.084 5 5 0 0 1-.757 7.693c-.822.55-1.79.843-2.778.843a.5.5 0 0 0 0 1 6.002 6.002 0 0 0 5.885-7.171 6 6 0 0 0-4.714-4.714" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M7.376 1.03a7 7 0 0 1 7.375 5.12 7.002 7.002 0 0 1-8.482 8.633 7 7 0 0 1-5.251-7.282.501.501 0 0 1 .998.071 6 6 0 0 0 4.5 6.242 6.001 6.001 0 0 0 4.906-10.742 6.004 6.004 0 0 0-7.273.327l.747.747A.5.5 0 0 1 4.542 5H2.5a.5.5 0 0 1-.5-.5V2.457a.5.5 0 0 1 .854-.354l.587.587a7 7 0 0 1 3.936-1.66" /></SvgRoot>;
 });
 export default IconArrowCounterClockwise;

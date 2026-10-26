@@ -80,7 +80,7 @@ export function ComposerDemo() {
               navigation.tsx
               <DemoIconButton
                 label="Remove attachment"
-                icon="x"
+                icon="xmark"
                 size="icon-xs"
                 onClick={() => setAttached(false)}
               />
@@ -219,7 +219,7 @@ export function SearchDemo() {
               aria-label="Clear search"
               className="absolute right-2 grid size-7 place-items-center rounded-md text-muted hover:bg-current/10"
             >
-              <Icon name="x" />
+              <Icon name="xmark" />
             </Combobox.Clear>
           </div>
           <Combobox.Empty className="p-5 text-sm text-muted empty:hidden">

@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconStars = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconStars(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><g fill="currentColor" clipPath={"url(#" + idPrefix + "clip0_1170_2274)"}><path d="M5.189 1.338a.4.4 0 0 1 .74.117l.396 1.946a.4.4 0 0 0 .312.312l1.945.396a.4.4 0 0 1 .118.74l-1.728.977a.4.4 0 0 0-.2.394l.224 1.973a.4.4 0 0 1-.668.34L4.864 7.19a.4.4 0 0 0-.436-.069l-1.806.824a.4.4 0 0 1-.53-.53l.823-1.807a.4.4 0 0 0-.069-.436L1.505 3.709a.4.4 0 0 1 .34-.667l1.973.224a.4.4 0 0 0 .393-.2zm2.074 8.972a.25.25 0 0 1 .411.21l-.101 1.308a.25.25 0 0 0 .118.232l1.118.688a.25.25 0 0 1-.072.456l-1.276.308a.25.25 0 0 0-.184.184l-.308 1.276a.25.25 0 0 1-.456.072l-.687-1.118a.25.25 0 0 0-.233-.118l-1.308.1a.25.25 0 0 1-.21-.41l.851-1a.25.25 0 0 0 .04-.257l-.5-1.214a.25.25 0 0 1 .327-.326l1.213.5a.25.25 0 0 0 .257-.04zm4.213-5.08a.25.25 0 0 1 .451-.096l.892 1.293a.25.25 0 0 0 .238.106l1.557-.203a.25.25 0 0 1 .231.4l-.954 1.248a.25.25 0 0 0-.027.259l.674 1.419a.25.25 0 0 1-.31.343l-1.48-.522a.25.25 0 0 0-.255.054l-1.142 1.08a.25.25 0 0 1-.421-.188l.039-1.57a.25.25 0 0 0-.13-.226l-1.38-.752a.25.25 0 0 1 .048-.459l1.506-.448a.25.25 0 0 0 .174-.194z" /></g><defs><clipPath id={idPrefix + "clip0_1170_2274"}><path fill="white" d="M0 0h16v16H0z" /></clipPath></defs></SvgRoot>;
-});
-export default IconStars;

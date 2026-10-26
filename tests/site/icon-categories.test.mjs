@@ -254,7 +254,7 @@ test('library category rules keep the requested icon families together without l
     includes(icon.name, 'typography');
     excludes(icon.name, 'communication');
   }
-  for (const name of ['text-title', 'text-box', 'font', 'line-height'])
+  for (const name of ['text', 'text-box', 'font', 'line-height'])
     includes(name, 'typography');
   for (const name of ['pencil', 'brush-tip', 'eyedropper', 'eraser']) {
     includes(name, 'design');

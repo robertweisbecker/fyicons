@@ -61,7 +61,7 @@ function ToastViewport() {
                 render={<Button variant="ghost" size="icon-sm" />}
                 aria-label="Dismiss notification"
               >
-                <Icon name="x" />
+                <Icon name="xmark" />
               </Toast.Close>
             </Toast.Content>
           </Toast.Root>

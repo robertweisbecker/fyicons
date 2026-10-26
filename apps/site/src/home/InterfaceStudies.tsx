@@ -41,7 +41,7 @@ export function EditorStudy() {
       <Glyph name="line-vertical" className="w-4 text-border" />
       <Glyph name="frame" />
       <Glyph name="square" />
-      <Glyph name="text-title" />
+      <Glyph name="text" />
       <Glyph name="chat-round" />
       <Glyph name="apps-plus" />
       <Glyph name="line-vertical" className="w-4 text-border" />

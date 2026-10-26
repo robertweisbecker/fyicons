@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFileSpreadsheet = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFileSpreadsheet(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8.5 1a2.5 2.5 0 0 1 2 1l2.4 3.2a.5.5 0 0 1 .1.3v7a2.5 2.5 0 0 1-2.5 2.5h-5A2.5 2.5 0 0 1 3 12.5V3a2 2 0 0 1 2-2zM5 2a1 1 0 0 0-1 1v9.5A1.5 1.5 0 0 0 5.5 14h5a1.5 1.5 0 0 0 1.5-1.5V6h-1.5A1.5 1.5 0 0 1 9 4.5V2.086A1.5 1.5 0 0 0 8.5 2zm3 5.125c.207 0 .375.168.375.375v1.625H10.5a.375.375 0 0 1 0 .75H8.375V11.5a.375.375 0 0 1-.75 0V9.875H5.5a.375.375 0 1 1 0-.75h2.125V7.5c0-.207.168-.375.375-.375M10 4.5a.5.5 0 0 0 .5.5h1L10 2.999z" /><path stroke="currentColor" strokeLinejoin="round" strokeWidth={0.75} d="M5.5 7.5h5v4h-5z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8.879 1a2 2 0 0 1 1.414.586l2.121 2.121A2 2 0 0 1 13 5.121V12.5a2.5 2.5 0 0 1-2.5 2.5h-5A2.5 2.5 0 0 1 3 12.5V3a2 2 0 0 1 2-2zM5 2a1 1 0 0 0-1 1v9.5A1.5 1.5 0 0 0 5.5 14h5a1.5 1.5 0 0 0 1.5-1.5V6H9.5A1.5 1.5 0 0 1 8 4.5V2zm5.5 5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5zM6 11h1.5v-1H6zm2.5 0H10v-1H8.5zM6 8v1h1.5V8zm2.5 0v1H10V8zM9 4.5a.5.5 0 0 0 .5.5h2.492a1 1 0 0 0-.285-.586L9.586 2.293A1 1 0 0 0 9 2.008z" /></SvgRoot>;
 });
 export default IconFileSpreadsheet;

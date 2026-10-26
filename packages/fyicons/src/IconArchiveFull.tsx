@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconArchiveFull = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconArchiveFull(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M6.04 3.132a1.5 1.5 0 0 1 1.766-1.12l4.009.833a1.5 1.5 0 0 1 1.195 1.469v.776A1.5 1.5 0 0 1 14 6.5V11a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a1 1 0 0 1 .944-.998l.02-.64A1.5 1.5 0 0 1 4.69 2.926zM3 11a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V6.5a.5.5 0 0 0-.5-.5H3zm5.751-3.25a.75.75 0 0 1 .75.75V9a.25.25 0 0 1-.25.25h-2.5A.25.25 0 0 1 6.5 9v-.5a.75.75 0 0 1 .75-.75zM7.603 2.99A.5.5 0 0 0 7 3.48V5h5.01v-.686a.5.5 0 0 0-.398-.49zm-3.063.924a.5.5 0 0 0-.576.479L3.944 5H6v-.863z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M6.04 3.132A1.5 1.5 0 0 1 7.807 2.01l4.009.834a1.5 1.5 0 0 1 1.195 1.469v.776A1.5 1.5 0 0 1 14 6.5V11a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a1 1 0 0 1 .944-.998l.02-.64A1.5 1.5 0 0 1 4.69 2.925zM3 11a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V6.5a.5.5 0 0 0-.5-.5H3zm6.001-4a.5.5 0 0 1 .5.5V8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-.5a.5.5 0 0 1 .5-.5zM7.603 2.99A.5.5 0 0 0 7 3.48V5h5.01v-.686a.5.5 0 0 0-.398-.49zm-3.063.924a.5.5 0 0 0-.576.479L3.944 5H6v-.863z" /></SvgRoot>;
 });
 export default IconArchiveFull;

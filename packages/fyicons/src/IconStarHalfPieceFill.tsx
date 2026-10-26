@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconStarHalfPieceFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconStarHalfPieceFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 12.666 4.79 14.56h-.002c-.79.465-1.753-.237-1.557-1.131l.806-3.64-2.792-2.47c-.687-.608-.318-1.743.595-1.832l3.71-.357 1.487-3.42c.183-.42.573-.628.963-.628z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 11.872 5.014 13.68h-.001c-.758.457-1.69-.224-1.49-1.083v-.001l.793-3.4-2.64-2.282c-.667-.578-.313-1.676.57-1.752l3.478-.294L7.079 1.65l.073-.143A.98.98 0 0 1 8 1.04z" /></SvgRoot>;
 });
 export default IconStarHalfPieceFill;

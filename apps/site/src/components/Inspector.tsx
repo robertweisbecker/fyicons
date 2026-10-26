@@ -385,7 +385,7 @@ export function Inspector(props: Props) {
                 <DrawerClose
                   render={
                     <IconButton
-                      icon="x"
+                      icon="xmark"
                       label="Close icon details"
                       className="absolute top-1 left-2"
                       data-base-ui-swipe-ignore
@@ -555,7 +555,7 @@ export function Inspector(props: Props) {
                     render={<Button variant="ghost" size="icon" />}
                     aria-label="Close icon details"
                   >
-                    <Icon name="x" />
+                    <Icon name="xmark" />
                   </SheetClose>
                 </div>
               </header>

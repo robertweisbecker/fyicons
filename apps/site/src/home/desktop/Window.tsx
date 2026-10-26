@@ -9,7 +9,7 @@ export function WindowControls() {
       aria-hidden
     >
       {[
-        ['x', 'bg-red-400'],
+        ['xmark', 'bg-red-400'],
         ['minus', 'bg-yellow-400'],
         ['carets-maximize', 'bg-green-500'],
       ].map(([icon, color]) => (
@@ -105,7 +105,7 @@ export function BrowserWindow({
       <div className="flex shrink-0 items-center gap-2 border-b border-line bg-canvas px-3 py-2 text-xs">
         <Icon name="arrow-left" />
         <Icon name="arrow-right" className="opacity-40" />
-        <Icon name="arrow-clockwise" />
+        <Icon name="arrow-redo" />
         <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full bg-hover px-1.5 py-1.5">
           <Icon name="info" />
           <span className="min-w-0 flex-1 gap-1 truncate">
@@ -118,7 +118,7 @@ export function BrowserWindow({
           <Icon name="star-fill" className="text-focus" />
         </div>
         <span className="hidden @lg/window:inline-flex">
-          <Icon name="puzzle-piece" />
+          <Icon name="puzzle" />
         </span>
         <Icon name="circle-user-fill" className="text-violet-400" />
         <Icon name="ellipsis-v" />
