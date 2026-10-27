@@ -22,7 +22,7 @@
       "id": "people-identity",
       "name": "People & identity",
       "icon": "circle-user",
-      "keywords": ["user", "users", "ear"]
+      "keywords": ["user", "users", "ear", "person"]
     },
     {
       "id": "emoji",
@@ -112,7 +112,8 @@
         "flip",
         "square-dash",
         "gradient",
-        "vector-curve"
+        "vector-curve",
+        "vector-svg"
       ],
       "exactNames": ["height", "scale", "width"]
     },
@@ -232,10 +233,9 @@
         "circle-null",
         "circle-plus",
         "circle-question",
-        "circle-alert",
+        "alert",
         "circle-x",
         "dot",
-        "font-numeric",
         "heart",
         "kbd",
         "bolt",
@@ -256,7 +256,7 @@
         "square-x",
         "swirl",
         "voltage",
-        "alert"
+        "error"
       ],
       "exactNames": [
         "at-sign",
@@ -386,7 +386,7 @@
         "wifi",
         "zoom",
         "extensions",
-        "notification"
+        "app-notification"
       ]
     },
     {
@@ -504,7 +504,8 @@
         "undo",
         "upload",
         "arrow-clockwise-lg",
-        "arrow-counter-clockwise-lg"
+        "arrow-counter-clockwise-lg",
+        "broom"
       ],
       "exactNames": [
         "circle-minus",
@@ -532,7 +533,8 @@
         "stamp",
         "x",
         "x-lg",
-        "x-sm"
+        "x-sm",
+        "arrow-down-arrow-up"
       ]
     },
     {
@@ -544,7 +546,7 @@
         "circle-check",
         "circle-progress",
         "circle-question",
-        "circle-alert",
+        "alert",
         "circle-x",
         "gauge",
         "heart",
@@ -554,8 +556,8 @@
         "square-alert",
         "thumbs",
         "trophy",
-        "alert",
-        "notification"
+        "error",
+        "app-notification"
       ],
       "exactNames": [
         "check",
@@ -621,7 +623,8 @@
         "text-html",
         "token",
         "variable",
-        "workflow"
+        "workflow",
+        "vector-svg"
       ]
     },
     {
@@ -642,7 +645,8 @@
         "thought-bubble",
         "workflow",
         "user-bot",
-        "user-clank"
+        "user-clank",
+        "intelligence"
       ],
       "exactNames": [
         "pointer",
@@ -771,7 +775,7 @@
         "bell",
         "binoculars",
         "box-shipping",
-        "box-storage",
+        "box-face",
         "calculator",
         "card-open",
         "crown",
@@ -798,7 +802,8 @@
         "wrench",
         "microchip",
         "cookie",
-        "door"
+        "door",
+        "broom"
       ],
       "exactNames": [
         "pin",

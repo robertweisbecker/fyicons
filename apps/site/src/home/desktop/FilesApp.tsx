@@ -14,7 +14,7 @@ const locations = [
   ['users-two', 'Shared with me'],
   ['clock', 'Recent'],
   ['star', 'Starred'],
-  ['circle-alert', 'Spam'],
+  ['alert', 'Spam'],
   ['trash', 'Trash'],
 ] as const;
 

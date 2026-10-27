@@ -1,0 +1,11 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Repeat group 1_inner" data-figma-trr="r7u3-0f">
+<path d="M7.97124 1.50504C6.32252 1.52111 5.75049 3.50006 5.75049 3.50006L7.15064 4.27789C7.67917 4.5715 8.32181 4.5715 8.85033 4.27789L10.2505 3.50006C10.2505 3.50006 9.63611 1.48881 7.97124 1.50504Z" stroke="currentColor" stroke-linecap="round"/>
+</g>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(9.26301 -3.24476) rotate(51.4286)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(17.5753 1.97428) rotate(102.857)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(18.6775 11.7271) rotate(154.286)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(11.7396 18.6696) rotate(-154.286)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(1.98608 17.5739) rotate(-102.857)"/>
+<use xlink:href="#Repeat%20group%201_inner" transform="translate(-3.23854 9.26519) rotate(-51.4286)"/>
+</svg>

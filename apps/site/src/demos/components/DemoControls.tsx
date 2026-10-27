@@ -126,11 +126,7 @@ export function CopyButton({
       >
         <Icon
           name={
-            state === 'copied'
-              ? 'copied'
-              : state === 'error'
-                ? 'circle-alert'
-                : 'copy'
+            state === 'copied' ? 'copied' : state === 'error' ? 'alert' : 'copy'
           }
         />
         {showLabel && (state === 'error' ? 'Try again' : status)}

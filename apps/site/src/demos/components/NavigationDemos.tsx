@@ -101,7 +101,7 @@ export function SidebarDemo() {
       >
         {[
           ['Home', 'home-wide', 'home-wide-fill', ''],
-          ['Priority', 'circle-alert', 'circle-alert-fill', '8'],
+          ['Priority', 'alert', 'alert-fill', '8'],
           ['Calls', 'phone', 'phone-fill', ''],
           ['Calendar', 'calendar', 'calendar-fill', '3'],
           ['Saved', 'bookmark', 'bookmark-fill', ''],

@@ -115,7 +115,7 @@ test('exact names match only whole names and combine with keyword memberships', 
       'BOX_SHIPPING',
       'bounding-box',
       'text-box-heading',
-      'box-storage',
+      'box-face',
       'cost-high',
       'box-shipping-fill',
     ].map((name) => ({ name })),
@@ -179,7 +179,7 @@ test('library category rules keep the requested icon families together without l
     'bounding-box',
     'text-box',
     'text-box-heading',
-    'box-storage',
+    'box-face',
   ])
     excludes(name, 'commerce');
   for (const name of [
