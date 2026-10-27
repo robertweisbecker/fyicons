@@ -32988,14 +32988,14 @@
       "type": "registry:component"
     },
     {
-      "name": "intelligence",
-      "title": "IconIntelligence",
-      "description": "The intelligence icon from FYIcons 0.1.0.",
+      "name": "intelligence-cupertino",
+      "title": "IconIntelligenceCupertino",
+      "description": "The intelligence-cupertino icon from FYIcons 0.1.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconIntelligence.tsx",
+          "path": "packages/fyicons/src/IconIntelligenceCupertino.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconIntelligence.tsx"
+          "target": "@components/fyicons/IconIntelligenceCupertino.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",

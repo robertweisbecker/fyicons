@@ -1181,7 +1181,7 @@ export const iconBySourceId: Record<string, ComponentType<IconProps>> = {
   "1205:998": icons.IconFolderStar,
   "1209:11285": icons.IconBroom,
   "1211:11145": icons.IconEmojiAddSimple,
-  "1211:11163": icons.IconIntelligence,
+  "1211:11163": icons.IconIntelligenceCupertino,
   "1211:11182": icons.IconArrowUpArrowDown,
   "1211:11261": icons.IconVectorSvg,
   "1215:11642": icons.IconBroomSweep,

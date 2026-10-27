@@ -1177,7 +1177,7 @@ export { default as IconLightbulbFill } from './IconLightbulbFill';
 export { default as IconFolderStar } from './IconFolderStar';
 export { default as IconBroom } from './IconBroom';
 export { default as IconEmojiAddSimple } from './IconEmojiAddSimple';
-export { default as IconIntelligence } from './IconIntelligence';
+export { default as IconIntelligenceCupertino } from './IconIntelligenceCupertino';
 export { default as IconArrowUpArrowDown } from './IconArrowUpArrowDown';
 export { default as IconVectorSvg } from './IconVectorSvg';
 export { default as IconBroomSweep } from './IconBroomSweep';
