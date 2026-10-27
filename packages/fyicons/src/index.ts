@@ -1181,3 +1181,4 @@ export { default as IconIntelligence } from './IconIntelligence';
 export { default as IconArrowUpArrowDown } from './IconArrowUpArrowDown';
 export { default as IconVectorSvg } from './IconVectorSvg';
 export { default as IconBroomSweep } from './IconBroomSweep';
+export { default as IconHeadset } from './IconHeadset';

@@ -33098,6 +33098,34 @@
         }
       ],
       "type": "registry:component"
+    },
+    {
+      "name": "headset",
+      "title": "IconHeadset",
+      "description": "The headset icon from FYIcons 0.1.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconHeadset.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconHeadset.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
     }
   ]
 }
