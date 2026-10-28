@@ -1,6 +1,6 @@
 {
   "name": "FYIcons",
-  "version": "2026-10-27",
+  "version": "2026-10-28",
   "source": {
     "id": "sha256:b727b72e59b4359b61b1a32b4e0dddabd8150bb2dab37491bb9353d5cc6aa618"
   },
@@ -201,7 +201,7 @@
       ],
       "notes": [],
       "componentName": "IconChatCheck",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "641:839",
@@ -1290,7 +1290,7 @@
       ],
       "notes": [],
       "componentName": "IconFolderCheck",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "820:11297",
@@ -2143,7 +2143,7 @@
       ],
       "notes": [],
       "componentName": "IconClipboard",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "845:14174",
@@ -2159,7 +2159,7 @@
       ],
       "notes": [],
       "componentName": "IconClipboardText",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "548:8748",
@@ -2175,7 +2175,7 @@
       ],
       "notes": [],
       "componentName": "IconClipboardCheck",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "920:32985",
@@ -2191,7 +2191,7 @@
       ],
       "notes": [],
       "componentName": "IconClipboardFile",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "610:12054",
@@ -2245,7 +2245,7 @@
       ],
       "notes": [],
       "componentName": "IconCopied",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "892:30476",
@@ -2261,7 +2261,7 @@
       ],
       "notes": [],
       "componentName": "IconCopiedFill",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "610:12055",
@@ -2329,7 +2329,7 @@
       ],
       "notes": [],
       "componentName": "IconDuplicateCheck",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "892:30460",
@@ -2345,7 +2345,7 @@
       ],
       "notes": [],
       "componentName": "IconDuplicateCheckFill",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "679:2671",
@@ -2361,7 +2361,7 @@
       ],
       "notes": [],
       "componentName": "IconDuplicated",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "609:10373",
@@ -2591,7 +2591,7 @@
       ],
       "notes": [],
       "componentName": "IconFileCheck",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "673:392",
@@ -6579,7 +6579,7 @@
       ],
       "notes": [],
       "componentName": "IconPosts",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "735:6420",
@@ -7753,7 +7753,7 @@
       ],
       "notes": [],
       "componentName": "IconCloud",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "749:7344",
@@ -7769,7 +7769,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudPointer",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "1026:10746",
@@ -7785,7 +7785,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudDownload",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "1027:10861",
@@ -7801,7 +7801,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudUpload",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "1027:10860",
@@ -7820,7 +7820,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudDownloadAlt",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "673:286",
@@ -7836,7 +7836,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudCheck",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "698:318",
@@ -7852,7 +7852,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudCode",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "698:351",
@@ -7868,7 +7868,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudPlus",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "698:405",
@@ -7884,7 +7884,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudBolt",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "698:420",
@@ -7900,7 +7900,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudX",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "667:471",
@@ -7916,7 +7916,7 @@
       ],
       "notes": [],
       "componentName": "IconCloudSlash",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "520:7817",
@@ -13086,7 +13086,7 @@
       ],
       "notes": [],
       "componentName": "IconStarHalfFill",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "970:7131",
@@ -13102,7 +13102,7 @@
       ],
       "notes": [],
       "componentName": "IconStarHalfPiece",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "364:5299",
@@ -15719,7 +15719,7 @@
       ],
       "notes": [],
       "componentName": "IconLinkLinked",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "550:8814",
@@ -16435,7 +16435,7 @@
       ],
       "notes": [],
       "componentName": "IconNumbers",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "679:3552",
@@ -19792,7 +19792,7 @@
       ],
       "notes": [],
       "componentName": "IconShapes",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "1123:12034",
@@ -19808,7 +19808,7 @@
       ],
       "componentName": "IconShapesPlus",
       "addedAt": "2026-10-24T09:44:30.696Z",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "1120:12002",
@@ -20020,7 +20020,7 @@
       ],
       "notes": [],
       "componentName": "IconStarHalfPieceFill",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "1013:19535",
@@ -20894,7 +20894,7 @@
       ],
       "componentName": "IconEmojiAddSimple",
       "addedAt": "2026-10-27T22:24:21.235Z",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-10-28T19:45:41.533Z"
     },
     {
       "id": "1211:11163",

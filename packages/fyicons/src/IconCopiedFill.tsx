@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCopiedFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCopiedFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="copied-fill"><path fill="currentColor" d="M9.5 1A2.5 2.5 0 0 1 12 3.5V4h.5A2.5 2.5 0 0 1 15 6.5v6a2.5 2.5 0 0 1-2.5 2.5h-6A2.5 2.5 0 0 1 4 12.5V12h-.5A2.5 2.5 0 0 1 1 9.5v-6A2.5 2.5 0 0 1 3.5 1zM12 9.5A2.5 2.5 0 0 1 9.5 12H5v.5A1.5 1.5 0 0 0 6.5 14h6a1.5 1.5 0 0 0 1.5-1.5v-6A1.5 1.5 0 0 0 12.5 5H12zM8.765 4.076a.5.5 0 0 0-.689.16l-2.114 3.38L4.9 6.2a.501.501 0 0 0-.8.6l1.5 2a.5.5 0 0 0 .824-.035l2.5-4a.5.5 0 0 0-.16-.689" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="copied-fill"><path fill="currentColor" d="M9.5 1A2.5 2.5 0 0 1 12 3.5V4h.5A2.5 2.5 0 0 1 15 6.5v6a2.5 2.5 0 0 1-2.5 2.5h-6A2.5 2.5 0 0 1 4 12.5V12h-.5A2.5 2.5 0 0 1 1 9.5v-6A2.5 2.5 0 0 1 3.5 1zM12 9.5A2.5 2.5 0 0 1 9.5 12H5v.5A1.5 1.5 0 0 0 6.5 14h6a1.5 1.5 0 0 0 1.5-1.5v-6A1.5 1.5 0 0 0 12.5 5H12zM8.745 4.064a.5.5 0 0 0-.68.19L6.16 7.64 4.876 6.17a.5.5 0 1 0-.752.658l1.75 2a.5.5 0 0 0 .812-.084l2.25-4a.5.5 0 0 0-.19-.68" /></SvgRoot>;
 });
 export default IconCopiedFill;
