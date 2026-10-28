@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type ReactElement } from 'react';
-import { Tooltip } from '@base-ui/react/tooltip';
+import { useEffect, useRef, useState } from 'react';
+import { Tooltip as DemoHint } from '@/components/ui/tooltip';
 import { Icon } from '@/components/Icon';
 import { ToggleIcon } from '@/components/ToggleIcon';
 import { Button, type ButtonProps } from '@/components/ui/button';
@@ -7,26 +7,7 @@ import { Toggle, type ToggleProps } from '@/components/ui/toggle';
 import { copy } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
 
-export function DemoHint({
-  label,
-  children,
-}: {
-  label: string;
-  children: ReactElement;
-}) {
-  return (
-    <Tooltip.Root>
-      <Tooltip.Trigger render={children} />
-      <Tooltip.Portal>
-        <Tooltip.Positioner sideOffset={8}>
-          <Tooltip.Popup className="origin-(--transform-origin) rounded-lg bg-ink px-2.5 py-1.5 text-xs text-canvas shadow-lg transition-[transform,opacity] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
-            {label}
-          </Tooltip.Popup>
-        </Tooltip.Positioner>
-      </Tooltip.Portal>
-    </Tooltip.Root>
-  );
-}
+export { DemoHint };
 export function DemoIconButton({
   label,
   icon,
@@ -129,7 +110,7 @@ export function CopyButton({
             state === 'copied'
               ? 'copied'
               : state === 'error'
-                ? 'circle-alert'
+                ? 'alert'
                 : 'copy'
           }
         />

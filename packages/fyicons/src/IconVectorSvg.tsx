@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconVectorSvg = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconVectorSvg(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 1.5a1.5 1.5 0 0 1 .5 2.912v2.381l1.684-1.684a1.5 1.5 0 1 1 2.413.416 1.5 1.5 0 0 1-1.706.291L9.207 7.5h2.38A1.499 1.499 0 1 1 13 9.5a1.5 1.5 0 0 1-1.412-1H9.207l1.684 1.684a1.5 1.5 0 1 1-.707.707L8.5 9.207v2.38A1.499 1.499 0 0 1 8 14.5a1.499 1.499 0 0 1-.5-2.912V9.207l-1.683 1.684a1.5 1.5 0 1 1-.708-.707L6.793 8.5h-2.38A1.499 1.499 0 0 1 1.5 8a1.498 1.498 0 0 1 2.912-.5h2.381L5.109 5.816a1.498 1.498 0 0 1-1.705-2.412A1.5 1.5 0 0 1 5.816 5.11L7.5 6.793v-2.38A1.499 1.499 0 0 1 8 1.5m0 11a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1m-3.182-1.318a.5.5 0 1 0-.707.708.5.5 0 0 0 .707-.708m7.072 0a.5.5 0 1 0-.707.708.5.5 0 0 0 .707-.708M3 7.5a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1m10 0a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1M4.818 4.111a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707m7.07 0a.5.5 0 1 0-.706.708.5.5 0 0 0 .707-.709M8 2.5a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1" /></SvgRoot>;
+});
+export default IconVectorSvg;

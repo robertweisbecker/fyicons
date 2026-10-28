@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconUsersThree = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconUsersThree(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M11 10.5h2a1.5 1.5 0 0 1 1.5 1.5.5.5 0 0 1-.5.5h-2" /><path fill="currentColor" d="M7.999 9c2.014 0 3.6 1.144 4.22 2.858a1.49 1.49 0 0 1-.308 1.534A1.9 1.9 0 0 1 10.5 14h-5a1.9 1.9 0 0 1-1.412-.608 1.49 1.49 0 0 1-.308-1.534C4.4 10.144 5.985 9 8 9m0 1c-1.606 0-2.807.893-3.28 2.198a.49.49 0 0 0 .11.524c.145.16.39.278.67.278h5c.28 0 .525-.118.67-.278a.49.49 0 0 0 .11-.524C10.805 10.893 9.604 10 7.998 10M3.5 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3m9 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3m-9 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1m4.499-4a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5M12.5 7a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1M7.999 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M5 10.5H3A1.5 1.5 0 0 0 1.5 12a.5.5 0 0 0 .5.5h2" /></SvgRoot>;
+});
+export default IconUsersThree;

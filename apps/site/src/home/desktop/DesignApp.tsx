@@ -2,7 +2,7 @@ import { useId, useRef, useState } from 'react';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Glyph } from '../Study';
 import { DesignInspector, designFills } from './DesignInspector';
@@ -14,7 +14,7 @@ const tools = [
   ['frame', 'Frame'],
   ['square', 'Rectangle'],
   ['pen-tool', 'Pen'],
-  ['text', 'Text'],
+  ['text-title', 'Text'],
   ['chat-round', 'Comment'],
   ['apps-plus', 'Actions'],
 ] as const;
@@ -34,26 +34,22 @@ export function DesignApp() {
           aria-label="Design app bar"
         >
           <WindowControls />
-          <Button
-            variant="ghost"
+          <DemoIconButton
+            label="Design home"
+            icon="home"
             size="icon-sm"
-            aria-label="Design home"
             className="mx-1"
-          >
-            <Icon name="home" />
-          </Button>
-          <Button
-            variant="ghost"
+          />
+          <DemoIconButton
+            label="Community"
+            icon="globe-simple"
             size="icon-sm"
-            aria-label="Community"
             className="mr-1"
-          >
-            <Icon name="globe-simple" />
-          </Button>
+          />
           <div className="flex h-full min-w-0 items-center gap-2 border-x border-line bg-surface px-3 text-ink">
             <Icon name="pen-tool" className="text-control-accent" />
             <span className="min-w-0 truncate">Design</span>
-            <Glyph name="xmark" className="ml-3 text-muted" />
+            <Glyph name="x" className="ml-3 text-muted" />
           </div>
           <Button
             ref={inspectorToggle}
@@ -91,32 +87,22 @@ export function DesignApp() {
                 backgroundColor: fillVisible ? fill.color : 'transparent',
               }}
             >
-              <Icon
-                name={
-                  tool[0] === 'text'
-                    ? 'font-capital'
-                    : tool[0] === 'pen-tool'
-                      ? 'vector-path'
-                      : 'asterisk'
-                }
-              />
+              <Icon name="asterisk" />
               <span className="font-serif text-2xl leading-tight font-semibold">
                 Quiet
                 <br />
                 by design.
               </span>
               <span className="text-xs opacity-60">Studio notes</span>
-              {tool[0] === 'pointer' && (
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -inset-2 border border-control-accent"
-                >
-                  <span className="absolute -top-1 -left-1 size-2 border border-control-accent bg-surface" />
-                  <span className="absolute -top-1 -right-1 size-2 border border-control-accent bg-surface" />
-                  <span className="absolute -bottom-1 -left-1 size-2 border border-control-accent bg-surface" />
-                  <span className="absolute -right-1 -bottom-1 size-2 border border-control-accent bg-surface" />
-                </span>
-              )}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -inset-2 border border-control-accent"
+              >
+                <span className="absolute -top-1 -left-1 size-2 border border-control-accent bg-surface" />
+                <span className="absolute -top-1 -right-1 size-2 border border-control-accent bg-surface" />
+                <span className="absolute -bottom-1 -left-1 size-2 border border-control-accent bg-surface" />
+                <span className="absolute -right-1 -bottom-1 size-2 border border-control-accent bg-surface" />
+              </span>
             </div>
             <span className="absolute top-full left-1/2 mt-6 -translate-x-1/2 text-xs whitespace-nowrap text-muted">
               160 × 176

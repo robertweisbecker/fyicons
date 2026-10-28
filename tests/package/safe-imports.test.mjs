@@ -303,6 +303,8 @@ test('valid import normalizes artwork and preserves identity while removing priv
       scope: 'private collection',
     };
     state.imported.icons[0].sourceUrl = sourceUrl;
+    state.imported.icons[0].sourcePageId = 'private-page';
+    state.imported.icons[0].sourceSectionId = 'private-section';
     await mkdir(path.join(state.incoming, 'artwork'));
     await rename(
       path.join(state.incoming, 'one.svg'),
@@ -344,11 +346,11 @@ test('valid import normalizes artwork and preserves identity while removing priv
     );
     assert.doesNotMatch(
       JSON.stringify(next),
-      /sourceUrl|fileKey|figma\.com|fixture-file|private collection/,
+      /sourceUrl|sourcePageId|sourceSectionId|fileKey|figma\.com|fixture-file|private collection/,
     );
     assert.doesNotMatch(
       JSON.stringify(catalog),
-      /sourceUrl|fileKey|figma\.com|fixture-file|private collection/,
+      /sourceUrl|sourcePageId|sourceSectionId|fileKey|figma\.com|fixture-file|private collection/,
     );
     assert.deepEqual(decodeCatalog(compact), catalog);
     assert.ok(!('sha256' in icon));

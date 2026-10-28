@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconVolumeBluetoothFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconVolumeBluetoothFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M6.92 2.237C7.726 1.52 9 2.092 9 3.17v9.66c0 1.079-1.274 1.65-2.08.934L3.81 11H1.5A1.5 1.5 0 0 1 0 9.5v-3A1.5 1.5 0 0 1 1.5 5h2.31z" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m10.5 9.5 4.782-3.826a.25.25 0 0 0 .02-.372L12.5 2.5v11l2.803-2.802a.25.25 0 0 0-.021-.373L10.5 6.5" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M6.92 2.237C7.726 1.52 9 2.092 9 3.17v9.66c0 1.079-1.274 1.65-2.08.934L3.81 11H1.5A1.5 1.5 0 0 1 0 9.5v-3A1.5 1.5 0 0 1 1.5 5h2.31z" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m10.5 9.477 4.731-3.333a.25.25 0 0 0 .014-.398L12.5 3.5v9l2.745-2.246a.25.25 0 0 0-.014-.398L10.5 6.523" /></SvgRoot>;
 });
 export default IconVolumeBluetoothFill;

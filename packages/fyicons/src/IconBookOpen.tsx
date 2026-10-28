@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconBookOpen = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBookOpen(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 3.5a4.49 4.49 0 0 1 4.55-1.29A2 2 0 0 1 14 4.13v7.467a1.5 1.5 0 0 1-1.712 1.485l-1.273-.182a2.5 2.5 0 0 0-1.68.355l-1.07.669a.5.5 0 0 1-.53 0l-1.07-.669a2.5 2.5 0 0 0-1.68-.355l-1.273.182A1.5 1.5 0 0 1 2 11.597V4.13c0-.892.592-1.676 1.45-1.92A4.49 4.49 0 0 1 8 3.5m-.706.71a3.49 3.49 0 0 0-3.57-1.039A1 1 0 0 0 3 4.13v7.467a.5.5 0 0 0 .57.495l1.275-.182a3.5 3.5 0 0 1 2.35.497l.305.19V4.442zm4.982-1.039a3.49 3.49 0 0 0-3.57 1.038l-.206.232v8.157l.306-.19a3.5 3.5 0 0 1 2.35-.498l1.274.182a.5.5 0 0 0 .57-.495V4.13a1 1 0 0 0-.724-.959" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M6.23 2c.705 0 1.346.321 1.77.835A2.3 2.3 0 0 1 9.77 2h2.73A1.5 1.5 0 0 1 14 3.5v8a1.5 1.5 0 0 1-1.5 1.5H10a2 2 0 0 0-1.6.8.5.5 0 0 1-.8 0A2 2 0 0 0 6 13H3.5A1.5 1.5 0 0 1 2 11.5v-8A1.5 1.5 0 0 1 3.5 2zM3.5 3a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5H6a3 3 0 0 1 1.5.402V4.05A1.294 1.294 0 0 0 6.23 3zm6.27 0c-.62 0-1.152.442-1.27 1.05v8.354A3 3 0 0 1 10 12h2.5a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5z" /></SvgRoot>;
 });
 export default IconBookOpen;

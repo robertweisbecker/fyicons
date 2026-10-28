@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import { TooltipGroup } from '@/components/ui/tooltip';
 
 export function DemoCard({
   title,
@@ -32,7 +33,7 @@ export function DemoCard({
           contentClassName,
         )}
       >
-        {children}
+        <TooltipGroup>{children}</TooltipGroup>
       </div>
     </article>
   );

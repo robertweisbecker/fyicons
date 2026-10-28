@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconRepeatAlt = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconRepeatAlt(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M13.5 8a.5.5 0 0 1 .5.5V9a3 3 0 0 1-3 3H6v.933a.5.5 0 0 1-.82.384l-1.72-1.433a.5.5 0 0 1 0-.767l1.72-1.433a.5.5 0 0 1 .82.384v.931h5a2 2 0 0 0 2-2v-.5a.5.5 0 0 1 .5-.5m-3.497-4.934a.5.5 0 0 1 .82-.385l1.72 1.433a.5.5 0 0 1 0 .768l-1.72 1.433a.5.5 0 0 1-.82-.385v-.933H5a2 2 0 0 0-2 2V7.5a.5.5 0 0 1-1 0v-.503a3 3 0 0 1 3-3h5.003z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M14.5 8a.5.5 0 0 1 .5.5V9a3 3 0 0 1-3 3H6v.933a.5.5 0 0 1-.82.384l-1.72-1.433a.5.5 0 0 1 0-.767l1.72-1.433a.5.5 0 0 1 .82.384v.931h6a2 2 0 0 0 2-2v-.5a.5.5 0 0 1 .5-.5m-4.497-4.934a.5.5 0 0 1 .82-.385l1.72 1.433a.5.5 0 0 1 0 .768l-1.72 1.433a.5.5 0 0 1-.82-.385v-.933H4a2 2 0 0 0-2 2V7.5a.5.5 0 0 1-1 0v-.503a3 3 0 0 1 3-3h6.003z" /></SvgRoot>;
 });
 export default IconRepeatAlt;

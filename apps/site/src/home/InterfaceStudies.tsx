@@ -18,7 +18,7 @@ export function StatusBarStudy() {
   return (
     <div className="flex max-w-full flex-wrap items-center justify-center gap-x-4 gap-y-3 bg-inset p-2 text-xs">
       <div className="flex items-center gap-4">
-        {['sticky-note-2', 'keys', 'keyboard', 'bluetooth'].map((name) => (
+        {['sticky-note-alt', 'keys', 'keyboard', 'bluetooth'].map((name) => (
           <Icon key={name} name={name} />
         ))}
         <DeviceBattery />
@@ -41,7 +41,7 @@ export function EditorStudy() {
       <Glyph name="line-vertical" className="w-4 text-border" />
       <Glyph name="frame" />
       <Glyph name="square" />
-      <Glyph name="text" />
+      <Glyph name="text-title" />
       <Glyph name="chat-round" />
       <Glyph name="apps-plus" />
       <Glyph name="line-vertical" className="w-4 text-border" />

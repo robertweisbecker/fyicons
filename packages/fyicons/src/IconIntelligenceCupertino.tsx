@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconIntelligenceCupertino = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconIntelligenceCupertino(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path stroke="currentColor" strokeLinecap="round" d="M7.971 1.505C6.323 1.521 5.751 3.5 5.751 3.5l1.4.778a1.75 1.75 0 0 0 1.7 0l1.4-.778S9.636 1.49 7.97 1.505Z" /><path stroke="currentColor" strokeLinecap="round" d="M13.056 3.926c-1.04-1.28-2.944-.493-2.944-.493l.265 1.58c.1.596.5 1.099 1.06 1.329l1.48.61s1.19-1.735.14-3.026Z" /><path stroke="currentColor" strokeLinecap="round" d="M14.334 9.41c.351-1.61-1.45-2.608-1.45-2.608l-1.07 1.192a1.75 1.75 0 0 0-.379 1.657l.447 1.538s2.098-.152 2.452-1.778Z" /><path stroke="currentColor" strokeLinecap="round" d="M10.843 13.83c1.478-.73 1.135-2.761 1.135-2.761l-1.599-.094a1.75 1.75 0 0 0-1.531.738l-.924 1.308s1.426 1.546 2.919.809Z" /><path stroke="currentColor" strokeLinecap="round" d="M5.21 13.855c1.493.7 2.867-.834 2.867-.834l-.924-1.308a1.75 1.75 0 0 0-1.531-.738l-1.599.094s-.32 2.078 1.188 2.786Z" /><path stroke="currentColor" strokeLinecap="round" d="M1.68 9.468c.382 1.604 2.439 1.72 2.439 1.72l.447-1.537a1.75 1.75 0 0 0-.379-1.657l-1.07-1.192S1.294 7.848 1.68 9.468Z" /><path stroke="currentColor" strokeLinecap="round" d="M2.908 3.971c-1.015 1.3.175 2.98.175 2.98l1.481-.61c.56-.23.96-.732 1.06-1.328l.265-1.58s-1.956-.773-2.98.538Z" /></SvgRoot>;
+});
+export default IconIntelligenceCupertino;

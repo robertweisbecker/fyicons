@@ -25,6 +25,6 @@ For instructions and React source files, see https://github.com/robertweisbecker
 
 Open https://icons.bob.fyi/library/.
 Select an icon, then use Copy SVG to copy its SVG code.
-Use Download in the site header to download all icons.
+Use Download in the homepage's Installation section to download all icons.
 On a desktop screen, select icon checkboxes, open Selected, then select Download.
 The preview size does not change the SVG files.

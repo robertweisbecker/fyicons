@@ -104,7 +104,7 @@ Keep the release tag in the command so the icon and its helpers come from the sa
 
 Browse the [icon library](https://icons.bob.fyi/library/) to search by name or explore categories. Select an icon to open its details, then use **Copy SVG** to copy its markup.
 
-Use **Download** in the site header to get the complete collection as a ZIP. On a desktop screen, you can also select icon checkboxes, open **Selected**, and choose **Download** to get a smaller collection.
+Use **Download** in the homepage's **Installation** section to get the complete collection as a ZIP. On a desktop screen, you can also select icon checkboxes, open **Selected**, and choose **Download** to get a smaller collection.
 
 Each ZIP includes the SVG files, a README, the MIT license, and a `manifest.json` file with names, source links, category data, and SHA-256 checksums. It does not include React components. The site's size control changes the preview only; downloaded SVG files keep their original canvas.
 

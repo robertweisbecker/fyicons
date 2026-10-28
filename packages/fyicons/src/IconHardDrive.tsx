@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconHardDrive = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconHardDrive(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M10.735 3a2.5 2.5 0 0 1 2.35 1.646l1.73 4.76c.122.335.185.688.185 1.045l-.002.025.002.024a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 10.5l.001-.024L1 10.45c0-.357.063-.71.185-1.046l1.73-4.76A2.5 2.5 0 0 1 5.265 3zM3.5 9a1.5 1.5 0 0 0-1.499 1.476c.013.844.7 1.524 1.548 1.524h8.902c.847 0 1.534-.68 1.547-1.524A1.5 1.5 0 0 0 12.5 9zm9 .75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5m-2 .25a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zM5.265 4a1.5 1.5 0 0 0-1.41.987l-1.143 3.14C2.96 8.047 3.225 8 3.5 8h9c.275 0 .54.046.787.128l-1.142-3.14A1.5 1.5 0 0 0 10.736 4z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M10.796 3a2.5 2.5 0 0 1 2.312 1.55l1.704 4.144c.125.302.188.625.188.952V10a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3v-.354c0-.327.064-.65.188-.952L2.891 4.55A2.5 2.5 0 0 1 5.204 3zM4 8a2 2 0 1 0 0 4h8a2 2 0 1 0 0-4zm8 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-2.5.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1zM5.204 4a1.5 1.5 0 0 0-1.388.93l-.941 2.289A3 3 0 0 1 4 7h8c.398 0 .777.078 1.124.219l-.94-2.29A1.5 1.5 0 0 0 10.796 4z" /></SvgRoot>;
 });
 export default IconHardDrive;
