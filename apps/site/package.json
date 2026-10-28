@@ -21,7 +21,7 @@
     "react-dom": "19.3.0",
     "react-resizable-panels": "4.14.4",
     "tailwind-merge": "3.7.0",
-    "fyicons": "0.1.0"
+    "fyicons": "0.2.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.3.3",
