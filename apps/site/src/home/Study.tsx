@@ -2,6 +2,7 @@ import { type ReactNode } from 'react';
 import { Icon } from '@/components/Icon';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
+import { TooltipGroup } from '@/components/ui/tooltip';
 
 export const panel =
   'rounded-xl bg-surface text-muted shadow-md ring ring-current/5 dark:ring-current/20';
@@ -28,7 +29,7 @@ export function Study({
           className,
         )}
       >
-        {children}
+        <TooltipGroup>{children}</TooltipGroup>
       </section>
     </div>
   );

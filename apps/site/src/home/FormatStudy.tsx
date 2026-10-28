@@ -20,19 +20,19 @@ export function FormatControls({ compact = false }: { compact?: boolean }) {
   return (
     <div
       className={cn(
-        'grid grid-cols-[1fr_auto] items-center gap-x-2',
+        'grid items-center',
         compact
-          ? 'gap-y-1 text-xs'
-          : 'gap-y-2 text-sm max-sm:grid-cols-1 max-sm:gap-y-3',
+          ? 'grid-cols-2 gap-x-1 text-xs'
+          : 'grid-cols-[1fr_auto] gap-x-2 gap-y-2 text-sm max-sm:grid-cols-1 max-sm:gap-y-3',
       )}
     >
-      <span>Format</span>
+      {!compact && <span>Format</span>}
       <ToggleGroup
         multiple
         value={marks}
         onValueChange={setMarks}
         aria-label="Text formatting"
-        className="gap-px"
+        className={compact ? 'gap-0' : 'gap-px'}
       >
         {[
           ['bold', 'text-bold', 'Bold'],
@@ -46,16 +46,20 @@ export function FormatControls({ compact = false }: { compact?: boolean }) {
             icon={icon}
             label={label}
             size={size}
+            className={compact ? 'flex-1' : undefined}
           />
         ))}
       </ToggleGroup>
-      <span>List style</span>
+      {!compact && <span>List style</span>}
       <div className="flex items-center">
         <ToggleGroup
           value={list}
           onValueChange={(v) => v.length && setList(v)}
           aria-label="List style"
-          className="w-fit gap-px rounded-md bg-inset p-0"
+          className={cn(
+            'rounded-md bg-inset p-0',
+            compact ? 'flex-1 gap-0' : 'w-fit gap-px',
+          )}
         >
           <DemoToggle
             value="none"

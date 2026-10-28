@@ -15,8 +15,6 @@ export function MusicApp() {
   const [queuePreference, setQueuePreference] = useState<boolean | null>(null);
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [albumSaved, setAlbumSaved] = useState(false);
-  const [miniPlayer, setMiniPlayer] = useState(false);
-  const [expanded, setExpanded] = useState(false);
   const player = useRef<HTMLDivElement>(null);
   const activeTrack = useRef<HTMLButtonElement>(null);
   const queueOpen = queuePreference ?? wide;
@@ -36,7 +34,6 @@ export function MusicApp() {
   }, []);
 
   function showNowPlaying() {
-    setMiniPlayer(false);
     if (!wide) setQueuePreference(false);
     requestAnimationFrame(() => {
       activeTrack.current?.scrollIntoView({ block: 'nearest' });
@@ -55,25 +52,9 @@ export function MusicApp() {
   }
 
   return (
-    <div
-      ref={player}
-      className={cn(
-        'dark flex h-full w-full items-end justify-end',
-        expanded && 'absolute inset-x-2 top-11 bottom-10 z-10 h-auto w-auto',
-      )}
-      data-theme="dark"
-      onKeyDown={(event) => {
-        if (event.key === 'Escape' && !event.defaultPrevented) {
-          setExpanded(false);
-          setMiniPlayer(false);
-        }
-      }}
-    >
-      <Window title="Music" className={cn(miniPlayer && 'h-auto max-w-80')}>
-        <div
-          hidden={miniPlayer}
-          className="flex min-h-0 flex-1 gap-2 bg-neutral-950 px-2 pt-2"
-        >
+    <div ref={player} className="dark flex h-full w-full" data-theme="dark">
+      <Window title="Music">
+        <div className="flex min-h-0 flex-1 gap-2 bg-neutral-950 px-2 pt-2">
           <aside
             aria-label="Music library"
             className={cn(
@@ -99,14 +80,11 @@ export function MusicApp() {
                 Your library
               </span>
             </Button>
-            <DemoToggle
-              label="Save album to your library"
+            <DemoIconButton
+              label="Add to library"
               icon="plus"
-              activeIcon="check"
               size="icon"
-              pressed={albumSaved}
-              onPressedChange={setAlbumSaved}
-              className="text-muted data-pressed:text-green-400"
+              className="text-muted"
             />
             <Button
               variant="ghost"
@@ -306,9 +284,8 @@ export function MusicApp() {
             );
             setPosition(0);
           }}
-          queueOpen={queueOpen && !miniPlayer}
+          queueOpen={queueOpen}
           onQueueChange={(open) => {
-            setMiniPlayer(false);
             setQueuePreference(open);
             if (open) {
               requestAnimationFrame(() => {
@@ -319,16 +296,6 @@ export function MusicApp() {
           queueId={queueId}
           queueToggle={queueToggle}
           onNowPlaying={showNowPlaying}
-          miniPlayer={miniPlayer}
-          onMiniPlayerChange={(mini) => {
-            setMiniPlayer(mini);
-            if (mini) setExpanded(false);
-          }}
-          expanded={expanded}
-          onExpandedChange={(next) => {
-            setExpanded(next);
-            if (next) setMiniPlayer(false);
-          }}
         />
       </Window>
     </div>

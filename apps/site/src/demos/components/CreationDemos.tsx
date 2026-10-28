@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { Combobox } from '@base-ui/react/combobox';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import {
@@ -177,80 +176,5 @@ export function ComposerDemo() {
         </span>
       </div>
     </form>
-  );
-}
-const commands = [
-  { label: 'Design tokens', icon: 'token' },
-  { label: 'Icon library', icon: 'library' },
-  { label: 'Create a branch', icon: 'git-branch' },
-  { label: 'Keyboard shortcuts', icon: 'keyboard' },
-];
-export function SearchDemo() {
-  const [query, setQuery] = useState('');
-  const [result, setResult] = useState<(typeof commands)[number] | null>(null);
-  return (
-    <div className="flex flex-1 flex-col gap-3">
-      <div className="overflow-hidden rounded-xl bg-surface shadow-xs outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
-        <Combobox.Root
-          items={commands}
-          itemToStringLabel={(item) => item.label}
-          inline
-          open
-          autoHighlight
-          inputValue={query}
-          onInputValueChange={setQuery}
-          value={result}
-          onValueChange={(value) => {
-            setResult(value);
-            setQuery('');
-          }}
-        >
-          <div className="relative flex items-center border-b border-line">
-            <Icon
-              name="search-lg"
-              className="pointer-events-none absolute left-4 text-muted"
-            />
-            <Combobox.Input
-              aria-label="Find a command"
-              placeholder="Find a command…"
-              className="h-12 w-full bg-transparent pr-10 pl-11 text-base outline-none placeholder:text-muted md:text-sm"
-            />
-            <Combobox.Clear
-              aria-label="Clear search"
-              className="absolute right-2 grid size-7 place-items-center rounded-md text-muted hover:bg-current/10"
-            >
-              <Icon name="xmark" />
-            </Combobox.Clear>
-          </div>
-          <Combobox.Empty className="p-5 text-sm text-muted empty:hidden">
-            No matching commands.
-          </Combobox.Empty>
-          <Combobox.List className="min-h-48 p-1.5">
-            {(item: (typeof commands)[number]) => (
-              <Combobox.Item
-                key={item.label}
-                value={item}
-                className="flex min-h-11 cursor-default items-center gap-3 rounded-lg px-3 text-sm outline-none data-highlighted:bg-current/10"
-              >
-                <Icon name={item.icon} />
-                <span className="flex-1">{item.label}</span>
-                <Combobox.ItemIndicator>
-                  <Icon name="check" />
-                </Combobox.ItemIndicator>
-              </Combobox.Item>
-            )}
-          </Combobox.List>
-        </Combobox.Root>
-      </div>
-      <p
-        className="flex min-h-5 items-center gap-2 text-xs text-muted"
-        role="status"
-      >
-        <Icon name={result ? 'click' : 'kbd-return'} />
-        {result
-          ? result.label + ' selected'
-          : 'Use ↑ ↓ to navigate and return to select'}
-      </p>
-    </div>
   );
 }

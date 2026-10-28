@@ -35,7 +35,7 @@ export function Search({
   const list = (
     <>
       <Autocomplete.Empty className="text-center text-sm text-muted">
-        <p className="p-6">No matching icons.</p>
+        <p className="p-4">No matching icons.</p>
       </Autocomplete.Empty>
       <Autocomplete.List className="min-h-0 overflow-y-auto overscroll-contain p-1.5">
         {(icon: IconRecord) => (
@@ -43,7 +43,7 @@ export function Search({
             key={icon.id}
             value={icon}
             onClick={() => select(icon)}
-            className="flex min-h-11 cursor-default items-center gap-3 rounded-lg px-3 text-sm outline-none data-highlighted:bg-hover"
+            className="flex cursor-default items-center gap-3 rounded-lg px-3 py-1.5 text-sm outline-none data-highlighted:bg-hover"
           >
             <Icon name={icon.id} />
             <span className="min-w-0 flex-1 truncate">
@@ -59,7 +59,7 @@ export function Search({
         )}
       </Autocomplete.List>
       <Autocomplete.Status className="border-t border-line px-4 py-2 text-xs text-muted">
-        {matches.length} matching icons
+        {matches.length} results
         {matches.length > results.length
           ? ` · First ${results.length} shown`
           : ''}
@@ -76,7 +76,8 @@ export function Search({
         if (details.reason !== 'item-press') onValueChange(next);
       }}
       itemToStringValue={getIconDisplayName}
-      autoHighlight={inline ? 'always' : true}
+      autoHighlight={inline ? 'always' : false}
+      highlightItemOnHover={inline ? true : false}
       openOnInputClick={queryReady}
       inline={inline && queryReady}
       open={queryReady && (inline || popupOpen)}

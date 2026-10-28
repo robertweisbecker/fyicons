@@ -2,7 +2,6 @@ import { useId, useRef, useState } from 'react';
 import { Icon } from '@/components/Icon';
 import { FileTree, fileFolders } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
-import { ToggleGroup } from '@/components/ui/toggle-group';
 import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
@@ -12,17 +11,14 @@ import { reviewFiles } from './codeReviewData';
 export function CodeApp() {
   const [selected, setSelected] = useState(reviewFiles[0].path);
   const [expanded, setExpanded] = useState(true);
-  const [wrapLines, setWrapLines] = useState(false);
   const [openFolders, setOpenFolders] = useState([
     'src',
     'src/components',
     'src/components/ui',
   ]);
-  const [mobileView, setMobileView] = useState(['diff']);
-  const [desktopViews, setDesktopViews] = useState(['files', 'diff']);
-  const mobileFilesOpen = mobileView.includes('files');
+  const [mobileFilesOpen, setMobileFilesOpen] = useState(false);
+  const [desktopFilesOpen, setDesktopFilesOpen] = useState(true);
   const sidebarId = useId();
-  const reviewId = useId();
   const sidebarToggle = useRef<HTMLButtonElement>(null);
   const allOpen = openFolders.length > 0;
 
@@ -36,10 +32,7 @@ export function CodeApp() {
       ]),
     ]);
     if (mobileFilesOpen) sidebarToggle.current?.focus();
-    setMobileView(['diff']);
-    setDesktopViews((views) =>
-      views.includes('diff') ? views : [...views, 'diff'],
-    );
+    setMobileFilesOpen(false);
   }
 
   return (
@@ -56,34 +49,22 @@ export function CodeApp() {
           main
           <Icon name="chevron-down-sm" />
         </span>
-        <div className="ml-auto flex items-center gap-2 text-muted">
+        <div className="ml-auto flex items-center gap-1 text-muted">
+          <DemoIconButton icon="file-diff" label="Diff view" size="icon-sm" />
           {[false, true].map((wide) => (
-            <ToggleGroup
+            <DemoToggle
               key={String(wide)}
-              aria-label="Code views"
-              multiple={wide}
-              value={wide ? desktopViews : mobileView}
-              onValueChange={(value) =>
-                value.length && (wide ? setDesktopViews : setMobileView)(value)
+              ref={wide ? undefined : sidebarToggle}
+              icon="folders"
+              label="Folder view"
+              size="icon-sm"
+              pressed={wide ? desktopFilesOpen : mobileFilesOpen}
+              onPressedChange={wide ? setDesktopFilesOpen : setMobileFilesOpen}
+              aria-controls={sidebarId}
+              className={
+                wide ? 'hidden @lg/window:inline-flex' : '@lg/window:hidden'
               }
-              className={wide ? 'hidden @lg/window:flex' : '@lg/window:hidden'}
-            >
-              <DemoToggle
-                value="diff"
-                icon="file-diff"
-                label="Diff view"
-                size="icon-sm"
-                aria-controls={reviewId}
-              />
-              <DemoToggle
-                ref={wide ? undefined : sidebarToggle}
-                value="files"
-                icon="folders"
-                label="Folder view"
-                size="icon-sm"
-                aria-controls={sidebarId}
-              />
-            </ToggleGroup>
+            />
           ))}
         </div>
       </div>
@@ -93,19 +74,14 @@ export function CodeApp() {
           aria-label="Source files"
           onKeyDown={(event) => {
             if (event.key === 'Escape' && mobileFilesOpen) {
-              setMobileView(['diff']);
+              setMobileFilesOpen(false);
               sidebarToggle.current?.focus();
             }
           }}
           className={cn(
-            'min-h-0 min-w-0 flex-col border-r border-line bg-bg',
+            'min-h-0 min-w-0 flex-col border-r border-line bg-bg @lg/window:w-60 @lg/window:flex-none',
             mobileFilesOpen ? 'flex flex-1' : 'hidden',
-            desktopViews.includes('files')
-              ? '@lg/window:flex'
-              : '@lg/window:hidden',
-            desktopViews.includes('diff')
-              ? '@lg/window:w-60 @lg/window:flex-none'
-              : '@lg/window:flex-1',
+            desktopFilesOpen ? '@lg/window:flex' : '@lg/window:hidden',
           )}
         >
           <div className="flex items-center gap-1 border-b border-line p-2">
@@ -154,20 +130,15 @@ export function CodeApp() {
           </div>
         </aside>
         <section
-          id={reviewId}
           aria-label="Code review"
           className={cn(
-            'min-h-0 min-w-0 flex-1 flex-col',
+            'min-h-0 min-w-0 flex-1 flex-col @lg/window:flex',
             mobileFilesOpen ? 'hidden' : 'flex',
-            desktopViews.includes('diff')
-              ? '@lg/window:flex'
-              : '@lg/window:hidden',
           )}
         >
           <CodeChanges
             selected={selected}
             expanded={expanded}
-            wrapLines={wrapLines}
             onSelect={(path) =>
               path === selected ? setExpanded(!expanded) : selectFile(path)
             }
@@ -194,9 +165,8 @@ export function CodeApp() {
             <DemoToggle
               label="Wrap lines"
               icon="arrow-wrap"
+              activeIcon="overflow"
               size="icon-sm"
-              pressed={wrapLines}
-              onPressedChange={setWrapLines}
             />
             <DemoToggle
               label="Expand selected diff"

@@ -52,10 +52,10 @@ export function SelectedIconsDialog({
                 tabIndex={-1}
                 className="text-base font-semibold outline-none"
               >
-                <Icon name="file-zip" className="me-2 inline size-[1lh]" />
-                Download{' '}
+                {/* <Icon name="file-zip" className="me-2 inline size-[1lh]" /> */}
                 {icons.length &&
-                  `${icons.length} ${icons.length === 1 ? 'icon' : 'icons'}`}
+                  `${icons.length} ${icons.length === 1 ? 'icon' : 'icons'}`}{' '}
+                selected
               </Dialog.Title>
               <Button
                 variant="ghost"
@@ -67,7 +67,7 @@ export function SelectedIconsDialog({
                 }}
               >
                 <Icon name="trash" />
-                Clear
+                Remove all
               </Button>
             </div>
             {/* {icons.length && (
@@ -94,7 +94,10 @@ export function SelectedIconsDialog({
                       className="min-w-0 flex-1 truncate text-sm"
                       title={name}
                     >
-                      {name} ∙ {icon.id}.svg
+                      {name} ∙{' '}
+                      <span className="font-mono text-xs text-muted">
+                        {icon.name}.svg
+                      </span>
                     </span>
                     <Button
                       variant="ghost"
@@ -103,16 +106,16 @@ export function SelectedIconsDialog({
                       disabled={packing}
                       onClick={(event) => remove(icon.id, event)}
                     >
-                      <Icon name="circle-minus" />
+                      <Icon name="xmark" />
                     </Button>
                   </li>
                 );
               })}
             </ul>
           ) : (
-            <div className="flex min-h-40 flex-col items-center justify-center gap-3 p-6 text-sm text-muted">
-              <Icon name="files-tilt" size={32} />
-              No icons selected.
+            <div className="flex min-h-40 flex-col items-center justify-center gap-3 pt-3 pb-6 text-sm text-muted">
+              <Icon name="view-pointer" size={24} />
+              Hover and check icons to download multiple at once.
             </div>
           )}
           <div className="flex shrink-0 justify-end gap-2 border-t border-line p-4">
@@ -126,14 +129,14 @@ export function SelectedIconsDialog({
               }}
             >
               <Icon
-                name={packing ? 'spinner' : 'download-square'}
+                name={packing ? 'spinner' : 'file-zip'}
                 className={
                   packing
                     ? 'animate-spin motion-reduce:animate-none'
                     : undefined
                 }
               />
-              {packing ? 'Preparing…' : 'Download'}
+              {packing ? 'Preparing…' : 'Download all'}
             </Button>
           </div>
         </Dialog.Popup>

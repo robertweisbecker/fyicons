@@ -18,6 +18,7 @@ import { GlobalSearch, Search } from './components/Search';
 import { searchIcons } from './lib/icon-search';
 import { IconTile } from './components/IconTile';
 import { SiteHeader } from './components/SiteHeader';
+import { SiteFooter } from './components/SiteFooter';
 import { PreviewSizeControl } from './components/PreviewSizeControl';
 import { type Page } from './lib/navigation';
 import { useLibraryNavigation } from './lib/use-library-navigation';
@@ -293,8 +294,6 @@ export function App() {
         navigate={changeView}
         theme={theme}
         toggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        packing={packing}
-        download={() => exportIcons()}
         search={() => setSearchOpen(true)}
       />
       <GlobalSearch
@@ -326,7 +325,11 @@ export function App() {
                   </p>
                 }
               >
-                <Landing navigate={changeView} />
+                <Landing
+                  navigate={changeView}
+                  packing={packing}
+                  download={() => exportIcons()}
+                />
               </Suspense>
             ) : view === 'library' ? (
               <div
@@ -475,15 +478,7 @@ export function App() {
               </div>
             )}
           </main>
-          <footer
-            className={cn(
-              'mx-auto flex max-w-400 items-center justify-between border-t border-line px-4 py-6 text-xs text-muted sm:px-6',
-              view === 'home' && 'max-w-7xl',
-            )}
-          >
-            <span>FYIcons</span>
-            <span>Some icons for you.</span>
-          </footer>
+          <SiteFooter page={view} navigate={changeView} />
         </div>
         <Inspector
           item={current}
