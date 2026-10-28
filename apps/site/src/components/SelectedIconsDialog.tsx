@@ -106,7 +106,7 @@ export function SelectedIconsDialog({
                       disabled={packing}
                       onClick={(event) => remove(icon.id, event)}
                     >
-                      <Icon name="xmark" />
+                      <Icon name="x" />
                     </Button>
                   </li>
                 );

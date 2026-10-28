@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconXmarkSm = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconXmarkSm(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M10.1475 5.14673C10.3427 4.95147 10.6592 4.95147 10.8545 5.14673C11.0496 5.342 11.0497 5.65853 10.8545 5.85376L8.70703 8.00024L10.8535 10.1467C11.0487 10.342 11.0487 10.6585 10.8535 10.8538C10.6583 11.0489 10.3417 11.0489 10.1465 10.8538L8 8.70728L5.85449 10.8538C5.65926 11.0489 5.34272 11.0489 5.14746 10.8538C4.95221 10.6585 4.95224 10.342 5.14746 10.1467L7.29297 8.00024L5.14648 5.85376C4.95124 5.65851 4.95127 5.34199 5.14648 5.14673C5.34175 4.95147 5.65825 4.95147 5.85352 5.14673L8 7.29321L10.1475 5.14673Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconXmarkSm;

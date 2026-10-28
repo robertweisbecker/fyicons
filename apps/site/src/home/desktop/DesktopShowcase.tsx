@@ -59,7 +59,7 @@ function DesktopStatusBar() {
       </div>
       <div className="flex items-center gap-3">
         <div className="hidden items-center gap-3 @2xl/desktop:flex">
-          {['sticky-note-2', 'keys', 'keyboard', 'bluetooth'].map((name) => (
+          {['sticky-note-alt', 'keys', 'keyboard', 'bluetooth'].map((name) => (
             <Icon key={name} name={name} />
           ))}
         </div>

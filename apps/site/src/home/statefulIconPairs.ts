@@ -9,7 +9,7 @@ export const statefulIconPairs = [
   ['book', 'book-open'],
   ['book', 'book-open-full'],
   ['book', 'book-reading'],
-  ['book-simple', 'book-open-straight'],
+  ['book-flat', 'book-open-alt'],
   ['book-wide', 'book-wide-open'],
   ['chat', 'chat-check'],
   ['chat-round', 'chat-round-check'],

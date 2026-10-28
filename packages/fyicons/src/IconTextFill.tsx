@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconTextFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconTextFill(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M13.5 2C13.7761 2 14 2.22386 14 2.5V5.5C14 5.76733 13.7895 5.98691 13.5225 5.99902C13.2555 6.01104 13.0262 5.8111 13.002 5.54492C12.8793 4.19747 11.8151 3.12951 10.4697 3H9V13H10.499C10.7752 13 10.999 13.2239 10.999 13.5C10.999 13.7761 10.7752 14 10.499 14H5.49902C5.22288 14 4.99902 13.7761 4.99902 13.5C4.99902 13.2239 5.22288 13 5.49902 13H7V3H5.53027C4.18486 3.12951 3.12071 4.19747 2.99805 5.54492C2.97385 5.8111 2.74452 6.01104 2.47754 5.99902C2.21048 5.98691 2 5.76733 2 5.5V2.5C2 2.22386 2.22386 2 2.5 2H13.5Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconTextFill;

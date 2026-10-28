@@ -450,7 +450,7 @@ export function App() {
                         'flex min-h-70 flex-col items-center justify-center gap-4',
                       )}
                     >
-                      <Icon name="search-lg" />
+                      <Icon name="search" />
                       <h2 className={cn('text-lg font-semibold')}>
                         No matching icons
                       </h2>

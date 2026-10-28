@@ -69,7 +69,7 @@ export function SocialApp() {
           Post
           <div className="ml-auto flex gap-2">
             <Glyph name="sparkles" />
-            <Glyph name="search-lg" />
+            <Glyph name="search" />
           </div>
         </div>
         <div className="mb-3 flex items-center gap-2 @md/window:gap-3">
@@ -133,13 +133,13 @@ export function SocialApp() {
             <Icon name="chevron-right" />
           </span>
           <span className="flex items-center gap-1">
-            <Icon name="user-group-fill" />
+            <Icon name="users-two-fill" />
             <span>
               <b className="text-ink">408</b> following
             </span>
           </span>
           <span className="flex items-center gap-1">
-            <Icon name="user-team-fill" />
+            <Icon name="users-three-fill" />
             <span>
               <b className="text-ink">1.6M</b> followers
             </span>

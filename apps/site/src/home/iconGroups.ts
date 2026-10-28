@@ -25,7 +25,7 @@ export const iconGroups = [
         'arrow-x',
         'arrow-y',
         'chevrons-up-down',
-        'arrow-up-arrow-down',
+        'arrow-down-arrow-up',
         'chevrons-down-up',
       ],
     ],
@@ -41,7 +41,7 @@ export const iconGroups = [
         'agent',
         'agent-clank',
         'agent-simple',
-        'agent-subagent',
+        'agent-sub',
       ],
       [
         'workflow',
@@ -158,7 +158,13 @@ export const iconGroups = [
     caption: 'Tiny things & weird guys!',
     rows: [
       ['skull', 'ghost', 'agent', 'bug-ant', 'bug'],
-      ['bug-beetle', 'emoji-scared', 'emoji-beam', 'emoji-grin', 'emoji-smile'],
+      [
+        'bug-beetle',
+        'emoji-scared',
+        'emoji-grin',
+        'emoji-happy',
+        'emoji-smile',
+      ],
       [
         'emoji-diagonal',
         'emoji-neutral',
@@ -245,7 +251,7 @@ export const iconGroups = [
       [
         'television-antenna',
         'browser',
-        'browser-fill',
+        'browser-solid',
         'browser-simple',
         'browser-landscape-simple',
       ],

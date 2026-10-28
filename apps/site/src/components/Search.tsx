@@ -100,7 +100,7 @@ export function Search({
           className="h-full min-w-0 flex-1 bg-transparent py-0 text-base outline-none placeholder:text-muted/50 sm:text-sm [&::-webkit-search-cancel-button]:hidden"
         />
         <Autocomplete.Clear
-          render={<IconButton icon="xmark" label="Clear search" />}
+          render={<IconButton icon="x" label="Clear search" />}
         />
         {!inline && (
           <kbd className="p-px">
@@ -157,7 +157,7 @@ export function GlobalSearch({
             {/* <Dialog.Close
               render={
                 <IconButton
-                  icon="xmark"
+                  icon="x"
                   label="Close search"
                   className="absolute top-1.5 right-1.5"
                 />
