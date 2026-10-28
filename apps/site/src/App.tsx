@@ -191,6 +191,11 @@ export function App() {
   }
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
+    // Legacy browser chrome follows the selected theme; Safari 26 samples the
+    // opaque header and bottom edge in CSS instead of this metadata.
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#f5f5f5');
   }, [theme]);
   const previousReadiness = useRef(categoryReadiness);
   useEffect(() => {
@@ -265,7 +270,7 @@ export function App() {
         'flex flex-wrap items-center gap-x-8 gap-y-4',
         current && inspectorDocked
           ? 'mb-5'
-          : 'order-1 lg:sticky lg:top-20 lg:order-3 lg:flex-col lg:items-stretch lg:gap-6 lg:self-start',
+          : 'order-1 lg:sticky lg:top-[calc(var(--site-header-height)+1.5rem)] lg:order-3 lg:flex-col lg:items-stretch lg:gap-6 lg:self-start',
       )}
     >
       {displayOptions}
@@ -274,7 +279,7 @@ export function App() {
   return (
     <div
       className={cn(
-        'group/app pt-14',
+        'group/app pt-(--site-header-height)',
         current && 'max-md:pb-[calc(12rem+env(safe-area-inset-bottom))]',
         current && inspectorDocked && 'has-docked-inspector',
       )}
