@@ -79,6 +79,8 @@ npm run version:packages
 
 Use `changeset:icons` to draft notes from a fixed comparison. It selects a minor release for additions, removals, or name and export changes. Other changes use a patch release. Review the version type, text, and migration steps. Use `changeset` for API or generator changes that need separate notes. The report command does not overwrite an existing changeset.
 
+Keep changelogs and release notes focused on user-visible changes. Use neutral, high-level wording for security and privacy maintenance. Leave internal incident details, private identifiers, and unnecessary implementation specifics in ignored local reports. Keep breaking changes, migration steps, and required upgrade actions explicit.
+
 Use normal `0.x` versions. Use patch changesets for fixes and minor changesets for additions or breaking changes during initial development. State breaking name changes and migration steps explicitly. `version:packages` runs Changesets, then updates the lockfile and source registry.
 
 Prerelease mode is off. A commit does not require a release. Keep pending changesets until you are ready to publish, then run `npm run changeset -- status` to review them. Run `version:packages` once for that release. If a check or upload fails after versioning, fix the problem and resume the same candidate; do not increment the version just to retry.
