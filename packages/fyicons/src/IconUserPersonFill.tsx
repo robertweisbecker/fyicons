@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconUserPersonFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconUserPersonFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="user-person-fill"><path d="M8.00011 9.5C10.2452 9.50011 12.202 10.8363 13.2306 12.8145C13.7918 13.894 12.84 15 11.6232 15H4.37706C3.16027 15 2.20847 13.894 2.76964 12.8145C3.79819 10.8363 5.75492 9.5 8.00011 9.5ZM8.00011 1.75C9.39994 1.75 10.7499 2.71354 10.7501 4.45801C10.7501 5.42171 10.4954 6.39579 10.0167 7.11133C9.54726 7.81258 8.87972 8.25 8.00011 8.25C7.12052 8.24999 6.45296 7.81257 5.98351 7.11133C5.50484 6.3958 5.25011 5.42169 5.25011 4.45801C5.25028 2.71356 6.60029 1.75002 8.00011 1.75Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="user-person-fill"><path fill="currentColor" d="M8 9.5c2.245 0 4.202 1.336 5.23 3.315.562 1.079-.39 2.185-1.607 2.185H4.377c-1.217 0-2.169-1.106-1.607-2.185C3.798 10.836 5.755 9.5 8 9.5m0-7.75c1.4 0 2.75.964 2.75 2.708 0 .964-.255 1.938-.733 2.653C9.547 7.813 8.88 8.25 8 8.25s-1.547-.437-2.016-1.139c-.48-.715-.734-1.69-.734-2.653C5.25 2.714 6.6 1.75 8 1.75" /></SvgRoot>;
 });
 export default IconUserPersonFill;

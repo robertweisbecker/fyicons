@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconLaptop = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconLaptop(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="laptop"><path d="M5.5 10C5.58693 10 5.67255 10.0223 5.74805 10.0654L6.50879 10.5H9.49121L10.252 10.0654L10.3105 10.0371C10.3705 10.0126 10.4348 10 10.5 10H13V5C13 4.44772 12.5523 4 12 4H4C3.44772 4 3 4.44772 3 5V10H5.5ZM2 11C2 11.5523 2.44772 12 3 12H13C13.5523 12 14 11.5523 14 11H10.6338L9.87305 11.4346C9.79755 11.4777 9.71193 11.5 9.625 11.5H6.375C6.28807 11.5 6.20245 11.4777 6.12695 11.4346L5.36621 11H2ZM14.5 10C14.7761 10 15 10.2239 15 10.5V11C15 12.1046 14.1046 13 13 13H3C1.89543 13 1 12.1046 1 11V10.5C1 10.2239 1.22386 10 1.5 10H2V5C2 3.89543 2.89543 3 4 3H12C13.1046 3 14 3.89543 14 5V10H14.5Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="laptop"><path fill="currentColor" d="M5.5 10a.5.5 0 0 1 .248.065l.76.435h2.983l.761-.435.058-.028A.5.5 0 0 1 10.5 10H13V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v5zM2 11a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1h-3.366l-.761.435a.5.5 0 0 1-.248.065h-3.25a.5.5 0 0 1-.248-.065L5.367 11zm12.5-1a.5.5 0 0 1 .5.5v.5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-.5a.5.5 0 0 1 .5-.5H2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5z" /></SvgRoot>;
 });
 export default IconLaptop;

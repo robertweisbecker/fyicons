@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconChevronsDownUp = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconChevronsDownUp(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="chevrons-down-up"><path d="M7.64742 9.64669C7.84269 9.45143 8.15919 9.45143 8.35445 9.64669L11.3545 12.6467C11.5497 12.842 11.5497 13.1585 11.3545 13.3537C11.1592 13.549 10.8427 13.5489 10.6474 13.3537L8.00094 10.7072L5.35445 13.3537C5.15921 13.549 4.84269 13.5489 4.64742 13.3537C4.45216 13.1585 4.45216 12.842 4.64742 12.6467L7.64742 9.64669ZM10.6474 2.64669C10.8427 2.45143 11.1592 2.45143 11.3545 2.64669C11.5497 2.84195 11.5497 3.15846 11.3545 3.35372L8.35445 6.35372C8.15919 6.54898 7.84269 6.54898 7.64742 6.35372L4.64742 3.35372C4.45216 3.15846 4.45216 2.84195 4.64742 2.64669C4.84269 2.45143 5.15919 2.45143 5.35445 2.64669L8.00094 5.29318L10.6474 2.64669Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="chevrons-down-up"><path fill="currentColor" d="M7.647 9.647a.5.5 0 0 1 .707 0l3 3a.5.5 0 0 1-.707.707l-2.646-2.647-2.647 2.647a.5.5 0 1 1-.707-.707zm3-7a.5.5 0 0 1 .707.707l-3 3a.5.5 0 0 1-.707 0l-3-3a.5.5 0 1 1 .707-.707l2.647 2.646z" /></SvgRoot>;
 });
 export default IconChevronsDownUp;

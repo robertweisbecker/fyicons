@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSuitcase = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSuitcase(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="suitcase"><path d="M9.5 2C10.3284 2 11 2.67157 11 3.5V4H13C14.1046 4 15 4.89543 15 6V11C15 12.1046 14.1046 13 13 13H3C1.89543 13 1 12.1046 1 11V6C1 4.89543 1.89543 4 3 4H5V3.5C5 2.67157 5.67157 2 6.5 2H9.5ZM3 5C2.44772 5 2 5.44772 2 6V11C2 11.5523 2.44772 12 3 12H5V5H3ZM11 12H13C13.5523 12 14 11.5523 14 11V6C14 5.44772 13.5523 5 13 5H11V12ZM6 12H10V5H6V12ZM6.5 3C6.22386 3 6 3.22386 6 3.5V4H10V3.5C10 3.22386 9.77614 3 9.5 3H6.5Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="suitcase"><path fill="currentColor" d="M9.5 2A1.5 1.5 0 0 1 11 3.5V4h2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2v-.5A1.5 1.5 0 0 1 6.5 2zM3 5a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h2V5zm8 7h2a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2zm-5 0h4V5H6zm.5-9a.5.5 0 0 0-.5.5V4h4v-.5a.5.5 0 0 0-.5-.5z" /></SvgRoot>;
 });
 export default IconSuitcase;

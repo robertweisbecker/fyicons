@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFullscreenLandscape = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFullscreenLandscape(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="fullscreen-landscape"><path d="M1.5 9C1.77614 9 2 9.22386 2 9.5V12H5.5C5.77614 12 6 12.2239 6 12.5C6 12.7761 5.77614 13 5.5 13H2C1.44772 13 1 12.5523 1 12V9.5C1 9.22386 1.22386 9 1.5 9ZM14.5 9C14.7761 9 15 9.22386 15 9.5V12C15 12.5523 14.5523 13 14 13H10.5C10.2239 13 10 12.7761 10 12.5C10 12.2239 10.2239 12 10.5 12H14V9.5C14 9.22386 14.2239 9 14.5 9ZM5.5 3C5.77614 3 6 3.22386 6 3.5C6 3.77614 5.77614 4 5.5 4H2V6.5C2 6.77614 1.77614 7 1.5 7C1.22386 7 1 6.77614 1 6.5V4C1 3.44772 1.44772 3 2 3H5.5ZM14 3C14.5523 3 15 3.44772 15 4V6.5C15 6.77614 14.7761 7 14.5 7C14.2239 7 14 6.77614 14 6.5V4H10.5C10.2239 4 10 3.77614 10 3.5C10 3.22386 10.2239 3 10.5 3H14Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="fullscreen-landscape"><path fill="currentColor" d="M1.5 9a.5.5 0 0 1 .5.5V12h3.5a.5.5 0 0 1 0 1H2a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5m13 0a.5.5 0 0 1 .5.5V12a1 1 0 0 1-1 1h-3.5a.5.5 0 0 1 0-1H14V9.5a.5.5 0 0 1 .5-.5m-9-6a.5.5 0 0 1 0 1H2v2.5a.5.5 0 0 1-1 0V4a1 1 0 0 1 1-1zM14 3a1 1 0 0 1 1 1v2.5a.5.5 0 0 1-1 0V4h-3.5a.5.5 0 0 1 0-1z" /></SvgRoot>;
 });
 export default IconFullscreenLandscape;

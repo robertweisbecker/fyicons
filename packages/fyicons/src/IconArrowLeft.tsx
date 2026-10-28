@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconArrowLeft = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconArrowLeft(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="arrow-left"><path d="M7.146 3.14673C7.34127 2.95149 7.65876 2.95148 7.854 3.14673C8.04903 3.34188 8.04886 3.65851 7.854 3.85376L4.20654 7.50024H13.4995C13.7757 7.50024 13.9995 7.7241 13.9995 8.00024C13.9994 8.27632 13.7756 8.50024 13.4995 8.50024H4.20654L7.85303 12.1467C8.04829 12.342 8.04829 12.6585 7.85303 12.8538C7.65775 13.0489 7.3412 13.049 7.146 12.8538L2.646 8.35376L2.5835 8.27759C2.52917 8.19609 2.49954 8.09963 2.49951 8.00024C2.49952 7.86772 2.55233 7.74048 2.646 7.64673L7.146 3.14673Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="arrow-left"><path fill="currentColor" d="M7.146 3.147a.501.501 0 0 1 .708.707L4.207 7.5H13.5a.5.5 0 1 1 0 1H4.207l3.646 3.647a.5.5 0 0 1-.707.707l-4.5-4.5-.062-.076a.5.5 0 0 1 .062-.631z" /></SvgRoot>;
 });
 export default IconArrowLeft;

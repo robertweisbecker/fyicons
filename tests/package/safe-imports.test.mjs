@@ -282,7 +282,7 @@ for (const [name, alter, pattern] of invalid)
     }
   });
 
-test('valid import preserves artwork and identity while removing private provenance', async (t) => {
+test('valid import normalizes artwork and preserves identity while removing private provenance', async (t) => {
   const state = await fixture();
   try {
     // Report the actual host behavior in the Node test output.
@@ -358,7 +358,7 @@ test('valid import preserves artwork and identity while removing private provena
     assert.ok(icon.aliases.includes('Alpha'));
     assert.equal(
       await readFile(path.join(state.root, 'icons', icon.filename), 'utf8'),
-      incomingBytes,
+      '<svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 3h2" data-label="é ⚡"/></svg>\n',
     );
     assert.deepEqual(
       (await readdir(path.join(state.root, 'icons')))
@@ -486,4 +486,55 @@ test('publication removes old aliases before writing on a case-insensitive files
       },
     ],
   );
+});
+
+test('imports validate raw hashes before repair and keep source, catalog and React artwork consistent', async () => {
+  const f = await fixture();
+  try {
+    const raw = await readFile(
+      new URL('./fixtures/filled-outside-stroke.svg', import.meta.url),
+      'utf8',
+    );
+    await writeFile(path.join(f.incoming, 'one.svg'), raw);
+    f.imported.icons[0].sha256 = createHash('sha256').update(raw).digest('hex');
+    await json(path.join(f.incoming, 'manifest.json'), f.imported);
+    await run(process.execPath, ['scripts/sync-icons.mjs', f.incoming], {
+      cwd: f.root,
+    });
+    const saved = await readFile(
+      path.join(f.root, 'icons/alpha-16.svg'),
+      'utf8',
+    );
+    assert.notEqual(saved, raw);
+    assert.match(saved, /fill="currentColor"/);
+    const catalog = JSON.parse(
+      await readFile(
+        path.join(f.root, 'apps/site/src/data/catalog.json'),
+        'utf8',
+      ),
+    );
+    const icon = catalog.icons.find((icon) => icon.id === 'fixture:1');
+    assert.equal(icon.svg, saved);
+    assert.equal(icon.sha256, createHash('sha256').update(saved).digest('hex'));
+    const react = await readFile(
+      path.join(f.root, 'packages/fyicons/src/IconAlpha.tsx'),
+      'utf8',
+    );
+    assert.equal((react.match(/<path/g) || []).length, 1);
+    await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
+      cwd: f.root,
+    });
+    const previous = await snapshot(f.root);
+    f.imported.icons[0].sha256 = '0'.repeat(64);
+    await json(path.join(f.incoming, 'manifest.json'), f.imported);
+    await assert.rejects(
+      run(process.execPath, ['scripts/sync-icons.mjs', f.incoming], {
+        cwd: f.root,
+      }),
+      /Checksum mismatch/,
+    );
+    assert.deepEqual(await snapshot(f.root), previous);
+  } finally {
+    await rm(f.directory, { recursive: true, force: true });
+  }
 });

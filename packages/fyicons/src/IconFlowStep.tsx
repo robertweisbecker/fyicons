@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFlowStep = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFlowStep(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="flow-step"><path d="M8.5 10.5H5.5C4.94772 10.5 4.5 10.0523 4.5 9.5V7.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><rect x={8.5} y={8.5} width={6} height={4} rx={1} stroke="currentColor" /><rect x={1.5} y={3.5} width={6} height={4} rx={1} stroke="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="flow-step"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M8.5 10.5h-3a1 1 0 0 1-1-1v-2" /><rect width={6} height={4} x={8.5} y={8.5} stroke="currentColor" rx={1} /><rect width={6} height={4} x={1.5} y={3.5} stroke="currentColor" rx={1} /></SvgRoot>;
 });
 export default IconFlowStep;

@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSendStraight = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSendStraight(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="send-straight"><path d="M2.13947 4.42335C1.58673 2.92922 3.15642 1.53317 4.576 2.25635L13.2264 6.66358C14.3184 7.22 14.3185 8.78105 13.2264 9.33741L4.576 13.7446C3.15651 14.4677 1.58697 13.0717 2.13947 11.5776L3.46369 8.00049L2.13947 4.42335ZM4.12189 3.14796C3.51347 2.838 2.84096 3.43629 3.07795 4.07667L4.34455 7.50049H8.49689C8.77304 7.50049 8.99689 7.72435 8.99689 8.00049C8.99676 8.27653 8.77296 8.50049 8.49689 8.50049H4.34455L3.07795 11.9243C2.8412 12.5646 3.51357 13.1628 4.12189 12.853L12.7733 8.44581C13.1367 8.26024 13.1366 7.74081 12.7733 7.55518L4.12189 3.14796Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="send-straight"><path fill="currentColor" d="M2.14 4.423c-.553-1.494 1.016-2.89 2.436-2.167l8.65 4.408c1.092.556 1.092 2.117 0 2.673l-8.65 4.408c-1.42.723-2.989-.673-2.437-2.167L3.464 8zm1.982-1.275a.75.75 0 0 0-1.044.929L4.345 7.5h4.152a.5.5 0 1 1 0 1H4.345l-1.267 3.424c-.237.64.436 1.239 1.044.929l8.651-4.407a.5.5 0 0 0 0-.89z" /></SvgRoot>;
 });
 export default IconSendStraight;

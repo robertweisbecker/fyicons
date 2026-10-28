@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconWaveformSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconWaveformSimple(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="waveform-simple"><path d="M6.5 1C6.77614 1 7 1.22386 7 1.5V14.5C7 14.7761 6.77614 15 6.5 15C6.22386 15 6 14.7761 6 14.5V1.5C6 1.22386 6.22386 1 6.5 1ZM3.5 3C3.77614 3 4 3.22386 4 3.5V12.5C4 12.7761 3.77614 13 3.5 13C3.22386 13 3 12.7761 3 12.5V3.5C3 3.22386 3.22386 3 3.5 3ZM9.5 4C9.77614 4 10 4.22386 10 4.5V11.5C10 11.7761 9.77614 12 9.5 12C9.22386 12 9 11.7761 9 11.5V4.5C9 4.22386 9.22386 4 9.5 4ZM12.5 6C12.7761 6 13 6.22386 13 6.5V9.5C13 9.77614 12.7761 10 12.5 10C12.2239 10 12 9.77614 12 9.5V6.5C12 6.22386 12.2239 6 12.5 6Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="waveform-simple"><path fill="currentColor" d="M6.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5m-3 2a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0v-9a.5.5 0 0 1 .5-.5m6 1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5m3 2a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5" /></SvgRoot>;
 });
 export default IconWaveformSimple;

@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconAppearanceSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconAppearanceSimple(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="appearance-simple"><circle cx={8} cy={8} r={6.5} stroke="currentColor" /><path d="M8 3C7.34339 3 6.69321 3.12933 6.08658 3.3806C5.47995 3.63188 4.92876 4.00017 4.46447 4.46447C4.00017 4.92876 3.63188 5.47995 3.3806 6.08658C3.12933 6.69321 3 7.34339 3 8C3 8.65661 3.12933 9.30679 3.3806 9.91342C3.63188 10.52 4.00017 11.0712 4.46447 11.5355C4.92876 11.9998 5.47996 12.3681 6.08658 12.6194C6.69321 12.8707 7.34339 13 8 13L8 8V3Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="appearance-simple"><circle cx={8} cy={8} r={6.5} stroke="currentColor" /><path fill="currentColor" d="M8 3a5 5 0 0 0 0 10z" /></SvgRoot>;
 });
 export default IconAppearanceSimple;

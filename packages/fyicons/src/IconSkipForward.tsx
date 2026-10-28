@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSkipForward = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSkipForward(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="skip-forward"><path d="M3 4.57788C3.00026 3.82475 3.82395 3.36106 4.46777 3.75171L9.74805 6.95874V5.24976C9.74818 4.55951 10.3078 3.99976 10.998 3.99976H11.748C12.4383 3.99976 12.9979 4.55951 12.998 5.24976V10.7498C12.998 11.4401 12.4384 11.9998 11.748 11.9998H10.998C10.3077 11.9998 9.74805 11.4401 9.74805 10.7498V9.03784L4.46777 12.2458C3.82382 12.6367 3 12.1731 3 11.4197V4.57788ZM4 11.3601L9.5332 7.99878L4 4.63647V11.3601ZM10.998 4.99976C10.8601 4.99976 10.7482 5.1118 10.748 5.24976V10.7498C10.748 10.8878 10.86 10.9998 10.998 10.9998H11.748C11.8861 10.9998 11.998 10.8878 11.998 10.7498V5.24976C11.9979 5.1118 11.886 4.99976 11.748 4.99976H10.998Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="skip-forward"><path fill="currentColor" d="M3 4.578a.967.967 0 0 1 1.468-.826l5.28 3.207v-1.71c0-.69.56-1.25 1.25-1.25h.75c.69 0 1.25.56 1.25 1.25v5.5c0 .691-.56 1.25-1.25 1.25h-.75a1.25 1.25 0 0 1-1.25-1.25v-1.71l-5.28 3.208A.966.966 0 0 1 3 11.42zm1 6.782L9.533 8 4 4.636zM10.998 5a.25.25 0 0 0-.25.25v5.5c0 .138.112.25.25.25h.75a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25z" /></SvgRoot>;
 });
 export default IconSkipForward;

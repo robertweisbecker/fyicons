@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconDiff = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconDiff(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="diff"><path d="M11.5 2C12.8807 2 14 3.11929 14 4.5V11.5C14 12.8807 12.8807 14 11.5 14H4.5C3.11929 14 2 12.8807 2 11.5L2 4.5C2 3.11929 3.11929 2 4.5 2L11.5 2ZM4.5 3C3.67157 3 3 3.67157 3 4.5L3 11.5C3 12.3284 3.67157 13 4.5 13H11.5C12.3284 13 13 12.3284 13 11.5V4.5C13 3.67157 12.3284 3 11.5 3L4.5 3ZM10.5 10C10.7761 10 11 10.2239 11 10.5C11 10.7761 10.7761 11 10.5 11H5.5C5.22386 11 5 10.7761 5 10.5C5 10.2239 5.22386 10 5.5 10H10.5ZM8 5C8.27614 5 8.5 5.22386 8.5 5.5V7H10C10.2761 7 10.5 7.22386 10.5 7.5C10.5 7.77614 10.2761 8 10 8H8.5V9H7.5V8H6C5.72386 8 5.5 7.77614 5.5 7.5C5.5 7.22386 5.72386 7 6 7H7.5V5.5C7.5 5.22386 7.72386 5 8 5Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="diff"><path fill="currentColor" d="M11.5 2A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5v-7A2.5 2.5 0 0 1 4.5 2zm-7 1A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zm6 7a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM8 5a.5.5 0 0 1 .5.5V7H10a.5.5 0 0 1 0 1H8.5v1h-1V8H6a.5.5 0 0 1 0-1h1.5V5.5A.5.5 0 0 1 8 5" /></SvgRoot>;
 });
 export default IconDiff;

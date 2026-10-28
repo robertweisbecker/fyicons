@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconBrowserSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBrowserSimple(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="browser-simple"><path d="M12 2C13.1046 2 14 2.89543 14 4V12C14 13.1046 13.1046 14 12 14H4C2.89543 14 2 13.1046 2 12V4C2 2.89543 2.89543 2 4 2H12ZM4 3C3.44772 3 3 3.44772 3 4V12C3 12.5523 3.44772 13 4 13H12C12.5523 13 13 12.5523 13 12V4C13 3.44772 12.5523 3 12 3H4ZM4.75 4C5.16421 4 5.5 4.33579 5.5 4.75C5.5 5.16421 5.16421 5.5 4.75 5.5C4.33579 5.5 4 5.16421 4 4.75C4 4.33579 4.33579 4 4.75 4ZM6.75 4C7.16421 4 7.5 4.33579 7.5 4.75C7.5 5.16421 7.16421 5.5 6.75 5.5C6.33579 5.5 6 5.16421 6 4.75C6 4.33579 6.33579 4 6.75 4ZM8.75 4C9.16421 4 9.5 4.33579 9.5 4.75C9.5 5.16421 9.16421 5.5 8.75 5.5C8.33579 5.5 8 5.16421 8 4.75C8 4.33579 8.33579 4 8.75 4Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="browser-simple"><path fill="currentColor" d="M12 2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm.75 1a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5m2 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5m2 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5" /></SvgRoot>;
 });
 export default IconBrowserSimple;

@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconClockFillAlt = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconClockFillAlt(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="clock-fill-alt"><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM8 3C10.7614 3 13 5.23858 13 8C13 10.7614 10.7614 13 8 13C5.23858 13 3 10.7614 3 8C3 5.23858 5.23858 3 8 3ZM8.5 4C8.22386 4 8 4.22386 8 4.5V8H5.5C5.22386 8 5 8.22386 5 8.5C5 8.77614 5.22386 9 5.5 9H8.5C8.63261 9 8.75975 8.94728 8.85352 8.85352C8.94728 8.75975 9 8.63261 9 8.5V4.5C9 4.22386 8.77614 4 8.5 4Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="clock-fill-alt"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2m0 1a5 5 0 1 1 0 10A5 5 0 0 1 8 3m.5 1a.5.5 0 0 0-.5.5V8H5.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5" /></SvgRoot>;
 });
 export default IconClockFillAlt;

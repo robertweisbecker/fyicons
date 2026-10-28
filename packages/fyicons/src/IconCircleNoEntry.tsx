@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCircleNoEntry = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCircleNoEntry(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="circle-no-entry"><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM10.75 7C10.8881 7 11 7.11193 11 7.25V8.75C11 8.88807 10.8881 9 10.75 9H5.25C5.11193 9 5 8.88807 5 8.75V7.25C5 7.11193 5.11193 7 5.25 7H10.75Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="circle-no-entry"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2m2.75 5a.25.25 0 0 1 .25.25v1.5a.25.25 0 0 1-.25.25h-5.5A.25.25 0 0 1 5 8.75v-1.5A.25.25 0 0 1 5.25 7z" /></SvgRoot>;
 });
 export default IconCircleNoEntry;

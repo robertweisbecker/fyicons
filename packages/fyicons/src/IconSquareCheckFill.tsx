@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSquareCheckFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSquareCheckFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="square-check-fill"><path d="M11.5 2C12.8807 2 14 3.11929 14 4.5V11.5C14 12.8807 12.8807 14 11.5 14H4.5C3.11929 14 2 12.8807 2 11.5V4.5C2 3.11929 3.11929 2 4.5 2H11.5ZM10.7568 5.07129C10.5201 4.92945 10.2133 5.00647 10.0713 5.24316L7.40039 9.69336L5.85352 8.14648C5.65825 7.95122 5.34175 7.95122 5.14648 8.14648C4.95122 8.34175 4.95122 8.65825 5.14648 8.85352L7.14648 10.8535C7.25536 10.9624 7.40871 11.0149 7.56152 10.9961C7.71416 10.9772 7.84957 10.8887 7.92871 10.7568L10.9287 5.75684C11.0705 5.52008 10.9935 5.21331 10.7568 5.07129Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="square-check-fill"><path fill="currentColor" d="M11.5 2A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5v-7A2.5 2.5 0 0 1 4.5 2zm-.743 3.071a.5.5 0 0 0-.686.172l-2.67 4.45-1.547-1.547a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .783-.097l3-5a.5.5 0 0 0-.172-.686" /></SvgRoot>;
 });
 export default IconSquareCheckFill;

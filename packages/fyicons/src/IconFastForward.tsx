@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFastForward = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFastForward(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="fast-forward"><path d="M7.5 5.0293C7.5 4.29887 8.27908 3.83264 8.92285 4.17773L14.4648 7.14844C15.1445 7.51282 15.1446 8.48719 14.4648 8.85156L8.92285 11.8223C8.27911 12.1673 7.50005 11.7011 7.5 10.9707V9.10059L2.42285 11.8223C1.7791 12.1673 1.00003 11.7011 1 10.9707V5.0293C1 4.29887 1.77908 3.83264 2.42285 4.17773L7.5 6.89844V5.0293ZM2 10.9141L7.4375 8L2 5.08496V10.9141ZM8.5 10.9141L13.9375 8L8.5 5.08496V10.9141Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="fast-forward"><path fill="currentColor" d="M7.5 5.03a.967.967 0 0 1 1.423-.852l5.542 2.97a.966.966 0 0 1 0 1.704l-5.542 2.97a.966.966 0 0 1-1.423-.851V9.1l-5.077 2.721A.966.966 0 0 1 1 10.971V5.029c0-.73.78-1.196 1.423-.851L7.5 6.898zM2 10.913 7.438 8 2 5.085zm6.5 0L13.938 8 8.5 5.085z" /></SvgRoot>;
 });
 export default IconFastForward;

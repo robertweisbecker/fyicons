@@ -1,11 +1,1 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2.58541 6.32918L3.58541 4.32918C3.8395 3.821 4.35889 3.5 4.92705 3.5H11.0729C11.6411 3.5 12.1605 3.821 12.4146 4.32918L13.4146 6.32918C13.4708 6.44152 13.5 6.56539 13.5 6.69098C13.5 7.13779 13.1378 7.5 12.691 7.5H3.30902C2.86221 7.5 2.5 7.13779 2.5 6.69098C2.5 6.56539 2.52924 6.44152 2.58541 6.32918Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.38237 13.4998H2.61763C2.55267 13.4998 2.5 13.4471 2.5 13.3822V12C2.5 11.7239 2.72386 11.5 3 11.5C3.27614 11.5 3.5 11.7239 3.5 12V13.3822C3.5 13.4471 3.44733 13.4998 3.38237 13.4998Z" stroke="currentColor" stroke-linecap="square"/>
-<path d="M13.3824 13.4998H12.6176C12.5527 13.4998 12.5 13.4471 12.5 13.3822V12C12.5 11.7239 12.7239 11.5 13 11.5C13.2761 11.5 13.5 11.7239 13.5 12V13.3822C13.5 13.4471 13.4473 13.4998 13.3824 13.4998Z" stroke="currentColor" stroke-linecap="square"/>
-<path d="M13.5 7.50015L2.50001 7.50001C1.94772 7.50001 1.5 7.94772 1.5 8.50001V11.5002H14.5V8.50015C14.5 7.94787 14.0523 7.50016 13.5 7.50015Z" stroke="currentColor" stroke-linejoin="round"/>
-<path d="M13.5 6.5H14.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M1.5 6.5H2.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.5 9.5H5.5" stroke="currentColor" stroke-linecap="round"/>
-<circle cx="12.5" cy="9.5" r="0.75" fill="currentColor"/>
-<circle cx="3.5" cy="9.5" r="0.75" fill="currentColor"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m2.585 6.33 1-2a1.5 1.5 0 0 1 1.342-.83h6.146a1.5 1.5 0 0 1 1.342.83l1 2a.81.81 0 0 1-.724 1.17H3.309a.81.81 0 0 1-.724-1.17"/><path stroke="currentColor" stroke-linecap="square" d="M3.382 13.5h-.764a.12.12 0 0 1-.118-.118V12a.5.5 0 0 1 1 0v1.382a.12.12 0 0 1-.118.118Zm10 0h-.764a.12.12 0 0 1-.118-.118V12a.5.5 0 0 1 1 0v1.382a.12.12 0 0 1-.118.118Z"/><path stroke="currentColor" stroke-linejoin="round" d="M13.5 7.5h-11a1 1 0 0 0-1 1v3h13v-3a1 1 0 0 0-1-1Z"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M13.5 6.5h1m-13 0h1"/><path stroke="currentColor" stroke-linecap="round" d="M10.5 9.5h-5"/><circle cx="12.5" cy="9.5" r=".75" fill="currentColor"/><circle cx="3.5" cy="9.5" r=".75" fill="currentColor"/></svg>

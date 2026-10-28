@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconGridMasonry = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconGridMasonry(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="grid-masonry"><path d="M6 10C6.55228 10 7 10.4477 7 11V13C7 13.5523 6.55228 14 6 14H3C2.44772 14 2 13.5523 2 13V11C2 10.4477 2.44772 10 3 10H6ZM13 8C13.5523 8 14 8.44772 14 9V13C14 13.5523 13.5523 14 13 14H10C9.44772 14 9 13.5523 9 13V9C9 8.44772 9.44772 8 10 8H13ZM3 11V13H6V11H3ZM10 13H13V9H10V13ZM6 2C6.55228 2 7 2.44772 7 3V7C7 7.55228 6.55228 8 6 8H3C2.44772 8 2 7.55228 2 7V3C2 2.44772 2.44772 2 3 2H6ZM3 7H6V3H3V7ZM13 2C13.5523 2 14 2.44772 14 3V5C14 5.55228 13.5523 6 13 6H10C9.44772 6 9 5.55228 9 5V3C9 2.44772 9.44772 2 10 2H13ZM10 5H13V3H10V5Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="grid-masonry"><path fill="currentColor" d="M6 10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm7-2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zM3 11v2h3v-2zm7 2h3V9h-3zM6 2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM3 7h3V3H3zm10-5a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm-3 3h3V3h-3z" /></SvgRoot>;
 });
 export default IconGridMasonry;

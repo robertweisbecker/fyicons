@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSkipBackwardFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSkipBackwardFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="skip-backward-fill"><path d="M11.6533 3.84198C12.2394 3.47565 13 3.89689 13 4.58807V11.4123C13 12.1035 12.2394 12.5247 11.6533 12.1584L6.19434 8.74628C5.64287 8.40161 5.64287 7.59876 6.19434 7.25409L11.6533 3.84198ZM4.5 4.00018C4.77614 4.00018 5 4.22404 5 4.50018V11.5002C4.9999 11.7762 4.77608 12.0002 4.5 12.0002H3.5C3.22392 12.0002 3.0001 11.7762 3 11.5002V4.50018C3 4.22404 3.22386 4.00018 3.5 4.00018H4.5Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="skip-backward-fill"><path fill="currentColor" d="M11.653 3.842A.88.88 0 0 1 13 4.588v6.824a.88.88 0 0 1-1.347.746L6.194 8.746a.88.88 0 0 1 0-1.492zM4.5 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5z" /></SvgRoot>;
 });
 export default IconSkipBackwardFill;

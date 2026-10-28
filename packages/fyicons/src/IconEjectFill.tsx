@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconEjectFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconEjectFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="eject-fill"><path d="M12.7494 10.9997C13.3016 10.9997 13.7493 11.4475 13.7494 11.9997V12.9997C13.7494 13.552 13.3017 13.9997 12.7494 13.9997H3.2494C2.69729 13.9995 2.2494 13.5519 2.2494 12.9997V11.9997C2.24951 11.4476 2.69736 10.9999 3.2494 10.9997H12.7494ZM7.31776 2.38936C7.7022 2.02972 8.29953 2.02972 8.68397 2.38936L13.9008 7.26924C14.5631 7.88888 14.1252 8.99963 13.2182 8.99971H2.78358C1.87652 8.99971 1.4376 7.88891 2.09999 7.26924L7.31776 2.38936Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="eject-fill"><path fill="currentColor" d="M12.75 11a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-9.5a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1zM7.317 2.39a1 1 0 0 1 1.366 0L13.9 7.27c.662.619.224 1.73-.683 1.73H2.784C1.877 9 1.438 7.889 2.1 7.27z" /></SvgRoot>;
 });
 export default IconEjectFill;

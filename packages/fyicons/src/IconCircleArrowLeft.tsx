@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCircleArrowLeft = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCircleArrowLeft(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="circle-arrow-left"><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2ZM6.64648 5.14648C6.84175 4.95122 7.15825 4.95122 7.35352 5.14648C7.54878 5.34175 7.54878 5.65825 7.35352 5.85352L5.70703 7.5H11.5C11.7761 7.5 12 7.72386 12 8C12 8.27614 11.7761 8.5 11.5 8.5H5.70703L7.35352 10.1465C7.54878 10.3417 7.54878 10.6583 7.35352 10.8535C7.15825 11.0488 6.84175 11.0488 6.64648 10.8535L4.14648 8.35352C3.95122 8.15825 3.95122 7.84175 4.14648 7.64648L6.64648 5.14648Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="circle-arrow-left"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2M6.646 5.146a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 0 1H5.707l1.647 1.646a.5.5 0 1 1-.708.707l-2.5-2.5a.5.5 0 0 1 0-.707z" /></SvgRoot>;
 });
 export default IconCircleArrowLeft;

@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconHeight = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconHeight(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="height"><path d="M3.49512 1.50488L4.49512 1.50488M12.4951 1.50488L11.4951 1.50488M8.49512 1.50488L7.49512 1.50488" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M3.49512 14.5049L4.49512 14.5049M12.4951 14.5049L11.4951 14.5049M8.49512 14.5049L7.49512 14.5049" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M6.00195 5.99902L8.00098 4L10 5.99902M8.00098 4L8.00098 12M6 9.99902L8.00098 12L10 10.001" stroke="currentColor" strokeOpacity={0.9} strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="height"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M3.495 1.505h1m8 0h-1m-3 0h-1m-4 13h1m8 0h-1m-3 0h-1" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeOpacity={0.9} d="M6.002 5.999 8 4l2 1.999M8.001 4v8M6 9.999 8.001 12 10 10.001" /></SvgRoot>;
 });
 export default IconHeight;

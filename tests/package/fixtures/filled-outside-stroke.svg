@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+<mask id="outside" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16" fill="black">
+<rect fill="white" x="0" y="0" width="16" height="16"/>
+<path d="M3.25 3.25H10.75V10.75H3.25Z"/>
+</mask>
+<path d="M3.25 3.25H10.75V10.75H3.25Z" fill="black"/>
+<path d="M2.75 2.75H11.25V11.25H2.75Z M3.75 3.75V10.25H10.25V3.75Z" fill="black" mask="url(#outside)"/>
+</svg>

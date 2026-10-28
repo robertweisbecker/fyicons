@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconScrollSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconScrollSimple(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="scroll-simple"><path d="M11 4C11 3.63536 11.0991 3.29437 11.2695 3H6.5C5.67157 3 5 3.67157 5 4.5V10H8.5C8.77614 10 9 10.2239 9 10.5V12C9 12.5523 9.44772 13 10 13C10.5523 13 11 12.5523 11 12V4ZM2 11.5C2 12.3284 2.67157 13 3.5 13H8.26953C8.09906 12.7056 8 12.3646 8 12V11H2V11.5ZM13 3C12.4477 3 12 3.44772 12 4V5H14V4C14 3.44772 13.5523 3 13 3ZM12 12C12 13.1046 11.1046 14 10 14H3.5C2.11929 14 1 12.8807 1 11.5V10.5C1 10.2239 1.22386 10 1.5 10H4V4.5C4 3.11929 5.11929 2 6.5 2H13C14.1046 2 15 2.89543 15 4V5.5C15 5.77614 14.7761 6 14.5 6H12V12Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="scroll-simple"><path fill="currentColor" d="M11 4c0-.365.1-.706.27-1H6.5A1.5 1.5 0 0 0 5 4.5V10h3.5a.5.5 0 0 1 .5.5V12a1 1 0 1 0 2 0zm-9 7.5A1.5 1.5 0 0 0 3.5 13h4.77A2 2 0 0 1 8 12v-1H2zM13 3a1 1 0 0 0-1 1v1h2V4a1 1 0 0 0-1-1m-1 9a2 2 0 0 1-2 2H3.5A2.5 2.5 0 0 1 1 11.5v-1a.5.5 0 0 1 .5-.5H4V4.5A2.5 2.5 0 0 1 6.5 2H13a2 2 0 0 1 2 2v1.5a.5.5 0 0 1-.5.5H12z" /></SvgRoot>;
 });
 export default IconScrollSimple;

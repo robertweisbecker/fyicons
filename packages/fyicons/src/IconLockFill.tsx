@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconLockFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconLockFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="lock-fill"><path d="M8 1C9.65685 1 11 2.34315 11 4V6C12.1046 6 13 6.89543 13 8V13C13 14.1046 12.1046 15 11 15H5C3.89543 15 3 14.1046 3 13V8C3 6.89543 3.89543 6 5 6V4C5 2.34315 6.34315 1 8 1ZM8 9C7.44772 9 7 9.44771 7 10C7 10.3698 7.20157 10.6912 7.5 10.8643V12.5C7.5 12.7761 7.72386 13 8 13C8.27614 13 8.5 12.7761 8.5 12.5V10.8643C8.79843 10.6912 9 10.3698 9 10C9 9.44771 8.55228 9 8 9ZM8 2C6.89543 2 6 2.89543 6 4V6H10V4C10 2.89543 9.10457 2 8 2Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="lock-fill"><path fill="currentColor" d="M8 1a3 3 0 0 1 3 3v2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2V4a3 3 0 0 1 3-3m0 8a1 1 0 0 0-.5 1.864V12.5a.5.5 0 0 0 1 0v-1.636A.998.998 0 0 0 8 9m0-7a2 2 0 0 0-2 2v2h4V4a2 2 0 0 0-2-2" /></SvgRoot>;
 });
 export default IconLockFill;
