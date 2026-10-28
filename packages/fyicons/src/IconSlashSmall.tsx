@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSlashSmall = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSlashSmall(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="slash-small"><path d="M9.04052 4.30216C9.14953 4.0488 9.44416 3.93078 9.69775 4.03946C9.95114 4.14828 10.0688 4.44311 9.96045 4.69669L6.96045 11.6967C6.85166 11.9503 6.55694 12.068 6.30322 11.9594C6.04949 11.8506 5.93176 11.5559 6.04052 11.3022L9.04052 4.30216Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="slash-small"><path d="M10.0926 4.20874C10.253 3.98421 10.5661 3.9323 10.7908 4.09253C11.0154 4.25305 11.0675 4.56609 10.907 4.79077L5.90701 11.7908C5.74649 12.0154 5.43344 12.0675 5.20877 11.907C4.98439 11.7464 4.93216 11.4333 5.09256 11.2087L10.0926 4.20874Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconSlashSmall;

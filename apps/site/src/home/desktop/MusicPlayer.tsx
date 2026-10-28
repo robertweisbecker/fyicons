@@ -102,10 +102,6 @@ export function MusicPlayer({
   queueId,
   queueToggle,
   onNowPlaying,
-  miniPlayer,
-  onMiniPlayerChange,
-  expanded,
-  onExpandedChange,
 }: {
   track: (typeof tracks)[number];
   playing: boolean;
@@ -118,10 +114,6 @@ export function MusicPlayer({
   queueId: string;
   queueToggle: Ref<HTMLButtonElement>;
   onNowPlaying: () => void;
-  miniPlayer: boolean;
-  onMiniPlayerChange: (mini: boolean) => void;
-  expanded: boolean;
-  onExpandedChange: (expanded: boolean) => void;
 }) {
   const [volume, setVolume] = useState(70);
   const previousVolume = useRef(70);
@@ -280,21 +272,19 @@ export function MusicPlayer({
           formatValue={(value) => `${value}%`}
           className="mr-1 w-14 shrink-0"
         />
-        <DemoIconButton
-          label={miniPlayer ? 'Close mini player' : 'Open mini player'}
-          icon={miniPlayer ? 'picture-in-picture-exit' : 'picture-in-picture'}
+        <DemoToggle
+          label="Picture in picture"
+          icon="picture-in-picture"
+          activeIcon="picture-in-picture-exit"
           size="icon-xs"
-          aria-pressed={miniPlayer}
-          onClick={() => onMiniPlayerChange(!miniPlayer)}
-          className="aria-pressed:text-green-400"
+          className="data-pressed:bg-transparent data-pressed:text-green-400"
         />
-        <DemoIconButton
-          label={expanded ? 'Restore player' : 'Expand player'}
-          icon={expanded ? 'arrows-collapse' : 'arrows-expand'}
+        <DemoToggle
+          label="Expand player"
+          icon="arrows-expand"
+          activeIcon="arrows-collapse"
           size="icon-xs"
-          aria-pressed={expanded}
-          onClick={() => onExpandedChange(!expanded)}
-          className="aria-pressed:text-green-400"
+          className="data-pressed:bg-transparent data-pressed:text-green-400"
         />
       </div>
     </footer>

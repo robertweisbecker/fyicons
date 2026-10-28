@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconBroomSweep = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBroomSweep(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="broom-sweep"><path d="M8.5 9.5L5.75 6.75" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M2.84315 8.5H2.5V9.5C2.5 10.6046 3.39543 11.5 4.5 11.5L3.5 12.5H6.35999C6.77939 12.5 7.19154 12.3905 7.55568 12.1825L9.49228 11.0758C10.1154 10.7198 10.5 10.0571 10.5 9.33935V8.5V7.5C10.5 6.94772 10.0523 6.5 9.5 6.5H8.5C7.94772 5.94772 7.05228 5.94772 6.5 6.5L5.67157 7.32843C4.92143 8.07857 3.90401 8.5 2.84315 8.5Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M13.5 3.5L10.5 6.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M4 2V4M5 3H3" stroke="currentColor" strokeLinecap="round" /><path d="M10.5 12.5H13.5C14.0523 12.5 14.5 12.0523 14.5 11.5C14.5 10.9477 14.0523 10.5 13.5 10.5" stroke="currentColor" strokeLinecap="round" /><path d="M10.5 14.5H11.5" stroke="currentColor" strokeLinecap="round" /><path d="M6.25 14.5H8.5" stroke="currentColor" strokeLinecap="round" /></SvgRoot>;
+});
+export default IconBroomSweep;

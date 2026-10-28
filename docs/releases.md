@@ -55,9 +55,19 @@ The command resolves refs to full commit SHAs. Reports exclude working-tree edit
 
 Each report includes standalone HTML, `changes.json`, and `summary.md`. It tracks additions, removals, names, exports, aliases, metadata, name reassignments, category rules, and generator hashes. An opaque source identity and component IDs establish identity. Older file keys are converted to the same identity before comparison. Reports omit private source links and export scope, including data from older commits. Similar geometry does not establish a rename.
 
-SVG-byte changes and pixel changes are separate results. Pinned resvg renders at 16 and 64 px on light and dark backgrounds. Preview foreground colors follow the background theme, with the same paint conversion as React icons. Masks, gradients, and transparent paint keep their source values. Source byte checks keep the original colors. This does not compare React output or prove identical behavior in every browser. The HTML embeds PNG images; it does not execute raw SVG. External SVG resources are rejected.
+SVG-byte changes and pixel changes are separate results. The pinned Sharp renderer creates PNGs at 16 and 64 px on light and dark backgrounds. `npm ci` installs the renderer; no browser download is required. Each report records the Sharp, libvips, and librsvg versions. Both sides use the same renderer. Preview foreground colors follow the background theme, with the same paint conversion as React icons. Masks, gradients, and transparent paint keep their source values. Source byte checks keep the original colors. This does not compare React output or promise identical antialiasing in Figma or every browser. The HTML embeds PNG images; it does not execute raw SVG. External SVG resources, scripts, animation, and text are rejected.
 
 The table shows both sizes by default. The overlay uses pink for the old icon and blue for the new icon. Each layer starts at 50% opacity. Added and removed icons have no pixel comparison. Keep reports outside the website build and package tarball.
+
+### Review icons in a pull request
+
+The [icon preview workflow](../.github/workflows/icon-preview.yml) produces before-and-after PNGs after each push to a pull request. For branches in this repository, a [separate publisher](../.github/workflows/icon-preview-comment.yml) updates a summary and separate bot comments for additions, updated artwork, renames, removals, and metadata changes. New icons and artwork changes show images at 16 and 64 px on light and dark backgrounds. Each artwork preview puts the overlay first, then the 16 px before/after pair, then the 64 px before/after pair. The overlay uses 64 px where available; pink shows the old icon and blue shows the new icon, each at 50% opacity. Comments keep only names, counts, and a summary with revision and artifact links. Renames without artwork changes, metadata-only changes, and removals appear as text lists. Renamed exports appear together. Large groups span numbered comments to stay below GitHub’s size limit. Every icon remains included. Existing comments update in place; unused bot pages are removed after an update. Each comment compares the PR merge-base with its current head; outdated runs do not replace a newer report.
+
+Images live on the separate `codex/icon-previews` branch and use immutable commit URLs. They do not enter the website or npm package. No HTML hosting or artifact download is needed to view the comment. The interactive HTML report remains in the release-check artifact.
+
+Rendering has read-only permissions. The publisher runs trusted default-branch code, validates the report and PNGs as data, and installs no dependencies. Only it can write preview images and PR comments. Fork PRs still produce a read-only artifact but do not publish a comment. No personal token or additional repository settings are needed. The publisher workflow must be on the default branch before it can run.
+
+For a local preview bundle, add `--pr-preview` to `diff:icons`. This writes PNGs and a public manifest under `artifacts/icon-diff/pr-preview/` without publishing them.
 
 ## Prepare release notes
 
@@ -89,7 +99,7 @@ The registry fixture uses shadcn's source loader for two icons. It writes two te
 
 The Next.js fixture covers an async Server Component and a Client Component. Its tests make sure that title IDs are unique and static icons create no client references. These checks need network access for public dependencies. They do not need an account and do not publish. `artifacts/verification.json` records the tarball integrity and consumer results.
 
-After generating the default icon report, run `npm run verify:preview`. It needs a Playwright Chromium installation. It tests report controls, images, keyboard access, scrolling, screen widths, and browser errors. Record any check that cannot run; do not report it as passed.
+After generating the icon report, open its HTML file in an existing browser. Review the 16 px and 64 px images, before/after overlays, and light/dark backgrounds. For report UI changes, also check search, filters, opacity controls, keyboard access, and horizontal scrolling on narrow and wide screens. Automated tests cover report data and image generation; browser review is a separate manual check.
 
 [The verification workflow](../.github/workflows/release-prep.yml) runs these checks and uploads artifacts with 14-day retention. It has read-only repository permissions. [The Pages workflow](../.github/workflows/pages.yml) owns website deployment separately.
 
@@ -101,7 +111,7 @@ For a manual release:
 
 1. Review the pending changesets and run `npm run version:packages` once. Check the version, changelog, lockfile, and source registry.
 2. Commit and push the intended release changes. Follow the branch rules and wait for checks on that exact commit.
-3. Run the release checks and `npm run build`. Compare the previous published release tag with the release commit, then run `npm run verify:preview`. Review the HTML report, migration notes, package file list, and tarball integrity.
+3. Run the release checks and `npm run build`. Compare the previous published release tag with the release commit, then open the HTML report in an existing browser. Review the images, migration notes, package file list, and tarball integrity.
 4. If a check changes tracked files, review and commit those changes. Repeat the affected checks on the final commit. Keep the checked tarball unchanged after this step.
 5. Publish that tarball with `latest`. Replace `<version>` with the version you verified:
 

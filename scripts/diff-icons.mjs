@@ -7,12 +7,14 @@ import {
   compareSnapshots,
   renderMarkdown,
 } from './lib/icon-diff.mjs';
-import { compareImages } from './lib/icon-diff-images.mjs';
+import { createIconRenderer } from './lib/icon-diff-images.mjs';
 import { renderHtml } from './lib/icon-diff-html.mjs';
+import { previewImage, previewManifest } from './lib/icon-preview-images.mjs';
 
 const { values } = parseArgs({
   options: {
     base: { type: 'string' },
+    'pr-preview': { type: 'boolean', default: false },
     head: { type: 'string', default: 'HEAD' },
     output: { type: 'string', default: 'artifacts/icon-diff' },
   },
@@ -27,31 +29,31 @@ const before = readSnapshot(root, values.base),
 const report = compareSnapshots(before, after);
 const old = new Map(before.icons.map((icon) => [icon.id, icon]));
 const next = new Map(after.icons.map((icon) => [icon.id, icon]));
-const previews = report.changes.map((change) => {
-  const images = compareImages(
-    change.before && old.get(change.before.id).svg,
-    change.after && next.get(change.after.id).svg,
-  );
-  change.pixels =
-    change.before && change.after
-      ? Object.fromEntries(
-          Object.entries(images).map(([view, image]) => [
-            view,
-            image.changedPixels,
-          ]),
-        )
-      : null;
-  if (change.pixels && Object.values(change.pixels).some(Boolean))
-    change.flags.push('pixels-changed');
-  return images;
-});
-report.renderer = {
-  name: '@resvg/resvg-js',
-  version: '2.6.2',
-  sizes: [16, 64],
-  source: 'original SVG bytes',
-  systemFonts: false,
-};
+const renderer = await createIconRenderer();
+const previews = [];
+try {
+  for (const change of report.changes) {
+    const images = await renderer.compareImages(
+      change.before && old.get(change.before.id).svg,
+      change.after && next.get(change.after.id).svg,
+    );
+    change.pixels =
+      change.before && change.after
+        ? Object.fromEntries(
+            Object.entries(images).map(([view, image]) => [
+              view,
+              image.changedPixels,
+            ]),
+          )
+        : null;
+    if (change.pixels && Object.values(change.pixels).some(Boolean))
+      change.flags.push('pixels-changed');
+    previews.push(images);
+  }
+  report.renderer = renderer.metadata;
+} finally {
+  await renderer.close();
+}
 const output = path.resolve(root, values.output);
 await mkdir(output, { recursive: true });
 await writeFile(
@@ -60,6 +62,20 @@ await writeFile(
 );
 await writeFile(path.join(output, 'summary.md'), renderMarkdown(report));
 await writeFile(path.join(output, 'index.html'), renderHtml(report, previews));
+if (values['pr-preview']) {
+  const directory = path.join(output, 'pr-preview');
+  await mkdir(directory, { recursive: true });
+  const manifest = previewManifest(report);
+  for (const [index, change] of manifest.changes.entries())
+    await writeFile(
+      path.join(directory, change.image),
+      previewImage(previews[index]),
+    );
+  await writeFile(
+    path.join(directory, 'manifest.json'),
+    JSON.stringify(manifest, null, 2) + '\n',
+  );
+}
 console.log(
   `Compared ${report.base} → ${report.head}: ${report.totals.changed} icons with changes. See ${output}/index.html.`,
 );

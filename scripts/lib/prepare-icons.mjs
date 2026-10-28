@@ -143,7 +143,12 @@ export function normalizeManifest(value, { imported = false } = {}) {
         ))
     )
       throw new Error(`Invalid variantProperties: ${meta.name}`);
-    const { sourceUrl: _sourceUrl, ...publicMetadata } = meta;
+    const {
+      sourceUrl: _sourceUrl,
+      sourcePageId: _sourcePageId,
+      sourceSectionId: _sourceSectionId,
+      ...publicMetadata
+    } = meta;
     return {
       ...publicMetadata,
       ...(imported && meta.baseName === undefined ? {} : { baseName }),

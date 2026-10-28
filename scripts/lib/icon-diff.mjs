@@ -101,9 +101,12 @@ export function compareSnapshots(before, after) {
     filename,
     componentName,
     sourceUrl,
+    sourcePageId,
+    sourceSectionId,
     ...rest
   }) => rest;
-  const record = ({ svg, sourceUrl, ...rest }) => rest;
+  const record = ({ svg, sourceUrl, sourcePageId, sourceSectionId, ...rest }) =>
+    rest;
   const changes = [];
   for (const key of [...new Set([...old.keys(), ...next.keys()])].sort()) {
     const a = old.get(key),

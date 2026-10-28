@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconUserSilhouetteFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconUserSilhouetteFill(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="user-silhouette-fill"><path d="M7.99722 1C9.47398 1 10.999 1.88226 10.9992 4.08789C10.9992 5.79516 10.6419 7.34247 9.81312 8.22634C9.65846 8.39128 9.72564 8.71191 9.94289 8.77458C11.8531 9.32567 13.4271 10.6681 14.2873 12.4248C14.9248 13.7271 13.747 14.9999 12.297 15H3.70133C2.25134 14.9999 1.07352 13.7271 1.71109 12.4248C2.5709 10.6687 4.14401 9.32619 6.0533 8.77465C6.27044 8.71192 6.33755 8.39154 6.18304 8.22659C5.35512 7.34276 4.99918 5.7953 4.99918 4.08789C4.99934 1.8824 6.52056 1.00011 7.99722 1Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconUserSilhouetteFill;

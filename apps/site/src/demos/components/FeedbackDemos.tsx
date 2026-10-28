@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { Field } from '@base-ui/react/field';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
   Select,
   SelectContent,
@@ -14,7 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { cn } from '@/lib/utils';
 import { CopyButton, DemoIconButton } from './DemoControls';
 
 export function AlertsDemo() {
@@ -102,7 +99,7 @@ export function BadgesDemo() {
             {tag}
             <DemoIconButton
               label={'Remove ' + tag + ' tag'}
-              icon="xmark"
+              icon="x"
               size="icon-sm"
               className="-m-1 -me-1.5 size-5 rounded-full"
               onClick={() => setTags(tags.filter((value) => value !== tag))}
@@ -146,90 +143,6 @@ export function BadgesDemo() {
             </SelectGroup>
           </SelectContent>
         </Select>
-      </div>
-    </div>
-  );
-}
-const tasks = [
-  {
-    name: 'Explore concepts',
-    icon: 'thought-bubble',
-    detail: 'Sketch the first direction',
-  },
-  {
-    name: 'Refine the details',
-    icon: 'pen-tool',
-    detail: 'Spacing, type, and state changes',
-  },
-  {
-    name: 'Review with the team',
-    icon: 'users',
-    detail: 'Ready for a second pair of eyes',
-  },
-];
-export function TasksDemo() {
-  const [done, setDone] = useState(['Explore concepts']);
-  const complete = done.length === tasks.length;
-  return (
-    <div className="flex flex-1 flex-col gap-4">
-      <div className="flex items-center justify-between gap-3">
-        <h3 className="text-lg font-semibold">Design review</h3>
-        <Badge tone={complete ? 'success' : 'default'} className="tabular-nums">
-          <Icon
-            name={complete ? 'circle-check-fill' : 'circle-progress-half'}
-            className="-ms-1.5"
-          />
-          {done.length} / 3
-        </Badge>
-      </div>
-      <div className="flex flex-col gap-1">
-        {tasks.map((task) => (
-          <Field.Root
-            key={task.name}
-            className="flex items-center gap-2 rounded-lg bg-surface px-2 py-2"
-          >
-            <Checkbox
-              size="sm"
-              checked={done.includes(task.name)}
-              onCheckedChange={(checked) =>
-                setDone(
-                  checked
-                    ? [...done, task.name]
-                    : done.filter((value) => value !== task.name),
-                )
-              }
-            />
-            <Field.Label className="min-w-0 flex-1 cursor-pointer">
-              <span
-                className={cn(
-                  'block text-sm',
-                  done.includes(task.name) && 'text-muted line-through',
-                )}
-              >
-                {task.name}
-              </span>
-              <span className="mt-1 block text-xs text-muted">
-                {task.detail}
-              </span>
-            </Field.Label>
-            <Icon
-              name={done.includes(task.name) ? 'check' : task.icon}
-              className="text-muted"
-            />
-          </Field.Root>
-        ))}
-      </div>
-      <div className="mt-auto flex items-center gap-2 text-xs text-muted">
-        <Icon name={complete ? 'circle-check' : 'calendar-fill'} />
-        <span role="status">
-          {complete ? 'Ready for review' : 'Due Friday, October 9'}
-        </span>
-        <DemoIconButton
-          label="Reset checklist"
-          icon="arrow-restart"
-          className="ml-auto"
-          onClick={() => setDone([])}
-        />
       </div>
     </div>
   );
@@ -293,7 +206,7 @@ export function SharingDemo() {
         </Select>
       </div>
       <div className="mt-auto flex items-center gap-2 rounded-lg border border-line px-3 py-1.5">
-        <Icon name="link-new-tab" />
+        <Icon name="link-new-window" />
         <span className="min-w-0 flex-1 truncate text-xs text-muted">
           studio.example/project/interface-kit
         </span>

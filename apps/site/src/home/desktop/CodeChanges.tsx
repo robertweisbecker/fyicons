@@ -6,12 +6,10 @@ import { reviewChanges, reviewFiles } from './codeReviewData';
 export function CodeChanges({
   selected,
   expanded,
-  wrapLines,
   onSelect,
 }: {
   selected: string;
   expanded: boolean;
-  wrapLines: boolean;
   onSelect: (path: string) => void;
 }) {
   return (
@@ -121,8 +119,7 @@ export function CodeChanges({
                           <span
                             key={`${sign}-${index}`}
                             className={cn(
-                              'flex gap-3 px-3',
-                              wrapLines ? 'whitespace-pre-wrap' : 'min-w-max',
+                              'flex min-w-max gap-3 px-3',
                               className,
                             )}
                           >
@@ -137,13 +134,7 @@ export function CodeChanges({
                             >
                               {sign}
                             </span>
-                            <span
-                              className={
-                                wrapLines ? 'min-w-0 wrap-anywhere' : undefined
-                              }
-                            >
-                              {line || ' '}
-                            </span>
+                            <span>{line || ' '}</span>
                           </span>
                         )),
                       )}
