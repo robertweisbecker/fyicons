@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFolderOpenFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFolderOpenFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M4.672 2a2.5 2.5 0 0 1 1.767.732L7.707 4H11a2.5 2.5 0 0 1 2.5 2.5V7H6.657a3.11 3.11 0 0 0-2.946 2.123 4.9 4.9 0 0 1-1.53 2.234.5.5 0 0 0 .637.77A5.9 5.9 0 0 0 4.66 9.44 2.105 2.105 0 0 1 6.657 8h7.225a1.5 1.5 0 0 1 1.42 1.982l-.078.189-1.086 2.17-.003.007A3 3 0 0 1 11.455 14H3.5A2.5 2.5 0 0 1 1 11.5v-7A2.5 2.5 0 0 1 3.5 2z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="folder-open-fill"><path fill="currentColor" d="M4.672 2a2.5 2.5 0 0 1 1.767.732L7.707 4H11a2.5 2.5 0 0 1 2.5 2.5V7H6.657a3.11 3.11 0 0 0-2.946 2.123 4.9 4.9 0 0 1-1.53 2.234.5.5 0 0 0 .637.77A5.9 5.9 0 0 0 4.66 9.44 2.105 2.105 0 0 1 6.657 8h7.225a1.5 1.5 0 0 1 1.42 1.982l-.078.189-1.086 2.17-.003.007A3 3 0 0 1 11.455 14H3.5A2.5 2.5 0 0 1 1 11.5v-7A2.5 2.5 0 0 1 3.5 2z" /></SvgRoot>;
 });
 export default IconFolderOpenFill;

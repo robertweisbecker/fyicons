@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconTargetReticle = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconTargetReticle(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m.5 2.5a.5.5 0 0 1-1 0V2.022A6 6 0 0 0 2.022 7.5H3.5a.5.5 0 0 1 0 1H2.022A6 6 0 0 0 7.5 13.977V12.5a.5.5 0 0 1 1 0v1.477A6 6 0 0 0 13.977 8.5H12.5a.5.5 0 0 1 0-1h1.477A6 6 0 0 0 8.5 2.022zM8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="target-reticle"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m.5 2.5a.5.5 0 0 1-1 0V2.022A6 6 0 0 0 2.022 7.5H3.5a.5.5 0 0 1 0 1H2.022A6 6 0 0 0 7.5 13.977V12.5a.5.5 0 0 1 1 0v1.477A6 6 0 0 0 13.977 8.5H12.5a.5.5 0 0 1 0-1h1.477A6 6 0 0 0 8.5 2.022zM8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2" /></SvgRoot>;
 });
 export default IconTargetReticle;

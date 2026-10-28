@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconLinkSide = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconLinkSide(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M5.5 4.5H4a3.5 3.5 0 1 0 0 7h1.5m5 0H12a3.5 3.5 0 1 0 0-7h-1.5m0 3.5h-5" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="link-side"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M5.5 4.5H4a3.5 3.5 0 1 0 0 7h1.5m5 0H12a3.5 3.5 0 1 0 0-7h-1.5m0 3.5h-5" /></SvgRoot>;
 });
 export default IconLinkSide;

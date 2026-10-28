@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconArchiveAlt = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconArchiveAlt(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M13.75 2c.69 0 1.25.56 1.25 1.25v1.5c0 .624-.458 1.14-1.057 1.232l-.783 6.266A2 2 0 0 1 11.176 14H4.824a2 2 0 0 1-1.984-1.752l-.784-6.266A1.25 1.25 0 0 1 1 4.75v-1.5C1 2.56 1.56 2 2.25 2zM3.832 12.124a1 1 0 0 0 .992.876h6.352a1 1 0 0 0 .992-.876L12.934 6H3.066zM9.5 8a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1zM2.25 3a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25h11.5a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="archive-alt"><path fill="currentColor" d="M13.75 2c.69 0 1.25.56 1.25 1.25v1.5c0 .624-.458 1.14-1.057 1.232l-.783 6.266A2 2 0 0 1 11.176 14H4.824a2 2 0 0 1-1.984-1.752l-.784-6.266A1.25 1.25 0 0 1 1 4.75v-1.5C1 2.56 1.56 2 2.25 2zM3.832 12.124a1 1 0 0 0 .992.876h6.352a1 1 0 0 0 .992-.876L12.934 6H3.066zM9.5 8a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1zM2.25 3a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25h11.5a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25z" /></SvgRoot>;
 });
 export default IconArchiveAlt;

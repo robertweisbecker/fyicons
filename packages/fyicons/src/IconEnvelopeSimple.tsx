@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconEnvelopeSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconEnvelopeSimple(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M12 3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM9.346 9.453a2 2 0 0 1-2.692 0L3 6.13V12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6.13zM4 4a1 1 0 0 0-.98.798l4.307 3.915a1 1 0 0 0 1.346 0l4.306-3.915A1 1 0 0 0 12 4z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="envelope-simple"><path fill="currentColor" d="M12 3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM9.346 9.453a2 2 0 0 1-2.692 0L3 6.13V12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6.13zM4 4a1 1 0 0 0-.98.798l4.307 3.915a1 1 0 0 0 1.346 0l4.306-3.915A1 1 0 0 0 12 4z" /></SvgRoot>;
 });
 export default IconEnvelopeSimple;

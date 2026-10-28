@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconWorkflow = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconWorkflow(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M4.228 1.332a.5.5 0 0 1 .628.065L7.46 4H9a2.5 2.5 0 1 1 0 5H8a1.5 1.5 0 0 0 0 3h2v-1a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3l-.103-.005A1 1 0 0 1 10 14v-1H8a2.5 2.5 0 0 1 0-5h1a1.5 1.5 0 0 0 0-3H7.46L4.856 7.604a.5.5 0 0 1-.707 0L1.4 4.854a.5.5 0 0 1 0-.707l2.75-2.75zM11 14h3v-3h-3zM2.46 4.5l2.043 2.043L6.546 4.5 4.503 2.457z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="workflow"><path fill="currentColor" d="M4.228 1.332a.5.5 0 0 1 .628.065L7.46 4H9a2.5 2.5 0 1 1 0 5H8a1.5 1.5 0 0 0 0 3h2v-1a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3l-.103-.005A1 1 0 0 1 10 14v-1H8a2.5 2.5 0 0 1 0-5h1a1.5 1.5 0 0 0 0-3H7.46L4.856 7.604a.5.5 0 0 1-.707 0L1.4 4.854a.5.5 0 0 1 0-.707l2.75-2.75zM11 14h3v-3h-3zM2.46 4.5l2.043 2.043L6.546 4.5 4.503 2.457z" /></SvgRoot>;
 });
 export default IconWorkflow;

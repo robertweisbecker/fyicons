@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconEraser = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconEraser(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M7.939 2.354a1.5 1.5 0 0 1 2.121 0l3.586 3.586a1.5 1.5 0 0 1 0 2.12l-4.083 4.084q-.245.245-.533.437l-1.479.986a2.5 2.5 0 0 1-3.033-.199l-1.616-1.415a2.5 2.5 0 0 1-.525-3.12l.99-1.732q.232-.407.563-.739zM3.246 9.328a1.5 1.5 0 0 0 .314 1.873l1.616 1.414a1.5 1.5 0 0 0 1.82.12l1.22-.813-4.107-4.106zm6.107-6.267a.5.5 0 0 0-.707 0l-3.94 3.938L9 11.292l3.939-3.938a.5.5 0 0 0 0-.707z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="eraser"><path fill="currentColor" d="M7.939 2.354a1.5 1.5 0 0 1 2.121 0l3.586 3.586a1.5 1.5 0 0 1 0 2.12l-4.083 4.084q-.245.245-.533.437l-1.479.986a2.5 2.5 0 0 1-3.033-.199l-1.616-1.415a2.5 2.5 0 0 1-.525-3.12l.99-1.732q.232-.407.563-.739zM3.246 9.328a1.5 1.5 0 0 0 .314 1.873l1.616 1.414a1.5 1.5 0 0 0 1.82.12l1.22-.813-4.107-4.106zm6.107-6.267a.5.5 0 0 0-.707 0l-3.94 3.938L9 11.292l3.939-3.938a.5.5 0 0 0 0-.707z" /></SvgRoot>;
 });
 export default IconEraser;

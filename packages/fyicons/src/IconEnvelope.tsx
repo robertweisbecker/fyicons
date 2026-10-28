@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconEnvelope = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconEnvelope(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M13 3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-2.088 5.205 1.941 1.941a.5.5 0 1 1-.707.707l-2-2-.002-.002-.858.721a2 2 0 0 1-2.572 0l-.86-.721v.003l-2 2a.5.5 0 1 1-.708-.707l1.94-1.942L2 5.612V11a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5.612zM3 4a1 1 0 0 0-.834.447l5.19 4.36c.372.312.916.312 1.288 0l5.189-4.36A1 1 0 0 0 13 4z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="envelope"><path fill="currentColor" d="M13 3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-2.088 5.205 1.941 1.941a.5.5 0 1 1-.707.707l-2-2-.002-.002-.858.721a2 2 0 0 1-2.572 0l-.86-.721v.003l-2 2a.5.5 0 1 1-.708-.707l1.94-1.942L2 5.612V11a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5.612zM3 4a1 1 0 0 0-.834.447l5.19 4.36c.372.312.916.312 1.288 0l5.189-4.36A1 1 0 0 0 13 4z" /></SvgRoot>;
 });
 export default IconEnvelope;

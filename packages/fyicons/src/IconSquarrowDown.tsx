@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSquarrowDown = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSquarrowDown(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M2 4.5A2.5 2.5 0 0 1 4.5 2H6a2.5 2.5 0 0 1 2.5 2.5v4.793l1.646-1.647a.5.5 0 1 1 .707.708l-2.5 2.5a.5.5 0 0 1-.707 0l-2.5-2.5a.5.5 0 1 1 .708-.708L7.5 9.293V4.5A1.5 1.5 0 0 0 6 3H4.5A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3a.5.5 0 0 1 0-1A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="squarrow-down"><path fill="currentColor" d="M2 4.5A2.5 2.5 0 0 1 4.5 2H6a2.5 2.5 0 0 1 2.5 2.5v4.793l1.646-1.647a.5.5 0 1 1 .707.708l-2.5 2.5a.5.5 0 0 1-.707 0l-2.5-2.5a.5.5 0 1 1 .708-.708L7.5 9.293V4.5A1.5 1.5 0 0 0 6 3H4.5A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3a.5.5 0 0 1 0-1A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5z" /></SvgRoot>;
 });
 export default IconSquarrowDown;

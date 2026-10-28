@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconAlert = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconAlert(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2m0 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2m0-6.125a.64.64 0 0 1 .452.183.6.6 0 0 1 .173.442l-.006.2-.113 3.6-.006.2a.504.504 0 0 1-.5.485.504.504 0 0 1-.5-.484l-.006-.2-.113-3.6-.006-.2a.6.6 0 0 1 .173-.443A.64.64 0 0 1 8 3.875" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="alert"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2m0 8a1 1 0 1 1 0 2 1 1 0 0 1 0-2m0-6.125a.64.64 0 0 1 .452.183.6.6 0 0 1 .173.442l-.006.2-.113 3.6-.006.2a.504.504 0 0 1-.5.485.504.504 0 0 1-.5-.484l-.006-.2-.113-3.6-.006-.2a.6.6 0 0 1 .173-.443A.64.64 0 0 1 8 3.875" /></SvgRoot>;
 });
 export default IconAlert;

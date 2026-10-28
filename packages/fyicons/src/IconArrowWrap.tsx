@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconArrowWrap = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconArrowWrap(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M12.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11a.5.5 0 0 1 .5-.5m-5 2a3.5 3.5 0 0 1 0 7H3.706l1.148 1.148a.5.5 0 1 1-.708.707l-2-2.001a.5.5 0 0 1 0-.707l2-2.001a.5.5 0 1 1 .708.707L3.706 10H7.5a2.5 2.5 0 0 0 0-5h-4a.5.5 0 0 1 0-1z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="arrow-wrap"><path fill="currentColor" d="M12.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11a.5.5 0 0 1 .5-.5m-5 2a3.5 3.5 0 0 1 0 7H3.706l1.148 1.148a.5.5 0 1 1-.708.707l-2-2.001a.5.5 0 0 1 0-.707l2-2.001a.5.5 0 1 1 .708.707L3.706 10H7.5a2.5 2.5 0 0 0 0-5h-4a.5.5 0 0 1 0-1z" /></SvgRoot>;
 });
 export default IconArrowWrap;

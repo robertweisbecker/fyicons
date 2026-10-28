@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconGas = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconGas(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path stroke="currentColor" d="M3.5 4.1c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C4.26 2.5 4.54 2.5 5.1 2.5h3.8c.56 0 .84 0 1.054.109a1 1 0 0 1 .437.437c.109.214.109.494.109 1.054v10.4h-7z" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M10.5 7.5h1a1 1 0 0 1 1 1v3a1 1 0 1 0 2 0v-6" /><path fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M14.5 6.5 13 5l1-1 .5.5z" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m14.5 4.5-2-2m-1 12h-9m8-7h-7" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="gas"><path stroke="currentColor" d="M3.5 4.1c0-.56 0-.84.109-1.054a1 1 0 0 1 .437-.437C4.26 2.5 4.54 2.5 5.1 2.5h3.8c.56 0 .84 0 1.054.109a1 1 0 0 1 .437.437c.109.214.109.494.109 1.054v10.4h-7z" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M10.5 7.5h1a1 1 0 0 1 1 1v3a1 1 0 1 0 2 0v-6" /><path fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M14.5 6.5 13 5l1-1 .5.5z" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m14.5 4.5-2-2m-1 12h-9m8-7h-7" /></SvgRoot>;
 });
 export default IconGas;

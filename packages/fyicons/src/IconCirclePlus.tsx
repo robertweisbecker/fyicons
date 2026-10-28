@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCirclePlus = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCirclePlus(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2m0 2.465a.5.5 0 0 1 .5.5V7.5h2.535a.5.5 0 0 1 0 1H8.5v2.535a.5.5 0 0 1-1 0V8.5H4.965a.5.5 0 0 1 0-1H7.5V4.965a.5.5 0 0 1 .5-.5" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="circle-plus"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1a6 6 0 1 0 0 12A6 6 0 0 0 8 2m0 2.465a.5.5 0 0 1 .5.5V7.5h2.535a.5.5 0 0 1 0 1H8.5v2.535a.5.5 0 0 1-1 0V8.5H4.965a.5.5 0 0 1 0-1H7.5V4.965a.5.5 0 0 1 .5-.5" /></SvgRoot>;
 });
 export default IconCirclePlus;

@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconRedo = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconRedo(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M10.147 2.147a.5.5 0 0 1 .707 0l3 3a.5.5 0 0 1 0 .707l-3 3a.5.5 0 0 1-.707-.707L12.293 6H6.5a3.5 3.5 0 1 0 0 7h2a.5.5 0 0 1 0 1h-2a4.5 4.5 0 0 1 0-9h5.793l-2.146-2.146a.5.5 0 0 1 0-.707" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="redo"><path fill="currentColor" d="M10.147 2.147a.5.5 0 0 1 .707 0l3 3a.5.5 0 0 1 0 .707l-3 3a.5.5 0 0 1-.707-.707L12.293 6H6.5a3.5 3.5 0 1 0 0 7h2a.5.5 0 0 1 0 1h-2a4.5 4.5 0 0 1 0-9h5.793l-2.146-2.146a.5.5 0 0 1 0-.707" /></SvgRoot>;
 });
 export default IconRedo;

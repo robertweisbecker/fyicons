@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconAsteriskSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconAsteriskSimple(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 1c.416 0 .752.342.745.759l-.11 5.954 5.629-1.944a.746.746 0 1 1 .461 1.417L9.028 8.92l3.59 4.754a.746.746 0 1 1-1.207.876L8 9.667l-3.41 4.884a.746.746 0 1 1-1.206-.876l3.588-4.753-5.696-1.735a.746.746 0 1 1 .46-1.417l5.629 1.944-.11-5.955A.746.746 0 0 1 8 1" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="asterisk-simple"><path fill="currentColor" d="M8 1c.416 0 .752.342.745.759l-.11 5.954 5.629-1.944a.746.746 0 1 1 .461 1.417L9.028 8.92l3.59 4.754a.746.746 0 1 1-1.207.876L8 9.667l-3.41 4.884a.746.746 0 1 1-1.206-.876l3.588-4.753-5.696-1.735a.746.746 0 1 1 .46-1.417l5.629 1.944-.11-5.955A.746.746 0 0 1 8 1" /></SvgRoot>;
 });
 export default IconAsteriskSimple;

@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconShoppingCart = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconShoppingCart(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M1.992 2a1.5 1.5 0 0 1 1.445 1.094L3.69 4h10.06a1 1 0 0 1 .923 1.385L12.847 9.77A2 2 0 0 1 11 11H5.64l.155.621A.5.5 0 0 0 6.28 12h5.22a1.5 1.5 0 1 1-1.5 1.5V13H6.28q-.143 0-.28-.027v.527A1.5 1.5 0 1 1 4.5 12h.366a2 2 0 0 1-.04-.137l-.307-1.227-2.045-7.272A.5.5 0 0 0 1.992 3H1.5a.5.5 0 0 1 0-1zM4.5 13a.5.5 0 1 0 .5.5V13zm6.5.5a.5.5 0 1 0 .5-.5H11zM5.379 10H11a1 1 0 0 0 .923-.615L13.75 5H3.973z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="shopping-cart"><path fill="currentColor" d="M1.992 2a1.5 1.5 0 0 1 1.445 1.094L3.69 4h10.06a1 1 0 0 1 .923 1.385L12.847 9.77A2 2 0 0 1 11 11H5.64l.155.621A.5.5 0 0 0 6.28 12h5.22a1.5 1.5 0 1 1-1.5 1.5V13H6.28q-.143 0-.28-.027v.527A1.5 1.5 0 1 1 4.5 12h.366a2 2 0 0 1-.04-.137l-.307-1.227-2.045-7.272A.5.5 0 0 0 1.992 3H1.5a.5.5 0 0 1 0-1zM4.5 13a.5.5 0 1 0 .5.5V13zm6.5.5a.5.5 0 1 0 .5-.5H11zM5.379 10H11a1 1 0 0 0 .923-.615L13.75 5H3.973z" /></SvgRoot>;
 });
 export default IconShoppingCart;

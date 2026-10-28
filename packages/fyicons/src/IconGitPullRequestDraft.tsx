@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconGitPullRequestDraft = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconGitPullRequestDraft(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M4 2a1.998 1.998 0 0 1 .5 3.934v4.131A1.999 1.999 0 1 1 2 12a2 2 0 0 1 1.5-1.935V5.933A1.998 1.998 0 0 1 4 2m8.001 8a2 2 0 1 1 0 4 2 2 0 0 1 0-4M4 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2m8.001 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2m0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-.251-3a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5M4 3a1 1 0 1 0 0 2 1 1 0 0 0 0-2m5.5 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m-1.999.25a.25.25 0 1 1 0 .5.25.25 0 0 1 0-.5" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="git-pull-request-draft"><path fill="currentColor" d="M4 2a1.998 1.998 0 0 1 .5 3.934v4.131A1.999 1.999 0 1 1 2 12a2 2 0 0 1 1.5-1.935V5.933A1.998 1.998 0 0 1 4 2m8.001 8a2 2 0 1 1 0 4 2 2 0 0 1 0-4M4 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2m8.001 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2m0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-.251-3a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5M4 3a1 1 0 1 0 0 2 1 1 0 0 0 0-2m5.5 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m-1.999.25a.25.25 0 1 1 0 .5.25.25 0 0 1 0-.5" /></SvgRoot>;
 });
 export default IconGitPullRequestDraft;

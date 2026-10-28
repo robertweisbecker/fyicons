@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconChartBarSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconChartBarSimple(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M4.5 13.5v.5a.5.5 0 0 0 .5-.5zm-2 0H2a.5.5 0 0 0 .5.5zm0-5V8a.5.5 0 0 0-.5.5zm2 0H5a.5.5 0 0 0-.5-.5zm4 5v.5a.5.5 0 0 0 .5-.5zm-2 0H6a.5.5 0 0 0 .5.5zm0-11V2a.5.5 0 0 0-.5.5zm2 0H9a.5.5 0 0 0-.5-.5zm4 11v.5a.5.5 0 0 0 .5-.5zm-2 0H10a.5.5 0 0 0 .5.5zm0-8V5a.5.5 0 0 0-.5.5zm2 0h.5a.5.5 0 0 0-.5-.5zm-8 8V13h-2v1h2zm-2 0H3v-5H2v5zm0-5V9h2V8h-2zm2 0H4v5h1v-5zm4 5V13h-2v1h2zm-2 0H7v-11H6v11zm0-11V3h2V2h-2zm2 0H8v11h1v-11zm4 11V13h-2v1h2zm-2 0h.5v-8h-1v8zm0-8V6h2V5h-2zm2 0H12v8h1v-8z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="chart-bar-simple"><path fill="currentColor" d="M4.5 13.5v.5a.5.5 0 0 0 .5-.5zm-2 0H2a.5.5 0 0 0 .5.5zm0-5V8a.5.5 0 0 0-.5.5zm2 0H5a.5.5 0 0 0-.5-.5zm4 5v.5a.5.5 0 0 0 .5-.5zm-2 0H6a.5.5 0 0 0 .5.5zm0-11V2a.5.5 0 0 0-.5.5zm2 0H9a.5.5 0 0 0-.5-.5zm4 11v.5a.5.5 0 0 0 .5-.5zm-2 0H10a.5.5 0 0 0 .5.5zm0-8V5a.5.5 0 0 0-.5.5zm2 0h.5a.5.5 0 0 0-.5-.5zm-8 8V13h-2v1h2zm-2 0H3v-5H2v5zm0-5V9h2V8h-2zm2 0H4v5h1v-5zm4 5V13h-2v1h2zm-2 0H7v-11H6v11zm0-11V3h2V2h-2zm2 0H8v11h1v-11zm4 11V13h-2v1h2zm-2 0h.5v-8h-1v8zm0-8V6h2V5h-2zm2 0H12v8h1v-8z" /></SvgRoot>;
 });
 export default IconChartBarSimple;

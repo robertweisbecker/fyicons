@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSquareRotate = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSquareRotate(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M11.5 6A1.5 1.5 0 0 1 13 7.5v5a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 5 12.5v-5A1.5 1.5 0 0 1 6.5 6zm-5 1a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5zM7.288.797a.5.5 0 0 1 .532.07l1.5 1.25a.5.5 0 0 1 0 .767l-1.5 1.25A.5.5 0 0 1 7 3.75V3H5.5A3.5 3.5 0 0 0 2 6.5v1a.5.5 0 0 1-1 0v-1A4.5 4.5 0 0 1 5.5 2H7v-.75a.5.5 0 0 1 .288-.453" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="square-rotate"><path fill="currentColor" d="M11.5 6A1.5 1.5 0 0 1 13 7.5v5a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 5 12.5v-5A1.5 1.5 0 0 1 6.5 6zm-5 1a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5zM7.288.797a.5.5 0 0 1 .532.07l1.5 1.25a.5.5 0 0 1 0 .767l-1.5 1.25A.5.5 0 0 1 7 3.75V3H5.5A3.5 3.5 0 0 0 2 6.5v1a.5.5 0 0 1-1 0v-1A4.5 4.5 0 0 1 5.5 2H7v-.75a.5.5 0 0 1 .288-.453" /></SvgRoot>;
 });
 export default IconSquareRotate;

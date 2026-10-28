@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconPrinter = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconPrinter(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M10.75 2c.69 0 1.25.56 1.25 1.25V5h1a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v.5a1.5 1.5 0 0 1-1.5 1.5h-5l-.153-.008A1.5 1.5 0 0 1 4 12.5V12H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1V3.25C4 2.56 4.56 2 5.25 2zM5 12.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5V9H5zM3 6a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1V8h8v3h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1zm2.25-3a.25.25 0 0 0-.25.25V5h6V3.25a.25.25 0 0 0-.25-.25z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="printer"><path fill="currentColor" d="M10.75 2c.69 0 1.25.56 1.25 1.25V5h1a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v.5a1.5 1.5 0 0 1-1.5 1.5h-5l-.153-.008A1.5 1.5 0 0 1 4 12.5V12H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1V3.25C4 2.56 4.56 2 5.25 2zM5 12.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5V9H5zM3 6a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1V8h8v3h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1zm2.25-3a.25.25 0 0 0-.25.25V5h6V3.25a.25.25 0 0 0-.25-.25z" /></SvgRoot>;
 });
 export default IconPrinter;

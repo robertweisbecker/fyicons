@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconGaugeSimpleMin = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconGaugeSimpleMin(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 6a2 2 0 0 0-1.72 3.014l-4.135 4.133a.502.502 0 0 0 .708.707l4.133-4.133A2 2 0 1 0 8.001 6m0-5a7 7 0 0 0-6.865 8.365l.042.186.864-.864A6 6 0 0 1 4.667 3.01a6 6 0 0 1 7.575 9.231.501.501 0 0 0 .708.708A7.001 7.001 0 0 0 8 1m0 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="gauge-simple-min"><path fill="currentColor" d="M8 6a2 2 0 0 0-1.72 3.014l-4.135 4.133a.502.502 0 0 0 .708.707l4.133-4.133A2 2 0 1 0 8.001 6m0-5a7 7 0 0 0-6.865 8.365l.042.186.864-.864A6 6 0 0 1 4.667 3.01a6 6 0 0 1 7.575 9.231.501.501 0 0 0 .708.708A7.001 7.001 0 0 0 8 1m0 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" /></SvgRoot>;
 });
 export default IconGaugeSimpleMin;

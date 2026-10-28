@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSendTilt = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSendTilt(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M13.153 3c1.191 0 1.907 1.322 1.256 2.32l-5.397 8.277c-.676 1.035-2.244.855-2.666-.307l-.835-2.298a2.46 2.46 0 0 1 .765-2.77l.161-.128-.088.028a2.47 2.47 0 0 1-2.56-.73L2.106 5.497C1.245 4.53 1.932 3 3.226 3zM3.226 4a.5.5 0 0 0-.374.832l1.685 1.896a1.47 1.47 0 0 0 1.522.437c1.13-.342 2.647-.827 3.217-1.112a.5.5 0 0 1 .447.895c-.258.129-.712.438-1.248.835-.524.39-1.095.838-1.574 1.221a1.46 1.46 0 0 0-.451 1.646l.836 2.298a.5.5 0 0 0 .889.102l5.397-8.276A.5.5 0 0 0 13.153 4z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="send-tilt"><path fill="currentColor" d="M13.153 3c1.191 0 1.907 1.322 1.256 2.32l-5.397 8.277c-.676 1.035-2.244.855-2.666-.307l-.835-2.298a2.46 2.46 0 0 1 .765-2.77l.161-.128-.088.028a2.47 2.47 0 0 1-2.56-.73L2.106 5.497C1.245 4.53 1.932 3 3.226 3zM3.226 4a.5.5 0 0 0-.374.832l1.685 1.896a1.47 1.47 0 0 0 1.522.437c1.13-.342 2.647-.827 3.217-1.112a.5.5 0 0 1 .447.895c-.258.129-.712.438-1.248.835-.524.39-1.095.838-1.574 1.221a1.46 1.46 0 0 0-.451 1.646l.836 2.298a.5.5 0 0 0 .889.102l5.397-8.276A.5.5 0 0 0 13.153 4z" /></SvgRoot>;
 });
 export default IconSendTilt;

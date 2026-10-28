@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFileZip = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFileZip(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8.298 1a2.5 2.5 0 0 1 1.94.924l2.65 3.26A.5.5 0 0 1 13 5.5v7a2.5 2.5 0 0 1-2.5 2.5h-5A2.5 2.5 0 0 1 3 12.5V3a2 2 0 0 1 2-2zM5 2a1 1 0 0 0-1 1v9.5A1.5 1.5 0 0 0 5.5 14H7v-1h1v1h2.5a1.5 1.5 0 0 0 1.5-1.5V5.677L9.462 2.554A1.5 1.5 0 0 0 8.298 2zm4 11H8v-1h1zm-1-1H7v-1h1zm1-1H8v-1h1zm-1-1H7V9h1zm0-6a1 1 0 0 1 1 1v1.5a1.5 1.5 0 1 1-3 0V5a1 1 0 0 1 .995-1v1h1V4H7V3h1zm-.503 2a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="file-zip"><path fill="currentColor" d="M8.298 1a2.5 2.5 0 0 1 1.94.924l2.65 3.26A.5.5 0 0 1 13 5.5v7a2.5 2.5 0 0 1-2.5 2.5h-5A2.5 2.5 0 0 1 3 12.5V3a2 2 0 0 1 2-2zM5 2a1 1 0 0 0-1 1v9.5A1.5 1.5 0 0 0 5.5 14H7v-1h1v1h2.5a1.5 1.5 0 0 0 1.5-1.5V5.677L9.462 2.554A1.5 1.5 0 0 0 8.298 2zm4 11H8v-1h1zm-1-1H7v-1h1zm1-1H8v-1h1zm-1-1H7V9h1zm0-6a1 1 0 0 1 1 1v1.5a1.5 1.5 0 1 1-3 0V5a1 1 0 0 1 .995-1v1h1V4H7V3h1zm-.503 2a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1" /></SvgRoot>;
 });
 export default IconFileZip;

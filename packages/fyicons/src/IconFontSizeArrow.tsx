@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFontSizeArrow = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFontSizeArrow(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M3.225 2.082a.5.5 0 0 1 .628.065l2 2a.5.5 0 0 1-.707.707L4 3.707v8.586l1.146-1.146a.5.5 0 1 1 .707.707l-2 2a.5.5 0 0 1-.707 0l-2-2a.5.5 0 0 1 .707-.707L3 12.293V3.707L1.853 4.854a.5.5 0 0 1-.707-.707l2-2zm7.61 1.4c.272-.535 1.058-.535 1.33 0l.05.123 2.762 8.745a.5.5 0 0 1-.954.3L13.187 10H9.813l-.837 2.65a.5.5 0 0 1-.953-.3l2.762-8.745zM10.129 9h2.742L11.5 4.66z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="font-size-arrow"><path fill="currentColor" d="M3.225 2.082a.5.5 0 0 1 .628.065l2 2a.5.5 0 0 1-.707.707L4 3.707v8.586l1.146-1.146a.5.5 0 1 1 .707.707l-2 2a.5.5 0 0 1-.707 0l-2-2a.5.5 0 0 1 .707-.707L3 12.293V3.707L1.853 4.854a.5.5 0 0 1-.707-.707l2-2zm7.61 1.4c.272-.535 1.058-.535 1.33 0l.05.123 2.762 8.745a.5.5 0 0 1-.954.3L13.187 10H9.813l-.837 2.65a.5.5 0 0 1-.953-.3l2.762-8.745zM10.129 9h2.742L11.5 4.66z" /></SvgRoot>;
 });
 export default IconFontSizeArrow;

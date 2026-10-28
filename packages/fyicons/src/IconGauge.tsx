@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconGauge = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconGauge(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8 5a.5.5 0 0 1 .5.5v5.635a1 1 0 1 1-1 0V5.5A.5.5 0 0 1 8 5m0-3a7.002 7.002 0 0 1 6.063 10.5.5.5 0 0 1-.867-.5A6.001 6.001 0 0 0 2.804 6a6 6 0 0 0 0 6 .5.5 0 0 1-.866.5A7 7 0 0 1 8 2m-2.5 9a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m5 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m-6-2.5a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m7 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1M5.5 6a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m5 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="gauge"><path fill="currentColor" d="M8 5a.5.5 0 0 1 .5.5v5.635a1 1 0 1 1-1 0V5.5A.5.5 0 0 1 8 5m0-3a7.002 7.002 0 0 1 6.063 10.5.5.5 0 0 1-.867-.5A6.001 6.001 0 0 0 2.804 6a6 6 0 0 0 0 6 .5.5 0 0 1-.866.5A7 7 0 0 1 8 2m-2.5 9a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m5 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m-6-2.5a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m7 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1M5.5 6a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m5 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1" /></SvgRoot>;
 });
 export default IconGauge;

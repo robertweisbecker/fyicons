@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconWindowPointer = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconWindowPointer(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M7.07 8.328A1 1 0 0 1 8.326 7.07l5.03 1.61c.886.284.938 1.518.08 1.876l-2.036.846-.846 2.036c-.358.858-1.592.805-1.875-.08zM2.5 10a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h1.5a.5.5 0 0 1 0 1H4a2 2 0 0 1-2-2v-1.5a.5.5 0 0 1 .5-.5m7.132 3.053.927-2.224.046-.087a.5.5 0 0 1 .223-.182l2.224-.927-5.03-1.61zM5.5 2a.5.5 0 0 1 0 1H4a1 1 0 0 0-1 1v1.5a.5.5 0 0 1-1 0V4a2 2 0 0 1 2-2zM12 2a2 2 0 0 1 2 2v1.5a.5.5 0 0 1-1 0V4a1 1 0 0 0-1-1h-1.5a.5.5 0 0 1 0-1z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="window-pointer"><path fill="currentColor" d="M7.07 8.328A1 1 0 0 1 8.326 7.07l5.03 1.61c.886.284.938 1.518.08 1.876l-2.036.846-.846 2.036c-.358.858-1.592.805-1.875-.08zM2.5 10a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h1.5a.5.5 0 0 1 0 1H4a2 2 0 0 1-2-2v-1.5a.5.5 0 0 1 .5-.5m7.132 3.053.927-2.224.046-.087a.5.5 0 0 1 .223-.182l2.224-.927-5.03-1.61zM5.5 2a.5.5 0 0 1 0 1H4a1 1 0 0 0-1 1v1.5a.5.5 0 0 1-1 0V4a2 2 0 0 1 2-2zM12 2a2 2 0 0 1 2 2v1.5a.5.5 0 0 1-1 0V4a1 1 0 0 0-1-1h-1.5a.5.5 0 0 1 0-1z" /></SvgRoot>;
 });
 export default IconWindowPointer;

@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconMicrophoneFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconMicrophoneFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M12.5 7a.5.5 0 0 1 .5.5 5 5 0 0 1-4.503 4.975l.003.025v2a.5.5 0 0 1-1 0v-2l.002-.025A5 5 0 0 1 3 7.5a.5.5 0 0 1 1 0 4 4 0 1 0 8 0 .5.5 0 0 1 .5-.5M8 1a2.5 2.5 0 0 1 2.5 2.5v4a2.5 2.5 0 0 1-5 0v-4A2.5 2.5 0 0 1 8 1" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="microphone-fill"><path fill="currentColor" d="M12.5 7a.5.5 0 0 1 .5.5 5 5 0 0 1-4.503 4.975l.003.025v2a.5.5 0 0 1-1 0v-2l.002-.025A5 5 0 0 1 3 7.5a.5.5 0 0 1 1 0 4 4 0 1 0 8 0 .5.5 0 0 1 .5-.5M8 1a2.5 2.5 0 0 1 2.5 2.5v4a2.5 2.5 0 0 1-5 0v-4A2.5 2.5 0 0 1 8 1" /></SvgRoot>;
 });
 export default IconMicrophoneFill;

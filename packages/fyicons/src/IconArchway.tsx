@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconArchway = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconArchway(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M14.5 2a.5.5 0 0 1 0 1H14v2a.5.5 0 0 1 0 1v7a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V8a1 1 0 0 0-2 0v5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a.5.5 0 0 1 0-1V3h-.5a.5.5 0 0 1 0-1zM8 5a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 0 1 .537-2H3v3h.5a.5.5 0 0 1 0 1H3v3h3v-1h-.5a.5.5 0 0 1 0-1H6V8a2 2 0 1 1 4 0v1h.5a.5.5 0 0 1 0 1H10v3h3v-1h-.5a.5.5 0 0 1 0-1h.5V6h-1.537A4 4 0 0 1 12 8a.5.5 0 0 1-1 0 3 3 0 0 0-1.852-2.771A3 3 0 0 0 8 5M3 5h2.25q.048 0 .095.009A4 4 0 0 1 10.644 5H13V3H3z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="archway"><path fill="currentColor" d="M14.5 2a.5.5 0 0 1 0 1H14v2a.5.5 0 0 1 0 1v7a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V8a1 1 0 0 0-2 0v5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a.5.5 0 0 1 0-1V3h-.5a.5.5 0 0 1 0-1zM8 5a3 3 0 0 0-3 3 .5.5 0 0 1-1 0 4 4 0 0 1 .537-2H3v3h.5a.5.5 0 0 1 0 1H3v3h3v-1h-.5a.5.5 0 0 1 0-1H6V8a2 2 0 1 1 4 0v1h.5a.5.5 0 0 1 0 1H10v3h3v-1h-.5a.5.5 0 0 1 0-1h.5V6h-1.537A4 4 0 0 1 12 8a.5.5 0 0 1-1 0 3 3 0 0 0-1.852-2.771A3 3 0 0 0 8 5M3 5h2.25q.048 0 .095.009A4 4 0 0 1 10.644 5H13V3H3z" /></SvgRoot>;
 });
 export default IconArchway;

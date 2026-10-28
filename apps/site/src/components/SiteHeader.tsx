@@ -34,12 +34,12 @@ export function SiteHeader({
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-30 border-b border-line bg-canvas/95 backdrop-blur-sm',
+        'fixed inset-x-0 top-0 z-30 border-b border-line bg-canvas pt-[env(safe-area-inset-top)]',
       )}
     >
       <div
         className={cn(
-          'mx-auto flex h-14 max-w-400 items-center gap-1 px-3 max-[360px]:gap-0.5 max-[360px]:px-2 sm:gap-6 sm:px-6',
+          'mx-auto flex h-14 max-w-400 items-center gap-1 pr-[max(.75rem,env(safe-area-inset-right))] pl-[max(.75rem,env(safe-area-inset-left))] max-[360px]:gap-0.5 max-[360px]:pr-[max(.5rem,env(safe-area-inset-right))] max-[360px]:pl-[max(.5rem,env(safe-area-inset-left))] sm:gap-6 sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pl-[max(1.5rem,env(safe-area-inset-left))]',
         )}
       >
         <a

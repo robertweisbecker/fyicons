@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFlagPennant = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFlagPennant(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M3.5 1a.5.5 0 0 1 .5.5V2h3.5a1.5 1.5 0 0 1 1.413 1H12.5a.5.5 0 0 1 .48.638L12.02 7l.96 3.363a.5.5 0 0 1-.48.638H8.118a1.5 1.5 0 0 1-1.342-.83l-.585-1.17H4v5.5a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5M4 8h2.191a1 1 0 0 1 .894.553l.586 1.171a.5.5 0 0 0 .447.277h3.719l-.817-2.863a.5.5 0 0 1 0-.275L11.837 4H9v3.5a.5.5 0 0 1-1 0v-4l-.01-.1A.5.5 0 0 0 7.5 3H4z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="flag-pennant"><path fill="currentColor" d="M3.5 1a.5.5 0 0 1 .5.5V2h3.5a1.5 1.5 0 0 1 1.413 1H12.5a.5.5 0 0 1 .48.638L12.02 7l.96 3.363a.5.5 0 0 1-.48.638H8.118a1.5 1.5 0 0 1-1.342-.83l-.585-1.17H4v5.5a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5M4 8h2.191a1 1 0 0 1 .894.553l.586 1.171a.5.5 0 0 0 .447.277h3.719l-.817-2.863a.5.5 0 0 1 0-.275L11.837 4H9v3.5a.5.5 0 0 1-1 0v-4l-.01-.1A.5.5 0 0 0 7.5 3H4z" /></SvgRoot>;
 });
 export default IconFlagPennant;

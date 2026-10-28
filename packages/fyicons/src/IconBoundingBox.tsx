@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconBoundingBox = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBoundingBox(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" fillOpacity={0.9} d="M5 2a1 1 0 0 1 1 1h4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1H6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1V6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM3 13h2v-2H3zm8 0h2v-2h-2zM6 5a1 1 0 0 1-1 1H4v4h1a1 1 0 0 1 1 1v1h4v-1a1 1 0 0 1 1-1h1V6h-1a1 1 0 0 1-1-1V4H6zM3 5h2V3H3zm8 0h2V3h-2z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="bounding-box"><path fill="currentColor" fillOpacity={0.9} d="M5 2a1 1 0 0 1 1 1h4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1H6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1V6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM3 13h2v-2H3zm8 0h2v-2h-2zM6 5a1 1 0 0 1-1 1H4v4h1a1 1 0 0 1 1 1v1h4v-1a1 1 0 0 1 1-1h1V6h-1a1 1 0 0 1-1-1V4H6zM3 5h2V3H3zm8 0h2V3h-2z" /></SvgRoot>;
 });
 export default IconBoundingBox;

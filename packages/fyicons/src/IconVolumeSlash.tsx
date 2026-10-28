@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconVolumeSlash = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconVolumeSlash(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M8.92 2.237c.806-.716 2.08-.145 2.08.934v7.122l2.854 2.853a.5.5 0 1 1-.707.707L11 11.707v1.124c0 1.078-1.274 1.65-2.08.934L5.81 11H3.5A1.5 1.5 0 0 1 2 9.5v-3A1.5 1.5 0 0 1 3.5 5h.794L2.146 2.853a.5.5 0 0 1 .708-.707l2.854 2.855h.102zM3.5 6.001a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5H6l.09.008a.5.5 0 0 1 .242.118l3.252 2.89a.25.25 0 0 0 .416-.186v-2.124L5.294 6zM10 3.17a.25.25 0 0 0-.416-.187l-3.12 2.773L10 9.293z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="volume-slash"><path fill="currentColor" d="M8.92 2.237c.806-.716 2.08-.145 2.08.934v7.122l2.854 2.853a.5.5 0 1 1-.707.707L11 11.707v1.124c0 1.078-1.274 1.65-2.08.934L5.81 11H3.5A1.5 1.5 0 0 1 2 9.5v-3A1.5 1.5 0 0 1 3.5 5h.794L2.146 2.853a.5.5 0 0 1 .708-.707l2.854 2.855h.102zM3.5 6.001a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5H6l.09.008a.5.5 0 0 1 .242.118l3.252 2.89a.25.25 0 0 0 .416-.186v-2.124L5.294 6zM10 3.17a.25.25 0 0 0-.416-.187l-3.12 2.773L10 9.293z" /></SvgRoot>;
 });
 export default IconVolumeSlash;

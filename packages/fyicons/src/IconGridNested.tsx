@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconGridNested = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconGridNested(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M5 14.5a.5.5 0 0 1-1 0V13h1zm3.5 0a.5.5 0 0 1-1 0V13h1zm3.5 0a.5.5 0 0 1-1 0V13h1zM3 12H1.5a.5.5 0 0 1 0-1H3zm11.5-1a.5.5 0 0 1 0 1H13v-1zM12 12H4V4h8zm-7-1h2.5V8.5H5zm3.5 0H11V8.5H8.5zM3 8.5H1.5a.5.5 0 0 1 0-1H3zm11.5-1a.5.5 0 0 1 0 1H13v-1zM5 7.5h2.5V5H5zm3.5 0H11V5H8.5zM3 5H1.5a.5.5 0 0 1 0-1H3zm11.5-1a.5.5 0 0 1 0 1H13V4zm-10-3a.5.5 0 0 1 .5.5V3H4V1.5a.5.5 0 0 1 .5-.5M8 1a.5.5 0 0 1 .5.5V3h-1V1.5A.5.5 0 0 1 8 1m3.5 0a.5.5 0 0 1 .5.5V3h-1V1.5a.5.5 0 0 1 .5-.5" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="grid-nested"><path fill="currentColor" d="M5 14.5a.5.5 0 0 1-1 0V13h1zm3.5 0a.5.5 0 0 1-1 0V13h1zm3.5 0a.5.5 0 0 1-1 0V13h1zM3 12H1.5a.5.5 0 0 1 0-1H3zm11.5-1a.5.5 0 0 1 0 1H13v-1zM12 12H4V4h8zm-7-1h2.5V8.5H5zm3.5 0H11V8.5H8.5zM3 8.5H1.5a.5.5 0 0 1 0-1H3zm11.5-1a.5.5 0 0 1 0 1H13v-1zM5 7.5h2.5V5H5zm3.5 0H11V5H8.5zM3 5H1.5a.5.5 0 0 1 0-1H3zm11.5-1a.5.5 0 0 1 0 1H13V4zm-10-3a.5.5 0 0 1 .5.5V3H4V1.5a.5.5 0 0 1 .5-.5M8 1a.5.5 0 0 1 .5.5V3h-1V1.5A.5.5 0 0 1 8 1m3.5 0a.5.5 0 0 1 .5.5V3h-1V1.5a.5.5 0 0 1 .5-.5" /></SvgRoot>;
 });
 export default IconGridNested;

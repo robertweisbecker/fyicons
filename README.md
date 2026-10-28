@@ -52,25 +52,36 @@ Use `size` to set both dimensions, or set `width` and `height` separately. The o
 
 Leave `color` unset to inherit the surrounding text color. You can style icons with CSS classes, inline styles, or your existing theme styles.
 
-| Prop                            | What it does                                                           |
-| ------------------------------- | ---------------------------------------------------------------------- |
-| `size`                          | Sets width and height. Accepts a number or a string; defaults to `16`. |
-| `width`, `height`               | Override the corresponding dimension from `size`.                      |
-| `color`                         | Sets the icon color. Otherwise, the icon inherits the text color.      |
-| `className`, `style`            | Apply your CSS styles.                                                 |
-| `title`                         | Adds an SVG title and an accessible name.                              |
-| `aria-label`, `aria-labelledby` | Provide an accessible name.                                            |
-| `ref`                           | Gives access to the SVG element.                                       |
+| Prop              | What it does                                                           |
+| ----------------- | ---------------------------------------------------------------------- |
+| `size`            | Sets width and height. Accepts a number or a string; defaults to `16`. |
+| `width`, `height` | Override the corresponding dimension from `size`.                      |
+| `color`           | Sets the icon color. Otherwise, the icon inherits the text color.      |
+| `className`       | Adds your classes after the default icon classes.                      |
+| `style`           | Applies inline CSS styles.                                             |
+| `title`           | Adds an SVG title.                                                     |
+| `aria-label`      | Names the icon and sets `role="img"` by default.                       |
+| `aria-labelledby` | Passes through an external label reference.                            |
+| `ref`             | Gives access to the SVG element.                                       |
 
 Components also accept standard React SVG props and event handlers. Many icons use filled paths, so `strokeWidth` does not change their visual weight.
 
-### Accessibility
-
-Decorative icons are hidden from assistive technology by default. When an icon communicates information on its own, give it a name with `title`, `aria-label`, or `aria-labelledby`:
+Every icon has `fy-icon` and `fy-{icon-name}` classes. The icon name matches the catalog, including variant suffixes. Your `className` adds to these defaults:
 
 ```tsx
-<IconSun title="Light mode" />
+<IconSun className="toolbar-icon" />
+// Renders class="fy-icon fy-sun toolbar-icon"
 ```
+
+### Accessibility
+
+Icons without a non-empty `aria-label` are decorative and render with `aria-hidden="true"`. Add `aria-label` when an icon communicates information on its own. The component passes the label to the SVG and sets `role="img"`:
+
+```tsx
+<IconSun aria-label="Light mode" />
+```
+
+A `title` or `aria-labelledby` alone does not change the decorative default. Use `aria-label` for automatic accessible naming. Explicit `role` and `aria-hidden` props override the defaults; for an external label, set `aria-labelledby`, `role="img"`, and `aria-hidden={false}` together. Empty or whitespace-only labels remain decorative.
 
 For an icon-only button, name the button instead, as in the example above. The icon can remain decorative because the button already describes the action.
 

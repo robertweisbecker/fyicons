@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconQueue = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconQueue(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M12.5 2A1.5 1.5 0 0 1 14 3.5v2A1.5 1.5 0 0 1 12.5 7H4v.75C4 8.44 4.56 9 5.25 9h6.25a.5.5 0 0 1 0 1H5.25c-.463 0-.892-.14-1.25-.38v1.13c0 .69.56 1.25 1.25 1.25h6.25a.5.5 0 1 1 0 1H5.25A2.25 2.25 0 0 1 3 10.75V6.914a1.5 1.5 0 0 1-1-1.413v-2A1.5 1.5 0 0 1 3.5 2zm-9 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .4.49l.1.01h9a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="queue"><path fill="currentColor" d="M12.5 2A1.5 1.5 0 0 1 14 3.5v2A1.5 1.5 0 0 1 12.5 7H4v.75C4 8.44 4.56 9 5.25 9h6.25a.5.5 0 0 1 0 1H5.25c-.463 0-.892-.14-1.25-.38v1.13c0 .69.56 1.25 1.25 1.25h6.25a.5.5 0 1 1 0 1H5.25A2.25 2.25 0 0 1 3 10.75V6.914a1.5 1.5 0 0 1-1-1.413v-2A1.5 1.5 0 0 1 3.5 2zm-9 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .4.49l.1.01h9a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" /></SvgRoot>;
 });
 export default IconQueue;

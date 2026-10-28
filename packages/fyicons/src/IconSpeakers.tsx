@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSpeakers = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSpeakers(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M12.5 3A1.5 1.5 0 0 1 14 4.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 12.5v-4A1.5 1.5 0 0 1 3.5 7H6V4.5A1.5 1.5 0 0 1 7.5 3zm-9 5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5H6V8zm4-4a.5.5 0 0 0-.5.5V13h5.5a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5zM10 8a2 2 0 1 1 0 4 2 2 0 0 1 0-4M4.5 9.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5M10 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2m0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="speakers"><path fill="currentColor" d="M12.5 3A1.5 1.5 0 0 1 14 4.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 12.5v-4A1.5 1.5 0 0 1 3.5 7H6V4.5A1.5 1.5 0 0 1 7.5 3zm-9 5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5H6V8zm4-4a.5.5 0 0 0-.5.5V13h5.5a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5zM10 8a2 2 0 1 1 0 4 2 2 0 0 1 0-4M4.5 9.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5M10 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2m0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2" /></SvgRoot>;
 });
 export default IconSpeakers;

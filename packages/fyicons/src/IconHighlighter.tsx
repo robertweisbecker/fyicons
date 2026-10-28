@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconHighlighter = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconHighlighter(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix}><path fill="currentColor" d="M10.585 1.707a2 2 0 0 1 2.83 0l.877.878a2 2 0 0 1 0 2.829l-4.94 4.939a.5.5 0 0 1-.155.106l-3.198 1.37V12A1 1 0 0 1 5 13l-2.5.002a.501.501 0 0 1-.354-.854l1.933-1.934 1.461-3.41a.5.5 0 0 1 .106-.156zM3.707 12H5v-.293l-.5-.5zm1.385-1.614.523.522 2.51-1.075-1.957-1.957zm7.615-7.97a1 1 0 0 0-1.415 0L6.707 7 9 9.292l4.586-4.585a1 1 0 0 0 0-1.415z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="highlighter"><path fill="currentColor" d="M10.585 1.707a2 2 0 0 1 2.83 0l.877.878a2 2 0 0 1 0 2.829l-4.94 4.939a.5.5 0 0 1-.155.106l-3.198 1.37V12A1 1 0 0 1 5 13l-2.5.002a.501.501 0 0 1-.354-.854l1.933-1.934 1.461-3.41a.5.5 0 0 1 .106-.156zM3.707 12H5v-.293l-.5-.5zm1.385-1.614.523.522 2.51-1.075-1.957-1.957zm7.615-7.97a1 1 0 0 0-1.415 0L6.707 7 9 9.292l4.586-4.585a1 1 0 0 0 0-1.415z" /></SvgRoot>;
 });
 export default IconHighlighter;
