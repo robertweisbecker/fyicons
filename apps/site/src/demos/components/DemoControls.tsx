@@ -110,7 +110,7 @@ export function CopyButton({
             state === 'copied'
               ? 'copied'
               : state === 'error'
-                ? 'circle-alert'
+                ? 'alert'
                 : 'copy'
           }
         />

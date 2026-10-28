@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconMailbox = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconMailbox(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.5 3C13.433 3 15 4.567 15 6.5V11C15 11.5523 14.5523 12 14 12H8V13.5C8 13.7761 7.77614 14 7.5 14C7.22386 14 7 13.7761 7 13.5V12H2C1.44772 12 1 11.5523 1 11V6.5C1 4.567 2.567 3 4.5 3H11.5ZM4.5 4C3.11929 4 2 5.11929 2 6.5V11H7V6.5C7 5.11929 5.88071 4 4.5 4ZM6.94824 4C7.59689 4.6353 8 5.52033 8 6.5V11H14V6.5C14 5.11929 12.8807 4 11.5 4H6.94824ZM12.5 6C12.7761 6 13 6.22386 13 6.5V7.5C13 7.70221 12.8782 7.88451 12.6914 7.96191C12.5046 8.0393 12.2895 7.99651 12.1465 7.85352L11.293 7H9.5C9.22386 7 9 6.77614 9 6.5C9 6.22386 9.22386 6 9.5 6H12.5Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconMailbox;

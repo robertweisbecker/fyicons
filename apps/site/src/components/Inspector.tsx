@@ -388,7 +388,7 @@ export function Inspector(props: Props) {
                 <DrawerClose
                   render={
                     <IconButton
-                      icon="xmark"
+                      icon="x"
                       label="Close icon details"
                       className="absolute top-1 left-2"
                       data-base-ui-swipe-ignore
@@ -563,7 +563,7 @@ export function Inspector(props: Props) {
                     </Tooltip>
                     <SheetClose
                       render={
-                        <IconButton icon="xmark" label="Close icon details" />
+                        <IconButton icon="x" label="Close icon details" />
                       }
                     />
                   </TooltipGroup>

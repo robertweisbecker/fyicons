@@ -71,7 +71,7 @@ export function MusicApp() {
               onClick={() => setLibraryOpen(!libraryOpen)}
               className="h-8 justify-start gap-2 rounded-md px-1.5 text-muted"
             >
-              <Icon name="library-simple" size={20} />
+              <Icon name="library-lines" size={20} />
               <span
                 id={libraryId}
                 hidden={!libraryOpen}
@@ -216,7 +216,7 @@ export function MusicApp() {
               <h3 className="text-sm font-medium">Queue</h3>
               <DemoIconButton
                 label="Close queue"
-                icon="xmark"
+                icon="x"
                 size="icon-xs"
                 onClick={() => {
                   setQueuePreference(false);

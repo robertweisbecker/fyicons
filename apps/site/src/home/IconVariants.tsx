@@ -2,7 +2,7 @@ import { Icon } from '@/components/Icon';
 
 // Matching outline and filled artwork, shown in the same order in both grids.
 const variantIcons = [
-  'alert',
+  'error',
   'bolt',
   'bookmark',
   'browser',
@@ -60,7 +60,11 @@ export function IconVariants() {
                   className="flex min-w-0 items-center justify-center"
                 >
                   <Icon
-                    name={`${name}${suffix}`}
+                    name={
+                      name === 'browser' && suffix
+                        ? 'browser-solid'
+                        : `${name}${suffix}`
+                    }
                     size={24}
                     aria-label={`${name.replaceAll('-', ' ')} ${label.toLowerCase()}`}
                   />

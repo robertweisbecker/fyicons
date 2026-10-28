@@ -99,7 +99,7 @@ export function BadgesDemo() {
             {tag}
             <DemoIconButton
               label={'Remove ' + tag + ' tag'}
-              icon="xmark"
+              icon="x"
               size="icon-sm"
               className="-m-1 -me-1.5 size-5 rounded-full"
               onClick={() => setTags(tags.filter((value) => value !== tag))}
@@ -206,7 +206,7 @@ export function SharingDemo() {
         </Select>
       </div>
       <div className="mt-auto flex items-center gap-2 rounded-lg border border-line px-3 py-1.5">
-        <Icon name="link-new-tab" />
+        <Icon name="link-new-window" />
         <span className="min-w-0 flex-1 truncate text-xs text-muted">
           studio.example/project/interface-kit
         </span>

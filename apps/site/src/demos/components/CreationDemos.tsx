@@ -79,7 +79,7 @@ export function ComposerDemo() {
               navigation.tsx
               <DemoIconButton
                 label="Remove attachment"
-                icon="xmark"
+                icon="x"
                 size="icon-xs"
                 onClick={() => setAttached(false)}
               />

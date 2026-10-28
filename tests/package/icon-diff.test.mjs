@@ -156,6 +156,8 @@ test('legacy source keys match opaque identities without leaking into reports', 
     [
       icon('1', 'Old', {
         sourceUrl: `https://www.figma.com/design/${fileKey}`,
+        sourcePageId: 'private-page',
+        sourceSectionId: 'private-section',
       }),
     ],
     fileKey,
@@ -180,7 +182,7 @@ test('legacy source keys match opaque identities without leaking into reports', 
   ])
     assert.doesNotMatch(
       output,
-      /private-fixture-file|sourceUrl|fileKey|figma\.com|private collection/,
+      /private-fixture-file|sourceUrl|sourcePageId|sourceSectionId|fileKey|figma\.com|private collection/,
     );
 });
 test('byte-only edits do not cause pixel changes; masks and gradients render', async () => {
