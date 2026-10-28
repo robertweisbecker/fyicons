@@ -1,5 +1,11 @@
 # fyicons
 
+## 0.2.1
+
+### Patch Changes
+
+- d6b0c66: Refine alignment in shapes, star, and cloud icons. Sharpen clipboard clamps, correct nested checkmark proportions in clipboard, file, and related icons, and fix the sizing and cutouts in `link-linked`.
+
 ## 0.2.0
 
 ### Minor Changes
