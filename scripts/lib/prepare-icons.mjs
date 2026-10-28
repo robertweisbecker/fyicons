@@ -8,7 +8,7 @@ import { confinedPath, readSvgFile } from './icon-files.mjs';
 import {
   parseIconCategories,
   validateCategoryIcons,
-} from '../../src/lib/icon-categories.ts';
+} from '../../apps/site/src/lib/icon-categories.ts';
 
 const safeName = /^[A-Za-z0-9][A-Za-z0-9_-]*$/;
 const object = (value) =>
@@ -24,7 +24,25 @@ export function safeFilename(value) {
   return value;
 }
 
-/** Missing legacy provenance is explicit; supplied provenance must have valid types. */
+/** Keep a stable collection identity without publishing its private file key. */
+export function normalizeSource(source = {}) {
+  if (
+    !object(source) ||
+    (source.fileKey !== undefined && typeof source.fileKey !== 'string') ||
+    (source.id !== undefined &&
+      (typeof source.id !== 'string' ||
+        (source.id !== '' && !/^sha256:[a-f0-9]{64}$/.test(source.id))))
+  )
+    throw new Error('Invalid source identity.');
+  const derived = source.fileKey
+    ? `sha256:${createHash('sha256').update(source.fileKey).digest('hex')}`
+    : '';
+  if (derived && source.id && source.id !== derived)
+    throw new Error('Source identity does not match the imported file key.');
+  return { id: derived || source.id || '' };
+}
+
+/** Accept legacy imports, but keep private provenance out of public metadata. */
 export function normalizeManifest(value, { imported = false } = {}) {
   if (!object(value) || value.name !== 'FYIcons' || !Array.isArray(value.icons))
     throw new Error('Expected a FYIcons manifest with icons.');
@@ -35,13 +53,10 @@ export function normalizeManifest(value, { imported = false } = {}) {
         (icon) => object(icon) && ('category' in icon || 'categories' in icon),
       ))
   )
-    throw new Error('Move category metadata to public/icon-categories.json.');
-  const source = value.source === undefined ? { fileKey: '' } : value.source;
-  if (
-    !object(source) ||
-    ('fileKey' in source && typeof source.fileKey !== 'string')
-  )
-    throw new Error('Invalid source.fileKey; expected a string.');
+    throw new Error(
+      'Move category metadata to apps/site/public/icon-categories.json.',
+    );
+  const source = normalizeSource(value.source);
   const ids = new Set();
   const icons = value.icons.map((meta) => {
     if (
@@ -92,6 +107,23 @@ export function normalizeManifest(value, { imported = false } = {}) {
       'svg',
     ])
       if (meta[field] !== undefined) string(meta[field], field);
+    for (const field of ['addedAt', 'updatedAt']) {
+      const date = meta[field];
+      if (
+        date !== undefined &&
+        (typeof date !== 'string' ||
+          !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(date) ||
+          !Number.isFinite(Date.parse(date)) ||
+          new Date(date).toISOString() !== date)
+      )
+        throw new Error(
+          `Invalid ${field}: ${meta.name}; expected a UTC ISO timestamp.`,
+        );
+    }
+    if (meta.addedAt && meta.updatedAt && meta.addedAt > meta.updatedAt)
+      throw new Error(
+        `Invalid date order: ${meta.name}; addedAt must not follow updatedAt.`,
+      );
     if (
       meta.sha256 !== undefined &&
       (typeof meta.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(meta.sha256))
@@ -111,8 +143,9 @@ export function normalizeManifest(value, { imported = false } = {}) {
         ))
     )
       throw new Error(`Invalid variantProperties: ${meta.name}`);
+    const { sourceUrl: _sourceUrl, ...publicMetadata } = meta;
     return {
-      ...meta,
+      ...publicMetadata,
       ...(imported && meta.baseName === undefined ? {} : { baseName }),
       originalName: meta.originalName ?? meta.name,
       aliases: meta.aliases ?? [],
@@ -120,7 +153,7 @@ export function normalizeManifest(value, { imported = false } = {}) {
   });
   return {
     ...value,
-    source: { ...source, fileKey: source.fileKey ?? '' },
+    source,
     icons,
   };
 }
@@ -180,13 +213,9 @@ export async function prepareIcons(input, categoryInput, readSvg) {
       const sha256 = createHash('sha256').update(svg).digest('hex');
       if (meta.sha256 !== undefined && meta.sha256 !== sha256)
         throw new Error(`Checksum mismatch: ${meta.name}`);
-      const sourceUrl =
-        meta.sourceUrl ??
-        `https://www.figma.com/design/${manifest.source.fileKey}/icons-astra?node-id=${meta.id.replace(':', '-')}`;
       const { sha256: _suppliedHash, ...metadata } = meta;
       return {
         ...metadata,
-        sourceUrl,
         file: `icons/${meta.filename}`,
         svg,
         sha256,
@@ -224,14 +253,10 @@ export async function prepareIcons(input, categoryInput, readSvg) {
   const catalogText =
     JSON.stringify({ ...generatedManifest, icons }, null, 2) + '\n';
   const expected = new Map(reactFiles);
-  expected.set('src/data/catalog.json', catalogText);
-  // Reconstruct standard fields, retaining any explicitly supplied alternate URL.
+  expected.set('apps/site/src/data/catalog.json', catalogText);
+  // Reconstruct standard fields without retaining private source links.
   const compactIcons = icons.map(
-    ({ sourceUrl, file, width, height, svg, ...icon }) =>
-      sourceUrl ===
-      `https://www.figma.com/design/${manifest.source.fileKey}/icons-astra?node-id=${icon.id.replace(':', '-')}`
-        ? icon
-        : { ...icon, sourceUrl },
+    ({ file, width, height, svg, ...icon }) => icon,
   );
   // Store field names once rather than repeating every metadata key per icon.
   // Null marks an absent optional field; icon metadata does not contain null values.
@@ -242,10 +267,13 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     throw new Error('Icon metadata cannot contain null values.');
   const { icons: _manifestIcons, ...runtimeMetadata } = generatedManifest;
   expected.set(
-    'src/data/catalog-runtime.json',
+    'apps/site/src/data/catalog-runtime.json',
     JSON.stringify(
       {
-        ...runtimeMetadata,
+        metadataArchive: deflateSync(
+          Buffer.from(JSON.stringify(runtimeMetadata)),
+          { level: 9, memLevel: 9 },
+        ).toString('base64'),
         svgArchive: deflateSync(
           Buffer.from(JSON.stringify(icons.map((icon) => icon.svg))),
           { level: 9, memLevel: 9 },
@@ -268,7 +296,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
   );
 
   expected.set(
-    'public/icon-categories.schema.json',
+    'apps/site/public/icon-categories.schema.json',
     JSON.stringify(
       createCategorySchema(icons.map(({ name }) => name)),
       null,
@@ -283,14 +311,20 @@ export async function prepareIcons(input, categoryInput, readSvg) {
 }
 
 export async function prepareRepositoryIcons(root) {
-  const manifest = normalizeManifest(
-    JSON.parse(
-      await readFile(await confinedPath(root, 'icons/manifest.json'), 'utf8'),
-    ),
+  const input = JSON.parse(
+    await readFile(await confinedPath(root, 'icons/manifest.json'), 'utf8'),
   );
+  const manifest = normalizeManifest(input);
+  if (
+    Object.keys(input.source ?? {}).some((key) => key !== 'id') ||
+    input.icons.some((icon) => 'sourceUrl' in icon)
+  )
+    throw new Error(
+      'Private source metadata is not allowed in icons/manifest.json. Keep it in an ignored local export and import through sync-icons.',
+    );
   const categoryInput = JSON.parse(
     await readFile(
-      await confinedPath(root, 'public/icon-categories.json'),
+      await confinedPath(root, 'apps/site/public/icon-categories.json'),
       'utf8',
     ),
   );

@@ -1,0 +1,228 @@
+import { useState } from 'react';
+import { Icon } from '@/components/Icon';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { CopyButton, DemoIconButton } from './DemoControls';
+
+export function AlertsDemo() {
+  const [connected, setConnected] = useState(false);
+  const [updated, setUpdated] = useState(false);
+  return (
+    <div className="flex flex-1 flex-col gap-3">
+      <Alert>
+        <Icon name="circle-check-fill" />
+        <div>
+          <AlertTitle>All changes saved</AlertTitle>
+          <AlertDescription>Your project is up to date.</AlertDescription>
+        </div>
+      </Alert>
+      <Alert>
+        <Icon name={connected ? 'cloud-check' : 'cloud-slash'} />
+        <div className="min-w-0 flex-1">
+          <AlertTitle>
+            {connected ? 'Reconnected' : 'You’re offline'}
+          </AlertTitle>
+          <AlertDescription>
+            {connected
+              ? 'Sync is back up and running.'
+              : 'Changes are saved on this device.'}
+          </AlertDescription>
+          <Button
+            variant="ghost"
+            size="xs"
+            className="mt-2 -ml-2"
+            onClick={() => setConnected(!connected)}
+          >
+            <Icon name={connected ? 'plug-plug' : 'arrows-swap'} />
+            {connected ? 'Disconnect' : 'Reconnect'}
+          </Button>
+        </div>
+      </Alert>
+      <Alert>
+        <Icon name={updated ? 'circle-check' : 'info'} />
+        <div className="flex-1">
+          <AlertTitle>
+            {updated ? 'You’re on the latest version' : 'Update available'}
+          </AlertTitle>
+          <AlertDescription>
+            {updated
+              ? 'Everything is ready to go.'
+              : 'A few small improvements are ready.'}
+          </AlertDescription>
+        </div>
+        <DemoIconButton
+          label={updated ? 'Revert' : 'Install'}
+          icon={updated ? 'arrow-revert' : 'download'}
+          onClick={() => setUpdated(!updated)}
+        />
+      </Alert>
+    </div>
+  );
+}
+export function BadgesDemo() {
+  const [status, setStatus] = useState<string | null>('In progress');
+  const [tags, setTags] = useState(['Design', 'Interface']);
+  return (
+    <div className="flex flex-1 flex-col gap-5">
+      <div className="flex flex-wrap gap-2">
+        <Badge tone="success">
+          <Icon name="circle-check-fill" className="-ms-1.5" />
+          Published
+        </Badge>
+        <Badge tone="warning">
+          <Icon name="clock" className="-ms-1.5" />
+          Scheduled
+        </Badge>
+        <Badge>
+          <Icon name="lock" className="-ms-1.5 -me-1" />
+          Private
+        </Badge>
+        <Badge tone="info">
+          <Icon name="sparkles" className="-ms-1.5" />
+          New
+        </Badge>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <Badge key={tag} variant="outline">
+            <Icon name="tag" />
+            {tag}
+            <DemoIconButton
+              label={'Remove ' + tag + ' tag'}
+              icon="xmark"
+              size="icon-sm"
+              className="-m-1 -me-1.5 size-5 rounded-full"
+              onClick={() => setTags(tags.filter((value) => value !== tag))}
+            />
+          </Badge>
+        ))}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setTags(['Design', 'Interface'])}
+        >
+          <Icon name="tags" />
+          Add tags
+        </Button>
+      </div>
+      <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4">
+        <span className="text-sm">Task status</span>
+        <Select value={status} onValueChange={setStatus}>
+          <SelectTrigger
+            aria-label="Task status"
+            className="min-h-8 gap-2 rounded-full"
+          >
+            <Icon
+              name={
+                status === 'Done'
+                  ? 'circle-check-fill'
+                  : status === 'In progress'
+                    ? 'circle-progress-half'
+                    : 'circle-progress-todo'
+              }
+            />
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {['To do', 'In progress', 'Done'].map((value) => (
+                <SelectItem value={value} key={value}>
+                  {value}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  );
+}
+export function SharingDemo() {
+  const [access, setAccess] = useState<string | null>('Can view');
+  const [invited, setInvited] = useState(false);
+  const [privateLink, setPrivateLink] = useState(false);
+  return (
+    <div className="flex flex-1 flex-col gap-4">
+      <div className="flex items-center gap-3">
+        <div className="flex">
+          {['JD', 'MK', 'AL'].map((person) => (
+            <Avatar
+              key={person}
+              className="border-2 border-canvas bg-hover not-first:-ml-2"
+            >
+              <AvatarFallback className="text-xs">{person}</AvatarFallback>
+            </Avatar>
+          ))}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium">Project collaborators</p>
+          <p className="mt-1 text-xs text-muted">Jamie, Morgan, and Alex</p>
+        </div>
+        <DemoIconButton
+          label={invited ? 'Invitation sent' : 'Invite teammate'}
+          icon={invited ? 'check' : 'send'}
+          onClick={() => setInvited(!invited)}
+        />
+      </div>
+      <div className="flex flex-wrap items-center gap-3 rounded-xl border border-line bg-surface p-4">
+        <Icon name={privateLink ? 'lock' : 'link'} />
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium">
+            {privateLink ? 'Only invited people' : 'Anyone with the link'}
+          </p>
+          <Button
+            variant="text"
+            size="sm"
+            className="mt-1 h-auto min-h-6 justify-start p-0 text-xs font-normal"
+            onClick={() => setPrivateLink(!privateLink)}
+          >
+            {privateLink ? 'Enable link sharing' : 'Restrict access'}
+          </Button>
+        </div>
+        <Select value={access} onValueChange={setAccess}>
+          <SelectTrigger
+            aria-label="Link permission"
+            className="min-h-8 gap-2 border-0 bg-transparent p-0 text-xs"
+          >
+            <Icon name={access === 'Can edit' ? 'pencil-edit' : 'eye'} />
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="Can view">Can view</SelectItem>
+              <SelectItem value="Can edit">Can edit</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="mt-auto flex items-center gap-2 rounded-lg border border-line px-3 py-1.5">
+        <Icon name="link-new-tab" />
+        <span className="min-w-0 flex-1 truncate text-xs text-muted">
+          studio.example/project/interface-kit
+        </span>
+        <CopyButton
+          showLabel
+          label="Copy link"
+          getText={() => 'https://studio.example/project/interface-kit'}
+        />
+      </div>
+      <p role="status" className="min-h-4 text-xs text-muted">
+        {invited
+          ? 'Invitation sent to your teammate.'
+          : privateLink
+            ? 'Link access is restricted.'
+            : 'Link sharing is enabled.'}
+      </p>
+    </div>
+  );
+}

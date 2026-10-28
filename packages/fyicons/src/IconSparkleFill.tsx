@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconSparkleFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSparkleFill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.5799 2.43802C7.03617 1.07149 8.96945 1.07139 9.4256 2.43802L10.0653 4.35697C10.3141 5.10342 10.8999 5.68918 11.6463 5.93802L13.5653 6.57767C14.932 7.03378 14.9318 8.96712 13.5653 9.42337L11.6463 10.063C10.9 10.3118 10.3142 10.8978 10.0653 11.6441L9.4256 13.563C8.96954 14.93 7.03597 14.93 6.5799 13.563L5.94025 11.6441C5.69139 10.8978 5.10552 10.3119 4.3592 10.063L2.44025 9.42337C1.0733 8.9673 1.0733 7.03374 2.44025 6.57767L4.3592 5.93802C5.1055 5.68912 5.69144 5.10331 5.94025 4.35697L6.5799 2.43802Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconSparkleFill;

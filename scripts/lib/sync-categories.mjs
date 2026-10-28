@@ -1,4 +1,4 @@
-import { validateCategoryIcons } from '../../src/lib/icon-categories.ts';
+import { validateCategoryIcons } from '../../apps/site/src/lib/icon-categories.ts';
 
 /** Keep local rules; only sidebar artwork references follow Figma IDs through renames. */
 export function syncIconCategories(current, currentIcons, normalized) {

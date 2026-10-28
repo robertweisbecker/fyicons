@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconSendFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSendFill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M2 3.16287C1.99999 2.03196 3.20407 1.30767 4.20312 1.83768L13.3193 6.67459C14.3818 7.23838 14.3817 8.76108 13.3193 9.32498L4.20312 14.1619C3.20405 14.692 1.99996 13.9677 2 12.8367V9.96658C2.00014 9.29843 2.52588 8.74792 3.19336 8.71756L6.97852 8.54568C7.27021 8.53223 7.5 8.29183 7.5 7.99979C7.49989 7.70783 7.27014 7.46733 6.97852 7.45389L3.19434 7.28201C2.52682 7.25167 2.00108 6.7012 2.00098 6.03299L2 3.16287Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconSendFill;

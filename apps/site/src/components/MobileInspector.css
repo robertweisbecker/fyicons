@@ -1,0 +1,111 @@
+@property --inspector-progress {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/* Base UI owns the sheet offset. One presentation value controls its contents,
+   so the art, header and scroll region settle together and reverse in place. */
+.mobile-inspector {
+  --drawer-frame: calc(
+    100dvh - max(1rem, env(safe-area-inset-top)) -
+      max(0.5rem, env(safe-area-inset-bottom))
+  );
+  --inspector-progress: 0;
+  --inspector-duration: 300ms;
+  --inspector-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Keep the compact offset stable during Base UI's initial height measurement. */
+  --inspector-offset: calc(
+    var(--drawer-frame) - var(--inspector-compact-height)
+  );
+  height: var(--drawer-frame);
+  transform: translateY(
+    calc(var(--inspector-offset) + var(--drawer-swipe-movement-y, 0px))
+  );
+  transition:
+    transform calc(var(--inspector-duration) * var(--drawer-swipe-strength, 1))
+      var(--inspector-ease),
+    --inspector-progress
+      calc(var(--inspector-duration) * var(--drawer-swipe-strength, 1))
+      var(--inspector-ease);
+}
+.mobile-inspector[data-expanded] {
+  --inspector-offset: var(--drawer-snap-point-offset, 0px);
+}
+.mobile-inspector[data-starting-style],
+.mobile-inspector[data-ending-style] {
+  transform: translateY(100%);
+}
+.mobile-inspector[data-swiping] {
+  transition: none;
+  user-select: none;
+}
+.mobile-inspector-frame {
+  position: relative;
+  height: calc(
+    var(--inspector-compact-height) +
+      (var(--drawer-frame) - var(--inspector-compact-height)) *
+      var(--inspector-progress)
+  );
+}
+.mobile-inspector-hero {
+  position: relative;
+  container-type: inline-size;
+  height: calc(76px + 196px * var(--inspector-progress));
+  flex-shrink: 0;
+}
+.mobile-inspector-art {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  width: 144px;
+  height: 144px;
+  --art-progress: clamp(
+    0,
+    calc((var(--inspector-progress) - 0.14) * 1.162791),
+    1
+  );
+  --center-progress: clamp(
+    0,
+    calc((var(--inspector-progress) - 0.14) * 5.555556),
+    1
+  );
+  transform-origin: top left;
+  transform: translate3d(
+      calc(
+        ((100cqw - (48px + 96px * var(--art-progress))) * 0.5 - 16px) *
+          var(--center-progress)
+      ),
+      calc(96px * clamp(0, calc(var(--inspector-progress) * 6), 1)),
+      0
+    )
+    scale(calc(0.333333 + 0.666667 * var(--art-progress)));
+  /* Keep the 128px SVG aligned with the 8px grid; a border shrinks its content. */
+  outline-width: calc(3px - 2px * var(--art-progress));
+  outline-offset: calc(-3px + 2px * var(--art-progress));
+  border-radius: calc(24px - 12px * var(--art-progress));
+}
+/* Keep the same title button mounted as the artwork moves down and grows,
+   so expanding from the title preserves keyboard focus. */
+.mobile-inspector-metadata {
+  position: absolute;
+  left: 80px;
+  top: 12px;
+  height: 48px;
+  width: calc(100% - 176px + 64px * var(--inspector-progress));
+  transform: translateX(calc(-64px * var(--inspector-progress)));
+}
+.inspector-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-inspector {
+    --inspector-duration: 0ms;
+  }
+}
+
+.mobile-inspector-art .preview-canvas > span:first-child,
+.mobile-inspector-art .preview-canvas > span:last-child::after {
+  opacity: clamp(0, calc((var(--inspector-progress) - 0.2) * 3), 1);
+}

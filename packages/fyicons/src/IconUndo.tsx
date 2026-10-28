@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconUndo = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconUndo(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M5.85352 2.14637C5.65824 1.95126 5.3417 1.95116 5.14648 2.14637L2.14648 5.14637C1.95137 5.3416 1.9514 5.65817 2.14648 5.85341L5.14648 8.85438C5.34165 9.04929 5.65831 9.04922 5.85352 8.85438C6.04878 8.65912 6.04878 8.34164 5.85352 8.14637L3.70703 5.99989H10C11.6568 5.99989 12.9999 7.34309 13 8.99989C13 10.6567 11.6569 11.9999 10 11.9999H7.5C7.2239 11.9999 7.00007 12.2238 7 12.4999C7 12.776 7.22386 12.9999 7.5 12.9999H10C12.2091 12.9999 14 11.209 14 8.99989C13.9999 6.79081 12.2091 4.99989 10 4.99989H3.70703L5.85352 2.85341C6.04878 2.65814 6.04878 2.34164 5.85352 2.14637Z" fill="currentColor" /></SvgRoot>;
+});
+export default IconUndo;

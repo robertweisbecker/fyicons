@@ -1,19 +1,34 @@
 import { transform } from '@svgr/core';
 
-const darkPaint = new Set([
-  'black',
-  '#000',
-  '#000000',
-  '#18181b',
-  '#090909',
-  '#0c0c0c',
-  '#131313',
-  '#191919',
-  '#171717',
-  '#040404',
+const paintKeywords = new Set([
+  'none',
+  'currentcolor',
+  'transparent',
+  'inherit',
+  'initial',
+  'unset',
+  'revert',
+  'revert-layer',
+  'context-fill',
+  'context-stroke',
 ]);
 
-function normalizeDisplayPaint(svg) {
+function isOpaquePaint(value) {
+  const paint = value.trim().toLowerCase();
+  if (paintKeywords.has(paint)) return false;
+  if (/^#[\da-f]{3}(?:[\da-f]{3})?$/.test(paint)) return true;
+  if (/^[a-z]+$/.test(paint)) return true;
+  const functional =
+    /^(?:rgb|hsl|hwb|lab|lch|oklab|oklch|color)\(([^)]+)\)$/.exec(paint);
+  // Keep alpha-bearing paint intact; replacing it would discard its opacity.
+  return (
+    !!functional &&
+    !functional[1].includes('/') &&
+    functional[1].split(',').length <= 3
+  );
+}
+
+export function normalizeDisplayPaint(svg) {
   // Only rewrite artwork paint. Definitions, masks and clip paths retain their
   // source paint because it can affect luminance or masking semantics.
   let protectedDepth = 0;
@@ -29,12 +44,10 @@ function normalizeDisplayPaint(svg) {
     const insideProtected = protectedDepth > 0;
     if (protectedElement && !tag.endsWith('/>')) protectedDepth++;
     if (insideProtected || protectedElement) return tag;
-    const changedPaint = new Set();
     const painted = tag.replace(
       /\b(fill|stroke)=(['"])(.*?)\2/gi,
       (attribute, key, quote, value) => {
-        if (!darkPaint.has(value.toLowerCase())) return attribute;
-        changedPaint.add(key.toLowerCase());
+        if (!isOpaquePaint(value)) return attribute;
         return `${key}=${quote}currentColor${quote}`;
       },
     );
@@ -44,10 +57,7 @@ function normalizeDisplayPaint(svg) {
         const next = value.replace(
           /(^|;)\s*(fill|stroke)\s*:\s*([^;]+)/gi,
           (decl, lead, key, paint) =>
-            changedPaint.has(key.toLowerCase()) ||
-            darkPaint.has(paint.trim().toLowerCase())
-              ? `${lead}${key}:currentColor`
-              : decl,
+            isOpaquePaint(paint) ? `${lead}${key}:currentColor` : decl,
         );
         return `style=${quote}${next}${quote}`;
       },
@@ -187,11 +197,15 @@ export async function renderReactIconFiles(icons) {
   const exports = [];
   // Share SVG prop and accessibility handling without changing each icon's artwork.
   files.set(
-    'src/icons/base.tsx',
+    'packages/fyicons/src/base.tsx',
     `import * as React from 'react';
 import type { IconProps } from './types';
 
-const SvgRoot = React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }>(function SvgRoot(
+export function useIdPrefix() {
+  return React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+}
+
+const SvgRoot = /* @__PURE__ */ React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }>(function SvgRoot(
   { size = 16, color, title, idPrefix, children, ...svgProps }, ref,
 ) {
   const labeled = title || svgProps['aria-label'] || svgProps['aria-labelledby'];
@@ -219,7 +233,7 @@ export default SvgRoot;
   for (const icon of icons) {
     assertComponentName(icon.componentName);
     const componentName = icon.componentName;
-    if (files.has(`src/icons/${componentName}.tsx`)) {
+    if (files.has(`packages/fyicons/src/${componentName}.tsx`)) {
       throw new Error(`Duplicate React icon component: ${componentName}`);
     }
     const transformed = await transform(
@@ -237,9 +251,9 @@ export default SvgRoot;
           return tpl`
           import * as React from 'react';
           import type { IconProps } from './types';
-          import SvgRoot from './base';
-          const ${variables.componentName} = React.forwardRef<SVGSVGElement, IconProps>(function ${variables.componentName}(props, ref) {
-            const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
+          import SvgRoot, { useIdPrefix } from './base';
+          const ${variables.componentName} = /* @__PURE__ */ React.forwardRef<SVGSVGElement, IconProps>(function ${variables.componentName}(props, ref) {
+            const idPrefix = useIdPrefix();
             return ${variables.jsx};
           });
           export default ${variables.componentName};
@@ -249,22 +263,25 @@ export default SvgRoot;
       { componentName },
     );
     const code = transformed;
-    files.set(`src/icons/${componentName}.tsx`, code.trimEnd() + '\n');
+    files.set(
+      `packages/fyicons/src/${componentName}.tsx`,
+      code.trimEnd() + '\n',
+    );
     exports.push(
       `export { default as ${componentName} } from './${componentName}';`,
     );
   }
   files.set(
-    'src/icons/types.ts',
+    'packages/fyicons/src/types.ts',
     "import type { SVGProps } from 'react';\n\nexport type IconProps = SVGProps<SVGSVGElement> & { size?: number | string; title?: string };\n",
   );
   files.set(
-    'src/icons/index.ts',
+    'packages/fyicons/src/index.ts',
     "export type { IconProps } from './types';\n" + exports.join('\n') + '\n',
   );
   files.set(
-    'src/icons/registry.ts',
-    `import type { ComponentType } from 'react';\nimport type { IconProps } from './types';\nimport * as icons from './index';\n\nexport const iconBySourceId: Record<string, ComponentType<IconProps>> = {\n${icons.map((icon) => `  ${JSON.stringify(icon.id)}: icons.${icon.componentName},`).join('\n')}\n};\n`,
+    'apps/site/src/icons/registry.ts',
+    `import type { ComponentType } from 'react';\nimport type { IconProps } from 'fyicons';\nimport * as icons from 'fyicons';\n\nexport const iconBySourceId: Record<string, ComponentType<IconProps>> = {\n${icons.map((icon) => `  ${JSON.stringify(icon.id)}: icons.${icon.componentName},`).join('\n')}\n};\n`,
   );
   return files;
 }

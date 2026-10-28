@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconGridSidebarEnd = React.forwardRef<SVGSVGElement, IconProps>(function IconGridSidebarEnd(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6 9C6.55228 9 7 9.44772 7 10V13C7 13.5523 6.55228 14 6 14H3C2.44772 14 2 13.5523 2 13V10C2 9.44772 2.44772 9 3 9H6ZM13 2C13.5523 2 14 2.44772 14 3V13C14 13.5523 13.5523 14 13 14H10C9.44772 14 9 13.5523 9 13V3C9 2.44772 9.44772 2 10 2H13ZM3 10V13H6V10H3ZM10 13H13V3H10V13ZM6 2C6.55228 2 7 2.44772 7 3V6C7 6.55228 6.55228 7 6 7H3C2.44772 7 2 6.55228 2 6V3C2 2.44772 2.44772 2 3 2H6ZM3 6H6V3H3V6Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconGridSidebarEnd;

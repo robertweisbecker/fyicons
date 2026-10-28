@@ -1,0 +1,27 @@
+name: Request an icon
+description: Suggest a new icon or a variant of an existing icon.
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Icon name or concept
+      description: What should the icon represent?
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Where would you use it?
+      description: Describe the interface or action that needs this icon.
+    validations:
+      required: true
+  - type: textarea
+    id: existing-icons
+    attributes:
+      label: Related icons
+      description: If an existing icon is close, give its name and explain the difference you need.
+  - type: textarea
+    id: references
+    attributes:
+      label: References or sketches
+      description: Add images or links that help explain the shape. Note whether you need an outline, filled version, or both.

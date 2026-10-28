@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconFileSvg = React.forwardRef<SVGSVGElement, IconProps>(function IconFileSvg(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.46484 1C8.26036 1.0001 9.02342 1.31639 9.58594 1.87891L12.4141 4.70703C12.7891 5.08205 12.9999 5.59074 13 6.12109V7.5C13 7.77614 12.7761 8 12.5 8C12.2239 8 12 7.77614 12 7.5V6.12109C12 6.08039 11.9971 6.03999 11.9922 6H9.5C9.10217 6 8.72076 5.84185 8.43945 5.56055C8.15815 5.27924 8 4.89783 8 4.5V2.07422C7.82712 2.02613 7.64741 2.00003 7.46484 2H5C4.44772 2 4 2.44772 4 3V7.5C4 7.77614 3.77614 8 3.5 8C3.22386 8 3 7.77614 3 7.5V3C3 1.89543 3.89543 1 5 1H7.46484ZM9 4.5C9 4.63261 9.05272 4.75975 9.14648 4.85352C9.24025 4.94728 9.36739 5 9.5 5H11.293L9 2.70703V4.5Z" fill="currentColor" /><path d="M12.5 11.4762H13.7471C13.7471 12.7859 13.1379 13.4941 12.125 13.5C11.0875 13.5061 10.4976 12.5056 10.5029 11.5C10.5085 10.4629 11.004 9.53576 12.25 9.50003C12.9963 9.47863 13.5 10 13.5 10" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M5.27083 9.94241C4.37042 9.18531 2.89621 9.36675 2.86034 10.4126C2.83788 11.0672 3.56288 11.3608 4.18778 11.4171C4.6531 11.4591 5.5 11.7193 5.5 12.3882C5.5 13.0455 4.8125 13.4999 4.125 13.4999C3.20149 13.4999 2.75 12.866 2.75 12.866" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /><path d="M6.5 9.5L7.76283 13.2885C7.8388 13.5164 8.1612 13.5164 8.23717 13.2885L9.5 9.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
-});
-export default IconFileSvg;

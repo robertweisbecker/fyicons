@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconFileCopy = React.forwardRef<SVGSVGElement, IconProps>(function IconFileCopy(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M10.3789 2C10.9093 2.00006 11.4179 2.21092 11.793 2.58594L13.4141 4.20703C13.7891 4.58205 13.9999 5.09074 14 5.62109V11C14 12.1046 13.1046 13 12 13H9.73047C9.38454 13.5973 8.73993 14 8 14H4C2.89543 14 2 13.1046 2 12V8C2 6.89543 2.89543 6 4 6H6V4C6 2.89543 6.89543 2 8 2H10.3789ZM4 7C3.44772 7 3 7.44772 3 8V12C3 12.5523 3.44772 13 4 13H8C8.55228 13 9 12.5523 9 12V8C9 7.44772 8.55228 7 8 7H4ZM8 3C7.44772 3 7 3.44772 7 4V6H8C9.10457 6 10 6.89543 10 8V12H12C12.5523 12 13 11.5523 13 11V6H11.25C10.5596 6 10 5.44036 10 4.75V3H8ZM11 4.75C11 4.88807 11.1119 5 11.25 5H12.7832C12.7595 4.97012 12.7343 4.94129 12.707 4.91406L11.0859 3.29297C11.0587 3.26574 11.0299 3.24049 11 3.2168V4.75Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconFileCopy;

@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconSheet = React.forwardRef<SVGSVGElement, IconProps>(function IconSheet(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M3.5 13.5H11.5C12.6046 13.5 13.5 12.6046 13.5 11.5V6.32843C13.5 5.79799 13.2893 5.28929 12.9142 4.91421L11.0858 3.08579C10.7107 2.71071 10.202 2.5 9.67157 2.5H6.5C5.39543 2.5 4.5 3.39543 4.5 4.5V8" stroke="currentColor" /><path d="M4.5 6.5C3.39543 6.5 2.5 7.39543 2.5 8.5V13C2.5 13.2761 2.72386 13.5 3 13.5H4.5" stroke="currentColor" /><path d="M4.5 7.5V9.5C4.5 10.6046 5.39543 11.5 6.5 11.5H11.5" stroke="currentColor" strokeLinecap="round" /><path d="M6.5 9.5H11.5C12.6046 9.5 13.5 10.3954 13.5 11.5" stroke="currentColor" strokeLinecap="round" /><path d="M13.5 5.5H11C10.7239 5.5 10.5 5.27614 10.5 5V2.5" stroke="currentColor" /></SvgRoot>;
-});
-export default IconSheet;

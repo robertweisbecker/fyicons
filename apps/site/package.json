@@ -1,0 +1,36 @@
+{
+  "name": "@fyicons/site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package",
+    "dev": "vite --host 127.0.0.1",
+    "prebuild": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package",
+    "build": "tsc --noEmit && vite build && node ../../scripts/compact-build-json.mjs && node ../../scripts/measure-build.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit --incremental false"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.9.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "fflate": "0.8.3",
+    "motion": "^14.0.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-resizable-panels": "4.14.4",
+    "tailwind-merge": "3.7.0",
+    "fyicons": "0.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "@types/node": "26.6.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.5"
+  }
+}

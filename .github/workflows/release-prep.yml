@@ -1,0 +1,97 @@
+name: Verify release artifacts
+
+on:
+  pull_request:
+    paths:
+      [
+        'icons/**',
+        'apps/site/**',
+        'packages/**',
+        'scripts/**',
+        'tests/**',
+        '.changeset/**',
+        '*.json',
+        'LICENSE',
+        '.nvmrc',
+        '.github/workflows/release-prep.yml',
+        '.github/workflows/release.yml',
+      ]
+  push:
+    branches: [main]
+    paths:
+      [
+        'icons/**',
+        'apps/site/**',
+        'packages/**',
+        'scripts/**',
+        'tests/**',
+        '.changeset/**',
+        '*.json',
+        'LICENSE',
+        '.nvmrc',
+        '.github/workflows/release-prep.yml',
+        '.github/workflows/release.yml',
+      ]
+  workflow_dispatch:
+    inputs:
+      base:
+        description: 'Base commit or tag. Use empty for the first release.'
+        default: empty
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-prep-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check:icons
+      - run: npm run check:registry
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run verify:release
+      - run: git diff --exit-code -- registry.json package-lock.json
+      - name: Build icon comparison
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BASE: ${{ github.event.before }}
+          INPUT_BASE: ${{ inputs.base }}
+        run: |
+          if [ "$EVENT_NAME" = pull_request ]; then
+            base=$(git merge-base "$PR_BASE" HEAD)
+          elif [ "$EVENT_NAME" = workflow_dispatch ]; then
+            base="$INPUT_BASE"
+          elif [ -n "$PUSH_BASE" ] && [ "$PUSH_BASE" != 0000000000000000000000000000000000000000 ]; then
+            base="$PUSH_BASE"
+          else
+            base=empty
+          fi
+          npm run diff:icons -- --base "$base" --head HEAD
+          cat artifacts/icon-diff/summary.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: fyicons-release-${{ github.sha }}
+          path: |
+            artifacts/package/
+            artifacts/icon-diff/
+            artifacts/verification.json
+          if-no-files-found: error
+          retention-days: 14

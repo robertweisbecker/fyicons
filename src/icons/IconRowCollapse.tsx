@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconRowCollapse = React.forwardRef<SVGSVGElement, IconProps>(function IconRowCollapse(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.65078 10.6475C7.84601 10.4524 8.16258 10.4524 8.35781 10.6475L10.8578 13.1475C11.053 13.3427 11.053 13.6592 10.8578 13.8545C10.6625 14.0498 10.346 14.0498 10.1508 13.8545L8.0043 11.708L5.85781 13.8545C5.66255 14.0498 5.34604 14.0498 5.15078 13.8545C4.95564 13.6592 4.95556 13.3427 5.15078 13.1475L7.65078 10.6475ZM10.1547 3.14748C10.3499 2.95239 10.6665 2.9524 10.8617 3.14748C11.0566 3.34272 11.0567 3.65934 10.8617 3.85451L8.35976 6.35646C8.1646 6.55156 7.848 6.55139 7.65273 6.35646L5.15078 3.85451C4.95569 3.65928 4.95572 3.34271 5.15078 3.14748C5.34601 2.95227 5.66255 2.95234 5.85781 3.14748L8.00625 5.29591L10.1547 3.14748Z" fill="currentColor" /><path d="M3.5 8.5H12.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
-});
-export default IconRowCollapse;

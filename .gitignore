@@ -5,3 +5,8 @@ playwright-report/
 *.tsbuildinfo
 .DS_Store
 .vercel/
+artifacts/
+packages/*/.build/
+packages/*/svg/
+packages/*/manifest.json
+packages/*/LICENSE

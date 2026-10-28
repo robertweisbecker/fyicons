@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconAsteriskSimple = React.forwardRef<SVGSVGElement, IconProps>(function IconAsteriskSimple(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.99938 1C8.41632 1 8.75198 1.34197 8.7445 1.75879L8.63414 7.71289L14.264 5.76855C14.658 5.63269 15.0872 5.84691 15.2162 6.24316C15.3448 6.63957 15.1235 7.06384 14.725 7.18555L9.0277 8.9209L12.6175 13.6748C12.8683 14.0075 12.7972 14.4815 12.4603 14.7266C12.123 14.9716 11.6504 14.8924 11.4115 14.5508L7.99938 9.66699L4.58922 14.5508C4.35046 14.8921 3.87765 14.9719 3.5404 14.7275C3.20308 14.4825 3.13211 14.0076 3.38317 13.6748L6.97106 8.92188L1.27477 7.18652C0.876194 7.06488 0.654043 6.63957 0.782583 6.24316C0.911514 5.84687 1.34077 5.63377 1.73473 5.76953L7.36364 7.71387L7.25426 1.75879C7.24679 1.34213 7.58265 1.00025 7.99938 1Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconAsteriskSimple;

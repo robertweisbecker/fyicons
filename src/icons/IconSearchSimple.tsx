@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconSearchSimple = React.forwardRef<SVGSVGElement, IconProps>(function IconSearchSimple(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M7.5 2C10.5376 2 13 4.46243 13 7.5C13 8.83872 12.5206 10.0648 11.7256 11.0186L14.8535 14.1465C15.0488 14.3417 15.0488 14.6583 14.8535 14.8535C14.6583 15.0488 14.3417 15.0488 14.1465 14.8535L11.0186 11.7256C10.0648 12.5206 8.83872 13 7.5 13C4.46243 13 2 10.5376 2 7.5C2 4.46243 4.46243 2 7.5 2ZM7.5 3C5.01472 3 3 5.01472 3 7.5C3 9.98528 5.01472 12 7.5 12C9.98528 12 12 9.98528 12 7.5C12 5.01472 9.98528 3 7.5 3Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconSearchSimple;

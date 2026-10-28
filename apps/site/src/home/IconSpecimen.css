@@ -1,0 +1,117 @@
+.icon-specimen {
+  min-width: 0;
+  width: 100%;
+  max-width: 450px;
+  margin-inline: auto;
+}
+
+.specimen-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 64px;
+  padding: 40px 0 40px 64px;
+}
+
+.specimen-visual {
+  min-width: 0;
+}
+
+.specimen-grid-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.specimen-notes {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px 0 8px 8px;
+  font-family: var(--font-mono);
+  font-feature-settings: var(--font-mono--font-feature-settings);
+}
+
+.specimen-notes::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 24px;
+  border-block: 1px solid var(--line);
+  pointer-events: none;
+}
+
+.specimen-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.specimen-art {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.35px) scale(0.97);
+  transform-origin: 8px 8px;
+  transition:
+    opacity var(--specimen-duration) var(--specimen-easing),
+    transform var(--specimen-duration) var(--specimen-easing);
+}
+
+.specimen-art[data-active] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.specimen-choices {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 4px;
+  padding-top: 12px;
+}
+
+.specimen-cycle-track {
+  flex: 1;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.specimen-cycle-progress {
+  display: block;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.5;
+  animation: specimen-cycle linear forwards paused;
+}
+
+.specimen-cycle-progress[data-running] {
+  animation-play-state: running;
+}
+
+@keyframes specimen-cycle {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.icon-specimen[data-instant] .specimen-art {
+  transition: none;
+}
+
+@media (max-width: 680px) {
+  .specimen-stage {
+    padding: 24px 0 24px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .specimen-art {
+    transform: none;
+  }
+  .specimen-cycle-track {
+    display: none;
+  }
+}

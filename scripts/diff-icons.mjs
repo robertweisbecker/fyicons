@@ -1,0 +1,81 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
+import {
+  readSnapshot,
+  compareSnapshots,
+  renderMarkdown,
+} from './lib/icon-diff.mjs';
+import { createIconRenderer } from './lib/icon-diff-images.mjs';
+import { renderHtml } from './lib/icon-diff-html.mjs';
+import { previewImage, previewManifest } from './lib/icon-preview-images.mjs';
+
+const { values } = parseArgs({
+  options: {
+    base: { type: 'string' },
+    'pr-preview': { type: 'boolean', default: false },
+    head: { type: 'string', default: 'HEAD' },
+    output: { type: 'string', default: 'artifacts/icon-diff' },
+  },
+});
+if (!values.base)
+  throw new Error(
+    'Supply --base <commit-or-tag>, or --base empty for the first release.',
+  );
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const before = readSnapshot(root, values.base),
+  after = readSnapshot(root, values.head);
+const report = compareSnapshots(before, after);
+const old = new Map(before.icons.map((icon) => [icon.id, icon]));
+const next = new Map(after.icons.map((icon) => [icon.id, icon]));
+const renderer = await createIconRenderer();
+const previews = [];
+try {
+  for (const change of report.changes) {
+    const images = await renderer.compareImages(
+      change.before && old.get(change.before.id).svg,
+      change.after && next.get(change.after.id).svg,
+    );
+    change.pixels =
+      change.before && change.after
+        ? Object.fromEntries(
+            Object.entries(images).map(([view, image]) => [
+              view,
+              image.changedPixels,
+            ]),
+          )
+        : null;
+    if (change.pixels && Object.values(change.pixels).some(Boolean))
+      change.flags.push('pixels-changed');
+    previews.push(images);
+  }
+  report.renderer = renderer.metadata;
+} finally {
+  await renderer.close();
+}
+const output = path.resolve(root, values.output);
+await mkdir(output, { recursive: true });
+await writeFile(
+  path.join(output, 'changes.json'),
+  JSON.stringify(report, null, 2) + '\n',
+);
+await writeFile(path.join(output, 'summary.md'), renderMarkdown(report));
+await writeFile(path.join(output, 'index.html'), renderHtml(report, previews));
+if (values['pr-preview']) {
+  const directory = path.join(output, 'pr-preview');
+  await mkdir(directory, { recursive: true });
+  const manifest = previewManifest(report);
+  for (const [index, change] of manifest.changes.entries())
+    await writeFile(
+      path.join(directory, change.image),
+      previewImage(previews[index]),
+    );
+  await writeFile(
+    path.join(directory, 'manifest.json'),
+    JSON.stringify(manifest, null, 2) + '\n',
+  );
+}
+console.log(
+  `Compared ${report.base} → ${report.head}: ${report.totals.changed} icons with changes. See ${output}/index.html.`,
+);

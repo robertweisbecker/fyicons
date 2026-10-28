@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconEnvelopeSimpleOpen = React.forwardRef<SVGSVGElement, IconProps>(function IconEnvelopeSimpleOpen(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M6.41699 2.64893C7.33779 1.89566 8.66215 1.89575 9.58301 2.64893L13.083 5.51221C13.6632 5.98693 13.9999 6.6981 14 7.44775V12.0005C13.9998 13.1049 13.1044 14.0005 12 14.0005H4C2.89555 14.0005 2.0002 13.1049 2 12.0005V7.44775C2.00014 6.6981 2.33678 5.98693 2.91699 5.51221L6.41699 2.64893ZM8.9502 3.42236C8.39771 2.97058 7.60224 2.97048 7.0498 3.42236L3.5498 6.28662C3.20194 6.57141 3.00014 6.99818 3 7.44775V12.0005C3.0002 12.5526 3.44784 13.0005 4 13.0005H12C12.5522 13.0005 12.9998 12.5526 13 12.0005V7.44775C12.9999 6.99818 12.7981 6.57141 12.4502 6.28662L8.9502 3.42236Z" fill="currentColor" /><path d="M13.5 9.5L8.68349 7.74854C8.24197 7.58799 7.75803 7.58799 7.31651 7.74854L2.5 9.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
-});
-export default IconEnvelopeSimpleOpen;

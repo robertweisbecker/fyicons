@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconSkipBackward = React.forwardRef<SVGSVGElement, IconProps>(function IconSkipBackward(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M11.6553 3.68922C12.2762 3.42126 12.9997 3.87299 13 4.57887V11.4207C13 12.174 12.1762 12.6378 11.5322 12.2468L5.99902 8.88844V10.9998C5.99902 11.5521 5.55131 11.9998 4.99902 11.9998H3.99902C3.44674 11.9998 2.99902 11.5521 2.99902 10.9998V4.99977C2.99902 4.44749 3.44674 3.99977 3.99902 3.99977H4.99902C5.55131 3.99977 5.99902 4.44749 5.99902 4.99977V7.11012L11.5322 3.7527L11.6553 3.68922ZM6.46289 7.99977L12 11.3611V4.63747L6.46289 7.99977ZM3.99902 10.9998H4.99902V4.99977H3.99902V10.9998Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconSkipBackward;

@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconRulerMeasure = React.forwardRef<SVGSVGElement, IconProps>(function IconRulerMeasure(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M1 11.5C1 12.3284 1.67157 13 2.5 13H13.5C14.3284 13 15 12.3284 15 11.5V8.5C15 7.67157 14.3284 7 13.5 7L2.5 7C1.67157 7 1 7.67157 1 8.5L1 11.5ZM2 5.5C2 5.77614 2.22386 6 2.5 6C2.77614 6 3 5.77614 3 5.5V5L13 5V5.5C13 5.77614 13.2239 6 13.5 6C13.7761 6 14 5.77614 14 5.5V3.5C14 3.22386 13.7761 3 13.5 3C13.2239 3 13 3.22386 13 3.5V4L3 4V3.5C3 3.22386 2.77614 3 2.5 3C2.22386 3 2 3.22386 2 3.5V5.5ZM2 8.5C2 8.22386 2.22386 8 2.5 8H3L3 11H4V8H6V10H7V8H9V11H10V8H12V10H13V8H13.5C13.7761 8 14 8.22386 14 8.5V11.5C14 11.7761 13.7761 12 13.5 12H2.5C2.22386 12 2 11.7761 2 11.5V8.5Z" fill="currentColor" /></SvgRoot>;
-});
-export default IconRulerMeasure;

@@ -1,0 +1,169 @@
+@import 'tailwindcss';
+@import 'shadcn/tailwind.css';
+
+@font-face {
+  font-family: 'Inter Variable';
+  src: url('./assets/fonts/InterVariable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Variable';
+  src: url('./assets/fonts/InterVariable-Italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Paper Mono';
+  src: url('./assets/fonts/PaperMono-Variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+@custom-variant dark (&:is([data-theme='dark'] *));
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Single-storey a, discretionary ligatures, open digits, round quotes/commas. */
+  --font-sans--font-feature-settings:
+    'cv11' 1, 'dlig' 1, 'ss01' 1, 'ss03' 1, 'liga' 1, 'calt' 1;
+  --font-mono: 'Paper Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Single-storey a, duospace characters, narrow spaces. */
+  --font-mono--font-feature-settings: 'cv01' 1, 'ss02' 1, 'ss03' 1;
+}
+
+@theme inline {
+  --color-inset: var(--inset);
+  --color-canvas: var(--canvas);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-border: var(--border);
+  --color-hover: var(--hover);
+  --color-active: var(--active);
+  --color-selection: var(--accent-bg);
+  --color-control-accent: var(--control-accent);
+  --color-control-track: var(--track);
+  --color-danger: var(--color-red-500);
+  --color-dialog: var(--dialog);
+  --color-focus: var(--focus);
+}
+
+:root {
+  --inset: --alpha(var(--text) / 5%);
+  --canvas: var(--color-neutral-100);
+  --bg: var(--color-neutral-50);
+  --surface: var(--color-white);
+  --dialog: var(--color-white);
+  --text: var(--color-neutral-900);
+  --muted: var(--color-neutral-500);
+  --border: --alpha(var(--text) / 14%);
+  --line: --alpha(var(--text) / 8%);
+  --hover: --alpha(var(--text) / 5%);
+  --active: --alpha(var(--text) / 10%);
+  --accent-bg: var(--color-blue-100);
+  --grid: var(--color-blue-200);
+  --control-accent: var(--color-blue-500);
+  --focus: var(--color-blue-400);
+  --track: var(--color-neutral-300);
+  --inspector-width: calc(var(--spacing) * 96);
+  --site-header-height: calc(3.5rem + env(safe-area-inset-top));
+  --surface-outline-offset: 0px;
+  color-scheme: light;
+}
+:root[data-theme='dark'],
+.dark {
+  --inset: var(--color-black);
+  --canvas: var(--color-neutral-950);
+  --bg: var(--color-neutral-900);
+  --surface: var(--color-neutral-900);
+  --dialog: var(--color-neutral-800);
+  --text: var(--color-neutral-100);
+  --muted: var(--color-neutral-400);
+  --border: --alpha(var(--text) / 12%);
+  --line: --alpha(var(--text) / 8%);
+  --hover: --alpha(var(--text) / 10%);
+  --active: --alpha(var(--text) / 6%);
+  --accent-bg: var(--color-blue-950);
+  --grid: var(--color-blue-700);
+  --focus: var(--color-blue-300);
+  --surface-outline-offset: -1px;
+  --track: --alpha(var(--text) / 10%);
+  color-scheme: dark;
+}
+@media (768px <= width < 1024px) {
+  :root {
+    --inspector-width: calc(var(--spacing) * 88);
+  }
+}
+@layer base {
+  html {
+    /* Safari uses the root color above the page. Match the opaque header. */
+    background-color: var(--canvas);
+    scroll-padding-top: var(--site-header-height);
+  }
+  body {
+    position: relative;
+    min-height: 100svh;
+    @apply m-0 bg-canvas font-sans text-ink antialiased;
+  }
+  #root {
+    isolation: isolate;
+  }
+  /* Safari samples a full-width fixed color near the viewport edge. The
+     floating inspector must not supply this color: its rounded card is inset
+     from the edge and moves during a swipe. Keep this outside its transform,
+     below portal backdrops, and use the page color rather than the card color.
+     See https://joshpuckett.me/seamless-mobile-safari. */
+  @media (width < 768px) {
+    /* Larger layouts can dock the inspector against the viewport bottom. */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: auto 0 0;
+      height: max(12px, env(safe-area-inset-bottom));
+      z-index: 40;
+      pointer-events: none;
+      background-color: var(--canvas);
+    }
+  }
+  button,
+  a,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:not(:disabled),
+  a {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-neutral-500);
+    outline-offset: 3px;
+  }
+  button:disabled {
+    @apply cursor-default opacity-35;
+  }
+  [hidden] {
+    display: none !important;
+  }
+  kbd {
+    @apply rounded bg-muted/10 px-1.5 py-0.5 font-sans text-[11px] font-medium text-ink;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

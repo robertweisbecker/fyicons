@@ -1,0 +1,36 @@
+name: Check PR title
+
+on:
+  pull_request_target:
+    types: [opened, reopened, edited, synchronize]
+
+permissions: {}
+
+jobs:
+  title:
+    name: Conventional PR title
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      # Reads PR metadata only. Do not check out or run code from the PR here.
+      - uses: amannn/action-semantic-pull-request@48f256284bd46cdaab1048c3721360e808335d50 # v6.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            build
+            chore
+            ci
+            perf
+            refactor
+            revert
+            style
+            test
+          headerPattern: '^(?:\[codex\] )?([a-z]+)(?:\(([^()\r\n]+)\))?!?: (.+)$'
+          headerPatternCorrespondence: type, scope, subject
+          subjectPattern: '^\S.*$'
+          subjectPatternError: 'Use a short description after the colon, for example: feat(icons): add navigation icons.'

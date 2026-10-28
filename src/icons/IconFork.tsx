@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot from './base';
-const IconFork = React.forwardRef<SVGSVGElement, IconProps>(function IconFork(props, ref) {
-  const idPrefix = React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M2.14648 2.14648C2.34174 1.95126 2.65826 1.95126 2.85352 2.14648L6.68164 5.97461C7.52554 6.81851 7.99998 7.96377 8 9.15723V13.5C8 13.7761 7.77614 14 7.5 14C7.22386 14 7 13.7761 7 13.5V9.15723C6.99998 8.22899 6.63097 7.338 5.97461 6.68164L2.14648 2.85352C1.95125 2.65825 1.95123 2.34174 2.14648 2.14648ZM13.1465 2.14648C13.3417 1.95126 13.6582 1.95135 13.8535 2.14648C14.0487 2.34175 14.0488 2.65827 13.8535 2.85352L9.85352 6.85352C9.65826 7.04859 9.3417 7.04866 9.14648 6.85352C8.95141 6.6583 8.95143 6.34172 9.14648 6.14648L13.1465 2.14648Z" fill="currentColor" /><path d="M2.5 6.5V2.5H6.5" stroke="#1D1D1B" strokeLinecap="round" strokeLinejoin="round" /><path d="M13.5005 6.5V2.5H9.5" stroke="#1D1D1B" strokeLinecap="round" strokeLinejoin="round" /></SvgRoot>;
-});
-export default IconFork;
