@@ -23,13 +23,24 @@
       "id": "people-identity",
       "name": "People & identity",
       "icon": "circle-user",
-      "keywords": ["user", "users", "ear", "person"]
+      "keywords": [
+        "user",
+        "users",
+        "ear",
+        "person"
+      ]
     },
     {
       "id": "emoji",
       "name": "Emoji",
       "icon": "emoji-smile",
-      "keywords": ["emoji", "ghost", "heart", "skull", "thumbs"]
+      "keywords": [
+        "emoji",
+        "ghost",
+        "heart",
+        "skull",
+        "thumbs"
+      ]
     },
     {
       "id": "files",
@@ -116,7 +127,11 @@
         "vector-curve",
         "vector-svg"
       ],
-      "exactNames": ["height", "scale", "width"]
+      "exactNames": [
+        "height",
+        "scale",
+        "width"
+      ]
     },
     {
       "id": "typography",
@@ -215,7 +230,10 @@
         "table",
         "widget"
       ],
-      "exactNames": ["overflow", "wrap"]
+      "exactNames": [
+        "overflow",
+        "wrap"
+      ]
     },
     {
       "id": "shapes-symbols",
@@ -691,7 +709,11 @@
         "truck",
         "wallet"
       ],
-      "exactNames": ["box", "box-shipping", "square-percent"]
+      "exactNames": [
+        "box",
+        "box-shipping",
+        "square-percent"
+      ]
     },
     {
       "id": "time",
@@ -737,7 +759,9 @@
         "truck",
         "home-chimney"
       ],
-      "exactNames": ["sign"]
+      "exactNames": [
+        "sign"
+      ]
     },
     {
       "id": "science",
@@ -765,7 +789,12 @@
         "math",
         "thermometer"
       ],
-      "exactNames": ["bird", "bird-raven", "leaf", "droplet"]
+      "exactNames": [
+        "bird",
+        "bird-raven",
+        "leaf",
+        "droplet"
+      ]
     },
     {
       "id": "objects",

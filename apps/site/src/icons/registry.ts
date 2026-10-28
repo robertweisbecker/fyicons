@@ -895,7 +895,6 @@ export const iconBySourceId: Record<string, ComponentType<IconProps>> = {
   "158:11621": icons.IconToken,
   "101:4349": icons.IconSearch,
   "811:9121": icons.IconSearchSimple,
-  "377:7068": icons.IconSearchLg,
   "716:3726": icons.IconZoomIn,
   "716:3727": icons.IconZoomOut,
   "811:9110": icons.IconSearchSm,

@@ -4,7 +4,7 @@
 
 Add 58 icons: `IconAgentSubSimple`, `IconAppNotification`, `IconAppsLg`, `IconArchiveFolder`, `IconArrowUpArrowDown`, `IconBellFill`, `IconBookRepository`, `IconBrainSide`, `IconBroom`, `IconBroomSweep`, `IconChatEllipsis`, `IconChatRoundEllipsis`, `IconCircleDashedUser`, `IconDiamond`, `IconDiamondFill`, `IconDotsDiamond`, `IconDotsTriangle`, `IconDotsTriangleFill`, `IconEar`, `IconEarSlash`, `IconEmojiAddSimple`, `IconEmojiBeam`, `IconExtensions`, `IconExtensionsLg`, `IconFireAlt`, `IconFolderSparkles`, `IconFolderStar`, `IconFolderZip`, `IconGasFill`, `IconGridGalleryFill`, `IconHeadset`, `IconImageSolid`, `IconInfinitySign`, `IconIntelligenceCupertino`, `IconJournal`, `IconJournalOpen`, `IconLightbulbFill`, `IconMailbox`, `IconMarkdownSimple`, `IconMath`, `IconMouse`, `IconMouseCupertino`, `IconMouseModern`, `IconMusicNote`, `IconPaperclipSimple`, `IconParagraphThumbnailInline`, `IconPercent`, `IconShapesPlus`, `IconSquarePercent`, `IconStars`, `IconThermometer`, `IconVectorSvg`, `IconVolumeMedium`, `IconVolumeMediumFill`, `IconVolumeX`, `IconVolumeXFill`, `IconWatch`, `IconWatchSmart`.
 
-Refresh existing artwork and standardize icon metadata. The collection now contains 1,183 icons.
+Refresh existing artwork and standardize icon metadata. The collection now contains 1,182 icons.
 
 This release changes exported names and shadcn registry names. Update imports and install commands using this table:
 
@@ -68,6 +68,7 @@ These original icons are no longer included:
 - Remove `IconDownloadWide` imports and `download-wide` registry installs.
 - Remove `IconFontNumeric` imports and `font-numeric` registry installs.
 - Remove `IconFontNumericTilt` imports and `font-numeric-tilt` registry installs.
+- Remove `IconSearchLg` imports and `search-lg` registry installs. Use `IconSearch` / `search` for a magnifying glass.
 - Remove `IconTextureRefraction` imports and `texture-refraction` registry installs.
 - Remove `IconUploadWide` imports and `upload-wide` registry installs.
 

@@ -24980,34 +24980,6 @@
       "type": "registry:component"
     },
     {
-      "name": "search-lg",
-      "title": "IconSearchLg",
-      "description": "The search-lg icon from FYIcons 0.1.0.",
-      "files": [
-        {
-          "path": "packages/fyicons/src/IconSearchLg.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/IconSearchLg.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/base.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/base.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/types.ts",
-          "type": "registry:file",
-          "target": "@components/fyicons/types.ts"
-        },
-        {
-          "path": "LICENSE",
-          "type": "registry:file",
-          "target": "@components/fyicons/LICENSE"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
       "name": "zoom-in",
       "title": "IconZoomIn",
       "description": "The zoom-in icon from FYIcons 0.1.0.",

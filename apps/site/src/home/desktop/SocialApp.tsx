@@ -10,7 +10,7 @@ import { Window } from './Window';
 function SocialPost() {
   return (
     <div className="w-full">
-      <p className="mb-3 text-base leading-5 text-ink">
+      <p className="mb-3 text-lg leading-7 text-balance text-ink">
         “i'm not owned! im not owned!!”, i continue to insist as i slowly shrink
         and transform into a corn cob
       </p>
@@ -55,10 +55,6 @@ function SocialPost() {
         </span>
         <Glyph name="share" />
       </div>
-      <span className="flex items-center gap-1 text-xs text-muted">
-        Relevant
-        <Icon name="chevron-down-sm" />
-      </span>
     </div>
   );
 }
@@ -73,7 +69,7 @@ export function SocialApp() {
           Post
           <div className="ml-auto flex gap-2">
             <Glyph name="sparkles" />
-            <Glyph name="search-lg" />
+            <Glyph name="search" />
           </div>
         </div>
         <div className="mb-3 flex items-center gap-2 @md/window:gap-3">
@@ -172,7 +168,7 @@ export function SocialApp() {
             </Toggle>
           ))}
         </ToggleGroup>
-        <div className="mt-3">
+        <div className="mt-6">
           <SocialPost />
         </div>
       </div>

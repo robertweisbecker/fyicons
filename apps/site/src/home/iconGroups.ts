@@ -257,17 +257,4 @@ export const iconGroups = [
       ],
     ],
   },
-  {
-    id: '857:28183',
-    name: 'Statuses.',
-    caption: 'With states!',
-    rows: [
-      ['circle-question', 'info', 'warning'],
-      ['alert', 'circle-check', 'circle-x'],
-      ['circle-null', 'verified', 'lock'],
-      ['circle-question-fill', 'info-fill', 'warning-fill'],
-      ['alert-fill', 'circle-check-fill', 'circle-x-fill'],
-      ['circle-null-fill', 'verified-fill', 'lock-fill'],
-    ],
-  },
 ] as const;

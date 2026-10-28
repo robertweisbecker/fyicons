@@ -15,7 +15,7 @@ const tools = [
   ['Frame', 'frame', 'frame'],
   ['Pen', 'pen-tool', 'pen-tool'],
   ['Draw', 'drawing', 'drawing'],
-  ['Text', 'text-title', 'text-title'],
+  ['Text', 'text-title', 'text'],
 ] as const;
 const fills = [
   { name: 'Lavender', value: 'var(--color-violet-300)' },

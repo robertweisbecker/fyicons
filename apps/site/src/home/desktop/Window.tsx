@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 import { Icon } from '@/components/Icon';
 import { cn } from '@/lib/utils';
+import { TooltipGroup } from '@/components/ui/tooltip';
 
 export function WindowControls() {
   return (
@@ -49,14 +50,16 @@ export function Window({
         className,
       )}
     >
-      {header ?? (
-        <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-line bg-bg text-xs text-muted">
-          <WindowControls />
-          <span>{title}</span>
-          <span className="w-20" aria-hidden />
-        </div>
-      )}
-      {children}
+      <TooltipGroup>
+        {header ?? (
+          <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-line bg-bg text-xs text-muted">
+            <WindowControls />
+            <span>{title}</span>
+            <span className="w-20" aria-hidden />
+          </div>
+        )}
+        {children}
+      </TooltipGroup>
     </div>
   );
 }

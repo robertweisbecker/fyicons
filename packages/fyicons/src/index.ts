@@ -891,7 +891,6 @@ export { default as IconLinkNewWindow } from './IconLinkNewWindow';
 export { default as IconToken } from './IconToken';
 export { default as IconSearch } from './IconSearch';
 export { default as IconSearchSimple } from './IconSearchSimple';
-export { default as IconSearchLg } from './IconSearchLg';
 export { default as IconZoomIn } from './IconZoomIn';
 export { default as IconZoomOut } from './IconZoomOut';
 export { default as IconSearchSm } from './IconSearchSm';

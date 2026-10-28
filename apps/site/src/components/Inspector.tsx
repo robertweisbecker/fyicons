@@ -30,6 +30,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { IconButton } from '@/components/IconButton';
+import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { IconUsage } from './IconUsage';
 import { InspectorResizeHandle } from '@/components/InspectorResizeHandle';
 import {
@@ -225,18 +226,20 @@ function PaginationButtons({
       className="flex gap-1"
       data-base-ui-swipe-ignore
     >
-      <IconButton
-        icon="chevron-left"
-        label="Previous icon"
-        disabled={index <= 0}
-        onClick={() => navigate(-1)}
-      />
-      <IconButton
-        icon="chevron-right"
-        label="Next icon"
-        disabled={index < 0 || index >= visible.length - 1}
-        onClick={() => navigate(1)}
-      />
+      <TooltipGroup>
+        <IconButton
+          icon="chevron-left"
+          label="Previous icon"
+          disabled={index <= 0}
+          onClick={() => navigate(-1)}
+        />
+        <IconButton
+          icon="chevron-right"
+          label="Next icon"
+          disabled={index < 0 || index >= visible.length - 1}
+          onClick={() => navigate(1)}
+        />
+      </TooltipGroup>
     </div>
   );
 }
@@ -542,21 +545,28 @@ export function Inspector(props: Props) {
                   <NativeSizePreview item={item} className="mt-1" />
                 </div>
                 <div className="flex shrink-0 gap-0.5">
-                  <Toggle
-                    size="icon"
-                    aria-label="Dock inspector"
-                    title={docked ? 'Undock inspector' : 'Dock inspector'}
-                    pressed={docked}
-                    onPressedChange={onDockedChange}
-                  >
-                    <ToggleIcon icon="layout-pin" activeIcon="layout-pinned" />
-                  </Toggle>
-                  <SheetClose
-                    render={<Button variant="ghost" size="icon" />}
-                    aria-label="Close icon details"
-                  >
-                    <Icon name="x" />
-                  </SheetClose>
+                  <TooltipGroup side="bottom">
+                    <Tooltip
+                      label={docked ? 'Undock inspector' : 'Dock inspector'}
+                    >
+                      <Toggle
+                        size="icon"
+                        aria-label="Dock inspector"
+                        pressed={docked}
+                        onPressedChange={onDockedChange}
+                      >
+                        <ToggleIcon
+                          icon="layout-pin"
+                          activeIcon="layout-pinned"
+                        />
+                      </Toggle>
+                    </Tooltip>
+                    <SheetClose
+                      render={
+                        <IconButton icon="x" label="Close icon details" />
+                      }
+                    />
+                  </TooltipGroup>
                 </div>
               </header>
               <DrawerScroll className="inspector-scroll min-h-0 flex-1 overflow-y-auto">

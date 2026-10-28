@@ -1,5 +1,6 @@
 export type Page = 'home' | 'library' | 'examples';
 export const githubHref = 'https://github.com/robertweisbecker/fyicons';
+export const npmHref = 'https://www.npmjs.com/package/fyicons';
 
 // Static entry points work at a custom domain and a GitHub project subpath.
 const basePath = location.pathname

@@ -3,11 +3,13 @@ import {
   useId,
   useRef,
   useState,
+  type CSSProperties,
   type FocusEvent,
   type PointerEvent,
 } from 'react';
-import { useReducedMotion } from 'motion/react';
+import { motion, MotionConfig, useReducedMotion } from 'motion/react';
 import { Icon } from '@/components/Icon';
+import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import './IconSpecimen.css';
 
 // Centered construction paths from the drawing sheet, not artwork bounds.
@@ -18,6 +20,17 @@ const guides = {
   vertical: { label: 'Vertical', width: 9, height: 13, color: '#f59e0b' },
 } as const;
 type Guide = keyof typeof guides;
+const guideStrokeWidth = 1;
+const specimenTransition = {
+  type: 'tween',
+  duration: 0.28,
+  ease: [0.19, 1, 0.22, 1],
+} as const;
+// CSS artwork and Motion guides must arrive on the same curve and duration.
+const specimenMotionStyle = {
+  '--specimen-duration': `${specimenTransition.duration}s`,
+  '--specimen-easing': `cubic-bezier(${specimenTransition.ease.join(',')})`,
+} as CSSProperties;
 
 const samples: { name: string; label: string; guide: Guide }[] = [
   {
@@ -99,6 +112,7 @@ function useSpecimen() {
     sample: samples[index],
     playing: playing && !reducedMotion,
     reducedMotion,
+    instant: instant || Boolean(reducedMotion),
     running,
     inspectedGuide: hoveredGuide ?? focusedGuide ?? pinnedGuide,
     pinnedGuide,
@@ -158,47 +172,92 @@ function GuideShape({ shape }: { shape: Guide }) {
   );
 }
 
-function GuideHandles({ shape }: { shape: Guide }) {
-  const { width, height } = guides[shape];
+function ActiveGuide({ shape, instant }: { shape: Guide; instant: boolean }) {
+  const { width, height, color } = guides[shape];
   const x = (16 - width) / 2;
   const y = (16 - height) / 2;
+  const outline = {
+    attrX: x,
+    attrY: y,
+    width,
+    height,
+    rx: shape === 'circle' ? width / 2 : 0,
+    ry: shape === 'circle' ? height / 2 : 0,
+  };
   return (
-    <g className="specimen-handles opacity-0 transition-opacity duration-240 group-data-instant/specimen:transition-none! group-data-active/guide:opacity-100">
-      {shape === 'circle' && (
-        <rect
-          x={x}
-          y={y}
-          width={width}
-          height={height}
-          fill="none"
-          opacity="0.35"
+    <MotionConfig transition={instant ? { duration: 0 } : specimenTransition}>
+      <motion.g
+        className="specimen-active-guide pointer-events-none"
+        data-guide={shape}
+        initial={false}
+        animate={{ color }}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.07"
+        aria-hidden="true"
+      >
+        {/* Animate the path geometry without scaling its centered stroke. */}
+        <motion.rect
+          initial={false}
+          animate={outline}
+          strokeWidth={guideStrokeWidth}
+          opacity="0.12"
         />
-      )}
+        <motion.rect
+          initial={false}
+          animate={outline}
+          fill="currentColor"
+          fillOpacity="0.2"
+          opacity="0.85"
+        />
+      </motion.g>
+    </MotionConfig>
+  );
+}
+
+function BoundingBox({ shape, instant }: { shape: Guide; instant: boolean }) {
+  const { width, height, color } = guides[shape];
+  return (
+    <motion.div
+      layout={!instant}
+      initial={false}
+      animate={{ color }}
+      transition={instant ? { duration: 0 } : specimenTransition}
+      className="specimen-bounds pointer-events-none absolute outline outline-1 -outline-offset-[0.5px] outline-current/50"
+      style={{
+        left: `${((16 - width) / 32) * 100}%`,
+        top: `${((16 - height) / 32) * 100}%`,
+        width: `${(width / 16) * 100}%`,
+        height: `${(height / 16) * 100}%`,
+      }}
+      aria-hidden="true"
+    >
       {[
-        [x, y],
-        [x + width, y],
-        [x, y + height],
-        [x + width, y + height],
-      ].map(([cx, cy], index) => (
-        <rect
+        [0, 0],
+        [100, 0],
+        [0, 100],
+        [100, 100],
+      ].map(([left, top], index) => (
+        <motion.span
           key={index}
-          x={cx - 0.17}
-          y={cy - 0.17}
-          width="0.34"
-          height="0.34"
-          fill="var(--bg)"
+          layout={instant ? false : 'position'}
+          transition={instant ? { duration: 0 } : specimenTransition}
+          className="specimen-handle absolute size-1.5 -translate-1/2 border border-current bg-white"
+          style={{ left: `${left}%`, top: `${top}%` }}
         />
       ))}
-    </g>
+    </motion.div>
   );
 }
 
 function PixelSpecimen({
   index,
   inspectedGuide,
+  instant,
 }: {
   index: number;
   inspectedGuide: Guide | null;
+  instant: boolean;
 }) {
   const id = useId();
   const sample = samples[index];
@@ -261,22 +320,23 @@ function PixelSpecimen({
       {(Object.keys(guides) as Guide[]).map((shape) => (
         <g
           key={shape}
-          className="specimen-guide group/guide pointer-events-none"
+          className="specimen-guide pointer-events-none"
           data-guide={shape}
-          data-active={(!inspectedGuide && shape === sample.guide) || undefined}
-          data-preview={shape === inspectedGuide || undefined}
           style={{ color: guides[shape].color }}
-          fill="currentColor"
+          fill="none"
           stroke="currentColor"
           strokeWidth="0.07"
           aria-hidden="true"
         >
-          <g className="specimen-guide-outline opacity-20 transition-[opacity,fill-opacity] duration-240 ease-[ease] [fill-opacity:0] group-data-instant/specimen:transition-none! group-data-preview/guide:opacity-100 group-data-preview/guide:[fill-opacity:0.2] group-data-active/guide:opacity-85 group-data-active/guide:[fill-opacity:0.2]">
+          <g strokeWidth={guideStrokeWidth} opacity="0.04">
             <GuideShape shape={shape} />
           </g>
-          <GuideHandles shape={shape} />
+          <g opacity="0.2">
+            <GuideShape shape={shape} />
+          </g>
         </g>
       ))}
+      <ActiveGuide shape={inspectedGuide ?? sample.guide} instant={instant} />
       <g
         fill="var(--text)"
         fontSize="0.45"
@@ -318,6 +378,7 @@ export function IconSpecimen() {
     <section
       className="icon-specimen group/specimen"
       aria-label="Icon spotlight"
+      style={specimenMotionStyle}
       {...state.region}
     >
       <div className="specimen-stage">
@@ -325,6 +386,11 @@ export function IconSpecimen() {
           <PixelSpecimen
             index={state.index}
             inspectedGuide={state.inspectedGuide}
+            instant={state.instant}
+          />
+          <BoundingBox
+            shape={state.inspectedGuide ?? state.sample.guide}
+            instant={state.instant}
           />
           <span
             className="specimen-name pointer-events-none absolute top-full left-[3.4375%] mt-2 font-mono text-[11px] leading-4"
@@ -365,7 +431,7 @@ export function IconSpecimen() {
                     type="button"
                     className="group/legend flex items-center gap-1 rounded whitespace-nowrap"
                     data-active={active || undefined}
-                    aria-label={`Inspect ${item.label.toLowerCase()} guide, ${item.width} by ${item.height}`}
+                    aria-label={`Inspect ${item.label.toLowerCase()} guide, ${item.width + guideStrokeWidth} by ${item.height + guideStrokeWidth}`}
                     aria-pressed={state.pinnedGuide === shape}
                     style={{ color: item.color }}
                     onPointerEnter={(event) => {
@@ -395,7 +461,8 @@ export function IconSpecimen() {
                       className="invisible text-[9px] leading-3.5 text-muted group-data-active/legend:visible"
                       aria-hidden="true"
                     >
-                      {item.width} × {item.height}
+                      {item.width + guideStrokeWidth} ×{' '}
+                      {item.height + guideStrokeWidth}
                     </span>
                   </button>
                 </li>
@@ -409,28 +476,30 @@ export function IconSpecimen() {
         role="group"
         aria-label="Preview an icon"
       >
-        {samples.map((sample, index) => (
-          <button
-            type="button"
-            key={sample.name}
-            className="specimen-choice group/choice relative grid h-9 place-items-center rounded-lg text-muted hover:bg-hover hover:text-ink aria-pressed:text-ink"
-            aria-label={`Preview ${sample.label}`}
-            aria-pressed={state.index === index}
-            title={sample.label}
-            onClick={(event) => state.select(index, event.detail === 0)}
-          >
-            {state.index === index && (
-              <Icon
-                name="point-down"
-                className="pointer-events-none absolute -top-3 left-1/2 -translate-x-1/2 text-ink"
-              />
-            )}
-            <Icon
-              name={sample.name}
-              className="transition-transform duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-active/choice:scale-[0.97]"
-            />
-          </button>
-        ))}
+        <TooltipGroup>
+          {samples.map((sample, index) => (
+            <Tooltip key={sample.name} label={sample.label}>
+              <button
+                type="button"
+                className="specimen-choice group/choice relative grid h-9 place-items-center rounded-lg text-muted hover:bg-hover hover:text-ink aria-pressed:text-ink"
+                aria-label={`Preview ${sample.label}`}
+                aria-pressed={state.index === index}
+                onClick={(event) => state.select(index, event.detail === 0)}
+              >
+                {state.index === index && (
+                  <Icon
+                    name="point-down"
+                    className="pointer-events-none absolute -top-3 left-1/2 -translate-x-1/2 text-ink"
+                  />
+                )}
+                <Icon
+                  name={sample.name}
+                  className="transition-transform duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-active/choice:scale-[0.97]"
+                />
+              </button>
+            </Tooltip>
+          ))}
+        </TooltipGroup>
       </div>
       {showProgress && (
         <div className="specimen-cycle-track mx-2 mt-2" aria-hidden="true">
