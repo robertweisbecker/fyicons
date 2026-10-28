@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCircleArrowDownFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCircleArrowDownFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix}><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 4C7.72386 4 7.5 4.22386 7.5 4.5V10.293L5.85352 8.64648C5.65825 8.45122 5.34175 8.45122 5.14648 8.64648C4.95122 8.84175 4.95122 9.15825 5.14648 9.35352L7.64648 11.8535C7.84175 12.0488 8.15825 12.0488 8.35352 11.8535L10.8535 9.35352C11.0488 9.15825 11.0488 8.84175 10.8535 8.64648C10.6583 8.45122 10.3417 8.45122 10.1465 8.64648L8.5 10.293V4.5C8.5 4.22386 8.27614 4 8 4Z" fill="currentColor" /></SvgRoot>;
+  return <SvgRoot viewBox="0 0 16 16" fill="none" {...props} ref={ref} idPrefix={idPrefix} iconName="circle-arrow-down-fill"><path d="M8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1ZM8 4C7.72386 4 7.5 4.22386 7.5 4.5V10.293L5.85352 8.64648C5.65825 8.45122 5.34175 8.45122 5.14648 8.64648C4.95122 8.84175 4.95122 9.15825 5.14648 9.35352L7.64648 11.8535C7.84175 12.0488 8.15825 12.0488 8.35352 11.8535L10.8535 9.35352C11.0488 9.15825 11.0488 8.84175 10.8535 8.64648C10.6583 8.45122 10.3417 8.45122 10.1465 8.64648L8.5 10.293V4.5C8.5 4.22386 8.27614 4 8 4Z" fill="currentColor" /></SvgRoot>;
 });
 export default IconCircleArrowDownFill;

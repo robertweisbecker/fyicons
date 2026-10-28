@@ -84,7 +84,7 @@ function instanceReference(prefix, id, suffix = '') {
   };
 }
 
-function addInstanceSafeIds(jsx) {
+function addInstanceSafeIds(jsx, iconName) {
   const visit = (node) => {
     if (!node || typeof node !== 'object') return;
     if (
@@ -182,6 +182,11 @@ function addInstanceSafeIds(jsx) {
     { type: 'JSXSpreadAttribute', argument: id('props') },
     attr('ref', id('ref')),
     attr('idPrefix', id('idPrefix')),
+    {
+      type: 'JSXAttribute',
+      name: { type: 'JSXIdentifier', name: 'iconName' },
+      value: literal(iconName),
+    },
   );
 }
 
@@ -205,10 +210,10 @@ export function useIdPrefix() {
   return React.useId().replace(/[^a-zA-Z0-9_-]/g, '') + '-';
 }
 
-const SvgRoot = /* @__PURE__ */ React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string }>(function SvgRoot(
-  { size = 16, color, title, idPrefix, children, ...svgProps }, ref,
+const SvgRoot = /* @__PURE__ */ React.forwardRef<SVGSVGElement, IconProps & { idPrefix: string; iconName: string }>(function SvgRoot(
+  { size = 16, color, title, idPrefix, iconName, className, children, ...svgProps }, ref,
 ) {
-  const labeled = title || svgProps['aria-label'] || svgProps['aria-labelledby'];
+  const labeled = Boolean(svgProps['aria-label']?.trim());
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -217,8 +222,7 @@ const SvgRoot = /* @__PURE__ */ React.forwardRef<SVGSVGElement, IconProps & { id
       width={svgProps.width ?? size}
       height={svgProps.height ?? size}
       color={color}
-      aria-labelledby={svgProps['aria-labelledby'] ?? (svgProps['aria-label'] == null && title ? idPrefix + 'title' : undefined)}
-      aria-label={svgProps['aria-label'] ?? title}
+      className={['fy-icon', 'fy-' + iconName, className].filter(Boolean).join(' ')}
       role={svgProps.role ?? (labeled ? 'img' : undefined)}
       aria-hidden={svgProps['aria-hidden'] ?? (labeled ? undefined : true)}
     >
@@ -247,7 +251,7 @@ export default SvgRoot;
         prettier: false,
         svgo: false,
         template: (variables, { tpl }) => {
-          addInstanceSafeIds(variables.jsx);
+          addInstanceSafeIds(variables.jsx, icon.name);
           return tpl`
           import * as React from 'react';
           import type { IconProps } from './types';
