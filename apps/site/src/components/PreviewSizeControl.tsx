@@ -16,7 +16,7 @@ export function PreviewSizeControl({
       max={64}
       step={4}
       largeStep={16}
-      className="grid w-44 max-w-full shrink-0 grid-cols-[1fr_auto] items-center gap-x-3 gap-y-3 lg:w-52"
+      className="grid w-full min-w-0 grid-cols-[1fr_auto] items-center gap-x-3 gap-y-3"
     >
       <Slider.Label className="text-xs text-muted">Preview size</Slider.Label>
       <Slider.Value className="text-right text-xs tabular-nums">

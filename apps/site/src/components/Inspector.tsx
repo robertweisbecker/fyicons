@@ -32,6 +32,7 @@ import { Badge } from '@/components/ui/badge';
 import { IconButton } from '@/components/IconButton';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { IconUsage } from './IconUsage';
+import { IconReleaseInfo } from './IconReleaseInfo';
 import { InspectorResizeHandle } from '@/components/InspectorResizeHandle';
 import {
   getIconDisplayName,
@@ -170,6 +171,7 @@ function Details({
               })}
             </div>
           </section>
+          <IconReleaseInfo id={item.id} />
           {toggleSelection && (
             <Field.Root className="flex items-center gap-1 text-xs">
               <Checkbox
@@ -482,7 +484,7 @@ export function Inspector(props: Props) {
           duration: reducedMotion ? 0 : 0.24,
           ease: [0.32, 0.72, 0, 1],
         }}
-        className="sticky top-(--site-header-height) shrink-0 self-start"
+        className="sticky top-(--site-header-height) z-30 shrink-0 self-start"
       />
       <Sheet
         open={!!item}

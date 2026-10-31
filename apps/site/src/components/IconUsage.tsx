@@ -5,14 +5,58 @@ import { Icon } from '@/components/Icon';
 import { download } from '@/lib/downloads';
 import type { IconRecord } from '@/lib/catalog';
 import { IconCopyButton } from './IconCopyButton';
-import { InstallCommand } from './InstallCommand';
 import { Badge } from './ui/badge';
 
-const dateFormat = new Intl.DateTimeFormat('en-US', {
-  month: 'numeric',
-  day: 'numeric',
-  timeZone: 'UTC',
-});
+function UsageSnippet({
+  item,
+  label,
+  icon,
+  iconClass,
+  text,
+  description,
+  copyLabel,
+}: {
+  item: IconRecord;
+  label: string;
+  icon: string;
+  iconClass?: string;
+  text: string;
+  description: string;
+  copyLabel: string;
+}) {
+  return (
+    <div className="flex flex-col gap-1 p-1">
+      <div className="flex items-center justify-between gap-2">
+        <Badge icon={icon} iconClass={iconClass} variant="unstyled">
+          {label}
+        </Badge>
+        <IconCopyButton
+          key={item.id}
+          item={item}
+          text={text}
+          label={copyLabel}
+          size="icon-xs"
+        />
+      </div>
+      <pre
+        aria-label={description}
+        role="region"
+        tabIndex={0}
+        className="overflow-x-auto rounded-md bg-inset px-2 py-1 text-[11px] leading-5 wrap-anywhere whitespace-pre-wrap -outline-offset-2 focus-visible:outline-2 focus-visible:outline-muted"
+        onKeyDown={(event) => {
+          if (
+            ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(
+              event.key,
+            )
+          )
+            event.stopPropagation();
+        }}
+      >
+        <code>{text}</code>
+      </pre>
+    </div>
+  );
+}
 
 export function IconUsage({ item }: { item: IconRecord }) {
   const headingId = useId();
@@ -49,65 +93,23 @@ export function IconUsage({ item }: { item: IconRecord }) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-1 p-1">
-          <div className="flex items-center justify-between gap-2">
-            <Badge icon="atom" iconClass="text-sky-400" variant="unstyled">
-              JSX
-            </Badge>
-            <IconCopyButton
-              key={item.id}
-              item={item}
-              text={jsx}
-              label="Copy JSX"
-              size="icon-xs"
-            />
-          </div>
-
-          <pre
-            aria-label="React usage"
-            role="region"
-            tabIndex={0}
-            className="overflow-x-auto rounded-md bg-inset px-2 py-1 text-[11px] leading-5 break-all whitespace-pre-wrap -outline-offset-2 focus-visible:outline-2 focus-visible:outline-muted"
-            onKeyDown={(event) => {
-              if (
-                ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(
-                  event.key,
-                )
-              )
-                event.stopPropagation();
-            }}
-          >
-            <code>{jsx}</code>
-          </pre>
-        </div>
-        <div className="p-1">
-          <InstallCommand
-            command={shadcnCommand}
-            label="shadcn"
-            className="text-[11px]"
-          />
-        </div>
-        {(item.addedAt || item.updatedAt) && (
-          <p className="px-3 py-2 text-xs text-muted">
-            {item.addedAt && (
-              <span className="inline-block">
-                Added{' '}
-                <time dateTime={item.addedAt}>
-                  {dateFormat.format(new Date(item.addedAt))}
-                </time>
-              </span>
-            )}
-            {item.addedAt && item.updatedAt && ' ∙ '}
-            {item.updatedAt && (
-              <span className="inline-block">
-                Updated{' '}
-                <time dateTime={item.updatedAt}>
-                  {dateFormat.format(new Date(item.updatedAt))}
-                </time>
-              </span>
-            )}
-          </p>
-        )}
+        <UsageSnippet
+          item={item}
+          label="JSX"
+          icon="atom"
+          iconClass="text-sky-400"
+          text={jsx}
+          description="React usage"
+          copyLabel="Copy JSX"
+        />
+        <UsageSnippet
+          item={item}
+          label="shadcn"
+          icon="terminal"
+          text={shadcnCommand}
+          description="shadcn registry install"
+          copyLabel="Copy shadcn install command"
+        />
       </div>
     </section>
   );

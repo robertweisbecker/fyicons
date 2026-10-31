@@ -127,6 +127,16 @@ For a manual release:
 
 Never use publication as a readiness check. Keep existing published versions and tags unchanged. A correction to a published package needs a new version.
 
+### Website release history
+
+After publishing a release and fetching all `fyicons@*` tags, run:
+
+```sh
+node scripts/generate-icon-releases.mjs
+```
+
+Commit the generated `apps/site/src/data/icon-releases.json` with the next website update. The inspector uses it for the Added and Updated version links. The generator compares the tagged icon catalogs by collection and component ID, so renames retain their history. Import dates and category changes do not advance a release version. Use `--check` to verify the file without writing it. Website builds use this saved history and do not need Git tags or a GitHub request.
+
 ## Release automation
 
 [The release workflow](../.github/workflows/release.yml) uses the official Changesets actions. It runs from `main`. It stays disabled until the repository variable `RELEASE_AUTOMATION_ENABLED` is `true`.

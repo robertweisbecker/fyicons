@@ -25,7 +25,10 @@ export function Installation({
       </h2>
       <div className="grid gap-10 md:grid-cols-3 md:gap-8">
         <article className="flex min-w-0 flex-col gap-4">
-          <h3 className="text-lg font-medium tracking-tight">React</h3>
+          <h3 className="flex items-center gap-2 text-lg font-medium tracking-tight">
+            <Icon name="atom-react" className="size-5 text-sky-400" />
+            React
+          </h3>
           <p className="text-sm leading-6 text-muted">
             Install the React components and use them in your project.
             Tree-shakable so use what you need.
@@ -37,8 +40,9 @@ export function Installation({
           />
         </article>
         <article className="flex min-w-0 flex-col gap-4">
-          <h3 className="text-lg font-medium tracking-tight">
-            shadcn/ui registry
+          <h3 className="flex items-center gap-2 text-lg font-medium tracking-tight">
+            <Icon name="folder-add" className="size-5 text-blue-400" />
+            shadcn registry
           </h3>
           <p className="text-sm leading-6 text-muted">
             Add individual icon components to your project for more control.
@@ -51,7 +55,10 @@ export function Installation({
           />
         </article>
         <article className="flex min-w-0 flex-col gap-4">
-          <h3 className="text-lg font-medium tracking-tight">SVG</h3>
+          <h3 className="flex items-center gap-2 text-lg font-medium tracking-tight">
+            <Icon name="file-zip" className="size-5 text-muted/50" />
+            SVGs
+          </h3>
           <p className="text-sm leading-6 text-balance text-muted">
             Download all {icons.length.toLocaleString('en-US')} icons as a ZIP.
             Use them with any framework or drag them into your design files.

@@ -109,6 +109,9 @@
     background-color: var(--canvas);
     scroll-padding-top: var(--site-header-height);
   }
+  html:has(#library) {
+    scroll-padding-top: calc(var(--site-header-height) + 6rem);
+  }
   body {
     position: relative;
     min-height: 100svh;

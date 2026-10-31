@@ -1,22 +1,18 @@
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
-import { BrandMark } from './BrandMark';
+import { BrandWordmark, BrandWordmarkMobile } from './BrandWordmark';
 import { Badge } from '@/components/ui/badge';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Icon } from '@/components/Icon';
 import { IconButton } from '@/components/IconButton';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { cn } from '../lib/utils';
 import type { MouseEvent } from 'react';
 import { githubHref, npmHref, pageHref, type Page } from '../lib/navigation';
 
-const navLinkClassName =
-  'inline-flex min-h-11 items-center gap-1 rounded-full px-1 text-sm text-muted hover:bg-hover hover:text-ink aria-[current=page]:bg-hover aria-[current=page]:text-ink max-[360px]:min-h-10 max-[360px]:text-xs sm:min-h-7 sm:px-3';
-
 const iconLinkClassName = cn(
-  navLinkClassName,
-  'size-11 shrink-0 justify-center px-0 max-[360px]:size-10 sm:h-7 sm:w-auto sm:px-3 [&>svg]:size-5 sm:[&>svg]:size-4',
+  buttonVariants({ variant: 'ghost', size: 'icon' }),
+  'hidden sm:inline-flex',
 );
-
-const iconButtonClassName =
-  'size-11 max-[360px]:size-10 sm:size-8 [&>svg]:size-5 sm:[&>svg]:size-4';
 
 export function SiteHeader({
   page,
@@ -29,7 +25,7 @@ export function SiteHeader({
   navigate: (page: Page, event: MouseEvent<HTMLAnchorElement>) => void;
   theme: string;
   toggleTheme: () => void;
-  search: () => void;
+  search: (event: MouseEvent<HTMLButtonElement>) => void;
 }) {
   return (
     <header
@@ -39,21 +35,20 @@ export function SiteHeader({
     >
       <div
         className={cn(
-          'mx-auto flex h-14 max-w-400 items-center gap-1 pr-[max(.75rem,env(safe-area-inset-right))] pl-[max(.75rem,env(safe-area-inset-left))] max-[360px]:gap-0.5 max-[360px]:pr-[max(.5rem,env(safe-area-inset-right))] max-[360px]:pl-[max(.5rem,env(safe-area-inset-left))] sm:gap-6 sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pl-[max(1.5rem,env(safe-area-inset-left))]',
+          'flex h-14 w-full items-center gap-1 pr-[max(.75rem,env(safe-area-inset-right))] pl-[max(.75rem,env(safe-area-inset-left))] max-[360px]:gap-0.5 max-[360px]:pr-[max(.5rem,env(safe-area-inset-right))] max-[360px]:pl-[max(.5rem,env(safe-area-inset-left))] sm:gap-6 sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pl-[max(1.5rem,env(safe-area-inset-left))]',
         )}
       >
         <a
           className={cn(
-            'flex shrink-0 items-center justify-center gap-2 text-sm',
+            buttonVariants({ variant: 'unstyled', size: 'unstyled' }),
+            'gap-2 text-sm',
           )}
           aria-label="FYIcons home"
           href={pageHref('home')}
           onClick={(event) => navigate('home', event)}
         >
-          <BrandMark className="shrink-0" />
-          <span className="hidden font-medium tracking-tight min-[480px]:inline">
-            fyicons
-          </span>
+          <BrandWordmark className="hidden min-[480px]:block" />
+          <BrandWordmarkMobile className="min-[480px]:hidden" />
           <Badge
             variant="outline"
             size="sm"
@@ -74,14 +69,37 @@ export function SiteHeader({
               href={pageHref(item)}
               onClick={(event) => navigate(item, event)}
               aria-current={page === item ? 'page' : undefined}
-              className={navLinkClassName}
+              className={cn(
+                buttonVariants({
+                  variant: page === item ? 'neutral' : 'ghost',
+                  size: 'sm',
+                }),
+                'rounded-full',
+              )}
             >
-              {item === 'library' ? 'Library' : 'Examples'}
+              {item === 'library' ? 'Icons' : 'Examples'}
             </a>
           ))}
         </nav>
-        <div className={cn('flex shrink-0 items-center sm:gap-2')}>
+        <div className={cn('flex shrink-0 items-center gap-2')}>
           <TooltipGroup side="bottom">
+            <Button
+              variant="neutral"
+              size="sm"
+              aria-label="Search all icons"
+              className="rounded-full"
+              onClick={search}
+            >
+              <Icon name="search" />
+              <span className="hidden sm:inline">Search</span>
+              <kbd aria-hidden="true" className="hidden p-px sm:block">
+                <Icon name="slash-sm" size={16} />
+              </kbd>
+            </Button>
+            <span
+              aria-hidden="true"
+              className="hidden h-4 w-px shrink-0 bg-ink/30 sm:block"
+            />
             <Tooltip label="GitHub">
               <a
                 href={githubHref}
@@ -128,20 +146,15 @@ export function SiteHeader({
             </Tooltip>
             <span
               aria-hidden="true"
-              className="h-4 w-px shrink-0 bg-neutral-300 dark:bg-neutral-600"
-            />
-            <IconButton
-              icon="search"
-              label="Search all icons"
-              className={iconButtonClassName}
-              onClick={search}
+              className="hidden h-4 w-px shrink-0 bg-ink/30 sm:block"
             />
             <IconButton
               icon={theme === 'dark' ? 'sun' : 'moon'}
               label={
                 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme'
               }
-              className={iconButtonClassName}
+              variant="ghost"
+              size="icon"
               onClick={toggleTheme}
             />
           </TooltipGroup>

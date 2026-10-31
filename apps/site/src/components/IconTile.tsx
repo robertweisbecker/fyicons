@@ -42,7 +42,8 @@ export function IconTile({
         <Icon name={icon.id} className="bg-grid size-(--preview-size)" />
         <span
           className={cn(
-            'tile-name max-w-full truncate text-[11px] leading-none font-normal wrap-anywhere text-muted',
+            'tile-name hidden max-w-full truncate text-[11px] leading-none font-normal wrap-anywhere text-muted opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 md:block',
+            (inspected || selected) && 'opacity-100',
           )}
           title={name}
         >

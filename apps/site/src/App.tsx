@@ -9,12 +9,13 @@ import {
   useState,
   type MouseEvent,
 } from 'react';
+import { flushSync } from 'react-dom';
 import { Icon } from './components/Icon';
 import { Button } from '@/components/ui/button';
 import { Popover } from '@base-ui/react/popover';
 import { Switch } from '@/components/ui/switch';
 import { SelectedIconsDialog } from '@/components/SelectedIconsDialog';
-import { GlobalSearch, Search } from './components/Search';
+import { GlobalSearch, LibrarySearch } from './components/Search';
 import { searchIcons } from './lib/icon-search';
 import { IconTile } from './components/IconTile';
 import { SiteHeader } from './components/SiteHeader';
@@ -22,7 +23,7 @@ import { SiteFooter } from './components/SiteFooter';
 import { PreviewSizeControl } from './components/PreviewSizeControl';
 import { type Page } from './lib/navigation';
 import { useLibraryNavigation } from './lib/use-library-navigation';
-import { CategorySidebar } from './components/CategorySidebar';
+import { CategoryMenu, CategorySidebar } from './components/CategorySidebar';
 import { notify } from './components/ui/toast';
 import { Inspector } from './components/Inspector';
 import { byId, icons, type IconRecord } from './lib/catalog';
@@ -54,7 +55,7 @@ export function App() {
   const activeCategory =
     query.trim() || categoryReadiness.status === 'loading' ? 'all' : category;
   const [showFilled, setShowFilled] = useState(true);
-  const [previewSize, setPreviewSize] = useState(16);
+  const [previewSize, setPreviewSize] = useState(32);
   const [inspectorDocked, setInspectorDocked] = useState(false);
   const gridAnchor = useRef<{ element: HTMLElement; top: number } | null>(null);
   // Retain the legacy storage key so existing saved choices remain selected.
@@ -66,7 +67,19 @@ export function App() {
   const [theme, setTheme] = usePreference<string>('fyicons-theme-v1', 'light');
   const [packing, setPacking] = useState(false);
   const search = useRef<HTMLInputElement>(null);
+  const globalSearchInput = useRef<HTMLInputElement>(null);
+  const globalSearchReturnFocus = useRef<HTMLElement>(null);
   const lastSelected = useRef<string | null>(null);
+  function openGlobalSearch(trigger?: HTMLElement) {
+    const focused = trigger ?? document.activeElement;
+    globalSearchReturnFocus.current =
+      focused instanceof HTMLElement && focused !== document.body
+        ? focused
+        : null;
+    // Focus within the tap gesture so mobile browsers can open the keyboard.
+    flushSync(() => setSearchOpen(true));
+    globalSearchInput.current?.focus({ preventScroll: true });
+  }
   const visible = useMemo(() => {
     return searchIcons(
       icons.filter(
@@ -91,7 +104,10 @@ export function App() {
   function preserveGridPosition(preferredId = inspectedId) {
     if (!matchMedia('(min-width: 768px)').matches) return;
     const headerBottom =
-      document.querySelector('header')?.getBoundingClientRect().bottom ?? 0;
+      document.querySelector('.library-tools')?.getBoundingClientRect()
+        .bottom ??
+      document.querySelector('header')?.getBoundingClientRect().bottom ??
+      0;
     const isVisible = (tile: HTMLElement) => {
       const rect = tile.getBoundingClientRect();
       return rect.top >= headerBottom && rect.bottom <= window.innerHeight;
@@ -220,7 +236,8 @@ export function App() {
         event.key.toLowerCase() === 'k'
       ) {
         event.preventDefault();
-        setSearchOpen((open) => !open);
+        if (searchOpen) setSearchOpen(false);
+        else openGlobalSearch();
         return;
       }
       if (
@@ -233,8 +250,7 @@ export function App() {
         return;
       if (event.key === '/') {
         event.preventDefault();
-        if (view === 'library') search.current?.focus();
-        else setSearchOpen(true);
+        openGlobalSearch();
       }
       if (
         inspectedId &&
@@ -263,19 +279,6 @@ export function App() {
       </label>
     </>
   );
-  const displayControls = !mobile && (
-    <aside
-      aria-label="Library display"
-      className={cn(
-        'flex flex-wrap items-center gap-x-8 gap-y-4',
-        current && inspectorDocked
-          ? 'mb-5'
-          : 'order-1 lg:sticky lg:top-[calc(var(--site-header-height)+1.5rem)] lg:order-3 lg:flex-col lg:items-stretch lg:gap-6 lg:self-start',
-      )}
-    >
-      {displayOptions}
-    </aside>
-  );
   return (
     <div
       className={cn(
@@ -299,11 +302,13 @@ export function App() {
         navigate={changeView}
         theme={theme}
         toggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        search={() => setSearchOpen(true)}
+        search={(event) => openGlobalSearch(event.currentTarget)}
       />
       <GlobalSearch
         open={searchOpen}
         onOpenChange={setSearchOpen}
+        inputRef={globalSearchInput}
+        returnFocusRef={globalSearchReturnFocus}
         select={(icon) => {
           if (!current && inspectorDocked) preserveGridPosition(icon.id);
           setShowFilled(true);
@@ -339,36 +344,33 @@ export function App() {
             ) : view === 'library' ? (
               <div
                 id="library"
-                className="flex flex-col gap-6 pt-8 [--category-sidebar-width:13rem] lg:grid lg:min-h-[calc(100dvh-3.5rem)] lg:grid-cols-[var(--category-sidebar-width)_minmax(0,1fr)_var(--category-sidebar-width)] lg:group-[.has-docked-inspector]/app:grid-cols-[var(--category-sidebar-width)_minmax(0,1fr)]"
+                className="flex flex-col gap-6 pt-4 [--category-sidebar-width:13rem] lg:grid lg:min-h-[calc(100dvh-3.5rem)] lg:grid-cols-[var(--category-sidebar-width)_minmax(0,1fr)_var(--category-sidebar-width)] lg:group-[.has-docked-inspector]/app:grid-cols-[var(--category-sidebar-width)_minmax(0,1fr)]"
               >
                 <CategorySidebar
                   value={activeCategory}
                   onValueChange={setCategory}
+                  displayControls={displayOptions}
                 />
-                {!(current && inspectorDocked) && displayControls}
-                <div className="order-2 w-full max-w-5xl min-w-0">
-                  {current && inspectorDocked && displayControls}
+                <div className="w-full min-w-0">
                   {categoryReadiness.error && (
                     <p role="alert" className="mb-4 text-sm text-muted">
                       {categoryReadiness.error}
                     </p>
                   )}
                   <h1 className="sr-only">Icons</h1>
-                  <div
-                    className={cn(
-                      'library-tools relative -m-1 flex flex-nowrap items-center gap-2 overflow-x-auto p-1',
-                    )}
-                  >
-                    <div className="min-w-48 flex-1">
-                      <Search
+                  <div className="library-tools sticky top-(--site-header-height) z-20 -mx-1 flex items-center gap-2 px-1 py-4 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:-bottom-5 before:-z-10 before:bg-linear-to-b before:from-canvas before:from-65% before:to-transparent">
+                    <CategoryMenu
+                      value={activeCategory}
+                      onValueChange={setCategory}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <LibrarySearch
                         value={query}
                         onValueChange={setQuery}
                         inputRef={search}
-                        matches={visible}
-                        select={select}
                       />
                     </div>
-                    {mobile && (
+                    <div className="shrink-0 lg:hidden">
                       <Popover.Root>
                         <Popover.Trigger
                           aria-label="Display options"
@@ -376,7 +378,7 @@ export function App() {
                             <Button
                               variant="outline"
                               size="icon"
-                              className="size-10 data-popup-open:bg-hover"
+                              className="size-11 rounded-xl data-popup-open:bg-hover"
                             />
                           }
                         >
@@ -401,11 +403,11 @@ export function App() {
                           </Popover.Positioner>
                         </Popover.Portal>
                       </Popover.Root>
-                    )}
+                    </div>
                   </div>
                   <div
                     className={cn(
-                      'my-4 flex min-h-9 items-center justify-between gap-4 text-xs text-muted',
+                      'mb-4 flex min-h-9 items-center justify-between gap-4 text-xs text-muted',
                     )}
                   >
                     <p role="status">
@@ -423,7 +425,7 @@ export function App() {
                   </div>
                   <div
                     className={cn(
-                      'icon-grid group/grid grid grid-cols-[repeat(auto-fill,minmax(128px,1fr))] gap-2 max-[760px]:grid-cols-[repeat(auto-fill,minmax(64px,1fr))] [&.large]:grid-cols-[repeat(auto-fill,minmax(156px,1fr))]',
+                      'icon-grid group/grid grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] gap-2 md:grid-cols-[repeat(auto-fill,minmax(128px,1fr))] [&.large]:grid-cols-[repeat(auto-fill,minmax(156px,1fr))]',
                       previewSize > 40 && 'large',
                     )}
                     style={

@@ -159,7 +159,7 @@ export function IconGroupCarousel({
         <ScrollArea.Scrollbar
           orientation="horizontal"
           keepMounted
-          className="pointer-events-none flex h-4 items-center px-1 opacity-0 transition-opacity duration-150 ease-out select-none group-has-[:focus-visible]/carousel-scroll:pointer-events-auto group-has-[:focus-visible]/carousel-scroll:opacity-100 data-hovering:pointer-events-auto data-hovering:opacity-100 data-scrolling:pointer-events-auto data-scrolling:opacity-100 data-scrolling:duration-0 motion-reduce:transition-none"
+          className="flex h-4 items-center px-1 opacity-100 transition-opacity duration-150 ease-out select-none group-has-[:focus-visible]/carousel-scroll:pointer-events-auto group-has-[:focus-visible]/carousel-scroll:opacity-100 data-hovering:pointer-events-auto data-hovering:opacity-100 data-scrolling:pointer-events-auto data-scrolling:opacity-100 data-scrolling:duration-0 motion-reduce:transition-none md:pointer-events-none md:opacity-0"
         >
           <ScrollArea.Thumb className="h-1.5 rounded-full bg-neutral-400/70 hover:bg-neutral-400 active:bg-neutral-400" />
         </ScrollArea.Scrollbar>

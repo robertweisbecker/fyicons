@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import {
   Menu,
   MenuTrigger,
@@ -37,67 +38,88 @@ function CategoryLabel({
     </>
   );
 }
-export function CategorySidebar({ value, onValueChange }: Props) {
+export function CategorySidebar({
+  value,
+  onValueChange,
+  displayControls,
+}: Props & { displayControls: ReactNode }) {
+  const options = categoryOptions();
+  return (
+    <aside
+      aria-label="Library filters"
+      className="sticky top-[calc(var(--site-header-height)+1rem)] hidden max-h-[calc(100dvh-var(--site-header-height)-2rem)] w-(--category-sidebar-width) shrink-0 self-start overflow-y-auto overscroll-contain pt-4 pr-4 pl-1 lg:block"
+    >
+      <div
+        role="group"
+        aria-label="Library display"
+        className="mb-8 flex flex-col gap-5 px-1"
+      >
+        {displayControls}
+      </div>
+      <h2 className="mb-3 ps-2 text-xs text-muted">Categories</h2>
+      <ToggleGroup
+        orientation="vertical"
+        aria-label="Icon categories"
+        className="gap-px"
+        value={[value]}
+        onValueChange={(values) => {
+          if (values[0]) onValueChange(values[0]);
+        }}
+      >
+        {options.map((option) => (
+          <Toggle
+            key={option.value}
+            value={option.value}
+            aria-label={option.label}
+            size="default"
+            className="justify-start ps-1.5 text-start text-xs"
+          >
+            <CategoryLabel option={option} />
+          </Toggle>
+        ))}
+      </ToggleGroup>
+    </aside>
+  );
+}
+
+export function CategoryMenu({ value, onValueChange }: Props) {
   const options = categoryOptions();
   const selected =
     options.find((option) => option.value === value) ?? options[0];
   return (
-    <>
-      <aside
-        aria-label="Categories"
-        className="sticky top-[calc(var(--site-header-height)+1.5rem)] hidden max-h-[calc(100dvh-var(--site-header-height)-2.5rem)] w-[var(--category-sidebar-width,13rem)] shrink-0 self-start overflow-y-auto overscroll-contain pr-4 lg:block"
-      >
-        <h2 className="mb-3 ps-2 text-xs text-muted">Categories</h2>
-        <ToggleGroup
-          orientation="vertical"
-          aria-label="Icon categories"
-          className="gap-px"
-          value={[value]}
-          onValueChange={(values) => {
-            if (values[0]) onValueChange(values[0]);
-          }}
+    <div className="shrink-0 lg:hidden">
+      <Menu>
+        <MenuTrigger
+          aria-label={
+            value === 'all' ? 'Categories' : `Categories: ${selected.label}`
+          }
+          render={
+            <Button
+              variant="outline"
+              className="size-11 rounded-xl p-0 sm:w-auto sm:px-3"
+            />
+          }
         >
-          {options.map((option) => (
-            <Toggle
-              key={option.value}
-              value={option.value}
-              aria-label={option.label}
-              size="default"
-              className="justify-start ps-1.5 text-start text-xs"
-            >
-              <CategoryLabel option={option} />
-            </Toggle>
-          ))}
-        </ToggleGroup>
-      </aside>
-      <div className="lg:hidden">
-        <Menu>
-          <MenuTrigger
-            render={<Button variant="outline" className="min-h-11" />}
-          >
-            <Icon name={selected.icon} />
+          <Icon name={selected.icon} />
+          <span className="hidden max-w-32 truncate sm:inline">
             {value === 'all' ? 'Categories' : selected.label}
-            <Icon name="chevron-down" />
-          </MenuTrigger>
-          <MenuContent className="w-64">
-            <MenuRadioGroup
-              value={value}
-              onValueChange={onValueChange}
-              aria-label="Icon categories"
-            >
-              {options.map((option) => (
-                <MenuRadioItem
-                  key={option.value}
-                  value={option.value}
-                  size="lg"
-                >
-                  <CategoryLabel option={option} />
-                </MenuRadioItem>
-              ))}
-            </MenuRadioGroup>
-          </MenuContent>
-        </Menu>
-      </div>
-    </>
+          </span>
+          <Icon name="chevron-down" className="hidden sm:block" />
+        </MenuTrigger>
+        <MenuContent className="w-64">
+          <MenuRadioGroup
+            value={value}
+            onValueChange={onValueChange}
+            aria-label="Icon categories"
+          >
+            {options.map((option) => (
+              <MenuRadioItem key={option.value} value={option.value} size="lg">
+                <CategoryLabel option={option} />
+              </MenuRadioItem>
+            ))}
+          </MenuRadioGroup>
+        </MenuContent>
+      </Menu>
+    </div>
   );
 }
