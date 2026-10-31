@@ -208,7 +208,8 @@ const opticalExamples = [
   {
     name: 'play-fill',
     title: 'Optical centering',
-    description: 'More space on the left balances the triangle.',
+    description:
+      "Alignment baked into icons, so you don't have to think about it.",
     Guides: PlayGuides,
   },
   {
@@ -220,7 +221,8 @@ const opticalExamples = [
   {
     name: 'font-family',
     title: 'Curves and ink traps',
-    description: 'Stroke weight varies around the bowl and joins.',
+    description:
+      'Stroke weight varies around typographic bowls and at intersections.',
     Guides: FontGuides,
   },
   {

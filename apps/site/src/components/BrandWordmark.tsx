@@ -19,7 +19,7 @@ export function BrandWordmark({ className = '' }: { className?: string }) {
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="fill-emerald-400 stroke-current"
+              className="fill-emerald-400 stroke-black"
             />
             <rect
               x="11.25"
@@ -30,7 +30,7 @@ export function BrandWordmark({ className = '' }: { className?: string }) {
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="fill-amber-400 stroke-current"
+              className="fill-amber-400 stroke-black"
             />
             <rect
               x="5.25"
@@ -40,25 +40,25 @@ export function BrandWordmark({ className = '' }: { className?: string }) {
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="fill-sky-500 stroke-current"
+              className="fill-sky-500 stroke-black"
             />
             <path
               d="M12 2.375L16.125 6.5L12 10.625L8.40533 7.03033C8.11244 6.73744 8.11244 6.26256 8.40533 5.96967L12 2.375Z"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="fill-pink-500 stroke-current"
+              className="fill-pink-500 stroke-black"
             />
           </g>
           <g>
             <path
               d="M18.7505 14.75H4.50049C4.08627 14.75 3.75049 15.0858 3.75049 15.5V21.5C3.75049 23.5711 5.42942 25.25 7.50049 25.25H16.5005C18.5716 25.25 20.2505 23.5711 20.2505 21.5V16.25C20.2505 15.4216 19.5789 14.75 18.7505 14.75Z"
               strokeWidth="1.5"
-              className="fill-[#d4b792] stroke-current"
+              className="fill-[#d4b792] stroke-black"
             />
             <path
               d="M13.1262 17H10.8762C10.2549 17 9.75122 17.5037 9.75122 18.125V18.875C9.75122 19.0821 9.91911 19.25 10.1262 19.25H13.8762C14.0833 19.25 14.2512 19.0821 14.2512 18.875V18.125C14.2512 17.5037 13.7475 17 13.1262 17Z"
-              className="fill-current"
+              className="fill-black"
             />
           </g>
         </g>

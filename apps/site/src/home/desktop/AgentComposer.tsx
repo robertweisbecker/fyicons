@@ -82,7 +82,7 @@ export function AgentComposer() {
           />
           <DemoIconButton label="Edit goal" icon="pencil" size="icon-xs" />
           <DemoToggle
-            label="Goal playback"
+            label="Play/pause"
             icon="circle-pause"
             activeIcon="circle-play"
             size="icon-xs"
@@ -90,13 +90,13 @@ export function AgentComposer() {
             className="data-pressed:bg-transparent"
           />
           <DemoIconButton
-            label="Delete goal"
+            label="Cancel"
             icon="trash"
             size="icon-xs"
             className="@max-md/window:hidden"
           />
           <DemoIconButton
-            label="Expand goal"
+            label="View"
             icon="chevrons-maximize"
             size="icon-xs"
           />
@@ -108,7 +108,7 @@ export function AgentComposer() {
           <div className="flex items-center gap-1">
             <DemoIconButton
               label="Add"
-              icon="plus"
+              icon="plus-sm"
               variant="neutral"
               size="icon-xs"
               className="rounded-full"

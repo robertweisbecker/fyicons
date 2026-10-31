@@ -31,14 +31,14 @@ export default function Landing({
         >
           <div className="hero-copy">
             <h1 className="hero-headline">
-              <span className="hero-headline-line font-normal text-muted">
+              <span className="hero-headline-line font-normal">
                 Some icons I made{' '}
                 <span className="hero-pen-word">
                   for me,
                   <Icon name="pen-tool-alt" className="hero-pen opacity-30" />
                 </span>
               </span>
-              <span className="hero-headline-line font-medium">
+              <span className="hero-headline-line">
                 now <span className="text-ink">for you.</span>
                 <Icon name="gift" className="hero-gift text-pink-400" />
               </span>
@@ -46,7 +46,7 @@ export default function Landing({
 
             <div className="my-10 flex flex-col gap-10 leading-relaxed max-[900px]:mt-7">
               <div className="flex flex-col gap-5">
-                <p className="text-balance tabular-nums">
+                <p className="text-balance text-muted tabular-nums">
                   Nice little icons for your nice little apps. Drawn
                   pixel-perfect to scale to any size.
                 </p>

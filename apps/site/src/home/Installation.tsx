@@ -21,7 +21,7 @@ export function Installation({
         id="installation-heading"
         className="mb-8 text-2xl font-medium tracking-tight"
       >
-        Installation
+        Get started
       </h2>
       <div className="grid gap-10 md:grid-cols-3 md:gap-8">
         <article className="flex min-w-0 flex-col gap-4">

@@ -50,7 +50,7 @@ export function CodeApp() {
           <Icon name="chevron-down-sm" />
         </span>
         <div className="ml-auto flex items-center gap-1 text-muted">
-          <DemoIconButton icon="file-diff" label="Diff view" size="icon-sm" />
+          <DemoIconButton icon="layout-rows" label="Diff view" size="icon-sm" />
           {[false, true].map((wide) => (
             <DemoToggle
               key={String(wide)}

@@ -98,13 +98,13 @@ export function DesignApp() {
                 aria-hidden
                 className="pointer-events-none absolute -inset-2 border border-control-accent"
               >
-                <span className="absolute -top-1 -left-1 size-2 border border-control-accent bg-surface" />
-                <span className="absolute -top-1 -right-1 size-2 border border-control-accent bg-surface" />
-                <span className="absolute -bottom-1 -left-1 size-2 border border-control-accent bg-surface" />
-                <span className="absolute -right-1 -bottom-1 size-2 border border-control-accent bg-surface" />
+                <span className="absolute -top-1 -left-1 size-2 border border-control-accent bg-white" />
+                <span className="absolute -top-1 -right-1 size-2 border border-control-accent bg-white" />
+                <span className="absolute -bottom-1 -left-1 size-2 border border-control-accent bg-white" />
+                <span className="absolute -right-1 -bottom-1 size-2 border border-control-accent bg-white" />
               </span>
             </div>
-            <span className="absolute top-full left-1/2 mt-6 -translate-x-1/2 text-xs whitespace-nowrap text-muted">
+            <span className="absolute top-full left-1/2 mt-3 -translate-x-1/2 rounded bg-control-accent px-1.5 py-px text-xs whitespace-nowrap text-white">
               160 × 176
             </span>
           </div>

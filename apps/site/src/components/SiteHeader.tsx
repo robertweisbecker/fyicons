@@ -72,7 +72,7 @@ export function SiteHeader({
               className={cn(
                 buttonVariants({
                   variant: page === item ? 'neutral' : 'ghost',
-                  size: 'sm',
+                  // size: 'sm',
                 }),
                 'rounded-full',
               )}
@@ -85,14 +85,17 @@ export function SiteHeader({
           <TooltipGroup side="bottom">
             <Button
               variant="neutral"
-              size="sm"
+              // size="sm"
               aria-label="Search all icons"
-              className="rounded-full"
+              className="rounded-full font-normal"
               onClick={search}
             >
-              <Icon name="search" />
-              <span className="hidden sm:inline">Search</span>
-              <kbd aria-hidden="true" className="hidden p-px sm:block">
+              <Icon name="search-simple" className="max-sm:-ms-1" />
+              <span className="max-sm:hidden">Search</span>
+              <kbd
+                aria-hidden="true"
+                className="ms-4 -me-1 hidden rounded-full p-px sm:block"
+              >
                 <Icon name="slash-sm" size={16} />
               </kbd>
             </Button>

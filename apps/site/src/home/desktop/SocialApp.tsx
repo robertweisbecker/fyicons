@@ -46,10 +46,11 @@ function SocialPost() {
             icon="bookmark"
             activeIcon="bookmark-fill"
             size="icon-sm"
+            className="data-pressed:bg-transparent data-pressed:text-sky-500"
           />
           6.8K
         </span>
-        <span className="flex items-center gap-1">
+        <span className="flex items-center gap-1 max-sm:hidden">
           <Glyph name="chart-histogram" />
           242K
         </span>

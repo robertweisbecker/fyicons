@@ -36,7 +36,7 @@ export function SelectedIconsDialog({
       <Dialog.Trigger render={<Button variant="text" size="sm" />}>
         <Icon name="files-tilt" />
         Selected
-        <Badge variant="elevated">{icons.length}</Badge>
+        <Badge size="sm">{icons.length}</Badge>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-70 bg-black/20 transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />

@@ -130,12 +130,12 @@ function Search({
       </Autocomplete.Empty>
       <Autocomplete.List
         aria-label="Icon search results"
-        className="min-h-0 space-y-2 overflow-y-auto overscroll-contain p-3 empty:hidden sm:p-4"
+        className="min-h-0 overflow-y-auto overscroll-contain p-3 empty:hidden sm:p-4"
       >
         {rows.map((row) => (
           <Autocomplete.Row
             key={row[0].id}
-            className="grid gap-2"
+            className="grid gap-0"
             style={{
               gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
             }}
@@ -146,11 +146,11 @@ function Search({
                 value={icon}
                 onClick={() => select(icon)}
                 aria-label={getIconDisplayName(icon)}
-                className="flex min-h-24 min-w-0 cursor-default flex-col items-center justify-center gap-3 rounded-xl bg-canvas px-2 py-4 outline-none data-highlighted:bg-selection data-highlighted:ring-2 data-highlighted:ring-focus data-highlighted:ring-inset sm:min-h-28"
+                className="relative flex min-h-24 min-w-0 cursor-default flex-col items-center justify-center gap-3 px-4 pt-4 pb-1 outline-none after:absolute after:inset-1 after:-z-1 after:rounded-xl after:bg-current/5 data-highlighted:after:bg-current/10 data-highlighted:after:outline-2 data-highlighted:after:-outline-offset-1 data-highlighted:after:outline-current"
               >
-                <Icon name={icon.id} size={32} />
+                <Icon name={icon.id} size={16} />
                 <span
-                  className="max-w-full truncate text-[11px] leading-4 text-muted"
+                  className="max-w-full truncate text-[11px] leading-3 text-muted/50"
                   title={getIconDisplayName(icon)}
                 >
                   {getIconDisplayName(icon)}

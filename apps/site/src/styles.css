@@ -71,7 +71,7 @@
   --accent-bg: var(--color-blue-100);
   --grid: var(--color-blue-200);
   --control-accent: var(--color-blue-500);
-  --focus: var(--color-blue-400);
+  --focus: var(--color-blue-500);
   --track: var(--color-neutral-300);
   --inspector-width: calc(var(--spacing) * 96);
   --site-header-height: calc(3.5rem + env(safe-area-inset-top));
