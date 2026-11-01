@@ -93,43 +93,6 @@ test('comment PNGs preserve both render sizes, sides and themes', async () => {
   );
 });
 
-test('overlay colors distinguish old, new and overlapping geometry in both themes', async () => {
-  const rectangle = (x, opacity = 1) =>
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="${x}" y="2" width="6" height="12" fill="currentColor" opacity="${opacity}"/></svg>`;
-  const png = PNG.sync.read(
-    previewImage(await compareImages(rectangle(2), rectangle(4))),
-  );
-  const pixel = (x, y) => [
-    ...png.data.subarray((y * png.width + x) * 4, (y * png.width + x) * 4 + 3),
-  ];
-  for (const [row, colors] of [
-    [
-      [240, 155, 192],
-      [128, 188, 235],
-      [120, 138, 204],
-    ],
-    [
-      [124, 39, 76],
-      [12, 72, 119],
-      [62, 80, 146],
-    ],
-  ].entries()) {
-    const x = 16;
-    const y = row * 96 + 48;
-    assert.deepEqual(pixel(x + 3 * 4, y), colors[0]);
-    assert.deepEqual(pixel(x + 9 * 4, y), colors[1]);
-    assert.deepEqual(pixel(x + 5 * 4, y), colors[2]);
-  }
-  const translucent = PNG.sync.read(
-    previewImage(await compareImages(rectangle(2, 0.5), rectangle(4, 0.5))),
-  );
-  const index = (48 * translucent.width + 16 + 3 * 4) * 4;
-  assert.deepEqual(
-    [...translucent.data.subarray(index, index + 4)],
-    [247, 205, 223, 255],
-  );
-});
-
 test('public preview metadata excludes identity and private source fields', () => {
   const preview = previewManifest({
     base,

@@ -1,3 +1,5 @@
+'use client';
+
 import { DemoCard } from './components/DemoCard';
 import { HomepageExamples } from './HomepageExamples';
 import { SidebarDemo } from './components/NavigationDemos';

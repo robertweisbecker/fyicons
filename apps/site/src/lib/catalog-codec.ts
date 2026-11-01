@@ -1,11 +1,35 @@
 import { unzlibSync, strFromU8 } from 'fflate';
-import type fullCatalog from '../data/catalog.json';
-
-export type Catalog = Omit<typeof fullCatalog, 'icons'> & {
-  icons: ((typeof fullCatalog.icons)[number] & {
-    addedAt?: string;
-    updatedAt?: string;
-  })[];
+export type CatalogIcon = {
+  id: string;
+  name: string;
+  baseName: string;
+  originalName: string;
+  componentName: string;
+  filename: string;
+  file: string;
+  width: number;
+  height: number;
+  svg: string;
+  sha256: string;
+  aliases: string[];
+  notes?: string[];
+  addedAt?: string;
+  updatedAt?: string;
+  variantSetId?: string;
+  variantSetName?: string;
+  variantProperties?: Record<string, string>;
+  duplicate: boolean;
+  variantCount: number;
+};
+export type Catalog = {
+  name: string;
+  version: string;
+  source: { id: string };
+  count: number;
+  native16Count: number;
+  duplicateGroups: Record<string, { id: string; file: string }[]>;
+  duplicatePolicy: string;
+  icons: CatalogIcon[];
 };
 export type CompactCatalog = {
   metadataArchive: string;
@@ -13,10 +37,9 @@ export type CompactCatalog = {
   iconArchive: string;
   svgArchive: string;
 };
-type ArchivedIcon = Omit<
-  Catalog['icons'][number],
-  'svg' | 'width' | 'height' | 'file' | 'sourceUrl'
-> & { sourceUrl?: string };
+type ArchivedIcon = Omit<CatalogIcon, 'svg' | 'width' | 'height' | 'file'> & {
+  sourceUrl?: string;
+};
 
 // Compression only affects transport; clipboard and downloads retain exact SVG bytes.
 function unpack(archive: string): unknown {

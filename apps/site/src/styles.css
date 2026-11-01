@@ -10,14 +10,6 @@
 }
 
 @font-face {
-  font-family: 'Inter Variable';
-  src: url('./assets/fonts/InterVariable-Italic.woff2') format('woff2');
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Paper Mono';
   src: url('./assets/fonts/PaperMono-Variable.woff2') format('woff2');
   font-style: normal;
@@ -109,7 +101,7 @@
     background-color: var(--canvas);
     scroll-padding-top: var(--site-header-height);
   }
-  html:has(#library) {
+  html:has(#icons) {
     scroll-padding-top: calc(var(--site-header-height) + 6rem);
   }
   body {
@@ -117,7 +109,7 @@
     min-height: 100svh;
     @apply m-0 bg-canvas font-sans text-ink antialiased;
   }
-  #root {
+  #site-root {
     isolation: isolate;
   }
   /* Safari samples a full-width fixed color near the viewport edge. The

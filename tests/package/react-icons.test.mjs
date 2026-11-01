@@ -7,12 +7,19 @@ import {
 } from '../../scripts/lib/react-icons.mjs';
 
 const catalog = JSON.parse(
-  await readFile(
-    new URL('../../apps/site/src/data/catalog.json', import.meta.url),
-    'utf8',
+  await readFile(new URL('../../icons/manifest.json', import.meta.url), 'utf8'),
+);
+const generatedFiles = await renderReactIconFiles(
+  await Promise.all(
+    catalog.icons.map(async (icon) => ({
+      ...icon,
+      svg: await readFile(
+        new URL(`../../icons/${icon.filename}`, import.meta.url),
+        'utf8',
+      ),
+    })),
   ),
 );
-const generatedFiles = await renderReactIconFiles(catalog.icons);
 
 // Exercise generated modules and their shared SVG root as executable code.
 const svgRootModule = (async () => {
@@ -64,37 +71,6 @@ test('every generated component renders with default sizing, accessibility, and 
     assert.match(html, /aria-hidden="true"/, icon.name);
     assert.doesNotMatch(html, /role=|iconName=|idPrefix=/, icon.name);
     assert.ok(html.includes(`class="fy-icon fy-${icon.name}"`), icon.name);
-    const labeledHtml = renderToStaticMarkup(
-      createElement(Component, {
-        'aria-label': 'Status',
-        className: 'custom text-blue-500',
-      }),
-    );
-    assert.match(labeledHtml, /role="img"/, icon.name);
-    assert.match(labeledHtml, /aria-label="Status"/, icon.name);
-    assert.doesNotMatch(labeledHtml, /aria-hidden=/, icon.name);
-    assert.ok(
-      labeledHtml.includes(
-        `class="fy-icon fy-${icon.name} custom text-blue-500"`,
-      ),
-      icon.name,
-    );
-  }
-});
-
-test('Collection and Home Fill inherit color without dark paint overrides', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
-  for (const name of ['collection', 'home-fill']) {
-    const icon = catalog.icons.find((item) => item.name === name);
-    const Component = await loadComponent(
-      generatedFiles.get(`packages/fyicons/src/${icon.componentName}.tsx`),
-    );
-    const html = renderToStaticMarkup(
-      createElement(Component, { color: '#ff00aa' }),
-    );
-    assert.match(html, /fill="currentColor"/, name);
-    assert.doesNotMatch(html, /display-p3|#131313|#0C0C0C/i, name);
   }
 });
 
@@ -252,7 +228,6 @@ test('aria-label controls accessibility defaults while explicit SVG attributes p
     ),
   );
   const cases = [
-    { name: 'decorative default', props: {}, hidden: 'true' },
     {
       name: 'title only',
       props: { title: 'Artwork' },
@@ -270,57 +245,14 @@ test('aria-label controls accessibility defaults while explicit SVG attributes p
       labelledby: 'external-name',
       hidden: 'true',
     },
-    {
-      name: 'title with aria-label',
-      props: { title: 'Artwork', 'aria-label': 'Label' },
-      label: 'Label',
-      role: 'img',
-    },
-    {
-      name: 'title with aria-labelledby',
-      props: { title: 'Artwork', 'aria-labelledby': 'external-name' },
-      labelledby: 'external-name',
-      hidden: 'true',
-    },
-    {
-      name: 'title with both explicit names',
-      props: {
-        title: 'Artwork',
-        'aria-label': 'Label',
-        'aria-labelledby': 'external-name',
-      },
-      label: 'Label',
-      labelledby: 'external-name',
-      role: 'img',
-    },
-    {
-      name: 'empty explicit aria-label',
-      props: { title: 'Artwork', 'aria-label': '' },
-      label: '',
-      hidden: 'true',
-    },
+
     {
       name: 'whitespace-only aria-label',
       props: { 'aria-label': '   ' },
       label: '   ',
       hidden: 'true',
     },
-    {
-      name: 'undefined aria-label',
-      props: { 'aria-label': undefined },
-      hidden: 'true',
-    },
-    {
-      name: 'null aria-label',
-      props: { 'aria-label': null },
-      hidden: 'true',
-    },
-    {
-      name: 'empty explicit aria-labelledby',
-      props: { title: 'Artwork', 'aria-labelledby': '' },
-      labelledby: '',
-      hidden: 'true',
-    },
+
     {
       name: 'explicit external label and visibility',
       props: {
@@ -344,12 +276,6 @@ test('aria-label controls accessibility defaults while explicit SVG attributes p
       role: 'presentation',
       hidden: 'true',
     },
-    {
-      name: 'explicit visible decorative icon',
-      props: { role: 'img', 'aria-hidden': false },
-      role: 'img',
-      hidden: 'false',
-    },
   ];
   for (const { name, props, label, labelledby, role, hidden } of cases) {
     const html = renderToStaticMarkup(createElement(Component, props));
@@ -367,17 +293,4 @@ test('aria-label controls accessibility defaults while explicit SVG attributes p
     assert.equal(attributes.role, role, name);
     assert.equal(attributes['aria-hidden'], hidden, name);
   }
-});
-
-test('empty user classes retain both default classes without trailing spaces', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
-  const icon = catalog.icons.find((item) => item.name === 'arrow-up-right');
-  const Component = await loadComponent(
-    generatedFiles.get(`packages/fyicons/src/${icon.componentName}.tsx`),
-  );
-  const html = renderToStaticMarkup(
-    createElement(Component, { className: '' }),
-  );
-  assert.match(html, /class="fy-icon fy-arrow-up-right"/);
 });

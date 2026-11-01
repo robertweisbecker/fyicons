@@ -1,21 +1,21 @@
-export type LibraryUrlState = {
+export type IconFilters = {
   category: string;
   query: string;
   icon: string | null;
 };
 
-export const emptyLibraryState: LibraryUrlState = {
+export const emptyIconFilters: IconFilters = {
   category: 'all',
   query: '',
   icon: null,
 };
 
-export function readLibraryHash(
-  hash: string,
+export function readIconFilters(
+  search: string,
   categoryIds: ReadonlySet<string> | null,
   iconNames: ReadonlySet<string>,
-): LibraryUrlState {
-  const params = new URLSearchParams(hash.replace(/^#/, ''));
+): IconFilters {
+  const params = new URLSearchParams(search);
   const category = params.get('category') ?? 'all';
   const icon = params.get('icon');
   return {
@@ -25,11 +25,10 @@ export function readLibraryHash(
   };
 }
 
-export function libraryHash({ category, query, icon }: LibraryUrlState) {
+export function iconFilterSearch({ category, query, icon }: IconFilters) {
   const params = new URLSearchParams();
   if (category !== 'all') params.set('category', category);
   if (query) params.set('q', query);
   if (icon) params.set('icon', icon);
-  const hash = params.toString();
-  return hash ? `#${hash}` : '';
+  return params.size ? `?${params}` : '';
 }

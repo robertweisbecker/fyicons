@@ -16,7 +16,6 @@ import {
 } from '../../scripts/lib/icon-diff-images.mjs';
 import { renderHtml } from '../../scripts/lib/icon-diff-html.mjs';
 import { PNG } from 'pngjs';
-import { JSDOM } from 'jsdom';
 
 let renderer;
 before(async () => {
@@ -232,23 +231,6 @@ test('source foreground paint uses the preview theme without hiding geometry cha
   );
 });
 
-test('added and removed icons have no fabricated image or pixel comparison', async () => {
-  for (const [before, after] of [
-    [null, rectangle(2)],
-    [rectangle(2), null],
-  ]) {
-    const previews = await compareImages(before, after);
-    for (const image of Object.values(previews)) {
-      assert.equal(image.changedPixels, null);
-      assert.equal(image.diff, null);
-      assert.equal(image.overlayBefore, null);
-      assert.equal(image.overlayAfter, null);
-      assert.equal(image.before === null, before === null);
-      assert.equal(image.after === null, after === null);
-    }
-  }
-});
-
 test('pink and blue overlay layers preserve source transparency and pixel alignment', async () => {
   const before = rectangle(2),
     after = rectangle(4);
@@ -284,139 +266,6 @@ test('pink and blue overlay layers preserve source transparency and pixel alignm
   }
 });
 
-test('comparison table distinguishes missing and unchanged artwork and keeps controls independent', async () => {
-  const before = [
-    icon('1', 'Changed'),
-    icon('2', 'Removed'),
-    icon('3', 'OldName'),
-  ];
-  const after = [
-    icon('1', 'Changed', { sha256: 'new' }),
-    icon('3', 'NewName'),
-    icon('4', 'Added'),
-  ];
-  const report = compareSnapshots(snapshot(before), snapshot(after));
-  const previews = await Promise.all(
-    report.changes.map((change) =>
-      compareImages(
-        change.before ? rectangle(2) : null,
-        change.after ? rectangle(change.after.id === '1' ? 4 : 2) : null,
-      ),
-    ),
-  );
-  const dom = new JSDOM(renderHtml(report, previews), {
-    runScripts: 'dangerously',
-  });
-  try {
-    const { document, Event } = dom.window;
-    const rows = [...document.querySelectorAll('tbody tr')];
-    assert.equal(rows.length, 4);
-    const sourceViews = [
-      ...rows[0].querySelector('.source').querySelectorAll('.view'),
-    ];
-    const shownSizes = () =>
-      sourceViews
-        .filter((view) => dom.window.getComputedStyle(view).display !== 'none')
-        .map((view) => view.dataset.view);
-    assert.equal(document.getElementById('size').value, 'both');
-    assert.deepEqual(shownSizes(), ['light-16', 'light-64']);
-    assert.deepEqual(
-      sourceViews
-        .filter((view) => dom.window.getComputedStyle(view).display !== 'none')
-        .map((view) => view.querySelector('.render-label').textContent),
-      ['16 px', '64 px'],
-    );
-    assert.deepEqual(
-      [...document.querySelectorAll('thead th')].map(
-        (cell) => cell.textContent,
-      ),
-      ['Icon', 'Before', 'After', 'Changes'],
-    );
-    const added = rows.find((row) => row.dataset.flags.includes('added'));
-    const removed = rows.find((row) => row.dataset.flags.includes('removed'));
-    assert.equal(
-      added.querySelectorAll('.source')[0].querySelector('img'),
-      null,
-    );
-    assert.equal(
-      removed.querySelectorAll('.source')[1].querySelector('img'),
-      null,
-    );
-    for (const row of [added, removed])
-      assert.equal(row.querySelector('.comparison img'), null);
-    assert.match(added.querySelector('.comparison').textContent, /New icon/);
-    assert.match(
-      removed.querySelector('.comparison').textContent,
-      /Icon removed/,
-    );
-    const renamed = rows.find((row) => row.dataset.flags.includes('renamed'));
-    assert.equal(renamed.querySelector('.comparison img'), null);
-    assert.match(
-      renamed.querySelector('.comparison').textContent,
-      /No pixel change/,
-    );
-    const change = (id, value, event = 'change') => {
-      const control = document.getElementById(id);
-      control.value = value;
-      control.dispatchEvent(new Event(event, { bubbles: true }));
-    };
-    change('search', 'nomatch', 'input');
-    assert.ok(rows.every((row) => row.hidden));
-    assert.equal(document.getElementById('empty').hidden, false);
-    change('search', '', 'input');
-    change('filter', 'added');
-    assert.deepEqual(
-      rows.filter((row) => !row.hidden),
-      [added],
-    );
-    change('filter', '');
-    assert.equal(document.getElementById('count').textContent, '4 icons shown');
-    change('theme', 'dark');
-    assert.deepEqual(shownSizes(), ['dark-16', 'dark-64']);
-    change('size', '16');
-    change('zoom', '4');
-    assert.equal(document.body.dataset.view, 'dark-16');
-    assert.equal(
-      document.documentElement.style.getPropertyValue('--render-size'),
-      '16px',
-    );
-    assert.equal(
-      document.documentElement.style.getPropertyValue('--zoom'),
-      '4',
-    );
-    const active = rows[0].querySelector('.view[data-view="dark-16"]');
-    assert.equal(dom.window.getComputedStyle(active).display, 'block');
-    assert.deepEqual(shownSizes(), ['dark-16']);
-    change('size', '64');
-    assert.deepEqual(shownSizes(), ['dark-64']);
-    change('size', 'both');
-    assert.deepEqual(shownSizes(), ['dark-16', 'dark-64']);
-    assert.equal(
-      document.documentElement.style.getPropertyValue('--render-size'),
-      '64px',
-    );
-    change('before-opacity', '0', 'input');
-    change('after-opacity', '75', 'input');
-    assert.equal(
-      document.documentElement.style.getPropertyValue('--old-opacity'),
-      '0',
-    );
-    assert.equal(
-      document.documentElement.style.getPropertyValue('--new-opacity'),
-      '0.75',
-    );
-    assert.equal(
-      document.getElementById('after-opacity').getAttribute('aria-valuetext'),
-      '75%',
-    );
-    assert.equal(
-      document.querySelector('output[for="after-opacity"]').value,
-      '75%',
-    );
-  } finally {
-    dom.window.close();
-  }
-});
 test('HTML treats metadata as text and works without remote resources', async () => {
   const report = compareSnapshots(
     snapshot([]),

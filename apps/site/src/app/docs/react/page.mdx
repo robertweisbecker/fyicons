@@ -1,0 +1,257 @@
+import {
+  SizeExamples,
+  InlineSizeExample,
+  ColorExamples,
+  LoadingExamples,
+} from '@/components/docs/ReactIconExamples';
+import {
+  ToggleStateExample,
+  MediaStateExample,
+  LevelStateExample,
+} from '@/components/docs/ReactIconStateExamples';
+import {
+  DocsAccordion,
+  DocsAccordionItem,
+} from '@/components/docs/DocsAccordion';
+
+export const metadata = {
+  title: 'Docs / React',
+  description:
+    'Install FYIcons for React and learn about component props, styling, and accessible icons.',
+};
+
+# React
+
+Use typed icon components with size and color props, CSS classes, and standard React SVG props.
+
+## Installation
+
+Install the package in a project with React 18.2+ or React 19:
+
+```sh
+npm install fyicons
+```
+
+Import an icon by name:
+
+```tsx
+import { IconSun } from 'fyicons';
+
+export function LightButton() {
+  return (
+    <button type="button" aria-label="Switch to light mode">
+      <IconSun size={24} color="#2563eb" />
+    </button>
+  );
+}
+```
+
+The package uses ESM and supports tree shaking, so a compatible bundler removes unused icons. Direct imports are also available:
+
+```tsx
+import IconSun from 'fyicons/icons/IconSun';
+```
+
+For editable component source, follow the [shadcn instructions](/docs/getting-started/#editable-source-with-shadcn). Those components accept the same props.
+
+<Callout aria-label="Next.js and Server Components">
+
+**Next.js and Server Components**
+
+Static icons work in Server Components without a `use client` directive. For event handlers or refs, place the icon inside your own Client Component.
+
+</Callout>
+
+## Size
+
+Use `size` to set both dimensions. The original 16 × 16 viewBox stays the same when the icon scales.
+
+<SizeExamples />
+
+```tsx
+<IconSun size={24} />
+```
+
+### Inline with text
+
+Set `size="1em"` to match the surrounding font size. Use `inline-block` to keep the SVG in the text flow.
+
+<InlineSizeExample />
+
+```tsx
+<span className="text-xl">
+  Good morning <IconSun size="1em" className="inline-block align-[-0.125em]" />
+</span>
+```
+
+## Color
+
+Use `color` to set an individual icon's color. Leave it unset to inherit the surrounding text color through `currentColor`.
+
+<ColorExamples />
+
+```tsx
+<IconSun color="#2563eb" />
+```
+
+Your `className` adds to the default classes:
+
+```tsx
+<IconSun className="toolbar-icon" />
+// Renders class="fy-icon fy-sun toolbar-icon"
+```
+
+See [Styling](/docs/styling/) for CSS examples. CSS `color` rules and inline styles can override the `color` prop, which is an SVG presentation attribute.
+
+## Usage with states
+
+While the library primarily includes outline-style icons, a good number of them have filled or otherwise stateful variants where it makes sense. Instead of having to hack your own version, just find and use the corresponding variant instead.
+
+### Booleans
+
+Icons with logical boolean use cases, like hearts and stars, have both outline and filled variants so you can swap between them when toggling. A few examples:
+
+<ToggleStateExample />
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+import { IconHeart, IconHeartFill } from 'fyicons';
+
+export function LikeButton() {
+  const [liked, setLiked] = useState(false);
+
+  return (
+    <button type="button" aria-pressed={liked} onClick={() => setLiked(!liked)}>
+      {liked ? <IconHeartFill className="text-red-400" /> : <IconHeart />}
+      Like
+    </button>
+  );
+}
+```
+
+Media playback icons also have alternates for commonly-toggled actions:
+
+<MediaStateExample />
+
+### Meters and progress
+
+A few icon families represent levels or stages: `Battery`, `Signal`, `Gauge`, and `CircleProgress`.
+
+<LevelStateExample />
+
+Families with fewer variants can reuse a state across multiple steps. Choose thresholds that fit what your application represents:
+
+```tsx
+const progressIcons = [
+  IconCircleProgressTodo,
+  IconCircleProgressQuarter,
+  IconCircleProgressHalf,
+  IconCircleProgressThreeQuarters,
+  IconCircleProgressFull,
+];
+
+// level ranges from 0 to 100.
+const Progress = progressIcons[Math.floor(level / 25)];
+
+<Progress aria-label={`Progress: ${level}%`} />;
+```
+
+### Loading indicators
+
+The library currently includes `Loader` and `Spinner`, which can be combined with keyframe animations for indeterminate or loading states. Unlike other icons, these are duotone with additional paths at lower opacities, so you get the full effect:
+
+<LoadingExamples />
+
+```tsx
+import { IconSpinner, IconLoader } from 'fyicons';
+
+<IconSpinner
+  aria-label="Loading"
+  className="animate-spin [animation-direction:reverse] [animation-timing-function:steps(10)] motion-reduce:animate-none"
+/>;
+<IconLoader
+  aria-label="Loading"
+  className="animate-spin motion-reduce:animate-none"
+/>;
+```
+
+<h2 id="props">API</h2>
+
+All props are optional. Components also accept standard React SVG props and event handlers. Many icons use filled paths, so `strokeWidth` does not change their visual weight.
+
+| Prop              | Type                           | Description                                                                      |
+| ----------------- | ------------------------------ | -------------------------------------------------------------------------------- |
+| `size`            | `number \| string`             | Sets width and height. Accepts a number or CSS length string; defaults to `16`.  |
+| `width`, `height` | `number \| string`             | Override the corresponding dimension from `size`.                                |
+| `color`           | `string`                       | Sets the SVG color used by `currentColor`. Inherits the text color when omitted. |
+| `className`       | `string`                       | Adds your classes after `fy-icon` and `fy-{icon-name}`.                          |
+| `style`           | `React.CSSProperties`          | Applies inline CSS styles.                                                       |
+| `title`           | `string`                       | Adds an SVG title. Does not change the decorative accessibility default.         |
+| `aria-label`      | `string`                       | Names the icon and sets `role="img"` by default.                                 |
+| `aria-labelledby` | `string`                       | References an external label. Also set `role="img"` and `aria-hidden={false}`.   |
+| `role`            | `React.AriaRole`               | Overrides the icon's ARIA role.                                                  |
+| `aria-hidden`     | `boolean \| "true" \| "false"` | Overrides whether the icon is hidden from assistive technology.                  |
+| `ref`             | `React.Ref<SVGSVGElement>`     | Gives access to the SVG element.                                                 |
+
+<h2 id="accessibility">Accessibility</h2>
+
+For non-decorative standalone icons, be sure to name the information or action that the icon represents.
+
+<DocsAccordion labelledBy="accessibility">
+
+<DocsAccordionItem title="Decorative icons" value="decorative-icons">
+
+Icons without an `aria-label` prop (or non-empty string) are given `aria-hidden="true"` by default. Leave this default when nearby text already explains the icon:
+
+```tsx
+<span>
+  <IconSun /> Light mode
+</span>
+```
+
+If the text is conditionally rendered (for example, hiding a label on mobile), prefer to visually hide the text instead of using `display: none`, so it remains available to screen readers.
+
+</DocsAccordionItem>
+
+<DocsAccordionItem title="Standalone icons" value="standalone-icons">
+
+Add `aria-label` when the icon communicates information on its own. The component sets `role="img"` and uses your label:
+
+```tsx
+<IconSun aria-label="Light mode" />
+```
+
+</DocsAccordionItem>
+
+<DocsAccordionItem title="Icon buttons" value="icon-buttons">
+
+Name the button and leave the icon decorative. This gives the control one accessible name:
+
+```tsx
+<button type="button" aria-label="Switch to light mode">
+  <IconSun />
+</button>
+```
+
+</DocsAccordionItem>
+
+<DocsAccordionItem title="External labels and titles" value="external-labels-and-titles">
+
+A `title` or `aria-labelledby` alone does not change the decorative default. For an external label, set all three props:
+
+```tsx
+<span id="light-mode-label">Light mode</span>
+<IconSun
+  aria-labelledby="light-mode-label"
+  role="img"
+  aria-hidden={false}
+/>
+```
+
+Explicit `role` and `aria-hidden` props override the defaults. Empty or whitespace-only labels remain decorative.
+
+</DocsAccordionItem>
+
+</DocsAccordion>

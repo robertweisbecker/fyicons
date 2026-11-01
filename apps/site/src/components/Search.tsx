@@ -21,10 +21,11 @@ function getSearchColumns() {
 }
 
 function useSearchColumns() {
-  const [columns, setColumns] = useState(getSearchColumns);
+  const [columns, setColumns] = useState(8);
   useEffect(() => {
     const queries = gridBreakpoints.map(({ query }) => matchMedia(query));
     const update = () => setColumns(getSearchColumns());
+    update();
     queries.forEach((query) => query.addEventListener('change', update));
     return () => {
       queries.forEach((query) => query.removeEventListener('change', update));
@@ -33,7 +34,7 @@ function useSearchColumns() {
   return columns;
 }
 
-export function LibrarySearch({
+export function IconSearch({
   value,
   onValueChange,
   inputRef,
@@ -45,7 +46,7 @@ export function LibrarySearch({
   return (
     <div
       role="search"
-      className="flex h-11 min-w-0 items-center gap-3 rounded-xl bg-surface px-3 shadow-sm ring-1 ring-line focus-within:ring-2 focus-within:ring-muted hover:not-focus-within:ring-border"
+      className="flex h-11 min-w-0 items-center gap-3 rounded-xl bg-surface ps-3 pe-2 shadow-sm outline-1 outline-offset-[--surface-outline-offset] outline-line focus-within:ring-2 focus-within:ring-focus hover:not-focus-within:outline-border"
     >
       <Icon name="search" />
       <input
@@ -64,8 +65,8 @@ export function LibrarySearch({
       />
       {value && (
         <IconButton
-          icon="x"
-          label="Clear search"
+          icon="circle-x-fill"
+          label="Clear"
           onClick={() => {
             onValueChange('');
             inputRef.current?.focus();
@@ -110,7 +111,7 @@ function Search({
         if (details.reason !== 'item-press') onValueChange(next);
       }}
       itemToStringValue={getIconDisplayName}
-      autoHighlight="always"
+      autoHighlight={false}
     >
       <Autocomplete.InputGroup className="flex h-14 min-w-0 shrink-0 items-center gap-3 border-b border-line px-4">
         <Icon name="search" />
@@ -205,15 +206,6 @@ export function GlobalSearch({
             <Dialog.Title className="sr-only text-sm font-medium">
               Find an icon
             </Dialog.Title>
-            {/* <Dialog.Close
-              render={
-                <IconButton
-                  icon="x"
-                  label="Close search"
-                  className="absolute top-1.5 right-1.5"
-                />
-              }
-            /> */}
           </div>
           <Search
             value={value}

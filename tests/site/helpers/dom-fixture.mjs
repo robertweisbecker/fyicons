@@ -32,6 +32,7 @@ export function createDomFixture(t, url, { pending = false } = {}) {
   dom.window.matchMedia = matchMedia;
   dom.window.scrollTo = () => {};
   dom.window.scrollBy = () => {};
+  dom.window.Element.prototype.getAnimations = () => [];
   const ResizeObserver = class {
     observe() {}
     unobserve() {}
@@ -43,6 +44,7 @@ export function createDomFixture(t, url, { pending = false } = {}) {
       unmount = callback;
     },
     window: dom.window,
+    self: dom.window,
     document: dom.window.document,
     location: dom.window.location,
     history: dom.window.history,
@@ -94,6 +96,11 @@ export function createDomFixture(t, url, { pending = false } = {}) {
     resolve(specifier, context, nextResolve) {
       if (!context.parentURL?.startsWith(sourceRoot.href))
         return nextResolve(specifier, context);
+      if (['next/navigation', 'next/link', 'next/dynamic'].includes(specifier))
+        return {
+          url: import.meta.resolve(specifier + '.js'),
+          shortCircuit: true,
+        };
       if (!specifier.startsWith('.') && !specifier.startsWith('@/'))
         return { url: import.meta.resolve(specifier), shortCircuit: true };
       const url = specifier.startsWith('@/')

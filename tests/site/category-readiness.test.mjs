@@ -1,6 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mountNavigation } from './helpers/library-navigation-harness.mjs';
 import { mountApp } from './helpers/app-readiness-harness.mjs';
 
 const config = {
@@ -10,11 +9,11 @@ const config = {
 };
 
 test('category request failure leaves every icon available', async (t) => {
-  const h = await mountNavigation(t, undefined, { pending: true });
+  const h = await mountApp(t, 'https://example.test/icons/');
   await h.rejectCategories();
-  assert.equal(h.state.categoryReadiness.status, 'error');
+  assert.equal(h.readiness.getCategoryReadiness().status, 'error');
   assert.match(
-    h.state.categoryReadiness.error,
+    h.readiness.getCategoryReadiness().error,
     /All icons are still available/,
   );
   assert.ok(
@@ -25,11 +24,8 @@ test('category request failure leaves every icon available', async (t) => {
   assert.equal(h.catalog.getManifest().icons.length, h.catalog.icons.length);
 });
 
-test('actual App renders useful library content before categories resolve', async (t) => {
-  const h = await mountApp(
-    t,
-    'https://example.test/library/#category=buildings',
-  );
+test('icon browser renders useful icon content before categories resolve', async (t) => {
+  const h = await mountApp(t, 'https://example.test/icons/?category=buildings');
   assert.equal(h.readiness.getCategoryReadiness().status, 'loading');
   assert.equal(
     h.requests.length,
@@ -39,7 +35,6 @@ test('actual App renders useful library content before categories resolve', asyn
   assert.equal(h.readiness.loadCategories(), h.readiness.loadCategories());
   assert.equal(h.requests[0].url, '/icon-categories.json');
   assert.equal(h.requests[0].options.cache, 'no-store');
-  assert.ok(h.document.querySelector('header'));
   assert.ok(h.document.querySelector('input[aria-label="Search icons"]'));
   assert.equal(h.tiles.length, h.catalog.icons.length);
   assert.equal(
@@ -63,8 +58,8 @@ test('actual App renders useful library content before categories resolve', asyn
   assert.ok(h.document.querySelector('[aria-label="Buildings"]'));
 });
 
-test('actual App category-label search results and rendered counts refresh after arrival', async (t) => {
-  const h = await mountApp(t, 'https://example.test/library/#q=buildings');
+test('icon browser category-label search results and rendered counts refresh after arrival', async (t) => {
+  const h = await mountApp(t, 'https://example.test/icons/?q=buildings');
   assert.equal(h.tiles.length, 0);
   assert.equal(h.count, `0 of ${h.catalog.icons.length} icons`);
   assert.ok(h.document.body.textContent.includes('No matching icons'));

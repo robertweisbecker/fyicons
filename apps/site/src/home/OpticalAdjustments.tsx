@@ -92,22 +92,25 @@ function OvershootGuides() {
 
 function OpticalGrid({
   children,
-  expanded = false,
+  columns = 16,
+  rows = columns,
+  className,
 }: {
   children: ReactNode;
-  expanded?: boolean;
+  columns?: number;
+  rows?: number;
+  className?: string;
 }) {
   return (
     <div
       className={cn(
-        'optical-icon-grid relative shrink-0 outline outline-1 -outline-offset-[0.5px] outline-border',
-        expanded ? 'size-42' : 'size-32',
+        'optical-icon-grid relative size-32 shrink-0 outline outline-1 -outline-offset-[0.5px] outline-border',
+        className,
       )}
       style={{
         backgroundImage:
           'linear-gradient(to right, var(--line) 1px, transparent 1px), linear-gradient(to bottom, var(--line) 1px, transparent 1px)',
-        // The expanded diagram uses a 24px grid at 7×; other examples use 16px at 8×.
-        backgroundSize: expanded ? '7px 7px' : '8px 8px',
+        backgroundSize: `${100 / columns}% ${100 / rows}%`,
         backgroundPosition: '-0.5px -0.5px',
       }}
     >
@@ -125,7 +128,7 @@ function OvershootExample({
 }) {
   const overlapMaskId = useId();
   return (
-    <OpticalGrid expanded>
+    <OpticalGrid columns={24} className="size-42">
       <svg
         className="size-full"
         viewBox="0 0 24 24"
@@ -171,27 +174,90 @@ function OvershootExample({
 }
 
 function FontGuides() {
+  // Project the outer oval behind the stem from the visible bowl's bounds.
+  const outerOval = { cx: 11.999, cy: 10, rx: 2.5, ry: 3 };
+  const innerOval = { cx: 12.165, cy: 10, rx: 1.667, ry: 1.909 };
+  const outerLeft = outerOval.cx - outerOval.rx;
+  const outerRight = outerOval.cx + outerOval.rx;
+  const innerLeft = innerOval.cx - innerOval.rx;
+  const innerRight = innerOval.cx + innerOval.rx;
+
   return (
     <>
-      {/* Follow the bowl and counter edges in the source artwork. */}
+      <ellipse
+        {...outerOval}
+        className="text-blue-600 dark:text-blue-400"
+        fill="currentColor"
+        fillOpacity="0.08"
+        strokeDasharray="0.2 0.15"
+      />
+      <ellipse
+        {...innerOval}
+        className="text-green-600 dark:text-green-400"
+        fill="currentColor"
+        fillOpacity="0.12"
+      />
       <g className="text-blue-600 dark:text-blue-400">
         <rect
-          x="9.49927"
-          y="3"
-          width="1"
-          height="10"
+          x={outerLeft}
+          y="6.5"
+          width={innerLeft - outerLeft}
+          height="7"
           fill="currentColor"
           fillOpacity="0.08"
           stroke="none"
         />
-        <path d="M9.49927 3V13M10.49927 3V13" />
+        <path d={`M${outerLeft} 6.5V13.5M${innerLeft} 6.5V13.5`} />
       </g>
       <g className="text-green-600 dark:text-green-400">
-        <path d="M13.8333 3V13M13.9993 3V13" />
+        <rect
+          x={innerRight}
+          y="6.5"
+          width={outerRight - innerRight}
+          height="7"
+          fill="currentColor"
+          fillOpacity="0.16"
+          stroke="none"
+        />
+        <path d={`M${innerRight} 6.5V13.5`} strokeDasharray="0.2 0.15" />
+        <path d={`M${outerRight} 6.5V13.5`} />
         <circle cx="13.92" cy="7.96" r="0.4" />
         <circle cx="13.92" cy="12.04" r="0.4" />
       </g>
     </>
+  );
+}
+
+function FontExample({
+  showGuides,
+  descriptionId,
+}: {
+  showGuides: boolean;
+  descriptionId: string;
+}) {
+  return (
+    <OpticalGrid columns={7} rows={8} className="h-40 w-35">
+      <svg
+        className="size-full"
+        viewBox="9 6 7 8"
+        fill="none"
+        role="img"
+        aria-label="Example 3: magnified lowercase a bowl and ink traps"
+        aria-describedby={descriptionId}
+      >
+        {/* Crop the original icon to show the small adjustments at 20×. */}
+        <Icon name="font-family" size={16} />
+        {showGuides && (
+          <g
+            className="optical-guides pointer-events-none"
+            stroke="currentColor"
+            strokeWidth={1 / 20}
+          >
+            <FontGuides />
+          </g>
+        )}
+      </svg>
+    </OpticalGrid>
   );
 }
 
@@ -247,12 +313,12 @@ export function OpticalAdjustments() {
       className="grid items-start gap-6 md:grid-cols-2 md:gap-10"
     >
       <div className="space-y-6">
-        <h2
+        <h3
           id="optical-adjustments-heading"
           className="text-2xl font-medium tracking-tight"
         >
           Optical adjustments
-        </h2>
+        </h3>
         <ol
           role="list"
           className="hidden max-w-sm list-none space-y-5 text-sm md:block"
@@ -319,6 +385,11 @@ export function OpticalAdjustments() {
                             showGuides={showGuides}
                             descriptionId={`${gridId}-${name}${mobile ? '-mobile' : ''}`}
                           />
+                        ) : name === 'font-family' ? (
+                          <FontExample
+                            showGuides={showGuides}
+                            descriptionId={`${gridId}-${name}${mobile ? '-mobile' : ''}`}
+                          />
                         ) : (
                           <OpticalGrid>
                             <Icon
@@ -346,7 +417,7 @@ export function OpticalAdjustments() {
                         id={`${gridId}-${name}-mobile`}
                         className="mt-3 text-sm md:hidden"
                       >
-                        <h3 className="font-medium">{title}</h3>
+                        <h4 className="font-medium">{title}</h4>
                         <p className="mt-1 leading-6 text-neutral-600 dark:text-muted">
                           {description}
                         </p>

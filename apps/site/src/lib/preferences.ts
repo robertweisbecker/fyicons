@@ -1,4 +1,10 @@
-import { useEffect, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 
 export function isStringArray(value: unknown): value is string[] {
   return (
@@ -28,27 +34,42 @@ export function usePreference<T>(
   fallback: T,
   validate?: (value: unknown) => value is T,
 ) {
-  const [value, setValue] = useState<T>(() =>
-    readPreference(key, fallback, validate),
-  );
+  const defaults = useRef({ fallback, validate });
+  const [value, setValue] = useState<T>(fallback);
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
+    setValue(
+      readPreference(key, defaults.current.fallback, defaults.current.validate),
+    );
+    setLoaded(true);
+  }, [key]);
+  useEffect(() => {
+    if (!loaded) return;
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch {
       /* Storage is optional. */
     }
-  }, [key, value]);
+  }, [key, value, loaded]);
   return [value, setValue] as const;
 }
-export function useMobile() {
-  const [mobile, setMobile] = useState(
-    () => matchMedia('(width < 768px)').matches,
+function useMediaQuery(query: string) {
+  const subscribe = useCallback(
+    (listener: () => void) => {
+      const media = matchMedia(query);
+      media.addEventListener('change', listener);
+      return () => media.removeEventListener('change', listener);
+    },
+    [query],
   );
-  useEffect(() => {
-    const query = matchMedia('(width < 768px)');
-    const change = () => setMobile(query.matches);
-    query.addEventListener('change', change);
-    return () => query.removeEventListener('change', change);
-  }, []);
-  return mobile;
+  // The first hydration render must match the static HTML. React then reads
+  // the browser preference and subscribes to changes.
+  return useSyncExternalStore(
+    subscribe,
+    () => matchMedia(query).matches,
+    () => false,
+  );
 }
+export const useMobile = () => useMediaQuery('(width < 768px)');
+export const useReducedMotionPreference = () =>
+  useMediaQuery('(prefers-reduced-motion: reduce)');

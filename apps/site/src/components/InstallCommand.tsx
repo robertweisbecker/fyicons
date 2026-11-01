@@ -36,7 +36,7 @@ export function InstallCommand({
       success ? `${label} copied.` : 'Clipboard unavailable. Please try again.',
       {
         id: `install:${command}`,
-        icon: success ? 'terminal-square' : undefined,
+        icon: success ? <Icon name="terminal-square" /> : undefined,
       },
     );
     if (!mounted.current) return;

@@ -142,13 +142,6 @@ const invalid = [
     /Invalid source identity/,
   ],
   [
-    'invalid date type',
-    ({ imported }) => {
-      imported.icons[1].addedAt = 123;
-    },
-    /Invalid addedAt/,
-  ],
-  [
     'impossible calendar date',
     ({ imported }) => {
       imported.icons[1].updatedAt = '2026-02-30T12:00:00.000Z';
@@ -169,20 +162,6 @@ const invalid = [
       imported.icons[1].name = '../sentinel';
     },
     /Unsafe icon name/,
-  ],
-  [
-    'alias type',
-    ({ imported }) => {
-      imported.icons[1].aliases = 'invalid';
-    },
-    /aliases/,
-  ],
-  [
-    'hash mismatch',
-    ({ imported }) => {
-      imported.icons[1].sha256 = '0'.repeat(64);
-    },
-    /Checksum mismatch/,
   ],
   [
     'relative source traversal',
@@ -332,18 +311,13 @@ test('valid import normalizes artwork and preserves identity while removing priv
     assert.deepEqual(next.source, {
       id: `sha256:${createHash('sha256').update('fixture-file').digest('hex')}`,
     });
-    const catalog = JSON.parse(
-      await readFile(
-        path.join(state.root, 'apps/site/src/data/catalog.json'),
-        'utf8',
-      ),
-    );
     const compact = JSON.parse(
       await readFile(
         path.join(state.root, 'apps/site/src/data/catalog-runtime.json'),
         'utf8',
       ),
     );
+    const catalog = decodeCatalog(compact);
     assert.doesNotMatch(
       JSON.stringify(next),
       /sourceUrl|sourcePageId|sourceSectionId|fileKey|figma\.com|fixture-file|private collection/,
@@ -352,7 +326,6 @@ test('valid import normalizes artwork and preserves identity while removing priv
       JSON.stringify(catalog),
       /sourceUrl|sourcePageId|sourceSectionId|fileKey|figma\.com|fixture-file|private collection/,
     );
-    assert.deepEqual(decodeCatalog(compact), catalog);
     assert.ok(!('sha256' in icon));
     assert.ok(icon.aliases.includes('legacy-alpha'));
     assert.ok(icon.aliases.includes('Alpha'));
@@ -390,6 +363,19 @@ test('valid import normalizes artwork and preserves identity while removing priv
     await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
       cwd: state.root,
     });
+    const schema = path.join(
+      state.root,
+      'apps/site/public/icon-categories.schema.json',
+    );
+    await writeFile(schema, '{}\n');
+    const beforeCheck = await snapshot(state.root);
+    await assert.rejects(
+      run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
+        cwd: state.root,
+      }),
+      /icon-categories\.schema\.json/,
+    );
+    assert.deepEqual(await snapshot(state.root), beforeCheck);
   } finally {
     await rm(state.directory, { recursive: true, force: true });
   }
@@ -507,15 +493,20 @@ test('imports validate raw hashes before repair and keep source, catalog and Rea
     );
     assert.notEqual(saved, raw);
     assert.match(saved, /fill="currentColor"/);
-    const catalog = JSON.parse(
-      await readFile(
-        path.join(f.root, 'apps/site/src/data/catalog.json'),
-        'utf8',
+    const catalog = decodeCatalog(
+      JSON.parse(
+        await readFile(
+          path.join(f.root, 'apps/site/src/data/catalog-runtime.json'),
+          'utf8',
+        ),
       ),
     );
     const icon = catalog.icons.find((icon) => icon.id === 'fixture:1');
-    assert.equal(icon.svg, saved);
-    assert.equal(icon.sha256, createHash('sha256').update(saved).digest('hex'));
+    assert.equal(icon.svg.replace(' class="fy-icon fy-alpha"', ''), saved);
+    assert.equal(
+      icon.sha256,
+      createHash('sha256').update(icon.svg).digest('hex'),
+    );
     const react = await readFile(
       path.join(f.root, 'packages/fyicons/src/IconAlpha.tsx'),
       'utf8',

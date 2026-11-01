@@ -11,7 +11,7 @@ const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
 });
 
 export function DeviceClock({ className }: { className?: string }) {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
     let timer: number;
@@ -36,10 +36,10 @@ export function DeviceClock({ className }: { className?: string }) {
 
   return (
     <time
-      dateTime={now.toISOString()}
+      dateTime={now?.toISOString()}
       className={cn('whitespace-nowrap tabular-nums', className)}
     >
-      {dateTimeFormat.format(now)}
+      {now ? dateTimeFormat.format(now) : '…'}
     </time>
   );
 }

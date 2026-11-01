@@ -1,16 +1,10 @@
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { Icon } from '@/components/Icon';
 import { InstallCommand } from '@/components/InstallCommand';
-import { Button } from '@/components/ui/button';
+import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { icons } from '@/lib/catalog';
 
-export function Installation({
-  packing,
-  download,
-}: {
-  packing: boolean;
-  download: () => void;
-}) {
+export function Installation() {
   return (
     <section
       id="installation"
@@ -19,7 +13,7 @@ export function Installation({
     >
       <h2
         id="installation-heading"
-        className="mb-8 text-2xl font-medium tracking-tight"
+        className="mb-8 text-3xl font-medium tracking-tight sm:text-4xl"
       >
         Get started
       </h2>
@@ -63,15 +57,7 @@ export function Installation({
             Download all {icons.length.toLocaleString('en-US')} icons as a ZIP.
             Use them with any framework or drag them into your design files.
           </p>
-          <Button
-            disabled={packing}
-            onClick={download}
-            aria-busy={packing}
-            className="mt-auto self-start max-md:w-full"
-          >
-            <Icon name="download-square" data-icon="inline-start" />
-            {packing ? 'Preparing download…' : 'Download'}
-          </Button>
+          <DownloadIconsButton className="mt-auto self-start max-md:w-full" />
         </article>
       </div>
     </section>

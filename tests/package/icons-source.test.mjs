@@ -1,54 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile, readdir } from 'node:fs/promises';
-import { mkdtemp, mkdir, symlink, writeFile, cp, rm } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import path from 'node:path';
-import { execFile } from 'node:child_process';
-import { promisify } from 'node:util';
+import { readFile } from 'node:fs/promises';
 import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
+import { prepareIcons } from '../../scripts/lib/prepare-icons.mjs';
 
 const manifest = JSON.parse(
   await readFile(new URL('../../icons/manifest.json', import.meta.url), 'utf8'),
 );
-const catalog = JSON.parse(
-  await readFile(
-    new URL('../../apps/site/src/data/catalog.json', import.meta.url),
-    'utf8',
+const catalog = decodeCatalog(
+  JSON.parse(
+    await readFile(
+      new URL('../../apps/site/src/data/catalog-runtime.json', import.meta.url),
+      'utf8',
+    ),
   ),
 );
-test('editable SVG sources exactly cover the manifest', async () => {
-  const files = (await readdir(new URL('../../icons/', import.meta.url)))
-    .filter((file) => file.endsWith('.svg'))
-    .sort();
-  const expected = manifest.icons.map((icon) => icon.filename).sort();
-  assert.deepEqual(files, expected);
-  assert.ok(manifest.icons.length > 0);
-  assert.equal(
-    new Set(manifest.icons.map(({ id }) => id)).size,
-    manifest.icons.length,
-  );
-  assert.equal(new Set(expected).size, manifest.icons.length);
-});
 
-test('component exports and aliases have unique valid metadata', () => {
-  assert.equal(
-    new Set(manifest.icons.map((icon) => icon.componentName)).size,
-    manifest.icons.length,
-  );
-  assert.equal(
-    new Set(manifest.icons.map((icon) => icon.name)).size,
-    manifest.icons.length,
-  );
-  for (const icon of manifest.icons) {
-    assert.match(icon.componentName, /^Icon[A-Za-z0-9]+$/);
-    assert.ok(Array.isArray(icon.aliases));
-    assert.ok(icon.aliases.every((alias) => typeof alias === 'string'));
-  }
-});
-
-test('current SVG bytes are used for generated checksums', async () => {
+test('SVG exports add default classes and hash their bytes without changing source artwork', async () => {
   assert.equal(catalog.icons.length, manifest.icons.length);
   for (const icon of manifest.icons) {
     const generated = catalog.icons.find(({ id }) => id === icon.id);
@@ -57,13 +26,17 @@ test('current SVG bytes are used for generated checksums', async () => {
     );
     assert.ok(generated, `missing catalog record ${icon.id}`);
     assert.equal(
-      generated.svg,
+      generated.svg.replace(` class="fy-icon fy-${icon.name}"`, ''),
       svg.toString(),
-      `${icon.filename} bytes differ in catalog`,
+      `${icon.filename} changes more than its root classes`,
+    );
+    assert.match(
+      generated.svg,
+      new RegExp(`^<svg class="fy-icon fy-${icon.name}"\\s`),
     );
     assert.equal(
       generated.sha256,
-      createHash('sha256').update(svg).digest('hex'),
+      createHash('sha256').update(generated.svg).digest('hex'),
       `${icon.filename} hash is stale`,
     );
     assert.equal(
@@ -104,176 +77,47 @@ test('all downloadable icons inherit foreground color without altering definitio
   }
 });
 
-test('replacing a source regenerates its component and derived catalog hash', async () => {
-  const temp = await mkdtemp(path.join(tmpdir(), 'fyicons-generation-'));
-  const run = promisify(execFile);
-  try {
-    await mkdir(path.join(temp, 'scripts/lib'), { recursive: true });
-    await mkdir(path.join(temp, 'icons'), { recursive: true });
-    await mkdir(path.join(temp, 'apps/site/public'), { recursive: true });
-    await mkdir(path.join(temp, 'apps/site/src/lib'), { recursive: true });
-    await cp(
-      new URL('../../apps/site/src/lib/icon-categories.ts', import.meta.url),
-      path.join(temp, 'apps/site/src/lib/icon-categories.ts'),
-    );
-    await writeFile(
-      path.join(temp, 'apps/site/public/icon-categories.json'),
-      JSON.stringify({
-        categories: [
-          {
-            id: 'files',
-            name: 'Files',
-            icon: '16-upload',
-            keywords: ['upload'],
-          },
-        ],
-      }),
-    );
-    await cp(
-      new URL('../../scripts/lib/category-schema.ts', import.meta.url),
-      path.join(temp, 'scripts/lib/category-schema.ts'),
-    );
-    await cp(
-      new URL('../../scripts/generate-icons.mjs', import.meta.url),
-      path.join(temp, 'scripts/generate-icons.mjs'),
-    );
-    await cp(
-      new URL('../../scripts/lib/react-icons.mjs', import.meta.url),
-      path.join(temp, 'scripts/lib/react-icons.mjs'),
-    );
-    for (const name of ['prepare-icons.mjs', 'icon-files.mjs'])
-      await cp(
-        new URL(`../../scripts/lib/${name}`, import.meta.url),
-        path.join(temp, 'scripts/lib', name),
-      );
-    await symlink(
-      path.resolve('node_modules'),
-      path.join(temp, 'node_modules'),
-      'dir',
-    );
-    const firstSvg =
-      '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M1 1"/></svg>\n';
-    const record = {
-      id: 'test:1',
-      name: '16-upload',
-      baseName: '16-upload',
-      filename: '16-upload-16.svg',
-      componentName: 'Icon16Upload',
-      width: 16,
-      height: 16,
-      aliases: [],
-    };
-    await writeFile(
-      path.join(temp, 'icons/manifest.json'),
-      JSON.stringify({
-        name: 'FYIcons',
-        icons: [record],
-      }),
-    );
-    await writeFile(path.join(temp, 'icons', record.filename), firstSvg);
-    await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: temp });
-    const firstCatalog = JSON.parse(
-      await readFile(
-        path.join(temp, 'apps/site/src/data/catalog.json'),
-        'utf8',
-      ),
-    );
-    const firstComponent = await readFile(
-      path.join(temp, 'packages/fyicons/src/Icon16Upload.tsx'),
-      'utf8',
-    );
-    // Changing keyword rules must not invalidate any generated artwork output.
-    await writeFile(
-      path.join(temp, 'apps/site/public/icon-categories.json'),
-      JSON.stringify({
-        categories: [
-          { id: 'files', name: 'Documents', icon: 'grid', keywords: ['file'] },
-          {
-            id: 'actions',
-            name: 'Actions',
-            icon: '16-upload',
-            keywords: ['upload'],
-          },
-        ],
-      }),
-    );
-    await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
-      cwd: temp,
-    });
-    assert.ok(!('categories' in firstCatalog));
-    assert.ok(!('category' in firstCatalog.icons[0]));
-    const replacement = firstSvg.replace('M1 1', 'M2 2');
-    await writeFile(path.join(temp, 'icons', record.filename), replacement);
-    await assert.rejects(
-      run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
-        cwd: temp,
-      }),
-    );
-    assert.equal(
-      await readFile(
-        path.join(temp, 'apps/site/src/data/catalog.json'),
-        'utf8',
-      ),
-      JSON.stringify(firstCatalog, null, 2) + '\n',
-    );
-    await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: temp });
-    const nextCatalog = JSON.parse(
-      await readFile(
-        path.join(temp, 'apps/site/src/data/catalog.json'),
-        'utf8',
-      ),
-    );
-    const nextComponent = await readFile(
-      path.join(temp, 'packages/fyicons/src/Icon16Upload.tsx'),
-      'utf8',
-    );
-    assert.notEqual(nextCatalog.icons[0].sha256, firstCatalog.icons[0].sha256);
-    assert.notEqual(nextComponent, firstComponent);
-    // Case-only Figma renames must produce the same filenames on macOS and Linux.
-    record.componentName = 'Icon16upload';
-    await writeFile(
-      path.join(temp, 'icons/manifest.json'),
-      JSON.stringify({
-        name: 'FYIcons',
-        icons: [record],
-      }),
-    );
-    await assert.rejects(
-      run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
-        cwd: temp,
-      }),
-    );
-    await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: temp });
-    const componentFiles = await readdir(
-      path.join(temp, 'packages/fyicons/src'),
-    );
-    assert.ok(componentFiles.includes('Icon16upload.tsx'));
-    assert.ok(!componentFiles.includes('Icon16Upload.tsx'));
-    await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
-      cwd: temp,
-    });
-  } finally {
-    await rm(temp, { recursive: true, force: true });
-  }
-});
-
-test('compact browser catalog reconstructs complete download metadata', async () => {
-  const compact = JSON.parse(
-    await readFile(
-      new URL('../../apps/site/src/data/catalog-runtime.json', import.meta.url),
-      'utf8',
+test('SVG export classes merge on the root and leave source hashes, attributes, and child classes intact', async () => {
+  const svg = `<svg data-note=" class='untouched' " class='custom fy-icon fy-fixture' viewBox='0 0 16 16'><path class="detail" fill="currentColor" d="M1 1h2v2H1Z"/></svg>\n`;
+  const sourceHash = createHash('sha256').update(svg).digest('hex');
+  const prepared = await prepareIcons(
+    {
+      name: 'FYIcons',
+      icons: [
+        {
+          id: 'fixture:1',
+          name: 'fixture',
+          filename: 'fixture-16.svg',
+          componentName: 'IconFixture',
+          width: 16,
+          height: 16,
+          sha256: sourceHash,
+        },
+      ],
+    },
+    { categories: [] },
+    async () => svg,
+  );
+  assert.equal(prepared.icons[0].svg, svg);
+  assert.equal(prepared.icons[0].sha256, sourceHash);
+  const exported = prepared.exportedIcons[0];
+  assert.equal(
+    exported.svg,
+    svg.replace(
+      "class='custom fy-icon fy-fixture'",
+      "class='fy-icon fy-fixture custom'",
     ),
   );
-  const reconstructed = decodeCatalog(compact);
-  assert.deepEqual(reconstructed, catalog);
-  for (const icon of reconstructed.icons) {
-    assert.equal(
-      icon.svg,
-      await readFile(
-        new URL(`../../icons/${icon.filename}`, import.meta.url),
-        'utf8',
+  assert.equal(
+    exported.sha256,
+    createHash('sha256').update(exported.svg).digest('hex'),
+  );
+  assert.equal(
+    decodeCatalog(
+      JSON.parse(
+        prepared.expected.get('apps/site/src/data/catalog-runtime.json'),
       ),
-      `${icon.filename} bytes differ after production decoding`,
-    );
-  }
+    ).icons[0].svg,
+    exported.svg,
+  );
 });

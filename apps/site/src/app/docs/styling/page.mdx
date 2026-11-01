@@ -1,0 +1,81 @@
+export const metadata = {
+  title: 'Styling',
+  description:
+    'Style FYIcons with currentColor, the default CSS classes, and standard CSS sizing.',
+};
+
+# Styling
+
+Inline SVGs and React components use standard CSS for size and color. No icon stylesheet is required.
+
+## Color with currentColor
+
+The visible paths use `currentColor`, which takes its value from the CSS `color` property. Set `color` on a parent to make its inline icons follow the text:
+
+```css
+.toolbar {
+  color: #2563eb;
+}
+```
+
+Put the SVG markup directly in the page. For example, this Plus icon inherits the button's text color:
+
+```html
+<button class="toolbar" type="button" aria-label="Add item">
+  <svg
+    class="fy-icon fy-plus"
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="none"
+    viewBox="0 0 16 16"
+    aria-hidden="true"
+  >
+    <path
+      fill="currentColor"
+      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+    />
+  </svg>
+</button>
+```
+
+Set `color` to recolor an icon; you do not need to replace its path fills or strokes. An SVG loaded through an `<img>` element does not inherit the surrounding page's text color.
+
+<h2 id="default-classes">Default classes</h2>
+
+SVG exports and React components include two classes on the root SVG:
+
+- `fy-icon` targets every FYIcons icon.
+- `fy-{icon-name}` targets an icon by its catalog name, such as `fy-plus`.
+
+The name includes any variant suffix. These are styling hooks; they do not apply styles on their own. Use them with your existing CSS:
+
+```css
+/* Every inline FYIcons icon in the toolbar. */
+.toolbar .fy-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+/* Only the Plus icon. */
+.toolbar .fy-plus {
+  color: #16a34a;
+}
+```
+
+Classes inside an SVG file loaded through `<img>` cannot be selected by the page's CSS. Use inline SVG when you want these styling hooks.
+
+## Size
+
+Icons start at 16 × 16 px. Set CSS `width` and `height` to scale them, or use `1em` to match the surrounding text size. Keep the `viewBox="0 0 16 16"` so the artwork scales with the element.
+
+Many icons use filled paths. Changing `stroke-width` does not change their visual weight.
+
+<Callout aria-label="React">
+
+**Using React?**
+
+Components also have `size` and `color` props, so you can write `<IconSun size={24} color="#2563eb" />`. Use `className` to add your own CSS classes. See the [React guide](/docs/react/) for installation, props, and accessibility.
+
+</Callout>

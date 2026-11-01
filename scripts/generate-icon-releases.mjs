@@ -3,6 +3,8 @@ import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { inflateSync } from 'node:zlib';
+import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
 
 function sourceId(source) {
   return (
@@ -84,10 +86,20 @@ async function generate() {
       'Release history is incomplete. Fetch all fyicons@* tags before generating.',
     );
   }
-  const snapshots = tags.map((tag) => ({
-    version: tag.slice('fyicons@'.length),
-    catalog: JSON.parse(git('show', `${tag}:apps/site/src/data/catalog.json`)),
-  }));
+  const snapshots = tags.map((tag) => {
+    const compact = JSON.parse(
+      git('show', `${tag}:apps/site/src/data/catalog-runtime.json`),
+    );
+    const catalog = decodeCatalog(compact);
+    // Old tags contain private collection keys that the public decoder discards.
+    const { source } = JSON.parse(
+      inflateSync(Buffer.from(compact.metadataArchive, 'base64')).toString(
+        'utf8',
+      ),
+    );
+    catalog.source = { id: sourceId(source) };
+    return { version: tag.slice('fyicons@'.length), catalog };
+  });
   const history = buildIconReleaseHistory(snapshots);
   const text = JSON.stringify(history, null, 2) + '\n';
   if (process.argv.includes('--check')) {

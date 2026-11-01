@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { ScrollArea } from '@base-ui/react/scroll-area';
 import {
   Menu,
   MenuTrigger,
@@ -9,8 +10,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
-import { Toggle } from '@/components/ui/toggle';
-import { ToggleGroup } from '@/components/ui/toggle-group';
+import { Sidebar, SidebarSection, SidebarItem } from './Sidebar';
 import { categories, icons, byName } from '@/lib/catalog';
 
 const categoryOptions = () => [
@@ -45,40 +45,49 @@ export function CategorySidebar({
 }: Props & { displayControls: ReactNode }) {
   const options = categoryOptions();
   return (
-    <aside
-      aria-label="Library filters"
-      className="sticky top-[calc(var(--site-header-height)+1rem)] hidden max-h-[calc(100dvh-var(--site-header-height)-2rem)] w-(--category-sidebar-width) shrink-0 self-start overflow-y-auto overscroll-contain pt-4 pr-4 pl-1 lg:block"
+    <Sidebar
+      aria-label="Icon filters"
+      className="h-[calc(100dvh-var(--site-header-height)-2rem)] overflow-hidden lg:flex lg:flex-col"
     >
       <div
         role="group"
-        aria-label="Library display"
-        className="mb-8 flex flex-col gap-5 px-1"
+        aria-label="Icon display"
+        className="mb-8 flex shrink-0 flex-col gap-5 px-1"
       >
         {displayControls}
       </div>
-      <h2 className="mb-3 ps-2 text-xs text-muted">Categories</h2>
-      <ToggleGroup
-        orientation="vertical"
-        aria-label="Icon categories"
-        className="gap-px"
-        value={[value]}
-        onValueChange={(values) => {
-          if (values[0]) onValueChange(values[0]);
-        }}
-      >
-        {options.map((option) => (
-          <Toggle
-            key={option.value}
-            value={option.value}
-            aria-label={option.label}
-            size="default"
-            className="justify-start ps-1.5 text-start text-xs"
-          >
-            <CategoryLabel option={option} />
-          </Toggle>
-        ))}
-      </ToggleGroup>
-    </aside>
+      <ScrollArea.Root className="group/category-scroll -mr-4 -ml-1 min-h-0 flex-1">
+        <ScrollArea.Viewport
+          role="region"
+          aria-label="Categories"
+          className="h-full scroll-fade-y scroll-py-1 overscroll-y-contain pr-4 pl-1 scroll-fade-b-0 scroll-fade-t-0 focus-visible:-outline-offset-2 data-[overflow-y-end]:scroll-fade-b-6 data-[overflow-y-start]:scroll-fade-t-6"
+        >
+          <ScrollArea.Content className="min-w-0!">
+            <SidebarSection title="Categories">
+              <div
+                role="group"
+                aria-label="Icon categories"
+                className="flex flex-col gap-px"
+              >
+                {options.map((option) => (
+                  <SidebarItem
+                    key={option.value}
+                    active={value === option.value}
+                    onClick={() => onValueChange(option.value)}
+                    aria-label={option.label}
+                  >
+                    <CategoryLabel option={option} />
+                  </SidebarItem>
+                ))}
+              </div>
+            </SidebarSection>
+          </ScrollArea.Content>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar className="flex w-1.5 justify-center opacity-0 group-has-[:focus-visible]/category-scroll:opacity-100 data-hovering:opacity-100 data-scrolling:opacity-100">
+          <ScrollArea.Thumb className="w-1 rounded-full bg-muted/50" />
+        </ScrollArea.Scrollbar>
+      </ScrollArea.Root>
+    </Sidebar>
   );
 }
 

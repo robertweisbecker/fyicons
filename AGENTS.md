@@ -3,7 +3,7 @@
 ## Project constraints
 
 - Edit artwork in `icons/*.svg` and metadata in `icons/manifest.json`. Edit category rules in `apps/site/public/icon-categories.json`.
-- Generate `packages/fyicons/src/`, `apps/site/src/icons/registry.ts`, both `apps/site/src/data/catalog*.json` files, `apps/site/public/icon-categories.schema.json`, and `registry.json` from their sources. Do not edit these outputs by hand.
+- Generate `packages/fyicons/src/`, `apps/site/src/icons/registry.ts`, `apps/site/src/data/catalog-runtime.json`, `apps/site/public/icon-categories.schema.json`, and `registry.json` from their sources. Do not edit these outputs by hand.
 - Keep SVG bytes, geometry, the 16 × 16 viewBox, and instance-safe SVG references unless the task requires an artwork change.
 - Use the documented SVG export normalizer during imports. Its guarded fill/stroke union and pinned SVGO pass at three decimal places are authorized distribution transforms. Keep optimization in this shared pipeline; do not apply blanket mask removal or per-icon settings.
 - Normalize visible foreground paint to `currentColor` before an SVG import. Preserve mask and clip definition paint, geometry, and transparency. Source downloads and React icons must follow this color policy.

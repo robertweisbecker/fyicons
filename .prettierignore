@@ -1,8 +1,10 @@
-apps/site/src/data/catalog.json
 apps/site/src/data/catalog-runtime.json
 apps/site/src/data/README.txt
 node_modules
 dist
+.next
+out
+next-env.d.ts
 test-results
 package-lock.json
 

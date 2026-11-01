@@ -15,8 +15,6 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { categorizeIcons } from '../../apps/site/src/lib/icon-categories.ts';
 import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
-import { createIconArchive } from '../../apps/site/src/lib/icon-archive.ts';
-import { unzipSync, strFromU8 } from 'fflate';
 
 test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring incoming category metadata', async () => {
   const temp = await mkdtemp(path.join(tmpdir(), 'fyicons-sync-'));
@@ -77,21 +75,11 @@ test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring
         ],
       }),
     );
-    for (const name of [
-      'sync-icons.mjs',
-      'generate-icons.mjs',
-      'lib/react-icons.mjs',
-      'lib/svg-export.mjs',
-      'lib/prepare-icons.mjs',
-      'lib/icon-files.mjs',
-      'lib/sync-categories.mjs',
-      'lib/category-schema.ts',
-    ]) {
-      await cp(
-        new URL(`../../scripts/${name}`, import.meta.url),
-        path.join(temp, 'scripts', name),
-      );
-    }
+    await cp(
+      new URL('../../scripts/', import.meta.url),
+      path.join(temp, 'scripts'),
+      { recursive: true },
+    );
     await symlink(
       path.resolve('node_modules'),
       path.join(temp, 'node_modules'),
@@ -291,33 +279,14 @@ test('sync preserves local rules, sidebar icons, aliases and SVGs while ignoring
     for (const icon of final.icons)
       assert.deepEqual(dates(final)[icon.id], editedDates[icon.id]);
 
-    // Dates survive production decoding and both full and selected ZIP manifests.
-    const catalog = JSON.parse(
-      await readFile(
-        path.join(temp, 'apps/site/src/data/catalog.json'),
-        'utf8',
-      ),
-    );
+    // Import dates survive catalog compression.
     const compact = JSON.parse(
       await readFile(
         path.join(temp, 'apps/site/src/data/catalog-runtime.json'),
         'utf8',
       ),
     );
-    assert.deepEqual(decodeCatalog(compact), catalog);
-    assert.deepEqual(dates(catalog), dates(final));
-    for (const selection of [catalog.icons, catalog.icons.slice(0, 1)]) {
-      const files = unzipSync(
-        createIconArchive(
-          selection,
-          catalog,
-          'Fixture README',
-          'Fixture license',
-        ),
-      );
-      const downloaded = JSON.parse(strFromU8(files['manifest.json']));
-      assert.deepEqual(dates(downloaded), dates({ icons: selection }));
-    }
+    assert.deepEqual(dates(decodeCatalog(compact)), dates(final));
     await run(process.execPath, ['scripts/generate-icons.mjs', '--check'], {
       cwd: temp,
     });

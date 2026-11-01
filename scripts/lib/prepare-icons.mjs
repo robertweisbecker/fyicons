@@ -191,6 +191,34 @@ function validateSvg(svg, filename) {
     throw new Error(`Invalid 16×16 SVG root viewBox: ${filename}`);
 }
 
+/** Add distribution classes without rewriting the source artwork or its IDs. */
+function withIconClasses(svg, name) {
+  return svg.replace(
+    /^(\s*<svg\b)((?:[^"'>]|"[^"]*"|'[^']*')*)>/,
+    (_, start, attributes) => {
+      const defaults = ['fy-icon', `fy-${name}`];
+      const existing = [
+        ...attributes.matchAll(/\s+([^\s=]+)\s*=\s*(["'])(.*?)\2/gs),
+      ].find((attribute) => attribute[1] === 'class');
+      if (!existing)
+        return `${start} class="${defaults.join(' ')}"${attributes}>`;
+      const classes = [
+        ...new Set([...defaults, ...existing[3].split(/\s+/).filter(Boolean)]),
+      ];
+      const valueStart = existing[0].indexOf(existing[2]) + 1;
+      const updated =
+        existing[0].slice(0, valueStart) + classes.join(' ') + existing[2];
+      return (
+        start +
+        attributes.slice(0, existing.index) +
+        updated +
+        attributes.slice(existing.index + existing[0].length) +
+        '>'
+      );
+    },
+  );
+}
+
 /** Validate and render the entire inventory without mutating inputs or files. */
 export async function prepareIcons(input, categoryInput, readSvg) {
   const manifest = normalizeManifest(input);
@@ -238,6 +266,16 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     icon.duplicate = size > 1;
     icon.variantCount = size;
   }
+  // Imports and React generation keep the source bytes. Website downloads use
+  // classed exports and hashes of the exported bytes.
+  const exportedIcons = icons.map((icon) => {
+    const svg = withIconClasses(icon.svg, icon.name);
+    return {
+      ...icon,
+      svg,
+      sha256: createHash('sha256').update(svg).digest('hex'),
+    };
+  });
   const generatedManifest = {
     ...manifest,
     count: icons.length,
@@ -255,12 +293,9 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     duplicatePolicy:
       'Distinct icons with the same base name receive numeric suffixes to disambiguate the current inventory; suffixes may change when the inventory changes.',
   };
-  const catalogText =
-    JSON.stringify({ ...generatedManifest, icons }, null, 2) + '\n';
   const expected = new Map(reactFiles);
-  expected.set('apps/site/src/data/catalog.json', catalogText);
   // Reconstruct standard fields without retaining private source links.
-  const compactIcons = icons.map(
+  const compactIcons = exportedIcons.map(
     ({ file, width, height, svg, ...icon }) => icon,
   );
   // Store field names once rather than repeating every metadata key per icon.
@@ -280,7 +315,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
           { level: 9, memLevel: 9 },
         ).toString('base64'),
         svgArchive: deflateSync(
-          Buffer.from(JSON.stringify(icons.map((icon) => icon.svg))),
+          Buffer.from(JSON.stringify(exportedIcons.map((icon) => icon.svg))),
           { level: 9, memLevel: 9 },
         ).toString('base64'),
         iconFields,
@@ -312,7 +347,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     ...manifest,
     icons: manifest.icons.map(({ sha256: _sha, ...meta }) => meta),
   };
-  return { manifest: sourceManifest, icons, expected };
+  return { manifest: sourceManifest, icons, exportedIcons, expected };
 }
 
 export async function prepareRepositoryIcons(root) {

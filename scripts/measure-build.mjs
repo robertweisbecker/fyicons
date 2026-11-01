@@ -12,7 +12,7 @@ async function files(dir) {
     )
   ).flat();
 }
-const output = await files('dist');
+const output = await files('out');
 const bytes = (
   await Promise.all(output.map(async (file) => (await stat(file)).size))
 ).reduce((a, b) => a + b, 0);
@@ -25,7 +25,8 @@ console.log(
     bytes +
     ' bytes). No server functions.',
 );
-if (bytes > 4.5 * 1024 * 1024)
+// Next exports complete page HTML and route payloads in addition to shared JS.
+if (bytes > 6.5 * 1024 * 1024)
   throw new Error(
-    'Build exceeds the 4.5 MiB deployment budget. Check for duplicate icon data or media.',
+    'Build exceeds the 6.5 MiB deployment budget. Check for duplicate icon data or media.',
   );

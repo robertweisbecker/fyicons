@@ -1,11 +1,11 @@
 import { Toast } from '@base-ui/react/toast';
-import { Icon } from '@/components/Icon';
+import IconX from 'fyicons/icons/IconX';
 import { Button } from '@/components/ui/button';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import './toast.css';
 
-type ToastData = { icon?: string };
+type ToastData = { icon?: ReactNode };
 const toastManager = Toast.createToastManager<ToastData>();
 export function notify(
   title: ReactNode,
@@ -54,14 +54,14 @@ function ToastViewport() {
               className="flex items-center gap-3 overflow-hidden p-3 transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100"
             >
               {toast.data?.icon && (
-                <Icon name={toast.data.icon} className="shrink-0" />
+                <span className="shrink-0">{toast.data.icon}</span>
               )}
               <Toast.Title className="min-w-0 flex-1 text-sm break-words" />
               <Toast.Close
                 render={<Button variant="ghost" size="icon-sm" />}
                 aria-label="Dismiss notification"
               >
-                <Icon name="x" />
+                <IconX />
               </Toast.Close>
             </Toast.Content>
           </Toast.Root>

@@ -6,7 +6,7 @@ type ArchiveMetadata = {
   [key: string]: unknown;
 };
 
-/** Build downloads directly from the catalog's original SVG bytes. */
+/** Preserve the catalog's classed SVG exports and their matching checksums. */
 export function createIconArchive<T extends ArchiveIcon>(
   selection: readonly T[],
   metadata: ArchiveMetadata,

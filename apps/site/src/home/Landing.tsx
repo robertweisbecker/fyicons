@@ -1,9 +1,10 @@
-import { type MouseEvent } from 'react';
+'use client';
+
+import Link from 'next/link';
 import { Icon } from '@/components/Icon';
 import { InstallCommand } from '@/components/InstallCommand';
 import { buttonVariants } from '@/components/ui/button';
 import { icons } from '@/lib/catalog';
-import { pageHref, type Page } from '@/lib/navigation';
 import { DesktopShowcase } from './desktop/DesktopShowcase';
 import { IconGroupCarousel } from './IconGroupCarousel';
 import { IconSpecimen } from './IconSpecimen';
@@ -13,18 +14,10 @@ import { OpticalAdjustments } from './OpticalAdjustments';
 import { StatefulIcons } from './StatefulIcons';
 import './Landing.css';
 
-export default function Landing({
-  navigate,
-  packing,
-  download,
-}: {
-  navigate: (page: Page, event: MouseEvent<HTMLAnchorElement>) => void;
-  packing: boolean;
-  download: () => void;
-}) {
+export default function Landing() {
   return (
     <>
-      <div className="mx-auto space-y-16 pb-16 sm:pb-24">
+      <div className="mx-auto space-y-24 pb-16 sm:space-y-32 sm:pb-24">
         <section
           aria-label="Introduction"
           className="mx-auto grid max-w-292 grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] items-center gap-18 px-8 pt-18 pb-16 max-[900px]:gap-8 max-[900px]:px-6 max-[900px]:py-14 max-[680px]:max-w-135 max-[680px]:grid-cols-1 max-[680px]:gap-6 max-[680px]:px-2 max-[680px]:pt-8 max-[680px]:pb-12"
@@ -50,23 +43,16 @@ export default function Landing({
                   Nice little icons for your nice little apps. Drawn
                   pixel-perfect to scale to any size.
                 </p>
-
-                {/* <p className="text-muted">
-                  {' '}
-                  {icons.length.toLocaleString('en-US')} icons ∙ 16×16 ∙ 1px
-                  stroke
-                </p> */}
               </div>
 
               <div className="flex items-center gap-4 max-[680px]:flex-col max-[680px]:items-stretch">
-                <a
+                <Link
                   className={buttonVariants({ variant: 'default', size: 'lg' })}
-                  href={pageHref('library')}
-                  onClick={(event) => navigate('library', event)}
+                  href="/icons/"
                 >
                   View icons
                   <Icon name="arrow-right" size={20} />
-                </a>
+                </Link>
                 <InstallCommand
                   command="npm i fyicons"
                   label="npm"
@@ -92,39 +78,42 @@ export default function Landing({
           <DesktopShowcase />
         </section>
 
-        <Installation packing={packing} download={download} />
+        <Installation />
 
-        <section aria-labelledby="features-heading" className="space-y-6">
-          <h2
-            id="features-heading"
-            className="text-center text-2xl font-medium tracking-tight"
-          >
-            Features
-          </h2>
-          <div className="grid grid-cols-3 border-y border-y-line py-10">
-            <div className="flex flex-col items-center gap-5">
-              <Icon name="shapes" className="size-8" />
-              <p className="text-lg tracking-tight">
-                {icons.length.toLocaleString('en-US')} icons
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-5">
-              <Icon name="blueprint-grid" className="size-8" />
+        <section
+          aria-labelledby="features-heading"
+          className="space-y-16 sm:space-y-24"
+        >
+          <div className="space-y-8 sm:space-y-10">
+            <h2
+              id="features-heading"
+              className="text-center text-3xl font-medium tracking-tight sm:text-4xl"
+            >
+              Features
+            </h2>
+            <div className="grid grid-cols-3 border-y border-y-line py-10">
+              <div className="flex flex-col items-center gap-5">
+                <Icon name="shapes" className="size-8" />
+                <p className="text-lg tracking-tight">
+                  {icons.length.toLocaleString('en-US')} icons
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-5">
+                <Icon name="blueprint-grid" className="size-8" />
 
-              <p className="text-lg">16×16 grid</p>
-            </div>
-            <div className="flex flex-col items-center gap-5">
-              <Icon name="border-width" className="size-8" />
-              <p className="text-lg">1px stroke</p>
+                <p className="text-lg">16×16 grid</p>
+              </div>
+              <div className="flex flex-col items-center gap-5">
+                <Icon name="border-width" className="size-8" />
+                <p className="text-lg">1px stroke</p>
+              </div>
             </div>
           </div>
+          <StatefulIcons />
+          <IconVariants />
+          <OpticalAdjustments />
+          <IconGroupCarousel />
         </section>
-        <StatefulIcons />
-        <IconVariants />
-        <OpticalAdjustments />
-        <IconGroupCarousel
-          onLibraryClick={(event) => navigate('library', event)}
-        />
       </div>
     </>
   );

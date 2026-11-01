@@ -21,7 +21,7 @@ export function SliderControl({
         <Slider.Thumb
           className={cn(
             'relative block size-4 cursor-grab rounded-full bg-white shadow-sm outline outline-offset-(--surface-outline-offset) outline-line focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current active:cursor-grabbing data-dragging:cursor-grabbing',
-            'max-sm:before:absolute max-sm:before:inset-0 max-sm:before:size-11',
+            'max-sm:before:absolute max-sm:before:top-1/2 max-sm:before:left-1/2 max-sm:before:size-11 max-sm:before:-translate-1/2',
           )}
           getAriaValueText={getAriaValueText}
         />

@@ -270,7 +270,7 @@ export function Inspector(props: Props) {
     navigate,
   } = props;
   const mobile = useMobile();
-  const [viewportWidth, setViewportWidth] = useState(() => window.innerWidth);
+  const [viewportWidth, setViewportWidth] = useState(1440);
   const defaultWidth = viewportWidth < 1024 ? 352 : 384;
   const [preferredWidth, setPreferredWidth] = usePreference(
     'fyicons-inspector-width-v1',
@@ -288,6 +288,7 @@ export function Inspector(props: Props) {
   );
   useEffect(() => {
     const update = () => setViewportWidth(window.innerWidth);
+    update();
     window.addEventListener('resize', update);
     return () => window.removeEventListener('resize', update);
   }, []);

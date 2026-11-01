@@ -40,12 +40,12 @@ export function IconVariants() {
       aria-labelledby="icon-variants-heading"
       className="grid items-start gap-6 md:grid-cols-2 md:gap-10"
     >
-      <h2
+      <h3
         id="icon-variants-heading"
         className="text-2xl font-medium tracking-tight"
       >
         Outline and filled variants
-      </h2>
+      </h3>
       <div className="grid min-w-0 grid-cols-2 gap-3 sm:gap-4">
         {variants.map(({ label, suffix }) => (
           <figure key={label} className="min-w-0 space-y-3">

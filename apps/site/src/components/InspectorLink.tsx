@@ -31,7 +31,7 @@ export function InspectorLink({
       success
         ? 'Link copied to clipboard!'
         : 'Clipboard unavailable. Copy the link from the address bar.',
-      { icon: success ? 'link' : undefined },
+      { icon: success ? <Icon name="link" /> : undefined },
     );
     if (!mounted.current) return;
     clearTimeout(reset.current);

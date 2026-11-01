@@ -1,23 +1,13 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type KeyboardEvent,
-  type MouseEventHandler,
-} from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { ScrollArea } from '@base-ui/react/scroll-area';
 import { Icon } from '@/components/Icon';
 import { IconButton } from '@/components/IconButton';
 import { buttonVariants } from '@/components/ui/button';
 import { TooltipGroup } from '@/components/ui/tooltip';
-import { pageHref } from '@/lib/navigation';
+import Link from 'next/link';
 import { iconGroups } from './iconGroups';
 
-export function IconGroupCarousel({
-  onLibraryClick,
-}: {
-  onLibraryClick: MouseEventHandler<HTMLAnchorElement>;
-}) {
+export function IconGroupCarousel() {
   const track = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: true, end: false });
@@ -77,14 +67,14 @@ export function IconGroupCarousel({
   }
 
   return (
-    <section aria-labelledby="icon-groups-heading" className="mt-16 sm:mt-24">
+    <section aria-labelledby="icon-groups-heading">
       <div className="mb-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
-        <h2
+        <h3
           id="icon-groups-heading"
           className="col-span-3 text-center text-2xl font-medium tracking-tight sm:col-span-1 sm:col-start-2"
         >
           …plus a whole bunch more!
-        </h2>
+        </h3>
         <div className="col-start-3 flex justify-end gap-1">
           <TooltipGroup>
             <IconButton
@@ -165,14 +155,13 @@ export function IconGroupCarousel({
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
       <div className="mt-8 flex justify-center">
-        <a
+        <Link
           className={buttonVariants({ variant: 'default', size: 'lg' })}
-          href={pageHref('library')}
-          onClick={onLibraryClick}
+          href="/icons/"
         >
           View all icons
           <Icon name="arrow-right" size={20} />
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -40,7 +40,7 @@ export function IconCopyButton({
           <span className="font-semibold">{getIconDisplayName(item)}</span>{' '}
           copied to clipboard!
         </>,
-        { id: `copy:${item.id}`, icon: item.id },
+        { id: `copy:${item.id}`, icon: <Icon name={item.id} /> },
       );
     } else {
       notify('Clipboard unavailable. Please try again.');

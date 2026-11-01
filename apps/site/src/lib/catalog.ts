@@ -6,7 +6,7 @@ import {
   uncategorized,
   type IconCategory,
 } from './icon-categories';
-import { pageHref } from './navigation';
+import { assetPath } from './navigation';
 
 const data = decodeCatalog(compact);
 
@@ -30,13 +30,10 @@ export async function loadIconCategories(
   fetchCategories: typeof fetch = fetch,
 ): Promise<string | undefined> {
   try {
-    const response = await fetchCategories(
-      `${pageHref('home')}icon-categories.json`,
-      {
-        cache: 'no-store',
-        signal: AbortSignal.timeout(5000),
-      },
-    );
+    const response = await fetchCategories(assetPath('/icon-categories.json'), {
+      cache: 'no-store',
+      signal: AbortSignal.timeout(5000),
+    });
     if (!response.ok)
       throw new Error(`Category request failed: ${response.status}`);
     const config = parseIconCategories(await response.json());

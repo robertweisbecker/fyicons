@@ -1,0 +1,93 @@
+import { DownloadIconsButton } from '@/components/DownloadIconsButton';
+
+export const metadata = {
+  title: 'Getting Started',
+  description:
+    'Get started with FYIcons: install React components, add editable source with shadcn, or download SVG files.',
+};
+
+# Getting Started
+
+FYIcons is a collection of 16 × 16 px icons for websites, applications, and design files. Choose the format that fits your project.
+
+## React
+
+### npm
+
+Install the package in a project with React 18.2+ or React 19:
+
+```sh
+npm install fyicons
+```
+
+Import an icon by name and use it as a component:
+
+```tsx
+import { IconSun } from 'fyicons';
+
+export function LightButton() {
+  return (
+    <button type="button" aria-label="Switch to light mode">
+      <IconSun />
+    </button>
+  );
+}
+```
+
+Icons render at 16 px and inherit the surrounding text color. The [React guide](/docs/react/) covers props, imports, and accessibility.
+
+<h3 id="editable-source-with-shadcn">Editable source with shadcn</h3>
+
+Use the shadcn registry to copy selected icons and their helpers into your project. Start with a React and TypeScript project that has a shadcn `components.json` file.
+
+1. [Find an icon](/icons/) and open its details.
+2. Copy its shadcn command and run it in your project.
+3. Import the component from your configured components directory.
+
+With the components alias set to `@/components`, a Sun icon import looks like this:
+
+```tsx
+import IconSun from '@/components/fyicons/IconSun';
+
+<IconSun size={24} />;
+```
+
+The command includes a release tag so the icon and its helpers come from the same version. Keep the shared helpers and MIT license with the component files. The npm package is not required, and the components accept the same [React props](/docs/react/#props).
+
+## SVG files
+
+Use SVGs in plain HTML, other frameworks, or design tools. [Browse the icons](/icons/), select an icon, and use **Copy SVG** to copy its markup.
+
+Download the complete collection as a ZIP:
+
+<DownloadIconsButton />
+
+For a smaller collection, open the [icons page](/icons/) on a desktop screen, select icon checkboxes, open **Selected**, and choose **Download**.
+
+Each ZIP contains SVG files, a README, the MIT license, and a manifest with names, categories, and checksums. The preview size control does not change the downloaded files; they keep their 16 × 16 canvas.
+
+Use the SVG in your markup as you would any other SVG. Keep the default classes to allow [global styling](/docs/styling/#default-classes):
+
+<pre>
+  <code>
+    {'<svg\n  class="'}
+    <strong>fy-icon fy-plus</strong>
+    {[
+      '"',
+      '  xmlns="http://www.w3.org/2000/svg"',
+      '  width="16"',
+      '  height="16"',
+      '  fill="none"',
+      '  viewBox="0 0 16 16"',
+      '  aria-hidden="true"',
+      '>',
+      '  <path',
+      '    fill="currentColor"',
+      '    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5',
+      '       a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5',
+      '       A.5.5 0 0 1 8 2"',
+      '  />',
+      '</svg>',
+    ].join('\n')}
+  </code>
+</pre>

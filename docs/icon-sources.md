@@ -4,7 +4,9 @@
 
 The editable artwork is in [`icons/`](../icons/). Each icon has one SVG file and one entry in [`icons/manifest.json`](../icons/manifest.json). Category rules are in [`apps/site/public/icon-categories.json`](../apps/site/public/icon-categories.json).
 
-Normalize visible foreground paint to `currentColor` before import. The importer applies `normalizeSvgExport` from `scripts/lib/svg-export.mjs`. Keep the raw export and its checksum in local staging. This function applies the foreground color policy, repairs supported fill/stroke combinations, and runs SVGO at three decimal places. Keep the 16 × 16 viewBox, clips, and transparency. Generated catalogs and SVG downloads keep these normalized source bytes. React output gives each rendered instance its own SVG definition IDs.
+Normalize visible foreground paint to `currentColor` before import. The importer applies `normalizeSvgExport` from `scripts/lib/svg-export.mjs`. Keep the raw export and its checksum in local staging. This function applies the foreground color policy, repairs supported fill/stroke combinations, and runs SVGO at three decimal places. Keep the 16 × 16 viewBox, clips, and transparency. React output gives each rendered instance its own SVG definition IDs.
+
+Generation adds `fy-icon` and `fy-{icon-name}` classes to the root of exported SVGs. The website catalog, copied SVGs, and ZIP downloads use these exports. Their artwork, paint, reference IDs, and other source bytes stay unchanged. Existing root classes are retained without duplicating the defaults. Catalog and ZIP checksums describe the exported bytes. The editable `icons/*.svg` files and import timestamps stay unchanged.
 
 After an artwork or metadata edit, run:
 
@@ -12,7 +14,7 @@ After an artwork or metadata edit, run:
 npm run generate:icons
 ```
 
-This writes `packages/fyicons/src/`, `apps/site/src/data/catalog.json`, `apps/site/src/data/catalog-runtime.json`, and the category schema. The compact catalog stores compressed SVG data and public metadata. The browser decoder restores the source SVG bytes and public metadata.
+This writes `packages/fyicons/src/`, `apps/site/src/data/catalog-runtime.json`, and the category schema. The compact catalog stores compressed SVG data and public metadata. The shared decoder restores the classed SVG exports and public metadata for the site and release tools.
 
 `dev` and `build` generate at startup. During a running development session, run the generation command after an SVG edit. `npm run check:icons` does checks of source validity and generated file freshness without writing files.
 
@@ -32,7 +34,7 @@ After the repair, the pinned SVGO version runs its default preset with multiple 
 
 Use Figma file keys and component IDs to identify icons through private imports. The public manifest stores `source.id` as `sha256:` followed by the SHA-256 hash of the file key. This opaque identity and the component ID keep rename comparisons stable without exposing the file link. Current Figma names determine library names and React exports. Keep previous names as lookup aliases. A current name takes precedence over an alias.
 
-Keep raw file keys, source URLs, and export scope in ignored local files, such as `artifacts/figma-source.json`. Do not commit or attach these files to public releases. The importer removes private source details before writing the tracked manifest, catalogs, and package metadata. Generation checks reject private source fields in the tracked manifest. Diff reports also remove them when reading older commits.
+Keep raw file keys, source URLs, and export scope in ignored local files, such as `artifacts/figma-source.json`. Do not commit or attach these files to public releases. The importer removes private source details before writing the tracked manifest, catalog, and package metadata. Generation checks reject private source fields in the tracked manifest. Diff reports also remove them when reading older commits.
 
 Numeric suffixes resolve duplicate names in the current inventory. They can change when the inventory changes. An alias does not keep an old named React export available. Review name reassignments as well as renames when preparing release notes.
 
@@ -46,7 +48,7 @@ This command replaces the editable inventory and regenerates its outputs. Save a
 
 The importer uses current source names for known IDs and keeps old lookup aliases. Use `--preserve-names` only when the task requires the earlier names. Repository category rules remain authoritative; incoming category assignments are ignored. Sidebar icon references follow known IDs through renames and use a fallback when their source is removed.
 
-The importer checks supplied hashes against raw input bytes before normalization. It computes output hashes from the normalized SVGs. It validates metadata, viewBoxes, names, collisions, and paths before writing. It prepares source files, React output, catalogs, and the category schema together. Invalid input must leave all existing files unchanged. Publication uses ordinary file writes; a crash or filesystem error can leave partial output.
+The importer checks supplied hashes against raw input bytes before normalization. It computes output hashes from the normalized SVGs. It validates metadata, viewBoxes, names, collisions, and paths before writing. It prepares source files, React output, the catalog, and the category schema together. Invalid input must leave all existing files unchanged. Publication uses ordinary file writes; a crash or filesystem error can leave partial output.
 
 Local import input can supply `source.fileKey` or the existing opaque `source.id`. If both are supplied, they must match. Missing source identity stays unknown. Legacy input can omit `originalName` and aliases; the defaults are the imported name and an empty alias list. Supplied `sourceUrl` values are discarded, and missing URLs are not reconstructed.
 

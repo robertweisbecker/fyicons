@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Field } from '@base-ui/react/field';
-import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { DemoToggle } from '@/demos/components/DemoControls';
 import { statefulIconPairs } from './statefulIconPairs';
+import { ProgressIcons } from './ProgressIcons';
 
 const pairs = statefulIconPairs.map(([icon, activeIcon]) => ({
   id: `${icon}/${activeIcon}`,
@@ -25,52 +25,49 @@ export function StatefulIcons() {
     });
   }
 
-  function reset() {
-    setFlipped(false);
-    setActivePairs([]);
-  }
-
   return (
     <section
       aria-labelledby="stateful-icons-heading"
-      className="grid items-start gap-6 md:grid-cols-2 md:gap-10"
+      className="flex flex-col gap-6"
     >
-      <h2
+      <h3
         id="stateful-icons-heading"
         className="text-2xl font-medium tracking-tight"
       >
         Stateful icons
-      </h2>
-      <div className="min-w-0 space-y-4">
-        <div className="flex flex-wrap items-center justify-end gap-4">
-          <Field.Root className="flex items-center gap-2.5">
-            <Field.Label className="cursor-pointer text-sm text-muted">
-              Flip all
-            </Field.Label>
-            <Switch checked={flipped} onCheckedChange={flipAll} />
-          </Field.Root>
-          <Button type="button" variant="outline" size="sm" onClick={reset}>
-            Reset
-          </Button>
-        </div>
-        <ToggleGroup
-          multiple
-          value={activePairs}
-          onValueChange={setActivePairs}
-          aria-label="Icon states"
-          className="grid grid-cols-[repeat(auto-fill,minmax(2.25rem,1fr))] justify-items-center gap-1 rounded-2xl bg-canvas p-3 sm:p-5 pointer-coarse:grid-cols-[repeat(auto-fill,minmax(2.75rem,1fr))]"
+      </h3>
+      <div className="grid gap-8 md:grid-cols-2 md:gap-10">
+        <div
+          role="group"
+          aria-label="Discrete states"
+          className="flex min-h-80 min-w-0 flex-col gap-8 rounded-2xl bg-surface p-5 sm:p-8"
         >
-          {pairs.map(({ id, icon, activeIcon }) => (
-            <DemoToggle
-              key={id}
-              value={id}
-              label={`${icon} / ${activeIcon}`}
-              icon={icon}
-              activeIcon={activeIcon}
-              className="size-9 touch-manipulation pointer-coarse:size-11 [&>svg]:size-6"
-            />
-          ))}
-        </ToggleGroup>
+          <ToggleGroup
+            multiple
+            value={activePairs}
+            onValueChange={setActivePairs}
+            aria-label="Icon states"
+            className="grid flex-1 grid-cols-[repeat(auto-fill,minmax(2.25rem,1fr))] content-center justify-items-center gap-1 pointer-coarse:grid-cols-[repeat(auto-fill,minmax(2.75rem,1fr))]"
+          >
+            {pairs.map(({ id, icon, activeIcon }) => (
+              <DemoToggle
+                key={id}
+                value={id}
+                label={`${icon} / ${activeIcon}`}
+                icon={icon}
+                activeIcon={activeIcon}
+                className="size-9 touch-manipulation pointer-coarse:size-11 [&>svg]:size-6"
+              />
+            ))}
+          </ToggleGroup>
+          <Field.Root className="flex min-h-11 items-center justify-center">
+            <Field.Label className="flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2.5 text-sm text-muted">
+              Toggle
+              <Switch checked={flipped} onCheckedChange={flipAll} />
+            </Field.Label>
+          </Field.Root>
+        </div>
+        <ProgressIcons />
       </div>
     </section>
   );

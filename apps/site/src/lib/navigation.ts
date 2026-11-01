@@ -1,17 +1,17 @@
-export type Page = 'home' | 'library' | 'examples';
 export const githubHref = 'https://github.com/robertweisbecker/fyicons';
 export const npmHref = 'https://www.npmjs.com/package/fyicons';
+export const siteUrl = 'https://icons.bob.fyi';
+export const siteNavigation = [
+  { href: '/icons/', label: 'Icons' },
+  { href: '/examples/', label: 'Examples' },
+  { href: '/docs/', label: 'Docs' },
+] as const;
 
-// Static entry points work at a custom domain and a GitHub project subpath.
-const basePath = location.pathname
-  .replace(/(?:examples|library)\/?(?:index\.html)?$|index\.html$/, '')
-  .replace(/\/?$/, '/');
-export const pageHref = (page: Page) =>
-  basePath + (page === 'home' ? '' : `${page}/`);
-export const pageFromLocation = (): Page =>
-  location.hash === '#library' || /\/library(?:\/|$)/.test(location.pathname)
-    ? 'library'
-    : /\/examples(?:\/|$)/.test(location.pathname) ||
-        location.hash === '#examples'
-      ? 'examples'
-      : 'home';
+// Next's Link and router apply basePath themselves. Plain fetches and History
+// API URLs need this prefix explicitly, including on nested docs pages.
+export const assetPath = (path: string) =>
+  `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${path}`;
+
+export const isActiveRoute = (pathname: string, href: string) =>
+  pathname.replace(/\/$/, '') === href.replace(/\/$/, '') ||
+  (href !== '/' && pathname.startsWith(href));

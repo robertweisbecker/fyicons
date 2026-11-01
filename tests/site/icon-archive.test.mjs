@@ -8,11 +8,14 @@ import {
   parseIconCategories,
 } from '../../apps/site/src/lib/icon-categories.ts';
 import { createIconArchive } from '../../apps/site/src/lib/icon-archive.ts';
+import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
 
-const generated = JSON.parse(
-  await readFile(
-    new URL('../../apps/site/src/data/catalog.json', import.meta.url),
-    'utf8',
+const generated = decodeCatalog(
+  JSON.parse(
+    await readFile(
+      new URL('../../apps/site/src/data/catalog-runtime.json', import.meta.url),
+      'utf8',
+    ),
   ),
 );
 const assignments = parseIconCategories(
@@ -77,14 +80,8 @@ function verifyArchive(selection) {
   return exported;
 }
 
-test('full ZIP preserves every original SVG, checksum, and component metadata', async () => {
+test('full ZIP preserves every classed SVG export, checksum, and component metadata', () => {
   verifyArchive(catalog.icons);
-  for (const icon of catalog.icons) {
-    assert.equal(
-      icon.svg,
-      await readFile(new URL(`../../${icon.file}`, import.meta.url), 'utf8'),
-    );
-  }
 });
 
 test('selected ZIP includes only selected variants and filters duplicate metadata', () => {

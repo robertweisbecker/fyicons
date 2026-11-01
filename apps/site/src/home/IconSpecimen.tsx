@@ -7,7 +7,8 @@ import {
   type FocusEvent,
   type PointerEvent,
 } from 'react';
-import { motion, MotionConfig, useReducedMotion } from 'motion/react';
+import { motion, MotionConfig } from 'motion/react';
+import { useReducedMotionPreference } from '@/lib/preferences';
 import { Icon } from '@/components/Icon';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import './IconSpecimen.css';
@@ -50,13 +51,13 @@ const cycleDuration = 8000; // 8 seconds
 const showProgress = false;
 
 function useSpecimen() {
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotionPreference();
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [pageVisible, setPageVisible] = useState(!document.hidden);
+  const [pageVisible, setPageVisible] = useState(true);
   const [instant, setInstant] = useState(false);
   const [cycle, setCycle] = useState(0);
   const [pinnedGuide, setPinnedGuide] = useState<Guide | null>(null);
