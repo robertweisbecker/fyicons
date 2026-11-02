@@ -52,7 +52,7 @@ export function ToggleStateExample() {
       >
         <Heart
           data-icon="inline-start"
-          className="in-data-pressed:text-rose-400"
+          className="in-data-pressed:text-red-500"
         />
         Like
       </Toggle>
@@ -64,7 +64,7 @@ export function ToggleStateExample() {
       >
         <Star
           data-icon="inline-start"
-          className="in-data-pressed:text-amber-400"
+          className="in-data-pressed:text-amber-500 dark:in-data-pressed:text-amber-400"
         />
         Favorite
       </Toggle>
@@ -77,7 +77,10 @@ export function ToggleStateExample() {
       >
         Enable
         {switched ? (
-          <IconSwitchOn className="text-green-400" size={20} />
+          <IconSwitchOn
+            className="text-green-600 dark:text-green-400"
+            size={20}
+          />
         ) : (
           <IconSwitchOff size={20} />
         )}
@@ -119,7 +122,7 @@ export function MediaStateExample() {
       aria-label="Video control bar example"
       className="my-6 rounded-xl border border-line bg-surface p-2 sm:p-4"
     >
-      <div className="mx-auto flex w-fit items-center gap-1 rounded-lg bg-dialog p-1">
+      <div className="mx-auto flex w-fit items-center gap-1 rounded-lg bg-dialog p-1 shadow-sm ring ring-line">
         <Button
           variant="ghost"
           size="icon"

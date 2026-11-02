@@ -6,9 +6,9 @@ export const metadata = {
     'Get started with FYIcons: install React components, add editable source with shadcn, or download SVG files.',
 };
 
-# Getting Started
+# Getting started
 
-FYIcons is a collection of 16 × 16 px icons for websites, applications, and design files. Choose the format that fits your project.
+Add icons to your project with SVG or React components.
 
 ## React
 
@@ -38,13 +38,32 @@ Icons render at 16 px and inherit the surrounding text color. The [React guide](
 
 <h3 id="editable-source-with-shadcn">Editable source with shadcn</h3>
 
-Use the shadcn registry to copy selected icons and their helpers into your project. Start with a React and TypeScript project that has a shadcn `components.json` file.
+Use the shadcn registry to copy selected icons and their helpers into your project. You can edit the source, and the `fyicons` npm package is not required.
 
-1. [Find an icon](/icons/) and open its details.
-2. Copy its shadcn command and run it in your project.
-3. Import the component from your configured components directory.
+Start with a React and TypeScript project that has a shadcn `components.json` file. If you have not set up shadcn, follow its [installation guide](https://ui.shadcn.com/docs/installation). FYIcons uses a [GitHub registry](https://ui.shadcn.com/docs/registry/github), so you do not need to add a registry namespace to `components.json`.
 
-With the components alias set to `@/components`, a Sun icon import looks like this:
+#### Add icons
+
+[Find an icon](/icons/), open its details, and copy its shadcn command. For example, add the Sun icon from your project directory:
+
+```sh
+npx shadcn@latest add robertweisbecker/fyicons/sun
+```
+
+To add multiple icons at once, include each icon address in the same command:
+
+```sh
+npx shadcn@latest add \
+  robertweisbecker/fyicons/sun \
+  robertweisbecker/fyicons/moon \
+  robertweisbecker/fyicons/heart
+```
+
+You can also replace `npx` with `pnpm dlx`, `yarn dlx`, or `bunx`.
+
+#### Use the components
+
+Icons go into a `fyicons` folder under your configured components directory. With the components alias set to `@/components`, import each icon as a default export:
 
 ```tsx
 import IconSun from '@/components/fyicons/IconSun';
@@ -52,7 +71,35 @@ import IconSun from '@/components/fyicons/IconSun';
 <IconSun size={24} />;
 ```
 
-The command includes a release tag so the icon and its helpers come from the same version. Keep the shared helpers and MIT license with the component files. The npm package is not required, and the components accept the same [React props](/docs/react/#props).
+Each install includes the shared `base.tsx` and `types.ts` helpers and the MIT `LICENSE`. Keep these files with your icons. The components accept the same [React props](/docs/react/#props), including `size` and `color`.
+
+#### Find icons from the terminal
+
+Search the registry by name without leaving your project:
+
+```sh
+npx shadcn@latest search robertweisbecker/fyicons --query heart
+```
+
+#### Pin a version
+
+Version pinning is optional. Without a tag, commands use the repository's default branch. Append a release tag to install a specific release:
+
+```sh
+npx shadcn@latest add 'robertweisbecker/fyicons/sun#fyicons@0.2.1'
+```
+
+For a multiple-icon install, append the tag to each icon address. See the [changelog](/docs/changelog/) for release numbers.
+
+#### Preview updates
+
+Copied components do not update automatically. To preview an update, run the add command again with `--dry-run`. This shows the proposed changes without writing files:
+
+```sh
+npx shadcn@latest add robertweisbecker/fyicons/sun --dry-run
+```
+
+Use `--diff` instead to inspect file differences. Review changes to your icons and shared helpers, especially if you have edited them locally. Run the command without the preview flag when you are ready to apply the update; the CLI asks before replacing existing files. The [shadcn CLI guide](https://ui.shadcn.com/docs/cli#add) covers all options.
 
 ## SVG files
 
@@ -64,11 +111,11 @@ Download the complete collection as a ZIP:
 
 For a smaller collection, open the [icons page](/icons/) on a desktop screen, select icon checkboxes, open **Selected**, and choose **Download**.
 
-Each ZIP contains SVG files, a README, the MIT license, and a manifest with names, categories, and checksums. The preview size control does not change the downloaded files; they keep their 16 × 16 canvas.
+Each ZIP contains SVG files, a README, the MIT license, and a manifest with names, categories, and checksums. The preview size control does not change the downloaded files; they keep their 16×16 canvas.
 
 Use the SVG in your markup as you would any other SVG. Keep the default classes to allow [global styling](/docs/styling/#default-classes):
 
-<pre>
+<CodeBlock>
   <code>
     {'<svg\n  class="'}
     <strong>fy-icon fy-plus</strong>
@@ -90,4 +137,4 @@ Use the SVG in your markup as you would any other SVG. Keep the default classes 
       '</svg>',
     ].join('\n')}
   </code>
-</pre>
+</CodeBlock>

@@ -52,9 +52,9 @@ export function ProgressIcons() {
           role="img"
           aria-label={`${description}: ${level} percent`}
           tabIndex={0}
-          className="grid min-h-16 min-w-11 place-items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+          className="grid min-h-11 min-w-11 place-items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
         >
-          <Icon size={32} />
+          <Icon size={24} className="size-5 sm:size-6" />
         </span>
       </Tooltip>
     );
@@ -64,16 +64,16 @@ export function ProgressIcons() {
     <div
       role="group"
       aria-label="Progress"
-      className="flex min-h-80 min-w-0 flex-col gap-8 rounded-2xl bg-surface p-5 sm:p-8"
+      className="flex min-h-80 min-w-0 flex-col gap-6 rounded-2xl bg-surface p-2 sm:p-5 lg:p-8"
     >
       <TooltipGroup>
-        <div className="flex flex-1 flex-col justify-center gap-6">
-          <div className="mx-auto grid w-full max-w-sm grid-cols-[repeat(auto-fit,minmax(min(100%,5rem),1fr))] gap-4">
+        <div className="flex flex-1 flex-col justify-center gap-3 sm:gap-4">
+          <div className="mx-auto grid w-full max-w-64 grid-cols-[repeat(auto-fit,minmax(min(100%,3rem),1fr))] gap-2 sm:gap-4">
             {previews
               .filter(({ family }) => family !== 'Emotion')
               .map(renderPreview)}
           </div>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-1 sm:gap-3">
             {previews
               .filter(({ family }) => family === 'Emotion')
               .map(renderPreview)}
@@ -82,7 +82,7 @@ export function ProgressIcons() {
                 role="img"
                 aria-label={`${rating} out of 4 stars`}
                 tabIndex={0}
-                className="flex min-h-11 items-center justify-center gap-2 rounded-md px-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+                className="flex min-h-11 items-center justify-center gap-0.5 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current sm:gap-1"
               >
                 {[0, 1, 2, 3].map((index) => {
                   const Star =
@@ -91,7 +91,9 @@ export function ProgressIcons() {
                       : rating >= index + 0.5
                         ? IconStarHalfFill
                         : IconStar;
-                  return <Star key={index} size={32} />;
+                  return (
+                    <Star key={index} size={24} className="size-4 sm:size-6" />
+                  );
                 })}
               </span>
             </Tooltip>

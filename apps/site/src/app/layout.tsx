@@ -6,7 +6,7 @@ import '../styles.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: 'FYIcons — 16 × 16 px icons', template: '%s — FYIcons' },
+  title: { default: 'FYIcons — 16×16px icons', template: '%s — FYIcons' },
   description:
     'Small icons for your apps. Download SVGs, use typed React components, or add editable icons with shadcn.',
   icons: { icon: assetPath('/favicon.svg') },

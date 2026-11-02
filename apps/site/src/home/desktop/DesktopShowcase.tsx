@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { Tabs } from '@base-ui/react/tabs';
-import { ScrollArea } from '@base-ui/react/scroll-area';
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+  MotionConfig,
+} from 'motion/react';
 import { Icon } from '@/components/Icon';
 
 import { DesignApp } from './DesignApp';
@@ -75,6 +80,7 @@ function DesktopStatusBar() {
 
 export function DesktopShowcase() {
   const [activeApp, setActiveApp] = useState<string>('design');
+  const dockId = useId();
 
   return (
     <section
@@ -86,25 +92,71 @@ export function DesktopShowcase() {
         onValueChange={setActiveApp}
         className="group/desktop relative"
       >
-        <ScrollArea.Root className="absolute! bottom-2 left-1/2 z-20 w-max max-w-[calc(100%-1.5rem)] -translate-x-1/2 translate-y-1/2 rounded-full bg-neutral-700 shadow-lg ring-1 ring-white/10 dark:bg-dialog">
-          <Tabs.List
-            aria-label="Demo apps"
-            render={<ScrollArea.Viewport />}
-            className="relative isolate flex scroll-px-4 gap-1 overscroll-x-contain rounded-[inherit] [mask-image:linear-gradient(to_right,transparent,black_min(1.5rem,var(--scroll-area-overflow-x-start)),black_calc(100%_-_min(1.5rem,var(--scroll-area-overflow-x-end))),transparent)] p-1.5"
+        <div className="absolute bottom-2 left-1/2 z-20 w-max max-w-full -translate-x-1/2 translate-y-1/2">
+          <MotionConfig
+            reducedMotion="user"
+            transition={{ type: 'spring', duration: 0.28, bounce: 0 }}
           >
-            {apps.map((app) => (
-              <Tabs.Tab
-                key={app.id}
-                value={app.id}
-                className="relative z-1 flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-full px-3 py-2 text-sm whitespace-nowrap text-white/72 outline-offset-2 transition-colors duration-150 ease-out hover:text-white not-data-active:hover:bg-current/5 focus-visible:outline-2 data-active:text-white data-active:outline-focus"
+            <LayoutGroup id={dockId}>
+              <Tabs.List
+                aria-label="Demo apps"
+                render={<motion.div layout style={{ borderRadius: 999 }} />}
+                className="relative isolate flex gap-0.5 bg-neutral-700 p-1.5 shadow-lg ring-1 ring-white/10 md:gap-1 dark:bg-dialog"
               >
-                <Icon name={app.icon} size={20} />
-                {app.name}
-              </Tabs.Tab>
-            ))}
-            <Tabs.Indicator className="pointer-events-none absolute top-(--active-tab-top) left-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) rounded-full bg-white/10 text-white shadow-[inset_0_2px_1px_-1px_--alpha(currentColor_/_10%),var(--shadow-md)] ring-1 ring-black/20 transition-[translate,width] duration-150 ease-in-out group-has-[[role=tab]:focus-visible]/desktop:transition-none!" />
-          </Tabs.List>
-        </ScrollArea.Root>
+                {apps.map((app) => (
+                  <Tabs.Tab
+                    key={app.id}
+                    value={app.id}
+                    aria-label={app.name}
+                    render={
+                      <motion.button layout style={{ borderRadius: 999 }} />
+                    }
+                    className="relative z-1 flex h-8 shrink-0 items-center justify-center px-2 py-2 text-sm whitespace-nowrap text-white/72 outline-offset-2 transition-colors duration-150 ease-out hover:text-white not-data-active:hover:bg-current/5 focus-visible:outline-2 motion-reduce:transition-none sm:h-9 md:px-3 data-active:px-3 data-active:text-white data-active:outline-focus"
+                  >
+                    {activeApp === app.id && (
+                      <motion.span
+                        layoutId="active-app"
+                        aria-hidden="true"
+                        style={{ borderRadius: 999 }}
+                        className="pointer-events-none absolute inset-0 -z-10 bg-white/10 text-white shadow-[inset_0_2px_1px_-1px_--alpha(currentColor_/_10%),var(--shadow-md)] ring-1 ring-black/20"
+                      />
+                    )}
+                    <motion.span
+                      layout
+                      className="relative flex min-w-0 items-center overflow-hidden"
+                    >
+                      <motion.span layout="position" className="flex shrink-0">
+                        <Icon name={app.icon} className="size-4 sm:size-5" />
+                      </motion.span>
+                      <motion.span
+                        layout="position"
+                        aria-hidden="true"
+                        className="ml-1.5 hidden md:block"
+                      >
+                        {app.name}
+                      </motion.span>
+                      <AnimatePresence initial={false} mode="popLayout">
+                        {activeApp === app.id && (
+                          <motion.span
+                            key="label"
+                            layout="position"
+                            aria-hidden="true"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="ml-1.5 md:hidden"
+                          >
+                            {app.name}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </motion.span>
+                  </Tabs.Tab>
+                ))}
+              </Tabs.List>
+            </LayoutGroup>
+          </MotionConfig>
+        </div>
         <div className="rounded-2xl border border-border">
           {/* Clip the backdrop inside the border so it cannot cover the rounded frame. */}
           <div className="relative isolate overflow-hidden rounded-[calc(var(--radius-2xl)-1px)] bg-neutral-900 [clip-path:inset(0_round_calc(var(--radius-2xl)-1px))]">

@@ -2,6 +2,14 @@ import { useRef, useState, type ReactNode, type Ref } from 'react';
 import { Popover } from '@base-ui/react/popover';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
+import {
+  Menu,
+  MenuContent,
+  MenuGroupLabel,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuTrigger,
+} from '@/components/ui/menu';
 import { Slider } from '@/components/ui/slider';
 import {
   DemoHint,
@@ -9,6 +17,12 @@ import {
   DemoToggle,
 } from '@/demos/components/DemoControls';
 import { AlbumArtwork, tracks, trackTime } from './musicData';
+
+const playbackDevices = [
+  { value: 'headphones', label: 'Headphones', icon: 'headphones' },
+  { value: 'speakers', label: 'Speaker group', icon: 'speakers' },
+  { value: 'computer', label: 'Computer', icon: 'computer' },
+];
 
 function PlayerSlider({
   label,
@@ -76,7 +90,7 @@ function PlayerPopover({
           className="z-50"
         >
           <Popover.Popup
-            className="dark w-56 max-w-(--available-width) rounded-xl bg-dialog p-4 text-xs text-ink shadow-xl outline outline-offset-(--surface-outline-offset) outline-border"
+            className="dark max-h-(--available-height) w-56 max-w-(--available-width) overflow-y-auto rounded-xl bg-dialog p-4 text-xs text-ink shadow-xl outline outline-offset-(--surface-outline-offset) outline-border"
             data-theme="dark"
           >
             <Popover.Title className="mb-3 text-sm font-semibold">
@@ -116,6 +130,7 @@ export function MusicPlayer({
   onNowPlaying: () => void;
 }) {
   const [volume, setVolume] = useState(70);
+  const [device, setDevice] = useState('computer');
   const previousVolume = useRef(70);
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
@@ -235,16 +250,42 @@ export function MusicPlayer({
             <Icon name="queue" />
           </Button>
         </DemoHint>
-        <PlayerPopover label="Connect to a device" icon="speakers">
-          <div className="flex items-center gap-3 text-green-400">
-            <Icon name="computer" size={24} />
-            <span>This device</span>
-            <Icon name="check" className="ml-auto" />
-          </div>
-          <p className="mt-3 leading-relaxed text-muted">
-            You're listening right here. No other devices connected.
-          </p>
-        </PlayerPopover>
+        <Menu>
+          <DemoHint label="Connect to a device">
+            <MenuTrigger
+              render={<Button variant="ghost" size="icon-xs" />}
+              aria-label="Connect to a device"
+              className="data-popup-open:text-green-400"
+            >
+              <Icon name="speakers" />
+            </MenuTrigger>
+          </DemoHint>
+          <MenuContent
+            side="top"
+            align="end"
+            sideOffset={10}
+            aria-label="Playback device"
+            className="dark w-52 bg-dialog"
+            data-theme="dark"
+          >
+            <MenuRadioGroup value={device} onValueChange={setDevice}>
+              <MenuGroupLabel className="min-h-8 font-medium text-ink">
+                Connect to a device
+              </MenuGroupLabel>
+              {playbackDevices.map((item) => (
+                <MenuRadioItem
+                  key={item.value}
+                  value={item.value}
+                  size="sm"
+                  className="min-h-9 data-checked:bg-green-400/10 data-checked:text-green-400"
+                >
+                  <Icon name={item.icon} size={16} />
+                  {item.label}
+                </MenuRadioItem>
+              ))}
+            </MenuRadioGroup>
+          </MenuContent>
+        </Menu>
         <DemoIconButton
           label={volume ? 'Mute' : 'Unmute'}
           icon={

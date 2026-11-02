@@ -12,7 +12,13 @@ export function FormatStudy() {
   );
 }
 
-export function FormatControls({ compact = false }: { compact?: boolean }) {
+export function FormatControls({
+  compact = false,
+  className,
+}: {
+  compact?: boolean;
+  className?: string;
+}) {
   const [marks, setMarks] = useState(['bold']);
   const [list, setList] = useState(['none']);
   const size = compact ? 'icon-xs' : 'icon';
@@ -24,6 +30,7 @@ export function FormatControls({ compact = false }: { compact?: boolean }) {
         compact
           ? 'grid-cols-2 gap-x-1 text-xs'
           : 'grid-cols-[1fr_auto] gap-x-2 gap-y-2 text-sm max-sm:grid-cols-1 max-sm:gap-y-3',
+        className,
       )}
     >
       {!compact && <span>Format</span>}
@@ -67,6 +74,7 @@ export function FormatControls({ compact = false }: { compact?: boolean }) {
             label="None"
             size={size}
             variant="elevated"
+            className="flex-1"
           />
           <DemoToggle
             value="ordered"
@@ -74,6 +82,7 @@ export function FormatControls({ compact = false }: { compact?: boolean }) {
             label="Numbered list"
             size={size}
             variant="elevated"
+            className="flex-1"
           />
           <DemoToggle
             value="bullet"
@@ -81,6 +90,7 @@ export function FormatControls({ compact = false }: { compact?: boolean }) {
             label="Bullet list"
             size={size}
             variant="elevated"
+            className="flex-1"
           />
         </ToggleGroup>
         <Glyph
@@ -156,6 +166,7 @@ export function TextAlignment({
               label={'Align ' + value}
               size={size}
               variant="elevated"
+              className="flex-1"
             />
           ))}
         </ToggleGroup>

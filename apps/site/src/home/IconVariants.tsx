@@ -44,7 +44,7 @@ export function IconVariants() {
         id="icon-variants-heading"
         className="text-2xl font-medium tracking-tight"
       >
-        Outline and filled variants
+        More than just outlines
       </h3>
       <div className="grid min-w-0 grid-cols-2 gap-3 sm:gap-4">
         {variants.map(({ label, suffix }) => (

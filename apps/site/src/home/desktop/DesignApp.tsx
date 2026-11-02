@@ -1,6 +1,5 @@
-import { useId, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Icon } from '@/components/Icon';
-import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
@@ -22,9 +21,6 @@ export function DesignApp() {
   const [tool, setTool] = useState(['pointer']);
   const [fill, setFill] = useState(designFills[0]);
   const [fillVisible, setFillVisible] = useState(true);
-  const [inspectorOpen, setInspectorOpen] = useState(false);
-  const inspectorId = useId();
-  const inspectorToggle = useRef<HTMLButtonElement>(null);
   return (
     <Window
       title="Design"
@@ -51,49 +47,39 @@ export function DesignApp() {
             <span className="min-w-0 truncate">Design</span>
             <Glyph name="x" className="ml-3 text-muted" />
           </div>
-          <Button
-            ref={inspectorToggle}
-            variant="ghost"
-            size="icon-sm"
-            aria-label={
-              inspectorOpen ? 'Hide design inspector' : 'Show design inspector'
-            }
-            aria-expanded={inspectorOpen}
-            aria-controls={inspectorId}
-            onClick={() => setInspectorOpen(!inspectorOpen)}
-            className="mr-1 ml-auto aria-expanded:bg-inset @2xl/window:hidden"
-          >
-            <Icon
-              name={inspectorOpen ? 'sidebar-right-open' : 'sidebar-right'}
-            />
-          </Button>
         </div>
       }
     >
       <div className="relative flex min-h-0 flex-1">
         <DesignRail />
         <div
-          className={cn(
-            'relative isolate min-h-0 min-w-0 flex-1 place-items-center bg-inset p-4 pb-28',
-            inspectorOpen ? 'hidden @2xl/window:grid' : 'grid',
-          )}
+          className="@container/design-canvas relative isolate flex min-h-0 min-w-0 flex-1 items-center justify-center overflow-hidden bg-inset p-2 pb-28 @2xl/window:p-4 @2xl/window:pb-28"
           role="region"
           aria-label="Design canvas"
         >
-          <div className="relative">
+          <div className="relative shrink-0 scale-40 @min-[6rem]/design-canvas:scale-60 @min-[8rem]/design-canvas:scale-75 @min-[10rem]/design-canvas:scale-90 @min-[12rem]/design-canvas:scale-100">
             <div
-              className="relative flex h-44 w-40 flex-col items-center justify-center gap-3 rounded-3xl text-center text-violet-950 shadow-lg"
+              className="relative h-12 w-40 rounded-xl p-px shadow-[0_2px_1px_#00000012,0_7px_10px_-3px_#00000026]"
               style={{
-                backgroundColor: fillVisible ? fill.color : 'transparent',
+                backgroundColor: fillVisible
+                  ? `color-mix(in srgb, ${fill.color}, black 24%)`
+                  : 'transparent',
               }}
             >
-              <Icon name="asterisk" />
-              <span className="font-serif text-2xl leading-tight font-semibold">
-                Quiet
-                <br />
-                by design.
-              </span>
-              <span className="text-xs opacity-60">Studio notes</span>
+              <div
+                className={cn(
+                  'inline-flex h-[calc(100%-3px)] w-full shrink-0 items-center justify-center gap-2 rounded-[11px] border border-white/40 bg-linear-to-b from-white/45 via-white/10 to-black/5 text-sm leading-5 font-medium shadow-[inset_0_1px_0_#ffffffb3,inset_0_-1px_0_#0000000f]',
+                  fillVisible
+                    ? 'text-violet-950 [text-shadow:0_1px_0_#ffffff60]'
+                    : 'text-ink',
+                )}
+                style={{
+                  backgroundColor: fillVisible ? fill.color : 'transparent',
+                }}
+              >
+                <Icon name="plus" />
+                Create
+              </div>
               <span
                 aria-hidden
                 className="pointer-events-none absolute -inset-2 border border-control-accent"
@@ -105,19 +91,19 @@ export function DesignApp() {
               </span>
             </div>
             <span className="absolute top-full left-1/2 mt-3 -translate-x-1/2 rounded bg-control-accent px-1.5 py-px text-xs whitespace-nowrap text-white">
-              160 × 176
+              160 × 48
             </span>
           </div>
           <div className="absolute inset-x-2 bottom-4 flex justify-center">
             <div
-              className="flex w-fit max-w-full items-center gap-1 overflow-x-auto overscroll-x-contain rounded-xl bg-surface p-1 shadow-md ring ring-line"
+              className="flex w-fit max-w-full flex-wrap items-center justify-center gap-1 rounded-xl bg-surface p-1 shadow-md ring ring-line"
               aria-label="Canvas toolbar"
             >
               <ToggleGroup
                 aria-label="Canvas tools"
                 value={tool}
                 onValueChange={(v) => v.length && setTool(v)}
-                className="shrink-0 gap-0.5"
+                className="max-w-full shrink-0 flex-wrap justify-center gap-0.5"
               >
                 {tools.map(([icon, label]) => (
                   <DemoToggle
@@ -126,14 +112,17 @@ export function DesignApp() {
                     icon={icon}
                     label={`${label}`}
                     size="icon-sm"
-                    className="data-pressed:bg-control-accent data-pressed:text-white data-pressed:hover:bg-control-accent"
+                    className={cn(
+                      'data-pressed:bg-control-accent data-pressed:text-white data-pressed:hover:bg-control-accent',
+                      icon === 'square' && 'max-md:hidden',
+                    )}
                   />
                 ))}
               </ToggleGroup>
               <ToggleGroup
                 defaultValue={['pointer-rulers']}
                 aria-label="Canvas mode"
-                className="shrink-0 gap-0 rounded-md bg-canvas p-px"
+                className="max-w-full shrink-0 flex-wrap justify-center gap-0 rounded-md bg-canvas p-px"
               >
                 {[
                   ['scribble', 'Draw'],
@@ -154,25 +143,10 @@ export function DesignApp() {
           </div>
         </div>
         <DesignInspector
-          id={inspectorId}
           fill={fill}
           onFillChange={setFill}
           fillVisible={fillVisible}
           onFillVisibleChange={setFillVisible}
-          className={
-            inspectorOpen
-              ? 'flex flex-1 @2xl/window:flex-none'
-              : 'hidden @2xl/window:flex'
-          }
-          onKeyDown={(event) => {
-            if (
-              event.key === 'Escape' &&
-              inspectorToggle.current?.offsetParent
-            ) {
-              setInspectorOpen(false);
-              inspectorToggle.current.focus();
-            }
-          }}
         />
       </div>
     </Window>

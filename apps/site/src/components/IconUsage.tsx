@@ -1,5 +1,4 @@
 import { useId } from 'react';
-import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/Icon';
 import { download } from '@/lib/downloads';
@@ -61,7 +60,7 @@ function UsageSnippet({
 export function IconUsage({ item }: { item: IconRecord }) {
   const headingId = useId();
   const jsx = `import {\n  ${item.componentName},\n} from '@/icons';\n\n<${item.componentName} size={16} />`;
-  const shadcnCommand = `npx shadcn@latest add 'robertweisbecker/fyicons/${item.name}#fyicons@${packageInfo.version}'`;
+  const shadcnCommand = `npx shadcn@latest add robertweisbecker/fyicons/${item.name}`;
 
   return (
     <section

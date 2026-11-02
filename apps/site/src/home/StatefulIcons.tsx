@@ -36,11 +36,11 @@ export function StatefulIcons() {
       >
         Stateful icons
       </h3>
-      <div className="grid gap-8 md:grid-cols-2 md:gap-10">
+      <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-10">
         <div
           role="group"
           aria-label="Discrete states"
-          className="flex min-h-80 min-w-0 flex-col gap-8 rounded-2xl bg-surface p-5 sm:p-8"
+          className="flex min-h-80 min-w-0 flex-col gap-6 rounded-2xl bg-surface p-2 sm:p-5 lg:p-8"
         >
           <ToggleGroup
             multiple
@@ -56,7 +56,7 @@ export function StatefulIcons() {
                 label={`${icon} / ${activeIcon}`}
                 icon={icon}
                 activeIcon={activeIcon}
-                className="size-9 touch-manipulation pointer-coarse:size-11 [&>svg]:size-6"
+                className="size-9 touch-manipulation pointer-coarse:size-11 [&>svg]:size-5 sm:[&>svg]:size-6"
               />
             ))}
           </ToggleGroup>

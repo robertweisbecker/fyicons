@@ -8,6 +8,39 @@ export const metadata = {
 
 Inline SVGs and React components use standard CSS for size and color. No icon stylesheet is required.
 
+<Callout aria-label="A note on Figma exports">
+
+**A note on Figma exports**
+
+The Figma export process is automated and flattens most icons to filled paths without preserving strokes. This means that outline icons don't support `stroke` or `stroke-width` overrides via CSS. I'm debating supporting this in the future, since it would sacrifice pixel-perfection…maybe I'll just make a 24×24 icon set for that.
+
+</Callout>
+
+<h2 id="default-classes">Default classes</h2>
+
+SVG exports and React components include two classes on the root SVG:
+
+- `fy-icon` targets every FYIcons icon.
+- `fy-{icon-name}` targets an icon by its catalog name, such as `fy-plus`.
+
+The name includes any variant suffix. These are styling hooks; they do not apply styles on their own. Use them with your existing CSS:
+
+```css
+/* Every inline FYIcons icon in the toolbar. */
+.toolbar .fy-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+/* Only the Plus icon. */
+.toolbar .fy-plus {
+  color: #16a34a;
+}
+```
+
+Classes inside an SVG file loaded through `<img>` cannot be selected by the page's CSS. Use inline SVG when you want these styling hooks.
+
 ## Color with currentColor
 
 The visible paths use `currentColor`, which takes its value from the CSS `color` property. Set `color` on a parent to make its inline icons follow the text:
@@ -41,34 +74,9 @@ Put the SVG markup directly in the page. For example, this Plus icon inherits th
 
 Set `color` to recolor an icon; you do not need to replace its path fills or strokes. An SVG loaded through an `<img>` element does not inherit the surrounding page's text color.
 
-<h2 id="default-classes">Default classes</h2>
-
-SVG exports and React components include two classes on the root SVG:
-
-- `fy-icon` targets every FYIcons icon.
-- `fy-{icon-name}` targets an icon by its catalog name, such as `fy-plus`.
-
-The name includes any variant suffix. These are styling hooks; they do not apply styles on their own. Use them with your existing CSS:
-
-```css
-/* Every inline FYIcons icon in the toolbar. */
-.toolbar .fy-icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.125em;
-}
-
-/* Only the Plus icon. */
-.toolbar .fy-plus {
-  color: #16a34a;
-}
-```
-
-Classes inside an SVG file loaded through `<img>` cannot be selected by the page's CSS. Use inline SVG when you want these styling hooks.
-
 ## Size
 
-Icons start at 16 × 16 px. Set CSS `width` and `height` to scale them, or use `1em` to match the surrounding text size. Keep the `viewBox="0 0 16 16"` so the artwork scales with the element.
+Icons start at 16×16px. Set CSS `width` and `height` to scale them, or use `1em` to match the surrounding text size. Keep the `viewBox="0 0 16 16"` so the artwork scales with the element.
 
 Many icons use filled paths. Changing `stroke-width` does not change their visual weight.
 

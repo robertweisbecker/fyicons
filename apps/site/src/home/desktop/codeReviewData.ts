@@ -2,22 +2,33 @@ import type { ProjectFile } from '@/components/FileTree';
 
 export const reviewChanges = [
   {
-    path: 'src/components/ui/badge.tsx',
-    before: ['<span className="rounded px-2">', '  {children}', '</span>'],
-    after: ['<Badge variant="neutral">', '  {children}', '</Badge>'],
+    path: 'src/components/ui/copy-button.tsx',
+    before: ["import { Copy, Check } from 'lucide-react';"],
+    after: [
+      'import {',
+      '  IconCopy as Copy,',
+      '  IconCheck as Check,',
+      "} from 'fyicons';",
+    ],
   },
   {
     path: 'src/components/CategorySidebar.tsx',
-    before: ['<Icon name="folder" />', '<span>{category.name}</span>'],
-    after: ['<Icon name={category.icon} />', '<span>{category.label}</span>'],
+    before: ["import { Folder, ChevronRight } from 'lucide-react';"],
+    after: [
+      'import {',
+      '  IconFolder as Folder,',
+      '  IconChevronRight as ChevronRight,',
+      "} from 'fyicons';",
+    ],
   },
   {
     path: 'src/components/Inspector.tsx',
-    before: ['<div>{icon.name}</div>'],
+    before: ["import { Copy, Download } from 'lucide-react';"],
     after: [
-      '<div className="flex items-center gap-2">',
-      '  <Icon name={icon.name} /> {icon.name}',
-      '</div>',
+      'import {',
+      '  IconCopy as Copy,',
+      '  IconDownload as Download,',
+      "} from 'fyicons';",
     ],
   },
 ];

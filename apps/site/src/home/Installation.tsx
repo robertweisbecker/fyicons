@@ -1,8 +1,8 @@
-import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { Icon } from '@/components/Icon';
 import { InstallCommand } from '@/components/InstallCommand';
 import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { icons } from '@/lib/catalog';
+import { ShadcnIcon } from '@/components/BrandIcons';
 
 export function Installation() {
   return (
@@ -35,15 +35,15 @@ export function Installation() {
         </article>
         <article className="flex min-w-0 flex-col gap-4">
           <h3 className="flex items-center gap-2 text-lg font-medium tracking-tight">
-            <Icon name="folder-add" className="size-5 text-blue-400" />
-            shadcn registry
+            <ShadcnIcon className="size-5 text-muted" />
+            shadcn
           </h3>
           <p className="text-sm leading-6 text-muted">
             Add individual icon components to your project for more control.
             Just replace the icon name with the one you want.
           </p>
           <InstallCommand
-            command={`npx shadcn@latest add 'robertweisbecker/fyicons/circle#fyicons@${packageInfo.version}'`}
+            command="npx shadcn@latest add robertweisbecker/fyicons/circle"
             label="shadcn"
             className="mt-auto"
           />

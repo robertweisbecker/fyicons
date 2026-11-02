@@ -10,7 +10,7 @@ export const docsNavigation = [
       },
       { title: 'Styling', href: '/docs/styling/', icon: 'palette' },
       { title: 'React', href: '/docs/react/', icon: 'atom-react' },
-      { title: 'Changelog', href: '/docs/changelog/', icon: 'history' },
+      { title: 'Changelog', href: '/docs/changelog/', icon: 'list-log' },
     ],
   },
 ];

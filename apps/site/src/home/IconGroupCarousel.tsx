@@ -73,7 +73,7 @@ export function IconGroupCarousel() {
           id="icon-groups-heading"
           className="col-span-3 text-center text-2xl font-medium tracking-tight sm:col-span-1 sm:col-start-2"
         >
-          …plus a whole bunch more!
+          Categories galore
         </h3>
         <div className="col-start-3 flex justify-end gap-1">
           <TooltipGroup>

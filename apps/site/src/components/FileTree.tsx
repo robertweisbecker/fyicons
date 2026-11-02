@@ -63,12 +63,16 @@ export function FileTree({
   onOpenFoldersChange: (folders: string[]) => void;
   compact?: boolean;
 }) {
+  const changedFolders = new Set(
+    fileFolders(files.filter((file) => file.change)),
+  );
   const row = (file: ProjectFile) => (
     <Button
       key={file.path}
       variant="ghost"
       size={compact ? 'sm' : 'default'}
       aria-label={file.path}
+      aria-description={file.change === 'M' ? 'Modified' : undefined}
       aria-current={selected === file.path ? 'page' : undefined}
       title={file.path}
       onClick={() => onSelect(file.path)}
@@ -82,7 +86,11 @@ export function FileTree({
       <span className="min-w-0 flex-1 truncate text-left">
         {file.path.split('/').at(-1)}
       </span>
-      {file.change && <span className="text-xs text-muted">{file.change}</span>}
+      {file.change === 'M' ? (
+        <Icon name="git-modified" className="text-muted" />
+      ) : (
+        file.change && <span className="text-xs text-muted">{file.change}</span>
+      )}
     </Button>
   );
   const render = (node: Node) => {
@@ -106,6 +114,9 @@ export function FileTree({
             compact ? 'h-7 rounded-md text-xs' : 'min-h-9 rounded-lg text-sm',
           )}
           aria-label={`${node.path} folder`}
+          aria-description={
+            changedFolders.has(node.path) ? 'Contains changed files' : undefined
+          }
         >
           <Icon
             name={open ? 'chevron-down-sm' : 'chevron-right-sm'}
@@ -115,7 +126,10 @@ export function FileTree({
             name={open ? 'folder-open' : 'folder'}
             className="text-blue-500"
           />
-          <span className="truncate">{node.name}</span>
+          <span className="min-w-0 flex-1 truncate">{node.name}</span>
+          {changedFolders.has(node.path) && (
+            <Icon name="square-dot" className="text-muted" />
+          )}
         </Collapsible.Trigger>
         <Collapsible.Panel
           className={

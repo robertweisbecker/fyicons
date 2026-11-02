@@ -393,30 +393,32 @@ export function IconSpecimen() {
             shape={state.inspectedGuide ?? state.sample.guide}
             instant={state.instant}
           />
-          <span
-            className="specimen-name pointer-events-none absolute top-full left-[3.4375%] mt-2 font-mono text-[11px] leading-4"
-            aria-live={state.playing ? 'off' : 'polite'}
-          >
-            {state.sample.label}
-          </span>
+          <div className="absolute inset-x-[3.4375%] top-full mt-1 flex items-center justify-between gap-2 font-mono text-[11px] leading-4">
+            <span
+              className="specimen-name pointer-events-none"
+              aria-live={state.playing ? 'off' : 'polite'}
+            >
+              {state.sample.label}
+            </span>
+            {!state.reducedMotion && (
+              <button
+                type="button"
+                className="flex shrink-0 items-center gap-1 rounded py-1 text-muted hover:text-ink"
+                aria-label={playbackLabel}
+                onClick={state.toggle}
+              >
+                <Icon
+                  name={state.playing ? 'pause-fill' : 'play-fill'}
+                  className="size-3"
+                />
+                {state.playing ? 'Pause' : 'Play'}
+              </button>
+            )}
+          </div>
         </div>
         <div className="specimen-notes">
-          {!state.reducedMotion && (
-            <button
-              type="button"
-              className="flex shrink-0 items-center gap-1 rounded py-1 text-[11px] leading-4 text-muted hover:text-ink"
-              aria-label={playbackLabel}
-              onClick={state.toggle}
-            >
-              <Icon
-                name={state.playing ? 'pause-fill' : 'play-fill'}
-                className="size-3"
-              />
-              {state.playing ? 'Pause' : 'Play'}
-            </button>
-          )}
           <ul
-            className="specimen-legend mt-auto"
+            className="mt-auto flex flex-col"
             aria-label="Construction guides"
             onKeyDown={(event) => {
               if (event.key === 'Escape') state.clearGuide();
@@ -430,7 +432,7 @@ export function IconSpecimen() {
                 <li key={shape}>
                   <button
                     type="button"
-                    className="group/legend flex items-center gap-1 rounded whitespace-nowrap"
+                    className="group/legend flex w-full items-center gap-1 rounded py-1 whitespace-nowrap"
                     data-active={active || undefined}
                     aria-label={`Inspect ${item.label.toLowerCase()} guide, ${item.width + guideStrokeWidth} by ${item.height + guideStrokeWidth}`}
                     aria-pressed={state.pinnedGuide === shape}

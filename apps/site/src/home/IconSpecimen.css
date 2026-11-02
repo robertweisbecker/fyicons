@@ -42,12 +42,6 @@
   pointer-events: none;
 }
 
-.specimen-legend {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .specimen-art {
   opacity: 0;
   pointer-events: none;

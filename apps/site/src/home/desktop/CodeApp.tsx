@@ -37,7 +37,7 @@ export function CodeApp() {
 
   return (
     <Window title="fyicons">
-      <div className="flex h-10 shrink-0 items-center gap-2 border-b border-line px-3 text-xs">
+      <div className="flex min-h-10 shrink-0 flex-wrap items-center gap-x-2 gap-y-1 border-b border-line px-3 py-1 text-xs">
         <Icon name="book-bookmark" />
         <span className="hidden @sm/window:inline">fyicons</span>
         <Icon
@@ -51,19 +51,50 @@ export function CodeApp() {
         </span>
         <div className="ml-auto flex items-center gap-1 text-muted">
           <DemoIconButton icon="layout-rows" label="Diff view" size="icon-sm" />
+          <DemoIconButton
+            label="More diff actions"
+            icon="ellipsis"
+            size="icon-sm"
+          />
+          <DemoIconButton
+            label="Search changes"
+            icon="file-search"
+            size="icon-sm"
+          />
+          <DemoIconButton
+            label="Refresh changes"
+            icon="arrows-rotate"
+            size="icon-sm"
+          />
+          <DemoToggle
+            label="Wrap lines"
+            icon="arrow-wrap"
+            activeIcon="overflow"
+            size="icon-sm"
+          />
+          <DemoToggle
+            label="Expand selected diff"
+            icon="list-expand"
+            activeIcon="list-collapse"
+            size="icon-sm"
+            pressed={expanded}
+            onPressedChange={setExpanded}
+          />
           {[false, true].map((wide) => (
             <DemoToggle
               key={String(wide)}
               ref={wide ? undefined : sidebarToggle}
               icon="folders"
+              activeIcon="folder-fill"
               label="Folder view"
               size="icon-sm"
               pressed={wide ? desktopFilesOpen : mobileFilesOpen}
               onPressedChange={wide ? setDesktopFilesOpen : setMobileFilesOpen}
               aria-controls={sidebarId}
-              className={
-                wide ? 'hidden @lg/window:inline-flex' : '@lg/window:hidden'
-              }
+              className={cn(
+                'data-pressed:text-control-accent',
+                wide ? 'hidden @lg/window:inline-flex' : '@lg/window:hidden',
+              )}
             />
           ))}
         </div>
@@ -84,7 +115,7 @@ export function CodeApp() {
             desktopFilesOpen ? '@lg/window:flex' : '@lg/window:hidden',
           )}
         >
-          <div className="flex items-center gap-1 border-b border-line p-2">
+          <div className="flex h-11 shrink-0 items-center gap-1 border-b border-line px-2">
             <div className="flex h-7 min-w-0 flex-1 items-center gap-2 rounded-md border border-line bg-surface px-2 text-xs text-muted">
               <Icon name="search-simple" />
               <span className="truncate">Filter files...</span>
@@ -143,40 +174,6 @@ export function CodeApp() {
               path === selected ? setExpanded(!expanded) : selectFile(path)
             }
           />
-          <footer
-            aria-label="Diff actions"
-            className="flex shrink-0 items-center justify-end gap-1 border-t border-line bg-bg px-2 py-1 text-muted"
-          >
-            <DemoIconButton
-              label="More diff actions"
-              icon="ellipsis"
-              size="icon-sm"
-            />
-            <DemoIconButton
-              label="Search changes"
-              icon="file-search"
-              size="icon-sm"
-            />
-            <DemoIconButton
-              label="Refresh changes"
-              icon="arrows-rotate"
-              size="icon-sm"
-            />
-            <DemoToggle
-              label="Wrap lines"
-              icon="arrow-wrap"
-              activeIcon="overflow"
-              size="icon-sm"
-            />
-            <DemoToggle
-              label="Expand selected diff"
-              icon="list-expand"
-              activeIcon="list-collapse"
-              size="icon-sm"
-              pressed={expanded}
-              onPressedChange={setExpanded}
-            />
-          </footer>
         </section>
       </div>
     </Window>

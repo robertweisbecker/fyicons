@@ -1,5 +1,8 @@
+import { Collapsible } from '@base-ui/react/collapsible';
 import { Icon } from '@/components/Icon';
 import { fileIconColors } from '@/components/FileTree';
+import { Button } from '@/components/ui/button';
+import { DemoToggle } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { reviewChanges, reviewFiles } from './codeReviewData';
 
@@ -14,8 +17,8 @@ export function CodeChanges({
 }) {
   return (
     <>
-      <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-line bg-bg px-3 py-2 text-xs">
-        <span className="flex items-center gap-1">
+      <div className="flex h-11 min-w-0 shrink-0 items-center gap-2 border-b border-line bg-bg px-3 text-xs">
+        <span className="flex shrink-0 items-center gap-1">
           <Icon name="git-commit" />
           Commit
           <Icon name="chevron-down-sm" />
@@ -27,11 +30,11 @@ export function CodeChanges({
           -
           {reviewChanges.reduce((total, file) => total + file.before.length, 0)}
         </span>
-        <span className="ml-auto flex items-center gap-2">
+        <span className="ml-auto flex min-w-0 items-center gap-2">
           main
           <Icon name="arrow-right" className="text-muted" />
           <Icon name="git-branch" />
-          origin/main
+          <span className="truncate">origin/main</span>
         </span>
       </div>
       <div
@@ -47,105 +50,117 @@ export function CodeChanges({
             );
             const open = expanded && selected === file.path;
             return (
-              <details
+              <Collapsible.Root
                 key={file.path}
                 open={open}
+                onOpenChange={() => onSelect(file.path)}
                 className="border-b border-line"
               >
-                <summary
-                  aria-label={`Review ${file.path}`}
-                  title={file.path}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    onSelect(file.path);
-                  }}
+                <div
                   className={cn(
-                    'flex min-h-10 cursor-pointer list-none items-center gap-2 px-3 py-2 text-xs hover:bg-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-muted',
-                    open && 'bg-selection',
+                    'flex items-center gap-2 pr-3 text-xs hover:bg-hover',
+                    open && 'bg-active',
                   )}
                 >
-                  <Icon
-                    name={open ? 'chevron-down-sm' : 'chevron-right-sm'}
-                    className="text-muted"
-                  />
-                  <Icon
-                    name={file.icon}
-                    className={fileIconColors[file.icon]}
-                  />
-                  <span className="min-w-0 flex-1 wrap-anywhere">
-                    <span className="hidden text-muted @3xl/window:inline">
-                      {file.path.slice(0, -name.length)}
+                  <Collapsible.Trigger
+                    render={<Button variant="unstyled" size="unstyled" />}
+                    aria-label={`Review ${file.path}`}
+                    title={file.path}
+                    className="min-h-10 min-w-0 flex-1 justify-start gap-2 rounded-none py-2 pl-3 text-left font-normal focus-visible:-outline-offset-2"
+                  >
+                    <Icon
+                      name={open ? 'chevron-down-sm' : 'chevron-right-sm'}
+                      className="text-muted"
+                    />
+                    <Icon
+                      name={file.icon}
+                      className={fileIconColors[file.icon]}
+                    />
+                    <span className="min-w-0 flex-1 wrap-anywhere">
+                      <span className="hidden text-muted @3xl/window:inline">
+                        {file.path.slice(0, -name.length)}
+                      </span>
+                      {name}
                     </span>
-                    {name}
-                  </span>
+                  </Collapsible.Trigger>
                   {change && (
-                    <>
+                    <div className="flex shrink-0 items-center gap-1.5">
+                      <DemoToggle
+                        label="Mark as viewed"
+                        aria-label={`Mark ${name} as viewed`}
+                        icon="eye"
+                        activeIcon="eye-check"
+                        size="icon-xs"
+                        className="text-muted data-pressed:text-ink"
+                      />
                       <span
-                        className="w-8 text-right text-emerald-600 tabular-nums dark:text-emerald-400"
+                        className="w-5 text-right text-emerald-600 tabular-nums dark:text-emerald-400"
                         aria-label={`${change.after.length} additions`}
                       >
                         +{change.after.length}
                       </span>
                       <span
-                        className="w-8 text-right text-red-500 tabular-nums"
+                        className="w-5 text-right text-red-500 tabular-nums"
                         aria-label={`${change.before.length} deletions`}
                       >
                         -{change.before.length}
                       </span>
-                    </>
+                    </div>
                   )}
-                </summary>
-                {change ? (
-                  <pre
-                    className="m-0 overflow-x-auto py-2 text-xs leading-5"
-                    aria-label={`Changes in ${file.path}`}
-                  >
-                    <code>
-                      {[
-                        {
-                          lines: change.before,
-                          sign: '−',
-                          className:
-                            'bg-red-500/8 text-red-700 dark:text-red-300',
-                        },
-                        {
-                          lines: change.after,
-                          sign: '+',
-                          className:
-                            'bg-emerald-500/8 text-emerald-700 dark:text-emerald-300',
-                        },
-                      ].flatMap(({ lines, sign, className }) =>
-                        lines.map((line, index) => (
-                          <span
-                            key={`${sign}-${index}`}
-                            className={cn(
-                              'flex min-w-max gap-3 px-3',
-                              className,
-                            )}
-                          >
+                </div>
+                <Collapsible.Panel keepMounted>
+                  {change ? (
+                    <pre
+                      className="m-0 overflow-x-auto py-2 text-xs leading-5"
+                      aria-label={`Changes in ${file.path}`}
+                    >
+                      <code>
+                        {[
+                          {
+                            lines: change.before,
+                            sign: '−',
+                            className:
+                              'bg-red-500/8 text-red-700 dark:text-red-300',
+                          },
+                          {
+                            lines: change.after,
+                            sign: '+',
+                            className:
+                              'bg-emerald-500/8 text-emerald-700 dark:text-emerald-300',
+                          },
+                        ].flatMap(({ lines, sign, className }) =>
+                          lines.map((line, index) => (
                             <span
-                              className="w-4 shrink-0 text-right tabular-nums opacity-50"
-                              aria-hidden
+                              key={`${sign}-${index}`}
+                              className={cn(
+                                'flex min-w-max gap-3 px-3',
+                                className,
+                              )}
                             >
-                              {index + 1}
+                              <span
+                                className="w-4 shrink-0 text-right tabular-nums opacity-50"
+                                aria-hidden
+                              >
+                                {index + 1}
+                              </span>
+                              <span
+                                aria-label={sign === '+' ? 'Added' : 'Removed'}
+                              >
+                                {sign}
+                              </span>
+                              <span>{line || ' '}</span>
                             </span>
-                            <span
-                              aria-label={sign === '+' ? 'Added' : 'Removed'}
-                            >
-                              {sign}
-                            </span>
-                            <span>{line || ' '}</span>
-                          </span>
-                        )),
-                      )}
-                    </code>
-                  </pre>
-                ) : (
-                  <p className="p-3 text-xs text-muted">
-                    No changes in this commit.
-                  </p>
-                )}
-              </details>
+                          )),
+                        )}
+                      </code>
+                    </pre>
+                  ) : (
+                    <p className="p-3 text-xs text-muted">
+                      No changes in this commit.
+                    </p>
+                  )}
+                </Collapsible.Panel>
+              </Collapsible.Root>
             );
           })}
       </div>

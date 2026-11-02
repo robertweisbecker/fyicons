@@ -34,13 +34,13 @@ export function DocsSidebar() {
       </Sidebar>
       <details
         ref={mobileMenu}
-        className="group border-b border-line py-3 lg:hidden"
+        className="group border-b border-line py-2 lg:hidden"
       >
-        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between text-sm font-medium [&::-webkit-details-marker]:hidden">
+        <summary className="flex min-h-9 cursor-pointer list-none items-center justify-between text-sm font-medium [&::-webkit-details-marker]:hidden">
           Documentation
           <IconChevronDown className="group-open:rotate-180" />
         </summary>
-        <nav aria-label="Docs" className="pt-5 pb-1 [&_a]:min-h-11">
+        <nav aria-label="Docs" className="pt-5 pb-1 [&_a]:min-h-9">
           {sections}
         </nav>
       </details>

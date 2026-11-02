@@ -52,7 +52,11 @@ export function MusicApp() {
   }
 
   return (
-    <div ref={player} className="dark flex h-full w-full" data-theme="dark">
+    <div
+      ref={player}
+      className="dark flex h-full max-h-full min-h-0 w-full min-w-0"
+      data-theme="dark"
+    >
       <Window title="Music">
         <div className="flex min-h-0 flex-1 gap-2 bg-neutral-950 px-2 pt-2">
           <aside
@@ -260,9 +264,6 @@ export function MusicApp() {
                     </Button>
                   ))}
               </div>
-            </div>
-            <div className="mt-3 flex items-center gap-2 border-t border-line pt-3 text-muted">
-              <Icon name="headphones" /> This device
             </div>
           </aside>
         </div>

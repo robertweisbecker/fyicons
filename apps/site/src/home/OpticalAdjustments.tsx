@@ -312,49 +312,47 @@ export function OpticalAdjustments() {
       aria-labelledby="optical-adjustments-heading"
       className="grid items-start gap-6 md:grid-cols-2 md:gap-10"
     >
-      <div className="space-y-6">
+      <div className="flex items-center justify-between gap-4 md:col-span-2">
         <h3
           id="optical-adjustments-heading"
           className="text-2xl font-medium tracking-tight"
         >
           Optical adjustments
         </h3>
-        <ol
-          role="list"
-          className="hidden max-w-sm list-none space-y-5 text-sm md:block"
-        >
-          {opticalExamples.map(({ name, title, description }, index) => (
-            <li
-              key={name}
-              id={`${gridId}-${name}`}
-              className="flex items-start gap-3"
-            >
-              <span aria-hidden="true" className={numberIndicatorClassName}>
-                {index + 1}
-              </span>
-              <div className="min-w-0 pt-0.5">
-                <span className="font-medium">{title}</span>
-                <p className="mt-1 leading-6 text-neutral-600 dark:text-muted">
-                  {description}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <Field.Root className="flex min-h-11 shrink-0 items-center gap-2.5">
+          <Field.Label className="cursor-pointer text-sm text-muted">
+            Show guides
+          </Field.Label>
+          <Switch
+            checked={showGuides}
+            onCheckedChange={setShowGuides}
+            aria-controls={gridId}
+          />
+        </Field.Root>
       </div>
-      <div className="min-w-0 space-y-4">
-        <div className="flex justify-end">
-          <Field.Root className="flex items-center gap-2.5">
-            <Field.Label className="cursor-pointer text-sm text-muted">
-              Show guides
-            </Field.Label>
-            <Switch
-              checked={showGuides}
-              onCheckedChange={setShowGuides}
-              aria-controls={gridId}
-            />
-          </Field.Root>
-        </div>
+      <ol
+        role="list"
+        className="hidden max-w-sm list-none space-y-5 text-sm md:block"
+      >
+        {opticalExamples.map(({ name, title, description }, index) => (
+          <li
+            key={name}
+            id={`${gridId}-${name}`}
+            className="flex items-start gap-3"
+          >
+            <span aria-hidden="true" className={numberIndicatorClassName}>
+              {index + 1}
+            </span>
+            <div className="min-w-0 pt-0.5">
+              <span className="font-medium">{title}</span>
+              <p className="mt-1 leading-6 text-neutral-600 dark:text-muted">
+                {description}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div className="min-w-0">
         <ScrollArea.Root>
           <ScrollArea.Viewport
             role="region"

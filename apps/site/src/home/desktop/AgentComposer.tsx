@@ -11,6 +11,12 @@ import {
 } from '@/components/ui/menu';
 import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
 
+const agentModes = {
+  Plan: { icon: 'lightbulb', activeIcon: 'lightbulb-on' },
+  Goal: { icon: 'target', activeIcon: 'target-bullseye' },
+  Orchestrate: { icon: 'pointers', activeIcon: 'pointers' },
+} as const;
+
 export function AgentActivity({
   open,
   onOpenChange,
@@ -34,7 +40,7 @@ export function AgentActivity({
         }
       >
         <Icon name="thought-bubble" />
-        Thinking…
+        <span className="shimmer">Thinking…</span>
         <Icon
           name="chevron-right-sm"
           className="ml-auto transition-transform duration-150 ease-out group-focus-visible:transition-none group-data-panel-open:rotate-90 motion-reduce:transition-none"
@@ -59,7 +65,7 @@ export function AgentActivity({
 }
 
 export function AgentComposer() {
-  const [mode, setMode] = useState('Goal');
+  const [mode, setMode] = useState<keyof typeof agentModes>('Goal');
   return (
     <div className="w-full">
       <div className="no-wrap mb-2 flex items-center gap-2.5 rounded-xl bg-surface px-2 py-1.5 text-xs shadow-sm outline outline-offset-(--surface-outline-offset) outline-line">
@@ -121,24 +127,16 @@ export function AgentComposer() {
             <Icon name="line-vertical" className="text-border" />
             <Menu>
               <MenuTrigger
-                aria-label="Agent mode"
+                aria-label={`Agent mode: ${mode}`}
                 render={
-                  <Button
-                    variant="ghost"
-                    size="xs"
-                    className="group/plan rounded-full"
-                  />
+                  <Button variant="ghost" size="xs" className="rounded-full" />
                 }
               >
                 <Icon
-                  name="target-bullseye"
-                  className="text-muted group-hover/plan:hidden"
+                  name={agentModes[mode].activeIcon}
+                  className="text-muted"
                 />
-                <Icon
-                  name="circle-x-fill"
-                  className="text-muted not-group-hover/plan:hidden"
-                />
-                Goal
+                {mode}
               </MenuTrigger>
               <MenuContent side="top" className="w-40">
                 <MenuRadioGroup
@@ -146,11 +144,7 @@ export function AgentComposer() {
                   onValueChange={setMode}
                   aria-label="Agent mode"
                 >
-                  {[
-                    ['lightbulb-simple', 'Plan'],
-                    ['target', 'Goal'],
-                    ['pointers', 'Orchestrate'],
-                  ].map(([icon, label]) => (
+                  {Object.entries(agentModes).map(([label, { icon }]) => (
                     <MenuRadioItem key={icon} value={label} size="sm">
                       <Icon name={icon} className="text-muted" />
                       {label}

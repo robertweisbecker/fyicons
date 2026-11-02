@@ -59,66 +59,82 @@ export function DesignInspector({
       {...props}
       aria-label="Design inspector"
       className={cn(
-        'z-10 min-h-0 w-56 shrink-0 flex-col overflow-y-auto overscroll-y-contain border-l border-line bg-surface text-[11px]',
+        '@container/inspector z-10 flex min-h-0 w-48 max-w-1/2 min-w-0 shrink-0 flex-col overflow-y-auto overscroll-y-contain border-l border-line bg-surface text-[11px]',
         className,
       )}
     >
-      <div className="flex h-9 shrink-0 items-center gap-2 border-b border-line px-3">
+      <div className="flex h-9 shrink-0 items-center gap-2 border-b border-line px-2 @min-[13rem]/inspector:px-3">
         <Icon name="frame" />
-        <span className="flex-1 font-medium">Frame</span>
-        <Glyph name="eye" />
-        <Glyph name="lock-open" />
-        <Glyph name="component" />
+        <span className="flex-1 font-medium">Button</span>
+        <Glyph
+          name="eye"
+          className="hidden @min-[11rem]/inspector:inline-flex"
+        />
+        <Glyph
+          name="lock-open"
+          className="hidden @min-[11rem]/inspector:inline-flex"
+        />
+        <Glyph
+          name="component"
+          className="hidden @min-[11rem]/inspector:inline-flex"
+        />
       </div>
-      <div className="space-y-2 border-b border-line p-3">
+      <div className="space-y-2 border-b border-line p-2 @min-[13rem]/inspector:p-3">
         <h3 className="sr-only font-medium">Layout</h3>
-        <dl className="grid grid-cols-2 gap-1">
+        <dl className="grid grid-cols-1 gap-1 @min-[11rem]/inspector:grid-cols-2">
           <PropertyValue label="X position" value="0" />
           <PropertyValue label="Y position" value="0" />
           <PropertyValue label="Width" icon="width" value="160" />
-          <PropertyValue label="Height" icon="height" value="176" />
+          <PropertyValue label="Height" icon="height" value="48" />
           <PropertyValue label="Rotation" icon="angle" value="0°" />
           <PropertyValue
             label="Corner radius"
             icon="border-radius"
-            value="24"
+            value="12"
           />
         </dl>
       </div>
-      <div className="space-y-2 border-b border-line p-3">
+      <div className="space-y-2 border-b border-line p-2 @min-[13rem]/inspector:p-3">
         <h3 className="sr-only font-medium">Typography</h3>
         <div className="flex h-6 items-center gap-2 rounded-md bg-inset px-0.5 py-px pe-1">
-          <div className="flex h-5 grow items-center gap-2 rounded-md bg-surface ps-1.5 pe-2 ring ring-border">
+          <div className="flex h-5 min-w-0 grow items-center gap-2 rounded-md bg-dialog ps-1.5 pe-2 outline outline-offset-(--surface-outline-offset) outline-border">
             <Icon name="text-title" className="text-muted" size={12} />
-            <span className="flex-1">font-serif</span>
+            <span className="min-w-0 flex-1 truncate">font-sans</span>
           </div>
           <Icon name="link-unlink" className="ms-auto text-muted" size={14} />
         </div>
-        <dl className="grid grid-cols-2 gap-1">
+        <dl className="grid grid-cols-1 gap-1 @min-[11rem]/inspector:grid-cols-2">
           <span className="flex h-6 items-center justify-between rounded-md bg-inset px-1">
-            Semibold <Icon name="chevron-down-sm" className="text-muted" />
+            Medium <Icon name="chevron-down-sm" className="text-muted" />
           </span>
-          <PropertyValue label="Font size" icon="font" value="24" />
-          <PropertyValue label="Letter spacing" icon="line-height" value="32" />
+          <PropertyValue label="Font size" icon="font" value="14" />
+          <PropertyValue label="Line height" icon="line-height" value="20" />
           <PropertyValue
             label="Letter spacing"
             icon="letter-spacing"
             value="0%"
           />
         </dl>
-        <TextAlignment compact className="col-span-2" />
-        <FormatControls compact />
+        <TextAlignment
+          compact
+          className="grid-cols-1 gap-y-1 @min-[13rem]/inspector:grid-cols-2"
+        />
+        <FormatControls
+          compact
+          className="grid-cols-1 gap-y-1 @min-[13rem]/inspector:grid-cols-2"
+        />
       </div>
-      <div className="space-y-2 border-b border-line p-3">
+      <div className="space-y-2 border-b border-line p-2 @min-[13rem]/inspector:p-3">
         <div className="flex items-center justify-between">
           <h3 className="sr-only flex items-center gap-2 font-medium">Fill</h3>
           <Glyph name="swatch" className="ms-auto text-muted" />
           <Glyph name="apps" className="text-muted" />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Glyph name="paint-bucket" className="text-muted" />
           <ToggleGroup
-            aria-label="Cover fill"
+            aria-label="Button fill"
+            className="order-first w-full justify-between @min-[13rem]/inspector:order-none @min-[13rem]/inspector:w-auto"
             value={[fill.name]}
             onValueChange={(values) => {
               const next = designFills.find((item) => item.name === values[0]);
@@ -129,7 +145,7 @@ export function DesignInspector({
               <Toggle
                 key={item.name}
                 value={item.name}
-                aria-label={`${item.name} cover`}
+                aria-label={`${item.name} button`}
                 size="icon-xs"
               >
                 <span
@@ -153,16 +169,18 @@ export function DesignInspector({
           <Glyph name="minus" className="text-muted" />
         </div>
       </div>
-      <div className="flex items-center justify-between border-b border-line px-3 py-2">
+      <div className="flex items-center justify-between border-b border-line px-2 py-2 @min-[13rem]/inspector:px-3">
         <h3 className="font-medium">Stroke</h3>
         <Glyph name="plus" className="text-muted" />
       </div>
-      <div className="space-y-2 p-3">
+      <div className="space-y-2 p-2 @min-[13rem]/inspector:p-3">
         <h3 className="font-medium">Effects</h3>
         <div className="flex items-center gap-2">
-          <div className="flex h-6 flex-1 items-center gap-2 rounded-md border border-line px-2">
+          <div className="flex h-6 min-w-0 flex-1 items-center gap-2 rounded-md border border-line px-2">
             <Icon name="shadow" className="text-muted" />
-            <span className="flex-1">Drop shadow</span>
+            <span className="min-w-0 flex-1 truncate" title="Drop shadow">
+              Drop shadow
+            </span>
           </div>
           <Icon name="eye" />
           <Icon name="minus" />

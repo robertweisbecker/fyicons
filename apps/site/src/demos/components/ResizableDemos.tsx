@@ -119,7 +119,7 @@ export function ResizableWorkspaceDemo() {
             <p className="mt-3 text-xs font-medium wrap-break-word">
               {selected}
             </p>
-            <p className="mt-1 text-xs text-muted">16 × 16 px</p>
+            <p className="mt-1 text-xs text-muted">16×16px</p>
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>
@@ -160,7 +160,7 @@ export function ResizableStackDemo() {
             <h3 className="mb-3 text-xs font-medium">Properties</h3>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
               <dt className="text-muted">Size</dt>
-              <dd className="text-right">16 × 16 px</dd>
+              <dd className="text-right">16×16px</dd>
               <dt className="text-muted">Stroke</dt>
               <dd className="text-right">1 px</dd>
             </dl>

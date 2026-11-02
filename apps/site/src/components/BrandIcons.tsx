@@ -45,3 +45,16 @@ export function NpmIcon(props: BrandIconProps) {
     </BrandIcon>
   );
 }
+
+export function ShadcnIcon(props: BrandIconProps) {
+  return (
+    <BrandIcon {...props}>
+      <path
+        d="M13 8L8 13M12 2.5L2.5 12"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        stroke="currentColor"
+      />
+    </BrandIcon>
+  );
+}
