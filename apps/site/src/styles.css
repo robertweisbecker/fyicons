@@ -105,36 +105,15 @@
     scroll-padding-top: calc(var(--site-header-height) + 6rem);
   }
   body {
+    /* Let Safari paint scrolling content behind its bottom controls. Fixed
+       color strips and fades end at the layout viewport and can leave a seam
+       where Safari continues the page behind its floating toolbar. */
     position: relative;
     min-height: 100svh;
     @apply m-0 bg-canvas font-sans text-ink antialiased;
   }
   #site-root {
     isolation: isolate;
-  }
-  /* Safari extends this fixed edge color behind its bottom controls. Keep
-     5px of the 12px sample visible, with a fade above it instead of a hard
-     band. Stay outside the inspector's transform and below portal backdrops.
-     See https://joshpuckett.me/seamless-mobile-safari. */
-  @media (width < 768px) {
-    body::before,
-    body::after {
-      content: '';
-      position: fixed;
-      inset-inline: 0;
-      z-index: 40;
-      pointer-events: none;
-    }
-    body::before {
-      bottom: 5px;
-      height: 48px;
-      background: linear-gradient(to top, var(--canvas), transparent);
-    }
-    body::after {
-      bottom: -7px;
-      height: 12px;
-      background-color: var(--canvas);
-    }
   }
   button,
   a,

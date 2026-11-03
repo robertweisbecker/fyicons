@@ -26,6 +26,11 @@ const iconLinkClassName = cn(
   'hidden md:inline-flex',
 );
 
+// Keep Examples reachable while temporarily omitting it from the header.
+const headerNavigation = siteNavigation.filter(
+  ({ href }) => href !== '/examples/',
+);
+
 export function SiteHeader({
   theme,
   toggleTheme,
@@ -86,7 +91,7 @@ export function SiteHeader({
               <span>K</span>
             </kbd>
           </Button>
-          {siteNavigation.map(({ href, label }) => (
+          {headerNavigation.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
