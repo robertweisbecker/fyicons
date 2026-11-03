@@ -93,7 +93,7 @@ export function BrandWordmarkMobile({
               d="M3.78452 5.61632C3.88118 5.452 4.11882 5.452 4.21548 5.61632L6.27838 9.12324C6.37641 9.2899 6.25625 9.5 6.0629 9.5H1.9371C1.74375 9.5 1.62359 9.2899 1.72162 9.12324L3.78452 5.61632Z"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="fill-emerald-400 stroke-current"
+              className="fill-emerald-400 stroke-black"
             />
             <rect
               x="7.5"
@@ -103,7 +103,7 @@ export function BrandWordmarkMobile({
               rx="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="fill-amber-400 stroke-current"
+              className="fill-amber-400 stroke-black"
             />
             <rect
               x="3.5"
@@ -112,23 +112,23 @@ export function BrandWordmarkMobile({
               height="4"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="fill-sky-500 stroke-current"
+              className="fill-sky-500 stroke-black"
             />
             <path
               d="M8 4.25L10.75 7L8 9.75L5.60355 7.35355C5.40829 7.15829 5.40829 6.84171 5.60355 6.64645L8 4.25Z"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="fill-pink-500 stroke-current"
+              className="fill-pink-500 stroke-black"
             />
           </g>
           <g>
             <path
               d="M12.5003 12.5H3.00031C2.72416 12.5 2.50031 12.7239 2.50031 13V17C2.50031 18.3807 3.61959 19.5 5.00031 19.5H11.0003C12.381 19.5 13.5003 18.3807 13.5003 17V13.5C13.5003 12.9477 13.0526 12.5 12.5003 12.5Z"
-              className="fill-[#d4b792] stroke-current"
+              className="fill-[#d4b792] stroke-black"
             />
             <path
               d="M8.75079 14H7.25079C6.83658 14 6.50079 14.3358 6.50079 14.75V15.25C6.50079 15.3881 6.61272 15.5 6.75079 15.5H9.25079C9.38886 15.5 9.50079 15.3881 9.50079 15.25V14.75C9.50079 14.3358 9.16501 14 8.75079 14Z"
-              className="fill-current"
+              className="fill-black"
             />
           </g>
         </g>

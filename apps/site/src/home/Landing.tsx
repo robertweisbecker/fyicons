@@ -18,7 +18,7 @@ import './Landing.css';
 export default function Landing() {
   return (
     <>
-      <div className="mx-auto space-y-24 pb-16 sm:space-y-32 sm:pb-24">
+      <div className="mx-auto space-y-48 pb-16 sm:space-y-64 sm:pb-24 [&>section:first-child]:mb-12 sm:[&>section:first-child]:mb-16">
         <section
           aria-label="Introduction"
           className="mx-auto grid max-w-292 grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] items-center gap-18 px-8 pt-18 pb-16 max-[900px]:gap-8 max-[900px]:px-6 max-[900px]:py-14 max-[680px]:max-w-135 max-[680px]:grid-cols-1 max-[680px]:gap-6 max-[680px]:px-2 max-[680px]:pt-8 max-[680px]:pb-12"
@@ -57,7 +57,7 @@ export default function Landing() {
                   className={buttonVariants({ variant: 'default', size: 'lg' })}
                   href="/icons/"
                 >
-                  View icons
+                  Browse icons
                   <Icon name="arrow-right" size={20} />
                 </Link>
                 <InstallCommand

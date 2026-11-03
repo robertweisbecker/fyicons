@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type ReactNode,
 } from 'react';
 import { cn } from '@/lib/utils';
 import { Toggle } from '@/components/ui/toggle';
@@ -82,45 +83,69 @@ function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
 function PreviewGridControl({
   grid,
   setGrid,
-  className,
 }: {
   grid: boolean;
   setGrid: (value: boolean) => void;
-  className?: string;
 }) {
   return (
-    <div
-      className={cn(
-        'surface pointer-events-none absolute top-3 right-2 opacity-0 transition-opacity duration-150 ease-out group-focus-within/preview-container:pointer-events-auto group-focus-within/preview-container:opacity-100 group-hover/preview-container:pointer-events-auto group-hover/preview-container:opacity-100 pointer-coarse:pointer-events-auto pointer-coarse:opacity-100',
-        className,
-      )}
+    <Toggle
+      size="sm"
+      variant="elevated"
+      aria-label="Pixel grid"
+      title={grid ? 'Hide grid' : 'Show grid'}
+      pressed={grid}
+      onPressedChange={setGrid}
+      className="surface pointer-events-none shrink-0 opacity-0 transition-opacity duration-150 ease-out group-focus-within/preview-container:pointer-events-auto group-focus-within/preview-container:opacity-100 group-hover/preview-container:pointer-events-auto group-hover/preview-container:opacity-100 pointer-coarse:pointer-events-auto pointer-coarse:opacity-100"
       data-base-ui-swipe-ignore
     >
-      <Toggle
-        size="sm"
-        variant="elevated"
-        aria-label="Pixel grid"
-        title={grid ? 'Hide grid' : 'Show grid'}
-        pressed={grid}
-        onPressedChange={setGrid}
-      >
-        <ToggleIcon icon="eye-closed" activeIcon="eye" />
-        Grid
-      </Toggle>
+      <ToggleIcon icon="eye-closed" activeIcon="eye" />
+      Grid
+    </Toggle>
+  );
+}
+function NativeSizePreview({ item }: { item: IconRecord }) {
+  return (
+    <div className="flex items-center gap-2">
+      <Icon name={item.id} />
+      <span className="font-mono text-xs text-muted tabular-nums">16×16</span>
     </div>
   );
 }
-function NativeSizePreview({
+function Preview({
   item,
+  grid,
+  setGrid,
+  children,
   className,
+  controlsHidden = false,
 }: {
   item: IconRecord;
+  grid: boolean;
+  setGrid: (value: boolean) => void;
+  children: ReactNode;
   className?: string;
+  controlsHidden?: boolean;
 }) {
   return (
-    <div className={cn('flex items-center gap-2', className)}>
-      <Icon name={item.id} />
-      <span className="text-xs text-muted tabular-nums">16×16</span>
+    <div
+      data-slot="inspector-preview"
+      className={cn(
+        'group/preview-container relative min-w-0 bg-canvas p-4',
+        className,
+      )}
+    >
+      <div
+        data-slot="inspector-preview-controls"
+        className="pointer-events-none absolute inset-x-3 top-3 z-10 flex items-center justify-between gap-2"
+        inert={controlsHidden}
+        aria-hidden={controlsHidden || undefined}
+      >
+        <NativeSizePreview item={item} />
+        <PreviewGridControl grid={grid} setGrid={setGrid} />
+      </div>
+      <div data-slot="inspector-preview-art" className="flex justify-center">
+        {children}
+      </div>
     </div>
   );
 }
@@ -171,7 +196,6 @@ function Details({
               })}
             </div>
           </section>
-          <IconReleaseInfo id={item.id} />
           {toggleSelection && (
             <Field.Root className="flex items-center gap-1 text-xs">
               <Checkbox
@@ -405,22 +429,30 @@ export function Inspector(props: Props) {
                   <IconCopyButton key={item.id} item={item} size="icon" />
                 </div>
               </div>
-              <header className="mobile-inspector-hero group/preview-container">
-                <div className="mobile-inspector-art rounded-xl bg-canvas outline outline-line">
-                  <Button
-                    variant="unstyled"
-                    size="unstyled"
-                    aria-label={
-                      expanded ? 'Collapse preview' : 'Expand preview'
-                    }
-                    aria-expanded={expanded}
-                    onClick={() => setSnapPoint(expanded ? snapPoints[0] : 1)}
-                    className="size-full overflow-hidden rounded-[inherit]"
-                  >
-                    <IconPreview item={item} grid={grid} />
-                  </Button>
-                </div>
-                <div className="mobile-inspector-metadata flex items-center">
+              <header className="mobile-inspector-hero">
+                <Preview
+                  item={item}
+                  grid={grid}
+                  setGrid={setGrid}
+                  className="mobile-inspector-preview bg-transparent"
+                  controlsHidden={!expanded}
+                >
+                  <div className="mobile-inspector-art rounded-xl bg-canvas outline outline-line">
+                    <Button
+                      variant="unstyled"
+                      size="unstyled"
+                      aria-label={
+                        expanded ? 'Collapse preview' : 'Expand preview'
+                      }
+                      aria-expanded={expanded}
+                      onClick={() => setSnapPoint(expanded ? snapPoints[0] : 1)}
+                      className="size-full overflow-hidden rounded-[inherit]"
+                    >
+                      <IconPreview item={item} grid={grid} />
+                    </Button>
+                  </div>
+                </Preview>
+                <div className="mobile-inspector-metadata flex flex-col items-start justify-center gap-1">
                   <DrawerTitle
                     className="w-full text-sm font-semibold"
                     aria-label={getIconDisplayName(item)}
@@ -444,17 +476,11 @@ export function Inspector(props: Props) {
                       <Icon name="link" className="shrink-0 text-muted" />
                     </Button>
                   </DrawerTitle>
+                  {expanded && <IconReleaseInfo id={item.id} />}
                 </div>
                 <div className="absolute top-5 right-3">
                   <PaginationButtons {...props} />
                 </div>
-                {expanded && (
-                  <PreviewGridControl
-                    grid={grid}
-                    setGrid={setGrid}
-                    className="top-16"
-                  />
-                )}
               </header>
               <DrawerScroll
                 inert={!expanded}
@@ -532,8 +558,8 @@ export function Inspector(props: Props) {
                 onValueChange={setPreferredWidth}
                 onResizingChange={setResizing}
               />
-              <header className="flex shrink-0 cursor-grab items-start gap-3 border-b border-line p-2 active:cursor-grabbing">
-                <div className="min-w-0 flex-1">
+              <header className="grid shrink-0 cursor-grab grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1 border-b border-line p-2 active:cursor-grabbing">
+                <div className="min-w-0">
                   <SheetTitle
                     className="truncate text-base font-semibold"
                     aria-label={getIconDisplayName(item)}
@@ -545,7 +571,6 @@ export function Inspector(props: Props) {
                       share={props.share}
                     />
                   </SheetTitle>
-                  <NativeSizePreview item={item} className="mt-1" />
                 </div>
                 <div className="flex shrink-0 gap-0.5">
                   <TooltipGroup side="bottom">
@@ -571,14 +596,14 @@ export function Inspector(props: Props) {
                     />
                   </TooltipGroup>
                 </div>
+                <IconReleaseInfo id={item.id} className="col-span-2" />
               </header>
               <DrawerScroll className="inspector-scroll min-h-0 flex-1 overflow-y-auto">
-                <div className="group/preview-container relative flex items-center justify-center bg-canvas p-4">
+                <Preview item={item} grid={grid} setGrid={setGrid}>
                   <div className="size-36">
                     <IconPreview item={item} grid={grid} />
                   </div>
-                  <PreviewGridControl grid={grid} setGrid={setGrid} />
-                </div>
+                </Preview>
                 {details}
               </DrawerScroll>
               <Pagination {...props} />

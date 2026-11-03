@@ -49,17 +49,13 @@
   );
 }
 .mobile-inspector-hero {
+  display: flow-root;
   position: relative;
   container-type: inline-size;
-  height: calc(76px + 196px * var(--inspector-progress));
+  height: calc(76px + 164px * var(--inspector-progress));
   flex-shrink: 0;
 }
-.mobile-inspector-art {
-  position: absolute;
-  top: 12px;
-  left: 16px;
-  width: 144px;
-  height: 144px;
+.mobile-inspector-preview {
   --art-progress: clamp(
     0,
     calc((var(--inspector-progress) - 0.14) * 1.162791),
@@ -70,14 +66,26 @@
     calc((var(--inspector-progress) - 0.14) * 5.555556),
     1
   );
+  margin-top: calc(12px + 52px * var(--inspector-progress));
+  padding: calc(16px * var(--inspector-progress)) 16px;
+}
+.mobile-inspector-preview > [data-slot='inspector-preview-controls'] {
+  opacity: var(--inspector-progress);
+}
+.mobile-inspector-preview > [data-slot='inspector-preview-art'] {
+  height: calc(48px + 96px * var(--art-progress));
+  justify-content: flex-start;
+}
+.mobile-inspector-art {
+  width: 144px;
+  height: 144px;
+  flex-shrink: 0;
   transform-origin: top left;
-  transform: translate3d(
+  transform: translateX(
       calc(
-        ((100cqw - (48px + 96px * var(--art-progress))) * 0.5 - 16px) *
+        (100cqw - 32px - (48px + 96px * var(--art-progress))) * 0.5 *
           var(--center-progress)
-      ),
-      calc(96px * clamp(0, calc(var(--inspector-progress) * 6), 1)),
-      0
+      )
     )
     scale(calc(0.333333 + 0.666667 * var(--art-progress)));
   /* Keep the 128px SVG aligned with the 8px grid; a border shrinks its content. */

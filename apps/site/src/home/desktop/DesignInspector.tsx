@@ -25,7 +25,7 @@ function PropertyValue({
   value: string;
 }) {
   return (
-    <div className="flex h-6 min-w-0 items-center gap-2 rounded-md bg-inset px-2">
+    <div className="flex h-6 min-w-0 items-center gap-1 rounded-md bg-inset px-1 @min-[11rem]/inspector:gap-2 @min-[11rem]/inspector:px-2">
       <dt className="text-muted">
         {icon ? (
           <Icon name={icon} />
@@ -81,7 +81,7 @@ export function DesignInspector({
       </div>
       <div className="space-y-2 border-b border-line p-2 @min-[13rem]/inspector:p-3">
         <h3 className="sr-only font-medium">Layout</h3>
-        <dl className="grid grid-cols-1 gap-1 @min-[11rem]/inspector:grid-cols-2">
+        <dl className="grid grid-cols-2 gap-1">
           <PropertyValue label="X position" value="0" />
           <PropertyValue label="Y position" value="0" />
           <PropertyValue label="Width" icon="width" value="160" />
@@ -103,9 +103,13 @@ export function DesignInspector({
           </div>
           <Icon name="link-unlink" className="ms-auto text-muted" size={14} />
         </div>
-        <dl className="grid grid-cols-1 gap-1 @min-[11rem]/inspector:grid-cols-2">
-          <span className="flex h-6 items-center justify-between rounded-md bg-inset px-1">
-            Medium <Icon name="chevron-down-sm" className="text-muted" />
+        <dl className="grid grid-cols-2 gap-1">
+          <span className="flex h-6 min-w-0 items-center justify-between rounded-md bg-inset px-1">
+            Medium
+            <Icon
+              name="chevron-down-sm"
+              className="hidden text-muted @min-[11rem]/inspector:block"
+            />
           </span>
           <PropertyValue label="Font size" icon="font" value="14" />
           <PropertyValue label="Line height" icon="line-height" value="20" />
@@ -117,24 +121,30 @@ export function DesignInspector({
         </dl>
         <TextAlignment
           compact
-          className="grid-cols-1 gap-y-1 @min-[13rem]/inspector:grid-cols-2"
+          className="[&_svg]:size-3 @min-[9.5rem]/inspector:[&_svg]:size-4"
         />
         <FormatControls
           compact
-          className="grid-cols-1 gap-y-1 @min-[13rem]/inspector:grid-cols-2"
+          className="[&_svg]:size-3 @min-[9.5rem]/inspector:[&_svg]:size-4"
         />
       </div>
       <div className="space-y-2 border-b border-line p-2 @min-[13rem]/inspector:p-3">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-end gap-0.5">
           <h3 className="sr-only flex items-center gap-2 font-medium">Fill</h3>
-          <Glyph name="swatch" className="ms-auto text-muted" />
-          <Glyph name="apps" className="text-muted" />
+          <Glyph
+            name="swatch"
+            className="w-4 text-muted @min-[11rem]/inspector:w-6"
+          />
+          <Glyph
+            name="apps"
+            className="w-4 text-muted @min-[11rem]/inspector:w-6"
+          />
         </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Glyph name="paint-bucket" className="text-muted" />
+        <div className="grid grid-cols-[1rem_minmax(0,1fr)_1rem_1rem] items-center gap-0.5 @min-[11rem]/inspector:grid-cols-[1.5rem_minmax(0,1fr)_1.5rem_1.5rem]">
+          <Glyph name="paint-bucket" className="w-full text-muted" />
           <ToggleGroup
             aria-label="Button fill"
-            className="order-first w-full justify-between @min-[13rem]/inspector:order-none @min-[13rem]/inspector:w-auto"
+            className="grid min-w-0 grid-cols-4 gap-0"
             value={[fill.name]}
             onValueChange={(values) => {
               const next = designFills.find((item) => item.name === values[0]);
@@ -147,12 +157,18 @@ export function DesignInspector({
                 value={item.name}
                 aria-label={`${item.name} button`}
                 size="icon-xs"
+                className="w-full min-w-0"
               >
                 <span
-                  className="flex size-4 items-center justify-center rounded-full border border-black/10 text-violet-950"
+                  className="flex size-3 items-center justify-center rounded-full border border-black/10 text-violet-950 @min-[9.5rem]/inspector:size-4"
                   style={{ backgroundColor: item.color }}
                 >
-                  {fill.name === item.name && <Icon name="check-sm" />}
+                  {fill.name === item.name && (
+                    <Icon
+                      name="check-sm"
+                      className="size-3 @min-[9.5rem]/inspector:size-4"
+                    />
+                  )}
                 </span>
               </Toggle>
             ))}
@@ -164,9 +180,9 @@ export function DesignInspector({
             activeIcon="eye-slash"
             label={fillVisible ? 'Hide fill' : 'Show fill'}
             size="icon-xs"
-            className="ml-auto"
+            className="w-full min-w-0"
           />
-          <Glyph name="minus" className="text-muted" />
+          <Glyph name="minus" className="w-full text-muted" />
         </div>
       </div>
       <div className="flex items-center justify-between border-b border-line px-2 py-2 @min-[13rem]/inspector:px-3">

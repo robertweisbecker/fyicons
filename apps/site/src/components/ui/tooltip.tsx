@@ -25,7 +25,7 @@ function TooltipPopup({
         side={side}
         sideOffset={8}
         data-slot="tooltip-positioner"
-        className="z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom,transform] duration-150 data-instant:transition-none motion-reduce:transition-none"
+        className="z-80 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom,transform] duration-150 data-instant:transition-none motion-reduce:transition-none"
       >
         <TooltipPrimitive.Popup
           data-slot="tooltip-popup"

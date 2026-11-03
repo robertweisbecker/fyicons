@@ -33,7 +33,7 @@ export function SidebarSection({
 }) {
   return (
     <div className="mb-7">
-      <h2 className="mb-3 ps-2 text-xs text-muted">{title}</h2>
+      <h2 className="mb-3 ps-2.5 text-xs text-muted">{title}</h2>
       <div className="flex flex-col gap-px">{children}</div>
     </div>
   );
@@ -58,14 +58,14 @@ export function SidebarItem({
   ...props
 }: ItemProps) {
   const className = cn(
-    'flex min-h-8 w-full items-center gap-2 rounded-md px-2 py-1.5 text-start text-xs transition-colors hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-reduce:transition-none',
+    'flex min-h-8 w-full items-center gap-2 rounded-md px-2 py-1.5 text-start text-xs text-muted transition-colors hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-reduce:transition-none',
     active && 'bg-active text-ink',
     nested && 'ps-6',
   );
   const content = (
     <>
       {typeof icon === 'string' ? (
-        <Icon name={icon} className="opacity-50" />
+        <Icon name={icon} className="text-muted" />
       ) : (
         icon
       )}

@@ -317,7 +317,7 @@ export function OpticalAdjustments() {
           id="optical-adjustments-heading"
           className="text-2xl font-medium tracking-tight"
         >
-          Optical adjustments
+          Optically balanced
         </h3>
         <Field.Root className="flex min-h-11 shrink-0 items-center gap-2.5">
           <Field.Label className="cursor-pointer text-sm text-muted">

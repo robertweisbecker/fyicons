@@ -114,7 +114,12 @@ export function DesignApp() {
                     size="icon-sm"
                     className={cn(
                       'data-pressed:bg-control-accent data-pressed:text-white data-pressed:hover:bg-control-accent',
-                      icon === 'square' && 'max-md:hidden',
+                      [
+                        'square',
+                        'text-title',
+                        'chat-round',
+                        'apps-plus',
+                      ].includes(icon) && 'max-md:hidden',
                     )}
                   />
                 ))}

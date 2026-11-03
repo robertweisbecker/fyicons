@@ -39,7 +39,7 @@ export function FormatControls({
         value={marks}
         onValueChange={setMarks}
         aria-label="Text formatting"
-        className={compact ? 'gap-0' : 'gap-px'}
+        className={compact ? 'grid min-w-0 grid-cols-4 gap-0' : 'gap-px'}
       >
         {[
           ['bold', 'text-bold', 'Bold'],
@@ -53,19 +53,19 @@ export function FormatControls({
             icon={icon}
             label={label}
             size={size}
-            className={compact ? 'flex-1' : undefined}
+            className={compact ? 'w-full min-w-0' : undefined}
           />
         ))}
       </ToggleGroup>
       {!compact && <span>List style</span>}
-      <div className="flex items-center">
+      <div className="flex min-w-0 items-center">
         <ToggleGroup
           value={list}
           onValueChange={(v) => v.length && setList(v)}
           aria-label="List style"
           className={cn(
             'rounded-md bg-inset p-0',
-            compact ? 'flex-1 gap-0' : 'w-fit gap-px',
+            compact ? 'grid min-w-0 flex-1 grid-cols-3 gap-0' : 'w-fit gap-px',
           )}
         >
           <DemoToggle
@@ -74,7 +74,7 @@ export function FormatControls({
             label="None"
             size={size}
             variant="elevated"
-            className="flex-1"
+            className={compact ? 'w-full min-w-0' : 'flex-1'}
           />
           <DemoToggle
             value="ordered"
@@ -82,7 +82,7 @@ export function FormatControls({
             label="Numbered list"
             size={size}
             variant="elevated"
-            className="flex-1"
+            className={compact ? 'w-full min-w-0' : 'flex-1'}
           />
           <DemoToggle
             value="bullet"
@@ -90,13 +90,10 @@ export function FormatControls({
             label="Bullet list"
             size={size}
             variant="elevated"
-            className="flex-1"
+            className={compact ? 'w-full min-w-0' : 'flex-1'}
           />
         </ToggleGroup>
-        <Glyph
-          name="chevron-right-sm"
-          className={compact ? 'size-6' : 'size-8'}
-        />
+        {!compact && <Glyph name="chevron-right-sm" className="size-8" />}
       </div>
       {!compact && (
         <>
@@ -133,7 +130,7 @@ export function TextAlignment({
         aria-label="Text alignment"
         className={cn(
           'rounded-md bg-inset p-0',
-          compact ? 'flex-1 gap-0' : 'w-fit gap-px',
+          compact ? 'grid min-w-0 grid-cols-3 gap-0' : 'w-fit gap-px',
         )}
       >
         {['start', 'center', 'end'].map((value) => (
@@ -144,18 +141,18 @@ export function TextAlignment({
             label={'Align ' + value}
             size={size}
             variant="elevated"
-            className="flex-1"
+            className={compact ? 'w-full min-w-0' : 'flex-1'}
           />
         ))}
       </ToggleGroup>
-      <div className="flex items-center">
+      <div className="flex min-w-0 items-center">
         <ToggleGroup
           value={vertical}
           onValueChange={(v) => v.length && setVertical(v)}
           aria-label="Vertical alignment"
           className={cn(
             'w-fit rounded-md bg-inset p-0',
-            compact ? 'flex-1 gap-0' : 'gap-px',
+            compact ? 'grid min-w-0 flex-1 grid-cols-3 gap-0' : 'gap-px',
           )}
         >
           {['top', 'middle', 'bottom'].map((value) => (
@@ -166,15 +163,13 @@ export function TextAlignment({
               label={'Align ' + value}
               size={size}
               variant="elevated"
-              className="flex-1"
+              className={compact ? 'w-full min-w-0' : 'flex-1'}
             />
           ))}
         </ToggleGroup>
-        <Glyph
-          name="sliders-v"
-
-          className={cn(compact ? 'size-6' : 'size-8', 'text-xs text-muted')}
-        />
+        {!compact && (
+          <Glyph name="sliders-v" className="size-8 text-xs text-muted" />
+        )}
       </div>
     </div>
   );

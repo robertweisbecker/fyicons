@@ -34,9 +34,9 @@ export function StatefulIcons() {
         id="stateful-icons-heading"
         className="text-2xl font-medium tracking-tight"
       >
-        Stateful icons
+        Multiple states
       </h3>
-      <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-10">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10">
         <div
           role="group"
           aria-label="Discrete states"

@@ -2,10 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import IconSearchSimple from 'fyicons/icons/IconSearchSimple';
-import IconSlashSmall from 'fyicons/icons/IconSlashSmall';
+import IconSearch from 'fyicons/icons/IconSearch';
 import IconSunFill from 'fyicons/icons/IconSunFill';
-import IconMoonFill from 'fyicons/icons/IconMoonFill';
 import IconMoon from 'fyicons/icons/IconMoon';
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { BrandWordmark, BrandWordmarkMobile } from './BrandWordmark';
@@ -21,10 +19,11 @@ import {
   siteNavigation,
   isActiveRoute,
 } from '../lib/navigation';
+import { IconKbdCommand, IconKbdCommandSmall } from 'fyicons';
 
 const iconLinkClassName = cn(
   buttonVariants({ variant: 'ghost', size: 'icon' }),
-  'hidden sm:inline-flex',
+  'hidden md:inline-flex',
 );
 
 export function SiteHeader({
@@ -61,17 +60,32 @@ export function SiteHeader({
           <Badge
             variant="outline"
             size="sm"
-            className="hidden font-mono text-focus sm:inline-flex"
+            className="font-mono max-md:hidden"
           >
             v{packageInfo.version}
           </Badge>
         </Link>
         <nav
-          className={cn(
-            'flex min-w-0 flex-1 items-center justify-end sm:gap-1',
-          )}
+          className={cn('flex min-w-0 flex-1 items-center justify-end gap-1')}
           aria-label="Main"
         >
+          <Button
+            variant="neutral"
+            aria-label="Search all icons"
+            aria-keyshortcuts="Meta+K Control+K"
+            className="me-2 rounded-full font-normal"
+            onClick={search}
+          >
+            <IconSearch className="-ms-1" />
+            <span className="text-muted">Search</span>
+            <kbd
+              aria-hidden="true"
+              className="ms-3 -me-1 inline-flex items-center gap-0.5 rounded-full bg-none px-1.5 py-px font-normal max-md:hidden"
+            >
+              <IconKbdCommand size={'1em'} />
+              <span>K</span>
+            </kbd>
+          </Button>
           {siteNavigation.map(({ href, label }) => (
             <Link
               key={href}
@@ -81,7 +95,7 @@ export function SiteHeader({
                 buttonVariants({
                   variant: isActiveRoute(pathname, href) ? 'neutral' : 'ghost',
                 }),
-                'rounded-full max-sm:min-h-11 max-sm:px-2 max-sm:text-xs',
+                'rounded-full max-sm:min-h-9',
               )}
             >
               {label}
@@ -90,24 +104,9 @@ export function SiteHeader({
         </nav>
         <div className={cn('flex shrink-0 items-center gap-1 sm:gap-2')}>
           <TooltipGroup side="bottom">
-            <Button
-              variant="neutral"
-              aria-label="Search all icons"
-              className="rounded-full font-normal max-sm:size-11 max-sm:p-0"
-              onClick={search}
-            >
-              <IconSearchSimple />
-              <span className="max-sm:hidden">Search</span>
-              <kbd
-                aria-hidden="true"
-                className="ms-4 -me-1 hidden rounded-full p-px sm:block"
-              >
-                <IconSlashSmall size={16} />
-              </kbd>
-            </Button>
             <span
               aria-hidden="true"
-              className="hidden h-4 w-px shrink-0 bg-ink/30 sm:block"
+              className="hidden h-4 w-px shrink-0 bg-ink/30 md:block"
             />
             <Tooltip label="GitHub">
               <a
@@ -133,17 +132,17 @@ export function SiteHeader({
             </Tooltip>
             <span
               aria-hidden="true"
-              className="hidden h-4 w-px shrink-0 bg-ink/30 sm:block"
+              className="hidden h-4 w-px shrink-0 bg-ink/30 md:block"
             />
             <Tooltip label={`${theme === 'dark' ? 'Light' : 'Dark'} mode`}>
               <Button
                 aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
                 variant="ghost"
                 size="icon"
-                className="max-sm:size-11"
+                className="max-sm:size-9"
                 onClick={toggleTheme}
               >
-                {theme === 'dark' ? <IconSunFill /> : <IconMoonFill />}
+                {theme === 'dark' ? <IconSunFill /> : <IconMoon />}
               </Button>
             </Tooltip>
           </TooltipGroup>

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { searchIcons } from '@/lib/icon-search';
 import { useCategoryReadiness } from '@/lib/category-readiness';
 import { getIconDisplayName, icons, type IconRecord } from '@/lib/catalog';
+import Link from 'next/link';
 
 const searchPlaceholder = `Search ${icons.length.toLocaleString('en-US')} icons…`;
 const searchPageSize = 100;
@@ -101,13 +102,10 @@ function SearchResults({ select }: { select: (icon: IconRecord) => void }) {
           value={icon}
           onClick={() => select(icon)}
           aria-label={getIconDisplayName(icon)}
-          className="relative flex min-h-24 min-w-0 cursor-default flex-col items-center justify-center gap-3 px-4 pt-4 pb-1 outline-none after:absolute after:inset-1 after:-z-1 after:rounded-xl after:bg-current/5 data-highlighted:after:bg-current/10 data-highlighted:after:outline-2 data-highlighted:after:-outline-offset-1 data-highlighted:after:outline-current"
+          className="group/item relative flex min-h-24 min-w-0 cursor-default flex-col items-center justify-center gap-3 px-4 pt-4 pb-1 outline-none after:absolute after:inset-1 after:-z-1 after:rounded-xl after:bg-current/5 data-highlighted:after:bg-current/10 data-highlighted:after:outline-2 data-highlighted:after:-outline-offset-1 data-highlighted:after:outline-current"
         >
-          <Icon name={icon.id} size={16} />
-          <span
-            className="max-w-full truncate text-[11px] leading-3 text-muted/50"
-            title={getIconDisplayName(icon)}
-          >
+          <Icon name={icon.id} size={24} />
+          <span className="max-w-full truncate text-[11px] leading-3 text-muted group-hover/item:text-ink">
             {getIconDisplayName(icon)}
           </span>
         </Autocomplete.Item>
@@ -150,26 +148,49 @@ function Search({
       itemToStringValue={getIconDisplayName}
       autoHighlight={false}
     >
-      <Autocomplete.InputGroup className="flex h-14 min-w-0 shrink-0 items-center gap-3 border-b border-line px-4">
-        <Icon name="search" />
+      <Autocomplete.InputGroup className="flex h-14 min-w-0 shrink-0 items-center gap-3 border-b border-line ps-6 pe-3">
+        <Icon name="search" size={20} />
         <Autocomplete.Input
           ref={inputRef}
-          type="search"
           aria-label="Search all icons"
           placeholder={searchPlaceholder}
-          className="h-full min-w-0 flex-1 bg-transparent py-0 text-base outline-none placeholder:text-muted sm:text-sm [&::-webkit-search-cancel-button]:hidden"
+          className="h-full min-w-0 flex-1 bg-transparent py-0 text-lg outline-none placeholder:text-muted sm:text-sm [&::-webkit-search-cancel-button]:hidden"
         />
         <Autocomplete.Clear
           aria-label="Clear search"
           tabIndex={0}
-          render={<Button variant="text" size="sm" />}
+          render={<Button variant="ghost" size="sm" />}
         >
           Clear
         </Autocomplete.Clear>
-        <Dialog.Close render={<IconButton icon="x" label="Close search" />} />
+        <Dialog.Close
+          render={
+            <IconButton
+              icon="x"
+              variant="outline"
+              className="rounded-full"
+              label="Close search"
+            />
+          }
+        />
       </Autocomplete.InputGroup>
-      <Autocomplete.Empty className="text-center text-sm text-muted">
-        <p className="px-4 py-12">No matching icons. Try another search.</p>
+      <Autocomplete.Empty className="text-center">
+        <div className="flex flex-col items-center justify-center gap-3 px-4 py-12">
+          <Icon name="ghost" size={32} />
+          <h3 className="text-lg font-medium">
+            Boo! <span className="opacity-50">No matches.</span>
+          </h3>
+          <p className="">
+            Try another search, or{' '}
+            <Link
+              href="/icons"
+              className="text-ink underline decoration-1 underline-offset-4 hover:text-focus"
+            >
+              view all icons
+            </Link>
+            .
+          </p>
+        </div>
       </Autocomplete.Empty>
       <ScrollArea.Root className="group/search-scroll flex min-h-0 flex-1 flex-col">
         <ScrollArea.Viewport className="min-h-0 flex-1 overscroll-y-contain focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-muted">
@@ -181,7 +202,7 @@ function Search({
             <SearchResults select={select} />
           </Autocomplete.List>
         </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar className="flex w-1.5 justify-center opacity-0 group-has-[:focus-visible]/search-scroll:opacity-100 data-hovering:opacity-100 data-scrolling:opacity-100">
+        <ScrollArea.Scrollbar className="m-1 flex w-1.5 justify-center opacity-0 group-has-focus-visible/search-scroll:opacity-100 data-hovering:opacity-100 data-scrolling:opacity-100">
           <ScrollArea.Thumb className="w-1 rounded-full bg-muted/50" />
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
@@ -194,13 +215,14 @@ function Search({
         </Autocomplete.Status>
         {matches.length > searchPageSize && (
           <Button
-            variant="neutral"
+            variant="outline"
             size="sm"
             disabled={moreCount === 0}
             focusableWhenDisabled
             onClick={() => setLimit((current) => current + searchPageSize)}
             className="data-disabled:opacity-40"
           >
+            <Icon name="arrow-down" size={16} />
             {moreCount > 0 ? `Load ${moreCount} more` : 'All results shown'}
           </Button>
         )}
@@ -238,11 +260,11 @@ export function GlobalSearch({
           finalFocus={() =>
             selecting.current ? false : returnFocusRef.current
           }
-          className="fixed inset-x-3 top-[max(1rem,env(safe-area-inset-top))] z-70 flex max-h-[min(40rem,80dvh)] flex-col overflow-hidden rounded-2xl bg-surface text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,transform] duration-200 ease-out data-ending-style:translate-y-2 data-ending-style:opacity-0 data-starting-style:translate-y-2 data-starting-style:opacity-0 sm:inset-x-auto sm:top-[12dvh] sm:left-1/2 sm:w-[calc(100%-3rem)] sm:max-w-4xl sm:-translate-x-1/2"
+          className="fixed inset-x-3 top-[max(1rem,env(safe-area-inset-top))] z-70 flex max-h-[min(40rem,80dvh)] flex-col overflow-hidden rounded-3xl bg-canvas text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,transform] duration-200 ease-out data-ending-style:translate-y-2 data-ending-style:opacity-0 data-starting-style:translate-y-2 data-starting-style:opacity-0 sm:inset-x-auto sm:top-[12dvh] sm:left-1/2 sm:w-[calc(100%-3rem)] sm:max-w-4xl sm:-translate-x-1/2"
         >
           <div className="flex shrink-0 items-center justify-between">
             <Dialog.Title className="sr-only text-sm font-medium">
-              Find an icon
+              Search icons
             </Dialog.Title>
           </div>
           <Search

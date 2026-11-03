@@ -112,20 +112,27 @@
   #site-root {
     isolation: isolate;
   }
-  /* Safari samples a full-width fixed color near the viewport edge. The
-     floating inspector must not supply this color: its rounded card is inset
-     from the edge and moves during a swipe. Keep this outside its transform,
-     below portal backdrops, and use the page color rather than the card color.
+  /* Safari extends this fixed edge color behind its bottom controls. Keep
+     5px of the 12px sample visible, with a fade above it instead of a hard
+     band. Stay outside the inspector's transform and below portal backdrops.
      See https://joshpuckett.me/seamless-mobile-safari. */
   @media (width < 768px) {
-    /* Larger layouts can dock the inspector against the viewport bottom. */
+    body::before,
     body::after {
       content: '';
       position: fixed;
-      inset: auto 0 0;
-      height: max(12px, env(safe-area-inset-bottom));
+      inset-inline: 0;
       z-index: 40;
       pointer-events: none;
+    }
+    body::before {
+      bottom: 5px;
+      height: 48px;
+      background: linear-gradient(to top, var(--canvas), transparent);
+    }
+    body::after {
+      bottom: -7px;
+      height: 12px;
       background-color: var(--canvas);
     }
   }
@@ -151,6 +158,9 @@
   }
   kbd {
     @apply rounded bg-muted/10 px-1.5 py-0.5 font-sans text-[11px] font-medium text-ink;
+  }
+  ::selection {
+    @apply bg-current/20;
   }
 }
 @media (prefers-reduced-motion: reduce) {

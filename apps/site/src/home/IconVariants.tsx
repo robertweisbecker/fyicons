@@ -5,10 +5,10 @@ const variantIcons = [
   'error',
   'bolt',
   'bookmark',
-  'browser',
-  'calendar',
+  'grid-masonry',
+  'video-camera',
   'chart-donut',
-  'clock',
+  'timer',
   'cookie',
   'crown',
   'cursor',
@@ -18,7 +18,6 @@ const variantIcons = [
   'home',
   'inbox',
   'lock',
-  'map-pin',
   'microphone',
   'moon',
   'settings',
@@ -26,47 +25,91 @@ const variantIcons = [
   'star',
   'sun',
   'user',
-  'video',
+  'diamond',
+  'play',
+  'pause',
+  'stop',
+  'circle-check',
+  'clock',
+] as const;
+
+const mixedIcons = [
+  'appearance',
+  'circle-halftone',
+  'gradient',
+  'shadow',
+  'shadow-inner',
+  'app-notification',
+  'pencil-edit-fill',
+  'file-add',
+  'folder-check',
+  'image-solid',
+  'picture-frame',
+  'compass',
+  'credit-card',
+  'browser-solid',
+  'calendar-fill',
+  // 'gear',
+  'life-ring',
+  'calculator',
+  'eyedropper',
+  'fire-alt',
+  'watch',
+  'wand',
+  // 'alarm-clock',
+  'border-width',
+  // 'box-shipping',
+  // 'cash',
+  'microchip',
+  'shield-user-solid',
+  'hourglass',
+  'circle-play',
+  'circle-pause',
+  'circle-stop',
+  'clock-fill-alt',
+  'circle-progress-full',
+  'marker-tip',
+  'pencil-tip',
+  'pen-tip',
+  'brush-tip',
+  'highlighter-tip',
 ] as const;
 
 const variants = [
-  { label: 'Outline', suffix: '' },
-  { label: 'Filled', suffix: '-fill' },
+  { label: 'Outline', icons: variantIcons },
+  {
+    label: 'Filled',
+    icons: variantIcons.map((name) => `${name}-fill`),
+  },
+  { label: 'Mixed', icons: mixedIcons },
 ] as const;
 
 export function IconVariants() {
   return (
-    <section
-      aria-labelledby="icon-variants-heading"
-      className="grid items-start gap-6 md:grid-cols-2 md:gap-10"
-    >
+    <section aria-labelledby="icon-variants-heading" className="space-y-6">
       <h3
         id="icon-variants-heading"
         className="text-2xl font-medium tracking-tight"
       >
         More than just outlines
       </h3>
-      <div className="grid min-w-0 grid-cols-2 gap-3 sm:gap-4">
-        {variants.map(({ label, suffix }) => (
+      <div className="grid min-w-0 grid-cols-3 gap-2 sm:gap-4">
+        {variants.map(({ label, icons }) => (
           <figure key={label} className="min-w-0 space-y-3">
             <ul
               aria-label={`${label} icons`}
               role="list"
-              className="grid aspect-square grid-cols-5 grid-rows-5 place-items-center rounded-2xl bg-surface p-2 sm:p-3"
+              className="grid aspect-square min-h-26 w-full auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
             >
-              {variantIcons.map((name) => (
+              {icons.map((name) => (
                 <li
                   key={name}
                   className="flex min-w-0 items-center justify-center"
                 >
                   <Icon
-                    name={
-                      name === 'browser' && suffix
-                        ? 'browser-solid'
-                        : `${name}${suffix}`
-                    }
-                    size={24}
-                    aria-label={`${name.replaceAll('-', ' ')} ${label.toLowerCase()}`}
+                    name={name}
+                    className="size-4 sm:size-6"
+                    aria-label={name.replaceAll('-', ' ')}
                   />
                 </li>
               ))}

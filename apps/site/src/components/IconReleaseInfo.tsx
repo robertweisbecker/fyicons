@@ -1,15 +1,27 @@
 import { getIconReleases } from '@/lib/icon-releases';
 import { githubHref } from '@/lib/navigation';
+import { cn } from '@/lib/utils';
 
-export function IconReleaseInfo({ id }: { id: string }) {
+export function IconReleaseInfo({
+  id,
+  className,
+}: {
+  id: string;
+  className?: string;
+}) {
   const releases = getIconReleases(id);
   if (!releases) return null;
   return (
-    <dl className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
+    <dl
+      className={cn(
+        'flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted',
+        className,
+      )}
+    >
       {(
         [
-          ['Added', releases.added],
           ['Updated', releases.updated],
+          ['Added', releases.added],
         ] as const
       ).map(([label, version]) => (
         <div key={label} className="flex items-baseline gap-1.5">
@@ -19,10 +31,10 @@ export function IconReleaseInfo({ id }: { id: string }) {
               href={`${githubHref}/releases/tag/${encodeURIComponent(`fyicons@${version}`)}`}
               target="_blank"
               rel="noreferrer"
-              aria-label={`${label} in v${version} — GitHub release`}
+              aria-label={`${label} in ${version} — GitHub release`}
               className="rounded-sm text-ink underline decoration-line underline-offset-4 hover:decoration-current"
             >
-              v{version}
+              {version}
             </a>
           </dd>
         </div>

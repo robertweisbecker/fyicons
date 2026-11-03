@@ -10,7 +10,7 @@ import { reviewFiles } from './codeReviewData';
 
 export function CodeApp() {
   const [selected, setSelected] = useState(reviewFiles[0].path);
-  const [expanded, setExpanded] = useState(true);
+  const [openFiles, setOpenFiles] = useState([reviewFiles[0].path]);
   const [openFolders, setOpenFolders] = useState([
     'src',
     'src/components',
@@ -21,10 +21,18 @@ export function CodeApp() {
   const sidebarId = useId();
   const sidebarToggle = useRef<HTMLButtonElement>(null);
   const allOpen = openFolders.length > 0;
+  const visibleFiles = reviewFiles.filter(
+    (file) => file.change || file.path === selected,
+  );
+  const allDiffsOpen = visibleFiles.every((file) =>
+    openFiles.includes(file.path),
+  );
 
   function selectFile(path: string) {
     setSelected(path);
-    setExpanded(true);
+    setOpenFiles((current) =>
+      current.includes(path) ? current : [...current, path],
+    );
     setOpenFolders((current) => [
       ...new Set([
         ...current,
@@ -50,7 +58,6 @@ export function CodeApp() {
           <Icon name="chevron-down-sm" />
         </span>
         <div className="ml-auto flex items-center gap-1 text-muted">
-          <DemoIconButton icon="layout-rows" label="Diff view" size="icon-sm" />
           <DemoIconButton
             label="More diff actions"
             icon="ellipsis"
@@ -72,20 +79,23 @@ export function CodeApp() {
             activeIcon="overflow"
             size="icon-sm"
           />
-          <DemoToggle
-            label="Expand selected diff"
-            icon="list-expand"
-            activeIcon="list-collapse"
+          <DemoIconButton
+            label={allDiffsOpen ? 'Collapse all diffs' : 'Expand all diffs'}
+            icon={allDiffsOpen ? 'list-collapse' : 'list-expand'}
             size="icon-sm"
-            pressed={expanded}
-            onPressedChange={setExpanded}
+            onClick={() =>
+              setOpenFiles(
+                allDiffsOpen ? [] : visibleFiles.map((file) => file.path),
+              )
+            }
           />
+          <DemoIconButton icon="layout-rows" label="Diff view" size="icon-sm" />
           {[false, true].map((wide) => (
             <DemoToggle
               key={String(wide)}
               ref={wide ? undefined : sidebarToggle}
               icon="folders"
-              activeIcon="folder-fill"
+              activeIcon="folders-fill"
               label="Folder view"
               size="icon-sm"
               pressed={wide ? desktopFilesOpen : mobileFilesOpen}
@@ -168,11 +178,15 @@ export function CodeApp() {
           )}
         >
           <CodeChanges
-            selected={selected}
-            expanded={expanded}
-            onSelect={(path) =>
-              path === selected ? setExpanded(!expanded) : selectFile(path)
-            }
+            files={visibleFiles}
+            openFiles={openFiles}
+            onOpenChange={(path, open) => {
+              if (open) selectFile(path);
+              else
+                setOpenFiles((current) =>
+                  current.filter((file) => file !== path),
+                );
+            }}
           />
         </section>
       </div>

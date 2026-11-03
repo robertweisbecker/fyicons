@@ -22,7 +22,7 @@ function ToastViewport() {
   const { toasts } = Toast.useToastManager<ToastData>();
   return (
     <Toast.Portal>
-      <Toast.Viewport className="fixed right-4 bottom-4 z-80 h-[var(--toast-frontmost-height,0px)] w-88 max-w-[calc(100%-2rem)] outline-none">
+      <Toast.Viewport className="fixed bottom-4 left-1/2 z-80 h-[var(--toast-frontmost-height,0px)] w-88 max-w-[calc(100%-2rem)] -translate-x-1/2 outline-none">
         {toasts.map((toast) => (
           <Toast.Root
             key={toast.id}
