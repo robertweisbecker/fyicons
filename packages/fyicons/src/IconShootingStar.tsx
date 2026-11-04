@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconShootingStar = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconShootingStar(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="shooting-star"><g stroke="currentColor" clipPath={"url(#" + idPrefix + "clip0_1353_11438)"}><path strokeLinejoin="round" d="M6.97 5.84a.1.1 0 0 1 .174.046l.495 2.485a.1.1 0 0 0 .059.072l2.327 1.001a.1.1 0 0 1 .01.18l-2.21 1.238a.1.1 0 0 0-.051.078l-.233 2.523a.1.1 0 0 1-.167.064l-1.862-1.719a.1.1 0 0 0-.09-.024l-2.471.558a.1.1 0 0 1-.113-.139l1.06-2.301a.1.1 0 0 0-.005-.093L2.598 7.63a.1.1 0 0 1 .098-.15l2.516.296a.1.1 0 0 0 .087-.033z" /><path strokeLinecap="round" d="M8.172 11.573c1.168.496 2.321.708 3.313.61.992-.099 1.778-.504 2.258-1.163.479-.66.63-1.545.434-2.541-.196-.997-.73-2.06-1.535-3.056A10.8 10.8 0 0 0 9.657 2.89c-1.14-.656-2.33-1.056-3.42-1.15-1.088-.094-2.026.123-2.693.624-.667.5-1.034 1.26-1.053 2.185" /></g><defs><clipPath id={idPrefix + "clip0_1353_11438"}><path fill="white" d="M0 0h16v16H0z" /></clipPath></defs></SvgRoot>;
+});
+export default IconShootingStar;

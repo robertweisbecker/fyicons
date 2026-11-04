@@ -7,11 +7,11 @@ import IconSignalFour1 from 'fyicons/icons/IconSignalFour1';
 import IconSignalFour2 from 'fyicons/icons/IconSignalFour2';
 import IconSignalFour3 from 'fyicons/icons/IconSignalFour3';
 import IconSignalFour from 'fyicons/icons/IconSignalFour';
-import IconCircleProgressTodo from 'fyicons/icons/IconCircleProgressTodo';
-import IconCircleProgressQuarter from 'fyicons/icons/IconCircleProgressQuarter';
-import IconCircleProgressHalf from 'fyicons/icons/IconCircleProgressHalf';
-import IconCircleProgressThreeQuarters from 'fyicons/icons/IconCircleProgressThreeQuarters';
-import IconCircleProgressFull from 'fyicons/icons/IconCircleProgressFull';
+import IconCircleProgress0 from 'fyicons/icons/IconCircleProgress0';
+import IconCircleProgress25 from 'fyicons/icons/IconCircleProgress25';
+import IconCircleProgress50 from 'fyicons/icons/IconCircleProgress50';
+import IconCircleProgress75 from 'fyicons/icons/IconCircleProgress75';
+import IconCircleProgress100 from 'fyicons/icons/IconCircleProgress100';
 import IconGaugeSimpleMax from 'fyicons/icons/IconGaugeSimpleMax';
 import IconGaugeSimple from 'fyicons/icons/IconGaugeSimple';
 import IconGaugeSimpleMin from 'fyicons/icons/IconGaugeSimpleMin';
@@ -50,7 +50,7 @@ export const levelSteps: {
     icons: {
       IconBatteryEmpty,
       IconSignalFour0,
-      IconCircleProgressTodo,
+      IconCircleProgress0,
       IconGaugeSimpleMin,
     },
     landingIcons: {
@@ -66,7 +66,7 @@ export const levelSteps: {
     icons: {
       IconBatteryLow,
       IconSignalFour1,
-      IconCircleProgressQuarter,
+      IconCircleProgress25,
       IconGaugeSimpleLow,
     },
     landingIcons: {
@@ -82,7 +82,7 @@ export const levelSteps: {
     icons: {
       IconBatteryMedium,
       IconSignalFour2,
-      IconCircleProgressHalf,
+      IconCircleProgress50,
       IconGaugeSimple,
     },
     landingIcons: {
@@ -98,7 +98,7 @@ export const levelSteps: {
     icons: {
       IconBatteryMedium,
       IconSignalFour3,
-      IconCircleProgressThreeQuarters,
+      IconCircleProgress75,
       IconGaugeSimpleHigh,
     },
     landingIcons: {
@@ -114,7 +114,7 @@ export const levelSteps: {
     icons: {
       IconBatteryMedium,
       IconSignalFour3,
-      IconCircleProgressThreeQuarters,
+      IconCircleProgress75,
       IconGaugeSimpleHigh,
     },
     landingIcons: {
@@ -130,7 +130,7 @@ export const levelSteps: {
     icons: {
       IconBattery,
       IconSignalFour,
-      IconCircleProgressFull,
+      IconCircleProgress100,
       IconGaugeSimpleMax,
     },
     landingIcons: {
