@@ -1,4 +1,5 @@
 import { transform } from '@svgr/core';
+import { renderReactProviderFiles } from './react-provider.mjs';
 
 const paintKeywords = new Set([
   'none',
@@ -277,7 +278,7 @@ export default SvgRoot;
   }
   files.set(
     'packages/fyicons/src/types.ts',
-    "import type { SVGProps } from 'react';\n\nexport type IconProps = SVGProps<SVGSVGElement> & { size?: number | string; title?: string };\n",
+    "import type { ReactNode, SVGProps } from 'react';\n\nexport type IconProps = SVGProps<SVGSVGElement> & { size?: number | string; title?: string };\n\nexport type IconDefaults = Pick<IconProps, 'size' | 'color' | 'className' | 'style'>;\nexport type FyiProviderProps = IconDefaults & { children?: ReactNode };\n",
   );
   files.set(
     'packages/fyicons/src/index.ts',
@@ -287,5 +288,5 @@ export default SvgRoot;
     'apps/site/src/icons/registry.ts',
     `import type { ComponentType } from 'react';\nimport type { IconProps } from 'fyicons';\nimport * as icons from 'fyicons';\n\nexport const iconBySourceId: Record<string, ComponentType<IconProps>> = {\n${icons.map((icon) => `  ${JSON.stringify(icon.id)}: icons.${icon.componentName},`).join('\n')}\n};\n`,
   );
-  return files;
+  return new Map([...files, ...renderReactProviderFiles(icons)]);
 }
