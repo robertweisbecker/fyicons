@@ -241,7 +241,9 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
     style: 'new-york',
     rsc: true,
     tsx: true,
-    tailwind: { css: 'styles.css', baseColor: 'neutral', cssVariables: true },
+    // These registry:file items preserve their source and need no theme palette.
+    // An empty baseColor keeps the real installer from fetching unused colors.
+    tailwind: { css: 'styles.css', baseColor: '', cssVariables: true },
     aliases: {
       components: '~/components',
       ui: '~/components/ui',
