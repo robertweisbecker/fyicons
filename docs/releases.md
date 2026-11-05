@@ -144,20 +144,26 @@ Commit the generated `apps/site/src/data/icon-releases.json` with the next websi
 The workflow has four jobs:
 
 1. Select whether to create a version PR, publish, or stop. Normal versions use the npm `latest` tag.
-2. Create or update a version PR with `version:packages`. This keeps the changelog, workspace dependencies, lockfile, and source registry together.
+2. Create or update a version PR with `version:packages`. This keeps the changelog, workspace dependencies, lockfile, and source registry together. Request the read-only verification workflow on that PR's exact commit.
 3. Run the tests, site build, consumer checks, and visual comparison. Pack the library and upload the results. This job has read-only repository permissions.
-4. Publish the packed files from the `npm` environment. This job has OIDC permission. It does not build packages or run install scripts. Changesets creates the release tags and GitHub releases.
+4. Publish the packed files from the `npm` environment after the checks pass. This job has OIDC permission. It does not build packages or run install scripts. Changesets creates the release tags and GitHub releases.
+
+Reviewing and merging the version PR is the release approval. Review the version, changelog, migration notes, and verification results before merging. After that merge, the workflow checks and packs the merged commit, then publishes automatically. The `npm` environment limits publication to `main`; it must not require another reviewer approval or a wait timer.
+
+Preparation does not activate this flow. Keep `RELEASE_AUTOMATION_ENABLED` unset or `false` while preparing workflow changes. Do not version packages, dispatch the release workflow, or change remote settings as a readiness test.
 
 Before enabling automation:
 
 1. Complete and verify the approved first publication.
-2. Create a GitHub environment named `npm`. Restrict it to `main` and add the required reviewers for publication.
+2. Create a GitHub environment named `npm`. Use **Selected branches and tags** with one **Branch** rule for `main`. Do not add a tag rule, required reviewers, a wait timer, or another approval rule. Keep the repository's PR review rules for `main`.
 3. When an automated release is ready, add a GitHub Actions trusted publisher in the npm package settings. Select this repository, workflow `release.yml`, and environment `npm`. Allow direct publication with `npm publish` for the Changesets publish action. Use [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/). No npm token is stored in the repository.
 4. Enable the repository setting that allows GitHub Actions to create and approve pull requests. Changesets uses it to create release PRs; the release workflow does not approve them.
-5. Set `RELEASE_AUTOMATION_ENABLED` to `true`. Run the workflow from `main` and inspect the result.
+5. Confirm the first four settings live. When activation is authorized, set `RELEASE_AUTOMATION_ENABLED` to `true`. The next push to `main`, or an explicitly authorized run from `main`, can create a version PR or publish an unpublished version.
 
-A new trusted publisher must complete its first successful publication within two days. Otherwise, it expires and must be created again. A workflow run with no package to publish does not verify the trust relationship. Complete this setup when an approved automated release is ready. Check the npm version, tag, and provenance after that release.
+Check npm's current trusted-publisher validation and expiry requirements before activation. A workflow run with no package to publish does not verify the trust relationship. Complete this setup when an approved automated release is ready. Check the npm version, tag, and provenance after that release.
 
-The GitHub token used by the version action does not trigger other workflows when it creates a PR. Run the verification workflow on the version branch before merging. For automatic PR checks, configure a GitHub App token as described in [Changesets automation](https://changesets.dev/guide/automating#run-github-actions-for-version-prs).
+The version action uses the short-lived `GITHUB_TOKEN`. GitHub can place the resulting PR workflows in an approval-required state. To avoid that extra decision, the version job explicitly dispatches only [the read-only verification workflow](../.github/workflows/release-prep.yml). It resolves the PR number returned by Changesets, checks that both branches belong to this repository and target `main`, and dispatches the Changesets version branch with its exact head and base SHAs. Verification fails before checkout if the branch has moved. No personal token or GitHub App credential is needed. See [GitHub's workflow triggering rules](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow).
+
+Use the successful `verify` check on the current version-PR commit before merging. Other PR workflows, such as inline icon previews, can still wait for GitHub's workflow approval; the dispatched release verification includes the package checks, TypeScript, site build, consumer checks, and comparison artifact. If checks are required by a branch rule, confirm that the rule accepts this verification check. If the version branch moves before dispatch, rerun the release workflow from `main` to request checks on the current PR commit. That workflow can also publish in publish mode, so use it only after activation and within an approved release cycle.
 
 Local checks cannot verify the npm trust relationship or GitHub environment rules. Confirm those settings before enabling the workflow. Account settings and the first publication require maintainer authorization.

@@ -40,6 +40,8 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      # Dispatch read-only checks for the bot-created version PR.
+      actions: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -49,11 +51,31 @@ jobs:
           node-version-file: .nvmrc
           package-manager-cache: false
       - run: npm ci
-      - uses: changesets/action/version@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
+      - id: version
+        uses: changesets/action/version@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
           script: npm run version:packages
           commit-message: 'chore(release): version packages'
           pr-title: 'chore(release): version packages'
+      - name: Request release PR verification
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION_PR: ${{ steps.version.outputs.pr-number }}
+        run: |
+          [[ "$VERSION_PR" =~ ^[1-9][0-9]*$ ]]
+          pr=$(gh api "repos/$GH_REPO/pulls/$VERSION_PR")
+          # Resolve only the PR returned by Changesets, in this repository.
+          # Never dispatch the publishing workflow or follow a fork's ref.
+          jq -e --arg repo "$GH_REPO" '
+            .state == "open" and
+            .base.repo.full_name == $repo and .base.ref == "main" and
+            .head.repo.full_name == $repo and .head.ref == "changeset-release/main" and
+            (.head.sha | test("^[0-9a-f]{40}$")) and
+            (.base.sha | test("^[0-9a-f]{40}$"))
+          ' <<< "$pr" > /dev/null
+          jq '{ref: .head.ref, inputs: {base: .base.sha, expected_head: .head.sha}}' <<< "$pr" |
+            gh api --method POST "repos/$GH_REPO/actions/workflows/release-prep.yml/dispatches" --input -
 
   pack:
     needs: select-mode
