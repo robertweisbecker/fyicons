@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconEmojiSmileFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconEmojiSmileFill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="emoji-smile-fill"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m3.28 8.317a.5.5 0 0 0-.684.183 3 3 0 0 1-5.196 0 .5.5 0 0 0-.866.5 4 4 0 0 0 6.928 0 .5.5 0 0 0-.183-.683M5.874 5.75C5.392 5.75 5 6.254 5 6.875S5.392 8 5.875 8s.875-.504.875-1.125-.392-1.125-.875-1.125m4.25 0c-.483 0-.875.504-.875 1.125S9.642 8 10.125 8 11 7.496 11 6.875s-.392-1.125-.875-1.125" /></SvgRoot>;
+});
+export default IconEmojiSmileFill;

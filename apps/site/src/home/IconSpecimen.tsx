@@ -37,7 +37,7 @@ const samples: { name: string; label: string; guide: Guide }[] = [
     label: 'ChatRoundEdit',
     guide: 'circle',
   },
-  { name: 'swatch', label: 'Swatch', guide: 'square' },
+  { name: 'swatches', label: 'Swatch', guide: 'square' },
   { name: 'envelope', label: 'Envelope', guide: 'horizontal' },
   { name: 'file-zip', label: 'FileZip', guide: 'vertical' },
   { name: 'skull', label: 'Skull', guide: 'circle' },

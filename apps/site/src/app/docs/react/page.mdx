@@ -137,7 +137,7 @@ Media playback icons also have alternates for commonly-toggled actions:
 
 ### Meters and progress
 
-A few icon families represent levels or stages: `Battery`, `Signal`, `Gauge`, and `CircleProgress`.
+A few icon families represent levels or stages: `Battery`, `Signal`, `Gauge`, `Meter`, and `ProgressTask`.
 
 <LevelStateExample />
 
@@ -145,11 +145,11 @@ Families with fewer variants can reuse a state across multiple steps. Choose thr
 
 ```tsx
 const progressIcons = [
-  IconCircleProgressTodo,
-  IconCircleProgressQuarter,
-  IconCircleProgressHalf,
-  IconCircleProgressThreeQuarters,
-  IconCircleProgressFull,
+  IconProgressTaskTodo,
+  IconProgressTask25,
+  IconProgressTask50,
+  IconProgressTask75,
+  IconProgressTaskDone,
 ];
 
 // level ranges from 0 to 100.

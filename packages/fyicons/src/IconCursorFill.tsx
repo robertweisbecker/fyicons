@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCursorFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCursorFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="cursor-fill"><path fill="currentColor" d="M1.695 3.604c-.407-1.182.726-2.314 1.908-1.907l9.463 3.263c1.399.483 1.327 2.487-.103 2.868l-1.918.511 2.308 2.308a1.915 1.915 0 0 1-2.707 2.707l-2.31-2.31-.51 1.921c-.383 1.43-2.384 1.5-2.867.103z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="cursor-fill"><path fill="currentColor" d="M2.001 2.956a.75.75 0 0 1 .953-.954l10.352 3.57c.893.307.9 1.569.01 1.887l-2.843 1.015 3.026 3.026a1.414 1.414 0 0 1-2 2l-3.026-3.026-1.016 2.843c-.318.89-1.578.883-1.887-.01z" /></SvgRoot>;
 });
 export default IconCursorFill;

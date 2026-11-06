@@ -1,0 +1,109 @@
+---
+'fyicons': minor
+---
+
+Sync the icon collection with the current design source.
+
+- Add 105 icons.
+- Remove `IconFontCapital`, `IconWrap`; these components are no longer in the source inventory.
+- Update SVG artwork for 419 existing icons; 413 have rendered pixel changes.
+- Rename 80 React exports. Previous names remain website lookup aliases, not React exports.
+
+Breaking changes and migration:
+
+Apply each replacement to the original `0.2.1` import names in one pass. Do not run sequential global replacements: some destination names are also old names that move elsewhere. For example, old `IconCheckThick` becomes `IconCheckThickSm`, while old `IconCheckThickSm` becomes `IconCheckThickXs`. Old `IconGaugeHigh` becomes `IconMeterHigh`, while old `IconGaugeSimpleHigh` becomes `IconGaugeHigh`. Preserve any local import aliases when you update the imported symbol.
+
+Review uses of these ten names even if TypeScript still accepts them: `IconCookie`, `IconCookieFill`, `IconMenuSimple`, `IconCheckThickSm`, `IconCheckThick`, `IconGaugeHigh`, `IconGaugeLow`, `IconFlower`, `IconCalendarFill`, and `IconFlagPennant`. They now select different source icons. Use the replacements below to retain the original source identity. The corresponding SVG filenames, CSS classes, and shadcn registry item names also follow the new icon names. Historical website search aliases do not restore old React exports, and current canonical names take precedence over aliases.
+
+- Replace `IconFlagPennant` imports with `IconFlagBanner`.
+- Replace `IconCookie` imports with `IconCookieBite`.
+- Replace `IconSwatch` imports with `IconSwatches`.
+- Replace `IconCookieFill` imports with `IconCookieBiteFill`.
+- Replace `IconHourglassSimple` imports with `IconHourglassEmpty`.
+- Replace `IconLayoutTabs` imports with `IconTabs`.
+- Replace `IconCircleDashedUser` imports with `IconCircleUserDashed`.
+- Replace `IconTexture` imports with `IconBackgroundInner`.
+- Replace `IconExtensionsLg` imports with `IconExtensionsAlt`.
+- Replace `IconMouseModern` imports with `IconMouseWheel`.
+- Replace `IconInfinitySign` imports with `IconInfinity`.
+- Remove `IconFontCapital` imports. This icon is no longer available.
+- The `IconCookie` name now refers to a different source icon. Review its use in your application.
+- The `IconCookieFill` name now refers to a different source icon. Review its use in your application.
+- Replace `IconPencilEdit` imports with `IconEdit`.
+- The `IconCalendarFill` name now refers to a different source icon. Review its use in your application.
+- The `IconCheckThick` name now refers to a different source icon. Review its use in your application.
+- Replace `IconPaintBucket` imports with `IconBucket`.
+- The `IconMenuSimple` name now refers to a different source icon. Review its use in your application.
+- The `IconFlower` name now refers to a different source icon. Review its use in your application.
+- Replace `IconCheckThickSm` imports with `IconCheckThickXs`.
+- Replace `IconSendStraight` imports with `IconSendAlt`.
+- Replace `IconBlockquote` imports with `IconQuoteBlock`.
+- Replace `IconKbdCommandSquare` imports with `IconSquareCommand`.
+- Replace `IconPlugAtSign` imports with `IconAtSignPlug`.
+- Replace `IconCompassAlt` imports with `IconCompassSimple`.
+- Replace `IconGaugeHigh` imports with `IconMeterHigh`.
+- Replace `IconGauge` imports with `IconMeter`.
+- Replace `IconGaugeLow` imports with `IconMeterLow`.
+- Replace `IconGaugeSimpleHigh` imports with `IconGaugeHigh`.
+- The `IconGaugeHigh` name now refers to a different source icon. Review its use in your application.
+- Replace `IconGaugeSimpleLow` imports with `IconGaugeLow`.
+- The `IconGaugeLow` name now refers to a different source icon. Review its use in your application.
+- Replace `IconTextQuotes` imports with `IconParagraphQuotes`.
+- Replace `IconTextBlockquote` imports with `IconParagraphBlockquote`.
+- Replace `IconSendStraightFill` imports with `IconSendAltFill`.
+- Replace `IconPlugPlug` imports with `IconPlugs`.
+- Replace `IconCircleProgressTodo` imports with `IconProgressTaskTodo`.
+- Replace `IconCircleProgressQuarter` imports with `IconProgressTask25`.
+- Replace `IconCircleProgressHalf` imports with `IconProgressTask50`.
+- Replace `IconCircleProgressThreeQuarters` imports with `IconProgressTask75`.
+- Replace `IconPencilEditFill` imports with `IconEditSolid`.
+- Replace `IconGridHeader` imports with `IconGridMixedTop`.
+- Replace `IconGridFooter` imports with `IconGridMixedBottom`.
+- Replace `IconGridSidebarEnd` imports with `IconGridMixedRight`.
+- Replace `IconGridSidebarStart` imports with `IconGridMixedLeft`.
+- Replace `IconMenuSimple` imports with `IconMenuAltSimple`.
+- Replace `IconClick` imports with `IconCursorRays`.
+- Replace `IconTextHtml` imports with `IconTextMarkup`.
+- Replace `IconParagraphProse` imports with `IconParagraphWords`.
+- Replace `IconClockFillAlt` imports with `IconClockSolid`.
+- Replace `IconWindowPointer` imports with `IconViewPointer`.
+- Replace `IconArrowWrap` imports with `IconLineWrap`.
+- Replace `IconGear` imports with `IconCogWheel`.
+- Replace `IconArticle` imports with `IconPageThumbnail`.
+- Replace `IconSwitchesIos` imports with `IconSwitchesCupertino`.
+- Replace `IconGitModified` imports with `IconLetterM`.
+- Replace `IconPointerRulers` imports with `IconRulersPointer`.
+- Replace `IconCircleProgressFull` imports with `IconProgressTaskDone`.
+- Replace `IconFolderView` imports with `IconFolderTree`.
+- Replace `IconFolderViewFill` imports with `IconFolderTreeFill`.
+- Replace `IconTextBox` imports with `IconBoundingBoxText`.
+- Replace `IconGridRowBottom` imports with `IconGridPositionBottom`.
+- Replace `IconGridRowTop` imports with `IconGridPositionTop`.
+- Replace `IconGridColumnEnd` imports with `IconGridPositionRight`.
+- Replace `IconGridColumnStart` imports with `IconGridPositionLeft`.
+- Replace `IconGitAdded` imports with `IconLetterA`.
+- Replace `IconGitRemoved` imports with `IconLetterR`.
+- Replace `IconFlagBurgee` imports with `IconFlagPennant`.
+- The `IconFlagPennant` name now refers to a different source icon. Review its use in your application.
+- Replace `IconGaugeSimpleMax` imports with `IconGaugeMax`.
+- Replace `IconGaugeSimpleMin` imports with `IconGaugeMin`.
+- Replace `IconLayoutTemplate` imports with `IconLayoutDashed`.
+- Replace `IconLayoutSidebarEnd` imports with `IconLayoutColumnRight`.
+- Replace `IconLayoutSidebarStart` imports with `IconLayoutColumnLeft`.
+- Replace `IconLayoutFooter` imports with `IconLayoutRowBottom`.
+- Replace `IconLayoutHeader` imports with `IconLayoutRowTop`.
+- Replace `IconTextBoxHeading` imports with `IconBoundingBoxHeading`.
+- Replace `IconPlugPlugged` imports with `IconPlugsPlugged`.
+- Replace `IconPlugUnplug` imports with `IconPlugsUnplug`.
+- Replace `IconChartBarSimple` imports with `IconChartBarAxes`.
+- Replace `IconFlower` imports with `IconFlowerSpiral`.
+- Remove `IconWrap` imports. This icon is no longer available.
+- Replace `IconOverflow` imports with `IconLineOverflow`.
+- Replace `IconCalendarFill` imports with `IconCalendarSolid`.
+- Replace `IconCheckThick` imports with `IconCheckThickSm`.
+- The `IconCheckThickSm` name now refers to a different source icon. Review its use in your application.
+- Replace `IconWindowText` imports with `IconViewText`.
+- Replace `IconSidebarRightOpen` imports with `IconSidebarRightFill`.
+- Replace `IconSidebarLeftOpen` imports with `IconSidebarLeftFill`.
+- Replace `IconBlueprintGrid` imports with `IconGridRuler`.
+- Replace `IconArticleSimple` imports with `IconRichText`.

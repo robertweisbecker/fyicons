@@ -254,7 +254,7 @@ export function DesignDemo() {
           </Slider.Root>
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-2 text-xs">
-              <Icon name="paint-bucket" />
+              <Icon name="bucket" />
               Fill
             </span>
             <ToggleGroup

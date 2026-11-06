@@ -7,6 +7,7 @@ const output = new URL('../apps/site/out/', import.meta.url);
 const routes = [
   '/',
   '/icons/',
+  '/library/',
   '/examples/',
   ...docsNavigation.flatMap(({ items }) => items.map(({ href }) => href)),
 ];
@@ -42,7 +43,12 @@ for (const route of routes) {
     `${route}: internal prototypes link`,
   );
 }
-for (const path of ['library/index.html', 'prototypes', 'prototypes.html']) {
+for (const path of [
+  'prototypes',
+  'prototypes.html',
+  'og/index.html',
+  'og-editor/index.html',
+]) {
   await assert.rejects(access(new URL(path, output)), { code: 'ENOENT' });
 }
 await access(new URL('licenses/stageshow.txt', output));
