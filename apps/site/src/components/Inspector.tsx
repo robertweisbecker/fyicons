@@ -42,6 +42,7 @@ import {
 import { useMobile, usePreference } from '@/lib/preferences';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
 import { IconCopyButton } from './IconCopyButton';
+import { IconDownloadButton, InspectorActions } from './InspectorActions';
 import { InspectorLink } from './InspectorLink';
 import './MobileInspector.css';
 
@@ -149,16 +150,14 @@ function Preview({
 }
 function Details({
   item,
-  selected,
+  actions,
   select,
   onCategoryChange,
-  toggleSelection,
 }: {
   item: IconRecord;
-  selected: boolean;
+  actions?: ReactNode;
   select: Props['select'];
   onCategoryChange: Props['onCategoryChange'];
-  toggleSelection: () => void;
 }) {
   const categoriesHeadingId = useId();
   const variants = item.duplicate
@@ -168,11 +167,8 @@ function Details({
     <>
       <div className="flex flex-col gap-4 px-4 py-3">
         <div className="flex flex-col gap-5">
-          <IconUsage
-            item={item}
-            selected={selected}
-            toggleSelection={toggleSelection}
-          />
+          {actions}
+          <IconUsage item={item} />
           <section
             aria-labelledby={categoriesHeadingId}
             className="flex min-w-0 flex-col gap-2"
@@ -200,7 +196,7 @@ function Details({
           </section>
           {variants.length > 1 && (
             <section>
-              <h3 className="mb-2 text-sm font-medium">Variants</h3>
+              <h3 className="mb-2 text-xs font-medium">Variants</h3>
               <ToggleGroup
                 aria-label="Icon variants"
                 className="flex-wrap"
@@ -324,7 +320,15 @@ export function Inspector(props: Props) {
   const details = item && (
     <Details
       item={item}
-      selected={selectedIds.includes(item.id)}
+      actions={
+        !mobile && (
+          <InspectorActions
+            item={item}
+            selected={selectedIds.includes(item.id)}
+            toggleSelection={() => toggleSelection(item.id)}
+          />
+        )
+      }
       select={props.select}
       onCategoryChange={(category) => {
         props.onCategoryChange(category);
@@ -333,7 +337,6 @@ export function Inspector(props: Props) {
           setSnapPoint(snapPoints[0]);
         }
       }}
-      toggleSelection={() => toggleSelection(item.id)}
     />
   );
   function keyboard(event: React.KeyboardEvent) {
@@ -412,37 +415,12 @@ export function Inspector(props: Props) {
                     />
                   }
                 />
-                <div
-                  className="absolute top-1 right-2"
-                  data-base-ui-swipe-ignore
-                >
-                  <IconCopyButton key={item.id} item={item} size="icon" />
+                <div className="absolute top-1 right-2">
+                  <PaginationButtons {...props} />
                 </div>
               </div>
-              <header className="mobile-inspector-hero">
-                <Preview
-                  item={item}
-                  grid={grid}
-                  setGrid={setGrid}
-                  className="mobile-inspector-preview bg-transparent"
-                  controlsHidden={!expanded}
-                >
-                  <div className="mobile-inspector-art rounded-xl bg-canvas outline outline-line">
-                    <Button
-                      variant="unstyled"
-                      size="unstyled"
-                      aria-label={
-                        expanded ? 'Collapse preview' : 'Expand preview'
-                      }
-                      aria-expanded={expanded}
-                      onClick={() => setSnapPoint(expanded ? snapPoints[0] : 1)}
-                      className="size-full overflow-hidden rounded-[inherit]"
-                    >
-                      <IconPreview item={item} grid={grid} />
-                    </Button>
-                  </div>
-                </Preview>
-                <div className="mobile-inspector-metadata flex flex-col items-start justify-center gap-1">
+              <header className="mobile-inspector-heading relative z-10 shrink-0 bg-dialog">
+                <div className="mobile-inspector-metadata flex min-w-0 flex-col items-start justify-center gap-1">
                   <DrawerTitle
                     className="w-full text-sm font-semibold"
                     aria-label={getIconDisplayName(item)}
@@ -466,20 +444,73 @@ export function Inspector(props: Props) {
                       <Icon name="link" className="shrink-0 text-muted" />
                     </Button>
                   </DrawerTitle>
-                  {expanded && <IconReleaseInfo id={item.id} />}
-                </div>
-                <div className="absolute top-5 right-3">
-                  <PaginationButtons {...props} />
+                  <div className="mobile-inspector-releases" inert={!expanded}>
+                    <IconReleaseInfo id={item.id} />
+                  </div>
                 </div>
               </header>
               <DrawerScroll
-                inert={!expanded}
                 className={cn(
                   'inspector-scroll min-h-0 flex-1',
-                  expanded ? 'overflow-y-auto' : 'overflow-hidden',
+                  expanded ? 'overflow-y-auto' : 'overflow-clip',
                 )}
               >
-                {details}
+                <div className="mobile-inspector-hero">
+                  <Preview
+                    item={item}
+                    grid={grid}
+                    setGrid={setGrid}
+                    className="mobile-inspector-preview bg-transparent"
+                    controlsHidden={!expanded}
+                  >
+                    <div className="mobile-inspector-art rounded-xl bg-canvas outline outline-line">
+                      <Button
+                        variant="unstyled"
+                        size="unstyled"
+                        aria-label={
+                          expanded ? 'Collapse preview' : 'Expand preview'
+                        }
+                        aria-expanded={expanded}
+                        onClick={() =>
+                          setSnapPoint(expanded ? snapPoints[0] : 1)
+                        }
+                        className="size-full overflow-hidden rounded-[inherit]"
+                      >
+                        <IconPreview item={item} grid={grid} />
+                      </Button>
+                    </div>
+                  </Preview>
+                  <div
+                    className="mobile-inspector-actions pointer-events-none relative flex items-center justify-end"
+                    data-base-ui-swipe-ignore
+                  >
+                    <IconCopyButton
+                      key={item.id}
+                      item={item}
+                      size="lg"
+                      showLabel
+                      className="mobile-inspector-copy @container/action pointer-events-auto px-0"
+                    >
+                      <span className="hidden whitespace-nowrap @min-[6.5rem]/action:inline">
+                        Copy SVG
+                      </span>
+                    </IconCopyButton>
+                    <div
+                      className="mobile-inspector-download pointer-events-auto"
+                      inert={!expanded}
+                    >
+                      <IconDownloadButton
+                        item={item}
+                        className="@container/action w-full overflow-hidden"
+                      >
+                        <span className="hidden whitespace-nowrap @min-[6.5rem]/action:inline">
+                          Download
+                        </span>
+                      </IconDownloadButton>
+                    </div>
+                  </div>
+                </div>
+                <div inert={!expanded}>{details}</div>
               </DrawerScroll>
             </div>
           )}

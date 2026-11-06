@@ -42,7 +42,7 @@ export function SiteHeader({
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-30 border-b border-line bg-canvas pt-[env(safe-area-inset-top)]',
+        'fixed inset-x-0 top-0 z-40 border-b border-line bg-canvas pt-[env(safe-area-inset-top)]',
       )}
     >
       <div

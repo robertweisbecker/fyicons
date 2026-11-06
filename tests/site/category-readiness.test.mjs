@@ -37,10 +37,8 @@ test('icon browser renders useful icon content before categories resolve', async
   assert.equal(h.requests[0].options.cache, 'no-store');
   assert.ok(h.document.querySelector('input[aria-label="Search icons"]'));
   assert.equal(h.tiles.length, h.catalog.icons.length);
-  assert.equal(
-    h.count,
-    `${h.catalog.icons.length} of ${h.catalog.icons.length} icons`,
-  );
+  const total = h.catalog.icons.length.toLocaleString('en-US');
+  assert.equal(h.count, `${total} / ${total}`);
   await h.resolveCategories(config);
   assert.equal(h.requests.length, 1);
   assert.equal(h.readiness.getCategoryReadiness().status, 'ready');
@@ -53,7 +51,7 @@ test('icon browser renders useful icon content before categories resolve', async
   assert.equal(h.tiles.length, categorized.length);
   assert.equal(
     h.count,
-    `${categorized.length} of ${h.catalog.icons.length} icons`,
+    `${categorized.length.toLocaleString('en-US')} / ${total}`,
   );
   assert.ok(h.document.querySelector('[aria-label="Buildings"]'));
 });
@@ -61,7 +59,8 @@ test('icon browser renders useful icon content before categories resolve', async
 test('icon browser category-label search results and rendered counts refresh after arrival', async (t) => {
   const h = await mountApp(t, 'https://example.test/icons/?q=buildings');
   assert.equal(h.tiles.length, 0);
-  assert.equal(h.count, `0 of ${h.catalog.icons.length} icons`);
+  const total = h.catalog.icons.length.toLocaleString('en-US');
+  assert.equal(h.count, `0 / ${total}`);
   assert.ok(h.document.body.textContent.includes('No matching icons'));
   await h.resolveCategories(config);
   const categorized = h.catalog.icons.filter(({ categories }) =>
@@ -75,7 +74,7 @@ test('icon browser category-label search results and rendered counts refresh aft
   );
   assert.equal(
     h.count,
-    `${categorized.length} of ${h.catalog.icons.length} icons`,
+    `${categorized.length.toLocaleString('en-US')} / ${total}`,
   );
   assert.equal(
     h.document.querySelector('input[aria-label="Search icons"]').value,

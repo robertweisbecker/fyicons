@@ -33,18 +33,17 @@ function FontGuides() {
     <>
       <ellipse
         {...outerOval}
-        className="text-blue-700 dark:text-blue-300"
-        fill="currentColor"
-        fillOpacity="0.5"
+        className="text-pink-400 dark:text-pink-300"
+        fill="none"
         strokeDasharray="0.2 0.15"
       />
       <ellipse
         {...innerOval}
-        className="text-ink dark:text-ink"
+        className="text-green-400 dark:text-green-400"
         fill="currentColor"
         fillOpacity="0.2"
       />
-      <g className="text-blue-700 dark:text-blue-300">
+      <g className="text-control-accent">
         <rect
           x={outerLeft}
           y="6.5"
@@ -56,14 +55,14 @@ function FontGuides() {
         />
         <path d={`M${outerLeft} 6.5V13.5M${innerLeft} 6.5V13.5`} />
       </g>
-      <g className="text-green-500 dark:text-green-300">
+      <g className="text-green-400">
         <rect
           x={innerRight}
           y="6.5"
           width={outerRight - innerRight}
           height="7"
           fill="currentColor"
-          fillOpacity="0.5"
+          fillOpacity="0.25"
           stroke="none"
         />
         {/* <path d={`M${innerRight} 6.5V13.5`} strokeDasharray="0.2 0.15" /> */}
@@ -127,9 +126,7 @@ function CurvesCard() {
           )}
         </svg>
         <Field.Root className="flex min-h-11 items-center gap-2.5">
-          <Field.Label className="cursor-pointer text-sm text-muted">
-            Show guides
-          </Field.Label>
+          <Field.Label className="text-sm text-muted">Show guides</Field.Label>
           <Switch
             checked={showGuides}
             onCheckedChange={setShowGuides}

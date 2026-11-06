@@ -1,4 +1,5 @@
 import { Icon } from '@/components/Icon';
+import { IconExampleCard } from './IconExampleCard';
 
 // Matching outline and filled artwork, shown in the same order in both grids.
 const variantIcons = [
@@ -80,31 +81,23 @@ const variants = [
 ] as const;
 
 export function IconVariants() {
-  return (
-    <div className="grid min-w-0 grid-cols-2 gap-4 sm:grid-cols-3">
-      {variants.map(({ label, icons }) => (
-        <figure key={label} className="min-w-0 space-y-3">
-          <ul
-            aria-label={`${label} icons`}
-            role="list"
-            className="grid aspect-square min-h-26 w-full auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
-          >
-            {icons.map((name) => (
-              <li
-                key={name}
-                className="flex min-w-0 items-center justify-center"
-              >
-                <Icon
-                  name={name}
-                  className="size-4 sm:size-6"
-                  aria-label={name.replaceAll('-', ' ')}
-                />
-              </li>
-            ))}
-          </ul>
-          <figcaption className="text-base font-medium">{label}</figcaption>
-        </figure>
-      ))}
-    </div>
-  );
+  return variants.map(({ label, icons }) => (
+    <IconExampleCard key={label} label={label} className="sm:col-span-2">
+      <ul
+        aria-label={`${label} icons`}
+        role="list"
+        className="grid aspect-square min-h-26 w-full flex-1 auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
+      >
+        {icons.map((name) => (
+          <li key={name} className="flex min-w-0 items-center justify-center">
+            <Icon
+              name={name}
+              className="size-4 sm:size-6"
+              aria-label={name.replaceAll('-', ' ')}
+            />
+          </li>
+        ))}
+      </ul>
+    </IconExampleCard>
+  ));
 }

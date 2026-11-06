@@ -36,7 +36,7 @@ export function DocsSidebar() {
         ref={mobileMenu}
         className="group border-b border-line py-2 lg:hidden"
       >
-        <summary className="flex min-h-9 cursor-pointer list-none items-center justify-between text-sm font-medium [&::-webkit-details-marker]:hidden">
+        <summary className="flex min-h-9 list-none items-center justify-between text-sm font-medium [&::-webkit-details-marker]:hidden">
           Documentation
           <IconChevronDown className="group-open:rotate-180" />
         </summary>

@@ -101,13 +101,13 @@ Use `size` to set both dimensions. The original 16×16 viewBox stays the same wh
 
 ### Inline with text
 
-Set `size="1em"` to match the surrounding font size. Use `inline-block` to keep the SVG in the text flow.
+Set `size="1em"` to match the surrounding font size. Use `inline-block`, `inline-flex`, or `inline-grid` to keep the SVG in the text flow.
 
 <InlineSizeExample />
 
 ```tsx
 <span className="text-xl">
-  Good morning <IconSun size="1em" className="inline-block align-[-0.125em]" />
+  Good morning <IconSun size="1em" className="inline-block" />
 </span>
 ```
 
@@ -121,11 +121,11 @@ Use `color` to set an individual icon's color. Leave it unset to inherit the sur
 <IconSun color="#2563eb" />
 ```
 
-Your `className` adds to the default classes:
+Or use a `className`; it will be added after the default classes:
 
 ```tsx
-<IconSun className="toolbar-icon" />
-// Renders class="fy-icon fy-sun toolbar-icon"
+<IconSun className="text-blue-500" />
+// Renders class="fy-icon fy-sun text-blue-500"
 ```
 
 See [Styling](/docs/styling/) for CSS examples. CSS `color` rules and inline styles can override the `color` prop, which is an SVG presentation attribute.
@@ -168,7 +168,7 @@ A few icon families represent levels or stages: `Battery`, `Signal`, `Gauge`, `M
 
 <LevelStateExample />
 
-Families with fewer variants can reuse a state across multiple steps. Choose thresholds that fit what your application represents:
+If you find you're missing a step, families with fewer variants can reuse a state across multiple steps, or you can request an additional step by opening an issue. Choose thresholds that fit what your application represents:
 
 ```tsx
 const progressIcons = [
@@ -187,18 +187,22 @@ const Progress = progressIcons[Math.floor(level / 25)];
 
 ### Loading indicators
 
-The library currently includes `Loader` and `Spinner`, which can be combined with keyframe animations for indeterminate or loading states. Unlike other icons, these are duotone with additional paths at lower opacities, so you get the full effect:
+The library currently includes `Loader`, `Spinner`, and `Rays`, which can be combined with keyframe animations for indeterminate or loading states. Unlike other icons, the former two are duotone with additional paths at lower opacities, so you get the full effect:
 
 <LoadingExamples />
 
 ```tsx
-import { IconSpinner, IconLoader } from 'fyicons';
+import { IconSpinner, IconLoader, IconRays } from 'fyicons';
 
 <IconSpinner
   aria-label="Loading"
-  className="animate-spin [animation-direction:reverse] [animation-timing-function:steps(10)] motion-reduce:animate-none"
+  className="animate-spin [animation-timing-function:steps(10)] motion-reduce:animate-none"
 />;
 <IconLoader
+  aria-label="Loading"
+  className="animate-spin motion-reduce:animate-none"
+/>;
+<IconRays
   aria-label="Loading"
   className="animate-spin motion-reduce:animate-none"
 />;

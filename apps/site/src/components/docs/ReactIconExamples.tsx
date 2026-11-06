@@ -1,6 +1,7 @@
 import IconSun from 'fyicons/icons/IconSun';
 import IconSpinner from 'fyicons/icons/IconSpinner';
 import IconLoader from 'fyicons/icons/IconLoader';
+import { IconRays } from 'fyicons';
 
 const colors = [
   { label: 'Inherited', value: undefined },
@@ -40,8 +41,7 @@ export function InlineSizeExample() {
       <div className="mx-auto flex max-w-md flex-col gap-5">
         {['text-sm', 'text-xl', 'text-3xl'].map((textSize) => (
           <span key={textSize} className={textSize}>
-            Good morning{' '}
-            <IconSun size="1em" className="inline-block align-[-0.125em]" />
+            Good morning <IconSun size="1em" className="inline-block" />
           </span>
         ))}
       </div>
@@ -77,13 +77,13 @@ export function LoadingExamples() {
       aria-label="Loading icon examples"
       className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"
     >
-      <div className="mx-auto grid max-w-sm grid-cols-2 gap-6">
+      <div className="mx-auto grid max-w-sm grid-cols-3 gap-6">
         <figure className="m-0 flex flex-col items-center gap-3">
           <div className="flex size-16 items-center justify-center">
             <IconSpinner
               size={32}
               aria-label="Spinner loading indicator"
-              className="animate-spin [animation-direction:reverse] [animation-timing-function:steps(10)] motion-reduce:animate-none"
+              className="animate-spin [animation-timing-function:steps(10)] motion-reduce:animate-none"
             />
           </div>
           <figcaption className="text-xs text-muted">IconSpinner</figcaption>
@@ -97,6 +97,16 @@ export function LoadingExamples() {
             />
           </div>
           <figcaption className="text-xs text-muted">IconLoader</figcaption>
+        </figure>
+        <figure className="m-0 flex flex-col items-center gap-3">
+          <div className="flex size-16 items-center justify-center">
+            <IconRays
+              size={32}
+              aria-label="Rays loading indicator"
+              className="animate-spin motion-reduce:animate-none"
+            />
+          </div>
+          <figcaption className="text-xs text-muted">IconRays</figcaption>
         </figure>
       </div>
     </div>

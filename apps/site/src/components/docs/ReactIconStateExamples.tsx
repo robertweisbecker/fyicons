@@ -79,10 +79,10 @@ export function ToggleStateExample() {
         {switched ? (
           <IconSwitchOn
             className="text-green-600 dark:text-green-400"
-            size={20}
+            size={16}
           />
         ) : (
-          <IconSwitchOff size={20} />
+          <IconSwitchOff size={16} />
         )}
       </Toggle>
       <Toggle
@@ -200,7 +200,7 @@ export function LevelStateExample() {
     <div
       role="group"
       aria-label="Meters and progress example"
-      className="my-6 overflow-hidden rounded-xl border border-line bg-canvas"
+      className="my-6 overflow-hidden rounded-xl border border-line bg-surface"
     >
       <div className="p-5 sm:p-8">
         <div className="mx-auto grid max-w-2xl grid-cols-[repeat(auto-fit,minmax(min(100%,7rem),1fr))] gap-x-3 gap-y-6">
@@ -223,7 +223,7 @@ export function LevelStateExample() {
         </div>
       </div>
       <Separator className="h-px w-full bg-line" />
-      <div className="bg-surface p-5 sm:px-8 sm:py-6">
+      <div className="bg-inset p-5 sm:px-8 sm:py-6">
         <Slider.Root
           className="mx-auto w-full max-w-sm"
           value={level}

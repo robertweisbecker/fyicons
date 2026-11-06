@@ -6,9 +6,16 @@ import { cn } from '@/lib/utils';
 import { Icon } from './Icon';
 import { Button } from './ui/button';
 import { Switch } from './ui/switch';
+import {
+  Menu,
+  MenuContent,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuTrigger,
+} from './ui/menu';
 import { SelectedIconsDialog } from './SelectedIconsDialog';
 import { IconSearch } from './Search';
-import { searchIcons } from '@/lib/icon-search';
+import { searchIcons, type IconSort } from '@/lib/icon-search';
 import { IconTile } from './IconTile';
 import { PreviewSizeControl } from './PreviewSizeControl';
 import { useIconFilters } from '@/lib/use-icon-filters';
@@ -19,6 +26,12 @@ import { byId, icons, type IconRecord } from '@/lib/catalog';
 import { downloadIcons } from '@/lib/downloads';
 import { isStringArray, useMobile, usePreference } from '@/lib/preferences';
 import { isEditableTarget } from '@/lib/keyboard';
+
+const sortLabels = {
+  alphabetical: 'Alphabetical',
+  addedAt: 'Date added',
+  updatedAt: 'Recently updated',
+} satisfies Record<IconSort, string>;
 
 export function IconsBrowser() {
   const mobile = useMobile();
@@ -35,6 +48,7 @@ export function IconsBrowser() {
     query.trim() || categoryReadiness.status === 'loading' ? 'all' : category;
   const [showFilled, setShowFilled] = useState(true);
   const [previewSize, setPreviewSize] = useState(32);
+  const [sort, setSort] = useState<IconSort>('alphabetical');
   const [inspectorDocked, setInspectorDocked] = usePreference<boolean>(
     'fyicons-inspector-docked-v1',
     false,
@@ -59,8 +73,9 @@ export function IconsBrowser() {
           (showFilled || !icon.name.split('-').includes('fill')),
       ),
       query,
+      sort,
     );
-  }, [query, activeCategory, showFilled, categoryReadiness.version]);
+  }, [query, activeCategory, showFilled, categoryReadiness.version, sort]);
   const selectedIcons = useMemo(
     () =>
       selectedIds.flatMap((id) => {
@@ -185,7 +200,7 @@ export function IconsBrowser() {
   const displayOptions = (
     <>
       <PreviewSizeControl value={previewSize} onChange={setPreviewSize} />
-      <label className="flex cursor-pointer items-center justify-between gap-3 text-xs text-ink">
+      <label className="flex items-center justify-between gap-3 text-xs text-ink">
         Include filled variants
         <Switch
           size="sm"
@@ -267,14 +282,42 @@ export function IconsBrowser() {
                 </Popover.Root>
               </div>
             </div>
-            <div
-              className={cn(
-                'mb-4 flex min-h-9 items-center justify-between gap-4 text-xs text-muted',
-              )}
-            >
-              <p role="status">
-                {visible.length} of {icons.length} icons
-              </p>
+            <div className="mb-4 flex min-h-9 flex-wrap items-center justify-between gap-x-4 text-xs text-muted">
+              <div className="flex items-center gap-1.5">
+                <p
+                  role="status"
+                  aria-label="Matching icons / total icons"
+                  className="tabular-nums"
+                >
+                  {visible.length.toLocaleString('en-US')} /{' '}
+                  {icons.length.toLocaleString('en-US')}
+                </p>
+                <span aria-hidden="true">·</span>
+                <Menu>
+                  <MenuTrigger
+                    aria-label={`Sort icons by ${sortLabels[sort]}`}
+                    render={
+                      <Button variant="text" size="sm" className="px-0.5" />
+                    }
+                  >
+                    {sortLabels[sort]}
+                    <Icon name="chevrons-up-down-sm" />
+                  </MenuTrigger>
+                  <MenuContent>
+                    <MenuRadioGroup
+                      value={sort}
+                      onValueChange={setSort}
+                      aria-label="Sort icons by"
+                    >
+                      {Object.entries(sortLabels).map(([value, label]) => (
+                        <MenuRadioItem key={value} value={value}>
+                          {label}
+                        </MenuRadioItem>
+                      ))}
+                    </MenuRadioGroup>
+                  </MenuContent>
+                </Menu>
+              </div>
               {!mobile && (
                 <SelectedIconsDialog
                   icons={selectedIcons}

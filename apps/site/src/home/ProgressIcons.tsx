@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import IconCircle from 'fyicons/icons/IconCircle';
+import IconCircleFill from 'fyicons/icons/IconCircleFill';
+import IconProgressPie20 from 'fyicons/icons/IconProgressPie20';
+import IconProgressPie40 from 'fyicons/icons/IconProgressPie40';
+import IconProgressPie60 from 'fyicons/icons/IconProgressPie60';
+import IconProgressPie80 from 'fyicons/icons/IconProgressPie80';
 import IconStar from 'fyicons/icons/IconStar';
 import IconStarFill from 'fyicons/icons/IconStarFill';
 import IconStarHalfFill from 'fyicons/icons/IconStarHalfFill';
@@ -6,16 +12,26 @@ import { Slider, SliderControl } from '@/components/ui/slider';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { levelSteps } from '@/lib/icon-progress';
 
+const pieSteps = [
+  IconCircle,
+  IconProgressPie20,
+  IconProgressPie40,
+  IconProgressPie60,
+  IconProgressPie80,
+  IconCircleFill,
+];
+
 const families = [
   ['IconBattery', 'Battery'],
   ['IconProgressTask', 'Progress'],
+  ['IconProgressPie', 'Progress pie'],
   ['IconChecklist', 'Checklist'],
   ['IconVolume', 'Volume'],
   ['IconSignalFour', 'Four-bar signal'],
   ['IconSignalThree', 'Three-bar signal'],
-  ['IconGauge', 'Simple gauge'],
-  ['IconMeter', 'Gauge'],
-  ['IconEmoji', 'Emotion'],
+  ['IconGauge', 'Gauge'],
+  ['IconMeter', 'Meter'],
+  ['IconEmoji', 'Emoji'],
 ] as const;
 
 export function ProgressIcons() {
@@ -26,12 +42,18 @@ export function ProgressIcons() {
   const previews = Object.entries({
     ...currentStep.icons,
     ...currentStep.landingIcons,
+    IconProgressPie: pieSteps[Math.floor(level / 20)]!,
   })
     .map(([name, Icon]) => {
       const index = families.findIndex(([prefix]) => name.startsWith(prefix));
+      const isEmoji = name.startsWith('IconEmoji');
       return {
         Icon,
-        family: families[index]?.[1] ?? name,
+        isEmoji,
+        family:
+          isEmoji && name.endsWith('Fill')
+            ? 'Filled emoji'
+            : (families[index]?.[1] ?? name),
         description: name
           .replace(/^Icon/, '')
           .replace(/([a-z])([A-Z0-9])/g, '$1 $2'),
@@ -52,9 +74,9 @@ export function ProgressIcons() {
           role="img"
           aria-label={`${description}: ${level} percent`}
           tabIndex={0}
-          className="grid min-h-11 min-w-11 place-items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+          className="grid size-8 place-items-center justify-self-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current sm:size-11"
         >
-          <Icon size={24} className="size-5 sm:size-6" />
+          <Icon size={24} />
         </span>
       </Tooltip>
     );
@@ -64,19 +86,17 @@ export function ProgressIcons() {
     <div
       role="group"
       aria-label="Progress"
-      className="flex min-h-80 min-w-0 flex-col gap-6 rounded-2xl bg-surface p-2 sm:p-5 lg:p-8"
+      className="flex min-w-0 flex-1 flex-col gap-2 rounded-xl bg-surface p-2 sm:gap-6 sm:rounded-2xl sm:p-5 lg:p-8"
     >
       <TooltipGroup>
-        <div className="flex flex-1 flex-col justify-center gap-3 sm:gap-4">
-          <div className="mx-auto grid w-full max-w-64 grid-cols-[repeat(auto-fit,minmax(min(100%,3rem),1fr))] gap-2 sm:gap-4">
-            {previews
-              .filter(({ family }) => family !== 'Emotion')
-              .map(renderPreview)}
+        <div className="flex flex-1 flex-col justify-center gap-1 sm:gap-4">
+          <div className="mx-auto grid w-full max-w-64 grid-cols-3 sm:gap-4">
+            {previews.filter(({ isEmoji }) => !isEmoji).map(renderPreview)}
           </div>
-          <div className="flex items-center justify-center gap-1 sm:gap-3">
-            {previews
-              .filter(({ family }) => family === 'Emotion')
-              .map(renderPreview)}
+          <div className="flex flex-wrap items-center justify-center gap-x-1 sm:gap-3">
+            <div className="flex gap-1 sm:gap-3">
+              {previews.filter(({ isEmoji }) => isEmoji).map(renderPreview)}
+            </div>
             <Tooltip label="Rating">
               <span
                 role="img"
@@ -91,9 +111,7 @@ export function ProgressIcons() {
                       : rating >= index + 0.5
                         ? IconStarHalfFill
                         : IconStar;
-                  return (
-                    <Star key={index} size={24} className="size-4 sm:size-6" />
-                  );
+                  return <Star key={index} size={24} className="size-6" />;
                 })}
               </span>
             </Tooltip>
@@ -102,7 +120,7 @@ export function ProgressIcons() {
       </TooltipGroup>
       <div className="flex min-h-11 items-center justify-center">
         <Slider.Root
-          className="grid w-full max-w-80 grid-cols-[minmax(0,1fr)_3rem] items-center gap-3"
+          className="grid w-full max-w-80 grid-cols-[minmax(0,1fr)_3rem] items-center gap-1 sm:gap-3"
           value={level}
           onValueChange={setLevel}
           min={0}

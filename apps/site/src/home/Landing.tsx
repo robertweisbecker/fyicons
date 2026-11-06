@@ -12,9 +12,11 @@ import { assetPath } from '@/lib/navigation';
 import { Construction } from './Construction';
 import { DesktopShowcase } from './desktop/DesktopShowcase';
 import { IconGroupCarousel } from './IconGroupCarousel';
+import { IconExampleCard } from './IconExampleCard';
 import { IconSpecimen } from './IconSpecimen';
 import { IconVariants } from './IconVariants';
 import { OpticalAdjustments } from './OpticalAdjustments';
+import { ProgressIcons } from './ProgressIcons';
 import { StatefulIcons } from './StatefulIcons';
 import './Landing.css';
 
@@ -56,9 +58,9 @@ export default function Landing() {
 
             <div className="mt-7 mb-10 flex flex-col gap-10 leading-relaxed lg:mt-10">
               <div className="flex flex-col gap-5">
-                <p className="text-balance text-muted tabular-nums">
-                  Nice little icons for your nice little apps. Drawn
-                  pixel-perfect to scale to any size.
+                <p className="text-xl tracking-[-.01em] text-balance tabular-nums">
+                  Nice little icons for your nice little apps. <br />
+                  Drawn pixel-perfect to scale to any size.
                 </p>
               </div>
 
@@ -80,7 +82,7 @@ export default function Landing() {
                     appearance="button"
                   />
                 </div>
-                <SearchTrigger />
+                <SearchTrigger iconCount={icons.length} />
               </div>
             </div>
           </div>
@@ -194,23 +196,25 @@ export default function Landing() {
             <h3 id="icon-variants-heading" className={featureHeadingClassName}>
               More than just outlines
             </h3>
-            <IconVariants />
-          </section>
-          <section
-            aria-labelledby="stateful-icons-heading"
-            className="space-y-6"
-          >
-            <h3 id="stateful-icons-heading" className={featureHeadingClassName}>
-              Multiple states
-            </h3>
-            <StatefulIcons />
+            <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-6 sm:gap-x-4">
+              <IconVariants />
+              <IconExampleCard label="Progress" className="sm:col-span-3">
+                <ProgressIcons />
+              </IconExampleCard>
+              <IconExampleCard
+                label="Toggles"
+                className="col-span-2 sm:col-span-3"
+              >
+                <StatefulIcons />
+              </IconExampleCard>
+            </div>
           </section>
           <section aria-labelledby="construction-heading" className="space-y-6">
             <h3 id="construction-heading" className={featureHeadingClassName}>
               Constructed with care
             </h3>
             <p className="text-lg font-medium text-balance text-muted">
-              With a consistent, pixel-aligned grid.
+              Designed on a consistent, pixel-aligned grid.
             </p>
             <Construction />
           </section>
@@ -221,7 +225,7 @@ export default function Landing() {
                   id="optical-adjustments-heading"
                   className="text-lg font-medium text-balance text-muted"
                 >
-                  And a range of optical adjustments.
+                  With a range of optical adjustments.
                 </p>
               }
             />

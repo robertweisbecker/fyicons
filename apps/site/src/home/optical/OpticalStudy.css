@@ -52,7 +52,8 @@
   }
 
   &[data-phase='trace'] .optical-trace,
-  &[data-phase='adjusted'] :is(.optical-ghost, .optical-after) {
+  &:is([data-phase='round'], [data-phase='adjusted'])
+    :is(.optical-ghost, .optical-after) {
     opacity: 1;
   }
 
@@ -63,6 +64,7 @@
   &:is(
       [data-phase='measure'],
       [data-phase='drag'],
+      [data-phase='round'],
       [data-phase='resize'],
       [data-phase='resize-dot'],
       [data-phase='adjusted']

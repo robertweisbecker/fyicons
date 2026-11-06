@@ -41,6 +41,10 @@
   user-select: none;
 }
 .mobile-inspector-frame {
+  --compact-copy-width: 7.5rem;
+  /* Clear the title before spreading the thumbnail and actions across the sheet. */
+  --row-separation: clamp(0, calc(var(--inspector-progress) * 3), 1);
+  --spread: clamp(0, calc((var(--inspector-progress) - 0.25) / 0.75), 1);
   position: relative;
   height: calc(
     var(--inspector-compact-height) +
@@ -48,32 +52,23 @@
       var(--inspector-progress)
   );
 }
+.mobile-inspector-heading {
+  height: calc(56px * var(--row-separation));
+}
 .mobile-inspector-hero {
   display: flow-root;
-  position: relative;
   container-type: inline-size;
-  height: calc(76px + 164px * var(--inspector-progress));
-  flex-shrink: 0;
+  padding-bottom: calc(18px - 6px * var(--row-separation));
 }
 .mobile-inspector-preview {
-  --art-progress: clamp(
-    0,
-    calc((var(--inspector-progress) - 0.14) * 1.162791),
-    1
-  );
-  --center-progress: clamp(
-    0,
-    calc((var(--inspector-progress) - 0.14) * 5.555556),
-    1
-  );
-  margin-top: calc(12px + 52px * var(--inspector-progress));
+  margin-top: calc(12px * (1 - var(--row-separation)));
   padding: calc(16px * var(--inspector-progress)) 16px;
 }
 .mobile-inspector-preview > [data-slot='inspector-preview-controls'] {
-  opacity: var(--inspector-progress);
+  opacity: var(--spread);
 }
 .mobile-inspector-preview > [data-slot='inspector-preview-art'] {
-  height: calc(48px + 96px * var(--art-progress));
+  height: calc(48px + 96px * var(--spread));
   justify-content: flex-start;
 }
 .mobile-inspector-art {
@@ -81,27 +76,47 @@
   height: 144px;
   flex-shrink: 0;
   transform-origin: top left;
-  transform: translateX(
-      calc(
-        (100cqw - 32px - (48px + 96px * var(--art-progress))) * 0.5 *
-          var(--center-progress)
-      )
-    )
-    scale(calc(0.333333 + 0.666667 * var(--art-progress)));
+  transform: translateX(calc((100cqw - 32px - 144px) * 0.5 * var(--spread)))
+    scale(calc(0.333333 + 0.666667 * var(--spread)));
   /* Keep the 128px SVG aligned with the 8px grid; a border shrinks its content. */
-  outline-width: calc(3px - 2px * var(--art-progress));
-  outline-offset: calc(-3px + 2px * var(--art-progress));
-  border-radius: calc(24px - 12px * var(--art-progress));
+  outline-width: calc(3px - 2px * var(--spread));
+  outline-offset: calc(-3px + 2px * var(--spread));
+  border-radius: calc(24px - 12px * var(--spread));
 }
 /* Keep the same title button mounted as the artwork moves down and grows,
    so expanding from the title preserves keyboard focus. */
 .mobile-inspector-metadata {
   position: absolute;
-  left: 80px;
-  top: 12px;
+  z-index: 1;
+  left: calc(80px - 64px * var(--spread));
+  right: calc(16px + (var(--compact-copy-width) + 8px) * (1 - var(--spread)));
+  top: calc(12px - 8px * var(--row-separation));
   height: 48px;
-  width: calc(100% - 176px + 64px * var(--inspector-progress));
-  transform: translateX(calc(-64px * var(--inspector-progress)));
+}
+.mobile-inspector-releases {
+  max-height: calc(2.5rem * var(--row-separation));
+  overflow: clip;
+  opacity: var(--row-separation);
+}
+.mobile-inspector-releases:focus-within {
+  overflow: visible;
+}
+.mobile-inspector-actions {
+  --action-gap: calc(8px * var(--spread));
+  /* Pull actions alongside the compact thumbnail; release them into normal flow below it. */
+  margin: calc(-46px + 58px * var(--row-separation)) 16px 0;
+  gap: var(--action-gap);
+}
+.mobile-inspector-copy {
+  width: calc(
+    var(--compact-copy-width) +
+      ((100% - var(--action-gap)) / 2 - var(--compact-copy-width)) *
+      var(--spread)
+  );
+}
+.mobile-inspector-download {
+  width: calc((100% - var(--action-gap)) / 2 * var(--spread));
+  opacity: var(--spread);
 }
 .inspector-scroll {
   -webkit-overflow-scrolling: touch;

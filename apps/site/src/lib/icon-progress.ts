@@ -33,11 +33,17 @@ import IconVolumeLow from 'fyicons/icons/IconVolumeLow';
 import IconVolumeMedium from 'fyicons/icons/IconVolumeMedium';
 import IconVolumeHigh from 'fyicons/icons/IconVolumeHigh';
 import IconEmojiAngry from 'fyicons/icons/IconEmojiAngry';
+import IconEmojiAngryFill from 'fyicons/icons/IconEmojiAngryFill';
 import IconEmojiFrown from 'fyicons/icons/IconEmojiFrown';
+import IconEmojiFrownFill from 'fyicons/icons/IconEmojiFrownFill';
 import IconEmojiNeutral from 'fyicons/icons/IconEmojiNeutral';
+import IconEmojiNeutralFill from 'fyicons/icons/IconEmojiNeutralFill';
 import IconEmojiSmile from 'fyicons/icons/IconEmojiSmile';
+import IconEmojiSmileFill from 'fyicons/icons/IconEmojiSmileFill';
 import IconEmojiGrin from 'fyicons/icons/IconEmojiGrin';
+import IconEmojiGrinFill from 'fyicons/icons/IconEmojiGrinFill';
 import IconEmojiBeam from 'fyicons/icons/IconEmojiBeam';
+import IconEmojiBeamFill from 'fyicons/icons/IconEmojiBeamFill';
 
 // Object shorthand keeps the component names available in production builds.
 export const levelSteps: {
@@ -59,6 +65,7 @@ export const levelSteps: {
       IconChecklist,
       IconVolumeX,
       IconEmojiAngry,
+      IconEmojiAngryFill,
     },
   },
   {
@@ -75,6 +82,7 @@ export const levelSteps: {
       IconChecklist,
       IconVolumeNone,
       IconEmojiFrown,
+      IconEmojiFrownFill,
     },
   },
   {
@@ -91,6 +99,7 @@ export const levelSteps: {
       IconChecklist1,
       IconVolumeLow,
       IconEmojiNeutral,
+      IconEmojiNeutralFill,
     },
   },
   {
@@ -107,6 +116,7 @@ export const levelSteps: {
       IconChecklist1,
       IconVolumeMedium,
       IconEmojiSmile,
+      IconEmojiSmileFill,
     },
   },
   {
@@ -123,6 +133,7 @@ export const levelSteps: {
       IconChecklist1,
       IconVolumeMedium,
       IconEmojiGrin,
+      IconEmojiGrinFill,
     },
   },
   {
@@ -139,6 +150,7 @@ export const levelSteps: {
       IconChecklistChecked,
       IconVolumeHigh,
       IconEmojiBeam,
+      IconEmojiBeamFill,
     },
   },
 ];

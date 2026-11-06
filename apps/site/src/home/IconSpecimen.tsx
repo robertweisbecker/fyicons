@@ -22,7 +22,7 @@ import './IconSpecimen.css';
 
 const specimenTransition = {
   type: 'tween',
-  duration: 0.65,
+  duration: 0.3,
   ease: [0.42, 0, 0.58, 1],
 } as const;
 // CSS artwork and Motion guides must arrive on the same curve and duration.

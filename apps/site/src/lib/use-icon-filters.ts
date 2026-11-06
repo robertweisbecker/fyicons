@@ -64,7 +64,10 @@ export function useIconFilters() {
       clearTimeout(pending.current);
       pending.current = setTimeout(() => update({ query: value }), 200);
     },
-    setCategory: (category: string) => update({ category, query: '' }, 'push'),
+    setCategory: (category: string) => {
+      update({ category, query: '' }, 'push');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    },
     inspect: (id: string | null) =>
       update({ icon: byId.get(id ?? '')?.name ?? null }),
     share: () => update({}),

@@ -9,7 +9,6 @@ import {
 } from 'react';
 import IconPlay from 'fyicons/icons/IconPlay';
 import IconWarning from 'fyicons/icons/IconWarning';
-import playSvg from 'fyicons/svg/play-16.svg?raw';
 import warningSvg from 'fyicons/svg/warning-16.svg?raw';
 import type { Act } from '@/vendor/stageshow/act';
 import { ThemedStage } from '@/components/ThemedStage';
@@ -20,6 +19,7 @@ export type Scene = {
   phase:
     | 'grid'
     | 'trace'
+    | 'round'
     | 'draft'
     | 'measure'
     | 'drag'
@@ -31,6 +31,7 @@ export type Scene = {
   lifted: boolean;
   liftY: number;
   trace: number;
+  playRounding: number;
 };
 const initial: Scene = {
   phase: 'grid',
@@ -39,29 +40,61 @@ const initial: Scene = {
   lifted: false,
   liftY: 0,
   trace: 0,
+  playRounding: 0,
 };
 export const poster: Scene = {
   ...initial,
   phase: 'adjusted',
   adjustment: 1,
   dotAdjustment: 1,
+  playRounding: 1,
 };
 export const loopInitial: Scene = { ...initial, phase: 'draft' };
 
-// Both released outlines start with the outer boundary, followed by the cutouts.
+// The released Warning outline starts with the outer boundary, followed by the cutouts.
 function outerContour(svg: string) {
   const contour = svg.match(/<path\b[^>]*?\sd="([^"]*?[zZ])/);
   if (!contour) throw new Error('Expected a closed optical study outline');
   return contour[1];
 }
 
-const playContour = outerContour(playSvg);
 const warningContour = outerContour(warningSvg);
-// Painted x extents of IconPlay in its 16 px canvas.
-const playLeft = 3;
-const playRight = 13.91009;
-const playShift = (playLeft + playRight) / 2 - 8;
-const playGripX = playRight - 0.5;
+// Figma measures the triangle's vertices before rounding its corners or outlining the stroke.
+const playBox = { left: 3.5, top: 2, width: 11, height: 12 };
+const playDraftLeft = 2;
+const playShift = playBox.left - playDraftLeft;
+const playDraftCenter = playDraftLeft + playBox.width / 2;
+const playHalfHeight = playBox.height / 2;
+const playSlopeLength = Math.hypot(playBox.width, playHalfHeight);
+const playTipInset = playSlopeLength / playHalfHeight;
+const playGripX = playBox.left + playBox.width;
+
+// Inset each corner's arc center, then meet the original sides at their tangents.
+// At radius 1 this centerline lies halfway between the released SVG's two contours.
+function playCenterline(radius: number) {
+  const { left, top, width, height } = playBox;
+  const right = left + width;
+  const middle = top + playHalfHeight;
+  const bottom = top + height;
+  if (radius === 0)
+    return `M${left} ${top}L${right} ${middle}L${left} ${bottom}Z`;
+  const insetY = (radius * (playSlopeLength + playHalfHeight)) / width;
+  const normalX = (radius * playHalfHeight) / playSlopeLength;
+  const normalY = (radius * width) / playSlopeLength;
+  const tangentX = left + radius + normalX;
+  const tipX = right - radius * playTipInset + normalX;
+  const arc = `A${radius} ${radius} 0 0 1`;
+  return [
+    `M${left} ${top + insetY}`,
+    `${arc} ${tangentX} ${top + insetY - normalY}`,
+    `L${tipX} ${middle - normalY}`,
+    `${arc} ${tipX} ${middle + normalY}`,
+    `L${tangentX} ${bottom - insetY + normalY}`,
+    `${arc} ${left} ${bottom - insetY}Z`,
+  ].join(' ');
+}
+
+const sharpPlayPath = playCenterline(0);
 
 const warningStem = {
   x: 8,
@@ -93,7 +126,7 @@ async function traceIcon(a: Act<Scene>, label: 'center' | 'warning') {
   const unit = grid.width / 16;
   const contours =
     label === 'center'
-      ? [playContour]
+      ? [sharpPlayPath]
       : [warningContour, warningStemTrace, warningDotTrace];
   await a.set({ phase: 'trace' });
 
@@ -195,9 +228,21 @@ function study(delay: number, label: 'center' | 'warning') {
     }
     a.mark(`${label}-measure`);
     await a.set({ phase: 'measure' });
-    if (label === 'center') await a.wait(650);
     if (label === 'center') {
+      await a.wait(650);
       await dragPlay(a);
+      await a.wait(240);
+      a.mark('center-round');
+      await a.set({ phase: 'round' });
+      const grid = a.rect('center-grid');
+      await a.move(
+        { x: grid.x + grid.width, y: grid.y + grid.height },
+        {
+          duration: 950,
+          onMove: (_at, _from, t) => a.put({ playRounding: easeInOutCubic(t) }),
+        },
+      );
+      await a.set({ playRounding: 1 });
     } else {
       await resizeWarningPart(a, 'stem', 0, 1);
       await a.wait(350);
@@ -338,8 +383,8 @@ function MeasurementLabel({
 export function PlayDrawing({ scene }: { scene: Scene }) {
   const grid = useId();
   const offset = (scene.adjustment - 1) * playShift;
-  const leftGap = playLeft + offset;
-  const rightEdge = playRight + offset;
+  const leftGap = playBox.left + offset;
+  const rightEdge = leftGap + playBox.width;
   const rightGap = 16 - rightEdge;
   const moving = scene.phase === 'drag';
   return (
@@ -377,7 +422,7 @@ export function PlayDrawing({ scene }: { scene: Scene }) {
         />
         <g transform="translate(9 2)">
           <path
-            d={playContour}
+            d={sharpPlayPath}
             transform={`translate(${-playShift} 0)`}
             className="optical-ghost"
           />
@@ -395,17 +440,30 @@ export function PlayDrawing({ scene }: { scene: Scene }) {
               style={{ transformOrigin: `${playGripX}px 8px` }}
             >
               <path
-                d={playContour}
-                className="optical-trace"
+                d={playCenterline(scene.playRounding)}
+                className="stroke-(--optical-accent)"
                 data-target="center-trace-outline"
                 pathLength="1"
-                style={{ strokeDashoffset: traceOffset(scene.trace) }}
+                strokeDasharray="1 1.1"
+                style={{
+                  strokeDashoffset: traceOffset(scene.trace),
+                  strokeWidth: 0.17 + 0.83 * scene.playRounding,
+                  opacity: 1 - scene.playRounding,
+                }}
               />
-              <IconPlay className="optical-ink" />
+              <IconPlay style={{ opacity: scene.playRounding }} />
               <circle data-target="center-grip" cx={playGripX} cy="8" r=".01" />
             </g>
           </g>
           <g className="optical-guide">
+            <rect
+              x={leftGap}
+              y={playBox.top}
+              width={playBox.width}
+              height={playBox.height}
+              className="stroke-(--optical-accent)/45"
+              vectorEffect="non-scaling-stroke"
+            />
             <path
               d={`M0 16v2M${leftGap} 16v2M${rightEdge} 16v2M16 16v2M0 17H${leftGap}M${rightEdge} 17H16`}
             />
@@ -425,7 +483,7 @@ export function PlayDrawing({ scene }: { scene: Scene }) {
             />
             <path
               className="optical-after"
-              d={`M8 .5h${playShift}m-.25-.25.25.25-.25.25`}
+              d={`M${playDraftCenter} 17h${playShift}m-.25-.25.25.25-.25.25`}
             />
           </g>
         </g>
