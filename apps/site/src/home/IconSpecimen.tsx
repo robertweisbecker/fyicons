@@ -47,6 +47,8 @@ const samples: { name: string; label: string; guide: Guide }[] = [
 ];
 const cycleDuration = 8000; // 8 seconds
 const showProgress = false;
+// In grid units, wide enough to fit both digits of the left ruler.
+const rulerGutter = 0.75;
 
 function useSpecimen() {
   const reducedMotion = useReducedMotionPreference();
@@ -252,7 +254,7 @@ function PixelSpecimen({
       role="img"
       aria-label={`${sample.label} on a 16 by 16 pixel grid; ${guides[inspectedGuide ?? sample.guide].label.toLowerCase()} guide ${inspectedGuide ? 'previewed' : 'highlighted'}`}
     >
-      <PixelGrid />
+      <PixelGrid extension={rulerGutter} />
       {samples.map((item, sampleIndex) => (
         <g
           key={item.name}
@@ -290,16 +292,26 @@ function PixelSpecimen({
         dominantBaseline="central"
         aria-hidden="true"
       >
-        {[0, 4, 8, 12, 16].map((value) => (
+        <text x={-rulerGutter / 2} y={-rulerGutter / 2} textAnchor="middle">
+          0
+        </text>
+        {[4, 8, 12, 16].map((value) => (
           <g key={value}>
-            <text x={value} y="-0.85" textAnchor="middle">
+            <text
+              x={value}
+              y={-rulerGutter}
+              dominantBaseline="text-before-edge"
+              textAnchor={value === 16 ? 'end' : 'middle'}
+            >
               {value}
             </text>
-            {value > 0 && (
-              <text x="-0.7" y={value} textAnchor="end">
-                {value}
-              </text>
-            )}
+            <text
+              x={-rulerGutter}
+              y={value}
+              dominantBaseline={value === 16 ? 'text-after-edge' : 'central'}
+            >
+              {value}
+            </text>
           </g>
         ))}
       </g>

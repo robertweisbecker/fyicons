@@ -9,6 +9,8 @@ import {
 } from 'react';
 import IconPlay from 'fyicons/icons/IconPlay';
 import IconWarning from 'fyicons/icons/IconWarning';
+import playSvg from 'fyicons/svg/play-16.svg?raw';
+import warningSvg from 'fyicons/svg/warning-16.svg?raw';
 import type { Act } from '@/vendor/stageshow/act';
 import { ThemedStage } from '@/components/ThemedStage';
 import { cn } from '@/lib/utils';
@@ -46,13 +48,41 @@ export const poster: Scene = {
 };
 export const loopInitial: Scene = { ...initial, phase: 'draft' };
 
-// The catalog contour, also used as the pen track for the construction pass.
-const playContour =
-  'M4 3.977C4 2.61 5.495 1.77 6.661 2.482l6.599 4.024a1.75 1.75 0 0 1 0 2.988l-6.6 4.024c-1.165.71-2.66-.129-2.66-1.495z';
-const warningContour =
-  'M6.253 2.119c.762-1.372 2.734-1.372 3.496 0l4.95 8.91c.74 1.333-.223 2.972-1.747 2.972H3.049c-1.524 0-2.488-1.638-1.748-2.971z';
-const warningStemTrace = 'M8 5.7v2.7';
-const warningDotTrace = 'M8 10.5a.5 .5 0 1 1 0 1a.5 .5 0 1 1 0-1';
+// Both released outlines start with the outer boundary, followed by the cutouts.
+function outerContour(svg: string) {
+  const contour = svg.match(/<path\b[^>]*?\sd="([^"]*?[zZ])/);
+  if (!contour) throw new Error('Expected a closed optical study outline');
+  return contour[1];
+}
+
+const playContour = outerContour(playSvg);
+const warningContour = outerContour(warningSvg);
+// Painted x extents of IconPlay in its 16 px canvas.
+const playLeft = 3;
+const playRight = 13.91009;
+const playShift = (playLeft + playRight) / 2 - 8;
+const playGripX = playRight - 0.5;
+
+const warningStem = {
+  x: 8,
+  top: 4.75,
+  base: 8.5,
+  draftRadius: 0.5,
+  radius: 0.625,
+};
+const warningDot = { x: 8, y: 11, draftRadius: 0.5, radius: 1 };
+
+function stemOutline(radius: number) {
+  const { x, top, base, draftRadius } = warningStem;
+  return `M${x - radius} ${top}a${radius} ${radius} 0 0 1 ${radius * 2} 0L${x + draftRadius} ${base}a.503 .503 0 0 1 -.5 .484.503 .503 0 0 1 -.5 -.483Z`;
+}
+
+const warningStemTrace = stemOutline(warningStem.draftRadius);
+const warningDotTrace = `M8 ${warningDot.y - warningDot.draftRadius}a.5 .5 0 1 1 0 1a.5 .5 0 1 1 0-1`;
+const measurementFormat = new Intl.NumberFormat('en', {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 2,
+});
 
 const traceOffset = (trace: number, part = 0) =>
   1 - Math.max(0, Math.min(1, trace - part));
@@ -73,7 +103,7 @@ async function traceIcon(a: Act<Scene>, label: 'center' | 'warning') {
     const pointAt = (progress: number) => {
       const point = path.getPointAtLength(length * progress);
       return {
-        x: grid.x + (point.x - (label === 'center' ? 1 : 0)) * unit,
+        x: grid.x + (point.x - (label === 'center' ? playShift : 0)) * unit,
         y: grid.y + point.y * unit,
       };
     };
@@ -104,7 +134,8 @@ export async function resizeWarningPart(
   const key = stem ? 'adjustment' : 'dotAdjustment';
   await a.move(target);
   const grip = a.center(target);
-  const travel = (a.rect('warning-grid').width / 16) * (stem ? 0.25 : 0.5);
+  const { radius, draftRadius } = stem ? warningStem : warningDot;
+  const travel = (a.rect('warning-grid').width / 16) * (radius - draftRadius);
   a.mark(`warning-${part}-${to === 1 ? 'expand' : 'restore'}`);
   await a.set({ phase: stem ? 'resize' : 'resize-dot' });
   await a.drag(
@@ -126,15 +157,16 @@ async function dragPlay(a: Act<Scene>) {
   await a.move('center-grip');
   const grip = a.center('center-grip');
   const unit = a.rect('center-grid').width / 16;
+  const travel = unit * playShift;
   a.mark('center-drag');
   await a.drag(
-    { x: grip.x + unit, y: grip.y },
+    { x: grip.x + travel, y: grip.y },
     (point, origin) => {
       // Lift only once the hand has closed. Both axes follow the same grip.
       a.put({
         phase: 'drag',
         lifted: true,
-        adjustment: (point.x - origin.x) / unit,
+        adjustment: (point.x - origin.x) / travel,
         liftY: (point.y - origin.y) / unit,
       });
     },
@@ -294,7 +326,7 @@ function MeasurementLabel({
           balance === 'fixed' && 'fill-neutral-600 dark:fill-neutral-400',
         )}
       >
-        {value.toFixed(1)} px
+        {measurementFormat.format(value)} px
       </text>
     </g>
   );
@@ -302,9 +334,10 @@ function MeasurementLabel({
 
 export function PlayDrawing({ scene }: { scene: Scene }) {
   const grid = useId();
-  const leftGap = 3 + scene.adjustment;
-  const rightGap = 3 - scene.adjustment;
-  const rightEdge = 16 - rightGap;
+  const offset = (scene.adjustment - 1) * playShift;
+  const leftGap = playLeft + offset;
+  const rightEdge = playRight + offset;
+  const rightGap = 16 - rightEdge;
   const moving = scene.phase === 'drag';
   return (
     <Drawing scene={scene}>
@@ -342,7 +375,7 @@ export function PlayDrawing({ scene }: { scene: Scene }) {
         <g transform="translate(9 2)">
           <path
             d={playContour}
-            transform="translate(-1 0)"
+            transform={`translate(${-playShift} 0)`}
             className="optical-ghost"
           />
           <g
@@ -351,10 +384,13 @@ export function PlayDrawing({ scene }: { scene: Scene }) {
             data-cursor={scene.phase === 'trace' ? 'pointer' : 'open'}
             data-lifted={scene.lifted || undefined}
             style={{
-              transform: `translate(${scene.adjustment - 1}px, ${scene.liftY}px)`,
+              transform: `translate(${offset}px, ${scene.liftY}px)`,
             }}
           >
-            <g className="optical-play-lift">
+            <g
+              className="optical-play-lift"
+              style={{ transformOrigin: `${playGripX}px 8px` }}
+            >
               <path
                 d={playContour}
                 className="optical-trace"
@@ -363,7 +399,7 @@ export function PlayDrawing({ scene }: { scene: Scene }) {
                 style={{ strokeDashoffset: traceOffset(scene.trace) }}
               />
               <IconPlay className="optical-ink" />
-              <circle data-target="center-grip" cx="13.6" cy="8" r=".01" />
+              <circle data-target="center-grip" cx={playGripX} cy="8" r=".01" />
             </g>
           </g>
           <g className="optical-guide">
@@ -382,63 +418,14 @@ export function PlayDrawing({ scene }: { scene: Scene }) {
               value={rightGap}
               changing={moving}
             />
-            <path className="optical-after" d="M8 .5h1.5m-.6-.6.6.6-.6.6" />
+            <path
+              className="optical-after"
+              d={`M8 .5h${playShift}m-.25-.25.25.25-.25.25`}
+            />
           </g>
         </g>
       </svg>
     </Drawing>
-  );
-}
-
-function WarningBody() {
-  const mask = useId();
-  return (
-    <>
-      <defs>
-        <mask
-          id={mask}
-          maskUnits="userSpaceOnUse"
-          x="0"
-          y="0"
-          width="16"
-          height="16"
-        >
-          <rect width="16" height="16" fill="white" />
-          <rect x="7.25" y="5" width="1.5" height="4" fill="black" />
-          <rect x="7" y="10" width="2" height="2" fill="black" />
-        </mask>
-      </defs>
-      <g mask={`url(#${mask})`}>
-        <IconWarning />
-      </g>
-    </>
-  );
-}
-
-const warningStemTop = {
-  x: 8,
-  y: 5.75,
-  draftRadius: 0.5,
-  adjustedRadius: 0.75,
-};
-
-function WarningStem({ radius }: { radius: number }) {
-  const { x, y } = warningStemTop;
-  const left = x - radius;
-  const right = x + radius;
-  // The cap follows the top half of the measurement ring.
-  const contour = [
-    `M${right} ${y} L8.5 8.5`,
-    'A.505 .505 0 0 1 8 8.978 A.505 .505 0 0 1 7.5 8.5',
-    `L${left} ${y} A${radius} ${radius} 0 0 1 ${right} ${y} Z`,
-  ].join(' ');
-  return (
-    <path
-      className="optical-warning-stem"
-      d={contour}
-      style={{ d: `path("${contour}")` }}
-      fill="currentColor"
-    />
   );
 }
 
@@ -450,13 +437,17 @@ export function WarningDrawing({
   showBalance?: boolean;
 }) {
   const grid = useId();
+  const inkMask = useId();
   const stemRadius =
-    warningStemTop.draftRadius +
-    scene.adjustment *
-      (warningStemTop.adjustedRadius - warningStemTop.draftRadius);
-  const dotWidth = 1 + scene.dotAdjustment;
-  const dotLeft = 8 - dotWidth / 2;
-  const dotRight = 8 + dotWidth / 2;
+    warningStem.draftRadius +
+    scene.adjustment * (warningStem.radius - warningStem.draftRadius);
+  const dotRadius =
+    warningDot.draftRadius +
+    scene.dotAdjustment * (warningDot.radius - warningDot.draftRadius);
+  const dotLeft = warningDot.x - dotRadius;
+  const dotRight = warningDot.x + dotRadius;
+  const resizingStem = stemRadius < warningStem.radius;
+  const resizingDot = dotRadius < warningDot.radius;
   const stemMoving = scene.phase === 'resize' && scene.adjustment < 1;
   const dotMoving = scene.phase === 'resize-dot';
   return (
@@ -478,6 +469,34 @@ export function WarningDrawing({
               strokeWidth=".09"
             />
           </pattern>
+          {/* Reveal the actual catalog ink as each detail grows from its 1 px draft. */}
+          <mask
+            id={inkMask}
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="16"
+            height="16"
+          >
+            <rect width="16" height="16" fill="white" />
+            {resizingStem && (
+              <>
+                <rect x="7" y="4" width="2" height="5" fill="black" />
+                <path d={stemOutline(stemRadius)} fill="white" />
+              </>
+            )}
+            {resizingDot && (
+              <>
+                <rect x="7" y="10" width="2" height="2" fill="black" />
+                <circle
+                  cx={warningDot.x}
+                  cy={warningDot.y}
+                  r={dotRadius}
+                  fill="white"
+                />
+              </>
+            )}
+          </mask>
         </defs>
         <g transform="translate(3 1)">
           <rect
@@ -511,21 +530,21 @@ export function WarningDrawing({
           />
           <g
             className="optical-ink"
+            mask={resizingStem || resizingDot ? `url(#${inkMask})` : undefined}
             data-target="warning-icon"
             data-cursor={scene.phase === 'trace' ? 'pointer' : 'hand'}
           >
-            <WarningBody />
-            <WarningStem radius={stemRadius} />
+            <IconWarning />
           </g>
           <g className="optical-guide" strokeDasharray="4 2.5">
             <path
-              d={`M${dotLeft} 11v7M${dotRight} 11v7M${8 + stemRadius} 5.75H17.5M8.5 8.5h9`}
+              d={`M${dotLeft} ${warningDot.y}V18M${dotRight} ${warningDot.y}V18M${warningStem.x + stemRadius} ${warningStem.top}H17.5M8.5 8.5h9`}
             />
           </g>
           <circle
             className="optical-warning-ring"
-            cx={warningStemTop.x}
-            cy={warningStemTop.y}
+            cx={warningStem.x}
+            cy={warningStem.top}
             r={stemRadius}
           />
           <circle className="optical-warning-ring" cx="8" cy="8.5" r=".5" />
@@ -533,30 +552,23 @@ export function WarningDrawing({
             className="optical-resize-handle"
             data-target="warning-resize"
             data-cursor="resize-ew"
-            x={8 + stemRadius - 0.3}
-            y="5.45"
+            x={warningStem.x + stemRadius - 0.3}
+            y={warningStem.top - 0.3}
             width=".6"
             height=".6"
           />
-          <g
-            className="origin-[8px_11px]"
-            style={{ transform: `scale(${dotWidth / 2})` }}
-          >
-            <circle
-              cx="8"
-              cy="11"
-              r="1"
-              className="optical-ink"
-              fill="currentColor"
-            />
-            <circle className="optical-warning-ring" cx="8" cy="11" r="1" />
-          </g>
+          <circle
+            className="optical-warning-ring"
+            cx={warningDot.x}
+            cy={warningDot.y}
+            r={dotRadius}
+          />
           <rect
             className="optical-resize-handle"
             data-target="warning-dot-resize"
             data-cursor="resize-ew"
             x={dotRight - 0.3}
-            y="10.7"
+            y={warningDot.y - 0.3}
             width=".6"
             height=".6"
           />
@@ -567,7 +579,7 @@ export function WarningDrawing({
             <MeasurementLabel
               x={8}
               y={19.1}
-              value={dotWidth}
+              value={2 * dotRadius}
               changing={dotMoving}
               balance={
                 showBalance
@@ -579,7 +591,7 @@ export function WarningDrawing({
             />
             <MeasurementLabel
               x={20.2}
-              y={6.15}
+              y={warningStem.top + 0.4}
               value={stemRadius * 2}
               changing={stemMoving}
               balance={

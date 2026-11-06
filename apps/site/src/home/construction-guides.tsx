@@ -35,7 +35,13 @@ export function GuideShape({
   );
 }
 
-export function PixelGrid({ emphasized = false }: { emphasized?: boolean }) {
+export function PixelGrid({
+  emphasized = false,
+  extension = 0.5,
+}: {
+  emphasized?: boolean;
+  extension?: number;
+}) {
   const id = useId();
   return (
     <g aria-hidden="true">
@@ -65,7 +71,7 @@ export function PixelGrid({ emphasized = false }: { emphasized?: boolean }) {
         <path d="M0 0L16 16M16 0L0 16" opacity="0.28" />
       </g>
       <path
-        d="M0 -.5V16.5M16 -.5V16.5M-.5 0H16.5M-.5 16H16.5"
+        d={`M0 ${-extension}V${16 + extension}M16 ${-extension}V${16 + extension}M${-extension} 0H${16 + extension}M${-extension} 16H${16 + extension}`}
         fill="none"
         stroke={emphasized ? 'var(--border)' : 'var(--line)'}
         strokeWidth="1"
