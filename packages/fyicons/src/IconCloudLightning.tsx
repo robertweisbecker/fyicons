@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconCloudLightning = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCloudLightning(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="cloud-lightning"><path fill="currentColor" d="M8 2a3 3 0 0 1 3 3 3 3 0 0 1 0 6H6.5a.5.5 0 0 1-.5-.5V9H4.5a2.5 2.5 0 0 1 0-5h.674C5.586 2.835 6.694 2 8 2m0 1a2 2 0 0 0-1.96 1.6.5.5 0 0 1-.49.4H4.5a1.5 1.5 0 0 0 0 3h2a.5.5 0 0 1 .5.5V10h4a2 2 0 0 0 0-4h-.5a.5.5 0 0 1-.5-.5V5a2 2 0 0 0-2-2" /><path fill="currentColor" d="M7 11H5.416a.3.3 0 0 1-.284-.395L6 8h3l-1 2h1.682a.4.4 0 0 1 .316.646L7.537 13.81A.3.3 0 0 1 7 13.626z" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.5h2" /></SvgRoot>;
+});
+export default IconCloudLightning;

@@ -51,14 +51,14 @@ export function InstallCommand({
         name="copy-sm"
         className={cn(
           'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',
-          copied && 'scale-90 opacity-0',
+          copied && 'scale-75 opacity-0 blur-[2px]',
         )}
       />
       <Icon
         name="copied-fill"
         className={cn(
           'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',
-          !copied && 'scale-90 opacity-0',
+          !copied && 'scale-75 opacity-0 blur-[2px]',
         )}
       />
     </span>
@@ -74,7 +74,7 @@ export function InstallCommand({
         variant="outline"
         size="lg"
       >
-        <Icon name="terminal" />
+        <Icon name="terminal-bash" opacity={0.5} />
         <code className="text-sm font-light">{command}</code>
         {copyIcon}
       </Button>

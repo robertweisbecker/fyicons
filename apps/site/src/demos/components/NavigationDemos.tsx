@@ -46,7 +46,7 @@ export function SidebarDemo() {
           ['Home', 'home-wide', 'home-wide-fill', ''],
           ['Priority', 'alert', 'alert-fill', '8'],
           ['Calls', 'phone', 'phone-fill', ''],
-          ['Calendar', 'calendar', 'calendar-fill', '3'],
+          ['Calendar', 'calendar', 'calendar-solid', '3'],
           ['Saved', 'bookmark', 'bookmark-fill', ''],
           ['Contacts', 'users', 'users-fill', ''],
         ].map(([label, icon, active, count]) => (

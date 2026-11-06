@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFastBackward = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFastBackward(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="fast-backward"><path fill="currentColor" d="M13.572 4.178a.966.966 0 0 1 1.423.852v5.941a.966.966 0 0 1-1.423.852L8.498 9.102v1.869a.966.966 0 0 1-1.423.852L1.533 8.852a.966.966 0 0 1 0-1.703l5.542-2.971a.966.966 0 0 1 1.423.852v1.868zM2.061 8l5.437 2.914V5.085zm6.497 0 5.437 2.914V5.085z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="fast-backward"><path fill="currentColor" d="M7.093 3.045a.967.967 0 0 1 1.405.862v2.916l4.955-3.673.123-.077a.967.967 0 0 1 1.42.853v8.149a.967.967 0 0 1-1.543.776L8.498 9.177v2.917a.967.967 0 0 1-1.528.786L1.242 8.787a.967.967 0 0 1 0-1.573L6.97 3.121zm-5.23 4.956 5.635 4.028V3.97zM8.59 8l5.405 4.006V3.993z" /></SvgRoot>;
 });
 export default IconFastBackward;

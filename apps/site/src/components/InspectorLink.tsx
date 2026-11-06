@@ -56,7 +56,10 @@ export function InspectorLink({
       <span className="truncate underline-offset-4 group-hover/link:underline">
         {name}
       </span>
-      <span className="grid size-4 shrink-0 text-muted" aria-hidden="true">
+      <span
+        className="grid size-4 shrink-0 -translate-x-1 text-muted opacity-0 transition-[opacity,translate] duration-150 ease-out group-hover/link:translate-x-0 group-hover/link:opacity-100 group-focus-visible/link:translate-x-0 group-focus-visible/link:opacity-100 group-data-copied/link:translate-x-0 group-data-copied/link:opacity-100 motion-reduce:transition-none pointer-coarse:translate-x-0 pointer-coarse:opacity-100"
+        aria-hidden="true"
+      >
         <Icon
           name="link"
           size={16}

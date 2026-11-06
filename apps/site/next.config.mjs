@@ -1,4 +1,5 @@
 import createMDX from '@next/mdx';
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js';
 import { fileURLToPath } from 'node:url';
 
 const withMDX = createMDX({
@@ -14,6 +15,10 @@ const config = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   images: { unoptimized: true },
+  experimental: {
+    // Avoid socket IPC for PostCSS and MDX loader workers.
+    turbopackPluginRuntimeStrategy: 'workerThreads',
+  },
   turbopack: {
     root: fileURLToPath(new URL('../..', import.meta.url)),
     rules: {
@@ -22,4 +27,11 @@ const config = {
   },
 };
 
-export default withMDX(config);
+export default (phase) =>
+  withMDX({
+    ...config,
+    pageExtensions:
+      phase === PHASE_DEVELOPMENT_SERVER
+        ? ['dev.tsx', ...config.pageExtensions]
+        : config.pageExtensions,
+  });

@@ -199,7 +199,7 @@ export function FilesApp() {
           className="flex w-8 shrink-0 flex-col items-center gap-5 pt-3"
           aria-hidden
         >
-          <Icon name="calendar-fill" className="text-blue-500" />
+          <Icon name="calendar-solid" className="text-blue-500" />
           <Icon name="lightbulb-simple-fill" className="text-amber-500" />
           <Icon name="circle-check-fill" className="text-sky-600" />
           <Icon name="user-fill" className="text-violet-500" />
