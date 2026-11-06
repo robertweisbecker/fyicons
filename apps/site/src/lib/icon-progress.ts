@@ -7,23 +7,23 @@ import IconSignalFour1 from 'fyicons/icons/IconSignalFour1';
 import IconSignalFour2 from 'fyicons/icons/IconSignalFour2';
 import IconSignalFour3 from 'fyicons/icons/IconSignalFour3';
 import IconSignalFour from 'fyicons/icons/IconSignalFour';
-import IconCircleProgress0 from 'fyicons/icons/IconCircleProgress0';
-import IconCircleProgress25 from 'fyicons/icons/IconCircleProgress25';
-import IconCircleProgress50 from 'fyicons/icons/IconCircleProgress50';
-import IconCircleProgress75 from 'fyicons/icons/IconCircleProgress75';
-import IconCircleProgress100 from 'fyicons/icons/IconCircleProgress100';
-import IconGaugeSimpleMax from 'fyicons/icons/IconGaugeSimpleMax';
+import IconProgressTaskTodo from 'fyicons/icons/IconProgressTaskTodo';
+import IconProgressTask25 from 'fyicons/icons/IconProgressTask25';
+import IconProgressTask50 from 'fyicons/icons/IconProgressTask50';
+import IconProgressTask75 from 'fyicons/icons/IconProgressTask75';
+import IconProgressTaskDone from 'fyicons/icons/IconProgressTaskDone';
+import IconGaugeMax from 'fyicons/icons/IconGaugeMax';
 import IconGaugeSimple from 'fyicons/icons/IconGaugeSimple';
-import IconGaugeSimpleMin from 'fyicons/icons/IconGaugeSimpleMin';
-import IconGaugeSimpleLow from 'fyicons/icons/IconGaugeSimpleLow';
-import IconGaugeSimpleHigh from 'fyicons/icons/IconGaugeSimpleHigh';
+import IconGaugeMin from 'fyicons/icons/IconGaugeMin';
+import IconGaugeLow from 'fyicons/icons/IconGaugeLow';
+import IconGaugeHigh from 'fyicons/icons/IconGaugeHigh';
 import IconSignalThree0 from 'fyicons/icons/IconSignalThree0';
 import IconSignalThree1 from 'fyicons/icons/IconSignalThree1';
 import IconSignalThree2 from 'fyicons/icons/IconSignalThree2';
 import IconSignalThree from 'fyicons/icons/IconSignalThree';
-import IconGaugeLow from 'fyicons/icons/IconGaugeLow';
-import IconGauge from 'fyicons/icons/IconGauge';
-import IconGaugeHigh from 'fyicons/icons/IconGaugeHigh';
+import IconMeterLow from 'fyicons/icons/IconMeterLow';
+import IconMeter from 'fyicons/icons/IconMeter';
+import IconMeterHigh from 'fyicons/icons/IconMeterHigh';
 import IconChecklist from 'fyicons/icons/IconChecklist';
 import IconChecklist1 from 'fyicons/icons/IconChecklist1';
 import IconChecklistChecked from 'fyicons/icons/IconChecklistChecked';
@@ -50,12 +50,12 @@ export const levelSteps: {
     icons: {
       IconBatteryEmpty,
       IconSignalFour0,
-      IconCircleProgress0,
-      IconGaugeSimpleMin,
+      IconProgressTaskTodo,
+      IconGaugeMin,
     },
     landingIcons: {
       IconSignalThree0,
-      IconGaugeLow,
+      IconMeterLow,
       IconChecklist,
       IconVolumeX,
       IconEmojiAngry,
@@ -66,12 +66,12 @@ export const levelSteps: {
     icons: {
       IconBatteryLow,
       IconSignalFour1,
-      IconCircleProgress25,
-      IconGaugeSimpleLow,
+      IconProgressTask25,
+      IconGaugeLow,
     },
     landingIcons: {
       IconSignalThree1,
-      IconGaugeLow,
+      IconMeterLow,
       IconChecklist,
       IconVolumeNone,
       IconEmojiFrown,
@@ -82,12 +82,12 @@ export const levelSteps: {
     icons: {
       IconBatteryMedium,
       IconSignalFour2,
-      IconCircleProgress50,
+      IconProgressTask50,
       IconGaugeSimple,
     },
     landingIcons: {
       IconSignalThree2,
-      IconGauge,
+      IconMeter,
       IconChecklist1,
       IconVolumeLow,
       IconEmojiNeutral,
@@ -98,12 +98,12 @@ export const levelSteps: {
     icons: {
       IconBatteryMedium,
       IconSignalFour3,
-      IconCircleProgress75,
-      IconGaugeSimpleHigh,
+      IconProgressTask75,
+      IconGaugeHigh,
     },
     landingIcons: {
       IconSignalThree2,
-      IconGauge,
+      IconMeter,
       IconChecklist1,
       IconVolumeMedium,
       IconEmojiSmile,
@@ -114,12 +114,12 @@ export const levelSteps: {
     icons: {
       IconBatteryMedium,
       IconSignalFour3,
-      IconCircleProgress75,
-      IconGaugeSimpleHigh,
+      IconProgressTask75,
+      IconGaugeHigh,
     },
     landingIcons: {
       IconSignalThree2,
-      IconGauge,
+      IconMeter,
       IconChecklist1,
       IconVolumeMedium,
       IconEmojiGrin,
@@ -130,12 +130,12 @@ export const levelSteps: {
     icons: {
       IconBattery,
       IconSignalFour,
-      IconCircleProgress100,
-      IconGaugeSimpleMax,
+      IconProgressTaskDone,
+      IconGaugeMax,
     },
     landingIcons: {
       IconSignalThree,
-      IconGaugeHigh,
+      IconMeterHigh,
       IconChecklistChecked,
       IconVolumeHigh,
       IconEmojiBeam,

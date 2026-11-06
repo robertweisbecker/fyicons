@@ -71,7 +71,7 @@ function DesktopStatusBar() {
         <DeviceBattery percentageClassName="hidden @sm/desktop:inline" />
         <Icon name="wifi-fill" />
         <Icon name="intelligence-cupertino" />
-        <Icon name="switches-ios" />
+        <Icon name="switches-cupertino" />
         <DeviceClock className="hidden @2xl/desktop:inline" />
       </div>
     </div>

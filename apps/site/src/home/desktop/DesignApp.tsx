@@ -125,13 +125,13 @@ export function DesignApp() {
                 ))}
               </ToggleGroup>
               <ToggleGroup
-                defaultValue={['pointer-rulers']}
+                defaultValue={['rulers-pointer']}
                 aria-label="Canvas mode"
                 className="max-w-full shrink-0 flex-wrap justify-center gap-0 rounded-md bg-canvas p-px"
               >
                 {[
                   ['scribble', 'Draw'],
-                  ['pointer-rulers', 'Design'],
+                  ['rulers-pointer', 'Design'],
                   ['code', 'Dev Mode'],
                 ].map(([icon, label]) => (
                   <DemoToggle

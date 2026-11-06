@@ -138,7 +138,7 @@ export function CodeApp() {
                 setOpenFolders(allOpen ? [] : fileFolders(reviewFiles))
               }
             >
-              <Icon name={allOpen ? 'folder-view-fill' : 'folder-view'} />
+              <Icon name={allOpen ? 'folder-tree-fill' : 'folder-tree'} />
             </Button>
           </div>
           <nav

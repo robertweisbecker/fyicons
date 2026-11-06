@@ -54,7 +54,7 @@ export const iconGroups = [
       [
         'pointer-swarm',
         'pointer-sm',
-        'window-pointer',
+        'view-pointer',
         'browser-pointer',
         'brain',
       ],
@@ -197,7 +197,7 @@ export const iconGroups = [
       ['sparkle', 'kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt'],
       ['kbd-return', 'eject', 'kbd-shift', 'kbd-caps-lock', 'power'],
       ['parentheses', 'brackets', 'braces', 'heart', 'ampersand'],
-      ['broadcast-live', 'menu', 'menu-simple', 'ban', 'markdown-fill'],
+      ['broadcast-live', 'menu', 'menu-alt-simple', 'ban', 'markdown-fill'],
     ],
   },
   {
@@ -205,14 +205,8 @@ export const iconGroups = [
     name: 'Progress.',
     caption: 'Batteries included.',
     rows: [
-      ['spinner', 'gauge-low', 'gauge', 'gauge-high', 'loader'],
-      [
-        'gauge-simple-min',
-        'gauge-simple-low',
-        'gauge-simple',
-        'gauge-simple-high',
-        'gauge-simple-max',
-      ],
+      ['spinner', 'meter-low', 'meter', 'meter-high', 'loader'],
+      ['gauge-min', 'gauge-low', 'gauge-simple', 'gauge-high', 'gauge-max'],
       [
         'battery-charging',
         'battery-empty',

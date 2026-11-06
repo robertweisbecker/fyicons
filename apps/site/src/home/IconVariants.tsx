@@ -49,7 +49,7 @@ const mixedIcons = [
   'credit-card',
   'browser-solid',
   'calendar-fill',
-  // 'gear',
+  // 'cog-wheel',
   'life-ring',
   'calculator',
   'eyedropper',
