@@ -1,4 +1,3 @@
-import { Field } from '@base-ui/react/field';
 import { motion, useReducedMotion } from 'motion/react';
 import {
   useCallback,
@@ -27,11 +26,10 @@ import {
   DrawerScroll,
 } from '@/components/ui/drawer';
 import { Icon } from './Icon';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { IconButton } from '@/components/IconButton';
-import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
+import { Tooltip } from '@/components/ui/tooltip';
 import { IconUsage } from './IconUsage';
 import { IconReleaseInfo } from './IconReleaseInfo';
 import { InspectorResizeHandle } from '@/components/InspectorResizeHandle';
@@ -160,7 +158,7 @@ function Details({
   selected: boolean;
   select: Props['select'];
   onCategoryChange: Props['onCategoryChange'];
-  toggleSelection?: () => void;
+  toggleSelection: () => void;
 }) {
   const categoriesHeadingId = useId();
   const variants = item.duplicate
@@ -170,7 +168,11 @@ function Details({
     <>
       <div className="flex flex-col gap-4 px-4 py-3">
         <div className="flex flex-col gap-5">
-          <IconUsage item={item} />
+          <IconUsage
+            item={item}
+            selected={selected}
+            toggleSelection={toggleSelection}
+          />
           <section
             aria-labelledby={categoriesHeadingId}
             className="flex min-w-0 flex-col gap-2"
@@ -196,16 +198,6 @@ function Details({
               })}
             </div>
           </section>
-          {toggleSelection && (
-            <Field.Root className="flex items-center gap-1 text-xs">
-              <Checkbox
-                size="sm"
-                checked={selected}
-                onCheckedChange={toggleSelection}
-              />
-              <Field.Label>Add to export</Field.Label>
-            </Field.Root>
-          )}
           {variants.length > 1 && (
             <section>
               <h3 className="mb-2 text-sm font-medium">Variants</h3>
@@ -252,20 +244,18 @@ function PaginationButtons({
       className="flex gap-1"
       data-base-ui-swipe-ignore
     >
-      <TooltipGroup>
-        <IconButton
-          icon="chevron-left"
-          label="Previous icon"
-          disabled={index <= 0}
-          onClick={() => navigate(-1)}
-        />
-        <IconButton
-          icon="chevron-right"
-          label="Next icon"
-          disabled={index < 0 || index >= visible.length - 1}
-          onClick={() => navigate(1)}
-        />
-      </TooltipGroup>
+      <IconButton
+        icon="chevron-left"
+        label="Previous icon"
+        disabled={index <= 0}
+        onClick={() => navigate(-1)}
+      />
+      <IconButton
+        icon="chevron-right"
+        label="Next icon"
+        disabled={index < 0 || index >= visible.length - 1}
+        onClick={() => navigate(1)}
+      />
     </div>
   );
 }
@@ -343,7 +333,7 @@ export function Inspector(props: Props) {
           setSnapPoint(snapPoints[0]);
         }
       }}
-      toggleSelection={mobile ? undefined : () => toggleSelection(item.id)}
+      toggleSelection={() => toggleSelection(item.id)}
     />
   );
   function keyboard(event: React.KeyboardEvent) {
@@ -557,6 +547,7 @@ export function Inspector(props: Props) {
                 label="Resize inspector"
                 onValueChange={setPreferredWidth}
                 onResizingChange={setResizing}
+                resizing={resizing}
               />
               <header className="grid shrink-0 cursor-grab grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1 border-b border-line p-2 active:cursor-grabbing">
                 <div className="min-w-0">
@@ -573,28 +564,31 @@ export function Inspector(props: Props) {
                   </SheetTitle>
                 </div>
                 <div className="flex shrink-0 gap-0.5">
-                  <TooltipGroup side="bottom">
-                    <Tooltip
-                      label={docked ? 'Undock inspector' : 'Dock inspector'}
+                  <Tooltip
+                    label={docked ? 'Undock inspector' : 'Dock inspector'}
+                    side="bottom"
+                  >
+                    <Toggle
+                      size="icon"
+                      aria-label="Dock inspector"
+                      pressed={docked}
+                      onPressedChange={onDockedChange}
                     >
-                      <Toggle
-                        size="icon"
-                        aria-label="Dock inspector"
-                        pressed={docked}
-                        onPressedChange={onDockedChange}
-                      >
-                        <ToggleIcon
-                          icon="layout-pin"
-                          activeIcon="layout-pinned"
-                        />
-                      </Toggle>
-                    </Tooltip>
-                    <SheetClose
-                      render={
-                        <IconButton icon="x" label="Close icon details" />
-                      }
-                    />
-                  </TooltipGroup>
+                      <ToggleIcon
+                        icon="layout-pin"
+                        activeIcon="layout-pinned"
+                      />
+                    </Toggle>
+                  </Tooltip>
+                  <SheetClose
+                    render={
+                      <IconButton
+                        icon="x"
+                        label="Close icon details"
+                        tooltipSide="bottom"
+                      />
+                    }
+                  />
                 </div>
                 <IconReleaseInfo id={item.id} className="col-span-2" />
               </header>

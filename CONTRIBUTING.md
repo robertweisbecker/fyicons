@@ -82,6 +82,8 @@ Use the shared Badge as a button or link for interactive category badges. Keep a
 
 Routes live in `apps/site/src/app/`. The public pages are `/`, `/icons/`, `/examples/`, and `/docs/`. Add a docs page as `docs/topic/page.mdx`; nesting another folder creates a subpage. Set its exported `metadata` title and description, then add its link to `apps/site/src/lib/docs-navigation.ts`. The shared docs layout keeps the sidebar mounted between pages. The Sidebar components also render the icon category filters.
 
+Use the Prototypes link in the local development header, or open `/prototypes/` directly, to review internal studies. The link and `page.dev.tsx` routes are included only in development.
+
 Keep browser APIs inside Client Components and effects. Docs content renders as static HTML. Icon filters use query parameters (`category`, `q`, and `icon`), and Next.js handles page navigation. Test direct entry, refresh, and Back/Forward for nested pages in the static preview, not only in the dev server.
 
 The website uses local font files. Keep their notices in `apps/site/public/licenses/`. The icon package uses the root MIT license; the fonts have separate licenses.

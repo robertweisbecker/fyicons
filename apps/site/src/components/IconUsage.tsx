@@ -6,6 +6,9 @@ import { download } from '@/lib/downloads';
 import type { IconRecord } from '@/lib/catalog';
 import { IconCopyButton } from './IconCopyButton';
 import { Badge } from './ui/badge';
+import { Toggle } from './ui/toggle';
+import { ToggleIcon } from './ToggleIcon';
+import { Tooltip } from './ui/tooltip';
 
 function UsageSection({
   label,
@@ -43,7 +46,15 @@ function UsageSection({
   );
 }
 
-export function IconUsage({ item }: { item: IconRecord }) {
+export function IconUsage({
+  item,
+  selected,
+  toggleSelection,
+}: {
+  item: IconRecord;
+  selected: boolean;
+  toggleSelection: () => void;
+}) {
   const headingId = useId();
   const jsxImport = `import { ${item.componentName} } from 'fyicons';`;
   const jsxUsage = `<${item.componentName} size={16} />`;
@@ -65,23 +76,39 @@ export function IconUsage({ item }: { item: IconRecord }) {
 
   return (
     <>
-      <div className="@container flex min-w-0 flex-wrap justify-stretch gap-2">
+      <div className="@container flex min-w-0 flex-wrap items-center gap-2">
         <IconCopyButton
           key={item.id}
           item={item}
           size="lg"
           showLabel
-          className="shrink-0 grow"
-        />
+          className="w-full px-3.5 @3xs:w-auto @3xs:flex-1"
+        >
+          <span className="hidden @3xs:inline @xs:hidden">Copy</span>
+          <span className="@3xs:hidden @xs:inline">Copy SVG</span>
+        </IconCopyButton>
         <Button
-          variant="ghost"
-          className="min-w-0 grow rounded-full"
+          variant="neutral"
+          aria-label="Download SVG"
+          className="ml-auto size-11 min-w-0 rounded-full p-0 @3xs:ml-0 @xs:w-auto @xs:flex-1 @xs:px-3.5"
           size="lg"
           onClick={() => download(item.svg, item.filename, 'image/svg+xml')}
         >
           <Icon name="download-square" />
-          Download
+          <span className="hidden @xs:inline">Download</span>
         </Button>
+        <Tooltip label={selected ? 'Remove from export' : 'Add to export'}>
+          <Toggle
+            size="icon"
+            className="size-11 rounded-full data-pressed:text-control-accent"
+            aria-label="Add to export"
+            variant="outline"
+            pressed={selected}
+            onPressedChange={toggleSelection}
+          >
+            <ToggleIcon icon="bookmark" activeIcon="bookmark-fill" />
+          </Toggle>
+        </Tooltip>
       </div>
       <section
         aria-labelledby={headingId}
@@ -94,7 +121,7 @@ export function IconUsage({ item }: { item: IconRecord }) {
           key={item.id}
           className="divide-y divide-line overflow-hidden rounded-xl ring ring-line"
         >
-          <UsageSection label="JSX" icon="atom" iconClass="text-sky-400">
+          <UsageSection label="React" icon="atom" iconClass="text-sky-400">
             <CodeBlock
               aria-label="React import"
               copyToast={copyToast('Import')}

@@ -100,7 +100,7 @@ export function DesignDemo() {
           onPressedChange={setGrid}
         />
       </div>
-      <div className="grid flex-1 gap-5 @min-[560px]:grid-cols-[minmax(0,1fr)_220px]">
+      <div className="grid flex-1 gap-5 @xl:grid-cols-[minmax(0,1fr)_220px]">
         <div
           className={cn(
             'relative flex min-h-64 items-center justify-center overflow-hidden rounded-xl border border-line bg-surface',

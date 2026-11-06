@@ -11,21 +11,19 @@ import { motion, MotionConfig } from 'motion/react';
 import { useReducedMotionPreference } from '@/lib/preferences';
 import { Icon } from '@/components/Icon';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
+import {
+  guides,
+  guideStrokeWidth,
+  GuideShape,
+  PixelGrid,
+  type Guide,
+} from './construction-guides';
 import './IconSpecimen.css';
 
-// Centered construction paths from the drawing sheet, not artwork bounds.
-const guides = {
-  circle: { label: 'Circle', width: 13, height: 13, color: '#ec4899' },
-  square: { label: 'Square', width: 11, height: 11, color: '#3b82f6' },
-  horizontal: { label: 'Horizontal', width: 13, height: 9, color: '#10b981' },
-  vertical: { label: 'Vertical', width: 9, height: 13, color: '#f59e0b' },
-} as const;
-type Guide = keyof typeof guides;
-const guideStrokeWidth = 1;
 const specimenTransition = {
   type: 'tween',
-  duration: 0.28,
-  ease: [0.19, 1, 0.22, 1],
+  duration: 0.65,
+  ease: [0.42, 0, 0.58, 1],
 } as const;
 // CSS artwork and Motion guides must arrive on the same curve and duration.
 const specimenMotionStyle = {
@@ -159,20 +157,6 @@ function useSpecimen() {
   };
 }
 
-function GuideShape({ shape }: { shape: Guide }) {
-  const { width, height } = guides[shape];
-  return shape === 'circle' ? (
-    <circle cx="8" cy="8" r={width / 2} />
-  ) : (
-    <rect
-      x={(16 - width) / 2}
-      y={(16 - height) / 2}
-      width={width}
-      height={height}
-    />
-  );
-}
-
 function ActiveGuide({ shape, instant }: { shape: Guide; instant: boolean }) {
   const { width, height, color } = guides[shape];
   const x = (16 - width) / 2;
@@ -224,7 +208,7 @@ function BoundingBox({ shape, instant }: { shape: Guide; instant: boolean }) {
       initial={false}
       animate={{ color }}
       transition={instant ? { duration: 0 } : specimenTransition}
-      className="specimen-bounds pointer-events-none absolute outline outline-1 -outline-offset-[0.5px] outline-current/50"
+      className="specimen-bounds pointer-events-none absolute outline outline-offset-[-0.5px] outline-current/50"
       style={{
         left: `${((16 - width) / 32) * 100}%`,
         top: `${((16 - height) / 32) * 100}%`,
@@ -260,7 +244,6 @@ function PixelSpecimen({
   inspectedGuide: Guide | null;
   instant: boolean;
 }) {
-  const id = useId();
   const sample = samples[index];
   return (
     <svg
@@ -269,45 +252,7 @@ function PixelSpecimen({
       role="img"
       aria-label={`${sample.label} on a 16 by 16 pixel grid; ${guides[inspectedGuide ?? sample.guide].label.toLowerCase()} guide ${inspectedGuide ? 'previewed' : 'highlighted'}`}
     >
-      <defs>
-        <pattern
-          id={`${id}-pixels`}
-          width="1"
-          height="1"
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d="M 1 0 H 0 V 1"
-            fill="none"
-            stroke="var(--color-blue-400)"
-            strokeWidth="0.035"
-            strokeDasharray="0.08 0.08"
-          />
-        </pattern>
-      </defs>
-      <g aria-hidden="true">
-        <rect
-          width="16"
-          height="16"
-          fill={`url(#${id}-pixels)`}
-          opacity="0.45"
-        />
-        <g
-          fill="none"
-          stroke="var(--color-blue-400)"
-          strokeWidth="0.04"
-          opacity="0.45"
-        >
-          <path d="M0 0L16 16M16 0L0 16" opacity="0.28" />
-        </g>
-        <path
-          d="M0 -.5V16.5M16 -.5V16.5M-.5 0H16M-.5 16H16"
-          fill="none"
-          stroke="var(--line)"
-          strokeWidth="1"
-          vectorEffect="non-scaling-stroke"
-        />
-      </g>
+      <PixelGrid />
       {samples.map((item, sampleIndex) => (
         <g
           key={item.name}
@@ -329,36 +274,29 @@ function PixelSpecimen({
           strokeWidth="0.07"
           aria-hidden="true"
         >
-          <g strokeWidth={guideStrokeWidth} opacity="0.04">
+          <g strokeWidth={guideStrokeWidth} opacity="0.05">
             <GuideShape shape={shape} />
           </g>
-          <g opacity="0.2">
+          <g opacity="0.4">
             <GuideShape shape={shape} />
           </g>
         </g>
       ))}
       <ActiveGuide shape={inspectedGuide ?? sample.guide} instant={instant} />
       <g
-        fill="var(--text)"
+        className="pointer-events-none fill-ink/60"
         fontSize="0.45"
         fontFamily="ui-monospace, monospace"
+        dominantBaseline="central"
         aria-hidden="true"
       >
         {[0, 4, 8, 12, 16].map((value) => (
           <g key={value}>
-            <text
-              x={value === 0 ? 0.55 : value === 16 ? 15.55 : value}
-              y="0.65"
-              textAnchor="middle"
-            >
+            <text x={value} y="-0.85" textAnchor="middle">
               {value}
             </text>
             {value > 0 && (
-              <text
-                x="0.55"
-                y={value === 16 ? 15.65 : value + 0.15}
-                textAnchor="middle"
-              >
+              <text x="-0.7" y={value} textAnchor="end">
                 {value}
               </text>
             )}
@@ -371,6 +309,7 @@ function PixelSpecimen({
 
 export function IconSpecimen() {
   const state = useSpecimen();
+  const pointerLayoutId = useId();
   const guide = guides[state.sample.guide];
   const playbackLabel = state.playing
     ? 'Pause automatic cycling'
@@ -382,7 +321,7 @@ export function IconSpecimen() {
       style={specimenMotionStyle}
       {...state.region}
     >
-      <div className="specimen-stage">
+      <div className="specimen-stage pt-7 pb-6 pl-8 md:py-10 md:pl-16">
         <div className="specimen-visual relative" {...state.visual}>
           <PixelSpecimen
             index={state.index}
@@ -418,7 +357,7 @@ export function IconSpecimen() {
         </div>
         <div className="specimen-notes">
           <ul
-            className="mt-auto flex flex-col"
+            className="mt-auto flex w-full flex-col"
             aria-label="Construction guides"
             onKeyDown={(event) => {
               if (event.key === 'Escape') state.clearGuide();
@@ -432,9 +371,8 @@ export function IconSpecimen() {
                 <li key={shape}>
                   <button
                     type="button"
-                    className="group/legend flex w-full items-center gap-1 rounded py-1 whitespace-nowrap"
-                    data-active={active || undefined}
-                    aria-label={`Inspect ${item.label.toLowerCase()} guide, ${item.width + guideStrokeWidth} by ${item.height + guideStrokeWidth}`}
+                    className="flex min-h-6 w-full items-center rounded py-1"
+                    aria-label={`Inspect ${item.label.toLowerCase()} guide`}
                     aria-pressed={state.pinnedGuide === shape}
                     style={{ color: item.color }}
                     onPointerEnter={(event) => {
@@ -460,13 +398,6 @@ export function IconSpecimen() {
                     >
                       <GuideShape shape={shape} />
                     </svg>
-                    <span
-                      className="invisible text-[9px] leading-3.5 text-muted group-data-active/legend:visible"
-                      aria-hidden="true"
-                    >
-                      {item.width + guideStrokeWidth} ×{' '}
-                      {item.height + guideStrokeWidth}
-                    </span>
                   </button>
                 </li>
               );
@@ -484,16 +415,22 @@ export function IconSpecimen() {
             <Tooltip key={sample.name} label={sample.label}>
               <button
                 type="button"
-                className="specimen-choice group/choice relative grid h-9 place-items-center rounded-lg text-muted hover:bg-hover hover:text-ink aria-pressed:text-ink"
+                className="specimen-choice group/choice relative grid aspect-square h-9 place-items-center rounded-lg text-muted hover:bg-hover hover:text-ink aria-pressed:text-ink"
                 aria-label={`Preview ${sample.label}`}
                 aria-pressed={state.index === index}
                 onClick={(event) => state.select(index, event.detail === 0)}
               >
                 {state.index === index && (
-                  <Icon
-                    name="point-down"
-                    className="pointer-events-none absolute -top-3 left-1/2 -translate-x-1/2 text-ink"
-                  />
+                  <motion.span
+                    aria-hidden="true"
+                    layoutId={pointerLayoutId}
+                    transition={
+                      state.instant ? { duration: 0 } : specimenTransition
+                    }
+                    className="pointer-events-none absolute inset-x-0 -top-3 mx-auto w-fit text-ink"
+                  >
+                    <Icon name="point-down" />
+                  </motion.span>
                 )}
                 <Icon
                   name={sample.name}

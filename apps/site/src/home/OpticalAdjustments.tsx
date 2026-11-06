@@ -1,175 +1,22 @@
 import { useId, useState, type ReactNode } from 'react';
 import { Field } from '@base-ui/react/field';
-import { ScrollArea } from '@base-ui/react/scroll-area';
 import { Icon } from '@/components/Icon';
 import { Switch } from '@/components/ui/switch';
-import { useMobile } from '@/lib/preferences';
-import { cn } from '@/lib/utils';
+import { ToggleGroup } from '@/components/ui/toggle-group';
+import { DemoToggle } from '@/demos/components/DemoControls';
+import { OpticalStudy, StudyTile } from './optical/OpticalStudy';
 
-function PlayGuides() {
-  return (
-    <>
-      {/* Use whole-pixel references for the unequal gaps in the 16px grid. */}
-      <g className="text-blue-600 dark:text-blue-400">
-        <rect
-          x="0"
-          y="2"
-          width="4"
-          height="12"
-          fill="currentColor"
-          fillOpacity="0.08"
-          stroke="none"
-        />
-        <path d="M0 2V14M4 2V14" />
-      </g>
-      <g className="text-green-600 dark:text-green-400">
-        <rect
-          x="14"
-          y="2"
-          width="2"
-          height="12"
-          fill="currentColor"
-          fillOpacity="0.08"
-          stroke="none"
-        />
-        <path d="M14 2V14M16 2V14" />
-      </g>
-    </>
-  );
-}
-
-function OvershootGuides() {
-  return (
-    <>
-      {[
-        {
-          className: 'text-green-600 dark:text-green-400',
-          eyeWidth: 1.75,
-          dotWidth: 2,
-          height: 2,
-          showLines: false,
-        },
-        {
-          className: 'text-blue-600 dark:text-blue-400',
-          eyeWidth: 1,
-          dotWidth: 1,
-          height: 1,
-          showLines: true,
-        },
-      ].map(({ className, eyeWidth, dotWidth, height, showLines }) => {
-        // Center both measurements on the eyes and dot in the 24px diagram.
-        const verticalBands = [
-          { x: 6.875 - eyeWidth / 2, width: eyeWidth },
-          { x: 11.125 - eyeWidth / 2, width: eyeWidth },
-          { x: 15 - dotWidth / 2, width: dotWidth },
-        ];
-        const horizontalBands = [8 - height / 2, 19 - height / 2];
-
-        return (
-          <g key={className} className={className}>
-            <g fill="currentColor" fillOpacity="0.08" stroke="none">
-              {verticalBands.map(({ x, width }) => (
-                <rect key={x} x={x} y="0" width={width} height="24" />
-              ))}
-              {horizontalBands.map((y) => (
-                <rect key={y} x="0" y={y} width="24" height={height} />
-              ))}
-            </g>
-            {showLines &&
-              verticalBands.map(({ x, width }) => (
-                <path key={x} d={`M${x} 0V24M${x + width} 0V24`} />
-              ))}
-            {showLines &&
-              horizontalBands.map((y) => (
-                <path key={y} d={`M0 ${y}H24M0 ${y + height}H24`} />
-              ))}
-          </g>
-        );
-      })}
-    </>
-  );
-}
-
-function OpticalGrid({
-  children,
-  columns = 16,
-  rows = columns,
-  className,
-}: {
-  children: ReactNode;
-  columns?: number;
-  rows?: number;
-  className?: string;
-}) {
+function OpticalGrid({ children }: { children: ReactNode }) {
   return (
     <div
-      className={cn(
-        'optical-icon-grid relative size-32 shrink-0 outline outline-1 -outline-offset-[0.5px] outline-border',
-        className,
-      )}
+      className="relative size-32 shrink-0 bg-size-[6.25%_6.25%] bg-position-[-0.5px_-0.5px] outline outline-1 -outline-offset-[0.5px] outline-border"
       style={{
         backgroundImage:
           'linear-gradient(to right, var(--line) 1px, transparent 1px), linear-gradient(to bottom, var(--line) 1px, transparent 1px)',
-        backgroundSize: `${100 / columns}% ${100 / rows}%`,
-        backgroundPosition: '-0.5px -0.5px',
       }}
     >
       {children}
     </div>
-  );
-}
-
-function OvershootExample({
-  showGuides,
-  descriptionId,
-}: {
-  showGuides: boolean;
-  descriptionId: string;
-}) {
-  const overlapMaskId = useId();
-  return (
-    <OpticalGrid columns={24} className="size-42">
-      <svg
-        className="size-full"
-        viewBox="0 0 24 24"
-        fill="none"
-        role="img"
-        aria-label="Example 2: smiley eyes and warning dot overshoots"
-        aria-describedby={descriptionId}
-      >
-        <defs>
-          <mask
-            id={overlapMaskId}
-            maskUnits="userSpaceOnUse"
-            x="0"
-            y="0"
-            width="24"
-            height="24"
-          >
-            <rect width="24" height="24" fill="white" />
-            {/* The warning's outer contour hides only the smiley beneath it. */}
-            <path
-              transform="translate(7 8)"
-              d="M6.253 2.119c.762-1.372 2.734-1.372 3.496 0l4.95 8.91c.74 1.333-.223 2.972-1.747 2.972H3.049c-1.524 0-2.488-1.638-1.748-2.971z"
-              fill="black"
-            />
-          </mask>
-        </defs>
-        <g mask={`url(#${overlapMaskId})`}>
-          <Icon name="emoji-smile" size={16} x={1} y={1} />
-        </g>
-        <Icon name="warning" size={16} x={7} y={8} />
-        {showGuides && (
-          <g
-            className="optical-guides pointer-events-none"
-            stroke="currentColor"
-            strokeWidth={1 / 7}
-          >
-            <OvershootGuides />
-          </g>
-        )}
-      </svg>
-    </OpticalGrid>
   );
 }
 
@@ -186,18 +33,18 @@ function FontGuides() {
     <>
       <ellipse
         {...outerOval}
-        className="text-blue-600 dark:text-blue-400"
+        className="text-blue-700 dark:text-blue-300"
         fill="currentColor"
         fillOpacity="0.08"
         strokeDasharray="0.2 0.15"
       />
       <ellipse
         {...innerOval}
-        className="text-green-600 dark:text-green-400"
+        className="text-green-700 dark:text-green-300"
         fill="currentColor"
         fillOpacity="0.12"
       />
-      <g className="text-blue-600 dark:text-blue-400">
+      <g className="text-blue-700 dark:text-blue-300">
         <rect
           x={outerLeft}
           y="6.5"
@@ -209,7 +56,7 @@ function FontGuides() {
         />
         <path d={`M${outerLeft} 6.5V13.5M${innerLeft} 6.5V13.5`} />
       </g>
-      <g className="text-green-600 dark:text-green-400">
+      <g className="text-green-700 dark:text-green-300">
         <rect
           x={innerRight}
           y="6.5"
@@ -228,213 +75,160 @@ function FontGuides() {
   );
 }
 
-function FontExample({
-  showGuides,
-  descriptionId,
-}: {
-  showGuides: boolean;
-  descriptionId: string;
-}) {
-  return (
-    <OpticalGrid columns={7} rows={8} className="h-40 w-35">
-      <svg
-        className="size-full"
-        viewBox="9 6 7 8"
-        fill="none"
-        role="img"
-        aria-label="Example 3: magnified lowercase a bowl and ink traps"
-        aria-describedby={descriptionId}
-      >
-        {/* Crop the original icon to show the small adjustments at 20×. */}
-        <Icon name="font-family" size={16} />
-        {showGuides && (
-          <g
-            className="optical-guides pointer-events-none"
-            stroke="currentColor"
-            strokeWidth={1 / 20}
-          >
-            <FontGuides />
-          </g>
-        )}
-      </svg>
-    </OpticalGrid>
-  );
-}
-
-function ShapeGuides() {
-  return (
-    <g className="text-pink-500 dark:text-pink-400" strokeDasharray="0.5 0.5">
-      {/* Repeat the square's 5 × 5px painted bounds as comparison guides. */}
-      <path d="M2 1V15M7 1V15M9 1V15M14 1V15M1 2H15M1 7H15M1 9H15M1 14H15" />
-    </g>
-  );
-}
-
-const opticalExamples = [
-  {
-    name: 'play-fill',
-    title: 'Optical centering',
-    description:
-      "Alignment baked into icons, so you don't have to think about it.",
-    Guides: PlayGuides,
-  },
-  {
-    name: 'emoji-smile',
-    title: 'Ovals & overshoots',
-    description: 'Dots extend beyond 1px to remain legible at small sizes.',
-    Guides: OvershootGuides,
-  },
-  {
-    name: 'font-family',
-    title: 'Curves and ink traps',
-    description:
-      'Stroke weight varies around typographic bowls and at intersections.',
-    Guides: FontGuides,
-  },
-  {
-    name: 'shapes',
-    title: 'Balanced shapes',
-    description: 'Round and pointed shapes extend past square bounds.',
-    Guides: ShapeGuides,
-  },
-] as const;
-
-const numberIndicatorClassName =
-  'grid size-6 shrink-0 place-items-center rounded-full bg-neutral-200 text-xs font-medium text-neutral-600 tabular-nums dark:bg-neutral-800 dark:text-muted';
-
-export function OpticalAdjustments() {
+function CurvesCard() {
+  const descriptionId = useId();
+  const previewId = useId();
   const gridId = useId();
-  const mobile = useMobile();
   const [showGuides, setShowGuides] = useState(true);
-
   return (
-    <section
-      aria-labelledby="optical-adjustments-heading"
-      className="grid items-start gap-6 md:grid-cols-2 md:gap-10"
+    <StudyTile
+      className="@container/curves flex flex-col pb-6 @min-[900px]/study:col-span-2"
+      captionClassName="mx-(--optical-pad) mt-auto pt-2 @xl/curves:absolute @xl/curves:start-(--optical-pad) @xl/curves:bottom-6 @xl/curves:m-0 @xl/curves:w-2/5"
+      title="Curves and ink traps"
+      description="Stroke weight varies around typographic bowls and at intersections."
+      descriptionId={descriptionId}
     >
-      <div className="flex items-center justify-between gap-4 md:col-span-2">
-        <h3
-          id="optical-adjustments-heading"
-          className="text-2xl font-medium tracking-tight"
+      <div className="me-(--optical-pad) grid w-4/5 max-w-72 justify-items-center gap-1 self-end">
+        <svg
+          id={previewId}
+          className="pointer-events-none h-auto w-full overflow-visible text-rose-800 dark:text-rose-300"
+          viewBox="0 3.75 16 12.25"
+          fill="none"
+          role="img"
+          aria-label="Magnified font icon showing the lowercase a bowl and ink traps"
+          aria-describedby={descriptionId}
         >
-          Optically balanced
-        </h3>
-        <Field.Root className="flex min-h-11 shrink-0 items-center gap-2.5">
+          <defs>
+            <pattern
+              id={gridId}
+              width="1"
+              height="1"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M0 1V0H1"
+                className="stroke-current/25"
+                strokeWidth=".08"
+              />
+            </pattern>
+          </defs>
+          <rect
+            width="16"
+            height="16"
+            fill={`url(#${gridId})`}
+            className="stroke-current/25"
+            strokeWidth=".04"
+          />
+          <Icon name="font" size={16} />
+          {showGuides && (
+            <g stroke="currentColor" strokeWidth=".085">
+              <FontGuides />
+            </g>
+          )}
+        </svg>
+        <Field.Root className="flex min-h-11 items-center gap-2.5">
           <Field.Label className="cursor-pointer text-sm text-muted">
             Show guides
           </Field.Label>
           <Switch
             checked={showGuides}
             onCheckedChange={setShowGuides}
-            aria-controls={gridId}
+            aria-controls={previewId}
           />
         </Field.Root>
       </div>
-      <ol
-        role="list"
-        className="hidden max-w-sm list-none space-y-5 text-sm md:block"
-      >
-        {opticalExamples.map(({ name, title, description }, index) => (
-          <li
-            key={name}
-            id={`${gridId}-${name}`}
-            className="flex items-start gap-3"
-          >
-            <span aria-hidden="true" className={numberIndicatorClassName}>
-              {index + 1}
-            </span>
-            <div className="min-w-0 pt-0.5">
-              <span className="font-medium">{title}</span>
-              <p className="mt-1 leading-6 text-neutral-600 dark:text-muted">
-                {description}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ol>
-      <div className="min-w-0">
-        <ScrollArea.Root>
-          <ScrollArea.Viewport
-            role="region"
-            aria-label="Optical examples"
-            tabIndex={mobile ? 0 : -1}
-            className="relative snap-x snap-mandatory overscroll-x-contain scroll-fade-6 focus-visible:-outline-offset-2 max-md:scroll-fade-x md:snap-none"
-          >
-            <ScrollArea.Content
-              render={<ul />}
-              id={gridId}
-              aria-label="Optically adjusted icons"
-              role="list"
-              className="grid min-w-0! auto-cols-[min(82%,20rem)] grid-flow-col gap-4 pb-6 md:auto-cols-auto md:grid-flow-row md:grid-cols-[repeat(auto-fit,minmax(min(100%,16rem),1fr))] md:pb-0"
+    </StudyTile>
+  );
+}
+
+function ShapeGuides() {
+  return (
+    <g className="text-pink-700 dark:text-pink-300">
+      {/* Repeat the square's 5 × 5px painted bounds as comparison guides. */}
+      <g fill="currentColor" fillOpacity="0.06" stroke="none">
+        {[2, 9].flatMap((x) =>
+          [2, 9].map((y) => (
+            <rect key={`${x}-${y}`} x={x} y={y} width="5" height="5" />
+          )),
+        )}
+      </g>
+      <path
+        d="M2 0V16M7 0V16M9 0V16M14 0V16M0 2H16M0 7H16M0 9H16M0 14H16"
+        strokeDasharray="0.5 0.5"
+        strokeDashoffset="0.25"
+      />
+    </g>
+  );
+}
+
+function ShapesCard() {
+  const descriptionId = useId();
+  const previewId = useId();
+  const [icon, setIcon] = useState<'grid' | 'shapes'>('shapes');
+
+  return (
+    <StudyTile
+      className="flex flex-col gap-5 px-(--optical-pad) py-6"
+      title="Balanced shapes"
+      description="Round and pointed shapes extend past square bounds."
+      descriptionId={descriptionId}
+    >
+      <div className="grid flex-1 place-items-center">
+        <div className="flex flex-col items-center gap-4">
+          <OpticalGrid>
+            <Icon
+              id={previewId}
+              name={icon}
+              className="text-violet-800 dark:text-violet-300"
+              size={128}
+              aria-label={`${icon === 'grid' ? 'Grid' : 'Shapes'} icon with comparison guides`}
+              aria-describedby={descriptionId}
+            />
+            <svg
+              className="pointer-events-none absolute inset-0 size-full overflow-visible"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth=".1875"
+              aria-hidden="true"
             >
-              {opticalExamples.map(
-                ({ name, title, description, Guides }, index) => (
-                  <li key={name} className="min-w-0 snap-start scroll-ms-6">
-                    <figure className="m-0">
-                      <div className="relative grid aspect-square place-items-center rounded-2xl bg-surface">
-                        <span
-                          aria-hidden="true"
-                          className={`absolute top-4 left-4 ${numberIndicatorClassName}`}
-                        >
-                          {index + 1}
-                        </span>
-                        {name === 'emoji-smile' ? (
-                          <OvershootExample
-                            showGuides={showGuides}
-                            descriptionId={`${gridId}-${name}${mobile ? '-mobile' : ''}`}
-                          />
-                        ) : name === 'font-family' ? (
-                          <FontExample
-                            showGuides={showGuides}
-                            descriptionId={`${gridId}-${name}${mobile ? '-mobile' : ''}`}
-                          />
-                        ) : (
-                          <OpticalGrid>
-                            <Icon
-                              name={name}
-                              size={128}
-                              aria-label={`Example ${index + 1}: ${name.replaceAll('-', ' ')}`}
-                              aria-describedby={`${gridId}-${name}${mobile ? '-mobile' : ''}`}
-                            />
-                            {showGuides && (
-                              <svg
-                                className="optical-guides pointer-events-none absolute inset-0 size-full overflow-visible"
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="0.125"
-                                aria-hidden="true"
-                              >
-                                <Guides />
-                              </svg>
-                            )}
-                          </OpticalGrid>
-                        )}
-                      </div>
-                      <figcaption
-                        id={`${gridId}-${name}-mobile`}
-                        className="mt-3 text-sm md:hidden"
-                      >
-                        <h4 className="font-medium">{title}</h4>
-                        <p className="mt-1 leading-6 text-neutral-600 dark:text-muted">
-                          {description}
-                        </p>
-                      </figcaption>
-                    </figure>
-                  </li>
-                ),
-              )}
-            </ScrollArea.Content>
-          </ScrollArea.Viewport>
-          <ScrollArea.Scrollbar
-            orientation="horizontal"
-            keepMounted
-            className="flex h-4 items-center px-1 select-none md:hidden"
+              <ShapeGuides />
+            </svg>
+          </OpticalGrid>
+          <ToggleGroup
+            aria-label="Balanced shape example"
+            value={[icon]}
+            onValueChange={([value]) => {
+              if (value === 'grid' || value === 'shapes') setIcon(value);
+            }}
+            className="rounded-xl bg-inset p-1"
           >
-            <ScrollArea.Thumb className="h-1.5 rounded-full bg-neutral-400/70 hover:bg-neutral-400 active:bg-neutral-400" />
-          </ScrollArea.Scrollbar>
-        </ScrollArea.Root>
+            {[
+              { value: 'grid', label: 'Grid' },
+              { value: 'shapes', label: 'Shapes' },
+            ].map(({ value, label }) => (
+              <DemoToggle
+                key={value}
+                value={value}
+                icon={value}
+                label={label}
+                aria-controls={previewId}
+                variant="elevated"
+                className="pointer-coarse:size-11"
+              />
+            ))}
+          </ToggleGroup>
+        </div>
       </div>
-    </section>
+    </StudyTile>
+  );
+}
+
+export function OpticalAdjustments({ heading }: { heading: ReactNode }) {
+  return (
+    <OpticalStudy heading={heading}>
+      <ShapesCard />
+      <CurvesCard />
+    </OpticalStudy>
   );
 }

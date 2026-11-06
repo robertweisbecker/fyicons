@@ -1,0 +1,612 @@
+'use client';
+
+import {
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react';
+import IconPlay from 'fyicons/icons/IconPlay';
+import IconWarning from 'fyicons/icons/IconWarning';
+import type { Act } from '@/vendor/stageshow/act';
+import { ThemedStage } from '@/components/ThemedStage';
+import { cn } from '@/lib/utils';
+import { easeInOutCubic } from '@/vendor/stageshow/util';
+
+export type Scene = {
+  phase:
+    | 'grid'
+    | 'trace'
+    | 'draft'
+    | 'measure'
+    | 'drag'
+    | 'resize'
+    | 'resize-dot'
+    | 'adjusted';
+  adjustment: number;
+  dotAdjustment: number;
+  lifted: boolean;
+  liftY: number;
+  trace: number;
+};
+const initial: Scene = {
+  phase: 'grid',
+  adjustment: 0,
+  dotAdjustment: 0,
+  lifted: false,
+  liftY: 0,
+  trace: 0,
+};
+export const poster: Scene = {
+  ...initial,
+  phase: 'adjusted',
+  adjustment: 1,
+  dotAdjustment: 1,
+};
+export const loopInitial: Scene = { ...initial, phase: 'draft' };
+
+// The catalog contour, also used as the pen track for the construction pass.
+const playContour =
+  'M4 3.977C4 2.61 5.495 1.77 6.661 2.482l6.599 4.024a1.75 1.75 0 0 1 0 2.988l-6.6 4.024c-1.165.71-2.66-.129-2.66-1.495z';
+const warningContour =
+  'M6.253 2.119c.762-1.372 2.734-1.372 3.496 0l4.95 8.91c.74 1.333-.223 2.972-1.747 2.972H3.049c-1.524 0-2.488-1.638-1.748-2.971z';
+const warningStemTrace = 'M8 5.7v2.7';
+const warningDotTrace = 'M8 10.5a.5 .5 0 1 1 0 1a.5 .5 0 1 1 0-1';
+
+const traceOffset = (trace: number, part = 0) =>
+  1 - Math.max(0, Math.min(1, trace - part));
+
+async function traceIcon(a: Act<Scene>, label: 'center' | 'warning') {
+  const grid = a.rect(`${label}-grid`);
+  const unit = grid.width / 16;
+  const contours =
+    label === 'center'
+      ? [playContour]
+      : [warningContour, warningStemTrace, warningDotTrace];
+  await a.set({ phase: 'trace' });
+
+  for (const [part, contour] of contours.entries()) {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', contour);
+    const length = path.getTotalLength();
+    const pointAt = (progress: number) => {
+      const point = path.getPointAtLength(length * progress);
+      return {
+        x: grid.x + (point.x - (label === 'center' ? 1 : 0)) * unit,
+        y: grid.y + point.y * unit,
+      };
+    };
+    await a.move(pointAt(0));
+    a.mark(`${label}-trace-${part}`);
+    await a.drag(
+      pointAt(1),
+      (_point, _origin, progress) =>
+        a.put({ trace: part + easeInOutCubic(progress) }),
+      {
+        duration: part === 0 ? 1600 : 450,
+        cursor: 'preserve',
+        path: (progress) => pointAt(progress),
+      },
+    );
+    await a.set({ trace: part + 1 });
+  }
+}
+
+export async function resizeWarningPart(
+  a: Act<Scene>,
+  part: 'stem' | 'dot',
+  from: number,
+  to: number,
+) {
+  const stem = part === 'stem';
+  const target = stem ? 'warning-resize' : 'warning-dot-resize';
+  const key = stem ? 'adjustment' : 'dotAdjustment';
+  await a.move(target);
+  const grip = a.center(target);
+  const travel = (a.rect('warning-grid').width / 16) * (stem ? 0.25 : 0.5);
+  a.mark(`warning-${part}-${to === 1 ? 'expand' : 'restore'}`);
+  await a.set({ phase: stem ? 'resize' : 'resize-dot' });
+  await a.drag(
+    { x: grip.x + travel * (to - from), y: grip.y },
+    (point, origin) => a.put({ [key]: from + (point.x - origin.x) / travel }),
+    {
+      duration: 1900,
+      cursor: 'preserve',
+      path: (progress, start, end) => ({
+        x: start.x + (end.x - start.x) * progress,
+        y: start.y,
+      }),
+    },
+  );
+  await a.set({ [key]: to });
+}
+
+async function dragPlay(a: Act<Scene>) {
+  await a.move('center-grip');
+  const grip = a.center('center-grip');
+  const unit = a.rect('center-grid').width / 16;
+  a.mark('center-drag');
+  await a.drag(
+    { x: grip.x + unit, y: grip.y },
+    (point, origin) => {
+      // Lift only once the hand has closed. Both axes follow the same grip.
+      a.put({
+        phase: 'drag',
+        lifted: true,
+        adjustment: (point.x - origin.x) / unit,
+        liftY: (point.y - origin.y) / unit,
+      });
+    },
+    {
+      duration: 1600,
+      path: (progress, from, to) => ({
+        x: from.x + (to.x - from.x) * progress,
+        y: from.y - Math.sin(Math.PI * progress) * unit * 1.25,
+      }),
+    },
+  );
+  await a.set({ adjustment: 1, lifted: false, liftY: 0 });
+}
+
+function study(delay: number, label: 'center' | 'warning') {
+  return async (a: Act<Scene>) => {
+    await a.wait(delay);
+    a.mark(`${label}-trace`);
+    await traceIcon(a, label);
+    await a.set({ phase: 'draft' });
+    await a.wait(650);
+    if (label === 'center') {
+      await a.move('center-grip');
+      await a.click();
+    }
+    a.mark(`${label}-measure`);
+    await a.set({ phase: 'measure' });
+    if (label === 'center') await a.wait(650);
+    if (label === 'center') {
+      await dragPlay(a);
+    } else {
+      await resizeWarningPart(a, 'stem', 0, 1);
+      await a.wait(350);
+      await resizeWarningPart(a, 'dot', 0, 1);
+    }
+    a.mark(`${label}-adjusted`);
+    await a.set({ phase: 'adjusted', adjustment: 1, dotAdjustment: 1 });
+  };
+}
+
+export const centerStudy = study(360, 'center');
+export const warningStudy = study(6200, 'warning');
+export const soloWarningStudy = study(360, 'warning');
+
+// Measure the tile's native drawing width so resizing the diagram leaves its
+// surrounding text at 1:1, including when the grid stacks on narrow screens.
+export function DrawingStage({
+  className,
+  script,
+  initialScene = initial,
+  play = 'once',
+  cursorTarget,
+  children,
+}: {
+  className: string;
+  script?: (a: Act<Scene>) => Promise<void>;
+  initialScene?: Scene;
+  play?: 'once' | 'loop';
+  cursorTarget?: string;
+  children: (scene: Scene) => ReactNode;
+}) {
+  const slot = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(288);
+
+  useLayoutEffect(() => {
+    const element = slot.current!;
+    const measure = () => setWidth(Math.max(1, element.clientWidth));
+    const observer = new ResizeObserver(measure);
+    measure();
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={slot}
+      className={cn('optical-picture h-65 w-full', className)}
+      aria-hidden="true"
+    >
+      <ThemedStage
+        width={width}
+        height={260}
+        initial={initialScene}
+        poster={poster}
+        script={script}
+        play={play}
+        cursor={
+          script
+            ? { at: cursorTarget ?? { x: width - 30, y: 230 }, idle: 650 }
+            : undefined
+        }
+        tokens={{
+          '--ss-font': 'var(--font-sans)',
+          '--ss-mono': 'var(--font-mono)',
+        }}
+      >
+        {children}
+      </ThemedStage>
+    </div>
+  );
+}
+
+function Drawing({
+  scene,
+  className,
+  children,
+}: {
+  scene: Scene;
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div
+      className={cn(
+        'optical-drawing grid h-full place-items-center',
+        className,
+      )}
+      data-phase={scene.phase}
+    >
+      {children}
+    </div>
+  );
+}
+
+function MeasurementLabel({
+  x,
+  y,
+  value,
+  changing = false,
+  balance,
+}: {
+  x: number;
+  y: number;
+  value: number;
+  changing?: boolean;
+  balance?: 'balanced' | 'unbalanced' | 'fixed';
+}) {
+  return (
+    <g className="font-mono text-[1.32px] tabular-nums" textAnchor="middle">
+      <rect
+        fill="var(--optical-paper, none)"
+        x={x - 3.05}
+        y={y - 1.4}
+        width="6.1"
+        height="2"
+        rx=".3"
+      />
+      <text
+        x={x}
+        y={y}
+        className={cn(
+          'fill-(--optical-accent) transition-[fill,font-weight] duration-140 ease-[ease]',
+          changing && 'font-bold',
+          changing && !balance && 'fill-blue-800 dark:fill-blue-200',
+          balance === 'unbalanced' && 'fill-red-800 dark:fill-red-300',
+          balance === 'balanced' && 'fill-green-800 dark:fill-green-300',
+          balance === 'fixed' && 'fill-neutral-600 dark:fill-neutral-400',
+        )}
+      >
+        {value.toFixed(1)} px
+      </text>
+    </g>
+  );
+}
+
+export function PlayDrawing({ scene }: { scene: Scene }) {
+  const grid = useId();
+  const leftGap = 3 + scene.adjustment;
+  const rightGap = 3 - scene.adjustment;
+  const rightEdge = 16 - rightGap;
+  const moving = scene.phase === 'drag';
+  return (
+    <Drawing scene={scene}>
+      <svg
+        className="optical-play-art h-full w-[min(100%,25rem)]"
+        viewBox="6.5 0 21 22"
+        fill="none"
+      >
+        <defs>
+          <pattern id={grid} width="1" height="1" patternUnits="userSpaceOnUse">
+            <path
+              d="M0 1V0h1"
+              className="stroke-current/25"
+              strokeWidth=".09"
+            />
+          </pattern>
+        </defs>
+        <rect
+          data-target="center-grid"
+          x="9"
+          y="2"
+          width="16"
+          height="16"
+          fill={`url(#${grid})`}
+          className="stroke-current/25"
+          strokeWidth=".09"
+        />
+        <path
+          d="M17 1v18M8 10h18"
+          className="stroke-(--optical-accent)"
+          strokeWidth="1.25"
+          vectorEffect="non-scaling-stroke"
+          strokeDasharray="3 2"
+        />
+        <g transform="translate(9 2)">
+          <path
+            d={playContour}
+            transform="translate(-1 0)"
+            className="optical-ghost"
+          />
+          <g
+            className="optical-play-mark"
+            data-target="center-icon"
+            data-cursor={scene.phase === 'trace' ? 'pointer' : 'open'}
+            data-lifted={scene.lifted || undefined}
+            style={{
+              transform: `translate(${scene.adjustment - 1}px, ${scene.liftY}px)`,
+            }}
+          >
+            <g className="optical-play-lift">
+              <path
+                d={playContour}
+                className="optical-trace"
+                data-target="center-trace-outline"
+                pathLength="1"
+                style={{ strokeDashoffset: traceOffset(scene.trace) }}
+              />
+              <IconPlay className="optical-ink" />
+              <circle data-target="center-grip" cx="13.6" cy="8" r=".01" />
+            </g>
+          </g>
+          <g className="optical-guide">
+            <path
+              d={`M0 16v2M${leftGap} 16v2M${rightEdge} 16v2M16 16v2M0 17H${leftGap}M${rightEdge} 17H16`}
+            />
+            <MeasurementLabel
+              x={leftGap / 2}
+              y={19.1}
+              value={leftGap}
+              changing={moving}
+            />
+            <MeasurementLabel
+              x={16 - rightGap / 2}
+              y={19.1}
+              value={rightGap}
+              changing={moving}
+            />
+            <path className="optical-after" d="M8 .5h1.5m-.6-.6.6.6-.6.6" />
+          </g>
+        </g>
+      </svg>
+    </Drawing>
+  );
+}
+
+function WarningBody() {
+  const mask = useId();
+  return (
+    <>
+      <defs>
+        <mask
+          id={mask}
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="16"
+          height="16"
+        >
+          <rect width="16" height="16" fill="white" />
+          <rect x="7.25" y="5" width="1.5" height="4" fill="black" />
+          <rect x="7" y="10" width="2" height="2" fill="black" />
+        </mask>
+      </defs>
+      <g mask={`url(#${mask})`}>
+        <IconWarning />
+      </g>
+    </>
+  );
+}
+
+const warningStemTop = {
+  x: 8,
+  y: 5.75,
+  draftRadius: 0.5,
+  adjustedRadius: 0.75,
+};
+
+function WarningStem({ radius }: { radius: number }) {
+  const { x, y } = warningStemTop;
+  const left = x - radius;
+  const right = x + radius;
+  // The cap follows the top half of the measurement ring.
+  const contour = [
+    `M${right} ${y} L8.5 8.5`,
+    'A.505 .505 0 0 1 8 8.978 A.505 .505 0 0 1 7.5 8.5',
+    `L${left} ${y} A${radius} ${radius} 0 0 1 ${right} ${y} Z`,
+  ].join(' ');
+  return (
+    <path
+      className="optical-warning-stem"
+      d={contour}
+      style={{ d: `path("${contour}")` }}
+      fill="currentColor"
+    />
+  );
+}
+
+export function WarningDrawing({
+  scene,
+  showBalance = false,
+}: {
+  scene: Scene;
+  showBalance?: boolean;
+}) {
+  const grid = useId();
+  const stemRadius =
+    warningStemTop.draftRadius +
+    scene.adjustment *
+      (warningStemTop.adjustedRadius - warningStemTop.draftRadius);
+  const dotWidth = 1 + scene.dotAdjustment;
+  const dotLeft = 8 - dotWidth / 2;
+  const dotRight = 8 + dotWidth / 2;
+  const stemMoving = scene.phase === 'resize' && scene.adjustment < 1;
+  const dotMoving = scene.phase === 'resize-dot';
+  return (
+    <Drawing
+      scene={scene}
+      className="px-(--optical-pad) [--optical-ink-opacity:0.45]"
+    >
+      {/* Center the 16px grid at x=11, with room on the right for its measurements. */}
+      <svg
+        className="h-full w-[min(100%,19.5rem)]"
+        viewBox="-5 0 32 21"
+        fill="none"
+      >
+        <defs>
+          <pattern id={grid} width="1" height="1" patternUnits="userSpaceOnUse">
+            <path
+              d="M0 1V0h1"
+              className="stroke-current/25"
+              strokeWidth=".09"
+            />
+          </pattern>
+        </defs>
+        <g transform="translate(3 1)">
+          <rect
+            data-target="warning-grid"
+            width="16"
+            height="16"
+            fill={`url(#${grid})`}
+            className="stroke-current/25"
+            strokeWidth=".09"
+          />
+          <path
+            d={warningContour}
+            className="optical-trace"
+            data-target="warning-trace-outline"
+            pathLength="1"
+            style={{ strokeDashoffset: traceOffset(scene.trace) }}
+          />
+          <path
+            d={warningStemTrace}
+            className="optical-trace"
+            data-target="warning-trace-stem"
+            pathLength="1"
+            style={{ strokeDashoffset: traceOffset(scene.trace, 1) }}
+          />
+          <path
+            d={warningDotTrace}
+            className="optical-trace"
+            data-target="warning-trace-dot"
+            pathLength="1"
+            style={{ strokeDashoffset: traceOffset(scene.trace, 2) }}
+          />
+          <g
+            className="optical-ink"
+            data-target="warning-icon"
+            data-cursor={scene.phase === 'trace' ? 'pointer' : 'hand'}
+          >
+            <WarningBody />
+            <WarningStem radius={stemRadius} />
+          </g>
+          <g className="optical-guide" strokeDasharray="4 2.5">
+            <path
+              d={`M${dotLeft} 11v7M${dotRight} 11v7M${8 + stemRadius} 5.75H17.5M8.5 8.5h9`}
+            />
+          </g>
+          <circle
+            className="optical-warning-ring"
+            cx={warningStemTop.x}
+            cy={warningStemTop.y}
+            r={stemRadius}
+          />
+          <circle className="optical-warning-ring" cx="8" cy="8.5" r=".5" />
+          <rect
+            className="optical-resize-handle"
+            data-target="warning-resize"
+            data-cursor="resize-ew"
+            x={8 + stemRadius - 0.3}
+            y="5.45"
+            width=".6"
+            height=".6"
+          />
+          <g
+            className="origin-[8px_11px]"
+            style={{ transform: `scale(${dotWidth / 2})` }}
+          >
+            <circle
+              cx="8"
+              cy="11"
+              r="1"
+              className="optical-ink"
+              fill="currentColor"
+            />
+            <circle className="optical-warning-ring" cx="8" cy="11" r="1" />
+          </g>
+          <rect
+            className="optical-resize-handle"
+            data-target="warning-dot-resize"
+            data-cursor="resize-ew"
+            x={dotRight - 0.3}
+            y="10.7"
+            width=".6"
+            height=".6"
+          />
+          <g className="optical-guide">
+            <path
+              d={`M${dotLeft} 17v1M${dotRight} 17v1M${dotLeft} 17.5H${dotRight}`}
+            />
+            <MeasurementLabel
+              x={8}
+              y={19.1}
+              value={dotWidth}
+              changing={dotMoving}
+              balance={
+                showBalance
+                  ? scene.dotAdjustment === 1
+                    ? 'balanced'
+                    : 'unbalanced'
+                  : undefined
+              }
+            />
+            <MeasurementLabel
+              x={20.2}
+              y={6.15}
+              value={stemRadius * 2}
+              changing={stemMoving}
+              balance={
+                showBalance
+                  ? scene.adjustment === 1
+                    ? 'balanced'
+                    : 'unbalanced'
+                  : undefined
+              }
+            />
+            <MeasurementLabel
+              x={20.2}
+              y={8.9}
+              value={1}
+              balance={showBalance ? 'fixed' : undefined}
+            />
+          </g>
+          <rect
+            data-target="warning-rest"
+            x="22"
+            y="17"
+            width="1"
+            height="1"
+            fill="none"
+          />
+        </g>
+      </svg>
+    </Drawing>
+  );
+}

@@ -35,7 +35,11 @@ export function IconsBrowser() {
     query.trim() || categoryReadiness.status === 'loading' ? 'all' : category;
   const [showFilled, setShowFilled] = useState(true);
   const [previewSize, setPreviewSize] = useState(32);
-  const [inspectorDocked, setInspectorDocked] = useState(false);
+  const [inspectorDocked, setInspectorDocked] = usePreference<boolean>(
+    'fyicons-inspector-docked-v1',
+    false,
+    (value): value is boolean => typeof value === 'boolean',
+  );
   const gridAnchor = useRef<{ element: HTMLElement; top: number } | null>(null);
   // Retain the legacy storage key so existing saved choices remain selected.
   const [selectedIds, setSelectedIds] = usePreference<string[]>(
@@ -216,11 +220,7 @@ export function IconsBrowser() {
               </p>
             )}
             <h1 className="sr-only">Icons</h1>
-            <div className="icon-browser-tools sticky top-(--site-header-height) z-20 -mx-1 flex items-center gap-2 px-1 py-4 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:-bottom-5 before:-z-10 before:bg-linear-to-b before:from-canvas before:from-65% before:to-transparent">
-              <CategoryMenu
-                value={activeCategory}
-                onValueChange={setCategory}
-              />
+            <div className="icon-browser-tools [container-type:scroll-state] sticky top-(--site-header-height) z-20 -mx-1 flex items-center gap-2 bg-canvas px-1 py-4 [container-name:icon-toolbar] before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:-z-10 before:h-5 before:bg-linear-to-b before:from-canvas before:to-transparent before:opacity-0 [@container_icon-toolbar_scroll-state(stuck:top)]:before:opacity-100">
               <div className="min-w-0 flex-1">
                 <IconSearch
                   value={query}
@@ -228,6 +228,10 @@ export function IconsBrowser() {
                   inputRef={search}
                 />
               </div>
+              <CategoryMenu
+                value={activeCategory}
+                onValueChange={setCategory}
+              />
               <div className="shrink-0 lg:hidden">
                 <Popover.Root>
                   <Popover.Trigger
@@ -282,10 +286,7 @@ export function IconsBrowser() {
               )}
             </div>
             <div
-              className={cn(
-                'icon-grid group/grid grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] gap-2 md:grid-cols-[repeat(auto-fill,minmax(128px,1fr))] [&.large]:grid-cols-[repeat(auto-fill,minmax(156px,1fr))]',
-                previewSize > 40 && 'large',
-              )}
+              className="icon-grid grid grid-cols-[repeat(auto-fill,minmax(min(100%,var(--tile-min-size)),1fr))] gap-2 [--tile-min-size:max(4rem,calc(var(--preview-size)+1rem))] md:[--tile-min-size:clamp(4rem,calc(var(--preview-size)*4),10rem)]"
               style={
                 {
                   '--preview-size': `${previewSize}px`,
