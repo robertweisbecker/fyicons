@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Icon library moved | FYIcons</title>
+    <meta
+      name="description"
+      content="The FYIcons library has moved to /icons/."
+    />
+    <link rel="canonical" href="../icons/" />
+    <script>
+      // Keep saved filters and icon links, including on project-subpath deployments.
+      window.location.replace(
+        window.location.pathname.replace(
+          /\/library(?:\/index\.html)?\/?$/,
+          '/icons/',
+        ) +
+          window.location.search +
+          window.location.hash,
+      );
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>The icon library has moved</h1>
+      <p><a href="../icons/">Browse FYIcons</a></p>
+    </main>
+  </body>
+</html>

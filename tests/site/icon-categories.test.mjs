@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import {
   parseIconCategories,
   categorizeIcons,
@@ -156,4 +157,43 @@ test('invalid rules and legacy assignment maps are rejected', () => {
     { categories: [files], icons: { anchor: ['files'] } },
   ])
     assert.throws(() => parseIconCategories(value), JSON.stringify(value));
+});
+
+test('the current category rules preserve renamed icon families and exact-name memberships', async () => {
+  const config = parseIconCategories(
+    JSON.parse(
+      await readFile(
+        new URL('../../apps/site/public/icon-categories.json', import.meta.url),
+        'utf8',
+      ),
+    ),
+  );
+  const expected = {
+    bucket: ['design'],
+    swatches: ['design'],
+    'swatches-simple': ['design'],
+    edit: ['design'],
+    'edit-solid': ['design'],
+    'text-markup': ['code'],
+    'line-wrap': ['arrows', 'layout-interface'],
+    'rich-text': ['files'],
+    'square-command': ['shapes-symbols', 'system'],
+    plugs: ['devices'],
+    'plugs-plugged': ['devices'],
+    'plugs-unplug': ['devices'],
+    'check-thick-xs': ['shapes-symbols', 'status-feedback'],
+    'check-thick-sm': ['shapes-symbols', 'status-feedback'],
+    'letter-m': ['code'],
+    'letter-r': ['code'],
+    'letter-a': ['code'],
+    'folder-tree': ['code', 'files'],
+    'folder-tree-fill': ['code', 'files'],
+    'line-overflow': ['layout-interface'],
+  };
+  const { icons } = categorizeIcons(
+    Object.keys(expected).map((name) => ({ name })),
+    config,
+  );
+  for (const icon of icons)
+    assert.deepEqual(icon.categories, expected[icon.name], icon.name);
 });
