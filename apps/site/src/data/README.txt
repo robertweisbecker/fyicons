@@ -33,7 +33,10 @@ See https://icons.bob.fyi/docs/styling/ for examples.
 ## Get more icons
 
 Open https://icons.bob.fyi/icons/.
-Select an icon, then use Copy SVG to copy its SVG code.
-Use Download in the homepage's Installation section to download all icons.
-On a desktop screen, select icon checkboxes, open Selected, then select Download.
+Select an icon, then use Copy SVG to copy its SVG code or Download to save its SVG file.
+Right-click an icon in the grid, or long-press it on mobile, to open its context menu.
+The menu shows the icon's name and offers Copy name, Copy SVG, and Download.
+Use Download in the homepage's Quick start section to download all icons.
+On a desktop screen, select icon checkboxes, open Saved, then select Download all.
+Each saved row also has an individual download button.
 The preview size does not change the SVG files.

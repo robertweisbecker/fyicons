@@ -1,13 +1,20 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type KeyboardEvent,
+} from 'react';
 import { ScrollArea } from '@base-ui/react/scroll-area';
 import { Icon } from '@/components/Icon';
 import { IconButton } from '@/components/IconButton';
 import { buttonVariants } from '@/components/ui/button';
 import { TooltipGroup } from '@/components/ui/tooltip';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 import { iconGroups } from './iconGroups';
 
-export function IconGroupCarousel() {
+export function IconGroupCarousel({ heading }: { heading: ReactNode }) {
   const track = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: true, end: false });
@@ -67,41 +74,12 @@ export function IconGroupCarousel() {
   }
 
   return (
-    <section aria-labelledby="icon-groups-heading">
-      <div className="mb-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
-        <h3
-          id="icon-groups-heading"
-          className="col-span-3 text-center text-2xl font-medium tracking-tight sm:col-span-1 sm:col-start-2"
-        >
-          Categories galore
-        </h3>
-        <div className="col-start-3 flex justify-end gap-1">
-          <TooltipGroup>
-            <IconButton
-              icon="arrow-left"
-              label="Previous icon group"
-              className="rounded-full"
-              disabled={edges.start}
-              onClick={(event) =>
-                scrollToGroup('previous', event.detail ? 'smooth' : 'instant')
-              }
-            />
-            <IconButton
-              icon="arrow-right"
-              label="Next icon group"
-              className="rounded-full"
-              disabled={edges.end}
-              onClick={(event) =>
-                scrollToGroup('next', event.detail ? 'smooth' : 'instant')
-              }
-            />
-          </TooltipGroup>
-        </div>
-      </div>
-      <ScrollArea.Root className="group/carousel-scroll">
+    <>
+      <div className="mb-6">{heading}</div>
+      <ScrollArea.Root className="icon-group-carousel group/carousel-scroll">
         <ScrollArea.Viewport
           ref={track}
-          className="relative scroll-fade-x snap-x snap-mandatory overscroll-x-contain scroll-fade-12 focus-visible:-outline-offset-2"
+          className="relative snap-x snap-mandatory scroll-px-(--carousel-inset) overscroll-x-contain focus-visible:-outline-offset-2"
           role="region"
           aria-roledescription="carousel"
           aria-label="Icon groups"
@@ -110,22 +88,23 @@ export function IconGroupCarousel() {
         >
           <ScrollArea.Content
             ref={content}
-            className="relative flex gap-4 pb-6 sm:gap-6"
+            className="relative flex gap-4 px-(--carousel-inset) pb-6 sm:gap-6"
           >
             {iconGroups.map((group, index) => (
               <figure
                 key={group.id}
-                className="m-0 flex h-108 w-72 max-w-full shrink-0 snap-start scroll-ms-8 flex-col gap-2 rounded-2xl bg-inset p-4 sm:w-80"
+                className="m-0 flex w-72 max-w-[calc(100cqw-2rem)] shrink-0 snap-start flex-col gap-4 sm:w-80"
                 data-figma-id={group.id}
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${group.name}, ${index + 1} of ${iconGroups.length}`}
               >
-                <figcaption className="flex gap-2 text-sm leading-5">
-                  <span className="font-medium">{group.name}</span>{' '}
-                  <span className="text-muted">{group.caption}</span>
-                </figcaption>
-                <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-xl bg-surface px-3 py-4 text-muted shadow-md ring ring-border">
+                <div
+                  className={cn(
+                    'flex aspect-4/5 w-full flex-col items-center justify-center rounded-3xl',
+                    group.colorClassName,
+                  )}
+                >
                   {group.rows.map((row, rowIndex) => (
                     <div
                       key={rowIndex}
@@ -134,7 +113,7 @@ export function IconGroupCarousel() {
                       {row.map((name, iconIndex) => (
                         <span
                           key={`${name}-${iconIndex}`}
-                          className="grid h-10 w-10 min-w-8 shrink place-items-center"
+                          className="grid size-11 min-w-8 shrink place-items-center sm:size-12"
                         >
                           <Icon name={name} size={24} title={name} />
                         </span>
@@ -142,6 +121,10 @@ export function IconGroupCarousel() {
                     </div>
                   ))}
                 </div>
+                <figcaption className="px-3 text-lg leading-snug font-medium text-muted">
+                  <span className="font-semibold text-ink">{group.name}</span>{' '}
+                  {group.caption}
+                </figcaption>
               </figure>
             ))}
           </ScrollArea.Content>
@@ -149,11 +132,35 @@ export function IconGroupCarousel() {
         <ScrollArea.Scrollbar
           orientation="horizontal"
           keepMounted
-          className="flex h-4 items-center px-1 opacity-100 transition-opacity duration-150 ease-out select-none group-has-[:focus-visible]/carousel-scroll:pointer-events-auto group-has-[:focus-visible]/carousel-scroll:opacity-100 data-hovering:pointer-events-auto data-hovering:opacity-100 data-scrolling:pointer-events-auto data-scrolling:opacity-100 data-scrolling:duration-0 motion-reduce:transition-none md:pointer-events-none md:opacity-0"
+          className="mx-(--carousel-inset) flex h-4 items-center opacity-100 transition-opacity duration-150 ease-out select-none group-has-[:focus-visible]/carousel-scroll:pointer-events-auto group-has-[:focus-visible]/carousel-scroll:opacity-100 data-hovering:pointer-events-auto data-hovering:opacity-100 data-scrolling:pointer-events-auto data-scrolling:opacity-100 data-scrolling:duration-0 motion-reduce:transition-none md:pointer-events-none md:opacity-0"
         >
           <ScrollArea.Thumb className="h-1.5 rounded-full bg-neutral-400/70 hover:bg-neutral-400 active:bg-neutral-400" />
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
+      <div className="mt-4 flex justify-end gap-2">
+        <TooltipGroup>
+          <IconButton
+            icon="chevron-left"
+            label="Previous icon group"
+            variant="neutral"
+            className="size-9 rounded-full pointer-coarse:size-11"
+            disabled={edges.start}
+            onClick={(event) =>
+              scrollToGroup('previous', event.detail ? 'smooth' : 'instant')
+            }
+          />
+          <IconButton
+            icon="chevron-right"
+            label="Next icon group"
+            variant="neutral"
+            className="size-9 rounded-full pointer-coarse:size-11"
+            disabled={edges.end}
+            onClick={(event) =>
+              scrollToGroup('next', event.detail ? 'smooth' : 'instant')
+            }
+          />
+        </TooltipGroup>
+      </div>
       <div className="mt-8 flex justify-center">
         <Link
           className={buttonVariants({ variant: 'default', size: 'lg' })}
@@ -163,6 +170,6 @@ export function IconGroupCarousel() {
           <Icon name="arrow-right" size={20} />
         </Link>
       </div>
-    </section>
+    </>
   );
 }

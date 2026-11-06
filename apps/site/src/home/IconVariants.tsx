@@ -86,38 +86,30 @@ const variants = [
 
 export function IconVariants() {
   return (
-    <section aria-labelledby="icon-variants-heading" className="space-y-6">
-      <h3
-        id="icon-variants-heading"
-        className="text-2xl font-medium tracking-tight"
-      >
-        More than just outlines
-      </h3>
-      <div className="grid min-w-0 grid-cols-3 gap-2 sm:gap-4">
-        {variants.map(({ label, icons }) => (
-          <figure key={label} className="min-w-0 space-y-3">
-            <ul
-              aria-label={`${label} icons`}
-              role="list"
-              className="grid aspect-square min-h-26 w-full auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
-            >
-              {icons.map((name) => (
-                <li
-                  key={name}
-                  className="flex min-w-0 items-center justify-center"
-                >
-                  <Icon
-                    name={name}
-                    className="size-4 sm:size-6"
-                    aria-label={name.replaceAll('-', ' ')}
-                  />
-                </li>
-              ))}
-            </ul>
-            <figcaption className="text-sm text-muted">{label}</figcaption>
-          </figure>
-        ))}
-      </div>
-    </section>
+    <div className="grid min-w-0 grid-cols-3 gap-2 sm:gap-4">
+      {variants.map(({ label, icons }) => (
+        <figure key={label} className="min-w-0 space-y-3">
+          <ul
+            aria-label={`${label} icons`}
+            role="list"
+            className="grid aspect-square min-h-26 w-full auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
+          >
+            {icons.map((name) => (
+              <li
+                key={name}
+                className="flex min-w-0 items-center justify-center"
+              >
+                <Icon
+                  name={name}
+                  className="size-4 sm:size-6"
+                  aria-label={name.replaceAll('-', ' ')}
+                />
+              </li>
+            ))}
+          </ul>
+          <figcaption className="text-sm text-muted">{label}</figcaption>
+        </figure>
+      ))}
+    </div>
   );
 }

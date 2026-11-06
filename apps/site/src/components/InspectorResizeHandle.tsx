@@ -11,6 +11,7 @@ type Props = {
   label: string;
   onValueChange: (value: number) => void;
   onResizingChange: (resizing: boolean) => void;
+  resizing: boolean;
   className?: string;
 };
 
@@ -24,6 +25,7 @@ export function InspectorResizeHandle({
   label,
   onValueChange,
   onResizingChange,
+  resizing,
   className,
 }: Props) {
   const drag = useRef<{ pointerId: number; x: number; width: number } | null>(
@@ -39,6 +41,7 @@ export function InspectorResizeHandle({
   return (
     <div
       data-slot="inspector-resize-handle"
+      data-resizing={resizing || undefined}
       data-base-ui-swipe-ignore
       role="separator"
       tabIndex={0}
@@ -51,7 +54,7 @@ export function InspectorResizeHandle({
       aria-valuetext={`${Math.round(value)} pixels`}
       title={`${label}. Drag or use arrow keys. Double-click to reset.`}
       className={cn(
-        'absolute inset-y-0 left-0 z-10 flex w-3 -translate-x-1/2 cursor-ew-resize touch-none items-center justify-center before:absolute before:inset-y-0 before:w-px before:bg-line hover:before:bg-control-accent focus-visible:outline-focus focus-visible:before:bg-control-accent pointer-coarse:w-11',
+        'absolute inset-y-0 left-0 z-10 flex w-3 -translate-x-1/2 cursor-ew-resize touch-none items-center justify-center before:absolute before:inset-y-4 before:w-px before:bg-control-accent before:opacity-0 before:transition-opacity before:duration-150 before:ease-out hover:before:opacity-100 focus-visible:outline-focus focus-visible:before:opacity-100 data-resizing:before:opacity-100 motion-reduce:before:transition-none pointer-coarse:w-11',
         className,
       )}
       onPointerDown={(event) => {
@@ -89,7 +92,7 @@ export function InspectorResizeHandle({
     >
       <span
         aria-hidden
-        className="relative flex h-6 w-4 items-center justify-center rounded-sm border border-border bg-surface text-muted"
+        className="relative flex h-6 w-4 items-center justify-center rounded-sm bg-surface text-muted outline outline-offset-(--surface-outline-offset) outline-ink/20"
       >
         <Icon name="grip-v" />
       </span>

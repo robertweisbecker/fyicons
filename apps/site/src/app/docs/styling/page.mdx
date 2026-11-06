@@ -20,41 +20,74 @@ The Figma export process is automated and flattens most icons to filled paths wi
 
 SVG exports and React components include two classes on the root SVG:
 
-- `fy-icon` targets every FYIcons icon.
-- `fy-{icon-name}` targets an icon by its catalog name, such as `fy-plus`.
+- `.fy-icon` targets every FYIcons icon.
+- `.fy-{icon-name}` targets an icon by its catalog name, such as `fy-plus`.
 
-The name includes any variant suffix. These are styling hooks; they do not apply styles on their own. Use them with your existing CSS:
+These are styling hooks; they do not apply styles on their own. Classes inside an SVG file loaded through `<img>` or that originate from CSS, like a mask or `background-image`, can't be selected by classes, so use inline SVG in your markup when you want these styling hooks.
+
+### Global styling
+
+Use `.fy-icon` for global styling in your root stylesheet. For example, you may want to make all icons match surrounding typography by default:
 
 ```css
-/* Every inline FYIcons icon in the toolbar. */
-.toolbar .fy-icon {
+/* Default all icons to inherit font-size. */
+.fy-icon {
   width: 1em;
   height: 1em;
   vertical-align: -0.125em;
 }
+```
 
-/* Only the Plus icon. */
-.toolbar .fy-plus {
-  color: #16a34a;
+### Targeted styling
+
+Use the `.fy-icon` class with a parent selector to style multiple icons in a group:
+
+```css
+.toolbar .fy-icon {
+  color: var(--color-inverse);
 }
 ```
 
-Classes inside an SVG file loaded through `<img>` cannot be selected by the page's CSS. Use inline SVG when you want these styling hooks.
-
-## Color with currentColor
-
-The visible paths use `currentColor`, which takes its value from the CSS `color` property. Set `color` on a parent to make its inline icons follow the text:
+Use `.fy-{icon-name}` for targeted styling on a single icon:
 
 ```css
-.toolbar {
+.callout {
+  .fy-icon {
+    width: 1.5em;
+    height: 1lh;
+    align-self: baseline;
+  }
+  .fy-circle-check-fill {
+    color: #16a34a;
+  }
+}
+```
+
+For additional specificity, you might chain the selectors, even if you find the thought repellent:
+
+```css
+.fy-circle-check-fill {
+  color: var(--color-green);
+}
+.fy-icon.fy-circle-check-fill {
+  color: var(--color-greener);
+}
+```
+
+## Color inheritance
+
+SVG paths use `currentColor` for fills, so they inherit the surrounding text's CSS `color` property by default. Simply set `color` on a parent to make its inline icons follow suit:
+
+```css
+.btn-toolbar {
   color: #2563eb;
 }
 ```
 
-Put the SVG markup directly in the page. For example, this Plus icon inherits the button's text color:
+Drop the SVG into your button's markup as-is, and it will take on the button's text color without any extra modification:
 
 ```html
-<button class="toolbar" type="button" aria-label="Add item">
+<button class="btn-toolbar" type="button" aria-label="Add item">
   <svg
     class="fy-icon fy-plus"
     xmlns="http://www.w3.org/2000/svg"
@@ -72,13 +105,15 @@ Put the SVG markup directly in the page. For example, this Plus icon inherits th
 </button>
 ```
 
-Set `color` to recolor an icon; you do not need to replace its path fills or strokes. An SVG loaded through an `<img>` element does not inherit the surrounding page's text color.
+Set `color` on the SVG directly to recolor an icon separately from surrounding text; you do not need to replace its path fills or stroke colors.
+
+An SVG loaded via `<img>` won't inherit text color - `currentColor` will be black by default. In this case, you'll want to give your SVG a fill.
 
 ## Size
 
-Icons start at 16×16px. Set CSS `width` and `height` to scale them, or use `1em` to match the surrounding text size. Keep the `viewBox="0 0 16 16"` so the artwork scales with the element.
+Icons default to 16×16px. Set CSS `width` and `height` to scale them, or use `1em` to match the surrounding text size. Keep the `viewBox="0 0 16 16"` so the artwork scales properly.
 
-Many icons use filled paths. Changing `stroke-width` does not change their visual weight.
+Many icons use filled paths, so changing `stroke-width` will not change their visual weight. If you _really_ want to increase an icon's weight, you can set both `stroke` and `stroke-width` together, but I make no promises that it will look good. Conversely, there's no way to make an icon lighter in weight, since strokes will paint outside the path.
 
 <Callout aria-label="React">
 
