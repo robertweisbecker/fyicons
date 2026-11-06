@@ -75,8 +75,8 @@ export function CodeApp() {
           />
           <DemoToggle
             label="Wrap lines"
-            icon="arrow-wrap"
-            activeIcon="overflow"
+            icon="line-wrap"
+            activeIcon="line-overflow"
             size="icon-sm"
           />
           <DemoIconButton
@@ -138,7 +138,7 @@ export function CodeApp() {
                 setOpenFolders(allOpen ? [] : fileFolders(reviewFiles))
               }
             >
-              <Icon name={allOpen ? 'folder-view-fill' : 'folder-view'} />
+              <Icon name={allOpen ? 'folder-tree-fill' : 'folder-tree'} />
             </Button>
           </div>
           <nav

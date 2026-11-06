@@ -1,0 +1,106 @@
+/* Stageshow resets its stage to black. Let the drawing inherit its diagram color. */
+.optical-picture .ss-stage {
+  color: inherit;
+}
+
+/* Keep the reveals together: the drawing, measurements, and cursor follow
+   the same phases on playback, replay, and the reduced-motion poster. */
+.optical-drawing {
+  &[data-phase='adjusted'] ~ .ss-cursor {
+    opacity: 0;
+  }
+
+  & .optical-play-art {
+    transition: transform 800ms cubic-bezier(0.45, 0, 0.2, 1);
+  }
+
+  &:is([data-phase='grid'], [data-phase='trace']) .optical-play-art {
+    transform: scale(0.88);
+  }
+
+  & .optical-play-lift {
+    transform-origin: 13.6px 8px;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 220ms ease;
+  }
+
+  & [data-lifted] .optical-play-lift {
+    transform: scale(1.06) rotate(-2deg);
+    filter: drop-shadow(
+      0 0.65px 0.4px color-mix(in srgb, currentColor 32%, transparent)
+    );
+  }
+
+  &
+    :is(
+      .optical-trace,
+      .optical-ink,
+      .optical-ghost,
+      .optical-guide,
+      .optical-after,
+      .optical-warning-ring,
+      .optical-resize-handle
+    ) {
+    opacity: 0;
+    transition: opacity 260ms ease;
+  }
+
+  & .optical-trace {
+    stroke: var(--optical-accent);
+    stroke-width: 0.17;
+    stroke-dasharray: 1 1.1;
+  }
+
+  &[data-phase='trace'] .optical-trace,
+  &[data-phase='adjusted'] :is(.optical-ghost, .optical-after) {
+    opacity: 1;
+  }
+
+  &:not([data-phase='grid'], [data-phase='trace']) .optical-ink {
+    opacity: var(--optical-ink-opacity, 1);
+  }
+
+  &:is(
+      [data-phase='measure'],
+      [data-phase='drag'],
+      [data-phase='resize'],
+      [data-phase='resize-dot'],
+      [data-phase='adjusted']
+    )
+    .optical-guide,
+  &:is(
+      [data-phase='measure'],
+      [data-phase='resize'],
+      [data-phase='resize-dot'],
+      [data-phase='adjusted']
+    )
+    .optical-warning-ring,
+  &:is([data-phase='measure'], [data-phase='resize'], [data-phase='resize-dot'])
+    .optical-resize-handle {
+    opacity: 1;
+  }
+
+  & .optical-warning-ring {
+    stroke: var(--optical-accent);
+    stroke-width: 1.6px;
+    vector-effect: non-scaling-stroke;
+  }
+
+  & .optical-resize-handle {
+    fill: var(--optical-paper, var(--surface));
+    stroke: var(--optical-accent);
+    stroke-width: 0.12;
+    transition-duration: 200ms;
+  }
+
+  & :is(.optical-ghost, .optical-guide path) {
+    stroke: var(--optical-accent);
+    stroke-width: 1.5px;
+    vector-effect: non-scaling-stroke;
+  }
+
+  & .optical-ghost {
+    stroke-dasharray: 4 3;
+  }
+}

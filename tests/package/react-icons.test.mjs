@@ -39,7 +39,7 @@ const svgRootModule = (async () => {
     'data:text/javascript;base64,' + Buffer.from(executable).toString('base64')
   );
 })();
-async function loadComponent(source) {
+async function componentModule(source) {
   const { transformWithOxc } = await import('vite');
   const { code } = await transformWithOxc(source, 'Icon.tsx', {
     jsx: { runtime: 'classic' },
@@ -48,12 +48,147 @@ async function loadComponent(source) {
     .replace('"react"', JSON.stringify(import.meta.resolve('react')))
     .replace('"./base"', JSON.stringify(await svgRootModule));
   return (
-    await import(
-      'data:text/javascript;base64,' +
-        Buffer.from(executable).toString('base64')
-    )
-  ).default;
+    'data:text/javascript;base64,' + Buffer.from(executable).toString('base64')
+  );
 }
+async function loadComponent(source) {
+  return (await import(await componentModule(source))).default;
+}
+
+const clientIcons = (async () => {
+  const { transformWithOxc } = await import('vite');
+  const files = await renderReactIconFiles([
+    {
+      name: 'fixture',
+      componentName: 'IconFixture',
+      svg: '<svg viewBox="0 0 16 16"><path fill="currentColor" d="M1 1h14v14H1Z"/></svg>',
+    },
+  ]);
+  const moduleUrl = (code) =>
+    'data:text/javascript;base64,' + Buffer.from(code).toString('base64');
+  const provider = await transformWithOxc(
+    files.get('packages/fyicons/src/provider.tsx'),
+    'provider.tsx',
+    { jsx: { runtime: 'classic' } },
+  );
+  const providerUrl = moduleUrl(
+    provider.code.replace(
+      '"react"',
+      JSON.stringify(import.meta.resolve('react')),
+    ),
+  );
+  const client = await transformWithOxc(
+    files.get('packages/fyicons/src/client.tsx'),
+    'client.tsx',
+    { jsx: { runtime: 'classic' } },
+  );
+  return import(
+    moduleUrl(
+      client.code
+        .replaceAll('"./provider"', JSON.stringify(providerUrl))
+        .replace(
+          '"./IconFixture"',
+          JSON.stringify(
+            await componentModule(
+              files.get('packages/fyicons/src/IconFixture.tsx'),
+            ),
+          ),
+        ),
+    )
+  );
+})();
+
+test('provider defaults compose across scopes and yield to local icon props', async () => {
+  const { createElement: h } = await import('react');
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { JSDOM } = await import('jsdom');
+  const { FyiProvider, IconFixture } = await clientIcons;
+  const html = renderToStaticMarkup(
+    h(
+      'div',
+      null,
+      h(
+        FyiProvider,
+        {
+          size: 20,
+          color: 'red',
+          className: 'outer',
+          style: { opacity: 0.5, verticalAlign: 'middle' },
+        },
+        h(IconFixture),
+        h(
+          FyiProvider,
+          { size: 24, className: 'inner', style: { opacity: 0.75 } },
+          h(IconFixture),
+          h(IconFixture, {
+            size: 0,
+            width: 32,
+            color: 'blue',
+            className: 'local',
+            style: { opacity: 1 },
+            'aria-label': 'Local icon',
+            id: 'local',
+          }),
+        ),
+        h(IconFixture, { size: undefined, color: undefined }),
+      ),
+      h(IconFixture),
+      h(FyiProvider, { size: '1em', color: 'currentColor' }, h(IconFixture)),
+    ),
+  );
+  const dom = new JSDOM(html);
+  const icons = [...dom.window.document.querySelectorAll('svg')];
+  assert.equal(
+    dom.window.document.querySelector('div').children.length,
+    6,
+    'Providers add no DOM wrappers',
+  );
+  assert.deepEqual(
+    icons.map((icon) => [
+      icon.getAttribute('width'),
+      icon.getAttribute('height'),
+    ]),
+    [
+      ['20', '20'],
+      ['24', '24'],
+      ['32', '0'],
+      ['20', '20'],
+      ['16', '16'],
+      ['1em', '1em'],
+    ],
+  );
+  assert.deepEqual(
+    icons.map((icon) => icon.getAttribute('color')),
+    ['red', 'red', 'blue', 'red', null, 'currentColor'],
+  );
+  assert.deepEqual(
+    icons.map((icon) => icon.getAttribute('class')),
+    [
+      'fy-icon fy-fixture outer',
+      'fy-icon fy-fixture outer inner',
+      'fy-icon fy-fixture outer inner local',
+      'fy-icon fy-fixture outer',
+      'fy-icon fy-fixture',
+      'fy-icon fy-fixture',
+    ],
+  );
+  assert.deepEqual(
+    icons
+      .slice(0, 3)
+      .map((icon) => [icon.style.opacity, icon.style.verticalAlign]),
+    [
+      ['0.5', 'middle'],
+      ['0.75', 'middle'],
+      ['1', 'middle'],
+    ],
+  );
+  assert.equal(icons[2].getAttribute('aria-label'), 'Local icon');
+  assert.equal(icons[2].getAttribute('role'), 'img');
+  assert.equal(icons[2].getAttribute('id'), 'local');
+  for (const icon of icons.filter((_, index) => index !== 2))
+    assert.equal(icon.getAttribute('aria-hidden'), 'true');
+  dom.window.close();
+});
 
 test('every generated component renders with default sizing, accessibility, and classes', async () => {
   const { createElement } = await import('react');

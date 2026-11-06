@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Icon } from './Icon';
 import { IconButton } from './IconButton';
 import { Button, type ButtonProps } from './ui/button';
@@ -14,6 +14,7 @@ export function IconCopyButton({
   size = 'icon-sm',
   showLabel = false,
   className,
+  children,
 }: {
   item: IconRecord;
   text?: string;
@@ -21,6 +22,7 @@ export function IconCopyButton({
   size?: ButtonProps['size'];
   showLabel?: boolean;
   className?: string;
+  children?: ReactNode;
 }) {
   const [copiedText, setCopiedText] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
@@ -61,14 +63,14 @@ export function IconCopyButton({
       <Icon
         name="copy"
         className={cn(
-          'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out',
+          'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',
           copied && 'scale-90 opacity-0',
         )}
       />
       <Icon
         name="copied-fill"
         className={cn(
-          'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out',
+          'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',
           !copied && 'scale-90 opacity-0',
         )}
       />
@@ -81,12 +83,13 @@ export function IconCopyButton({
         variant="neutral"
         size={size}
         className={cn('min-w-0 rounded-full', className)}
+        aria-label={label}
         disabled={pending}
         onClick={handleCopy}
         data-copied={copied || undefined}
       >
         {icon}
-        {copied ? 'Copied' : label}
+        {children ?? label}
       </Button>
     );
 

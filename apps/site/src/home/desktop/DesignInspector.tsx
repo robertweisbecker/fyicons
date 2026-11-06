@@ -132,7 +132,7 @@ export function DesignInspector({
         <div className="flex items-center justify-end gap-0.5">
           <h3 className="sr-only flex items-center gap-2 font-medium">Fill</h3>
           <Glyph
-            name="swatch"
+            name="swatches"
             className="w-4 text-muted @min-[11rem]/inspector:w-6"
           />
           <Glyph
@@ -141,7 +141,7 @@ export function DesignInspector({
           />
         </div>
         <div className="grid grid-cols-[1rem_minmax(0,1fr)_1rem_1rem] items-center gap-0.5 @min-[11rem]/inspector:grid-cols-[1.5rem_minmax(0,1fr)_1.5rem_1.5rem]">
-          <Glyph name="paint-bucket" className="w-full text-muted" />
+          <Glyph name="bucket" className="w-full text-muted" />
           <ToggleGroup
             aria-label="Button fill"
             className="grid min-w-0 grid-cols-4 gap-0"

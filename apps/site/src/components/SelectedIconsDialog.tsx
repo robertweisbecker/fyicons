@@ -1,9 +1,11 @@
 import { useRef, useState, type MouseEvent } from 'react';
 import { Dialog } from '@base-ui/react/dialog';
 import { Icon } from './Icon';
+import { IconButton } from './IconButton';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { getIconDisplayName, type IconRecord } from '@/lib/catalog';
+import { download } from '@/lib/downloads';
 
 export function SelectedIconsDialog({
   icons,
@@ -26,7 +28,7 @@ export function SelectedIconsDialog({
     const row = event.currentTarget.closest('li');
     const next = (
       row?.nextElementSibling ?? row?.previousElementSibling
-    )?.querySelector('button');
+    )?.querySelector<HTMLButtonElement>('[data-remove-icon]');
     (next ?? cancel.current)?.focus();
     onRemove(id);
   }
@@ -34,8 +36,8 @@ export function SelectedIconsDialog({
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger render={<Button variant="text" size="sm" />}>
-        <Icon name="files-tilt" />
-        Selected
+        <Icon name={icons.length > 0 ? 'bookmark-fill' : 'bookmark'} />
+        Saved
         <Badge size="sm">{icons.length}</Badge>
       </Dialog.Trigger>
       <Dialog.Portal>
@@ -99,9 +101,19 @@ export function SelectedIconsDialog({
                         {icon.name}.svg
                       </span>
                     </span>
+                    <IconButton
+                      icon="download-square"
+                      label={`Download ${name}`}
+                      size="icon-sm"
+                      disabled={packing}
+                      onClick={() =>
+                        download(icon.svg, icon.filename, 'image/svg+xml')
+                      }
+                    />
                     <Button
                       variant="ghost"
                       size="icon-sm"
+                      data-remove-icon=""
                       aria-label={`Remove ${name}`}
                       disabled={packing}
                       onClick={(event) => remove(icon.id, event)}

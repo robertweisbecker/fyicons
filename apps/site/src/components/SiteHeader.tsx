@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import IconSearch from 'fyicons/icons/IconSearch';
 import IconSunFill from 'fyicons/icons/IconSunFill';
 import IconMoon from 'fyicons/icons/IconMoon';
+import IconBeaker from 'fyicons/icons/IconBeaker';
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { BrandWordmark, BrandWordmarkMobile } from './BrandWordmark';
 import { GitHubIcon, NpmIcon } from './BrandIcons';
@@ -12,14 +12,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { cn } from '../lib/utils';
-import type { MouseEvent } from 'react';
 import {
   githubHref,
   npmHref,
   siteNavigation,
   isActiveRoute,
 } from '../lib/navigation';
-import { IconKbdCommand, IconKbdCommandSmall } from 'fyicons';
+
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 const iconLinkClassName = cn(
   buttonVariants({ variant: 'ghost', size: 'icon' }),
@@ -34,11 +34,9 @@ const headerNavigation = siteNavigation.filter(
 export function SiteHeader({
   theme,
   toggleTheme,
-  search,
 }: {
   theme: string;
   toggleTheme: () => void;
-  search: (event: MouseEvent<HTMLButtonElement>) => void;
 }) {
   const pathname = usePathname();
   return (
@@ -49,7 +47,7 @@ export function SiteHeader({
     >
       <div
         className={cn(
-          'flex h-14 w-full items-center gap-1 pr-[max(.75rem,env(safe-area-inset-right))] pl-[max(.75rem,env(safe-area-inset-left))] max-[360px]:gap-0.5 max-[360px]:pr-[max(.5rem,env(safe-area-inset-right))] max-[360px]:pl-[max(.5rem,env(safe-area-inset-left))] sm:gap-6 sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pl-[max(1.5rem,env(safe-area-inset-left))]',
+          'flex h-14 w-full items-center gap-0.5 pr-[max(.5rem,env(safe-area-inset-right))] pl-[max(.5rem,env(safe-area-inset-left))] sm:gap-6 sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pl-[max(1.5rem,env(safe-area-inset-left))]',
         )}
       >
         <Link
@@ -60,8 +58,8 @@ export function SiteHeader({
           aria-label="FYIcons home"
           href="/"
         >
-          <BrandWordmark className="hidden min-[480px]:block" />
-          <BrandWordmarkMobile className="min-[480px]:hidden" />
+          <BrandWordmark className="hidden sm:block" />
+          <BrandWordmarkMobile className="sm:hidden" />
           <Badge
             variant="outline"
             size="sm"
@@ -74,23 +72,6 @@ export function SiteHeader({
           className={cn('flex min-w-0 flex-1 items-center justify-end gap-1')}
           aria-label="Main"
         >
-          <Button
-            variant="neutral"
-            aria-label="Search all icons"
-            aria-keyshortcuts="Meta+K Control+K"
-            className="me-2 rounded-full font-normal"
-            onClick={search}
-          >
-            <IconSearch className="-ms-1" />
-            <span className="text-muted">Search</span>
-            <kbd
-              aria-hidden="true"
-              className="ms-3 -me-1 inline-flex items-center gap-0.5 rounded-full bg-none px-1.5 py-px font-normal max-md:hidden"
-            >
-              <IconKbdCommand size={'1em'} />
-              <span>K</span>
-            </kbd>
-          </Button>
           {headerNavigation.map(({ href, label }) => (
             <Link
               key={href}
@@ -106,6 +87,28 @@ export function SiteHeader({
               {label}
             </Link>
           ))}
+          {isDevelopment && (
+            <Tooltip label="Prototypes">
+              <Link
+                href="/prototypes/"
+                aria-label="Prototypes"
+                aria-current={
+                  isActiveRoute(pathname, '/prototypes/') ? 'page' : undefined
+                }
+                className={cn(
+                  buttonVariants({
+                    variant: isActiveRoute(pathname, '/prototypes/')
+                      ? 'neutral'
+                      : 'ghost',
+                  }),
+                  'rounded-full max-sm:size-9 max-sm:p-0',
+                )}
+              >
+                <IconBeaker className="sm:hidden" />
+                <span className="max-sm:hidden">Prototypes</span>
+              </Link>
+            </Tooltip>
+          )}
         </nav>
         <div className={cn('flex shrink-0 items-center gap-1 sm:gap-2')}>
           <TooltipGroup side="bottom">

@@ -2,29 +2,39 @@
 
 import Link from 'next/link';
 import { Icon } from '@/components/Icon';
+import { ShadcnIcon } from '@/components/BrandIcons';
+import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { InstallCommand } from '@/components/InstallCommand';
+import { SearchTrigger } from '@/components/SearchTrigger';
 import { buttonVariants } from '@/components/ui/button';
 import { icons } from '@/lib/catalog';
 import { assetPath } from '@/lib/navigation';
+import { Construction } from './Construction';
 import { DesktopShowcase } from './desktop/DesktopShowcase';
 import { IconGroupCarousel } from './IconGroupCarousel';
 import { IconSpecimen } from './IconSpecimen';
 import { IconVariants } from './IconVariants';
-import { Installation } from './Installation';
 import { OpticalAdjustments } from './OpticalAdjustments';
 import { StatefulIcons } from './StatefulIcons';
 import './Landing.css';
 
+// Landing heading styles live here alongside the page's section composition.
+const sectionHeadingClassName =
+  'text-3xl font-medium tracking-tight sm:text-4xl';
+const featureHeadingClassName = 'text-2xl font-medium tracking-tight';
+const installationHeadingClassName =
+  'flex items-center gap-2 text-lg font-medium tracking-tight';
+
 export default function Landing() {
   return (
     <>
-      <div className="mx-auto space-y-48 pb-16 sm:space-y-64 sm:pb-24 [&>section:first-child]:mb-12 sm:[&>section:first-child]:mb-16">
+      <div className="mx-auto max-w-7xl space-y-48 px-4 pb-16 sm:space-y-64 sm:px-6 sm:pb-24 [&>section:first-child]:mb-12 sm:[&>section:first-child]:mb-16">
         <section
           aria-label="Introduction"
-          className="mx-auto grid max-w-292 grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] items-center gap-18 px-8 pt-18 pb-16 max-[900px]:gap-8 max-[900px]:px-6 max-[900px]:py-14 max-[680px]:max-w-135 max-[680px]:grid-cols-1 max-[680px]:gap-6 max-[680px]:px-2 max-[680px]:pt-8 max-[680px]:pb-12"
+          className="mx-auto grid max-w-135 grid-cols-1 items-center gap-6 px-2 pt-8 pb-12 md:max-w-292 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-8 md:px-6 md:py-14 lg:gap-18 lg:px-8 lg:pt-18 lg:pb-16"
         >
-          <div className="hero-copy pt-13 pb-7 max-[680px]:pt-8 max-[680px]:pb-0">
-            <h1 className="hero-headline text-[clamp(23px,3.3vw,42px)] leading-[1.125] font-medium tracking-[-0.035em] max-[680px]:text-[clamp(23px,7vw,36px)]">
+          <div className="hero-copy pt-8 pb-0 md:pt-13 md:pb-7">
+            <h1 className="hero-headline text-[clamp(23px,7vw,36px)] leading-[1.125] font-medium tracking-[-0.035em] md:text-[clamp(23px,3.3vw,42px)]">
               <span className="hero-headline-line font-normal">
                 Some icons I made{' '}
                 <span className="hero-pen-word">
@@ -44,7 +54,7 @@ export default function Landing() {
               </span>
             </h1>
 
-            <div className="my-10 flex flex-col gap-10 leading-relaxed max-[900px]:mt-7">
+            <div className="mt-7 mb-10 flex flex-col gap-10 leading-relaxed lg:mt-10">
               <div className="flex flex-col gap-5">
                 <p className="text-balance text-muted tabular-nums">
                   Nice little icons for your nice little apps. Drawn
@@ -52,19 +62,25 @@ export default function Landing() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 max-[680px]:flex-col max-[680px]:items-stretch">
-                <Link
-                  className={buttonVariants({ variant: 'default', size: 'lg' })}
-                  href="/icons/"
-                >
-                  Browse icons
-                  <Icon name="arrow-right" size={20} />
-                </Link>
-                <InstallCommand
-                  command="npm i fyicons"
-                  label="npm"
-                  appearance="button"
-                />
+              <div className="space-y-4">
+                <div className="flex flex-col flex-wrap items-stretch gap-4 md:flex-row md:items-center">
+                  <Link
+                    className={buttonVariants({
+                      variant: 'default',
+                      size: 'lg',
+                    })}
+                    href="/icons/"
+                  >
+                    Browse all
+                    <Icon name="arrow-right" size={16} />
+                  </Link>
+                  <InstallCommand
+                    command="npm i fyicons"
+                    label="npm"
+                    appearance="button"
+                  />
+                </div>
+                <SearchTrigger />
               </div>
             </div>
           </div>
@@ -75,7 +91,7 @@ export default function Landing() {
           <div className="my-6 flex items-center justify-center gap-4">
             <h2
               id="desktop-showcase-heading"
-              className="text-2xl font-medium tracking-tight"
+              className={featureHeadingClassName}
             >
               Take a l
               <Icon name="eye-pupil" size={20} className="inline" />
@@ -85,7 +101,62 @@ export default function Landing() {
           <DesktopShowcase />
         </section>
 
-        <Installation />
+        <section
+          id="installation"
+          aria-labelledby="installation-heading"
+          className="scroll-mt-24 border-t border-line pt-10"
+        >
+          <h2
+            id="installation-heading"
+            className={`mb-8 ${sectionHeadingClassName}`}
+          >
+            Quick start
+          </h2>
+          <div className="grid gap-10 md:grid-cols-3 md:gap-8">
+            <article className="flex min-w-0 flex-col gap-4">
+              <h3 className={installationHeadingClassName}>
+                <Icon name="atom-react" className="size-5 text-sky-400" />
+                React
+              </h3>
+              <p className="text-muted">
+                Install the React components and use them in your project.
+                Tree-shakable and optimized.
+              </p>
+              <InstallCommand
+                command="npm i fyicons"
+                label="npm"
+                className="mt-auto"
+              />
+            </article>
+            <article className="flex min-w-0 flex-col gap-4">
+              <h3 className={installationHeadingClassName}>
+                <ShadcnIcon className="size-5 text-muted" />
+                shadcn
+              </h3>
+              <p className="text-muted">
+                Add editable icon components for more control. Just replace the
+                icon name with the one you want.
+              </p>
+              <InstallCommand
+                command="npx shadcn@latest add robertweisbecker/fyicons/{icon-name}"
+                label="shadcn"
+                className="mt-auto"
+              />
+            </article>
+            <article className="flex min-w-0 flex-col gap-4">
+              <h3 className={installationHeadingClassName}>
+                <Icon name="file-zip" className="size-5 text-muted/50" />
+                SVGs
+              </h3>
+              <p className="text-balance text-muted">
+                Download all {icons.length.toLocaleString('en-US')} icons as a
+                ZIP. Use them with any framework or drag them (gently) into your
+                design files.
+              </p>
+              <DownloadIconsButton className="mt-auto self-start max-md:w-full" />
+            </article>
+          </div>
+        </section>
 
         <section
           aria-labelledby="features-heading"
@@ -94,7 +165,7 @@ export default function Landing() {
           <div className="space-y-8 sm:space-y-10">
             <h2
               id="features-heading"
-              className="text-center text-3xl font-medium tracking-tight sm:text-4xl"
+              className={`text-center ${sectionHeadingClassName}`}
             >
               Features
             </h2>
@@ -106,7 +177,7 @@ export default function Landing() {
                 </p>
               </div>
               <div className="flex flex-col items-center gap-5">
-                <Icon name="blueprint-grid" className="size-8" />
+                <Icon name="grid-ruler" className="size-8" />
 
                 <p className="text-lg">16×16 grid</p>
               </div>
@@ -116,10 +187,54 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          <IconVariants />
-          <StatefulIcons />
-          <OpticalAdjustments />
-          <IconGroupCarousel />
+          <section
+            aria-labelledby="icon-variants-heading"
+            className="space-y-6"
+          >
+            <h3 id="icon-variants-heading" className={featureHeadingClassName}>
+              More than just outlines
+            </h3>
+            <IconVariants />
+          </section>
+          <section
+            aria-labelledby="stateful-icons-heading"
+            className="space-y-6"
+          >
+            <h3 id="stateful-icons-heading" className={featureHeadingClassName}>
+              Multiple states
+            </h3>
+            <StatefulIcons />
+          </section>
+          <section aria-labelledby="construction-heading" className="space-y-6">
+            <h3 id="construction-heading" className={featureHeadingClassName}>
+              Constructed with care
+            </h3>
+            <Construction />
+          </section>
+          <section aria-labelledby="optical-adjustments-heading">
+            <OpticalAdjustments
+              heading={
+                <h3
+                  id="optical-adjustments-heading"
+                  className={featureHeadingClassName}
+                >
+                  Optically balanced
+                </h3>
+              }
+            />
+          </section>
+          <section aria-labelledby="icon-groups-heading">
+            <IconGroupCarousel
+              heading={
+                <h3
+                  id="icon-groups-heading"
+                  className={featureHeadingClassName}
+                >
+                  Categories galore
+                </h3>
+              }
+            />
+          </section>
         </section>
       </div>
     </>

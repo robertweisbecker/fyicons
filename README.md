@@ -73,6 +73,29 @@ Every icon has `fy-icon` and `fy-{icon-name}` classes. The icon name matches the
 // Renders class="fy-icon fy-sun toolbar-icon"
 ```
 
+### Shared defaults with FyiProvider
+
+Import `FyiProvider` and the icons that should use its defaults from `fyicons/client`:
+
+```tsx
+import { FyiProvider, IconSun, IconMoon } from 'fyicons/client';
+
+export function Toolbar() {
+  return (
+    <FyiProvider size={20} className="toolbar-icon">
+      <IconSun />
+      <IconMoon size={16} />
+    </FyiProvider>
+  );
+}
+```
+
+The provider accepts `size`, `color`, `className`, `style`, and `children`. It adds no DOM element. Nested providers inherit unspecified defaults. Icon props override inherited size and color; explicit `width` and `height` still override the corresponding dimension. Classes combine in outer-provider, inner-provider, then icon order. Styles merge in the same order, with later values winning. CSS rules still follow the normal cascade.
+
+Without a provider, client icons keep the same 16 px size, inherited text color, and decorative accessibility defaults. Set accessible names, IDs, refs, and event handlers on individual icons.
+
+The regular `fyicons` entry, direct `fyicons/icons/*` imports, and shadcn source icons stay context-free. They do not read provider defaults, even when placed inside a provider. In Next.js, `fyicons/client` supplies Client Components; a Server Component can render the provider, but only icons from the client entry consume its defaults. Use regular imports for static Server Component icons.
+
 ### Accessibility
 
 Icons without a non-empty `aria-label` are decorative and render with `aria-hidden="true"`. Add `aria-label` when an icon communicates information on its own. The component passes the label to the SVG and sets `role="img"`:
@@ -113,9 +136,11 @@ Keep the release tag in the command so the icon and its helpers come from the sa
 
 ## Download SVG icons
 
-Browse the [icon library](https://icons.bob.fyi/icons/) to search by name or explore categories. Select an icon to open its details, then use **Copy SVG** to copy its markup.
+Browse the [icon library](https://icons.bob.fyi/icons/) to search by name or explore categories. Select an icon to open its details, then use **Copy SVG** to copy its markup or **Download** to save its SVG file.
 
-Use **Download** in the homepage's **Installation** section to get the complete collection as a ZIP. On a desktop screen, you can also select icon checkboxes, open **Selected**, and choose **Download** to get a smaller collection.
+For quick actions, right-click an icon in the grid, or long-press it on mobile. The context menu shows the icon's name and offers **Copy name**, **Copy SVG**, and **Download**.
+
+Use **Download** in the homepage's **Quick start** section to get the complete collection as a ZIP. On a desktop screen, you can also select icon checkboxes, open **Saved**, and choose **Download all** to get a smaller collection. Each saved row also has an individual download button.
 
 Each ZIP includes the SVG files, a README, the MIT license, and a `manifest.json` file with names, category data, and SHA-256 checksums. It does not include React components. The site's size control changes the preview only; downloaded SVG files keep their original canvas.
 
@@ -144,6 +169,8 @@ import { IconSun, IconArrowUpRight } from './icons';
 ```
 
 The components have the same props as the npm package. To copy selected icons with their required helpers, use the shadcn registry instead of assembling the files manually.
+
+For provider defaults with manually copied source, import `FyiProvider` and icons from `./icons/client`. Keep `client.tsx` and `provider.tsx` with the icon files and shared helpers.
 
 ## Updates and icon names
 

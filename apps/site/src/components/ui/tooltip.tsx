@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from 'react';
 import { Tooltip as TooltipPrimitive } from '@base-ui/react/tooltip';
+import { cn } from '@/lib/utils';
 
 const TooltipHandleContext =
   createContext<TooltipPrimitive.Handle<string> | null>(null);
@@ -15,9 +16,11 @@ export const TooltipProvider = TooltipPrimitive.Provider;
 function TooltipPopup({
   children,
   side = 'top',
+  shared = false,
 }: {
   children: ReactNode;
   side?: TooltipPrimitive.Positioner.Props['side'];
+  shared?: boolean;
 }) {
   return (
     <TooltipPrimitive.Portal>
@@ -25,25 +28,39 @@ function TooltipPopup({
         side={side}
         sideOffset={8}
         data-slot="tooltip-positioner"
-        className="z-80 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom,transform] duration-150 data-instant:transition-none motion-reduce:transition-none"
+        className={cn(
+          'z-80 max-w-(--available-width)',
+          shared
+            ? 'h-(--positioner-height) w-(--positioner-width) transition-[top,left,right,bottom,transform] duration-150 data-instant:transition-none motion-reduce:transition-none'
+            : 'w-max',
+        )}
       >
         <TooltipPrimitive.Popup
           data-slot="tooltip-popup"
-          className="relative flex h-(--popup-height,auto) w-(--popup-width,auto) max-w-80 origin-(--transform-origin) rounded-lg bg-ink text-xs text-canvas shadow-lg transition-[width,height,scale,opacity] duration-150 data-ending-style:scale-98 data-ending-style:opacity-0 data-instant:duration-0 data-starting-style:scale-98 data-starting-style:opacity-0 motion-reduce:scale-100! motion-reduce:transition-none"
+          className={cn(
+            'max-w-80 rounded-lg bg-ink text-xs text-canvas shadow-lg transition-opacity duration-150 data-ending-style:opacity-0 data-instant:duration-0 data-starting-style:opacity-0 motion-reduce:transition-none',
+            shared
+              ? 'relative flex h-(--popup-height,auto) w-(--popup-width,auto) origin-(--transform-origin) transition-[width,height,scale,opacity] data-ending-style:scale-98 data-starting-style:scale-98 motion-reduce:scale-100!'
+              : 'px-2.5 py-1.5',
+          )}
         >
-          <TooltipPrimitive.Viewport
-            data-slot="tooltip-viewport"
-            className="relative size-full overflow-clip px-(--viewport-inline-padding) py-1.5 [--viewport-inline-padding:--spacing(2.5)] **:data-current:w-[calc(var(--popup-width)-2*var(--viewport-inline-padding))] **:data-current:opacity-100 **:data-current:transition-opacity **:data-current:duration-150 **:data-current:data-ending-style:opacity-0 data-instant:**:transition-none **:data-previous:w-[calc(var(--popup-width)-2*var(--viewport-inline-padding))] **:data-previous:truncate **:data-previous:opacity-100 **:data-previous:transition-opacity **:data-previous:duration-150 **:data-previous:data-ending-style:opacity-0 **:data-current:data-starting-style:opacity-0 **:data-previous:data-starting-style:opacity-0 motion-reduce:**:transition-none"
-          >
-            {children}
-          </TooltipPrimitive.Viewport>
+          {shared ? (
+            <TooltipPrimitive.Viewport
+              data-slot="tooltip-viewport"
+              className="relative size-full overflow-clip px-(--viewport-inline-padding) py-1.5 [--viewport-inline-padding:--spacing(2.5)] **:data-current:w-[calc(var(--popup-width)-2*var(--viewport-inline-padding))] **:data-current:opacity-100 **:data-current:transition-opacity **:data-current:duration-150 **:data-current:data-ending-style:opacity-0 data-instant:**:transition-none **:data-previous:w-[calc(var(--popup-width)-2*var(--viewport-inline-padding))] **:data-previous:truncate **:data-previous:opacity-100 **:data-previous:transition-opacity **:data-previous:duration-150 **:data-previous:data-ending-style:opacity-0 **:data-current:data-starting-style:opacity-0 **:data-previous:data-starting-style:opacity-0 motion-reduce:**:transition-none"
+            >
+              {children}
+            </TooltipPrimitive.Viewport>
+          ) : (
+            children
+          )}
         </TooltipPrimitive.Popup>
       </TooltipPrimitive.Positioner>
     </TooltipPrimitive.Portal>
   );
 }
 
-/** Share one popup within a control group or example, including nested groups. */
+/** Share one animated popup between adjacent controls, including nested groups. */
 export function TooltipGroup({
   children,
   side,
@@ -60,7 +77,11 @@ export function TooltipGroup({
     <TooltipHandleContext value={handle}>
       {children}
       <TooltipPrimitive.Root handle={handle}>
-        {({ payload }) => <TooltipPopup side={side}>{payload}</TooltipPopup>}
+        {({ payload }) => (
+          <TooltipPopup side={side} shared>
+            {payload}
+          </TooltipPopup>
+        )}
       </TooltipPrimitive.Root>
     </TooltipHandleContext>
   );
@@ -69,9 +90,11 @@ export function TooltipGroup({
 export function Tooltip({
   label,
   children,
+  side,
 }: {
   label: string;
   children: ReactElement;
+  side?: TooltipPrimitive.Positioner.Props['side'];
 }) {
   const handle = useContext(TooltipHandleContext);
 
@@ -88,7 +111,7 @@ export function Tooltip({
   return (
     <TooltipPrimitive.Root>
       <TooltipPrimitive.Trigger render={children} />
-      <TooltipPopup>{label}</TooltipPopup>
+      <TooltipPopup side={side}>{label}</TooltipPopup>
     </TooltipPrimitive.Root>
   );
 }

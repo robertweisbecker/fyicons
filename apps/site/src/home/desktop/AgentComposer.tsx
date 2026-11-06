@@ -157,8 +157,8 @@ export function AgentComposer() {
           <div className="flex items-center gap-1">
             <DemoToggle
               label="Effort"
-              icon="gauge-simple-low"
-              activeIcon="gauge-simple-high"
+              icon="gauge-low"
+              activeIcon="gauge-high"
               size="icon-xs"
               className="data-pressed:text-focus"
             />
