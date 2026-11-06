@@ -2,7 +2,7 @@
 export const iconGroups = [
   {
     id: '857:27862',
-    name: 'Arrows, carets, chevrons',
+    name: 'Arrows, carets, chevrons.',
     caption: 'Oh my!',
     colorClassName:
       'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300',
@@ -126,8 +126,8 @@ export const iconGroups = [
   },
   {
     id: '857:27992',
-    name: 'a11y & i18n',
-    caption: 'Right on!',
+    name: 'a11y & i18n.',
+    caption: 'Now including inclusion.',
     colorClassName:
       'bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-300',
     rows: [
@@ -204,8 +204,8 @@ export const iconGroups = [
   },
   {
     id: '857:28081',
-    name: 'Symbols',
-    caption: 'for censoring swears',
+    name: 'Symbols.',
+    caption: 'For censoring swears.',
     colorClassName:
       'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-950 dark:text-fuchsia-300',
     rows: [
@@ -253,7 +253,7 @@ export const iconGroups = [
   {
     id: '857:28148',
     name: 'System.',
-    caption: 'Check back later, Windows gang.',
+    caption: 'RIP Steve Jobs.',
     colorClassName:
       'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300',
     rows: [

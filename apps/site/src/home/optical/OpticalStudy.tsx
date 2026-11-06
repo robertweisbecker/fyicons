@@ -35,15 +35,15 @@ export function StudyTile({
   return (
     <figure
       className={cn(
-        'relative min-h-65 min-w-0 overflow-clip rounded-2xl bg-inset text-ink [--optical-accent:var(--color-indigo-700)] [--optical-pad:clamp(14px,2.2vw,26px)] dark:[--optical-accent:var(--color-cyan-200)]',
+        'relative min-h-65 min-w-0 overflow-clip rounded-2xl bg-surface text-ink [--optical-accent:var(--color-pink-700)] [--optical-pad:clamp(14px,2.2vw,26px)] dark:[--optical-accent:var(--color-cyan-200)]',
         className,
       )}
     >
       {onReplay && (
         <Button
           variant="ghost"
-          size="icon"
-          className="absolute end-3.5 top-3 z-2 size-11"
+          size="icon-sm"
+          className="absolute end-3.5 top-3 z-2"
           aria-label={`Replay ${title}`}
           title="Replay"
           onClick={onReplay}
@@ -56,10 +56,7 @@ export function StudyTile({
         <strong className="text-lg leading-tight font-[620] tracking-tight">
           {title}
         </strong>
-        <p
-          id={descriptionId}
-          className="mt-0.75 text-[13px] leading-[1.45] text-pretty text-muted"
-        >
+        <p id={descriptionId} className="mt-2 text-pretty">
           {description}
         </p>
       </figcaption>
@@ -95,7 +92,7 @@ export function OpticalStudy({
         >
           <DrawingStage
             key={centerRun}
-            className="col-start-2 row-start-1 text-blue-700 dark:text-blue-300"
+            className="col-start-2 row-start-1 text-control-accent"
             script={animate ? centerStudy : undefined}
           >
             {(scene) => <PlayDrawing scene={scene} />}
@@ -106,7 +103,7 @@ export function OpticalStudy({
           className="col-span-full min-h-95 @min-[900px]/study:col-span-1"
           captionClassName="absolute inset-x-(--optical-pad) bottom-6"
           title="Ovals & overshoots"
-          description="Dots extend beyond 1px to remain legible at small sizes."
+          description="Dots and terminals with added weight for legibility at small sizes."
           onReplay={animate ? replayWarning : undefined}
         >
           <DrawingStage

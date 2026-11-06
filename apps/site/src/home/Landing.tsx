@@ -209,17 +209,20 @@ export default function Landing() {
             <h3 id="construction-heading" className={featureHeadingClassName}>
               Constructed with care
             </h3>
+            <p className="text-lg font-medium text-balance text-muted">
+              With a consistent, pixel-aligned grid.
+            </p>
             <Construction />
           </section>
           <section aria-labelledby="optical-adjustments-heading">
             <OpticalAdjustments
               heading={
-                <h3
+                <p
                   id="optical-adjustments-heading"
-                  className={featureHeadingClassName}
+                  className="text-lg font-medium text-balance text-muted"
                 >
-                  Optically balanced
-                </h3>
+                  And a range of optical adjustments.
+                </p>
               }
             />
           </section>

@@ -83,6 +83,7 @@ const measurementFormat = new Intl.NumberFormat('en', {
   minimumFractionDigits: 1,
   maximumFractionDigits: 2,
 });
+const formatPlayGap = (value: number) => `${Math.round(value * 2) / 2}px`;
 
 const traceOffset = (trace: number, part = 0) =>
   1 - Math.max(0, Math.min(1, trace - part));
@@ -295,12 +296,14 @@ function MeasurementLabel({
   x,
   y,
   value,
+  format = (n) => `${measurementFormat.format(n)} px`,
   changing = false,
   balance,
 }: {
   x: number;
   y: number;
   value: number;
+  format?: (value: number) => string;
   changing?: boolean;
   balance?: 'balanced' | 'unbalanced' | 'fixed';
 }) {
@@ -326,7 +329,7 @@ function MeasurementLabel({
           balance === 'fixed' && 'fill-neutral-600 dark:fill-neutral-400',
         )}
       >
-        {measurementFormat.format(value)} px
+        {format(value)}
       </text>
     </g>
   );
@@ -410,12 +413,14 @@ export function PlayDrawing({ scene }: { scene: Scene }) {
               x={leftGap / 2}
               y={19.1}
               value={leftGap}
+              format={formatPlayGap}
               changing={moving}
             />
             <MeasurementLabel
               x={16 - rightGap / 2}
               y={19.1}
               value={rightGap}
+              format={formatPlayGap}
               changing={moving}
             />
             <path

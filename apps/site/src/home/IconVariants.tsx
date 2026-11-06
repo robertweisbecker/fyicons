@@ -68,11 +68,6 @@ const mixedIcons = [
   'circle-stop',
   'clock-solid',
   'progress-task-done',
-  'marker-tip',
-  'pencil-tip',
-  'pen-tip',
-  'brush-tip',
-  'highlighter-tip',
 ] as const;
 
 const variants = [
@@ -86,7 +81,7 @@ const variants = [
 
 export function IconVariants() {
   return (
-    <div className="grid min-w-0 grid-cols-3 gap-2 sm:gap-4">
+    <div className="grid min-w-0 grid-cols-2 gap-4 sm:grid-cols-3">
       {variants.map(({ label, icons }) => (
         <figure key={label} className="min-w-0 space-y-3">
           <ul
@@ -107,7 +102,7 @@ export function IconVariants() {
               </li>
             ))}
           </ul>
-          <figcaption className="text-sm text-muted">{label}</figcaption>
+          <figcaption className="text-base font-medium">{label}</figcaption>
         </figure>
       ))}
     </div>

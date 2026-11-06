@@ -35,14 +35,14 @@ function FontGuides() {
         {...outerOval}
         className="text-blue-700 dark:text-blue-300"
         fill="currentColor"
-        fillOpacity="0.08"
+        fillOpacity="0.5"
         strokeDasharray="0.2 0.15"
       />
       <ellipse
         {...innerOval}
-        className="text-green-700 dark:text-green-300"
+        className="text-ink dark:text-ink"
         fill="currentColor"
-        fillOpacity="0.12"
+        fillOpacity="0.2"
       />
       <g className="text-blue-700 dark:text-blue-300">
         <rect
@@ -51,22 +51,22 @@ function FontGuides() {
           width={innerLeft - outerLeft}
           height="7"
           fill="currentColor"
-          fillOpacity="0.08"
+          fillOpacity="0.16"
           stroke="none"
         />
         <path d={`M${outerLeft} 6.5V13.5M${innerLeft} 6.5V13.5`} />
       </g>
-      <g className="text-green-700 dark:text-green-300">
+      <g className="text-green-500 dark:text-green-300">
         <rect
           x={innerRight}
           y="6.5"
           width={outerRight - innerRight}
           height="7"
           fill="currentColor"
-          fillOpacity="0.16"
+          fillOpacity="0.5"
           stroke="none"
         />
-        <path d={`M${innerRight} 6.5V13.5`} strokeDasharray="0.2 0.15" />
+        {/* <path d={`M${innerRight} 6.5V13.5`} strokeDasharray="0.2 0.15" /> */}
         <path d={`M${outerRight} 6.5V13.5`} />
         <circle cx="13.92" cy="7.96" r="0.4" />
         <circle cx="13.92" cy="12.04" r="0.4" />
@@ -85,17 +85,17 @@ function CurvesCard() {
       className="@container/curves flex flex-col pb-6 @min-[900px]/study:col-span-2"
       captionClassName="mx-(--optical-pad) mt-auto pt-2 @xl/curves:absolute @xl/curves:start-(--optical-pad) @xl/curves:bottom-6 @xl/curves:m-0 @xl/curves:w-2/5"
       title="Curves and ink traps"
-      description="Stroke weight varies around typographic bowls and at intersections."
+      description="Weight varies in typographic bowls, with thinning at intersections."
       descriptionId={descriptionId}
     >
       <div className="me-(--optical-pad) grid w-4/5 max-w-72 justify-items-center gap-1 self-end">
         <svg
           id={previewId}
-          className="pointer-events-none h-auto w-full overflow-visible text-rose-800 dark:text-rose-300"
+          className="pointer-events-none h-auto w-full overflow-visible text-mauve-500 dark:text-mauve-300"
           viewBox="0 3.75 16 12.25"
           fill="none"
           role="img"
-          aria-label="Magnified font icon showing the lowercase a bowl and ink traps"
+          aria-label="Magnified font icon showing the lowercase A's bowl and ink traps"
           aria-describedby={descriptionId}
         >
           <defs>
@@ -145,7 +145,7 @@ function ShapeGuides() {
   return (
     <g className="text-pink-700 dark:text-pink-300">
       {/* Repeat the square's 5 × 5px painted bounds as comparison guides. */}
-      <g fill="currentColor" fillOpacity="0.06" stroke="none">
+      <g fill="currentColor" fillOpacity="0.25" stroke="none">
         {[2, 9].flatMap((x) =>
           [2, 9].map((y) => (
             <rect key={`${x}-${y}`} x={x} y={y} width="5" height="5" />
@@ -179,7 +179,7 @@ function ShapesCard() {
             <Icon
               id={previewId}
               name={icon}
-              className="text-violet-800 dark:text-violet-300"
+              className="text-muted"
               size={128}
               aria-label={`${icon === 'grid' ? 'Grid' : 'Shapes'} icon with comparison guides`}
               aria-describedby={descriptionId}
@@ -187,9 +187,9 @@ function ShapesCard() {
             <svg
               className="pointer-events-none absolute inset-0 size-full overflow-visible"
               viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth=".1875"
+              // fill="none"
+              // stroke="currentColor"
+              // strokeWidth=".125"
               aria-hidden="true"
             >
               <ShapeGuides />
