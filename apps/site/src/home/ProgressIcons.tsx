@@ -8,13 +8,13 @@ import { levelSteps } from '@/lib/icon-progress';
 
 const families = [
   ['IconBattery', 'Battery'],
-  ['IconCircleProgress', 'Progress'],
+  ['IconProgressTask', 'Progress'],
   ['IconChecklist', 'Checklist'],
   ['IconVolume', 'Volume'],
   ['IconSignalFour', 'Four-bar signal'],
   ['IconSignalThree', 'Three-bar signal'],
-  ['IconGaugeSimple', 'Simple gauge'],
-  ['IconGauge', 'Gauge'],
+  ['IconGauge', 'Simple gauge'],
+  ['IconMeter', 'Gauge'],
   ['IconEmoji', 'Emotion'],
 ] as const;
 

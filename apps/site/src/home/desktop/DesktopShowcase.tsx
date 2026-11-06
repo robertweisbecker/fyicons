@@ -57,7 +57,7 @@ function DesktopStatusBar() {
       aria-label="Computer status bar"
     >
       <div className="flex items-center gap-4">
-        <Icon name="cookie-fill" className="rotate-75" />
+        <Icon name="cookie-bite-fill" className="rotate-75" />
         <span>File</span>
         <span>Edit</span>
         <span>View</span>
@@ -71,7 +71,7 @@ function DesktopStatusBar() {
         <DeviceBattery percentageClassName="hidden @sm/desktop:inline" />
         <Icon name="wifi-fill" />
         <Icon name="intelligence-cupertino" />
-        <Icon name="switches-ios" />
+        <Icon name="switches-cupertino" />
         <DeviceClock className="hidden @2xl/desktop:inline" />
       </div>
     </div>

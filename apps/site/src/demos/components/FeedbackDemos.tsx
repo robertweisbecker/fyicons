@@ -43,7 +43,7 @@ export function AlertsDemo() {
             className="mt-2 -ml-2"
             onClick={() => setConnected(!connected)}
           >
-            <Icon name={connected ? 'plug-plug' : 'arrows-swap'} />
+            <Icon name={connected ? 'plugs' : 'arrows-swap'} />
             {connected ? 'Disconnect' : 'Reconnect'}
           </Button>
         </div>
@@ -127,8 +127,8 @@ export function BadgesDemo() {
                 status === 'Done'
                   ? 'circle-check-fill'
                   : status === 'In progress'
-                    ? 'circle-progress-half'
-                    : 'circle-progress-todo'
+                    ? 'progress-task-50'
+                    : 'progress-task-todo'
               }
             />
             <SelectValue />
@@ -194,7 +194,7 @@ export function SharingDemo() {
             aria-label="Link permission"
             className="min-h-8 gap-2 border-0 bg-transparent p-0 text-xs"
           >
-            <Icon name={access === 'Can edit' ? 'pencil-edit' : 'eye'} />
+            <Icon name={access === 'Can edit' ? 'edit' : 'eye'} />
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

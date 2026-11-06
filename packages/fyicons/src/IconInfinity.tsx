@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconInfinity = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconInfinity(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="infinity"><path fill="currentColor" d="M12 4a4 4 0 0 1 .198 7.995L12 12l-.278-.01A4.05 4.05 0 0 1 8.43 9.864l-.48-.897-.782 1.266a3.72 3.72 0 0 1-3.156 1.765L4 12.002a4 4 0 0 1 0-8l.278.008A4.05 4.05 0 0 1 7.57 6.137l.444.828.7-1.133A3.86 3.86 0 0 1 12 4m-.008 1a2.86 2.86 0 0 0-2.428 1.358L8.56 7.984l.754 1.407A3.05 3.05 0 0 0 12 11.001a3 3 0 0 0 0-6zm-8.289.015A3 3 0 0 0 4 11c.944 0 1.822-.49 2.318-1.292l1.086-1.76-.716-1.338A3.05 3.05 0 0 0 4.21 5.007L4 5z" /></SvgRoot>;
+});
+export default IconInfinity;

@@ -87,7 +87,7 @@ export function FileTree({
         {file.path.split('/').at(-1)}
       </span>
       {file.change === 'M' ? (
-        <Icon name="git-modified" className="text-muted" />
+        <Icon name="letter-m" className="text-muted" />
       ) : (
         file.change && <span className="text-xs text-muted">{file.change}</span>
       )}

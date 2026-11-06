@@ -86,34 +86,44 @@ import { renderToString } from 'react-dom/server';
 import { hydrateRoot } from 'react-dom/client';
 import { IconSun } from 'fyicons';
 import DirectSun from 'fyicons/icons/IconSun';
+import { FyiProvider, IconSun as ClientSun } from 'fyicons/client';
 import { JSDOM } from ${JSON.stringify(import.meta.resolve('jsdom'))};
 assert.equal(IconSun, DirectSun);
 const ref = createRef();
 let clicks = 0;
-const tree = createElement('div', null, createElement(IconSun, {title:'Light mode', 'aria-label':'Light mode', className:'consumer-icon', ref, size:24, onClick:()=>clicks++}), createElement(DirectSun, {title:'Other light'}));
-const html = renderToString(tree);
+const tree = (size = 20, color = 'red') => createElement(FyiProvider, {size, color, className:'provider-icon', style:{verticalAlign:'middle'}}, createElement('div', null, createElement(ClientSun, {title:'Light mode', 'aria-label':'Light mode', className:'consumer-icon', ref, size:24, onClick:()=>clicks++}), createElement(ClientSun, {title:'Other light'})));
+const html = renderToString(tree());
 assert.match(html, /width="24"/);
 assert.match(html, /role="img"/);
 assert.match(renderToString(createElement(IconSun)), /aria-hidden="true"/);
+assert.match(renderToString(createElement(ClientSun)), /width="16"/);
+assert.match(renderToString(createElement(FyiProvider, {size:32}, createElement(IconSun))), /width="16"/);
 const dom = new JSDOM('<div id="root">'+html+'</div>', {url:'http://localhost'});
 globalThis.window=dom.window;globalThis.document=dom.window.document;
 globalThis.HTMLElement=dom.window.HTMLElement;globalThis.SVGElement=dom.window.SVGElement;
 globalThis.IS_REACT_ACT_ENVIRONMENT=true;
 const errors=[]; let mounted;
-await act(async()=>{mounted=hydrateRoot(document.querySelector('#root'),tree,{onRecoverableError:error=>errors.push(error)})});
+await act(async()=>{mounted=hydrateRoot(document.querySelector('#root'),tree(),{onRecoverableError:error=>errors.push(error)})});
 assert.deepEqual(errors,[]); assert.equal(ref.current.tagName,'svg');
 assert.equal(ref.current.getAttribute('aria-label'),'Light mode');
 assert.equal(ref.current.getAttribute('role'),'img');
 assert.equal(ref.current.hasAttribute('aria-hidden'),false);
-assert.equal(ref.current.getAttribute('class'),'fy-icon fy-sun consumer-icon');
+assert.equal(ref.current.getAttribute('class'),'fy-icon fy-sun provider-icon consumer-icon');
+assert.equal(ref.current.getAttribute('color'),'red');
+assert.equal(ref.current.style.verticalAlign,'middle');
 const decorative=document.querySelectorAll('svg')[1];
 assert.equal(decorative.getAttribute('aria-hidden'),'true');
 assert.equal(decorative.hasAttribute('aria-label'),false);
 assert.equal(decorative.hasAttribute('role'),false);
-assert.equal(decorative.getAttribute('class'),'fy-icon fy-sun');
+assert.equal(decorative.getAttribute('class'),'fy-icon fy-sun provider-icon');
+assert.equal(decorative.getAttribute('width'),'20');
 ref.current.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true}));assert.equal(clicks,1);
+await act(async()=>mounted.render(tree(28, 'blue')));
+assert.equal(decorative.getAttribute('width'),'28');
+assert.equal(ref.current.getAttribute('width'),'24');
+assert.equal(ref.current.getAttribute('color'),'blue');
 const ids=[...document.querySelectorAll('[id]')].map(node=>node.id);assert.equal(new Set(ids).size,ids.length);
-await act(async()=>mounted.unmount());dom.window.close(); console.log('SSR, hydration, refs, event handlers, labels, classes, and direct imports passed.');
+await act(async()=>mounted.unmount());dom.window.close(); console.log('SSR, provider hydration and updates, refs, event handlers, labels, classes, and direct imports passed.');
 `;
 for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
   const cwd = path.join(scratch, `react-${reactVersion}`);
@@ -179,7 +189,23 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
   await write(
     cwd,
     'typecheck.tsx',
-    `import { createRef } from 'react';\nimport { IconSun, type IconProps } from 'fyicons';\nimport DirectSun from 'fyicons/icons/IconSun';\nconst props:IconProps={size:'1em',title:'Light mode',ref:createRef<SVGSVGElement>()};\nexport const icon=<><IconSun {...props}/><DirectSun aria-label="Light mode" onClick={event=>event.currentTarget.focus()}/></>;\n`,
+    `import { createRef } from 'react';
+import { IconSun, type IconProps } from 'fyicons';
+import DirectSun from 'fyicons/icons/IconSun';
+import { FyiProvider, IconSun as ClientSun, type IconDefaults, type FyiProviderProps } from 'fyicons/client';
+const props:IconProps={size:'1em',title:'Light mode',ref:createRef<SVGSVGElement>()};
+const defaults:IconDefaults={size:20,color:'red',className:'shared',style:{opacity:0.5}};
+const providerProps:FyiProviderProps={...defaults,children:<ClientSun {...props}/>};
+export const icon=<><IconSun {...props}/><DirectSun aria-label="Light mode" onClick={event=>event.currentTarget.focus()}/><FyiProvider {...providerProps}><ClientSun {...props}/></FyiProvider></>;
+// @ts-expect-error Accessible names belong on individual icons.
+const label:FyiProviderProps={'aria-label':'Shared label'};
+// @ts-expect-error IDs belong on individual icons.
+const id:FyiProviderProps={id:'shared'};
+// @ts-expect-error Handlers belong on individual icons.
+const handler:FyiProviderProps={onClick:()=>{}};
+// @ts-expect-error Refs belong on individual icons.
+const ref:FyiProviderProps={ref:createRef<SVGSVGElement>()};
+`,
   );
   for (const module of ['NodeNext', 'ESNext']) {
     await write(cwd, 'tsconfig.json', {
@@ -197,43 +223,56 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
     });
     run(path.join(root, 'node_modules/.bin/tsc'), ['--noEmit'], cwd);
   }
-  await write(
-    cwd,
-    'index.html',
-    '<div id="root"></div><script type="module" src="/entry.tsx"></script>',
-  );
-  await write(
-    cwd,
-    'entry.tsx',
-    `import * as React from 'react';import {createRoot} from 'react-dom/client';import {IconSun} from 'fyicons';createRoot(document.getElementById('root')!).render(<IconSun title="Light mode"/>);`,
-  );
-  const vite = await import('vite');
-  let included;
-  await vite.build({
-    root: cwd,
-    configFile: false,
-    logLevel: 'warn',
-    build: {
-      outDir: 'vite-dist',
-    },
-    plugins: [
-      {
-        name: 'verify-icon-tree-shaking',
-        generateBundle(_, bundle) {
-          included = Object.values(bundle)
-            .filter((item) => item.type === 'chunk')
-            .flatMap((chunk) => Object.keys(chunk.modules))
-            .filter((file) => file.includes('/fyicons/dist/icons/'));
-        },
+  for (const entry of ['fyicons', 'fyicons/client']) {
+    await write(
+      cwd,
+      'index.html',
+      '<div id="root"></div><script type="module" src="/entry.tsx"></script>',
+    );
+    await write(
+      cwd,
+      'entry.tsx',
+      `import * as React from 'react';import {createRoot} from 'react-dom/client';import {IconSun} from '${entry}';createRoot(document.getElementById('root')!).render(<IconSun title="Light mode"/>);`,
+    );
+    const vite = await import('vite');
+    let included;
+    let includesProvider;
+    await vite.build({
+      root: cwd,
+      configFile: false,
+      logLevel: 'warn',
+      build: {
+        outDir: 'vite-dist',
       },
-    ],
-  });
-  assert.equal(
-    included.length,
-    1,
-    `Only one icon should reach the bundle: ${included}`,
-  );
-  assert.match(included[0], /IconSun\.js$/);
+      plugins: [
+        {
+          name: 'verify-icon-tree-shaking',
+          generateBundle(_, bundle) {
+            const modules = Object.values(bundle)
+              .filter((item) => item.type === 'chunk')
+              .flatMap((chunk) => Object.keys(chunk.modules));
+            included = modules.filter((file) =>
+              file.includes('/fyicons/dist/icons/'),
+            );
+            includesProvider = modules.some((file) =>
+              file.endsWith('/fyicons/dist/provider.js'),
+            );
+          },
+        },
+      ],
+    });
+    assert.equal(
+      included.length,
+      1,
+      `Only one icon should reach the bundle: ${included}`,
+    );
+    assert.match(included[0], /IconSun\.js$/);
+    assert.equal(
+      includesProvider,
+      entry === 'fyicons/client',
+      'Only the opt-in client entry includes context.',
+    );
+  }
   // Install source-loaded items through the real CLI with a non-default alias.
   // Shared files must stay together and need no app code.
   await write(cwd, 'components.json', {
@@ -241,7 +280,9 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
     style: 'new-york',
     rsc: true,
     tsx: true,
-    tailwind: { css: 'styles.css', baseColor: 'neutral', cssVariables: true },
+    // These registry:file items preserve their source and need no theme palette.
+    // An empty baseColor keeps the real installer from fetching unused colors.
+    tailwind: { css: 'styles.css', baseColor: '', cssVariables: true },
     aliases: {
       components: '~/components',
       ui: '~/components/ui',
@@ -317,19 +358,31 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
       'app/interactive/page.tsx',
       `'use client';import {useRef,useState} from 'react';import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../../src/components/fyicons/IconSun';export default function Page(){const ref=useRef<SVGSVGElement>(null);const [clicks,setClicks]=useState(0);return <main><button type="button" onClick={()=>setClicks(clicks+1)}><IconSun ref={ref} title="Package icon" aria-label="Package icon"/><DirectSun title="Direct icon" aria-label="Direct icon"/><RegistrySun title="Registry icon" aria-label="Registry icon" className="consumer-icon"/></button><output>{clicks}</output></main>}`,
     );
+    await write(
+      cwd,
+      'app/provider/page.tsx',
+      `import {IconSun as StaticSun} from 'fyicons';import {FyiProvider,IconSun} from 'fyicons/client';import ScopedIcons from './scoped-icons';export default async function Page(){await Promise.resolve();return <main><FyiProvider size={28} color="red" className="provider-icon"><IconSun title="Client icon"/><StaticSun title="Server icon"/><ScopedIcons/></FyiProvider></main>}`,
+    );
+    await write(
+      cwd,
+      'app/provider/scoped-icons.tsx',
+      `'use client';import {FyiProvider,IconSun} from 'fyicons/client';export default function ScopedIcons(){return <FyiProvider size={36} className="nested-icon"><IconSun title="Nested icon"/></FyiProvider>}`,
+    );
     run(
       process.execPath,
       ['node_modules/next/dist/bin/next', 'build', '--webpack'],
       cwd,
     );
-    const serverReferences = await readFile(
-      path.join(cwd, '.next/server/app/page_client-reference-manifest.js'),
+    // Next's reference manifest also lists clients from sibling routes. The
+    // route's RSC payload proves these icons render as SVGs on the server.
+    const serverPayload = await readFile(
+      path.join(cwd, '.next/server/app/index.rsc'),
       'utf8',
     );
-    assert.doesNotMatch(
-      serverReferences,
-      /(?:node_modules|components)\/fyicons\//,
-      'Static icons must not create client references.',
+    assert.equal(
+      [...serverPayload.matchAll(/\["\$","svg",/g)].length,
+      3,
+      'Package, direct, and registry icons must render complete SVGs in the server payload.',
     );
     const clientReferences = await readFile(
       path.join(
@@ -367,6 +420,33 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
       );
       dom.window.close();
     }
+    const providerDom = new JSDOM(
+      await readFile(path.join(cwd, '.next/server/app/provider.html'), 'utf8'),
+    );
+    const providerIcons = [
+      ...providerDom.window.document.querySelectorAll('main svg'),
+    ];
+    assert.deepEqual(
+      providerIcons.map((icon) => icon.getAttribute('width')),
+      ['28', '16', '36'],
+    );
+    assert.deepEqual(
+      providerIcons.map((icon) => icon.getAttribute('color')),
+      ['red', null, 'red'],
+    );
+    assert.deepEqual(
+      providerIcons.map((icon) => icon.getAttribute('class')),
+      [
+        'fy-icon fy-sun provider-icon',
+        'fy-icon fy-sun',
+        'fy-icon fy-sun provider-icon nested-icon',
+      ],
+    );
+    const titleIds = providerIcons.map(
+      (icon) => icon.querySelector('title').id,
+    );
+    assert.equal(new Set(titleIds).size, 3);
+    providerDom.window.close();
   }
   console.log(`React ${reactVersion}: consumer checks passed.`);
 }
@@ -383,6 +463,7 @@ await write(path.join(root, 'artifacts'), 'verification.json', {
     'MIT notice',
     'SSR',
     'hydration',
+    'provider defaults, hydration, and updates',
     'refs',
     'event handlers',
     'accessible names',
@@ -394,6 +475,7 @@ await write(path.join(root, 'artifacts'), 'verification.json', {
     'shadcn source loader and install',
     'Next.js production build',
     'Next.js server and client boundaries',
+    'Next.js provider and nested client icons alongside static server icons',
   ],
 });
 console.log('Release preparation checks passed. Nothing was published.');

@@ -8,7 +8,7 @@ import IconInboxFill from 'fyicons/icons/IconInboxFill';
 import IconFolder from 'fyicons/icons/IconFolder';
 import IconFolderFill from 'fyicons/icons/IconFolderFill';
 import IconCalendar from 'fyicons/icons/IconCalendar';
-import IconCalendarFill from 'fyicons/icons/IconCalendarFill';
+import IconCalendarSolid from 'fyicons/icons/IconCalendarSolid';
 import IconBookmark from 'fyicons/icons/IconBookmark';
 import IconBookmarkFill from 'fyicons/icons/IconBookmarkFill';
 import IconCircleDashed from 'fyicons/icons/IconCircleDashed';
@@ -48,7 +48,7 @@ const items = [
   {
     label: 'Calendar',
     Icon: IconCalendar,
-    Filled: IconCalendarFill,
+    Filled: IconCalendarSolid,
     heading: 'Your calendar',
     copy: 'See what is coming up next.',
     card: 'Upcoming events',
