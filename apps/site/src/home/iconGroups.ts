@@ -54,11 +54,11 @@ export const iconGroups = [
         'route',
         'apps-connected',
       ],
-      ['send', 'send-straight', 'send-tilt', 'pointer', 'pointers'],
+      ['send', 'send-alt', 'send-tilt', 'pointer', 'pointers'],
       [
         'pointer-swarm',
         'pointer-sm',
-        'window-pointer',
+        'view-pointer',
         'browser-pointer',
         'brain',
       ],
@@ -78,7 +78,7 @@ export const iconGroups = [
     colorClassName:
       'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300',
     rows: [
-      ['pencil', 'pen', 'brush', 'paint-brush', 'paint-bucket'],
+      ['pencil', 'pen', 'brush', 'paint-brush', 'bucket'],
       ['highlighter', 'pen-tool', 'pen-tool-alt', 'eyedropper', 'eraser'],
       ['ruler', 'flashlight', 'wrench-tilt', 'wrench-side', 'hammer'],
       [
@@ -88,7 +88,7 @@ export const iconGroups = [
         'drawing',
         'pin',
       ],
-      ['plug', 'wand', 'plug-plug', 'link', 'wand-star'],
+      ['plug', 'wand', 'plugs', 'link', 'wand-star'],
     ],
   },
   {
@@ -213,7 +213,7 @@ export const iconGroups = [
       ['sparkle', 'kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt'],
       ['kbd-return', 'eject', 'kbd-shift', 'kbd-caps-lock', 'power'],
       ['parentheses', 'brackets', 'braces', 'heart', 'ampersand'],
-      ['broadcast-live', 'menu', 'menu-simple', 'ban', 'markdown-fill'],
+      ['broadcast-live', 'menu', 'menu-alt-simple', 'ban', 'markdown-fill'],
     ],
   },
   {
@@ -223,14 +223,8 @@ export const iconGroups = [
     colorClassName:
       'bg-lime-100 text-lime-800 dark:bg-lime-950 dark:text-lime-300',
     rows: [
-      ['spinner', 'gauge-low', 'gauge', 'gauge-high', 'loader'],
-      [
-        'gauge-simple-min',
-        'gauge-simple-low',
-        'gauge-simple',
-        'gauge-simple-high',
-        'gauge-simple-max',
-      ],
+      ['spinner', 'meter-low', 'meter', 'meter-high', 'loader'],
+      ['gauge-min', 'gauge-low', 'gauge-simple', 'gauge-high', 'gauge-max'],
       [
         'battery-charging',
         'battery-empty',
@@ -240,11 +234,11 @@ export const iconGroups = [
       ],
       [
         'circle-dashed',
-        'circle-progress-todo',
-        'circle-progress-quarter',
-        'circle-progress-half',
-        'circle-progress-three-quarters',
-        'circle-progress-full',
+        'progress-task-todo',
+        'progress-task-25',
+        'progress-task-50',
+        'progress-task-75',
+        'progress-task-done',
       ],
       [
         'signal-four-0',

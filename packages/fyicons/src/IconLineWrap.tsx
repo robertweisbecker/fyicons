@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconLineWrap = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconLineWrap(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="line-wrap"><path fill="currentColor" d="M12.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11a.5.5 0 0 1 .5-.5m-6 1a3.5 3.5 0 0 1 0 7H3.706l1.148 1.148a.5.5 0 1 1-.708.707l-2-2.001a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.707L3.706 9H6.5a2.5 2.5 0 0 0 0-5h-2a.5.5 0 0 1 0-1z" /></SvgRoot>;
+});
+export default IconLineWrap;

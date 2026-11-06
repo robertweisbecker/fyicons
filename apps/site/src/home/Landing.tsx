@@ -177,7 +177,7 @@ export default function Landing() {
                 </p>
               </div>
               <div className="flex flex-col items-center gap-5">
-                <Icon name="blueprint-grid" className="size-8" />
+                <Icon name="grid-ruler" className="size-8" />
 
                 <p className="text-lg">16×16 grid</p>
               </div>

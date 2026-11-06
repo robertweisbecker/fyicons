@@ -14,7 +14,8 @@
         "eye",
         "glasses",
         "keyboard",
-        "subtitles"
+        "subtitles",
+        "mobility"
       ]
     },
     {
@@ -56,13 +57,13 @@
       ],
       "exactNames": [
         "pointer",
-        "window-pointer",
+        "view-pointer",
         "pointer-swarm",
         "pointers",
         "sync",
         "apps-connected",
         "selection",
-        "window-text",
+        "view-text",
         "pointer-fill"
       ]
     },
@@ -165,7 +166,8 @@
         "send",
         "thought-bubble",
         "mailbox",
-        "headset"
+        "headset",
+        "comment"
       ]
     },
     {
@@ -206,7 +208,7 @@
         "square-rotate",
         "swatch",
         "target",
-        "texture",
+        "background-inner",
         "vector-path",
         "angle",
         "vector-bezier",
@@ -216,7 +218,8 @@
         "square-dash",
         "gradient",
         "vector-curve",
-        "vector-svg"
+        "vector-svg",
+        "background-outer"
       ],
       "exactNames": ["height", "scale", "width"]
     },
@@ -317,9 +320,10 @@
         "sizes",
         "stack",
         "table",
-        "widget"
+        "widget",
+        "tabs"
       ],
-      "exactNames": ["overflow", "wrap"]
+      "exactNames": ["overflow", "wrap", "view-center"]
     },
     {
       "id": "media",
@@ -480,7 +484,9 @@
         "microchip",
         "cookie",
         "door",
-        "broom"
+        "broom",
+        "die",
+        "flower"
       ],
       "exactNames": [
         "pin",
@@ -491,7 +497,7 @@
         "paint-brush",
         "brush",
         "box",
-        "flower",
+        "flower-spiral",
         "sign"
       ]
     },
@@ -587,7 +593,8 @@
         "square-x",
         "swirl",
         "voltage",
-        "error"
+        "error",
+        "circle-ellipsis"
       ],
       "exactNames": [
         "at-sign",
@@ -661,7 +668,7 @@
         "dots-triangle-fill",
         "square-percent",
         "stars",
-        "infinity-sign",
+        "infinity",
         "percent"
       ]
     },
@@ -676,7 +683,7 @@
         "circle-question",
         "alert",
         "circle-x",
-        "gauge",
+        "meter",
         "heart",
         "info",
         "life-ring",
@@ -685,7 +692,10 @@
         "thumbs",
         "trophy",
         "error",
-        "app-notification"
+        "app-notification",
+        "gauge",
+        "progress-task",
+        "progress-pie"
       ],
       "exactNames": [
         "check",
@@ -716,12 +726,12 @@
         "battery",
         "bell",
         "bluetooth",
-        "click",
+        "cursor-rays",
         "cloud",
         "contrast",
         "cursor",
         "finder",
-        "gear",
+        "cog-wheel",
         "hand",
         "kbd",
         "brightness",
@@ -752,7 +762,9 @@
         "loader",
         "spinner",
         "timer",
-        "watch"
+        "watch",
+        "progress-task",
+        "progress-pie"
       ]
     },
     {
@@ -792,7 +804,7 @@
       "keywords": [
         "ampersand",
         "asterisk",
-        "blockquote",
+        "quote-block",
         "font",
         "heading",
         "italic",
@@ -809,15 +821,15 @@
         "signature",
         "text-align",
         "text-block",
-        "text-blockquote",
+        "paragraph-blockquote",
         "text-bold",
-        "text-box",
+        "bounding-box-text",
         "text-columns",
         "text-highlight",
         "text-indent",
         "text-outdent",
-        "paragraph-prose",
-        "window-text",
+        "paragraph-words",
+        "view-text",
         "text-strikethrough",
         "text-underline",
         "text-wrap",
@@ -826,7 +838,10 @@
         "text-format",
         "paragraph-thumbnail",
         "text-append",
-        "text-submit"
+        "text-submit",
+        "bounding-box-heading",
+        "spell-check",
+        "spell-checked"
       ],
       "exactNames": [
         "at-sign",
