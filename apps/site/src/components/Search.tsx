@@ -12,10 +12,12 @@ import Link from 'next/link';
 
 const searchPlaceholder = `Search ${icons.length.toLocaleString('en-US')} icons…`;
 const searchPageSize = 100;
+// Tailwind's lg, md, and sm viewport breakpoints. Base UI needs the same
+// column count for the rendered rows and arrow-key navigation.
 const gridBreakpoints = [
   { query: '(min-width: 64rem)', columns: 8 },
-  { query: '(min-width: 40rem)', columns: 6 },
-  { query: '(min-width: 30rem)', columns: 4 },
+  { query: '(min-width: 48rem)', columns: 6 },
+  { query: '(min-width: 40rem)', columns: 4 },
 ];
 
 function getSearchColumns() {
@@ -254,13 +256,13 @@ export function GlobalSearch({
       }}
     >
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-0 z-70 bg-black/10 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
+        <Dialog.Backdrop className="fixed inset-0 z-70 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
         <Dialog.Popup
           initialFocus={inputRef}
           finalFocus={() =>
             selecting.current ? false : returnFocusRef.current
           }
-          className="fixed inset-x-3 top-[max(1rem,env(safe-area-inset-top))] z-70 flex max-h-[min(40rem,80dvh)] flex-col overflow-hidden rounded-3xl bg-canvas text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,transform] duration-200 ease-out data-ending-style:translate-y-2 data-ending-style:opacity-0 data-starting-style:translate-y-2 data-starting-style:opacity-0 sm:inset-x-auto sm:top-[12dvh] sm:left-1/2 sm:w-[calc(100%-3rem)] sm:max-w-4xl sm:-translate-x-1/2"
+          className="fixed inset-x-3 top-[max(1rem,env(safe-area-inset-top))] z-70 flex max-h-[min(40rem,80dvh)] flex-col overflow-hidden rounded-3xl bg-surface text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,transform] duration-200 ease-out data-ending-style:translate-y-2 data-ending-style:opacity-0 data-starting-style:translate-y-2 data-starting-style:opacity-0 sm:inset-x-auto sm:top-[12dvh] sm:left-1/2 sm:w-[calc(100%-3rem)] sm:max-w-4xl sm:-translate-x-1/2"
         >
           <div className="flex shrink-0 items-center justify-between">
             <Dialog.Title className="sr-only text-sm font-medium">

@@ -37,15 +37,21 @@ for (const route of routes) {
     null,
     `${route}: obsolete link`,
   );
-  assert.doesNotMatch(
-    html,
-    /OG playground|fyicons:private-og-playground/,
-    `${route}: private editor`,
+  assert.equal(
+    document.querySelector('a[href$="/prototypes/"], a[href$="/prototypes"]'),
+    null,
+    `${route}: internal prototypes link`,
   );
 }
-for (const path of ['og/index.html', 'og-editor/index.html']) {
+for (const path of [
+  'prototypes',
+  'prototypes.html',
+  'og/index.html',
+  'og-editor/index.html',
+]) {
   await assert.rejects(access(new URL(path, output)), { code: 'ENOENT' });
 }
+await access(new URL('licenses/stageshow.txt', output));
 await access(new URL('404.html', output));
 console.log(
   `Verified ${routes.length} static routes, docs content and links, and public/private boundaries.`,

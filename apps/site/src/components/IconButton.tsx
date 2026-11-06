@@ -9,10 +9,15 @@ export function IconButton({
   className,
   variant = 'ghost',
   size = 'icon',
+  tooltipSide,
   ...props
-}: ButtonProps & { icon: string | React.ReactNode; label: string }) {
+}: ButtonProps & {
+  icon: string | React.ReactNode;
+  label: string;
+  tooltipSide?: React.ComponentProps<typeof Tooltip>['side'];
+}) {
   return (
-    <Tooltip label={label}>
+    <Tooltip label={label} side={tooltipSide}>
       <Button
         {...props}
         variant={variant}

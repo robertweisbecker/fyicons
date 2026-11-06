@@ -90,7 +90,7 @@
   --track: --alpha(var(--text) / 10%);
   color-scheme: dark;
 }
-@media (768px <= width < 1024px) {
+@media (theme(--breakpoint-md) <= width < theme(--breakpoint-lg)) {
   :root {
     --inspector-width: calc(var(--spacing) * 88);
   }
