@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { buildIconReleaseHistory } from '../../scripts/generate-icon-releases.mjs';
 
 const source = { id: `sha256:${'a'.repeat(64)}` };
@@ -68,6 +69,24 @@ test('removed and restored icons retain their original addition and get an updat
     added: [],
     updated: ['1:1'],
   });
+});
+
+test('0.3.0 distinguishes new and edited icons from export-only CSS changes', async () => {
+  const { releases } = JSON.parse(
+    await readFile(
+      new URL('../../apps/site/src/data/icon-releases.json', import.meta.url),
+      'utf8',
+    ),
+  );
+  const { added, updated } = releases.find(
+    ({ version }) => version === '0.3.0',
+  );
+  assert.ok(added.includes('1350:2717'), 'LetterK first shipped in 0.3.0');
+  assert.ok(updated.includes('101:2291'), 'Warning received new artwork');
+  assert.ok(
+    !updated.includes('154:11359'),
+    'Activity only gained export classes',
+  );
 });
 
 test('release histories cannot merge unrelated collections or invent a missing first release', () => {

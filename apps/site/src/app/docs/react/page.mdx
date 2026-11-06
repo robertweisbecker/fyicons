@@ -58,9 +58,36 @@ For editable component source, follow the [shadcn instructions](/docs/getting-st
 
 **Next.js and Server Components**
 
-Static icons work in Server Components without a `use client` directive. For event handlers or refs, place the icon inside your own Client Component.
+Icons from `fyicons` and `fyicons/icons/*` work in Server Components without a `use client` directive. A Server Component can also render `FyiProvider` and pass it serializable defaults. For event handlers or refs, place the icon inside your own Client Component.
 
 </Callout>
+
+<h2 id="shared-defaults">Shared defaults with FyiProvider</h2>
+
+In FYIcons 0.3.0 and later, `FyiProvider` lets a group of icons share `size`, `color`, `className`, or `style`. Import the provider and its icons from `fyicons/client`.
+
+```tsx
+import { FyiProvider, IconBookmark, IconFolder } from 'fyicons/client';
+
+export function FileNavigation() {
+  return (
+    <FyiProvider size={20} className="nav-icon">
+      <nav aria-label="Files">
+        <a href="/files">
+          <IconFolder /> All files
+        </a>
+        <a href="/saved">
+          <IconBookmark size={16} /> Saved files
+        </a>
+      </nav>
+    </FyiProvider>
+  );
+}
+```
+
+Both icons get the `nav-icon` class. The folder inherits the 20 px size, and the bookmark uses its own 16 px size. A nested provider can override defaults for a smaller group. Classes accumulate, and style properties merge from the outer provider to the inner provider to the icon, with the last value winning for each property.
+
+Only icons imported from `fyicons/client` read these defaults. Use individual props or CSS for icons from `fyicons`, direct icon imports, and shadcn source icons.
 
 ## Size
 

@@ -22,3 +22,4 @@ execFileSync(
   { cwd: root, stdio: 'inherit' },
 );
 run(['scripts/build-registry.mjs']);
+run(['scripts/generate-icon-releases.mjs', '--include-current']);

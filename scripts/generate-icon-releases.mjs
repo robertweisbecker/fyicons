@@ -1,17 +1,12 @@
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { inflateSync } from 'node:zlib';
-import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
-
-function sourceId(source) {
-  return (
-    source.id ||
-    `sha256:${createHash('sha256').update(source.fileKey).digest('hex')}`
-  );
-}
+import { readSnapshot } from './lib/icon-diff.mjs';
+import {
+  normalizeSource,
+  prepareRepositoryIcons,
+} from './lib/prepare-icons.mjs';
 
 function signature(icon) {
   return JSON.stringify([
@@ -33,11 +28,13 @@ export function buildIconReleaseHistory(snapshots) {
     throw new Error(
       'No published release tags found. Fetch the fyicons@* tags first.',
     );
-  const collection = sourceId(snapshots[0].catalog.source);
+  const collection = normalizeSource(snapshots[0].catalog.source).id;
+  if (!collection)
+    throw new Error('Release snapshot has no collection identity.');
   const seen = new Set();
   let previous = new Map();
   const releases = snapshots.map(({ version, catalog }) => {
-    if (sourceId(catalog.source) !== collection)
+    if (normalizeSource(catalog.source).id !== collection)
       throw new Error(
         'Release snapshots must belong to the same icon collection.',
       );
@@ -65,7 +62,14 @@ async function generate() {
       encoding: 'utf8',
       maxBuffer: 32 * 1024 * 1024,
     });
-  const tags = git('tag', '--list', 'fyicons@*', '--sort=version:refname')
+  const tags = git(
+    'tag',
+    '--merged',
+    'HEAD',
+    '--list',
+    'fyicons@*',
+    '--sort=version:refname',
+  )
     .trim()
     .split('\n')
     .filter((tag) => /^fyicons@\d+\.\d+\.\d+$/.test(tag));
@@ -76,10 +80,20 @@ async function generate() {
       if (error.code === 'ENOENT') return { releases: [] };
       throw error;
     });
+  // Version preparation runs before the release tag exists. Only that
+  // version may use the working inventory; older versions always use tags.
+  const { version } = JSON.parse(
+    await readFile(path.join(root, 'packages/fyicons/package.json'), 'utf8'),
+  );
+  const includeCurrent =
+    process.argv.includes('--include-current') &&
+    !tags.includes(`fyicons@${version}`);
   if (
     !tags.includes('fyicons@0.1.0') ||
     previous.releases.some(
-      ({ version }) => !tags.includes(`fyicons@${version}`),
+      (release) =>
+        !tags.includes(`fyicons@${release.version}`) &&
+        !(includeCurrent && release.version === version),
     )
   ) {
     throw new Error(
@@ -87,19 +101,18 @@ async function generate() {
     );
   }
   const snapshots = tags.map((tag) => {
-    const compact = JSON.parse(
-      git('show', `${tag}:apps/site/src/data/catalog-runtime.json`),
-    );
-    const catalog = decodeCatalog(compact);
-    // Old tags contain private collection keys that the public decoder discards.
-    const { source } = JSON.parse(
-      inflateSync(Buffer.from(compact.metadataArchive, 'base64')).toString(
-        'utf8',
-      ),
-    );
-    catalog.source = { id: sourceId(source) };
-    return { version: tag.slice('fyicons@'.length), catalog };
+    // Hash source artwork so export-only changes, such as default CSS classes,
+    // do not make the inspector report an update for every icon.
+    const { manifest, icons } = readSnapshot(root, tag);
+    return {
+      version: tag.slice('fyicons@'.length),
+      catalog: { source: manifest.source, icons },
+    };
   });
+  if (includeCurrent) {
+    const { manifest, icons } = await prepareRepositoryIcons(root);
+    snapshots.push({ version, catalog: { source: manifest.source, icons } });
+  }
   const history = buildIconReleaseHistory(snapshots);
   const text = JSON.stringify(history, null, 2) + '\n';
   if (process.argv.includes('--check')) {
@@ -110,7 +123,7 @@ async function generate() {
   } else {
     await writeFile(output, text);
   }
-  console.log(`Icon release history covers ${tags.length} published versions.`);
+  console.log(`Icon release history covers ${snapshots.length} versions.`);
 }
 
 if (

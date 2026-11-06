@@ -11,6 +11,8 @@ export function IconReleaseInfo({
 }) {
   const releases = getIconReleases(id);
   if (!releases) return null;
+  const rows = [['Added', releases.added]];
+  if (releases.updated) rows.unshift(['Updated', releases.updated]);
   return (
     <dl
       className={cn(
@@ -18,12 +20,7 @@ export function IconReleaseInfo({
         className,
       )}
     >
-      {(
-        [
-          ['Updated', releases.updated],
-          ['Added', releases.added],
-        ] as const
-      ).map(([label, version]) => (
+      {rows.map(([label, version]) => (
         <div key={label} className="flex items-baseline gap-1.5">
           <dt>{label}</dt>
           <dd>

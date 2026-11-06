@@ -1,10 +1,10 @@
 import history from '../data/icon-releases.json';
 
-type IconReleases = { added: string; updated: string };
+type IconReleases = { added: string; updated?: string };
 const byId = new Map<string, IconReleases>();
 for (const release of history.releases) {
   for (const id of release.added) {
-    byId.set(id, { added: release.version, updated: release.version });
+    byId.set(id, { added: release.version });
   }
   for (const id of release.updated) {
     const previous = byId.get(id);

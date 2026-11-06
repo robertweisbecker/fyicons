@@ -131,13 +131,15 @@ Never use publication as a readiness check. Keep existing published versions and
 
 ### Website release history
 
-After publishing a release and fetching all `fyicons@*` tags, run:
+`npm run version:packages` updates the inspector's Added and Updated versions when it prepares a release. It compares canonical artwork and names by collection and component ID across the `fyicons@*` tags. For the version being prepared, it uses the current icon inventory until its tag exists. Fetch the release tags before running the version command locally.
+
+The version PR includes the generated `apps/site/src/data/icon-releases.json`. Release verification checks it for drift. Website builds read the saved file. An icon shows Added for its first release and Updated only for a later change. A rename keeps the original Added version. Changes to export formatting, import dates, or categories do not advance either version.
+
+To verify the saved history after publication, run:
 
 ```sh
-node scripts/generate-icon-releases.mjs
+node scripts/generate-icon-releases.mjs --check
 ```
-
-Commit the generated `apps/site/src/data/icon-releases.json` with the next website update. The inspector uses it for the Added and Updated version links. The generator compares the tagged icon catalogs by collection and component ID, so renames retain their history. Import dates and category changes do not advance a release version. Use `--check` to verify the file without writing it. Website builds use this saved history and do not need Git tags or a GitHub request.
 
 ## Release automation
 

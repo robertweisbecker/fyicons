@@ -118,7 +118,8 @@
         "token",
         "variable",
         "workflow",
-        "vector-svg"
+        "vector-svg",
+        "network"
       ],
       "exactNames": ["letter-a", "letter-m", "letter-r"]
     },
@@ -149,7 +150,8 @@
         "tags",
         "ticket",
         "truck",
-        "wallet"
+        "wallet",
+        "handshake"
       ],
       "exactNames": ["box", "box-shipping", "square-percent"]
     },
@@ -210,10 +212,10 @@
         "square-rotate",
         "swatches",
         "target",
-        "background-inner",
+        "background",
         "vector-path",
         "angle",
-        "vector-bezier",
+        "bezier",
         "shapes",
         "blueprint",
         "flip",
@@ -221,7 +223,6 @@
         "gradient",
         "vector-curve",
         "vector-svg",
-        "background-outer",
         "bucket",
         "edit"
       ],
@@ -491,7 +492,8 @@
         "door",
         "broom",
         "die",
-        "flower"
+        "flower",
+        "telescope"
       ],
       "exactNames": [
         "pin",
@@ -510,7 +512,7 @@
       "id": "people-identity",
       "name": "People & identity",
       "icon": "circle-user",
-      "keywords": ["user", "users", "ear", "person"]
+      "keywords": ["user", "users", "ear", "person", "handshake"]
     },
     {
       "id": "science",
@@ -536,9 +538,12 @@
         "fire",
         "gas",
         "math",
-        "thermometer"
+        "thermometer",
+        "campfire",
+        "shooting-star",
+        "telescope"
       ],
-      "exactNames": ["bird", "bird-raven", "leaf", "droplet"]
+      "exactNames": ["bird", "bird-raven", "leaf", "droplet", "bee", "tree"]
     },
     {
       "id": "security",
@@ -586,6 +591,16 @@
         "line-horizontal",
         "line-vertical",
         "numbers",
+        "number0",
+        "number1",
+        "number2",
+        "number3",
+        "number4",
+        "number5",
+        "number6",
+        "number7",
+        "number8",
+        "number9",
         "parentheses",
         "pound-sign",
         "square-asterisk",
@@ -622,16 +637,6 @@
         "ellipsis-v-lg",
         "ellipsis-v-sm",
         "minus",
-        "number0",
-        "number1",
-        "number2",
-        "number3",
-        "number4",
-        "number5",
-        "number6",
-        "number7",
-        "number8",
-        "number9",
         "pilcrow",
         "plus",
         "plus-large",
@@ -676,7 +681,10 @@
         "infinity",
         "percent",
         "square-command",
-        "check-thick-xs"
+        "check-thick-xs",
+        "rays",
+        "rays-sm",
+        "shooting-star"
       ]
     },
     {
@@ -754,9 +762,10 @@
         "wifi",
         "zoom",
         "extensions",
-        "app-notification"
+        "app-notification",
+        "network"
       ],
-      "exactNames": ["square-command"]
+      "exactNames": ["square-command", "letter-k"]
     },
     {
       "id": "time",
@@ -802,7 +811,8 @@
         "ticket",
         "translate",
         "truck",
-        "home-chimney"
+        "home-chimney",
+        "campfire"
       ],
       "exactNames": ["sign"]
     },
@@ -823,6 +833,16 @@
         "list-ordered",
         "markdown",
         "numbers",
+        "number0",
+        "number1",
+        "number2",
+        "number3",
+        "number4",
+        "number5",
+        "number6",
+        "number7",
+        "number8",
+        "number9",
         "parentheses",
         "pilcrow",
         "pound-sign",
@@ -862,18 +882,9 @@
         "ellipsis-v",
         "ellipsis-v-lg",
         "ellipsis-v-sm",
-        "number0",
-        "number1",
-        "number2",
-        "number3",
-        "number4",
-        "number5",
-        "number6",
-        "number7",
-        "number8",
-        "number9",
         "text-title",
-        "text-title-fill"
+        "text-title-fill",
+        "letter-k"
       ]
     }
   ]
