@@ -91,6 +91,36 @@
       ]
     },
     {
+      "id": "code",
+      "name": "Code",
+      "icon": "code",
+      "keywords": [
+        "braces",
+        "brackets",
+        "bug",
+        "code",
+        "database",
+        "diff",
+        "flow",
+        "folder-view",
+        "folder-git",
+        "fork",
+        "git",
+        "memory",
+        "merge",
+        "parallel",
+        "parentheses",
+        "sequence",
+        "sync",
+        "terminal",
+        "text-html",
+        "token",
+        "variable",
+        "workflow",
+        "vector-svg"
+      ]
+    },
+    {
       "id": "commerce",
       "name": "Commerce",
       "icon": "shopping-cart",
@@ -192,36 +222,6 @@
         "background-outer"
       ],
       "exactNames": ["height", "scale", "width"]
-    },
-    {
-      "id": "development-data",
-      "name": "Development & data",
-      "icon": "code",
-      "keywords": [
-        "braces",
-        "brackets",
-        "bug",
-        "code",
-        "database",
-        "diff",
-        "flow",
-        "folder-tree",
-        "folder-git",
-        "fork",
-        "git",
-        "memory",
-        "merge",
-        "parallel",
-        "parentheses",
-        "sequence",
-        "sync",
-        "terminal",
-        "text-markup",
-        "token",
-        "variable",
-        "workflow",
-        "vector-svg"
-      ]
     },
     {
       "id": "devices",

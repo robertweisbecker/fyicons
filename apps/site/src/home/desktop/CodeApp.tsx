@@ -75,8 +75,8 @@ export function CodeApp() {
           />
           <DemoToggle
             label="Wrap lines"
-            icon="arrow-wrap"
-            activeIcon="overflow"
+            icon="line-wrap"
+            activeIcon="line-overflow"
             size="icon-sm"
           />
           <DemoIconButton

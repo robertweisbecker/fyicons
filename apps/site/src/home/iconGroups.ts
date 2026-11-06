@@ -4,6 +4,8 @@ export const iconGroups = [
     id: '857:27862',
     name: 'Arrows, carets, chevrons',
     caption: 'Oh my!',
+    colorClassName:
+      'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300',
     rows: [
       [
         'arrows-repost',
@@ -34,6 +36,8 @@ export const iconGroups = [
     id: '857:27892',
     name: 'AI.',
     caption: 'For that thing your boss wants.',
+    colorClassName:
+      'bg-violet-200 text-violet-800 dark:bg-violet-950 dark:text-violet-300',
     rows: [
       ['chat', 'chat-code', 'chat-sparkles', 'chat-round', 'chat-round-code'],
       [
@@ -50,7 +54,7 @@ export const iconGroups = [
         'route',
         'apps-connected',
       ],
-      ['send', 'send-straight', 'send-tilt', 'pointer', 'pointers'],
+      ['send', 'send-alt', 'send-tilt', 'pointer', 'pointers'],
       [
         'pointer-swarm',
         'pointer-sm',
@@ -71,8 +75,10 @@ export const iconGroups = [
     id: '857:27927',
     name: 'Tools.',
     caption: 'With some tilt.',
+    colorClassName:
+      'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300',
     rows: [
-      ['pencil', 'pen', 'brush', 'paint-brush', 'paint-bucket'],
+      ['pencil', 'pen', 'brush', 'paint-brush', 'bucket'],
       ['highlighter', 'pen-tool', 'pen-tool-alt', 'eyedropper', 'eraser'],
       ['ruler', 'flashlight', 'wrench-tilt', 'wrench-side', 'hammer'],
       [
@@ -82,13 +88,15 @@ export const iconGroups = [
         'drawing',
         'pin',
       ],
-      ['plug', 'wand', 'plug-plug', 'link', 'wand-star'],
+      ['plug', 'wand', 'plugs', 'link', 'wand-star'],
     ],
   },
   {
     id: '857:27957',
     name: 'Code.',
     caption: "It's that stuff Claude writes for you.",
+    colorClassName:
+      'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300',
     rows: [
       ['code-simple', 'code', 'code-square', 'code-rectangle', 'code-block'],
       [
@@ -120,6 +128,8 @@ export const iconGroups = [
     id: '857:27992',
     name: 'a11y & i18n',
     caption: 'Right on!',
+    colorClassName:
+      'bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-300',
     rows: [
       [
         'circle-access',
@@ -156,6 +166,8 @@ export const iconGroups = [
     id: '857:28022',
     name: 'Emoji.',
     caption: 'Tiny things & weird guys!',
+    colorClassName:
+      'bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300',
     rows: [
       ['skull', 'ghost', 'agent', 'bug-ant', 'bug'],
       [
@@ -180,6 +192,8 @@ export const iconGroups = [
     id: '857:28051',
     name: 'Commerce.',
     caption: 'But mostly just bags.',
+    colorClassName:
+      'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300',
     rows: [
       ['shopping-cart', 'basket', 'bag', 'backpack', 'suitcase'],
       ['briefcase', 'shop', 'box-shipping', 'truck', 'car'],
@@ -192,6 +206,8 @@ export const iconGroups = [
     id: '857:28081',
     name: 'Symbols',
     caption: 'for censoring swears',
+    colorClassName:
+      'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-950 dark:text-fuchsia-300',
     rows: [
       ['pound-sign', 'at-sign', 'asterisk', 'asterisk-simple', 'star'],
       ['sparkle', 'kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt'],
@@ -204,6 +220,8 @@ export const iconGroups = [
     id: '857:28111',
     name: 'Progress.',
     caption: 'Batteries included.',
+    colorClassName:
+      'bg-lime-100 text-lime-800 dark:bg-lime-950 dark:text-lime-300',
     rows: [
       ['spinner', 'meter-low', 'meter', 'meter-high', 'loader'],
       ['gauge-min', 'gauge-low', 'gauge-simple', 'gauge-high', 'gauge-max'],
@@ -216,11 +234,11 @@ export const iconGroups = [
       ],
       [
         'circle-dashed',
-        'circle-progress-todo',
-        'circle-progress-quarter',
-        'circle-progress-half',
-        'circle-progress-three-quarters',
-        'circle-progress-full',
+        'progress-task-todo',
+        'progress-task-25',
+        'progress-task-50',
+        'progress-task-75',
+        'progress-task-done',
       ],
       [
         'signal-four-0',
@@ -236,6 +254,8 @@ export const iconGroups = [
     id: '857:28148',
     name: 'System.',
     caption: 'Check back later, Windows gang.',
+    colorClassName:
+      'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300',
     rows: [
       ['kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt', 'kbd-return'],
       ['eject', 'kbd-shift', 'kbd-caps-lock', 'power', 'wifi'],

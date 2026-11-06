@@ -1,3 +1,23 @@
+@reference '../styles.css';
+
+.icon-group-carousel {
+  /* The full-width page container excludes the browser scrollbar. Keep the
+     first and last cards aligned with the landing page's content gutter. */
+  --carousel-gutter: calc(var(--spacing) * 4);
+  --carousel-inset: max(
+    var(--carousel-gutter),
+    calc((100cqw - var(--container-7xl)) / 2 + var(--carousel-gutter))
+  );
+  width: 100cqw;
+  margin-inline: calc(50% - 50cqw);
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .icon-group-carousel {
+    --carousel-gutter: calc(var(--spacing) * 6);
+  }
+}
+
 .hero-headline-line {
   display: block;
   white-space: nowrap;

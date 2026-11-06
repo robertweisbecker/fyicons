@@ -6,6 +6,7 @@ import { flushSync } from 'react-dom';
 import { SiteHeader } from './SiteHeader';
 import { SiteFooter } from './SiteFooter';
 import { GlobalSearch } from './Search';
+import { SearchTriggerContext } from './SearchTrigger';
 import { ToastProvider } from './ui/toast';
 import { TooltipProvider } from './ui/tooltip';
 import { usePreference } from '@/lib/preferences';
@@ -76,7 +77,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <SiteHeader
             theme={theme}
             toggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            search={(event) => openSearch(event.currentTarget)}
           />
           <GlobalSearch
             open={searchOpen}
@@ -88,7 +88,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
             }
           />
           <main id="main-content" tabIndex={-1}>
-            {children}
+            <SearchTriggerContext value={openSearch}>
+              {children}
+            </SearchTriggerContext>
           </main>
           <SiteFooter />
         </div>

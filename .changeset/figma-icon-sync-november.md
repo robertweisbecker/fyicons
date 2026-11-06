@@ -11,6 +11,10 @@ Sync the icon collection with the current design source.
 
 Breaking changes and migration:
 
+Apply each replacement to the original `0.2.1` import names in one pass. Do not run sequential global replacements: some destination names are also old names that move elsewhere. For example, old `IconCheckThick` becomes `IconCheckThickSm`, while old `IconCheckThickSm` becomes `IconCheckThickXs`. Old `IconGaugeHigh` becomes `IconMeterHigh`, while old `IconGaugeSimpleHigh` becomes `IconGaugeHigh`. Preserve any local import aliases when you update the imported symbol.
+
+Review uses of these ten names even if TypeScript still accepts them: `IconCookie`, `IconCookieFill`, `IconMenuSimple`, `IconCheckThickSm`, `IconCheckThick`, `IconGaugeHigh`, `IconGaugeLow`, `IconFlower`, `IconCalendarFill`, and `IconFlagPennant`. They now select different source icons. Use the replacements below to retain the original source identity. The corresponding SVG filenames, CSS classes, and shadcn registry item names also follow the new icon names. Historical website search aliases do not restore old React exports, and current canonical names take precedence over aliases.
+
 - Replace `IconFlagPennant` imports with `IconFlagBanner`.
 - Replace `IconCookie` imports with `IconCookieBite`.
 - Replace `IconSwatch` imports with `IconSwatches`.

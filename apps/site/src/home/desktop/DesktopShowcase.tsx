@@ -57,7 +57,7 @@ function DesktopStatusBar() {
       aria-label="Computer status bar"
     >
       <div className="flex items-center gap-4">
-        <Icon name="cookie-fill" className="rotate-75" />
+        <Icon name="cookie-bite-fill" className="rotate-75" />
         <span>File</span>
         <span>Edit</span>
         <span>View</span>

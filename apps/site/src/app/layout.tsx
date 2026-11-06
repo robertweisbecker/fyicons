@@ -10,6 +10,33 @@ export const metadata: Metadata = {
   description:
     'Small icons for your apps. Download SVGs, use typed React components, or add editable icons with shadcn.',
   icons: { icon: assetPath('/favicon.svg') },
+  openGraph: {
+    type: 'website',
+    siteName: 'FYIcons',
+    images: [
+      {
+        url: assetPath('/og-image.png'),
+        width: 1200,
+        height: 630,
+        alt: 'FYIcons logo with a smiling box of colorful shapes',
+      },
+      {
+        url: assetPath('/og-image-square.png'),
+        width: 1200,
+        height: 1200,
+        alt: 'FYIcons logo with a smiling box of colorful shapes',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [
+      {
+        url: assetPath('/twitter-image.png'),
+        alt: 'FYIcons logo with a smiling box of colorful shapes',
+      },
+    ],
+  },
 };
 export const viewport: Viewport = {
   width: 'device-width',
