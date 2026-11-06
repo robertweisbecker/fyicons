@@ -81,7 +81,7 @@ Use icons in either Server Components or Client Components. Static icons do not 
 
 ## SVG files and editable source
 
-The package includes source SVG files in `svg/` and a `manifest.json` file with names, source IDs, aliases, and source links. You can also [browse and download SVGs](https://icons.bob.fyi/icons/) without installing the package.
+The package includes SVG files in `svg/` and a `manifest.json` file with names, source IDs, and aliases. The SVG exports have the same `fy-icon` and `fy-{icon-name}` classes as React components, with the original artwork preserved. Style inline SVGs with CSS `color`, `width`, and `height`. You can also [browse and download SVGs](https://icons.bob.fyi/icons/) without installing the package.
 
 If you want editable React files in your project, use the [shadcn registry](https://github.com/robertweisbecker/fyicons#add-icons-with-shadcn). It copies selected icons and their shared helpers into your components directory.
 

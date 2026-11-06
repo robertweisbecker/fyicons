@@ -6,7 +6,7 @@ The editable artwork is in [`icons/`](../icons/). Each icon has one SVG file and
 
 Normalize visible foreground paint to `currentColor` before import. The importer applies `normalizeSvgExport` from `scripts/lib/svg-export.mjs`. Keep the raw export and its checksum in local staging. This function applies the foreground color policy, repairs supported fill/stroke combinations, and runs SVGO at three decimal places. Keep the 16 × 16 viewBox, clips, and transparency. React output gives each rendered instance its own SVG definition IDs.
 
-Generation adds `fy-icon` and `fy-{icon-name}` classes to the root of exported SVGs. The website catalog, copied SVGs, and ZIP downloads use these exports. Their artwork, paint, reference IDs, and other source bytes stay unchanged. Existing root classes are retained without duplicating the defaults. Catalog and ZIP checksums describe the exported bytes. The editable `icons/*.svg` files and import timestamps stay unchanged.
+Generation adds `fy-icon` and `fy-{icon-name}` classes to the root of exported SVGs. The website catalog, copied SVGs, ZIP downloads, and npm package SVGs use these same exports. Their artwork, paint, reference IDs, and other source bytes stay unchanged. Existing root classes are retained without duplicating the defaults. Catalog and ZIP checksums describe the exported bytes. The editable `icons/*.svg` files and import timestamps stay unchanged.
 
 After an artwork or metadata edit, run:
 

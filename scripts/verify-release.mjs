@@ -168,11 +168,18 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
   );
   assert.deepEqual(packagedManifest.source, manifest.source);
   assert.deepEqual(packagedManifest.icons, manifest.icons);
-  for (const icon of manifest.icons)
-    assert.deepEqual(
-      await readFile(path.join(installed, 'svg', icon.filename)),
-      await readFile(path.join(root, 'icons', icon.filename)),
+  for (const icon of manifest.icons) {
+    const svg = await readFile(
+      path.join(installed, 'svg', icon.filename),
+      'utf8',
     );
+    assert.match(svg, new RegExp(`^<svg class="fy-icon fy-${icon.name}"\\s`));
+    assert.equal(
+      svg.replace(` class="fy-icon fy-${icon.name}"`, ''),
+      await readFile(path.join(root, 'icons', icon.filename), 'utf8'),
+      `${icon.filename}: export must only add default classes`,
+    );
+  }
   await write(cwd, 'smoke.mjs', smoke);
   // act is development-only; an earlier Vite build can change NODE_ENV.
   run(process.execPath, ['smoke.mjs'], cwd, { NODE_ENV: 'development' });

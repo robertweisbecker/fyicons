@@ -266,8 +266,8 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     icon.duplicate = size > 1;
     icon.variantCount = size;
   }
-  // Imports and React generation keep the source bytes. Website downloads use
-  // classed exports and hashes of the exported bytes.
+  // Imports and React generation keep the source bytes. Downloads and the npm
+  // SVG directory share these classed exports and hashes of the exported bytes.
   const exportedIcons = icons.map((icon) => {
     const svg = withIconClasses(icon.svg, icon.name);
     return {
