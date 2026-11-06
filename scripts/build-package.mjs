@@ -57,7 +57,7 @@ execFileSync(
   { stdio: 'inherit' },
 );
 await mkdir(path.join(stage, 'svg'));
-for (const icon of prepared.icons) {
+for (const icon of prepared.exportedIcons) {
   await writeFile(path.join(stage, 'svg', icon.filename), icon.svg);
 }
 const pkg = JSON.parse(
