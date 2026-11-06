@@ -88,7 +88,8 @@
         "repeat",
         "shuffle",
         "loop"
-      ]
+      ],
+      "exactNames": ["line-wrap"]
     },
     {
       "id": "code",
@@ -102,7 +103,7 @@
         "database",
         "diff",
         "flow",
-        "folder-view",
+        "folder-tree",
         "folder-git",
         "fork",
         "git",
@@ -113,12 +114,13 @@
         "sequence",
         "sync",
         "terminal",
-        "text-html",
+        "text-markup",
         "token",
         "variable",
         "workflow",
         "vector-svg"
-      ]
+      ],
+      "exactNames": ["letter-a", "letter-m", "letter-r"]
     },
     {
       "id": "commerce",
@@ -206,7 +208,7 @@
         "scribble",
         "shadow",
         "square-rotate",
-        "swatch",
+        "swatches",
         "target",
         "background-inner",
         "vector-path",
@@ -219,7 +221,9 @@
         "gradient",
         "vector-curve",
         "vector-svg",
-        "background-outer"
+        "background-outer",
+        "bucket",
+        "edit"
       ],
       "exactNames": ["height", "scale", "width"]
     },
@@ -248,7 +252,8 @@
         "radar",
         "controller",
         "mouse",
-        "watch"
+        "watch",
+        "plugs"
       ]
     },
     {
@@ -263,7 +268,7 @@
       "icon": "folder",
       "keywords": [
         "archive",
-        "article",
+        "rich-text",
         "book",
         "bookmark",
         "clipboard",
@@ -323,7 +328,7 @@
         "widget",
         "tabs"
       ],
-      "exactNames": ["overflow", "wrap", "view-center"]
+      "exactNames": ["line-overflow", "line-wrap", "view-center"]
     },
     {
       "id": "media",
@@ -669,7 +674,9 @@
         "square-percent",
         "stars",
         "infinity",
-        "percent"
+        "percent",
+        "square-command",
+        "check-thick-xs"
       ]
     },
     {
@@ -714,7 +721,8 @@
         "star-half-piece-fill",
         "x",
         "x-lg",
-        "x-sm"
+        "x-sm",
+        "check-thick-xs"
       ]
     },
     {
@@ -747,7 +755,8 @@
         "zoom",
         "extensions",
         "app-notification"
-      ]
+      ],
+      "exactNames": ["square-command"]
     },
     {
       "id": "time",
