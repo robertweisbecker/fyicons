@@ -10,6 +10,8 @@ Generated React sources are in `packages/fyicons/src/`. The package builder uses
 
 Package `dist/`, `svg/`, `manifest.json`, and the copied `LICENSE` are generated and ignored by Git. Package metadata keeps the source date version and adds `packageVersion`. The root [`LICENSE`](../LICENSE) is also included in SVG ZIP downloads.
 
+The optional `fyicons/client` entry exports `FyiProvider` and provider-aware wrappers around the same icons. Its generated `client.tsx` and `provider.tsx` files retain their `use client` directives in the package build. The regular entry and shadcn items remain context-free and do not import the provider runtime. Keep the client entry tree-shakeable so unused wrappers and artwork do not reach consumer bundles.
+
 ## Build artifacts
 
 ```sh
@@ -95,7 +97,7 @@ npm run typecheck
 npm run verify:release
 ```
 
-`verify:release` builds and packs the package, validates the source registry, and installs the tarball in temporary consumer projects. It tests React 18 and 19, exact SVG bytes and license text, server rendering, hydration, refs, event handlers, and accessible names. It also tests NodeNext and Bundler declarations, Vite tree shaking, shadcn installs with a custom alias, and a production Next.js build.
+`verify:release` builds and packs the package, validates the source registry, and installs the tarball in temporary consumer projects. It checks that SVG exports add the default classes and otherwise preserve the source bytes, and that the license text is exact. It tests React 18 and 19, server rendering, hydration, refs, event handlers, and accessible names. It also tests NodeNext and Bundler declarations, Vite tree shaking, shadcn installs with a custom alias, and a production Next.js build.
 
 The registry fixture uses shadcn's source loader for two icons. It writes two temporary payloads for the CLI install test. This checks source resolution, shared files, license text, and installation without building all item JSON files. A real GitHub install remains a separate publication check.
 

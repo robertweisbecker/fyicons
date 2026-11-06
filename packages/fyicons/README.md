@@ -63,6 +63,37 @@ Every icon has `fy-icon` and `fy-{icon-name}` classes. The icon name matches the
 // Renders class="fy-icon fy-sun toolbar-icon"
 ```
 
+## Shared defaults with FyiProvider
+
+Use the optional `fyicons/client` entry to set defaults for an app or a section. Import both the provider and its icons from this entry:
+
+```tsx
+import { FyiProvider, IconSun, IconMoon } from 'fyicons/client';
+
+export function Toolbar() {
+  return (
+    <FyiProvider size={20} className="toolbar-icon">
+      <IconSun />
+      <IconMoon size={16} />
+      <FyiProvider size={24} color="#2563eb">
+        <IconSun />
+      </FyiProvider>
+    </FyiProvider>
+  );
+}
+```
+
+The provider accepts `size`, `color`, `className`, `style`, and `children`. It adds no DOM element.
+
+- Nested providers inherit unspecified defaults. Icon props override inherited size and color. Explicit `width` and `height` still override the corresponding dimension.
+- Classes combine in outer-provider, inner-provider, then icon order, after the default icon classes.
+- Styles merge in the same order. Later values win for the same CSS property. CSS rules still follow the normal cascade; an inline style can override an SVG presentation attribute such as `color`.
+- Without a provider, client icons keep the same 16 px size, inherited text color, and decorative accessibility defaults.
+
+Set accessible names, IDs, refs, and event handlers on individual icons. These are not provider defaults.
+
+Regular `fyicons` imports, direct `fyicons/icons/*` imports, and shadcn source icons stay context-free. They do not consume provider defaults, even inside a provider. Only icons from `fyicons/client` read the context.
+
 ## Accessibility
 
 Icons without a non-empty `aria-label` are decorative and render with `aria-hidden="true"`. Add `aria-label` when an icon conveys information on its own. The component passes the label to the SVG and sets `role="img"`:
@@ -79,9 +110,11 @@ For an icon-only button, name the button and leave the icon decorative, as in th
 
 Use icons in either Server Components or Client Components. Static icons do not need a `use client` directive. For event handlers or refs, place the icon inside your own Client Component.
 
+The optional `fyicons/client` entry exports Client Components. A Server Component can render `FyiProvider` and pass serializable defaults to it. Icons from the client entry consume those defaults; icons rendered as Server Components keep their own props and defaults. Regular imports do not load the provider runtime.
+
 ## SVG files and editable source
 
-The package includes source SVG files in `svg/` and a `manifest.json` file with names, source IDs, aliases, and source links. You can also [browse and download SVGs](https://icons.bob.fyi/icons/) without installing the package.
+The package includes SVG files in `svg/` and a `manifest.json` file with names, source IDs, and aliases. The SVG exports have the same `fy-icon` and `fy-{icon-name}` classes as React components, with the original artwork preserved. Style inline SVGs with CSS `color`, `width`, and `height`. You can also [browse and download SVGs](https://icons.bob.fyi/icons/) without installing the package.
 
 If you want editable React files in your project, use the [shadcn registry](https://github.com/robertweisbecker/fyicons#add-icons-with-shadcn). It copies selected icons and their shared helpers into your components directory.
 

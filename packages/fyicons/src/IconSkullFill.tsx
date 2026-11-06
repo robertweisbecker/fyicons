@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconSkullFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSkullFill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="skull-fill"><path fill="currentColor" d="M8 1a6.25 6.25 0 0 1 5.926 8.233q.073.374.074.767c0 .882-.571 1.627-1.363 1.894.072.185.113.39.113.606 0 .828-.588 1.5-1.312 1.5-.33 0-.63-.14-.86-.37a.43.43 0 0 0-.562-.01c-.254.236-.587.38-.953.38-.369 0-.705-.145-.959-.383a.4.4 0 0 0-.521 0c-.254.238-.59.383-.958.383-.36 0-.688-.138-.94-.365a.405.405 0 0 0-.527.01 1.2 1.2 0 0 1-.846.355C3.589 14 3 13.328 3 12.5c0-.25.054-.485.148-.692A2 2 0 0 1 2 10q0-.393.073-.767A6.25 6.25 0 0 1 8 1m0 7.5a.5.5 0 0 0-.411.216l-.036.06-.5 1a.5.5 0 0 0 .894.448L8 10.118l.053.106a.5.5 0 0 0 .894-.448l-.5-1A.5.5 0 0 0 8 8.5M5.5 6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" /></SvgRoot>;
+});
+export default IconSkullFill;

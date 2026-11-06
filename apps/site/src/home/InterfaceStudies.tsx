@@ -52,7 +52,7 @@ export function EditorStudy() {
       >
         {[
           ['scribble', 'Draw'],
-          ['pointer-rulers', 'Measure'],
+          ['rulers-pointer', 'Measure'],
           ['code', 'Code'],
         ].map(([icon, label]) => (
           <DemoToggle
@@ -188,7 +188,7 @@ export function RichTextStudy() {
                 ['heading-2', 'Heading 2'],
                 ['heading-3', 'Heading 3'],
                 ['paragraph', 'Text'],
-                ['text-blockquote', 'Blockquote'],
+                ['paragraph-blockquote', 'Blockquote'],
                 ['code-rectangle', 'Inline code'],
                 ['code-block', 'Code block'],
                 ['text-highlight', 'Mark'],

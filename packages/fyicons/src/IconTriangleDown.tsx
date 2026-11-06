@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconTriangleDown = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconTriangleDown(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="triangle-down"><path fill="currentColor" d="M7.8 11.733c.1.134.3.134.4 0L10.7 8.4a.25.25 0 0 0-.2-.4h-5a.25.25 0 0 0-.2.4z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="triangle-down"><path fill="currentColor" d="M7.786 11.643a.25.25 0 0 0 .428 0l2.559-4.264A.25.25 0 0 0 10.559 7H5.442a.25.25 0 0 0-.215.379z" /></SvgRoot>;
 });
 export default IconTriangleDown;
