@@ -1288,4 +1288,11 @@ export const iconBySourceId: Record<string, ComponentType<IconProps>> = {
   "1431:12755": icons.IconProgressPie20,
   "1431:12756": icons.IconProgressPie40,
   "1431:12801": icons.IconLayoutMeasure,
+  "1440:12917": icons.IconCommentReply,
+  "1440:12866": icons.IconCommentNotification,
+  "1470:13121": icons.IconQuill,
+  "1470:13089": icons.IconChartLineAxes,
+  "1440:13008": icons.IconCircleDollar,
+  "1440:13015": icons.IconCircleDollarFill,
+  "1470:13112": icons.IconSquareMinusFill,
 };
