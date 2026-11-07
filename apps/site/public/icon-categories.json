@@ -153,7 +153,13 @@
         "wallet",
         "handshake"
       ],
-      "exactNames": ["box", "box-shipping", "square-percent"]
+      "exactNames": [
+        "box",
+        "box-shipping",
+        "circle-dollar",
+        "circle-dollar-fill",
+        "square-percent"
+      ]
     },
     {
       "id": "communication",
@@ -226,7 +232,7 @@
         "bucket",
         "edit"
       ],
-      "exactNames": ["height", "scale", "width"]
+      "exactNames": ["height", "quill", "scale", "width"]
     },
     {
       "id": "devices",

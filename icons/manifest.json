@@ -23584,6 +23584,128 @@
       "componentName": "IconLayoutMeasure",
       "addedAt": "2026-11-06T00:41:40.347Z",
       "updatedAt": "2026-11-06T00:41:40.347Z"
+    },
+    {
+      "id": "1440:12917",
+      "name": "comment-reply",
+      "baseName": "comment-reply",
+      "originalName": "comment-reply",
+      "width": 16,
+      "height": 16,
+      "filename": "comment-reply-16.svg",
+      "file": "svgs/1440-12917.svg",
+      "aliases": [
+        "1440-12917.svg"
+      ],
+      "addedAt": "2026-11-07T09:04:04.547Z",
+      "updatedAt": "2026-11-07T09:04:04.547Z",
+      "componentName": "IconCommentReply"
+    },
+    {
+      "id": "1440:12866",
+      "name": "comment-notification",
+      "baseName": "comment-notification",
+      "originalName": "comment-notification",
+      "width": 16,
+      "height": 16,
+      "filename": "comment-notification-16.svg",
+      "file": "svgs/1440-12866.svg",
+      "aliases": [
+        "1440-12866.svg"
+      ],
+      "addedAt": "2026-11-07T09:04:04.547Z",
+      "updatedAt": "2026-11-07T09:04:04.547Z",
+      "componentName": "IconCommentNotification"
+    },
+    {
+      "id": "1470:13121",
+      "name": "quill",
+      "baseName": "quill",
+      "originalName": "quill",
+      "width": 16,
+      "height": 16,
+      "filename": "quill-16.svg",
+      "file": "svgs/1470-13121.svg",
+      "aliases": [
+        "1470-13121.svg"
+      ],
+      "addedAt": "2026-11-07T09:04:04.547Z",
+      "updatedAt": "2026-11-07T09:04:04.547Z",
+      "componentName": "IconQuill"
+    },
+    {
+      "id": "1470:13089",
+      "name": "chart-line-axes",
+      "baseName": "chart-line-axes",
+      "originalName": "chart-line-axes",
+      "width": 16,
+      "height": 16,
+      "filename": "chart-line-axes-16.svg",
+      "file": "svgs/1470-13089.svg",
+      "aliases": [
+        "1470-13089.svg"
+      ],
+      "addedAt": "2026-11-07T09:04:04.547Z",
+      "updatedAt": "2026-11-07T09:04:04.547Z",
+      "componentName": "IconChartLineAxes"
+    },
+    {
+      "id": "1440:13008",
+      "name": "circle-dollar",
+      "baseName": "circle-dollar",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "variantSetId": "1440:13007",
+      "variantSetName": "circle-dollar",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "filename": "circle-dollar-16.svg",
+      "file": "svgs/1440-13008.svg",
+      "aliases": [
+        "1440-13008.svg"
+      ],
+      "addedAt": "2026-11-07T09:04:04.547Z",
+      "updatedAt": "2026-11-07T09:04:04.547Z",
+      "componentName": "IconCircleDollar"
+    },
+    {
+      "id": "1440:13015",
+      "name": "circle-dollar-fill",
+      "baseName": "circle-dollar",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "variantSetId": "1440:13007",
+      "variantSetName": "circle-dollar",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "filename": "circle-dollar-fill-16.svg",
+      "file": "svgs/1440-13015.svg",
+      "aliases": [
+        "1440-13015.svg"
+      ],
+      "addedAt": "2026-11-07T09:04:04.547Z",
+      "updatedAt": "2026-11-07T09:04:04.547Z",
+      "componentName": "IconCircleDollarFill"
+    },
+    {
+      "id": "1470:13112",
+      "name": "square-minus-fill",
+      "baseName": "square-minus-fill",
+      "originalName": "square-minus-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "square-minus-fill-16.svg",
+      "file": "svgs/1470-13112.svg",
+      "aliases": [
+        "1470-13112.svg"
+      ],
+      "addedAt": "2026-11-07T09:04:04.547Z",
+      "updatedAt": "2026-11-07T09:04:04.547Z",
+      "componentName": "IconSquareMinusFill"
     }
   ]
 }

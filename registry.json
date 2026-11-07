@@ -35982,6 +35982,202 @@
         }
       ],
       "type": "registry:component"
+    },
+    {
+      "name": "comment-reply",
+      "title": "IconCommentReply",
+      "description": "The comment-reply icon from FYIcons 0.3.1.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCommentReply.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCommentReply.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "comment-notification",
+      "title": "IconCommentNotification",
+      "description": "The comment-notification icon from FYIcons 0.3.1.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCommentNotification.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCommentNotification.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "quill",
+      "title": "IconQuill",
+      "description": "The quill icon from FYIcons 0.3.1.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconQuill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconQuill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "chart-line-axes",
+      "title": "IconChartLineAxes",
+      "description": "The chart-line-axes icon from FYIcons 0.3.1.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconChartLineAxes.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconChartLineAxes.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "circle-dollar",
+      "title": "IconCircleDollar",
+      "description": "The circle-dollar icon from FYIcons 0.3.1.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCircleDollar.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCircleDollar.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "circle-dollar-fill",
+      "title": "IconCircleDollarFill",
+      "description": "The circle-dollar-fill icon from FYIcons 0.3.1.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCircleDollarFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCircleDollarFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "square-minus-fill",
+      "title": "IconSquareMinusFill",
+      "description": "The square-minus-fill icon from FYIcons 0.3.1.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconSquareMinusFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconSquareMinusFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
     }
   ]
 }
