@@ -19494,7 +19494,7 @@
     },
     {
       "id": "716:3809",
-      "originalName": "CalendarSimple",
+      "originalName": "calendar-simple",
       "width": 16,
       "height": 16,
       "name": "calendar-simple",
@@ -19506,11 +19506,11 @@
       ],
       "notes": [],
       "componentName": "IconCalendarSimple",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-07T09:09:36.559Z"
     },
     {
       "id": "736:7112",
-      "originalName": "CalendarSimpleDays",
+      "originalName": "calendar-simple-days",
       "width": 16,
       "height": 16,
       "name": "calendar-simple-days",
@@ -19522,7 +19522,7 @@
       ],
       "notes": [],
       "componentName": "IconCalendarSimpleDays",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-07T09:09:36.559Z"
     },
     {
       "id": "102:5518",
