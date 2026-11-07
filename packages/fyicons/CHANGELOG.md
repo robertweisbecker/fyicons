@@ -1,5 +1,11 @@
 # fyicons
 
+## 0.3.1
+
+### Patch Changes
+
+- 1bc756e: Fix a spur at the inner join of `IconAtom` and a hairline seam in `IconAppearanceSimple` and `IconAppearanceSimpleReverse`. The fixes apply to React icons and SVG downloads.
+
 ## 0.3.0
 
 ### Minor Changes
