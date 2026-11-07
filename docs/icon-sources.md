@@ -26,6 +26,10 @@ Keep `svgSimplifyStroke: false` for Figma exports. The simplify option can appro
 
 After foreground color normalization, the importer joins an expanded outside stroke with its matching opaque fill when it can verify the redundant inverse-mask structure. Paper.js computes one filled outline. This removes the internal compositing seam and duplicate path data. The operation preserves holes and shared group opacity. It leaves unsupported masks, alpha-bearing paint, layer transparency, transformed layers, and clipped bounds unchanged. It does not edit the Figma document.
 
+When a solid half-disc exactly meets the inner edge of a ring of the same opaque color, the importer combines them into one filled path. Separate layers can show a hairline at the shared edge. A gap, transparency, or dashed stroke keeps the shapes separate.
+
+For a mitered stroke, a relative Bézier curve can reach its starting point with a small rounding error. The importer writes matching start and end coordinates in absolute form when that curve closes the subpath. This prevents a visible spur in GPU rendering.
+
 Review the generated PNG comparison after an import, using an existing browser for SVG spot checks when needed. A vector union can change edge antialiasing and numeric path representation. A smaller file alone does not establish visual correctness. Paper.js and SVGO are development dependencies; neither is included in the icon package or website bundle.
 
 After the repair, the pinned SVGO version runs its default preset with multiple passes and three-decimal precision. ID cleanup and color conversion are disabled. This reduces path data while keeping the viewBox, reference IDs, and paint policy. It can slightly change curves and edge antialiasing, so review the 16 px and 64 px comparisons when the optimizer or its settings change. Use the same normalizer for all imported icons; do not optimize generated React files separately.

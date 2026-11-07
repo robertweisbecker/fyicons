@@ -1,6 +1,10 @@
 import { JSDOM } from 'jsdom';
 import paper from 'paper';
 import { optimize } from 'svgo';
+import {
+  anchorStrokeClosures,
+  mergeTouchingHalfDiscs,
+} from './svg-geometry.mjs';
 import { normalizeDisplayPaint } from './react-icons.mjs';
 
 const attributesOnly = (node, allowed) =>
@@ -223,6 +227,7 @@ export function normalizeSvgExport(svg) {
       multipass: true,
       floatPrecision: 3,
       plugins: [
+        mergeTouchingHalfDiscs,
         {
           name: 'preset-default',
           params: {
@@ -230,6 +235,7 @@ export function normalizeSvgExport(svg) {
             overrides: { cleanupIds: false, convertColors: false },
           },
         },
+        anchorStrokeClosures,
       ],
     }).data + '\n'
   );

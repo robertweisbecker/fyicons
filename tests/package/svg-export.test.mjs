@@ -1,4 +1,5 @@
 import test, { before, after } from 'node:test';
+import { SVGPathData } from 'svg-pathdata';
 import assert from 'node:assert/strict';
 import { JSDOM } from 'jsdom';
 import { readFile } from 'node:fs/promises';
@@ -175,4 +176,64 @@ test('optimization rounds coordinates while retaining mask IDs, paint and transp
   } finally {
     dom.window.close();
   }
+});
+
+test('a stroked curve that returns to its start has an exact closing endpoint', () => {
+  // Relative arithmetic at this Figma join leaves a tiny extra segment on GPUs.
+  const curve =
+    'M8.00001 5.04023C8.74299 4.69092 9.48642 4.40847 10.1821 4.22071C9.75857 2.62869 9.0312 1.50014 8.00001 1.5C6.9687 1.49986 6.24133 2.62856 5.81787 4.22087C6.51357 4.40859 7.25702 4.69098 8.00001 5.04023Z';
+  const svg = (d) => `<svg fill="none"><path stroke="black" d="${d}"/></svg>`;
+  const commands = (svg) => SVGPathData.parse(svg.match(/ d="([^"]+)"/)[1]);
+  const normalized = normalizeSvgExport(svg(curve));
+  const [move, ...rest] = commands(normalized);
+  const end = rest.at(-2);
+  assert.equal(end.relative, false);
+  assert.deepEqual([end.x, end.y], [move.x, move.y]);
+  assert.equal(normalizeSvgExport(normalized), normalized);
+  const gap = commands(
+    normalizeSvgExport(svg(curve.replace('5.04023Z', '5.05Z'))),
+  );
+  const gapEnd = new SVGPathData(gap).toAbs().round(1000).commands.at(-2);
+  assert.equal(gapEnd.y, 5.05);
+});
+
+test('a half-disc touching an opaque ring paints one continuous surface', async () => {
+  const svg = (attrs = '', radius = 6) =>
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="black"/><path ${attrs} fill="black" d="M8 ${8 - radius}a${radius} ${radius} 0 1 0 0 ${2 * radius}Z"/></svg>`;
+  const raw = await readFile(
+    new URL('./fixtures/touching-half-disc.svg', import.meta.url),
+    'utf8',
+  );
+  const reverse = svg().replace(
+    'M8 2a6 6 0 1 0 0 12Z',
+    'M8 14a6 6 0 1 0 0 -12Z',
+  );
+  for (const [source, direction] of [
+    [raw, -1],
+    [reverse, 1],
+  ]) {
+    const normalized = normalizeSvgExport(source);
+    assert.equal(normalizeSvgExport(normalized), normalized);
+    const { data } = await renderer.raster(
+      normalized,
+      { ...views[0], size: 64 },
+      true,
+    );
+    for (let y = 0; y < 64; y++) {
+      for (let x = 0; x < 64; x++) {
+        const dx = x + 0.5 - 32,
+          radius = Math.hypot(dx, y + 0.5 - 32);
+        const alpha = data[(y * 64 + x) * 4 + 3];
+        if (direction * dx > 1 && radius < 26) assert.equal(alpha, 255);
+        if (direction * dx < -1 && radius < 22) assert.equal(alpha, 0);
+        if (radius > 30) assert.equal(alpha, 0);
+      }
+    }
+  }
+  for (const unsupported of [
+    svg('opacity=".5"'),
+    svg('', 5),
+    svg().replace('stroke="black"', 'stroke="black" stroke-dasharray="1 1"'),
+  ])
+    assert.match(normalizeSvgExport(unsupported), /<circle\b/);
 });
