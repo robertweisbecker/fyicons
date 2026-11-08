@@ -52,9 +52,28 @@ const lines = [
 for (const [flag, verb] of [
   ['added', 'Add'],
   ['removed', 'Remove'],
-  ['svg-bytes-changed', 'Change the SVG source for'],
 ])
   if (count(flag)) lines.push(`- ${verb} ${count(flag)} icons.`);
+const sourceChanges = report.changes.filter((change) =>
+  change.flags.includes('svg-bytes-changed'),
+);
+const visualChanges = sourceChanges.filter(
+  (change) => change.visualChange === 'significant',
+).length;
+const subtleChanges = sourceChanges.filter((change) =>
+  ['subtle', 'identical'].includes(change.visualChange),
+).length;
+const unclassifiedChanges =
+  sourceChanges.length - visualChanges - subtleChanges;
+const icons = (count) => `${count} ${count === 1 ? 'icon' : 'icons'}`;
+if (visualChanges)
+  lines.push(`- Update the artwork for ${icons(visualChanges)}.`);
+if (subtleChanges)
+  lines.push(
+    `- Adjust SVG paths or subtle rendering for ${icons(subtleChanges)}.`,
+  );
+if (unclassifiedChanges)
+  lines.push(`- Change the SVG source for ${icons(unclassifiedChanges)}.`);
 if (report.categoriesChanged) lines.push('- Change the category rules.');
 if (report.reactGeneratorChanged)
   lines.push('- Change the React component generator.');

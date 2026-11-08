@@ -66,6 +66,7 @@ export function previewManifest(report) {
       before: change.before?.componentName ?? null,
       after: change.after?.componentName ?? null,
       flags: change.flags,
+      ...(change.visualChange ? { visualChange: change.visualChange } : {}),
       image: `${String(index).padStart(4, '0')}.png`,
       overlay: change.flags.includes('pixels-changed'),
     })),
