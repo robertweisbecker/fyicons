@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconComments = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconComments(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="comments"><path fill="currentColor" d="M9.5 2A4.5 4.5 0 0 1 14 6.5v3.53a.97.97 0 0 1-.97.97H9.963A3.5 3.5 0 0 1 6.5 14H2.912A.91.91 0 0 1 2 13.088V9.5a3.5 3.5 0 0 1 3.023-3.468A4.5 4.5 0 0 1 9.5 2M5.033 7.045A2.5 2.5 0 0 0 3 9.5V13h3.5a2.5 2.5 0 0 0 2.454-2.034 4.5 4.5 0 0 1-3.92-3.921M9.5 3a3.5 3.5 0 1 0 0 7H13V6.5A3.5 3.5 0 0 0 9.5 3" /></SvgRoot>;
+});
+export default IconComments;

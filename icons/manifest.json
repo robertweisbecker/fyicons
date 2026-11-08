@@ -23597,9 +23597,9 @@
       "aliases": [
         "1440-12917.svg"
       ],
+      "componentName": "IconCommentReply",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-07T09:04:04.547Z",
-      "componentName": "IconCommentReply"
+      "updatedAt": "2026-11-07T09:04:04.547Z"
     },
     {
       "id": "1440:12866",
@@ -23613,9 +23613,9 @@
       "aliases": [
         "1440-12866.svg"
       ],
+      "componentName": "IconCommentNotification",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-07T09:04:04.547Z",
-      "componentName": "IconCommentNotification"
+      "updatedAt": "2026-11-07T09:04:04.547Z"
     },
     {
       "id": "1470:13121",
@@ -23629,9 +23629,9 @@
       "aliases": [
         "1470-13121.svg"
       ],
+      "componentName": "IconQuill",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-07T09:04:04.547Z",
-      "componentName": "IconQuill"
+      "updatedAt": "2026-11-07T09:04:04.547Z"
     },
     {
       "id": "1470:13089",
@@ -23645,9 +23645,9 @@
       "aliases": [
         "1470-13089.svg"
       ],
+      "componentName": "IconChartLineAxes",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-07T09:04:04.547Z",
-      "componentName": "IconChartLineAxes"
+      "updatedAt": "2026-11-07T09:04:04.547Z"
     },
     {
       "id": "1440:13008",
@@ -23666,9 +23666,9 @@
       "aliases": [
         "1440-13008.svg"
       ],
+      "componentName": "IconCircleDollar",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-07T09:04:04.547Z",
-      "componentName": "IconCircleDollar"
+      "updatedAt": "2026-11-07T09:04:04.547Z"
     },
     {
       "id": "1440:13015",
@@ -23687,9 +23687,9 @@
       "aliases": [
         "1440-13015.svg"
       ],
+      "componentName": "IconCircleDollarFill",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-07T09:04:04.547Z",
-      "componentName": "IconCircleDollarFill"
+      "updatedAt": "2026-11-07T09:04:04.547Z"
     },
     {
       "id": "1470:13112",
@@ -23703,9 +23703,185 @@
       "aliases": [
         "1470-13112.svg"
       ],
+      "componentName": "IconSquareMinusFill",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-07T09:04:04.547Z",
-      "componentName": "IconSquareMinusFill"
+      "updatedAt": "2026-11-07T09:04:04.547Z"
+    },
+    {
+      "id": "1480:13262",
+      "name": "comment-reply-plus",
+      "baseName": "comment-reply-plus",
+      "originalName": "comment-reply-plus",
+      "width": 16,
+      "height": 16,
+      "filename": "comment-reply-plus-16.svg",
+      "file": "svgs/1480-13262.svg",
+      "aliases": [
+        "1480-13262.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconCommentReplyPlus"
+    },
+    {
+      "id": "1480:13260",
+      "name": "comment-reply-edit",
+      "baseName": "comment-reply-edit",
+      "originalName": "comment-reply-edit",
+      "width": 16,
+      "height": 16,
+      "filename": "comment-reply-edit-16.svg",
+      "file": "svgs/1480-13260.svg",
+      "aliases": [
+        "1480-13260.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconCommentReplyEdit"
+    },
+    {
+      "id": "1480:13259",
+      "name": "comment-reply-check",
+      "baseName": "comment-reply-check",
+      "originalName": "comment-reply-check",
+      "width": 16,
+      "height": 16,
+      "filename": "comment-reply-check-16.svg",
+      "file": "svgs/1480-13259.svg",
+      "aliases": [
+        "1480-13259.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconCommentReplyCheck"
+    },
+    {
+      "id": "1480:13268",
+      "name": "comments",
+      "baseName": "comments",
+      "originalName": "comments",
+      "width": 16,
+      "height": 16,
+      "filename": "comments-16.svg",
+      "file": "svgs/1480-13268.svg",
+      "aliases": [
+        "1480-13268.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconComments"
+    },
+    {
+      "id": "1480:13281",
+      "name": "bell-2-fill",
+      "baseName": "bell-2-fill",
+      "originalName": "bell-2-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "bell-2-fill-16.svg",
+      "file": "svgs/1480-13281.svg",
+      "aliases": [
+        "1480-13281.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconBell2Fill"
+    },
+    {
+      "id": "1482:13297",
+      "name": "fan",
+      "baseName": "fan",
+      "originalName": "fan",
+      "width": 16,
+      "height": 16,
+      "filename": "fan-16.svg",
+      "file": "svgs/1482-13297.svg",
+      "aliases": [
+        "1482-13297.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconFan"
+    },
+    {
+      "id": "1480:13261",
+      "name": "comment-reply-notification",
+      "baseName": "comment-reply-notification",
+      "originalName": "comment-reply-notification",
+      "width": 16,
+      "height": 16,
+      "filename": "comment-reply-notification-16.svg",
+      "file": "svgs/1480-13261.svg",
+      "aliases": [
+        "1480-13261.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconCommentReplyNotification"
+    },
+    {
+      "id": "1479:13246",
+      "name": "zzz",
+      "baseName": "zzz",
+      "originalName": "zzz",
+      "width": 16,
+      "height": 16,
+      "filename": "zzz-16.svg",
+      "file": "svgs/1479-13246.svg",
+      "aliases": [
+        "1479-13246.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconZzz"
+    },
+    {
+      "id": "1494:9372",
+      "name": "ban-fill",
+      "baseName": "ban-fill",
+      "originalName": "ban-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "ban-fill-16.svg",
+      "file": "svgs/1494-9372.svg",
+      "aliases": [
+        "1494-9372.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconBanFill"
+    },
+    {
+      "id": "1482:13330",
+      "name": "array",
+      "baseName": "array",
+      "originalName": "array",
+      "width": 16,
+      "height": 16,
+      "filename": "array-16.svg",
+      "file": "svgs/1482-13330.svg",
+      "aliases": [
+        "1482-13330.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconArray"
+    },
+    {
+      "id": "1485:1224",
+      "name": "letter-u",
+      "baseName": "letter-u",
+      "originalName": "letter-u",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-u-16.svg",
+      "file": "svgs/1485-1224.svg",
+      "aliases": [
+        "1485-1224.svg"
+      ],
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "componentName": "IconLetterU"
     }
   ]
 }

@@ -93,6 +93,7 @@
                 "archive",
                 "archway",
                 "arrange",
+                "array",
                 "arrow",
                 "arrows",
                 "article",
@@ -200,6 +201,7 @@
                 "columns",
                 "command",
                 "comment",
+                "comments",
                 "commit",
                 "compare",
                 "compass",
@@ -288,6 +290,7 @@
                 "eyedropper",
                 "fabric",
                 "face",
+                "fan",
                 "fast",
                 "feed",
                 "file",
@@ -696,6 +699,7 @@
                 "trophy",
                 "truck",
                 "two",
+                "u",
                 "umbrella",
                 "underline",
                 "undo",
@@ -738,7 +742,8 @@
                 "xs",
                 "y",
                 "zip",
-                "zoom"
+                "zoom",
+                "zzz"
               ]
             }
           },
@@ -804,6 +809,7 @@
         "arrange-middle",
         "arrange-start",
         "arrange-top",
+        "array",
         "arrow-clockwise",
         "arrow-clockwise-lg",
         "arrow-corner-minimize",
@@ -863,6 +869,7 @@
         "backpack",
         "bag",
         "ban",
+        "ban-fill",
         "basket",
         "battery",
         "battery-charging",
@@ -874,6 +881,7 @@
         "bee",
         "bell",
         "bell-2",
+        "bell-2-fill",
         "bell-2-slash",
         "bell-fill",
         "bell-slash",
@@ -1110,6 +1118,11 @@
         "comment-notification",
         "comment-plus",
         "comment-reply",
+        "comment-reply-check",
+        "comment-reply-edit",
+        "comment-reply-notification",
+        "comment-reply-plus",
+        "comments",
         "compass",
         "compass-fill",
         "compass-simple",
@@ -1238,6 +1251,7 @@
         "eye-slash-fill",
         "eyedropper",
         "fabric",
+        "fan",
         "fast-backward",
         "fast-backward-fill",
         "fast-forward",
@@ -1518,6 +1532,7 @@
         "letter-r",
         "letter-spacing",
         "letter-spacing-alt",
+        "letter-u",
         "library",
         "library-lines",
         "library-simple",
@@ -2057,7 +2072,8 @@
         "x-lg",
         "x-sm",
         "zoom-in",
-        "zoom-out"
+        "zoom-out",
+        "zzz"
       ]
     }
   }

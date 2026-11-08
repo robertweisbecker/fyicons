@@ -2,4 +2,4 @@
 'fyicons': minor
 ---
 
-Add seven icons: `IconChartLineAxes`, `IconCircleDollar`, `IconCircleDollarFill`, `IconCommentNotification`, `IconCommentReply`, `IconQuill`, and `IconSquareMinusFill`.
+Add 18 icons: `IconArray`, `IconBanFill`, `IconBell2Fill`, `IconChartLineAxes`, `IconCircleDollar`, `IconCircleDollarFill`, `IconCommentNotification`, `IconCommentReply`, `IconCommentReplyCheck`, `IconCommentReplyEdit`, `IconCommentReplyNotification`, `IconCommentReplyPlus`, `IconComments`, `IconFan`, `IconLetterU`, `IconQuill`, `IconSquareMinusFill`, and `IconZzz`.

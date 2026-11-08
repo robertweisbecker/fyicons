@@ -121,7 +121,7 @@
         "vector-svg",
         "network"
       ],
-      "exactNames": ["letter-a", "letter-m", "letter-r"]
+      "exactNames": ["array", "letter-a", "letter-m", "letter-r", "letter-u"]
     },
     {
       "id": "commerce",
@@ -178,7 +178,8 @@
         "mailbox",
         "headset",
         "comment"
-      ]
+      ],
+      "exactNames": ["comments"]
     },
     {
       "id": "design",
@@ -267,7 +268,8 @@
       "id": "emoji",
       "name": "Emoji",
       "icon": "emoji-smile",
-      "keywords": ["emoji", "ghost", "heart", "skull", "thumbs"]
+      "keywords": ["emoji", "ghost", "heart", "skull", "thumbs"],
+      "exactNames": ["zzz"]
     },
     {
       "id": "files",
@@ -511,7 +513,8 @@
         "brush",
         "box",
         "flower-spiral",
-        "sign"
+        "sign",
+        "fan"
       ]
     },
     {
