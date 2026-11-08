@@ -7,7 +7,10 @@ import {
   compareSnapshots,
   renderMarkdown,
 } from './lib/icon-diff.mjs';
-import { createIconRenderer } from './lib/icon-diff-images.mjs';
+import {
+  classifyVisualChange,
+  createIconRenderer,
+} from './lib/icon-diff-images.mjs';
 import { renderHtml } from './lib/icon-diff-html.mjs';
 import { previewImage, previewManifest } from './lib/icon-preview-images.mjs';
 
@@ -48,6 +51,19 @@ try {
         : null;
     if (change.pixels && Object.values(change.pixels).some(Boolean))
       change.flags.push('pixels-changed');
+    if (change.pixels) {
+      change.visualChange = classifyVisualChange(images);
+      change.pixelMetrics = Object.fromEntries(
+        Object.entries(images).map(([view, image]) => [
+          view,
+          {
+            changed: image.changedPixels,
+            moderate: image.moderatePixels,
+            strong: image.strongPixels,
+          },
+        ]),
+      );
+    }
     previews.push(images);
   }
   report.renderer = renderer.metadata;

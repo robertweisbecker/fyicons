@@ -55,12 +55,19 @@ export function pixelDiff(before, after, background = '#ffffff') {
     throw new Error('Image dimensions differ.');
   const png = new PNG({ width: before.width, height: before.height });
   let changedPixels = 0;
+  let moderatePixels = 0;
+  let strongPixels = 0;
   const bg = parseInt(background.slice(1, 3), 16);
   for (let i = 0; i < before.data.length; i += 4) {
     const a = before.data.subarray(i, i + 4),
       b = after.data.subarray(i, i + 4);
     const changed = !a.equals(b);
     if (changed) changedPixels++;
+    const delta = Math.max(
+      ...a.map((value, channel) => Math.abs(value - b[channel])),
+    );
+    if (delta >= 32) moderatePixels++;
+    if (delta >= 64) strongPixels++;
     const oldInk = Math.abs(bg - (a[0] + a[1] + a[2]) / 3);
     const newInk = Math.abs(bg - (b[0] + b[1] + b[2]) / 3);
     const color = changed
@@ -70,7 +77,29 @@ export function pixelDiff(before, after, background = '#ffffff') {
       : [bg, bg, bg];
     png.data.set([...color, 255], i);
   }
-  return { changedPixels, png: PNG.sync.write(png) };
+  return {
+    changedPixels,
+    moderatePixels,
+    strongPixels,
+    png: PNG.sync.write(png),
+  };
+}
+
+// This is a review priority, not a statement that artwork is unchanged.
+// Scale pixel counts by image area so 16 px and 64 px use the same threshold.
+export function classifyVisualChange(images) {
+  const compared = Object.values(images).filter(
+    (image) => image.changedPixels !== null,
+  );
+  if (!compared.some((image) => image.changedPixels > 0)) return 'identical';
+  return compared.some((image) => {
+    const areaScale = (image.size / 16) ** 2;
+    return (
+      image.strongPixels >= areaScale || image.moderatePixels >= 4 * areaScale
+    );
+  })
+    ? 'significant'
+    : 'subtle';
 }
 
 async function compareImages(raster, before, after) {
@@ -91,7 +120,10 @@ async function compareImages(raster, before, after) {
         return [
           view.name,
           {
+            size: view.size,
             changedPixels: diff?.changedPixels ?? null,
+            moderatePixels: diff?.moderatePixels ?? null,
+            strongPixels: diff?.strongPixels ?? null,
             before: a ? url(a.png) : null,
             after: b ? url(b.png) : null,
             diff: diff?.changedPixels ? url(diff.png) : null,

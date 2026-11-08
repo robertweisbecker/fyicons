@@ -12,6 +12,8 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import {
   createIconRenderer,
+  classifyVisualChange,
+  pixelDiff,
   views,
 } from '../../scripts/lib/icon-diff-images.mjs';
 import { renderHtml } from '../../scripts/lib/icon-diff-html.mjs';
@@ -26,6 +28,40 @@ after(async () => {
 });
 const compareImages = (...args) => renderer.compareImages(...args);
 const raster = (...args) => renderer.raster(...args);
+
+test('pixel comparisons keep exact changes and prioritize larger rendering differences', () => {
+  function image(size, changes) {
+    const before = {
+      width: size,
+      height: size,
+      data: Buffer.alloc(size * size * 4, 255),
+    };
+    const after = { ...before, data: Buffer.from(before.data) };
+    for (const [index, delta] of changes.entries())
+      after.data[index * 4] -= delta;
+    return { size, ...pixelDiff(before, after) };
+  }
+  for (const size of [16, 64]) {
+    const scale = (size / 16) ** 2;
+    const noise = image(size, Array(3 * scale).fill(8));
+    assert.equal(noise.changedPixels, 3 * scale);
+    assert.equal(classifyVisualChange({ test: noise }), 'subtle');
+    assert.equal(
+      classifyVisualChange({ test: image(size, Array(scale).fill(64)) }),
+      'significant',
+    );
+    assert.equal(
+      classifyVisualChange({ test: image(size, Array(4 * scale).fill(32)) }),
+      'significant',
+    );
+    assert.equal(classifyVisualChange({ test: image(size, []) }), 'identical');
+  }
+  // One borderline view must stay reviewable even when the others match.
+  assert.equal(
+    classifyVisualChange({ light: image(16, [1]), dark: image(16, []) }),
+    'subtle',
+  );
+});
 
 const icon = (id, name, extra = {}) => ({
   id,
@@ -212,6 +248,14 @@ test('byte-only edits do not cause pixel changes; masks and gradients render', a
 const rectangle = (x) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect x="${x}" y="4" width="6" height="8" fill="currentColor" opacity=".5"/></svg>`;
 
+test('real SVG rendering separates rounding noise from a visible move', async () => {
+  const rounding = await compareImages(rectangle(2), rectangle(2.001));
+  assert.ok(Object.values(rounding).some((view) => view.changedPixels > 0));
+  assert.equal(classifyVisualChange(rounding), 'subtle');
+  const moved = await compareImages(rectangle(2), rectangle(3));
+  assert.equal(classifyVisualChange(moved), 'significant');
+});
+
 test('source foreground paint uses the preview theme without hiding geometry changes', async () => {
   const source = rectangle(2).replace('currentColor', 'black');
   const same = await compareImages(source, rectangle(2));
@@ -271,6 +315,7 @@ test('HTML treats metadata as text and works without remote resources', async ()
     snapshot([]),
     snapshot([icon('1', '<script>alert(1)</script>')]),
   );
+  report.changes[0].visualChange = 'subtle';
   const previews = [
     await compareImages(
       null,
@@ -280,6 +325,8 @@ test('HTML treats metadata as text and works without remote resources', async ()
   const html = renderHtml(report, previews);
   assert.ok(!html.includes('<script>alert(1)</script>'));
   assert.ok(html.includes('&lt;script&gt;'));
+  assert.ok(html.includes('data-visual="subtle"'));
+  assert.ok(html.includes('visual:subtle'));
   assert.ok(!/src="https?:/.test(html));
 });
 

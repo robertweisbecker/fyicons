@@ -53,8 +53,8 @@ export function renderHtml(report, previews) {
       ]
         .join(' ')
         .toLowerCase();
-      return `<tr data-search="${escape(search)}" data-flags="${change.flags.map(escape).join(' ')}">
-      <th scope="row"><h2>${escape(name)}</h2><p class="flags">${change.flags.map((flag) => `<span>${escape(flag)}</span>`).join(' ')}</p>
+      return `<tr data-search="${escape(search)}" data-flags="${change.flags.map(escape).join(' ')}" data-visual="${escape(change.visualChange ?? '')}">
+      <th scope="row"><h2>${escape(name)}</h2><p class="flags">${change.visualChange ? `<span>rendering: ${escape(change.visualChange)}</span>` : ''}${change.flags.map((flag) => `<span>${escape(flag)}</span>`).join(' ')}</p>
       <details><summary>Source details</summary><pre>${escape(JSON.stringify(change, null, 2))}</pre></details></th>
       ${sourceCell(before, previews[index], 'before')}${sourceCell(after, previews[index], 'after')}${comparisonCell(change, previews[index])}
     </tr>`;
@@ -112,7 +112,7 @@ export function renderHtml(report, previews) {
   ${report.collectionChanged ? '<p class="notice">Collection metadata changed. Read changes.json.</p>' : ''}
   <div class="controls">
     <div class="control"><label for="search">Search</label><input type="search" id="search" placeholder="Name, export, or source ID"></div>
-    <div class="control"><label for="filter">Change</label><select id="filter"><option value="">All changes</option>${flags.map((flag) => `<option>${escape(flag)}</option>`).join('')}</select></div>
+    <div class="control"><label for="filter">Change</label><select id="filter"><option value="">All changes</option><option value="visual:significant">Significant rendering</option><option value="visual:subtle">Subtle rendering</option><option value="visual:identical">Identical rendering</option>${flags.map((flag) => `<option>${escape(flag)}</option>`).join('')}</select></div>
     <div class="control"><label for="theme">Background</label><select id="theme"><option value="light">Light</option><option value="dark">Dark</option></select></div>
     <div class="control"><label for="size">Render size</label><select id="size"><option value="both" selected>16 px and 64 px</option><option value="16">16 px</option><option value="64">64 px</option></select></div>
     <div class="control"><label for="zoom">Zoom</label><select id="zoom"><option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option><option value="8">8×</option></select></div>
@@ -132,7 +132,7 @@ export function renderHtml(report, previews) {
   </div>
 </main><script>
   const search=document.querySelector('#search'),filter=document.querySelector('#filter'),rows=[...document.querySelectorAll('tbody tr')];
-  function update(){let count=0;for(const row of rows){row.hidden=!(row.dataset.search.includes(search.value.toLowerCase())&&(!filter.value||row.dataset.flags.split(' ').includes(filter.value)));if(!row.hidden)count++}document.querySelector('#count').textContent=count+' icons shown';document.querySelector('#empty').hidden=count!==0}
+  function update(){let count=0;for(const row of rows){const matchesFilter=!filter.value||(filter.value.startsWith('visual:')?row.dataset.visual===filter.value.slice(7):row.dataset.flags.split(' ').includes(filter.value));row.hidden=!(row.dataset.search.includes(search.value.toLowerCase())&&matchesFilter);if(!row.hidden)count++}document.querySelector('#count').textContent=count+' icons shown';document.querySelector('#empty').hidden=count!==0}
   search.addEventListener('input',update);filter.addEventListener('change',update);
   const theme=document.querySelector('#theme'),size=document.querySelector('#size'),zoom=document.querySelector('#zoom');
   function updateView(){document.body.dataset.theme=theme.value;document.body.dataset.view=theme.value+'-'+size.value;document.documentElement.style.setProperty('--render-size',(size.value==='both'?'64':size.value)+'px');document.documentElement.style.setProperty('--zoom',zoom.value)}
