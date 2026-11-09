@@ -36376,14 +36376,14 @@
       "type": "registry:component"
     },
     {
-      "name": "zzz",
-      "title": "IconZzz",
-      "description": "The zzz icon from FYIcons 0.3.1.",
+      "name": "snooze",
+      "title": "IconSnooze",
+      "description": "The snooze icon from FYIcons 0.3.1.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconZzz.tsx",
+          "path": "packages/fyicons/src/IconSnooze.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconZzz.tsx"
+          "target": "@components/fyicons/IconSnooze.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",

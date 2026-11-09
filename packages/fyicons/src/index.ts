@@ -1298,7 +1298,7 @@ export { default as IconComments } from './IconComments';
 export { default as IconBell2Fill } from './IconBell2Fill';
 export { default as IconFan } from './IconFan';
 export { default as IconCommentReplyNotification } from './IconCommentReplyNotification';
-export { default as IconZzz } from './IconZzz';
+export { default as IconSnooze } from './IconSnooze';
 export { default as IconBanFill } from './IconBanFill';
 export { default as IconArray } from './IconArray';
 export { default as IconLetterU } from './IconLetterU';

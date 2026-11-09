@@ -269,7 +269,7 @@
       "name": "Emoji",
       "icon": "emoji-smile",
       "keywords": ["emoji", "ghost", "heart", "skull", "thumbs"],
-      "exactNames": ["zzz"]
+      "exactNames": ["snooze"]
     },
     {
       "id": "files",

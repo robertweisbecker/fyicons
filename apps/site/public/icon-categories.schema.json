@@ -622,6 +622,7 @@
                 "small",
                 "smart",
                 "smile",
+                "snooze",
                 "solid",
                 "sort",
                 "spacing",
@@ -742,8 +743,7 @@
                 "xs",
                 "y",
                 "zip",
-                "zoom",
-                "zzz"
+                "zoom"
               ]
             }
           },
@@ -1851,6 +1851,7 @@
         "sliders",
         "sliders-fill",
         "sliders-v",
+        "snooze",
         "sort-down",
         "sort-up",
         "sparkle",
@@ -2072,8 +2073,7 @@
         "x-lg",
         "x-sm",
         "zoom-in",
-        "zoom-out",
-        "zzz"
+        "zoom-out"
       ]
     }
   }

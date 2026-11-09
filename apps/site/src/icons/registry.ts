@@ -1302,7 +1302,7 @@ export const iconBySourceId: Record<string, ComponentType<IconProps>> = {
   "1480:13281": icons.IconBell2Fill,
   "1482:13297": icons.IconFan,
   "1480:13261": icons.IconCommentReplyNotification,
-  "1479:13246": icons.IconZzz,
+  "1479:13246": icons.IconSnooze,
   "1494:9372": icons.IconBanFill,
   "1482:13330": icons.IconArray,
   "1485:1224": icons.IconLetterU,
