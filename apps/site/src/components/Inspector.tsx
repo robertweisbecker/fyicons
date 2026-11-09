@@ -397,7 +397,7 @@ export function Inspector(props: Props) {
           onKeyDown={keyboard}
         >
           {item && (
-            <div className="mobile-inspector-frame pointer-events-auto flex flex-col overflow-hidden rounded-2xl bg-dialog shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
+            <div className="mobile-inspector-frame pointer-events-auto flex flex-col overflow-hidden rounded-2xl bg-dialog shadow-[0_-8px_32px_-16px_rgb(0_0_0/0.12)] outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
               <div className="relative z-10 h-9 shrink-0">
                 <div
                   aria-hidden="true"

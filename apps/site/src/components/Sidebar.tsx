@@ -65,7 +65,7 @@ export function SidebarItem({
   const content = (
     <>
       {typeof icon === 'string' ? (
-        <Icon name={icon} className="text-muted" />
+        <Icon name={icon} className={cn('text-muted', active && 'text-ink')} />
       ) : (
         icon
       )}

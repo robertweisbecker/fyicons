@@ -1,4 +1,5 @@
-import { Children, type ReactNode } from 'react';
+import { Children, type ComponentProps, type ReactNode } from 'react';
+import IconArrowUpRight from 'fyicons/icons/IconArrowUpRight';
 import ReleaseNotes from '../../../../../../packages/fyicons/CHANGELOG.md';
 import { githubHref } from '@/lib/navigation';
 
@@ -35,16 +36,31 @@ export default function ChangelogPage() {
   return (
     <ReleaseNotes
       components={{
-        h1: () => <h1>Changelog</h1>,
-        h2: ({ children, ...props }) => (
-          <h2 {...props}>
+        h1: () => (
+          <h1 id="changelog">
             <a
-              href={`${githubHref}/releases/tag/${encodeURIComponent(`fyicons@${children}`)}`}
+              href="#changelog"
+              aria-label="Changelog"
+              className="mdx-heading-link"
+            >
+              Changelog
+            </a>
+          </h1>
+        ),
+        h2: ({
+          children,
+          'data-heading-title': version,
+          ...props
+        }: ComponentProps<'h2'> & { 'data-heading-title'?: string }) => (
+          <h2 {...props} className="flex items-center gap-2">
+            {children}
+            <a
+              href={`${githubHref}/releases/tag/${encodeURIComponent(`fyicons@${version}`)}`}
               target="_blank"
               rel="noreferrer"
-              aria-label={`Version ${children} — GitHub release`}
+              aria-label={`Version ${version} — GitHub release`}
             >
-              {children}
+              <IconArrowUpRight className="size-4 text-muted" />
             </a>
           </h2>
         ),
