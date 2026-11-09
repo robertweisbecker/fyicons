@@ -817,8 +817,8 @@ export const iconBySourceId: Record<string, ComponentType<IconProps>> = {
   "841:13300": icons.IconMerge,
   "841:13310": icons.IconMergeHorizontal,
   "535:8415": icons.IconForkHorizontal,
-  "752:4405": icons.IconGitWorktreeHorizontal,
-  "752:4421": icons.IconGitWorktreeAlt,
+  "752:4405": icons.IconGitWorktreeAlt,
+  "752:4421": icons.IconGitWorktree,
   "245:15918": icons.IconGitBranch,
   "743:1903": icons.IconGitBranchSimple,
   "749:5082": icons.IconGitPullRequestSimple,
@@ -1306,4 +1306,5 @@ export const iconBySourceId: Record<string, ComponentType<IconProps>> = {
   "1494:9372": icons.IconBanFill,
   "1482:13330": icons.IconArray,
   "1485:1224": icons.IconLetterU,
+  "1520:11511": icons.IconFlashlightOn,
 };

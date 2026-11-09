@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconFlashlightOn = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFlashlightOn(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="flashlight-on"><g stroke="currentColor" clipPath={"url(#" + idPrefix + "clip0_1520_11511)"}><path strokeLinejoin="round" d="m4.911 8.058-2.907 2.754a1.75 1.75 0 0 0-.082 2.457l.593.643a1.75 1.75 0 0 0 2.523.05l2.91-2.91a2 2 0 0 1 1.33-.585l.479-.02a2 2 0 0 0 1.33-.584l1.57-1.57s-1.414-.707-2.829-2.122C8.414 4.757 7.707 3.343 7.707 3.343l-1.57 1.57a2 2 0 0 0-.584 1.33l-.019.447a2 2 0 0 1-.623 1.368Z" /><path strokeLinecap="round" d="m6.5 9.5-1 1" /><path strokeLinejoin="round" d="m12.657 8.293.707-.707a1 1 0 0 0 0-1.415L9.828 2.636a1 1 0 0 0-1.414 0l-.707.707" /><path strokeLinecap="round" d="m6.75 9.75-.5-.5" /><path strokeLinecap="round" strokeLinejoin="round" d="m13.5 2.5 1-1m0 3h1m-4-3v-1" /></g><defs><clipPath id={idPrefix + "clip0_1520_11511"}><path fill="white" d="M0 0h16v16H0z" /></clipPath></defs></SvgRoot>;
+});
+export default IconFlashlightOn;

@@ -15005,35 +15005,39 @@
     },
     {
       "id": "752:4405",
-      "originalName": "git-worktree-horizontal",
-      "width": 16,
-      "height": 16,
-      "name": "git-worktree-horizontal",
-      "baseName": "git-worktree-horizontal",
-      "filename": "git-worktree-horizontal-16.svg",
-      "file": "svgs/752-4405.svg",
-      "aliases": [
-        "752-4405.svg"
-      ],
-      "notes": [],
-      "componentName": "IconGitWorktreeHorizontal",
-      "updatedAt": "2026-11-07T08:58:42.548Z"
-    },
-    {
-      "id": "752:4421",
       "originalName": "git-worktree-alt",
       "width": 16,
       "height": 16,
       "name": "git-worktree-alt",
       "baseName": "git-worktree-alt",
       "filename": "git-worktree-alt-16.svg",
-      "file": "svgs/752-4421.svg",
+      "file": "svgs/752-4405.svg",
       "aliases": [
-        "752-4421.svg"
+        "752-4405.svg",
+        "git-worktree-horizontal",
+        "git-worktree-horizontal-16.svg"
       ],
       "notes": [],
       "componentName": "IconGitWorktreeAlt",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-09T01:21:09.961Z"
+    },
+    {
+      "id": "752:4421",
+      "originalName": "git-worktree",
+      "width": 16,
+      "height": 16,
+      "name": "git-worktree",
+      "baseName": "git-worktree",
+      "filename": "git-worktree-16.svg",
+      "file": "svgs/752-4421.svg",
+      "aliases": [
+        "752-4421.svg",
+        "git-worktree-alt",
+        "git-worktree-alt-16.svg"
+      ],
+      "notes": [],
+      "componentName": "IconGitWorktree",
+      "updatedAt": "2026-11-09T01:21:09.961Z"
     },
     {
       "id": "245:15918",
@@ -23885,6 +23889,22 @@
       "addedAt": "2026-11-08T22:31:35.249Z",
       "updatedAt": "2026-11-08T22:31:35.249Z",
       "componentName": "IconLetterU"
+    },
+    {
+      "id": "1520:11511",
+      "name": "flashlight-on",
+      "baseName": "flashlight-on",
+      "originalName": "flashlight-on",
+      "width": 16,
+      "height": 16,
+      "filename": "flashlight-on-16.svg",
+      "aliases": [
+        "1520-11511.svg"
+      ],
+      "file": "svgs/1520-11511.svg",
+      "addedAt": "2026-11-09T01:21:09.961Z",
+      "updatedAt": "2026-11-09T01:21:09.961Z",
+      "componentName": "IconFlashlightOn"
     }
   ]
 }

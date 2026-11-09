@@ -22796,14 +22796,14 @@
       "type": "registry:component"
     },
     {
-      "name": "git-worktree-horizontal",
-      "title": "IconGitWorktreeHorizontal",
-      "description": "The git-worktree-horizontal icon from FYIcons 0.3.1.",
+      "name": "git-worktree-alt",
+      "title": "IconGitWorktreeAlt",
+      "description": "The git-worktree-alt icon from FYIcons 0.3.1.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconGitWorktreeHorizontal.tsx",
+          "path": "packages/fyicons/src/IconGitWorktreeAlt.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconGitWorktreeHorizontal.tsx"
+          "target": "@components/fyicons/IconGitWorktreeAlt.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -22824,14 +22824,14 @@
       "type": "registry:component"
     },
     {
-      "name": "git-worktree-alt",
-      "title": "IconGitWorktreeAlt",
-      "description": "The git-worktree-alt icon from FYIcons 0.3.1.",
+      "name": "git-worktree",
+      "title": "IconGitWorktree",
+      "description": "The git-worktree icon from FYIcons 0.3.1.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconGitWorktreeAlt.tsx",
+          "path": "packages/fyicons/src/IconGitWorktree.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconGitWorktreeAlt.tsx"
+          "target": "@components/fyicons/IconGitWorktree.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -36468,6 +36468,34 @@
           "path": "packages/fyicons/src/IconLetterU.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconLetterU.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "flashlight-on",
+      "title": "IconFlashlightOn",
+      "description": "The flashlight-on icon from FYIcons 0.3.1.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconFlashlightOn.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconFlashlightOn.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
