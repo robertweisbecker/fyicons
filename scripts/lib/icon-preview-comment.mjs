@@ -35,6 +35,10 @@ export function validatePreview(report) {
       seen.has(change.image) ||
       !Array.isArray(change.flags) ||
       change.flags.some((flag) => !flags.has(flag)) ||
+      (change.visualChange !== undefined &&
+        !['identical', 'subtle', 'significant'].includes(
+          change.visualChange,
+        )) ||
       (change.overlay !== undefined && typeof change.overlay !== 'boolean') ||
       (change.overlay &&
         (!change.before ||
@@ -50,6 +54,7 @@ export function validatePreview(report) {
 const groups = [
   ['added', 'Added'],
   ['changed', 'Updated artwork'],
+  ['subtle', 'Subtle rendering or SVG-only changes'],
   ['renamed', 'Renamed'],
   ['removed', 'Removed'],
   ['metadata', 'Metadata only'],
@@ -57,14 +62,25 @@ const groups = [
 function group(change) {
   if (!change.before) return 'added';
   if (!change.after) return 'removed';
-  if (change.flags.includes('pixels-changed')) return 'changed';
+  if (
+    change.visualChange === 'significant' ||
+    (change.visualChange === undefined &&
+      change.flags.includes('pixels-changed'))
+  )
+    return 'changed';
+  if (
+    change.visualChange === 'subtle' ||
+    (change.visualChange === 'identical' &&
+      change.flags.includes('svg-bytes-changed'))
+  )
+    return 'subtle';
   if (change.before !== change.after) return 'renamed';
   return 'metadata';
 }
 
 export function getPreviewCommentMarker(body) {
   return (
-    /^<!-- fyicons-icon-preview(?::(?:added|changed|renamed|removed|metadata)-[1-9]\d*)? -->(?=\n|$)/.exec(
+    /^<!-- fyicons-icon-preview(?::(?:added|changed|subtle|renamed|removed|metadata)-[1-9]\d*)? -->(?=\n|$)/.exec(
       body,
     )?.[0] ?? null
   );
@@ -104,7 +120,7 @@ export function renderPreviewComments(
   for (const [key, label] of groups) {
     const changes = report.changes.filter((change) => group(change) === key);
     if (!changes.length) continue;
-    const showImages = key === 'added' || key === 'changed';
+    const showImages = key === 'added' || key === 'changed' || key === 'subtle';
     const pages = [];
     let rows = [],
       length = 0;
@@ -133,7 +149,7 @@ export function renderPreviewComments(
       const table = showImages ? '| Preview |\n| --- |\n' : '';
       comments.push({
         marker,
-        body: `${marker}\n<details>\n<summary>${title}</summary>\n\n${table}${page.join('\n')}\n\n</details>\n`,
+        body: `${marker}\n<details>\n<summary>${title}</summary>\n\n${key === 'subtle' ? 'These changes may be rounding, antialiasing, path optimization, or small artwork edits. Review them before release.\n\n' : ''}${table}${page.join('\n')}\n\n</details>\n`,
       });
     }
   }

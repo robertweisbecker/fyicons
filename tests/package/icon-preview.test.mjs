@@ -188,18 +188,31 @@ test('only additions and rendered changes include images; other entries keep the
           before: 'SamePixels',
           after: 'SamePixels',
           flags: ['svg-bytes-changed'],
+          visualChange: 'identical',
           image: '0005.png',
+        },
+        {
+          before: 'SmallChange',
+          after: 'SmallChange',
+          flags: ['svg-bytes-changed', 'pixels-changed'],
+          visualChange: 'subtle',
+          image: '0006.png',
+          overlay: true,
         },
       ],
     },
     destination,
   );
-  assert.equal((body.match(/!\[/g) ?? []).length, 2);
+  assert.equal((body.match(/!\[/g) ?? []).length, 4);
   assert.match(body, /0000\.png/); // A rename with changed artwork still gets a comparison.
   assert.match(body, /0001\.png/);
-  assert.doesNotMatch(body, /000[2345]\.png/);
+  assert.doesNotMatch(body, /000[234]\.png/);
+  assert.match(body, /0005\.png/);
+  assert.match(body, /0006\.png/);
+  assert.match(body, /Subtle rendering or SVG-only changes \(2\)/);
+  assert.match(body, /small artwork edits/);
   assert.match(body, /- `OldName` → `NewName`/);
-  for (const name of ['Tagged', 'Deleted', 'SamePixels'])
+  for (const name of ['Tagged', 'Deleted'])
     assert.ok(body.includes(`- \`${name}\``));
   for (const section of body.matchAll(/<details>([\s\S]*?)<\/details>/g))
     if (/<summary>(Renamed|Removed|Metadata only)/.test(section[1]))

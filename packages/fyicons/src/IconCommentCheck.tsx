@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCommentCheck = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCommentCheck(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="comment-check"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14H1V8a7 7 0 0 1 7-7m0 1a6 6 0 0 0-6 6v6h6A6 6 0 0 0 8 2m2.081 3.228a.5.5 0 0 1 .839.544l-3.251 5a.5.5 0 0 1-.791.062l-2.25-2.5a.5.5 0 0 1 .744-.668l1.813 2.015z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="comment-check"><g stroke="currentColor" strokeLinejoin="round" clipPath={"url(#" + idPrefix + "clip0_1419_1551)"}><path d="M2.5 7.5a6 6 0 0 1 12 0 6 6 0 0 1-6 6h-5a1 1 0 0 1-1-1z" /><path strokeLinecap="round" d="M6.5 7.75 8.25 9.5l2.25-3.75" /></g><defs><clipPath id={idPrefix + "clip0_1419_1551"}><path fill="white" d="M0 0h16v16H0z" /></clipPath></defs></SvgRoot>;
 });
 export default IconCommentCheck;
