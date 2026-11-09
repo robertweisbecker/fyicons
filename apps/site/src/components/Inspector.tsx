@@ -441,7 +441,6 @@ export function Inspector(props: Props) {
                       <span className="truncate underline-offset-4 group-hover/link:underline">
                         {getIconDisplayName(item)}
                       </span>
-                      <Icon name="link" className="shrink-0 text-muted" />
                     </Button>
                   </DrawerTitle>
                   <div className="mobile-inspector-releases" inert={!expanded}>
@@ -491,8 +490,8 @@ export function Inspector(props: Props) {
                       showLabel
                       className="mobile-inspector-copy @container/action pointer-events-auto px-0"
                     >
-                      <span className="hidden whitespace-nowrap @min-[6.5rem]/action:inline">
-                        Copy SVG
+                      <span className="hidden whitespace-nowrap @min-[4rem]/action:inline">
+                        SVG
                       </span>
                     </IconCopyButton>
                     <div

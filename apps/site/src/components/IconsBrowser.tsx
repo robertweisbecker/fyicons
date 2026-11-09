@@ -235,98 +235,100 @@ export function IconsBrowser() {
               </p>
             )}
             <h1 className="sr-only">Icons</h1>
-            <div className="icon-browser-tools [container-type:scroll-state] sticky top-(--site-header-height) z-20 -mx-1 flex items-center gap-2 bg-canvas px-1 py-4 [container-name:icon-toolbar] before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:-z-10 before:h-5 before:bg-linear-to-b before:from-canvas before:to-transparent before:opacity-0 [@container_icon-toolbar_scroll-state(stuck:top)]:before:opacity-100">
-              <div className="min-w-0 flex-1">
-                <IconSearch
-                  value={query}
-                  onValueChange={setQuery}
-                  inputRef={search}
-                />
-              </div>
-              <CategoryMenu
-                value={activeCategory}
-                onValueChange={setCategory}
-              />
-              <div className="shrink-0 lg:hidden">
-                <Popover.Root>
-                  <Popover.Trigger
-                    aria-label="Display options"
-                    render={
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="size-11 rounded-xl data-popup-open:bg-hover"
-                      />
-                    }
-                  >
-                    <Icon name="sliders" />
-                  </Popover.Trigger>
-                  <Popover.Portal>
-                    <Popover.Positioner
-                      align="end"
-                      sideOffset={8}
-                      collisionPadding={16}
-                      className="z-70"
+            <div className="sticky top-(--site-header-height) z-20 -mx-1 mb-4 bg-canvas px-1 before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:h-4 before:bg-linear-to-b before:from-canvas before:to-transparent lg:contents lg:before:hidden">
+              <div className="icon-browser-tools [container-type:scroll-state] flex items-center gap-2 bg-canvas py-4 [container-name:icon-toolbar] before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:-z-10 before:h-5 before:bg-linear-to-b before:from-canvas before:to-transparent before:opacity-0 lg:sticky lg:top-(--site-header-height) lg:z-20 lg:-mx-1 lg:px-1 [@container_icon-toolbar_scroll-state(stuck:top)]:before:opacity-100">
+                <div className="min-w-0 flex-1">
+                  <IconSearch
+                    value={query}
+                    onValueChange={setQuery}
+                    inputRef={search}
+                  />
+                </div>
+                <div className="shrink-0 lg:hidden">
+                  <Popover.Root>
+                    <Popover.Trigger
+                      aria-label="Display options"
+                      render={
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="size-11 rounded-xl data-popup-open:bg-hover"
+                        />
+                      }
                     >
-                      <Popover.Popup
-                        data-display-popover=""
-                        className="flex w-60 max-w-[calc(100vw-2rem)] flex-col gap-5 rounded-xl bg-surface p-4 text-ink shadow-xl outline-1 outline-ink/10 [&>div]:w-full"
+                      <Icon name="sliders" />
+                    </Popover.Trigger>
+                    <Popover.Portal>
+                      <Popover.Positioner
+                        align="end"
+                        sideOffset={8}
+                        collisionPadding={16}
+                        className="z-70"
                       >
-                        <Popover.Title className="sr-only">
-                          Display options
-                        </Popover.Title>
-                        {displayOptions}
-                      </Popover.Popup>
-                    </Popover.Positioner>
-                  </Popover.Portal>
-                </Popover.Root>
+                        <Popover.Popup
+                          data-display-popover=""
+                          className="flex w-60 max-w-[calc(100vw-2rem)] flex-col gap-5 rounded-xl bg-surface p-4 text-ink shadow-xl outline-1 outline-ink/10 [&>div]:w-full"
+                        >
+                          <Popover.Title className="sr-only">
+                            Display options
+                          </Popover.Title>
+                          {displayOptions}
+                        </Popover.Popup>
+                      </Popover.Positioner>
+                    </Popover.Portal>
+                  </Popover.Root>
+                </div>
               </div>
-            </div>
-            <div className="mb-4 flex min-h-9 flex-wrap items-center justify-between gap-x-4 text-xs text-muted">
-              <div className="flex items-center gap-1.5">
-                <p
-                  role="status"
-                  aria-label="Matching icons / total icons"
-                  className="tabular-nums"
-                >
-                  {visible.length.toLocaleString('en-US')} /{' '}
-                  {icons.length.toLocaleString('en-US')}
-                </p>
-                <span aria-hidden="true">·</span>
-                <Menu>
-                  <MenuTrigger
-                    aria-label={`Sort icons by ${sortLabels[sort]}`}
-                    render={
-                      <Button variant="text" size="sm" className="px-0.5" />
-                    }
+              <div className="flex min-h-9 items-center justify-between gap-x-2 pb-2 text-xs text-muted lg:mb-4 lg:pb-0">
+                <div className="flex shrink-0 items-center gap-1.5">
+                  <p
+                    role="status"
+                    aria-label="Matching icons / total icons"
+                    className="tabular-nums"
                   >
-                    {sortLabels[sort]}
-                    <Icon name="chevrons-up-down-sm" />
-                  </MenuTrigger>
-                  <MenuContent>
-                    <MenuRadioGroup
-                      value={sort}
-                      onValueChange={setSort}
-                      aria-label="Sort icons by"
+                    {visible.length.toLocaleString('en-US')} /{' '}
+                    {icons.length.toLocaleString('en-US')}
+                  </p>
+                  <span aria-hidden="true">·</span>
+                  <Menu>
+                    <MenuTrigger
+                      aria-label={`Sort icons by ${sortLabels[sort]}`}
+                      render={
+                        <Button variant="text" size="sm" className="px-0.5" />
+                      }
                     >
-                      {Object.entries(sortLabels).map(([value, label]) => (
-                        <MenuRadioItem key={value} value={value}>
-                          {label}
-                        </MenuRadioItem>
-                      ))}
-                    </MenuRadioGroup>
-                  </MenuContent>
-                </Menu>
-              </div>
-              {!mobile && (
-                <SelectedIconsDialog
-                  icons={selectedIcons}
-                  onRemove={toggleSelection}
-                  onClear={() => setSelectedIds([])}
-                  onDownload={() => exportIcons(true)}
-                  packing={packing}
+                      {sortLabels[sort]}
+                      <Icon name="chevrons-up-down-sm" />
+                    </MenuTrigger>
+                    <MenuContent>
+                      <MenuRadioGroup
+                        value={sort}
+                        onValueChange={setSort}
+                        aria-label="Sort icons by"
+                      >
+                        {Object.entries(sortLabels).map(([value, label]) => (
+                          <MenuRadioItem key={value} value={value}>
+                            {label}
+                          </MenuRadioItem>
+                        ))}
+                      </MenuRadioGroup>
+                    </MenuContent>
+                  </Menu>
+                </div>
+                <CategoryMenu
+                  value={activeCategory}
+                  onValueChange={setCategory}
                 />
-              )}
+                {!mobile && (
+                  <SelectedIconsDialog
+                    icons={selectedIcons}
+                    onRemove={toggleSelection}
+                    onClear={() => setSelectedIds([])}
+                    onDownload={() => exportIcons(true)}
+                    packing={packing}
+                  />
+                )}
+              </div>
             </div>
             <div
               className="icon-grid grid grid-cols-[repeat(auto-fill,minmax(min(100%,var(--tile-min-size)),1fr))] gap-2 [--tile-min-size:max(4rem,calc(var(--preview-size)+1rem))] md:[--tile-min-size:clamp(4rem,calc(var(--preview-size)*4),10rem)]"

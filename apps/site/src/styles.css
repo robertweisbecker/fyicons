@@ -49,22 +49,22 @@
 }
 
 :root {
-  --inset: --alpha(var(--text) / 5%);
-  --canvas: var(--color-neutral-100);
-  --bg: var(--color-neutral-50);
+  --inset: --alpha(var(--text) / 7%);
+  --canvas: var(--color-taupe-100);
+  --bg: var(--color-taupe-50);
   --surface: var(--color-white);
-  --dialog: var(--color-white);
-  --text: var(--color-neutral-900);
-  --muted: var(--color-neutral-500);
+  --dialog: var(--color-taupe-50);
+  --text: var(--color-taupe-900);
+  --muted: var(--color-taupe-600);
   --border: --alpha(var(--text) / 14%);
   --line: --alpha(var(--text) / 8%);
   --hover: --alpha(var(--text) / 5%);
   --active: --alpha(var(--text) / 10%);
   --accent-bg: var(--color-blue-100);
-  --grid: var(--color-blue-200);
+  --grid: var(--color-pink-200);
   --control-accent: var(--color-blue-500);
   --focus: var(--color-blue-500);
-  --track: var(--color-neutral-300);
+  --track: var(--color-taupe-300);
   --inspector-width: calc(var(--spacing) * 96);
   --site-header-height: calc(3.5rem + env(safe-area-inset-top));
   --surface-outline-offset: 0px;
@@ -76,7 +76,7 @@
   --canvas: var(--color-neutral-950);
   --bg: var(--color-neutral-900);
   --surface: var(--color-neutral-900);
-  --dialog: var(--color-neutral-800);
+  --dialog: var(--color-neutral-900);
   --text: var(--color-neutral-100);
   --muted: var(--color-neutral-400);
   --border: --alpha(var(--text) / 12%);
@@ -84,7 +84,8 @@
   --hover: --alpha(var(--text) / 10%);
   --active: --alpha(var(--text) / 6%);
   --accent-bg: var(--color-blue-950);
-  --grid: var(--color-blue-700);
+  --control-accent: var(--color-blue-500);
+  --grid: var(--color-pink-900);
   --focus: var(--color-blue-300);
   --surface-outline-offset: -1px;
   --track: --alpha(var(--text) / 10%);
@@ -102,7 +103,12 @@
     scroll-padding-top: var(--site-header-height);
   }
   html:has(#icons) {
-    scroll-padding-top: calc(var(--site-header-height) + 6rem);
+    scroll-padding-top: calc(var(--site-header-height) + 8rem);
+  }
+  @media (width >= theme(--breakpoint-lg)) {
+    html:has(#icons) {
+      scroll-padding-top: calc(var(--site-header-height) + 6rem);
+    }
   }
   body {
     /* Let Safari paint scrolling content behind its bottom controls. Fixed

@@ -36,7 +36,7 @@ export default function Landing() {
           className="mx-auto grid max-w-135 grid-cols-1 items-center gap-6 px-2 pt-8 pb-12 md:max-w-292 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-8 md:px-6 md:py-14 lg:gap-18 lg:px-8 lg:pt-18 lg:pb-16"
         >
           <div className="hero-copy pt-8 pb-0 md:pt-13 md:pb-7">
-            <h1 className="hero-headline text-[clamp(23px,7vw,36px)] leading-[1.125] font-medium tracking-[-0.035em] md:text-[clamp(23px,3.3vw,42px)]">
+            <h1 className="hero-headline text-[clamp(23px,7vw,36px)] leading-[1.125] tracking-[-0.035em] md:text-[clamp(28px,3.3vw,42px)]">
               <span className="hero-headline-line font-normal">
                 Some icons I made{' '}
                 <span className="hero-pen-word">
@@ -45,7 +45,7 @@ export default function Landing() {
                 </span>
               </span>
               <span className="hero-headline-line">
-                now <span className="text-ink">for you.</span>
+                now <span className="font-semibold text-ink">for you.</span>
                 <img
                   src={assetPath('/favicon.svg')}
                   alt=""
@@ -58,13 +58,14 @@ export default function Landing() {
 
             <div className="mt-7 mb-10 flex flex-col gap-10 leading-relaxed lg:mt-10">
               <div className="flex flex-col gap-5">
-                <p className="text-xl tracking-[-.01em] text-balance tabular-nums">
-                  Nice little icons for your nice little apps. <br />
-                  Drawn pixel-perfect to scale to any size.
+                <p className="text-xl tracking-[-.01em] text-balance text-muted">
+                  Nice little icons for your nice little apps. Drawn
+                  pixel-perfect to scale to any size.
                 </p>
               </div>
 
               <div className="space-y-4">
+                <SearchTrigger iconCount={icons.length} />
                 <div className="flex flex-col flex-wrap items-stretch gap-4 md:flex-row md:items-center">
                   <Link
                     className={buttonVariants({
@@ -82,7 +83,6 @@ export default function Landing() {
                     appearance="button"
                   />
                 </div>
-                <SearchTrigger iconCount={icons.length} />
               </div>
             </div>
           </div>

@@ -34,7 +34,7 @@ export function Checkbox({
       <span
         data-slot="checkbox-control"
         className={cn(
-          'flex size-4 items-center justify-center rounded border border-muted bg-surface group-aria-invalid/checkbox:border-danger group-data-indeterminate/checkbox:border-ink group-data-indeterminate/checkbox:bg-ink group-data-indeterminate/checkbox:text-canvas group-data-checked/checkbox:border-ink group-data-checked/checkbox:bg-ink group-data-checked/checkbox:text-canvas',
+          'flex size-4 items-center justify-center rounded border border-muted bg-surface group-aria-invalid/checkbox:border-danger group-data-indeterminate/checkbox:border-border group-data-indeterminate/checkbox:bg-control-accent group-data-indeterminate/checkbox:text-white group-data-checked/checkbox:border-border group-data-checked/checkbox:bg-control-accent group-data-checked/checkbox:text-white',
         )}
       >
         <CheckboxPrimitive.Indicator data-slot="checkbox-indicator">
