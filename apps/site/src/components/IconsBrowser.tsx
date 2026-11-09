@@ -235,8 +235,8 @@ export function IconsBrowser() {
               </p>
             )}
             <h1 className="sr-only">Icons</h1>
-            <div className="sticky top-(--site-header-height) z-20 -mx-1 mb-4 bg-canvas px-1 before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:h-4 before:bg-linear-to-b before:from-canvas before:to-transparent lg:contents lg:before:hidden">
-              <div className="icon-browser-tools [container-type:scroll-state] flex items-center gap-2 bg-canvas py-4 [container-name:icon-toolbar] before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:-z-10 before:h-5 before:bg-linear-to-b before:from-canvas before:to-transparent before:opacity-0 lg:sticky lg:top-(--site-header-height) lg:z-20 lg:-mx-1 lg:px-1 [@container_icon-toolbar_scroll-state(stuck:top)]:before:opacity-100">
+            <>
+              <div className="icon-browser-tools [container-type:scroll-state] sticky top-(--site-header-height) z-20 -mx-1 flex items-center gap-2 bg-canvas px-1 py-4 [container-name:icon-toolbar] before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:-z-10 before:h-5 before:bg-linear-to-b before:from-canvas before:to-transparent before:opacity-0 lg:[@container_icon-toolbar_scroll-state(stuck:top)]:before:opacity-100">
                 <div className="min-w-0 flex-1">
                   <IconSearch
                     value={query}
@@ -279,7 +279,8 @@ export function IconsBrowser() {
                   </Popover.Root>
                 </div>
               </div>
-              <div className="flex min-h-9 items-center justify-between gap-x-2 pb-2 text-xs text-muted lg:mb-4 lg:pb-0">
+              {/* The search row is h-11 with py-4, so this row sticks directly below it. */}
+              <div className="sticky top-[calc(var(--site-header-height)+4.75rem)] z-20 -mx-1 mb-4 flex min-h-9 items-center justify-between gap-x-2 bg-canvas px-1 pb-2 text-xs text-muted before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:h-4 before:bg-linear-to-b before:from-canvas before:to-transparent lg:static lg:z-auto lg:mx-0 lg:px-0 lg:pb-0 lg:before:hidden">
                 <div className="flex shrink-0 items-center gap-1.5">
                   <p
                     role="status"
@@ -329,7 +330,7 @@ export function IconsBrowser() {
                   />
                 )}
               </div>
-            </div>
+            </>
             <div
               className="icon-grid grid grid-cols-[repeat(auto-fill,minmax(min(100%,var(--tile-min-size)),1fr))] gap-2 [--tile-min-size:max(4rem,calc(var(--preview-size)+1rem))] md:[--tile-min-size:clamp(4rem,calc(var(--preview-size)*4),10rem)]"
               style={

@@ -12,6 +12,7 @@ import { notify } from '@/components/ui/toast';
 import { copy, download } from '@/lib/downloads';
 import { cn } from '../lib/utils';
 import { getIconDisplayName, type IconRecord } from '../lib/catalog';
+import { getRecentIconAddition } from '@/lib/icon-releases';
 
 export function IconTile({
   icon,
@@ -27,6 +28,8 @@ export function IconTile({
   toggleSelection?: () => void;
 }) {
   const name = getIconDisplayName(icon);
+  const addedVersion = getRecentIconAddition(icon.id);
+  const addedLabel = addedVersion ? `Added in v${addedVersion}` : undefined;
 
   async function copyValue(value: string, label: string) {
     if (await copy(value)) {
@@ -59,9 +62,17 @@ export function IconTile({
           )}
           data-id={icon.id}
           aria-label={'Inspect ' + name}
+          aria-description={addedLabel}
           aria-pressed={inspected}
+          title={addedLabel}
           onClick={inspect}
         >
+          {addedVersion && (
+            <span
+              aria-hidden="true"
+              className="absolute top-3 left-3 size-1.5 rounded-full bg-blue-500"
+            />
+          )}
           <Icon name={icon.id} className="bg-grid size-(--preview-size)" />
           <span
             className={cn(

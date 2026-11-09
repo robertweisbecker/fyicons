@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { registerHooks } from 'node:module';
 import { buildIconReleaseHistory } from '../../scripts/generate-icon-releases.mjs';
 
 const source = { id: `sha256:${'a'.repeat(64)}` };
@@ -14,6 +15,68 @@ const icon = {
 const snapshot = (version, icons, collection = source) => ({
   version,
   catalog: { source: collection, icons },
+});
+
+test('new-icon markers use the current minor addition, including icons refined afterward', async () => {
+  const releases = [
+    { version: '0.2.0', added: ['old', 'old-refined'], updated: [] },
+    { version: '0.3.0', added: ['new', 'new-refined'], updated: [] },
+    {
+      version: '0.3.2',
+      added: ['patch-new'],
+      updated: ['old-refined', 'new-refined'],
+    },
+    { version: '0.4.0', added: ['next-new'], updated: [] },
+  ];
+  for (const [version, marked] of [
+    ['0.3.2', { new: '0.3.0', 'new-refined': '0.3.0', 'patch-new': '0.3.2' }],
+    ['0.4.0', { 'next-new': '0.4.0' }],
+  ]) {
+    const moduleUrl = new URL(
+      '../../apps/site/src/lib/icon-releases.ts',
+      import.meta.url,
+    );
+    moduleUrl.searchParams.set('test-version', version);
+    const hooks = registerHooks({
+      resolve(specifier, context, nextResolve) {
+        if (context.parentURL === moduleUrl.href) {
+          if (specifier === '../data/icon-releases.json')
+            return {
+              url: `data:text/javascript,${encodeURIComponent(`export default ${JSON.stringify({ releases })}`)}`,
+              shortCircuit: true,
+            };
+          if (specifier === 'fyicons/package.json')
+            return {
+              url: `data:application/json,${encodeURIComponent(JSON.stringify({ version }))}`,
+              shortCircuit: true,
+            };
+        }
+        return nextResolve(specifier, context);
+      },
+    });
+    try {
+      const { getRecentIconAddition, getIconReleases } = await import(
+        moduleUrl.href
+      );
+      for (const id of [
+        'old',
+        'old-refined',
+        'new',
+        'new-refined',
+        'patch-new',
+        'next-new',
+        'missing',
+      ])
+        assert.equal(
+          getRecentIconAddition(id),
+          marked[id],
+          `${version}: ${id}`,
+        );
+      assert.equal(getIconReleases('old-refined').updated, '0.3.2');
+    } finally {
+      hooks.deregister();
+    }
+  }
 });
 
 test('release history follows identity through renames and records artwork changes', () => {

@@ -56,11 +56,11 @@ export function SheetContent({
     container?: Drawer.Portal.Props['container'];
   }) {
   return (
-    <Drawer.Portal container={container} className="contents">
+    <Drawer.Portal container={container}>
       {backdrop && (
         <Drawer.Backdrop className="fixed inset-0 z-50 bg-black/30" />
       )}
-      <Drawer.Viewport className="contents">
+      <Drawer.Viewport>
         <Drawer.Popup
           data-slot="sheet-content"
           {...props}

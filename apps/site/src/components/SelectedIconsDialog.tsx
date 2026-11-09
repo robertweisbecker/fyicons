@@ -69,7 +69,7 @@ export function SelectedIconsDialog({
                 }}
               >
                 <Icon name="trash" />
-                Remove all
+                Clear
               </Button>
             </div>
             {/* {icons.length && (
@@ -132,7 +132,7 @@ export function SelectedIconsDialog({
           )}
           <div className="flex shrink-0 justify-end gap-2 border-t border-line p-4">
             <Dialog.Close render={<Button ref={cancel} variant="outline" />}>
-              Cancel
+              Close
             </Dialog.Close>
             <Button
               disabled={!icons.length || packing}
@@ -141,14 +141,14 @@ export function SelectedIconsDialog({
               }}
             >
               <Icon
-                name={packing ? 'spinner' : 'file-zip'}
+                name={packing ? 'spinner' : 'folder-zip'}
                 className={
                   packing
                     ? 'animate-spin motion-reduce:animate-none'
                     : undefined
                 }
               />
-              {packing ? 'Preparing…' : 'Download all'}
+              {packing ? 'Preparing…' : 'Download zip'}
             </Button>
           </div>
         </Dialog.Popup>

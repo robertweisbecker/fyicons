@@ -18,11 +18,12 @@ function DocsArticle({
   headings: DocHeading[];
 }) {
   return (
-    <div className="contents">
+    // A real page box gives Next.js a scroll target when changing docs routes.
+    <div className="min-w-0 lg:col-span-2 lg:grid lg:grid-cols-subgrid lg:items-start">
       <TableOfContents headings={headings} />
       <article
         data-docs-content=""
-        className="docs-article mx-auto w-full max-w-3xl min-w-0 pt-8 lg:col-start-2 lg:row-start-1 lg:pt-7"
+        className="docs-article mx-auto w-full max-w-3xl min-w-0 pt-8 lg:col-start-1 lg:row-start-1 lg:pt-7"
       >
         {children}
       </article>

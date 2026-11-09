@@ -55,7 +55,7 @@
   --surface: var(--color-white);
   --dialog: var(--color-taupe-50);
   --text: var(--color-taupe-900);
-  --muted: var(--color-taupe-600);
+  --muted: var(--color-taupe-500);
   --border: --alpha(var(--text) / 14%);
   --line: --alpha(var(--text) / 8%);
   --hover: --alpha(var(--text) / 5%);
@@ -102,6 +102,9 @@
     background-color: var(--canvas);
     scroll-padding-top: var(--site-header-height);
   }
+  html:has([data-docs-content]) {
+    scroll-behavior: smooth;
+  }
   html:has(#icons) {
     scroll-padding-top: calc(var(--site-header-height) + 8rem);
   }
@@ -126,6 +129,9 @@
   input,
   textarea {
     -webkit-tap-highlight-color: transparent;
+  }
+  a svg {
+    pointer-events: none;
   }
   :focus-visible {
     outline: 2px solid var(--color-neutral-500);
