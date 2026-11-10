@@ -68,20 +68,23 @@ export function AgentComposer() {
   const [mode, setMode] = useState<keyof typeof agentModes>('Goal');
   return (
     <div className="w-full">
-      <div className="no-wrap mb-2 flex items-center gap-2.5 rounded-xl bg-surface px-2 py-1.5 text-xs shadow-sm outline outline-offset-(--surface-outline-offset) outline-line">
+      <div className="mb-2 flex items-center gap-1.5 rounded-xl bg-surface px-2 py-1.5 text-xs shadow-sm outline outline-offset-(--surface-outline-offset) outline-line @md/window:gap-2.5">
         <Icon name="target-bullseye" />
-        <span className="mr-auto truncate">
-          Pursuing <span className="line-through opacity-50">goal</span>{' '}
-          Immortan Joe
+        <span className="mr-auto min-w-0 flex-1 @md/window:truncate">
+          Pursuing{' '}
+          <span className="hidden line-through opacity-50 @md/window:inline">
+            goal
+          </span>{' '}
+          <span className="whitespace-nowrap">Immortan Joe</span>
         </span>
         <span className="inline-flex items-center gap-1">
           <Icon name="agent" />2
         </span>
-        <span className="inline-flex items-center gap-1">
+        <span className="hidden shrink-0 items-center gap-1 @md/window:inline-flex">
           <Icon name="timer" />
           1:47:02
         </span>
-        <div className="no-wrap flex w-full items-center justify-end gap-1 @md/window:w-auto">
+        <div className="flex shrink-0 items-center justify-end gap-1">
           <Icon
             name="line-vertical"
             className="hidden text-border @md/window:block"

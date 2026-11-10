@@ -105,9 +105,7 @@ export function MenuLinkItem({
       {children}
       {current && (
         <span className="absolute right-2 flex size-4 items-center justify-center">
-          <Icon
-            name={props['aria-current'] === 'page' ? 'dot-fill' : 'check'}
-          />
+          <Icon name="dot-fill" />
         </span>
       )}
     </MenuPrimitive.LinkItem>

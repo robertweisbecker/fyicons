@@ -6,10 +6,6 @@ import { SidebarDemo } from './components/NavigationDemos';
 import { ComposerDemo } from './components/CreationDemos';
 import { DesignDemo } from './components/DesignDemo';
 import {
-  ResizableWorkspaceDemo,
-  ResizableStackDemo,
-} from './components/ResizableDemos';
-import {
   AlertsDemo,
   BadgesDemo,
   SharingDemo,
@@ -25,12 +21,6 @@ export default function Examples() {
         <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-2 xl:grid-cols-12 xl:gap-5">
           <DemoCard title="Chat input" className="md:col-span-2 xl:col-span-12">
             <ComposerDemo />
-          </DemoCard>
-          <DemoCard title="Resizable workspace" className="xl:col-span-8">
-            <ResizableWorkspaceDemo />
-          </DemoCard>
-          <DemoCard title="Resizable stack" className="xl:col-span-4">
-            <ResizableStackDemo />
           </DemoCard>
           <DemoCard
             title="Design tools"

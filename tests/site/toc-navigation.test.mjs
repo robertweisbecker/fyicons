@@ -7,6 +7,11 @@ import { createDomFixture } from './helpers/dom-fixture.mjs';
 async function mountContents(
   t,
   {
+    headings = ['First', 'Middle', 'Last'].map((title) => ({
+      id: title.toLowerCase(),
+      title,
+      level: 2,
+    })),
     tops = [100, 800, 1600],
     viewportHeight = 400,
     documentHeight = 2400,
@@ -20,11 +25,7 @@ async function mountContents(
   );
   const { window } = fixture;
   const { document } = window;
-  const headings = ['First', 'Middle', 'Last'].map((title) => ({
-    id: title.toLowerCase(),
-    title,
-    level: 2,
-  }));
+  t.mock.timers.enable({ apis: ['setTimeout'] });
   let y = initialScroll;
   Object.defineProperty(window, 'scrollY', { get: () => y });
   Object.defineProperty(window, 'innerHeight', { value: viewportHeight });
@@ -33,7 +34,7 @@ async function mountContents(
   });
   document.documentElement.style.scrollPaddingTop = '56px';
   for (const [index, heading] of headings.entries()) {
-    const element = document.createElement('h2');
+    const element = document.createElement(`h${heading.level}`);
     element.id = heading.id;
     element.style.scrollMarginTop = '32px';
     const top = tops[index];
@@ -64,8 +65,14 @@ async function mountContents(
     get active() {
       return document.querySelector('a[aria-current="location"]').textContent;
     },
+    get mobileHeading() {
+      return document
+        .querySelector('button[aria-label^="On this page:"]')
+        ?.getAttribute('aria-label');
+    },
     async click(id) {
       await act(async () => document.querySelector(`a[href="#${id}"]`).click());
+      await act(async () => t.mock.timers.tick(0));
     },
     async scroll(top, { end = false } = {}) {
       y = top;
@@ -85,10 +92,8 @@ async function mountContents(
       );
       await frame();
     },
-    async waitForQuiet() {
-      await act(async () => {
-        await new Promise((resolve) => window.setTimeout(resolve, 200));
-      });
+    async advanceTime(milliseconds) {
+      await act(async () => t.mock.timers.tick(milliseconds));
     },
     async hash(id) {
       await act(async () => {
@@ -171,7 +176,7 @@ test('the quiet-time fallback releases a selection even when the click causes no
     initialScroll: 1500,
   });
   await toc.click('middle');
-  await toc.waitForQuiet();
+  await toc.advanceTime(200);
   assert.equal(toc.active, 'Middle');
   await toc.scroll(1490);
   assert.equal(toc.active, 'First');
@@ -205,4 +210,40 @@ test('non-scrolling keys preserve the lock and scrolling keys resume tracking', 
   assert.equal(toc.active, 'Last');
   await toc.scroll(201);
   assert.equal(toc.active, 'First');
+});
+
+test('scroll events extend the selection lock until the jump is quiet', async (t) => {
+  const toc = await mountContents(t);
+  await toc.click('last');
+  await toc.advanceTime(100);
+  await toc.scroll(200);
+  await toc.advanceTime(100);
+  await toc.scroll(800);
+  assert.equal(toc.active, 'Last');
+  await toc.advanceTime(200);
+  assert.equal(toc.active, 'Last');
+  await toc.scroll(801);
+  assert.equal(toc.active, 'Middle');
+});
+
+test('mobile navigation keeps the parent H2 while desktop tracking follows nested headings', async (t) => {
+  const toc = await mountContents(t, {
+    headings: [
+      { id: 'first', title: 'First', level: 2 },
+      { id: 'child', title: 'Child', level: 3 },
+      { id: 'nested', title: 'Nested', level: 4 },
+      { id: 'last', title: 'Last', level: 2 },
+    ],
+    tops: [100, 800, 1200, 1800],
+    documentHeight: 2600,
+  });
+  await toc.scroll(712);
+  assert.equal(toc.active, 'Child');
+  assert.equal(toc.mobileHeading, 'On this page: First');
+  await toc.scroll(1112);
+  assert.equal(toc.active, 'Nested');
+  assert.equal(toc.mobileHeading, 'On this page: First');
+  await toc.scroll(1712);
+  assert.equal(toc.active, 'Last');
+  assert.equal(toc.mobileHeading, 'On this page: Last');
 });

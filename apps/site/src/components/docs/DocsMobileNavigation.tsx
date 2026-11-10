@@ -30,7 +30,12 @@ export function DocsMobileNavigation({
   const page = pages.find(
     ({ href }) => href.replace(/\/$/, '') === pathname.replace(/\/$/, ''),
   );
-  const current = headings.find(({ id }) => id === active) ?? headings[0];
+  const mobileHeadings = headings.filter(({ level }) => level === 2);
+  const activeIndex = headings.findIndex(({ id }) => id === active);
+  let current = mobileHeadings[0];
+  for (let index = 0; index <= activeIndex; index++) {
+    if (headings[index].level === 2) current = headings[index];
+  }
   return (
     <nav
       aria-label="Documentation navigation"
@@ -97,16 +102,14 @@ export function DocsMobileNavigation({
               align="start"
               className="w-[min(18rem,var(--anchor-width))] min-w-0"
             >
-              {headings.map(({ id, title, level }) => (
+              {mobileHeadings.map(({ id, title }) => (
                 <MenuLinkItem
                   key={id}
                   href={`#${id}`}
-                  aria-current={active === id ? 'location' : undefined}
-                  data-level={level}
+                  aria-current={current.id === id ? 'location' : undefined}
                   closeOnClick
                   onClick={(event) => onHeadingSelect(id, event)}
                   size="lg"
-                  className="data-[level=3]:ps-6 data-[level=4]:ps-9"
                 >
                   {title}
                 </MenuLinkItem>
