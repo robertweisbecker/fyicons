@@ -247,6 +247,30 @@ export function GlobalSearch({
 }) {
   const [value, setValue] = useState('');
   const selecting = useRef(false);
+  const popup = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!open || !viewport) return;
+    // The software keyboard resizes the visual viewport, not Safari's dvh.
+    const update = () => {
+      popup.current?.style.setProperty(
+        '--search-viewport-height',
+        `${viewport.height}px`,
+      );
+      popup.current?.style.setProperty(
+        '--search-viewport-top',
+        `${viewport.offsetTop}px`,
+      );
+    };
+    update();
+    viewport.addEventListener('resize', update);
+    viewport.addEventListener('scroll', update);
+    return () => {
+      viewport.removeEventListener('resize', update);
+      viewport.removeEventListener('scroll', update);
+    };
+  }, [open]);
   return (
     <Dialog.Root
       open={open}
@@ -258,11 +282,12 @@ export function GlobalSearch({
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-70 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
         <Dialog.Popup
+          ref={popup}
           initialFocus={inputRef}
           finalFocus={() =>
             selecting.current ? false : returnFocusRef.current
           }
-          className="fixed inset-x-3 top-[max(1rem,env(safe-area-inset-top))] z-70 flex max-h-[min(40rem,80dvh)] flex-col overflow-hidden rounded-3xl bg-surface text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,transform] duration-200 ease-out data-ending-style:translate-y-2 data-ending-style:opacity-0 data-starting-style:translate-y-2 data-starting-style:opacity-0 sm:inset-x-auto sm:top-[12dvh] sm:left-1/2 sm:w-[calc(100%-3rem)] sm:max-w-4xl sm:-translate-x-1/2"
+          className="fixed inset-x-3 top-[calc(var(--search-viewport-top,0px)+var(--search-top-space))] z-70 flex max-h-[min(40rem,calc(var(--search-viewport-height,100dvh)-var(--search-top-space)-1rem))] flex-col overflow-hidden rounded-3xl bg-dialog text-ink shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,transform] duration-200 ease-out [--search-top-space:max(1rem,env(safe-area-inset-top))] data-ending-style:translate-y-2 data-ending-style:opacity-0 data-starting-style:translate-y-2 data-starting-style:opacity-0 sm:inset-x-auto sm:left-1/2 sm:w-[calc(100%-3rem)] sm:max-w-4xl sm:-translate-x-1/2 sm:[--search-top-space:calc(var(--search-viewport-height,100dvh)*0.12)]"
         >
           <div className="flex shrink-0 items-center justify-between">
             <Dialog.Title className="sr-only text-sm font-medium">

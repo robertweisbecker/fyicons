@@ -13,15 +13,17 @@ export function SliderControl({
       )}
     >
       <Slider.Track
-        className={cn('relative h-1 w-full rounded-full bg-control-track/50')}
+        className={cn('relative h-1.5 w-full rounded-md bg-control-track/50')}
       >
         <Slider.Indicator
           className={cn('rounded-[inherit] bg-control-accent')}
         />
         <Slider.Thumb
           className={cn(
-            'relative block size-4 cursor-grab rounded-full bg-white shadow-sm outline outline-offset-(--surface-outline-offset) outline-line focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current active:cursor-grabbing data-dragging:cursor-grabbing',
+            'relative block size-5 cursor-grab rounded-md bg-white shadow-sm outline outline-offset-(--surface-outline-offset) outline-line focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current active:cursor-grabbing data-dragging:cursor-grabbing',
             'max-sm:before:absolute max-sm:before:top-1/2 max-sm:before:left-1/2 max-sm:before:size-11 max-sm:before:-translate-1/2',
+            'hover:outline-border',
+            'data-dragging:outline-muted',
           )}
           getAriaValueText={getAriaValueText}
         />

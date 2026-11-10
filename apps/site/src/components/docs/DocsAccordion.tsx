@@ -17,7 +17,7 @@ export function DocsAccordion({
       keepMounted
       role="group"
       aria-labelledby={labelledBy}
-      className="my-6 overflow-hidden rounded-xl border border-line bg-surface"
+      className="my-6 overflow-hidden rounded-xl border border-line bg-bg"
     >
       {children}
     </Accordion.Root>
@@ -45,7 +45,9 @@ export function DocsAccordionItem({
         </Accordion.Trigger>
       </Accordion.Header>
       <Accordion.Panel className="h-(--accordion-panel-height) overflow-hidden transition-[height] duration-150 ease-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none">
-        <div className="px-4 pt-1 pb-4 [&>:last-child]:mb-0">{children}</div>
+        <div className="px-4 pt-0 pb-4 [&>:last-child]:mb-0 [&>p:first-child]:mt-0">
+          {children}
+        </div>
       </Accordion.Panel>
     </Accordion.Item>
   );

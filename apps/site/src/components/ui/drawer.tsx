@@ -18,17 +18,20 @@ export function DrawerContent({
 }) {
   return (
     <Primitive.Portal>
+      {/* Base UI's iOS backdrop pattern covers the document behind Safari's controls. */}
       <Primitive.Backdrop
         className={cn(
-          'fixed inset-0 z-50 bg-black/30 transition-opacity duration-300 data-ending-style:opacity-0 data-starting-style:opacity-0',
+          'fixed inset-0 z-50 min-h-dvh bg-black/30 transition-opacity duration-300 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-[-webkit-touch-callout:none]:absolute',
           !expanded && 'pointer-events-none opacity-0',
         )}
       />
-      <Primitive.Viewport className="pointer-events-none fixed inset-0 z-50 flex items-end px-3 pb-[max(.5rem,env(safe-area-inset-bottom))]">
+      {/* Safari extends visible fixed containers into its toolbar. Keep this
+          positioning wrapper invisible and restore visibility on the dialog. */}
+      <Primitive.Viewport className="pointer-events-none invisible fixed inset-0 z-50 flex items-end px-3 pb-[max(.5rem,env(safe-area-inset-bottom))]">
         <Primitive.Popup
           {...props}
           className={cn(
-            'mobile-inspector pointer-events-none relative w-full text-ink',
+            'mobile-inspector pointer-events-none visible relative w-full text-ink',
             className,
           )}
         >

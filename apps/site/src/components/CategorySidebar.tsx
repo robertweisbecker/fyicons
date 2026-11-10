@@ -30,9 +30,9 @@ function CategoryLabel({
 }) {
   return (
     <>
-      <Icon name={option.icon} className="opacity-50" />
+      <Icon name={option.icon} className="text-muted" />
       <span className="truncate">{option.label}</span>
-      <Badge size="sm" variant="unstyled" className="p-0 text-muted/50">
+      <Badge size="sm" variant="unstyled" className="p-0 text-xs text-muted">
         {option.count}
       </Badge>
     </>
@@ -96,7 +96,7 @@ export function CategoryMenu({ value, onValueChange }: Props) {
   const selected =
     options.find((option) => option.value === value) ?? options[0];
   return (
-    <div className="shrink-0 lg:hidden">
+    <div className="min-w-0 lg:hidden">
       <Menu>
         <MenuTrigger
           aria-label={
@@ -104,18 +104,18 @@ export function CategoryMenu({ value, onValueChange }: Props) {
           }
           render={
             <Button
-              variant="outline"
-              className="size-11 rounded-xl p-0 sm:w-auto sm:px-3"
+              variant="text"
+              size="sm"
+              className="max-w-full min-w-0 px-0.5"
+              title={selected.label}
             />
           }
         >
           <Icon name={selected.icon} />
-          <span className="hidden max-w-32 truncate sm:inline">
-            {value === 'all' ? 'Categories' : selected.label}
-          </span>
-          <Icon name="chevron-down" className="hidden sm:block" />
+          <span className="truncate">{selected.label}</span>
+          <Icon name="caret-down" className="shrink-0" />
         </MenuTrigger>
-        <MenuContent className="w-64">
+        <MenuContent className="w-72">
           <MenuRadioGroup
             value={value}
             onValueChange={onValueChange}

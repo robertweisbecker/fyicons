@@ -2,6 +2,13 @@ import IconSun from 'fyicons/icons/IconSun';
 import IconSpinner from 'fyicons/icons/IconSpinner';
 import IconLoader from 'fyicons/icons/IconLoader';
 import { IconRays } from 'fyicons';
+import {
+  FyiProvider,
+  IconBookmark,
+  IconFolder,
+  IconHome,
+} from 'fyicons/client';
+import { Badge } from '@/components/ui/badge';
 
 const colors = [
   { label: 'Inherited', value: undefined },
@@ -9,6 +16,33 @@ const colors = [
   { label: 'Green', value: '#16a34a' },
   { label: 'Violet', value: '#8b5cf6' },
 ];
+
+export function ProviderExample() {
+  return (
+    <div
+      role="group"
+      aria-label="Shared icon defaults example"
+      className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"
+    >
+      <FyiProvider size={20} className="nav-icon" color="red">
+        <div className="mx-auto flex w-fit flex-col gap-4">
+          <div className="flex items-center gap-2">
+            <IconHome /> Home
+            <Badge size="sm">20px</Badge>
+          </div>
+          <div className="flex items-center gap-2">
+            <IconFolder /> All files
+            <Badge size="sm">20px</Badge>
+          </div>
+          <div className="flex items-center gap-2">
+            <IconBookmark size={16} /> Saved files
+            <Badge size="sm">16px</Badge>
+          </div>
+        </div>
+      </FyiProvider>
+    </div>
+  );
+}
 
 export function SizeExamples() {
   return (

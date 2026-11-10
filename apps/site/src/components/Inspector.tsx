@@ -397,7 +397,7 @@ export function Inspector(props: Props) {
           onKeyDown={keyboard}
         >
           {item && (
-            <div className="mobile-inspector-frame pointer-events-auto flex flex-col overflow-hidden rounded-2xl bg-dialog shadow-xl outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
+            <div className="mobile-inspector-frame pointer-events-auto flex flex-col overflow-hidden rounded-2xl bg-dialog shadow-[0_-8px_32px_-16px_rgb(0_0_0/0.12)] outline-1 outline-offset-(--surface-outline-offset) outline-ink/10">
               <div className="relative z-10 h-9 shrink-0">
                 <div
                   aria-hidden="true"
@@ -441,7 +441,6 @@ export function Inspector(props: Props) {
                       <span className="truncate underline-offset-4 group-hover/link:underline">
                         {getIconDisplayName(item)}
                       </span>
-                      <Icon name="link" className="shrink-0 text-muted" />
                     </Button>
                   </DrawerTitle>
                   <div className="mobile-inspector-releases" inert={!expanded}>
@@ -491,8 +490,8 @@ export function Inspector(props: Props) {
                       showLabel
                       className="mobile-inspector-copy @container/action pointer-events-auto px-0"
                     >
-                      <span className="hidden whitespace-nowrap @min-[6.5rem]/action:inline">
-                        Copy SVG
+                      <span className="hidden whitespace-nowrap @min-[4rem]/action:inline">
+                        SVG
                       </span>
                     </IconCopyButton>
                     <div

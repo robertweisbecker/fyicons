@@ -3,6 +3,7 @@ import {
   InlineSizeExample,
   ColorExamples,
   LoadingExamples,
+  ProviderExample,
 } from '@/components/docs/ReactIconExamples';
 import {
   ToggleStateExample,
@@ -61,33 +62,6 @@ For editable component source, follow the [shadcn instructions](/docs/getting-st
 Icons from `fyicons` and `fyicons/icons/*` work in Server Components without a `use client` directive. A Server Component can also render `FyiProvider` and pass it serializable defaults. For event handlers or refs, place the icon inside your own Client Component.
 
 </Callout>
-
-<h2 id="shared-defaults">Shared defaults with FyiProvider</h2>
-
-In FYIcons 0.3.0 and later, `FyiProvider` lets a group of icons share `size`, `color`, `className`, or `style`. Import the provider and its icons from `fyicons/client`.
-
-```tsx
-import { FyiProvider, IconBookmark, IconFolder } from 'fyicons/client';
-
-export function FileNavigation() {
-  return (
-    <FyiProvider size={20} className="nav-icon">
-      <nav aria-label="Files">
-        <a href="/files">
-          <IconFolder /> All files
-        </a>
-        <a href="/saved">
-          <IconBookmark size={16} /> Saved files
-        </a>
-      </nav>
-    </FyiProvider>
-  );
-}
-```
-
-Both icons get the `nav-icon` class. The folder inherits the 20 px size, and the bookmark uses its own 16 px size. A nested provider can override defaults for a smaller group. Classes accumulate, and style properties merge from the outer provider to the inner provider to the icon, with the last value winning for each property.
-
-Only icons imported from `fyicons/client` read these defaults. Use individual props or CSS for icons from `fyicons`, direct icon imports, and shadcn source icons.
 
 ## Size
 
@@ -208,6 +182,39 @@ import { IconSpinner, IconLoader, IconRays } from 'fyicons';
 />;
 ```
 
+<h2 id="shared-defaults">Shared defaults with FyiProvider</h2>
+
+In FYIcons 0.3.0 and later, `FyiProvider` lets a group of icons share `size`, `color`, `className`, or `style`. Import the provider and its icons from `fyicons/client`.
+
+<ProviderExample />
+
+```tsx
+import { FyiProvider, IconBookmark, IconFolder } from 'fyicons/client';
+
+export function FileNavigation() {
+  return (
+    <FyiProvider size={20} className="nav-icon" color="red">
+      <nav aria-label="Files">
+        <a href="/files">
+          <IconFolder /> All files
+        </a>
+        <a href="/saved">
+          <IconBookmark size={16} /> Saved files
+        </a>
+      </nav>
+    </FyiProvider>
+  );
+}
+```
+
+- Both icons get the `nav-icon` class,
+- the folder inherits the 20px size,
+- and the bookmark uses its own 16px size.
+
+A nested provider can override defaults for a smaller group. Classes accumulate, and style properties merge from the outer provider to the inner provider to the icon, with the last value winning for each property.
+
+Only icons imported from `fyicons/client` read these defaults. Use individual props or CSS for icons from `fyicons`, direct icon imports, and shadcn source icons.
+
 <h2 id="props">API</h2>
 
 All props are optional. Components also accept standard React SVG props and event handlers. Many icons use filled paths, so `strokeWidth` does not change their visual weight.
@@ -228,7 +235,7 @@ All props are optional. Components also accept standard React SVG props and even
 
 <h2 id="accessibility">Accessibility</h2>
 
-For non-decorative standalone icons, be sure to name the information or action that the icon represents.
+For non-decorative standalone icons, be sure to name the information or action that the icon represents. Based on your use case, you can take one of several different approaches:
 
 <DocsAccordion labelledBy="accessibility">
 
@@ -246,25 +253,29 @@ If the text is conditionally rendered (for example, hiding a label on mobile), p
 
 </DocsAccordionItem>
 
-<DocsAccordionItem title="Standalone icons" value="standalone-icons">
+<DocsAccordionItem title="Standalone or illustrative icons" value="standalone-icons">
 
-Add `aria-label` when the icon communicates information on its own. The component sets `role="img"` and uses your label:
+Add `aria-label` when the icon communicates information on its own, such as when it illustrates a concept not represented by surrounding text. Often, an icon will stand in for a status:
 
 ```tsx
-<IconSun aria-label="Light mode" />
+<IconGitMerge aria-label="Status: Merged" />
 ```
+
+In this case, the component sets `role="img"` and the `aria-label` is announced to screen readers. This is akin to setting `alt` on an `<img>` element.
 
 </DocsAccordionItem>
 
 <DocsAccordionItem title="Icon buttons" value="icon-buttons">
 
-Name the button and leave the icon decorative. This gives the control one accessible name:
+For icon-only actions without a visible label, provide the accessible name on the parent and leave the icon decorative. This gives the control a single accessible name:
 
 ```tsx
 <button type="button" aria-label="Switch to light mode">
   <IconSun />
 </button>
 ```
+
+You wouldn't set `aria-label` in this case, as it would read twice.
 
 </DocsAccordionItem>
 

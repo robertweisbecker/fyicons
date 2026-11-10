@@ -45,7 +45,7 @@ export function MenuContent({
           data-slot="menu-content"
           {...props}
           className={cn(
-            'max-h-(--available-height) max-w-(--available-width) min-w-40 origin-(--transform-origin) overflow-y-auto rounded-xl bg-surface p-1 text-ink shadow-lg outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,scale] duration-150 ease-out focus-visible:transition-none data-ending-style:scale-95 data-ending-style:opacity-0 data-instant:transition-none data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none [&:has(:focus-visible)]:transition-none',
+            'max-h-(--available-height) max-w-(--available-width) min-w-40 origin-(--transform-origin) overflow-y-auto overscroll-contain rounded-xl bg-surface p-1 text-ink shadow-lg outline-1 outline-offset-(--surface-outline-offset) outline-ink/10 transition-[opacity,scale] duration-150 ease-out focus-visible:transition-none data-ending-style:scale-95 data-ending-style:opacity-0 data-instant:transition-none data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none [&:has(:focus-visible)]:transition-none',
             className,
           )}
         >
@@ -80,6 +80,37 @@ export function MenuItem({ className, size, ...props }: MenuItemProps) {
       {...props}
       className={cn(menuItemVariants({ size }), className)}
     />
+  );
+}
+
+export function MenuLinkItem({
+  className,
+  size,
+  children,
+  ...props
+}: Omit<MenuPrimitive.LinkItem.Props, 'className'> &
+  VariantProps<typeof menuItemVariants> & { className?: string }) {
+  const current = props['aria-current'] && props['aria-current'] !== 'false';
+  return (
+    <MenuPrimitive.LinkItem
+      data-slot="menu-link-item"
+      {...props}
+      className={cn(
+        menuItemVariants({ size }),
+        'pr-8',
+        current && 'bg-ink/10',
+        className,
+      )}
+    >
+      {children}
+      {current && (
+        <span className="absolute right-2 flex size-4 items-center justify-center">
+          <Icon
+            name={props['aria-current'] === 'page' ? 'dot-fill' : 'check'}
+          />
+        </span>
+      )}
+    </MenuPrimitive.LinkItem>
   );
 }
 
