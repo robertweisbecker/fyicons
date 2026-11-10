@@ -4,8 +4,20 @@ import { act, createElement } from 'react';
 import { PathnameContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime.js';
 import { createDomFixture } from './helpers/dom-fixture.mjs';
 
-async function mountContents(t) {
-  const fixture = createDomFixture(t, 'https://example.test/docs/guide/');
+async function mountContents(
+  t,
+  {
+    tops = [100, 800, 1600],
+    viewportHeight = 400,
+    documentHeight = 2400,
+    initialScroll = 0,
+    hash = '',
+  } = {},
+) {
+  const fixture = createDomFixture(
+    t,
+    `https://example.test/docs/guide/${hash}`,
+  );
   const { window } = fixture;
   const { document } = window;
   const headings = ['First', 'Middle', 'Last'].map((title) => ({
@@ -13,18 +25,18 @@ async function mountContents(t) {
     title,
     level: 2,
   }));
-  let y = 0;
+  let y = initialScroll;
   Object.defineProperty(window, 'scrollY', { get: () => y });
-  Object.defineProperty(window, 'innerHeight', { value: 400 });
+  Object.defineProperty(window, 'innerHeight', { value: viewportHeight });
   Object.defineProperty(document.documentElement, 'scrollHeight', {
-    value: 2400,
+    value: documentHeight,
   });
   document.documentElement.style.scrollPaddingTop = '56px';
   for (const [index, heading] of headings.entries()) {
     const element = document.createElement('h2');
     element.id = heading.id;
     element.style.scrollMarginTop = '32px';
-    const top = [100, 800, 1600][index];
+    const top = tops[index];
     element.getBoundingClientRect = () =>
       new window.DOMRect(0, top - y, 100, 30);
     document.body.append(element);
@@ -55,9 +67,12 @@ async function mountContents(t) {
     async click(id) {
       await act(async () => document.querySelector(`a[href="#${id}"]`).click());
     },
-    async scroll(top) {
+    async scroll(top, { end = false } = {}) {
       y = top;
-      await act(async () => window.dispatchEvent(new window.Event('scroll')));
+      await act(async () => {
+        window.dispatchEvent(new window.Event('scroll'));
+        if (end) document.dispatchEvent(new window.Event('scrollend'));
+      });
       await frame();
     },
     async interrupt() {
@@ -69,6 +84,22 @@ async function mountContents(t) {
         document.dispatchEvent(new window.Event('scrollend')),
       );
       await frame();
+    },
+    async waitForQuiet() {
+      await act(async () => {
+        await new Promise((resolve) => window.setTimeout(resolve, 200));
+      });
+    },
+    async hash(id) {
+      await act(async () => {
+        window.history.replaceState(null, '', `#${id}`);
+        window.dispatchEvent(new window.Event('hashchange'));
+      });
+    },
+    async key(key) {
+      await act(async () =>
+        window.dispatchEvent(new window.KeyboardEvent('keydown', { key })),
+      );
     },
   };
 }
@@ -84,19 +115,24 @@ test('a clicked section stays active through intermediate scroll positions, then
   assert.equal(toc.active, 'Last');
   await toc.scroll(1512);
   assert.equal(toc.active, 'Last');
+  await toc.endScroll();
   await toc.scroll(800);
   assert.equal(toc.active, 'Middle');
 });
 
-test('interruption and scroll completion release the clicked selection', async (t) => {
+test('interruption resumes tracking on the next scroll, while completion keeps the chosen highlight', async (t) => {
   const toc = await mountContents(t);
   await toc.click('last');
   await toc.scroll(200);
   await toc.interrupt();
+  assert.equal(toc.active, 'Last');
+  await toc.scroll(201);
   assert.equal(toc.active, 'First');
   await toc.click('last');
   await toc.scroll(800);
   await toc.endScroll();
+  assert.equal(toc.active, 'Last');
+  await toc.scroll(801);
   assert.equal(toc.active, 'Middle');
 });
 
@@ -108,6 +144,65 @@ test('a second click replaces the target of an unfinished navigation', async (t)
   await toc.scroll(300);
   assert.equal(toc.active, 'Middle');
   await toc.scroll(712);
+  await toc.endScroll();
   await toc.scroll(1512);
   assert.equal(toc.active, 'Last');
+});
+
+test('a short section keeps its highlight when the jump is clamped at the page bottom', async (t) => {
+  const toc = await mountContents(t, {
+    tops: [100, 1700, 1800],
+    viewportHeight: 600,
+    documentHeight: 2100,
+  });
+  await toc.click('middle');
+  await toc.scroll(1500, { end: true });
+  assert.equal(toc.active, 'Middle');
+  await toc.hash('middle');
+  await toc.scroll(1490);
+  assert.equal(toc.active, 'First');
+});
+
+test('the quiet-time fallback releases a selection even when the click causes no scrolling', async (t) => {
+  const toc = await mountContents(t, {
+    tops: [100, 1700, 1800],
+    viewportHeight: 600,
+    documentHeight: 2100,
+    initialScroll: 1500,
+  });
+  await toc.click('middle');
+  await toc.waitForQuiet();
+  assert.equal(toc.active, 'Middle');
+  await toc.scroll(1490);
+  assert.equal(toc.active, 'First');
+});
+
+test('hash links select a short section on entry and replace an unfinished jump', async (t) => {
+  const toc = await mountContents(t, {
+    tops: [100, 1700, 1800],
+    viewportHeight: 600,
+    documentHeight: 2100,
+    initialScroll: 1500,
+    hash: '#middle',
+  });
+  assert.equal(toc.active, 'Middle');
+  await toc.hash('first');
+  assert.equal(toc.active, 'First');
+  await toc.scroll(1000);
+  assert.equal(toc.active, 'First');
+  await toc.endScroll();
+  await toc.scroll(1490);
+  assert.equal(toc.active, 'First');
+});
+
+test('non-scrolling keys preserve the lock and scrolling keys resume tracking', async (t) => {
+  const toc = await mountContents(t);
+  await toc.click('last');
+  await toc.key('a');
+  await toc.scroll(200);
+  assert.equal(toc.active, 'Last');
+  await toc.key('PageUp');
+  assert.equal(toc.active, 'Last');
+  await toc.scroll(201);
+  assert.equal(toc.active, 'First');
 });
