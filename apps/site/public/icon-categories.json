@@ -303,7 +303,9 @@
         "floppy-disk",
         "scroll",
         "news-feed",
-        "journal"
+        "journal",
+        "attachment",
+        "attachments"
       ]
     },
     {
@@ -378,7 +380,8 @@
         "loop",
         "music",
         "ear",
-        "headset"
+        "headset",
+        "4k"
       ]
     },
     {
@@ -521,7 +524,8 @@
       "id": "people-identity",
       "name": "People & identity",
       "icon": "circle-user",
-      "keywords": ["user", "users", "ear", "person", "handshake"]
+      "keywords": ["user", "users", "ear", "person", "handshake"],
+      "exactNames": ["id", "id-fill"]
     },
     {
       "id": "science",
