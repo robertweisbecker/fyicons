@@ -28,9 +28,9 @@ import { isStringArray, useMobile, usePreference } from '@/lib/preferences';
 import { isEditableTarget } from '@/lib/keyboard';
 
 const sortLabels = {
-  alphabetical: 'Alphabetical',
-  addedAt: 'Date added',
-  updatedAt: 'Recently updated',
+  alphabetical: 'Alphabetically',
+  addedAt: 'Newest',
+  updatedAt: 'Last updated',
 } satisfies Record<IconSort, string>;
 
 export function IconsBrowser() {
@@ -201,7 +201,7 @@ export function IconsBrowser() {
     <>
       <PreviewSizeControl value={previewSize} onChange={setPreviewSize} />
       <label className="flex items-center justify-between gap-3 text-xs text-ink">
-        Include filled variants
+        Show filled variants
         <Switch
           size="sm"
           checked={showFilled}
@@ -236,7 +236,7 @@ export function IconsBrowser() {
             )}
             <h1 className="sr-only">Icons</h1>
             <>
-              <div className="icon-browser-tools [container-type:scroll-state] sticky top-(--site-header-height) z-20 -mx-1 flex items-center gap-2 bg-canvas px-1 py-4 [container-name:icon-toolbar] before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:-z-10 before:h-5 before:bg-linear-to-b before:from-canvas before:to-transparent before:opacity-0 lg:[@container_icon-toolbar_scroll-state(stuck:top)]:before:opacity-100">
+              <div className="icon-browser-tools sticky top-(--site-header-height) z-20 -mx-1 flex items-center gap-2 bg-canvas px-1 py-4">
                 <div className="min-w-0 flex-1">
                   <IconSearch
                     value={query}
@@ -280,26 +280,18 @@ export function IconsBrowser() {
                 </div>
               </div>
               {/* The search row is h-11 with py-4, so this row sticks directly below it. */}
-              <div className="sticky top-[calc(var(--site-header-height)+4.75rem)] z-20 -mx-1 mb-4 flex min-h-9 items-center justify-between gap-x-2 bg-canvas px-1 pb-2 text-xs text-muted before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:h-4 before:bg-linear-to-b before:from-canvas before:to-transparent lg:static lg:z-auto lg:mx-0 lg:px-0 lg:pb-0 lg:before:hidden">
+              <div className="sticky top-[calc(var(--site-header-height)+4.75rem)] z-20 -mx-1 mb-4 flex min-h-9 items-center justify-between gap-x-2 bg-canvas px-1 pb-2 text-xs text-muted before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:h-4 before:bg-linear-to-b before:from-canvas before:to-transparent">
                 <div className="flex shrink-0 items-center gap-1.5">
-                  <p
-                    role="status"
-                    aria-label="Matching icons / total icons"
-                    className="tabular-nums"
-                  >
-                    {visible.length.toLocaleString('en-US')} /{' '}
-                    {icons.length.toLocaleString('en-US')}
-                  </p>
-                  <span aria-hidden="true">·</span>
                   <Menu>
                     <MenuTrigger
                       aria-label={`Sort icons by ${sortLabels[sort]}`}
-                      render={
-                        <Button variant="text" size="sm" className="px-0.5" />
-                      }
+                      render={<Button variant="text" size="sm" />}
                     >
-                      {sortLabels[sort]}
-                      <Icon name="chevrons-up-down-sm" />
+                      Sort:
+                      <span className="font-medium text-ink">
+                        {sortLabels[sort]}
+                      </span>
+                      <Icon name="chevrons-up-down" />
                     </MenuTrigger>
                     <MenuContent>
                       <MenuRadioGroup
@@ -315,6 +307,15 @@ export function IconsBrowser() {
                       </MenuRadioGroup>
                     </MenuContent>
                   </Menu>
+                  <span aria-hidden="true">·</span>
+                  <p
+                    role="status"
+                    aria-label="Matching icons / total icons"
+                    className="ps-1.5 tabular-nums"
+                  >
+                    {visible.length.toLocaleString('en-US')} /{' '}
+                    {icons.length.toLocaleString('en-US')}
+                  </p>
                 </div>
                 <CategoryMenu
                   value={activeCategory}

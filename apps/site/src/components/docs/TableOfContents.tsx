@@ -1,11 +1,15 @@
 'use client';
 
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
-import { Button } from '@/components/ui/button';
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type MouseEvent,
+} from 'react';
 import './docs-navigation.css';
 import { usePathname } from 'next/navigation';
-import IconChevronDown from 'fyicons/icons/IconChevronDown';
-import { cn } from '@/lib/utils';
+import { DocsMobileNavigation } from './DocsMobileNavigation';
 
 export type DocHeading = { id: string; title: string; level: number };
 
@@ -21,10 +25,8 @@ function positionIndicator(list: HTMLUListElement, animate = false) {
 export function TableOfContents({ headings }: { headings: DocHeading[] }) {
   const pathname = usePathname();
   const [active, setActive] = useState<string | undefined>(headings[0]?.id);
-  const [open, setOpen] = useState(false);
-  const navigationId = useId();
   const list = useRef<HTMLUListElement>(null);
-  const previous = useRef({ active, pathname, open });
+  const previous = useRef({ active, pathname });
   const pendingTarget = useRef<string | undefined>(undefined);
 
   useLayoutEffect(() => {
@@ -32,11 +34,10 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
       positionIndicator(
         list.current,
         previous.current.pathname === pathname &&
-          previous.current.open === open &&
           previous.current.active !== active,
       );
-    previous.current = { active, pathname, open };
-  }, [active, pathname, open, headings]);
+    previous.current = { active, pathname };
+  }, [active, pathname, headings]);
 
   useLayoutEffect(() => {
     const element = list.current;
@@ -48,7 +49,6 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
 
   useEffect(() => {
     pendingTarget.current = undefined;
-    setOpen(false);
     const sections = headings.flatMap(({ id }) => {
       const element = document.getElementById(id);
       return element ? [element] : [];
@@ -116,8 +116,20 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
     };
   }, [headings, pathname]);
 
-  if (!headings.length) return null;
-  const current = headings.find(({ id }) => id === active) ?? headings[0];
+  function selectHeading(id: string, event: MouseEvent<HTMLAnchorElement>) {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
+    pendingTarget.current = id;
+    setActive(id);
+  }
+
   const links = (
     <ul ref={list} className="docs-toc-list border-s-2 border-border">
       {headings.map(({ id, title, level }) => (
@@ -127,20 +139,7 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
             aria-current={active === id ? 'location' : undefined}
             className="docs-toc-link"
             data-level={level}
-            onClick={(event) => {
-              if (
-                event.defaultPrevented ||
-                event.button !== 0 ||
-                event.metaKey ||
-                event.ctrlKey ||
-                event.shiftKey ||
-                event.altKey
-              )
-                return;
-              pendingTarget.current = id;
-              setActive(id);
-              setOpen(false);
-            }}
+            onClick={(event) => selectHeading(id, event)}
           >
             {title}
           </a>
@@ -150,27 +149,14 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
   );
   return (
     <aside className="docs-toc">
-      <Button
-        variant="unstyled"
-        size="unstyled"
-        aria-expanded={open}
-        aria-controls={navigationId}
-        className="flex min-h-12 w-full items-center justify-start gap-3 border-b border-line text-sm lg:hidden"
-        onClick={() => setOpen(!open)}
-      >
-        <span className="shrink-0">On this page</span>
-        <span className="min-w-0 flex-1 truncate text-start text-xs text-muted">
-          {current.title}
-        </span>
-        <IconChevronDown className={cn('shrink-0', open && 'rotate-180')} />
-      </Button>
+      <DocsMobileNavigation
+        headings={headings}
+        active={active}
+        onHeadingSelect={selectHeading}
+      />
       <nav
-        id={navigationId}
         aria-label="On this page"
-        className={cn(
-          'max-h-[min(60dvh,24rem)] overflow-y-auto overscroll-contain pt-1 pb-4 lg:block lg:max-h-[inherit] lg:py-0',
-          !open && 'hidden',
-        )}
+        className="hidden max-h-[inherit] overflow-y-auto overscroll-contain lg:block"
       >
         {links}
       </nav>
