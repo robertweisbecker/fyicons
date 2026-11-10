@@ -13,7 +13,7 @@
 
 ## Documentation
 
-Keep the root and package READMEs and `apps/site/src/data/README.txt` focused on library users. Document available installation methods and behavior. Aim for about 75% [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) in documentation: favor clear sentences, active voice, direct instructions, and consistent terms. Allow natural phrasing, useful context, and examples where they make the text easier to read. Treat 75% as an approximate writing target, not a measured compliance score. Strict dictionary compliance is not required; do not claim formal STE compliance.
+Keep the root and package READMEs and `apps/site/src/data/README.txt` focused on library users. Keep `CONTRIBUTING.md` and `docs/` focused on the library, package, registry, and shared icon pipeline. Put website development and deployment guidance in `apps/site/CONTRIBUTING.md`. Keep internal website investigation notes and browser-specific findings under ignored `artifacts/site/`. Document available installation methods and behavior. Aim for about 75% [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) in documentation: favor clear sentences, active voice, direct instructions, and consistent terms. Allow natural phrasing, useful context, and examples where they make the text easier to read. Treat 75% as an approximate writing target, not a measured compliance score. Strict dictionary compliance is not required; do not claim formal STE compliance.
 
 Keep personal machine paths, private chat links, credentials, individual account procedures, and private Figma file links out of committed files and public artifacts. Public project links and license attribution are intentional project data. A directory such as `.agents/` is public if committed.
 
@@ -23,7 +23,8 @@ Keep individual sync reports, release preparation notes, audit reports, and inte
 
 Read the relevant guide when the task needs it:
 
-- [Contributing](CONTRIBUTING.md): setup, checks, website changes, and deployment.
+- [Contributing](CONTRIBUTING.md): package setup, checks, and contribution conventions.
+- [Website contributions](apps/site/CONTRIBUTING.md): website setup, checks, UI changes, and deployment.
 - [Icon sources](docs/icon-sources.md): generation, imports, identity, dates, and categories.
 - [Releases](docs/releases.md): package boundaries, registry, changesets, diff reports, and publication.
 
@@ -33,6 +34,6 @@ The [documentation index](docs/README.md) lists the current guides. Local plans 
 
 Use Conventional Commits for new commit subjects and PR titles. See `CONTRIBUTING.md` for types, scopes, and breaking changes. A leading `[codex]` attribution prefix is accepted for compatibility but is not required by this repository. Changesets, not commit parsing, controls package versions and release notes.
 
-Keep unrelated edits unchanged. Builds regenerate tracked files; inspect the diff before and after generation. Use the checks for the affected behavior in `CONTRIBUTING.md`. Documentation-only changes need no build or full test run. Do not repeat passing checks unless a later change or new evidence requires it.
+Keep unrelated edits unchanged. Builds regenerate tracked files; inspect the diff before and after generation. Use the checks for the affected behavior in `CONTRIBUTING.md` or `apps/site/CONTRIBUTING.md`. Documentation-only changes need no build or full test run. Do not repeat passing checks unless a later change or new evidence requires it.
 
 Local edits, disposable test fixtures, and artifact builds can proceed within the requested task. Publishing, remote settings changes, and destructive Git operations need explicit authorization. Report the changes, checks performed, and any remaining limits. Finish with `git diff --check`.
