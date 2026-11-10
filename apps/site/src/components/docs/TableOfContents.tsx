@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  useCallback,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -10,8 +11,20 @@ import {
 import './docs-navigation.css';
 import { usePathname } from 'next/navigation';
 import { DocsMobileNavigation } from './DocsMobileNavigation';
+import { isEditableTarget } from '@/lib/keyboard';
 
 export type DocHeading = { id: string; title: string; level: number };
+
+const SCROLL_SETTLE_MS = 150;
+const scrollKeys = new Set([
+  'ArrowUp',
+  'ArrowDown',
+  'PageUp',
+  'PageDown',
+  'Home',
+  'End',
+  ' ',
+]);
 
 function positionIndicator(list: HTMLUListElement, animate = false) {
   const link = list.querySelector<HTMLAnchorElement>(
@@ -27,7 +40,37 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
   const [active, setActive] = useState<string | undefined>(headings[0]?.id);
   const list = useRef<HTMLUListElement>(null);
   const previous = useRef({ active, pathname });
-  const pendingTarget = useRef<string | undefined>(undefined);
+  const selection = useRef<{ id: string; settling: boolean } | undefined>(
+    undefined,
+  );
+  const frame = useRef(0);
+  const settleTimer = useRef<number | undefined>(undefined);
+
+  const finishSelection = useCallback(() => {
+    if (!selection.current?.settling) return;
+    window.clearTimeout(settleTimer.current);
+    settleTimer.current = undefined;
+    cancelAnimationFrame(frame.current);
+    frame.current = 0;
+    selection.current.settling = false;
+    // Preserve the chosen highlight until a later scroll, even at the page bottom.
+  }, []);
+
+  const waitForQuiet = useCallback(() => {
+    window.clearTimeout(settleTimer.current);
+    settleTimer.current = window.setTimeout(finishSelection, SCROLL_SETTLE_MS);
+  }, [finishSelection]);
+
+  const selectSection = useCallback(
+    (id: string) => {
+      cancelAnimationFrame(frame.current);
+      frame.current = 0;
+      selection.current = { id, settling: true };
+      setActive(id);
+      waitForQuiet();
+    },
+    [waitForQuiet],
+  );
 
   useLayoutEffect(() => {
     if (list.current)
@@ -48,14 +91,15 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
   }, [headings]);
 
   useEffect(() => {
-    pendingTarget.current = undefined;
+    selection.current = undefined;
     const sections = headings.flatMap(({ id }) => {
       const element = document.getElementById(id);
       return element ? [element] : [];
     });
-    let frame = 0;
     const update = () => {
-      frame = 0;
+      frame.current = 0;
+      if (selection.current?.settling) return;
+      selection.current = undefined;
       let current: string | undefined = sections[0]?.id;
       const padding =
         parseFloat(
@@ -74,47 +118,68 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
       ) {
         current = sections.at(-1)?.id;
       }
-      // Keep click selection stable while smooth scrolling passes other sections.
-      if (pendingTarget.current && current !== pendingTarget.current) return;
-      pendingTarget.current = undefined;
       setActive(current);
     };
     const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
+      if (!frame.current) frame.current = requestAnimationFrame(update);
     };
-    const releaseSelection = () => {
-      pendingTarget.current = undefined;
+    const scroll = () => {
+      if (selection.current?.settling) waitForQuiet();
+      else schedule();
+    };
+    const resize = () => {
+      finishSelection();
       schedule();
+    };
+    const selectHash = () => {
+      let id = window.location.hash.slice(1);
+      try {
+        id = decodeURIComponent(id);
+      } catch {
+        // Keep literal percent signs in existing heading fragments usable.
+      }
+      if (!sections.some((section) => section.id === id)) return false;
+      // A click's matching hash event can arrive after scrolling has settled.
+      if (selection.current?.id !== id) selectSection(id);
+      return true;
     };
     const hashChange = () => {
+      if (!selectHash()) {
+        finishSelection();
+        schedule();
+      }
+    };
+    const keyDown = (event: KeyboardEvent) => {
       if (
-        window.location.hash !==
-        `#${encodeURIComponent(pendingTarget.current ?? '')}`
+        !event.defaultPrevented &&
+        scrollKeys.has(event.key) &&
+        !isEditableTarget(event.target)
       )
-        pendingTarget.current = undefined;
-      schedule();
+        finishSelection();
     };
-    const interrupt = () => {
-      if (pendingTarget.current) releaseSelection();
-    };
-    const interruptions = ['wheel', 'pointerdown', 'keydown'] as const;
-    update();
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', releaseSelection);
+    if (!selectHash()) update();
+    window.addEventListener('scroll', scroll, { passive: true });
+    window.addEventListener('resize', resize);
     window.addEventListener('hashchange', hashChange);
-    document.addEventListener('scrollend', releaseSelection);
-    for (const event of interruptions)
-      window.addEventListener(event, interrupt, { passive: true });
+    document.addEventListener('scrollend', finishSelection);
+    window.addEventListener('wheel', finishSelection, { passive: true });
+    window.addEventListener('touchmove', finishSelection, { passive: true });
+    window.addEventListener('keydown', keyDown);
     return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', releaseSelection);
+      window.clearTimeout(settleTimer.current);
+      settleTimer.current = undefined;
+      cancelAnimationFrame(frame.current);
+      frame.current = 0;
+      selection.current = undefined;
+      window.removeEventListener('scroll', scroll);
+      window.removeEventListener('resize', resize);
       window.removeEventListener('hashchange', hashChange);
-      document.removeEventListener('scrollend', releaseSelection);
-      for (const event of interruptions)
-        window.removeEventListener(event, interrupt);
+      document.removeEventListener('scrollend', finishSelection);
+      window.removeEventListener('wheel', finishSelection);
+      window.removeEventListener('touchmove', finishSelection);
+      window.removeEventListener('keydown', keyDown);
     };
-  }, [headings, pathname]);
+  }, [headings, pathname, finishSelection, selectSection, waitForQuiet]);
 
   function selectHeading(id: string, event: MouseEvent<HTMLAnchorElement>) {
     if (
@@ -126,8 +191,7 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
       event.altKey
     )
       return;
-    pendingTarget.current = id;
-    setActive(id);
+    selectSection(id);
   }
 
   const links = (
