@@ -28,7 +28,8 @@
     "verify:release": "node scripts/verify-release.mjs",
     "changeset:icons": "node scripts/changeset-icons.mjs",
     "typecheck": "npm run build:package && npm run typecheck --workspace=@fyicons/site",
-    "pretest": "npm run build:package"
+    "pretest": "npm run build:package",
+    "verify:site-release": "node scripts/generate-icon-releases.mjs --include-current --check && node scripts/verify-site-release.mjs"
   },
   "engines": {
     "node": ">=22.18.0"

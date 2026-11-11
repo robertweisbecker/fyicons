@@ -133,7 +133,7 @@ Never use publication as a readiness check. Keep existing published versions and
 
 ### Generated release history
 
-`npm run version:packages` also updates `apps/site/src/data/icon-releases.json`. Include that generated file in the version PR; release verification checks it for drift. Fetch the `fyicons@*` release tags before preparing a version. The [website guide](../apps/site/CONTRIBUTING.md#icon-release-history) explains how the site uses and verifies this history.
+`npm run version:packages` also updates `apps/site/src/data/icon-releases.json`. Include that generated file in the version PR; release verification checks it for drift. Version-PR verification and the publishing job also run `npm run verify:site-release` after building the site. This blocks publication if the current release notes or icon release metadata are missing. Fetch the `fyicons@*` release tags before preparing a version. The [website guide](../apps/site/CONTRIBUTING.md#icon-release-history) explains how the site uses and verifies this history.
 
 ## Release automation
 
