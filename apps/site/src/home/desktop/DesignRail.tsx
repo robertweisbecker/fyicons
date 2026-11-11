@@ -16,7 +16,7 @@ export function DesignRail() {
         ['line-horizontal', ''],
         ['token', 'Variables'],
         ['line-horizontal', ''],
-        ['book-open-full', 'Libraries'],
+        ['book-open-3', 'Libraries'],
       ].map(([icon, label], i) => (
         <div
           key={i}

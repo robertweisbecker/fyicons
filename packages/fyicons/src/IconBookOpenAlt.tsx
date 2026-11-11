@@ -1,8 +1,0 @@
-import * as React from 'react';
-import type { IconProps } from './types';
-import SvgRoot, { useIdPrefix } from './base';
-const IconBookOpenAlt = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBookOpenAlt(props, ref) {
-  const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="book-open-alt"><path fill="currentColor" d="M13.127 1.991a.98.98 0 0 1 .873.98v8.22c0 .54-.422.961-.93 1.007-1.994.18-3.147.84-3.795 1.417a3.5 3.5 0 0 0-.653.764 2 2 0 0 0-.143.269.499.499 0 0 1-.909.118l-.04-.088-.002-.003v-.002l-.003-.004-.023-.053a2 2 0 0 0-.124-.227 3.5 3.5 0 0 0-.653-.764c-.648-.576-1.801-1.237-3.794-1.417A1.02 1.02 0 0 1 2 11.201v-8.22c0-.49.365-.93.873-.98l.104-.005c1.963.014 3.333.785 4.208 1.559.346.306.613.612.811.87.199-.26.469-.57.82-.88.874-.774 2.243-1.545 4.207-1.559zM3 11.201l.002.002a.03.03 0 0 0 .019.009c2.19.198 3.55.937 4.369 1.666l.11.102V5.666q.001-.079.025-.15l-.024-.044a4 4 0 0 0-.183-.283 5.2 5.2 0 0 0-.796-.885C5.8 3.664 4.665 3.016 3 2.996zm10-8.215c-1.665.02-2.8.67-3.522 1.308a5.2 5.2 0 0 0-.796.885 4 4 0 0 0-.183.283l-.027.047c.016.05.028.102.028.157v7.304l.11-.102c.82-.729 2.179-1.468 4.37-1.666a.03.03 0 0 0 .018-.008L13 11.19z" /></SvgRoot>;
-});
-export default IconBookOpenAlt;

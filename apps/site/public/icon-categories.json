@@ -121,7 +121,7 @@
         "vector-svg",
         "network"
       ],
-      "exactNames": ["letter-a", "letter-m", "letter-r"]
+      "exactNames": ["letter-a", "letter-m", "letter-r", "array", "letter-u"]
     },
     {
       "id": "commerce",
@@ -153,7 +153,13 @@
         "wallet",
         "handshake"
       ],
-      "exactNames": ["box", "box-shipping", "square-percent"]
+      "exactNames": [
+        "box",
+        "square-percent",
+        "box-taped",
+        "circle-dollar",
+        "circle-dollar-fill"
+      ]
     },
     {
       "id": "communication",
@@ -171,8 +177,10 @@
         "thought-bubble",
         "mailbox",
         "headset",
-        "comment"
-      ]
+        "comment",
+        "megaphone"
+      ],
+      "exactNames": ["comments"]
     },
     {
       "id": "design",
@@ -226,7 +234,7 @@
         "bucket",
         "edit"
       ],
-      "exactNames": ["height", "scale", "width"]
+      "exactNames": ["height", "scale", "width", "quill"]
     },
     {
       "id": "devices",
@@ -254,7 +262,8 @@
         "controller",
         "mouse",
         "watch",
-        "plugs"
+        "plugs",
+        "server"
       ]
     },
     {
@@ -276,6 +285,7 @@
         "atom",
         "backpack",
         "ban",
+        "ban-fill",
         "basket",
         "battery",
         "battery-low",
@@ -291,7 +301,7 @@
         "book-open",
         "bookmark",
         "bookmark-fill",
-        "box-shipping",
+        "box-taped",
         "brain",
         "briefcase",
         "broom",
@@ -389,6 +399,7 @@
         "home-fill",
         "hourglass",
         "hourglass-empty",
+        "hundred-points",
         "infinity",
         "institution",
         "key",
@@ -405,6 +416,7 @@
         "luggage",
         "mailbox",
         "map",
+        "map-fill",
         "microphone",
         "microphone-fill",
         "minus",
@@ -420,6 +432,7 @@
         "paint-brush",
         "palette",
         "paperclip",
+        "party-popper",
         "pause",
         "pause-fill",
         "pen",
@@ -442,6 +455,7 @@
         "printer-fill",
         "purse",
         "puzzle-piece",
+        "rabbit",
         "repeat",
         "repeat-one",
         "rocket",
@@ -458,6 +472,7 @@
         "skip-forward-fill",
         "skull",
         "skull-fill",
+        "snooze",
         "sparkles",
         "sparkles-fill",
         "square",
@@ -485,6 +500,7 @@
         "tree",
         "trophy",
         "truck",
+        "turtle",
         "umbrella",
         "video-camera",
         "video-camera-fill",
@@ -528,7 +544,9 @@
         "floppy-disk",
         "scroll",
         "news-feed",
-        "journal"
+        "journal",
+        "attachment",
+        "attachments"
       ]
     },
     {
@@ -603,7 +621,9 @@
         "loop",
         "music",
         "ear",
-        "headset"
+        "headset",
+        "earbuds",
+        "4k"
       ]
     },
     {
@@ -694,7 +714,6 @@
         "archive",
         "bell",
         "binoculars",
-        "box-shipping",
         "box-face",
         "calculator",
         "card-open",
@@ -726,7 +745,9 @@
         "broom",
         "die",
         "flower",
-        "telescope"
+        "telescope",
+        "box-taped",
+        "box-solid"
       ],
       "exactNames": [
         "pin",
@@ -738,7 +759,8 @@
         "brush",
         "box",
         "flower-spiral",
-        "sign"
+        "sign",
+        "fan"
       ]
     },
     {
@@ -753,7 +775,8 @@
         "handshake",
         "hand",
         "thumbs"
-      ]
+      ],
+      "exactNames": ["id", "id-fill"]
     },
     {
       "id": "science",
@@ -785,7 +808,16 @@
         "telescope",
         "flower"
       ],
-      "exactNames": ["bird", "bird-raven", "leaf", "droplet", "bee", "tree"]
+      "exactNames": [
+        "bird",
+        "bird-raven",
+        "leaf",
+        "droplet",
+        "bee",
+        "tree",
+        "rabbit",
+        "turtle"
+      ]
     },
     {
       "id": "security",
@@ -1145,8 +1177,7 @@
         "text-append",
         "text-submit",
         "bounding-box-heading",
-        "spell-check",
-        "spell-checked"
+        "spell-check"
       ],
       "exactNames": [
         "at-sign",

@@ -117,8 +117,8 @@ export const iconGroups = [
         'git-compare-simple',
         'git-branch-simple',
         'git-pull-request-simple',
+        'git-worktree',
         'git-worktree-alt',
-        'git-worktree-horizontal',
       ],
       ['fork-horizontal', 'fork', 'folder-git', 'braces', 'brackets'],
       ['parentheses', 'variable', 'vector-path', 'terminal-bash', 'terminal'],
@@ -196,7 +196,7 @@ export const iconGroups = [
       'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300',
     rows: [
       ['shopping-cart', 'basket', 'bag', 'backpack', 'suitcase'],
-      ['briefcase', 'shop', 'box-shipping', 'truck', 'car'],
+      ['briefcase', 'shop', 'box-taped', 'truck', 'car'],
       ['calculator', 'credit-card', 'cash', 'coin', 'coins'],
       ['ticket', 'top-hat', 'cowboy-hat', 'hat', 'hat-side'],
       ['airplane-diagonal', 'bullhorn', 'office', 'institution', 'archway'],

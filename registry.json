@@ -3280,14 +3280,14 @@
       "type": "registry:component"
     },
     {
-      "name": "book-open-alt",
-      "title": "IconBookOpenAlt",
-      "description": "The book-open-alt icon from FYIcons 0.3.2.",
+      "name": "book-open-2",
+      "title": "IconBookOpen2",
+      "description": "The book-open-2 icon from FYIcons 0.3.2.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconBookOpenAlt.tsx",
+          "path": "packages/fyicons/src/IconBookOpen2.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconBookOpenAlt.tsx"
+          "target": "@components/fyicons/IconBookOpen2.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -3308,14 +3308,14 @@
       "type": "registry:component"
     },
     {
-      "name": "book-open-full",
-      "title": "IconBookOpenFull",
-      "description": "The book-open-full icon from FYIcons 0.3.2.",
+      "name": "book-open-3",
+      "title": "IconBookOpen3",
+      "description": "The book-open-3 icon from FYIcons 0.3.2.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconBookOpenFull.tsx",
+          "path": "packages/fyicons/src/IconBookOpen3.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconBookOpenFull.tsx"
+          "target": "@components/fyicons/IconBookOpen3.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -12948,34 +12948,6 @@
           "path": "packages/fyicons/src/IconCloudUpload.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconCloudUpload.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/base.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/base.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/types.ts",
-          "type": "registry:file",
-          "target": "@components/fyicons/types.ts"
-        },
-        {
-          "path": "LICENSE",
-          "type": "registry:file",
-          "target": "@components/fyicons/LICENSE"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "cloud-download-alt",
-      "title": "IconCloudDownloadAlt",
-      "description": "The cloud-download-alt icon from FYIcons 0.3.2.",
-      "files": [
-        {
-          "path": "packages/fyicons/src/IconCloudDownloadAlt.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/IconCloudDownloadAlt.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -22796,14 +22768,14 @@
       "type": "registry:component"
     },
     {
-      "name": "git-worktree-horizontal",
-      "title": "IconGitWorktreeHorizontal",
-      "description": "The git-worktree-horizontal icon from FYIcons 0.3.2.",
+      "name": "git-worktree-alt",
+      "title": "IconGitWorktreeAlt",
+      "description": "The git-worktree-alt icon from FYIcons 0.3.2.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconGitWorktreeHorizontal.tsx",
+          "path": "packages/fyicons/src/IconGitWorktreeAlt.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconGitWorktreeHorizontal.tsx"
+          "target": "@components/fyicons/IconGitWorktreeAlt.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -22824,14 +22796,14 @@
       "type": "registry:component"
     },
     {
-      "name": "git-worktree-alt",
-      "title": "IconGitWorktreeAlt",
-      "description": "The git-worktree-alt icon from FYIcons 0.3.2.",
+      "name": "git-worktree",
+      "title": "IconGitWorktree",
+      "description": "The git-worktree icon from FYIcons 0.3.2.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconGitWorktreeAlt.tsx",
+          "path": "packages/fyicons/src/IconGitWorktree.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconGitWorktreeAlt.tsx"
+          "target": "@components/fyicons/IconGitWorktree.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -23860,14 +23832,14 @@
       "type": "registry:component"
     },
     {
-      "name": "box-shipping",
-      "title": "IconBoxShipping",
-      "description": "The box-shipping icon from FYIcons 0.3.2.",
+      "name": "box-taped",
+      "title": "IconBoxTaped",
+      "description": "The box-taped icon from FYIcons 0.3.2.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconBoxShipping.tsx",
+          "path": "packages/fyicons/src/IconBoxTaped.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconBoxShipping.tsx"
+          "target": "@components/fyicons/IconBoxTaped.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -35340,14 +35312,14 @@
       "type": "registry:component"
     },
     {
-      "name": "page-attachment",
-      "title": "IconPageAttachment",
-      "description": "The page-attachment icon from FYIcons 0.3.2.",
+      "name": "attachment",
+      "title": "IconAttachment",
+      "description": "The attachment icon from FYIcons 0.3.2.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconPageAttachment.tsx",
+          "path": "packages/fyicons/src/IconAttachment.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconPageAttachment.tsx"
+          "target": "@components/fyicons/IconAttachment.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -35600,34 +35572,6 @@
           "path": "packages/fyicons/src/IconSpellCheck.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconSpellCheck.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/base.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/base.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/types.ts",
-          "type": "registry:file",
-          "target": "@components/fyicons/types.ts"
-        },
-        {
-          "path": "LICENSE",
-          "type": "registry:file",
-          "target": "@components/fyicons/LICENSE"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "spell-checked",
-      "title": "IconSpellChecked",
-      "description": "The spell-checked icon from FYIcons 0.3.2.",
-      "files": [
-        {
-          "path": "packages/fyicons/src/IconSpellChecked.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/IconSpellChecked.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -35964,6 +35908,1350 @@
           "path": "packages/fyicons/src/IconLayoutMeasure.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconLayoutMeasure.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "comment-reply",
+      "title": "IconCommentReply",
+      "description": "The comment-reply icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCommentReply.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCommentReply.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "comment-notification",
+      "title": "IconCommentNotification",
+      "description": "The comment-notification icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCommentNotification.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCommentNotification.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "quill",
+      "title": "IconQuill",
+      "description": "The quill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconQuill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconQuill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "chart-line-axes",
+      "title": "IconChartLineAxes",
+      "description": "The chart-line-axes icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconChartLineAxes.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconChartLineAxes.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "circle-dollar",
+      "title": "IconCircleDollar",
+      "description": "The circle-dollar icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCircleDollar.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCircleDollar.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "circle-dollar-fill",
+      "title": "IconCircleDollarFill",
+      "description": "The circle-dollar-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCircleDollarFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCircleDollarFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "square-minus-fill",
+      "title": "IconSquareMinusFill",
+      "description": "The square-minus-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconSquareMinusFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconSquareMinusFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "comment-reply-plus",
+      "title": "IconCommentReplyPlus",
+      "description": "The comment-reply-plus icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCommentReplyPlus.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCommentReplyPlus.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "comment-reply-edit",
+      "title": "IconCommentReplyEdit",
+      "description": "The comment-reply-edit icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCommentReplyEdit.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCommentReplyEdit.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "comment-reply-check",
+      "title": "IconCommentReplyCheck",
+      "description": "The comment-reply-check icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCommentReplyCheck.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCommentReplyCheck.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "comments",
+      "title": "IconComments",
+      "description": "The comments icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconComments.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconComments.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "bell-2-fill",
+      "title": "IconBell2Fill",
+      "description": "The bell-2-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconBell2Fill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconBell2Fill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "fan",
+      "title": "IconFan",
+      "description": "The fan icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconFan.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconFan.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "comment-reply-notification",
+      "title": "IconCommentReplyNotification",
+      "description": "The comment-reply-notification icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCommentReplyNotification.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCommentReplyNotification.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "snooze",
+      "title": "IconSnooze",
+      "description": "The snooze icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconSnooze.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconSnooze.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "ban-fill",
+      "title": "IconBanFill",
+      "description": "The ban-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconBanFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconBanFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "array",
+      "title": "IconArray",
+      "description": "The array icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconArray.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconArray.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "letter-u",
+      "title": "IconLetterU",
+      "description": "The letter-u icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconLetterU.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconLetterU.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "flashlight-on",
+      "title": "IconFlashlightOn",
+      "description": "The flashlight-on icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconFlashlightOn.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconFlashlightOn.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "text-underline-wavy",
+      "title": "IconTextUnderlineWavy",
+      "description": "The text-underline-wavy icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconTextUnderlineWavy.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconTextUnderlineWavy.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "text-underline-dashed",
+      "title": "IconTextUnderlineDashed",
+      "description": "The text-underline-dashed icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconTextUnderlineDashed.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconTextUnderlineDashed.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "text-underline-dotted",
+      "title": "IconTextUnderlineDotted",
+      "description": "The text-underline-dotted icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconTextUnderlineDotted.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconTextUnderlineDotted.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "attachments",
+      "title": "IconAttachments",
+      "description": "The attachments icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconAttachments.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconAttachments.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "mobile-fold",
+      "title": "IconMobileFold",
+      "description": "The mobile-fold icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconMobileFold.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconMobileFold.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "camera-square-flip",
+      "title": "IconCameraSquareFlip",
+      "description": "The camera-square-flip icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCameraSquareFlip.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCameraSquareFlip.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "4k",
+      "title": "Icon4k",
+      "description": "The 4k icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/Icon4k.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/Icon4k.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "4k-fill",
+      "title": "Icon4kFill",
+      "description": "The 4k-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/Icon4kFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/Icon4kFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "id",
+      "title": "IconId",
+      "description": "The id icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconId.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconId.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "id-fill",
+      "title": "IconIdFill",
+      "description": "The id-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconIdFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconIdFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "page-add",
+      "title": "IconPageAdd",
+      "description": "The page-add icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconPageAdd.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconPageAdd.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "user-card",
+      "title": "IconUserCard",
+      "description": "The user-card icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconUserCard.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconUserCard.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "user-card-fill",
+      "title": "IconUserCardFill",
+      "description": "The user-card-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconUserCardFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconUserCardFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "megaphone",
+      "title": "IconMegaphone",
+      "description": "The megaphone icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconMegaphone.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconMegaphone.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "user-add",
+      "title": "IconUserAdd",
+      "description": "The user-add icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconUserAdd.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconUserAdd.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "user-subtract",
+      "title": "IconUserSubtract",
+      "description": "The user-subtract icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconUserSubtract.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconUserSubtract.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "user-key",
+      "title": "IconUserKey",
+      "description": "The user-key icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconUserKey.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconUserKey.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "battery-min",
+      "title": "IconBatteryMin",
+      "description": "The battery-min icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconBatteryMin.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconBatteryMin.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "battery-high",
+      "title": "IconBatteryHigh",
+      "description": "The battery-high icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconBatteryHigh.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconBatteryHigh.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "server",
+      "title": "IconServer",
+      "description": "The server icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconServer.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconServer.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "box-solid",
+      "title": "IconBoxSolid",
+      "description": "The box-solid icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconBoxSolid.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconBoxSolid.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "map-fill",
+      "title": "IconMapFill",
+      "description": "The map-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconMapFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconMapFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "bell-dot",
+      "title": "IconBellDot",
+      "description": "The bell-dot icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconBellDot.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconBellDot.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "bell-dot-fill",
+      "title": "IconBellDotFill",
+      "description": "The bell-dot-fill icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconBellDotFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconBellDotFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "rabbit",
+      "title": "IconRabbit",
+      "description": "The rabbit icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconRabbit.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconRabbit.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "turtle",
+      "title": "IconTurtle",
+      "description": "The turtle icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconTurtle.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconTurtle.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "hundred-points",
+      "title": "IconHundredPoints",
+      "description": "The hundred-points icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconHundredPoints.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconHundredPoints.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "party-popper",
+      "title": "IconPartyPopper",
+      "description": "The party-popper icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconPartyPopper.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconPartyPopper.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "earbuds",
+      "title": "IconEarbuds",
+      "description": "The earbuds icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconEarbuds.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconEarbuds.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
