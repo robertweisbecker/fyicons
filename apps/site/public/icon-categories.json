@@ -89,9 +89,7 @@
         "shuffle",
         "loop"
       ],
-      "exactNames": [
-        "line-wrap"
-      ]
+      "exactNames": ["line-wrap"]
     },
     {
       "id": "code",
@@ -123,13 +121,7 @@
         "vector-svg",
         "network"
       ],
-      "exactNames": [
-        "letter-a",
-        "letter-m",
-        "letter-r",
-        "array",
-        "letter-u"
-      ]
+      "exactNames": ["letter-a", "letter-m", "letter-r", "array", "letter-u"]
     },
     {
       "id": "commerce",
@@ -188,9 +180,7 @@
         "comment",
         "megaphone"
       ],
-      "exactNames": [
-        "comments"
-      ]
+      "exactNames": ["comments"]
     },
     {
       "id": "design",
@@ -244,12 +234,7 @@
         "bucket",
         "edit"
       ],
-      "exactNames": [
-        "height",
-        "scale",
-        "width",
-        "quill"
-      ]
+      "exactNames": ["height", "scale", "width", "quill"]
     },
     {
       "id": "devices",
@@ -595,11 +580,7 @@
         "widget",
         "tabs"
       ],
-      "exactNames": [
-        "line-overflow",
-        "line-wrap",
-        "view-center"
-      ]
+      "exactNames": ["line-overflow", "line-wrap", "view-center"]
     },
     {
       "id": "media",
@@ -795,10 +776,7 @@
         "hand",
         "thumbs"
       ],
-      "exactNames": [
-        "id",
-        "id-fill"
-      ]
+      "exactNames": ["id", "id-fill"]
     },
     {
       "id": "science",
@@ -1060,10 +1038,7 @@
         "app-notification",
         "network"
       ],
-      "exactNames": [
-        "square-command",
-        "letter-k"
-      ]
+      "exactNames": ["square-command", "letter-k"]
     },
     {
       "id": "time",
@@ -1147,9 +1122,7 @@
         "home-chimney",
         "campfire"
       ],
-      "exactNames": [
-        "sign"
-      ]
+      "exactNames": ["sign"]
     },
     {
       "id": "typography",

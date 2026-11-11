@@ -1,4 +1,6 @@
 import IconBatteryEmpty from 'fyicons/icons/IconBatteryEmpty';
+import IconBatteryMin from 'fyicons/icons/IconBatteryMin';
+import IconBatteryHigh from 'fyicons/icons/IconBatteryHigh';
 import IconBatteryLow from 'fyicons/icons/IconBatteryLow';
 import IconBatteryMedium from 'fyicons/icons/IconBatteryMedium';
 import IconBattery from 'fyicons/icons/IconBattery';
@@ -69,6 +71,23 @@ export const levelSteps: {
     },
   },
   {
+    value: 12.5,
+    icons: {
+      IconBatteryMin,
+      IconSignalFour0,
+      IconProgressTaskTodo,
+      IconGaugeMin,
+    },
+    landingIcons: {
+      IconSignalThree0,
+      IconMeterLow,
+      IconChecklist,
+      IconVolumeX,
+      IconEmojiAngry,
+      IconEmojiAngryFill,
+    },
+  },
+  {
     value: 25,
     icons: {
       IconBatteryLow,
@@ -105,7 +124,7 @@ export const levelSteps: {
   {
     value: 75,
     icons: {
-      IconBatteryMedium,
+      IconBatteryHigh,
       IconSignalFour3,
       IconProgressTask75,
       IconGaugeHigh,
@@ -122,7 +141,7 @@ export const levelSteps: {
   {
     value: 87.5,
     icons: {
-      IconBatteryMedium,
+      IconBatteryHigh,
       IconSignalFour3,
       IconProgressTask75,
       IconGaugeHigh,
