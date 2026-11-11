@@ -293,7 +293,9 @@
         "thumbs"
       ],
       "exactNames": [
-        "snooze"
+        "snooze",
+        "hundred-points",
+        "party-popper"
       ]
     },
     {
@@ -387,6 +389,7 @@
         "film",
         "hd",
         "headphones",
+        "earbuds",
         "image",
         "images",
         "microphone",
@@ -598,6 +601,8 @@
       "exactNames": [
         "bird",
         "bird-raven",
+        "rabbit",
+        "turtle",
         "leaf",
         "droplet",
         "bee",

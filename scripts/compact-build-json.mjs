@@ -12,8 +12,10 @@ for (const name of ['icon-categories.schema.json', 'icon-categories.json']) {
 for (const name of ['og-image.png', 'og-image-square.png', 'twitter-image.png']) {
   const file = `out/${name}`;
   const original = await readFile(file);
-  const optimized = await sharp(original)
-    .keepMetadata()
+  const image = sharp(original);
+  // Opaque images do not need an alpha channel; keep the original otherwise.
+  if ((await image.stats()).isOpaque) image.removeAlpha();
+  const optimized = await image.keepMetadata()
     .png({ palette: false, compressionLevel: 9, adaptiveFiltering: false })
     .toBuffer();
   if (optimized.length >= original.length) continue;

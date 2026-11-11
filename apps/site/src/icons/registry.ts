@@ -1329,4 +1329,9 @@ export const iconBySourceId: Record<string, ComponentType<IconProps>> = {
   "1569:11404": icons.IconMapFill,
   "1569:11486": icons.IconBellDot,
   "1569:11485": icons.IconBellDotFill,
+  "1583:12084": icons.IconRabbit,
+  "1584:12150": icons.IconTurtle,
+  "1584:12177": icons.IconHundredPoints,
+  "1583:11976": icons.IconPartyPopper,
+  "1584:12167": icons.IconEarbuds,
 };

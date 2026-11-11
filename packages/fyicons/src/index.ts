@@ -1325,3 +1325,8 @@ export { default as IconBoxSolid } from './IconBoxSolid';
 export { default as IconMapFill } from './IconMapFill';
 export { default as IconBellDot } from './IconBellDot';
 export { default as IconBellDotFill } from './IconBellDotFill';
+export { default as IconRabbit } from './IconRabbit';
+export { default as IconTurtle } from './IconTurtle';
+export { default as IconHundredPoints } from './IconHundredPoints';
+export { default as IconPartyPopper } from './IconPartyPopper';
+export { default as IconEarbuds } from './IconEarbuds';

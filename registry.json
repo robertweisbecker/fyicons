@@ -37130,6 +37130,146 @@
         }
       ],
       "type": "registry:component"
+    },
+    {
+      "name": "rabbit",
+      "title": "IconRabbit",
+      "description": "The rabbit icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconRabbit.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconRabbit.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "turtle",
+      "title": "IconTurtle",
+      "description": "The turtle icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconTurtle.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconTurtle.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "hundred-points",
+      "title": "IconHundredPoints",
+      "description": "The hundred-points icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconHundredPoints.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconHundredPoints.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "party-popper",
+      "title": "IconPartyPopper",
+      "description": "The party-popper icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconPartyPopper.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconPartyPopper.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "earbuds",
+      "title": "IconEarbuds",
+      "description": "The earbuds icon from FYIcons 0.3.2.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconEarbuds.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconEarbuds.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
     }
   ]
 }

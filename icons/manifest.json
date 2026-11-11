@@ -24298,6 +24298,76 @@
       "addedAt": "2026-11-11T02:14:21.664Z",
       "updatedAt": "2026-11-11T02:14:21.664Z",
       "componentName": "IconBellDotFill"
+    },
+    {
+      "id": "1583:12084",
+      "name": "rabbit",
+      "baseName": "rabbit",
+      "originalName": "rabbit",
+      "width": 16,
+      "height": 16,
+      "filename": "rabbit-16.svg",
+      "aliases": [],
+      "file": "svgs/1583-12084.svg",
+      "componentName": "IconRabbit",
+      "addedAt": "2026-11-11T08:10:12.822Z",
+      "updatedAt": "2026-11-11T08:10:12.822Z"
+    },
+    {
+      "id": "1584:12150",
+      "name": "turtle",
+      "baseName": "turtle",
+      "originalName": "turtle",
+      "width": 16,
+      "height": 16,
+      "filename": "turtle-16.svg",
+      "aliases": [],
+      "file": "svgs/1584-12150.svg",
+      "componentName": "IconTurtle",
+      "addedAt": "2026-11-11T08:10:22.013Z",
+      "updatedAt": "2026-11-11T08:10:22.013Z"
+    },
+    {
+      "id": "1584:12177",
+      "name": "hundred-points",
+      "baseName": "hundred-points",
+      "originalName": "hundred-points",
+      "width": 16,
+      "height": 16,
+      "filename": "hundred-points-16.svg",
+      "aliases": [],
+      "file": "svgs/1584-12177.svg",
+      "componentName": "IconHundredPoints",
+      "addedAt": "2026-11-11T08:10:29.866Z",
+      "updatedAt": "2026-11-11T08:10:29.866Z"
+    },
+    {
+      "id": "1583:11976",
+      "name": "party-popper",
+      "baseName": "party-popper",
+      "originalName": "party-popper",
+      "width": 16,
+      "height": 16,
+      "filename": "party-popper-16.svg",
+      "aliases": [],
+      "file": "svgs/1583-11976.svg",
+      "componentName": "IconPartyPopper",
+      "addedAt": "2026-11-11T08:10:37.730Z",
+      "updatedAt": "2026-11-11T08:10:37.730Z"
+    },
+    {
+      "id": "1584:12167",
+      "name": "earbuds",
+      "baseName": "earbuds",
+      "originalName": "earbuds",
+      "width": 16,
+      "height": 16,
+      "filename": "earbuds-16.svg",
+      "aliases": [],
+      "file": "svgs/1584-12167.svg",
+      "addedAt": "2026-11-11T08:10:45.858Z",
+      "updatedAt": "2026-11-11T08:10:45.858Z",
+      "componentName": "IconEarbuds"
     }
   ]
 }
