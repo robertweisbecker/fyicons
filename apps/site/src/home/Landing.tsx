@@ -45,7 +45,7 @@ export default function Landing() {
                 </span>
               </span>
               <span className="hero-headline-line">
-                now <span className="font-semibold text-ink">for you.</span>
+                now <span className="font-bold text-ink">for you.</span>
                 <img
                   src={assetPath('/favicon.svg')}
                   alt=""
@@ -81,6 +81,7 @@ export default function Landing() {
                     command="npm i fyicons"
                     label="npm"
                     appearance="button"
+                    variant="fancy-rainbow"
                   />
                 </div>
               </div>

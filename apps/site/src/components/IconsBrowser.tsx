@@ -27,11 +27,11 @@ import { downloadIcons } from '@/lib/downloads';
 import { isStringArray, useMobile, usePreference } from '@/lib/preferences';
 import { isEditableTarget } from '@/lib/keyboard';
 
-const sortLabels = {
-  alphabetical: 'Alphabetically',
-  addedAt: 'Newest',
-  updatedAt: 'Last updated',
-} satisfies Record<IconSort, string>;
+const sortOptions = {
+  alphabetical: { label: 'Alphabetically', icon: 'sort-down' },
+  addedAt: { label: 'Newest', icon: 'stars' },
+  updatedAt: { label: 'Last updated', icon: 'calendar' },
+} satisfies Record<IconSort, { label: string; icon: string }>;
 
 export function IconsBrowser() {
   const mobile = useMobile();
@@ -284,12 +284,12 @@ export function IconsBrowser() {
                 <div className="flex shrink-0 items-center gap-1.5">
                   <Menu>
                     <MenuTrigger
-                      aria-label={`Sort icons by ${sortLabels[sort]}`}
+                      aria-label={`Sort icons by ${sortOptions[sort].label}`}
                       render={<Button variant="text" size="sm" />}
                     >
                       Sort:
                       <span className="font-medium text-ink">
-                        {sortLabels[sort]}
+                        {sortOptions[sort].label}
                       </span>
                       <Icon name="chevrons-up-down" />
                     </MenuTrigger>
@@ -299,11 +299,14 @@ export function IconsBrowser() {
                         onValueChange={setSort}
                         aria-label="Sort icons by"
                       >
-                        {Object.entries(sortLabels).map(([value, label]) => (
-                          <MenuRadioItem key={value} value={value}>
-                            {label}
-                          </MenuRadioItem>
-                        ))}
+                        {Object.entries(sortOptions).map(
+                          ([value, { label, icon }]) => (
+                            <MenuRadioItem key={value} value={value}>
+                              <Icon name={icon} className="text-muted" />
+                              {label}
+                            </MenuRadioItem>
+                          ),
+                        )}
                       </MenuRadioGroup>
                     </MenuContent>
                   </Menu>

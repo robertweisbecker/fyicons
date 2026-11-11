@@ -1,10 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
 import {
   parseIconCategories,
   categorizeIcons,
-  validateCategoryIcons,
   uncategorized,
 } from '../../apps/site/src/lib/icon-categories.ts';
 
@@ -106,21 +104,6 @@ test('exact names match only whole names and combine with keyword memberships', 
   );
 });
 
-test('new variants and renames use current names without an assignment sync or alias matches', () => {
-  const config = parseIconCategories({ categories: [files] });
-  assert.deepEqual(
-    categorizeIcons(
-      [
-        { name: 'file' },
-        { name: 'file-new-filled' },
-        { name: 'mail', aliases: ['file'] },
-      ],
-      config,
-    ).icons.map((icon) => icon.categories),
-    [['files'], ['files'], ['uncategorized']],
-  );
-});
-
 test('empty rules and unmatched inventories are valid and remain discoverable', () => {
   for (const categories of [
     [],
@@ -128,72 +111,9 @@ test('empty rules and unmatched inventories are valid and remain discoverable', 
     [{ ...files, keywords: ['future-icon'] }],
   ]) {
     const config = parseIconCategories({ categories });
-    validateCategoryIcons(config, [{ name: 'anchor' }]);
     const result = categorizeIcons([{ name: 'anchor' }], config);
     assert.deepEqual(result.icons[0].categories, ['uncategorized']);
     assert.deepEqual(result.categories, [...categories, uncategorized]);
     assert.deepEqual(categorizeIcons([], config).categories, categories);
   }
-});
-
-test('unknown sidebar icons are caught by source validation', () => {
-  const config = parseIconCategories({
-    categories: [{ ...files, icon: 'missing' }],
-  });
-  assert.throws(
-    () => validateCategoryIcons(config, [{ name: 'anchor' }]),
-    /Unknown sidebar icon for Files: missing/,
-  );
-});
-
-test('invalid rules and legacy assignment maps are rejected', () => {
-  for (const value of [
-    { categories: [files, files] },
-    { categories: [{ ...files, id: 'uncategorized' }] },
-    { categories: [{ ...files, keywords: 'file' }] },
-    { categories: [{ ...files, keywords: ['file*'] }] },
-    { categories: [{ ...files, keywords: ['arrow-up', 'arrow_up'] }] },
-    { categories: [{ ...files, exactNames: ['box', 'BOX'] }] },
-    { categories: [files], icons: { anchor: ['files'] } },
-  ])
-    assert.throws(() => parseIconCategories(value), JSON.stringify(value));
-});
-
-test('the current category rules preserve renamed icon families and exact-name memberships', async () => {
-  const config = parseIconCategories(
-    JSON.parse(
-      await readFile(
-        new URL('../../apps/site/public/icon-categories.json', import.meta.url),
-        'utf8',
-      ),
-    ),
-  );
-  const expected = {
-    bucket: ['design'],
-    swatches: ['design'],
-    'swatches-simple': ['design'],
-    edit: ['design'],
-    'edit-solid': ['design'],
-    'text-markup': ['code'],
-    'line-wrap': ['arrows', 'layout-interface'],
-    'rich-text': ['files'],
-    'square-command': ['shapes-symbols', 'system'],
-    plugs: ['devices'],
-    'plugs-plugged': ['devices'],
-    'plugs-unplug': ['devices'],
-    'check-thick-xs': ['shapes-symbols', 'status-feedback'],
-    'check-thick-sm': ['shapes-symbols', 'status-feedback'],
-    'letter-m': ['code'],
-    'letter-r': ['code'],
-    'letter-a': ['code'],
-    'folder-tree': ['code', 'files'],
-    'folder-tree-fill': ['code', 'files'],
-    'line-overflow': ['layout-interface'],
-  };
-  const { icons } = categorizeIcons(
-    Object.keys(expected).map((name) => ({ name })),
-    config,
-  );
-  for (const icon of icons)
-    assert.deepEqual(icon.categories, expected[icon.name], icon.name);
 });

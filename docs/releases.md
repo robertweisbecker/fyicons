@@ -6,7 +6,7 @@ The release line starts at `fyicons@0.1.0` under MIT. The root workspace stays p
 
 React is the package's only runtime peer dependency. The tarball contains ESM modules, TypeScript declarations, SVG files, metadata, documentation, and the MIT license. Website code, fonts, catalogs, and the dynamic icon registry stay outside it.
 
-Generated React sources are in `packages/fyicons/src/`. The package builder uses the same prepared source as the website generator. The site imports the built package through its public exports. Its catalog lookup registry stays in `apps/site/src/icons/registry.ts`. Each icon has a module and declaration in `dist/icons/`. `dist/index.js` supplies named exports. Icon modules have no `use client` directive. They can render on the server, including under an async parent. Keep `useId` for instance-safe references. Consumers use their own Client Components for event handlers or refs.
+Generated React sources are in `packages/fyicons/src/`. The package builder uses the same prepared source as the website generator. Each icon has a module and declaration in `dist/icons/`. `dist/index.js` supplies named exports. Icon modules have no `use client` directive. They can render on the server, including under an async parent. Keep `useId` for instance-safe references. Consumers use their own Client Components for event handlers or refs.
 
 Package `dist/`, `svg/`, `manifest.json`, and the copied `LICENSE` are generated and ignored by Git. Package metadata keeps the source date version and adds `packageVersion`. The root [`LICENSE`](../LICENSE) is also included in SVG ZIP downloads.
 
@@ -131,17 +131,9 @@ For a manual release:
 
 Never use publication as a readiness check. Keep existing published versions and tags unchanged. A correction to a published package needs a new version.
 
-### Website release history
+### Generated release history
 
-`npm run version:packages` updates the inspector's Added and Updated versions when it prepares a release. It compares canonical artwork and names by collection and component ID across the `fyicons@*` tags. For the version being prepared, it uses the current icon inventory until its tag exists. Fetch the release tags before running the version command locally.
-
-The version PR includes the generated `apps/site/src/data/icon-releases.json`. Release verification checks it for drift. Website builds read the saved file. An icon shows Added for its first release and Updated only for a later change. A rename keeps the original Added version. Changes to export formatting, import dates, or categories do not advance either version.
-
-To verify the saved history after publication, run:
-
-```sh
-node scripts/generate-icon-releases.mjs --check
-```
+`npm run version:packages` also updates `apps/site/src/data/icon-releases.json`. Include that generated file in the version PR; release verification checks it for drift. Fetch the `fyicons@*` release tags before preparing a version. The [website guide](../apps/site/CONTRIBUTING.md#icon-release-history) explains how the site uses and verifies this history.
 
 ## Release automation
 

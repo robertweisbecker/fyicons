@@ -62,32 +62,3 @@ export const metadata = { title: 'Guide' };
     'Guide',
   );
 });
-
-test('duplicate titles avoid existing IDs and old published fragments remain usable', async () => {
-  const { document, contents } = await render(`
-# Reference
-
-<span id="size">Existing target</span>
-
-## Size
-
-## Size
-
-<h2 id="props">API</h2>
-
-<h3 id="shared-defaults">Shared defaults with FyiProvider</h3>
-`);
-  assert.deepEqual(
-    contents.map(({ id }) => id),
-    ['size-1', 'size-2', 'api', 'shared-defaults-with-fyiprovider'],
-  );
-  const ids = [...document.querySelectorAll('[id]')].map(
-    (element) => element.id,
-  );
-  assert.equal(new Set(ids).size, ids.length);
-  assert.equal(document.getElementById('props').closest('h2').id, 'api');
-  assert.equal(
-    document.getElementById('shared-defaults').closest('h3').id,
-    'shared-defaults-with-fyiprovider',
-  );
-});

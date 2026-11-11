@@ -40,6 +40,11 @@
   transition: none;
   user-select: none;
 }
+/* Shrinking can make previously fitting content overflow. Keep an active
+   drawer gesture from being handed to that newly scrollable region. */
+.mobile-inspector[data-swiping] .inspector-scroll {
+  overflow-y: clip;
+}
 .mobile-inspector-frame {
   --compact-copy-width: 4.5rem;
   /* Clear the title before spreading the thumbnail and actions across the sheet. */

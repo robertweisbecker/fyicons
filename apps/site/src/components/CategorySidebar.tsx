@@ -1,15 +1,15 @@
 import type { ReactNode } from 'react';
-import { ScrollArea } from '@base-ui/react/scroll-area';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
-  Menu,
-  MenuTrigger,
-  MenuContent,
-  MenuRadioGroup,
-  MenuRadioItem,
-} from '@/components/ui/menu';
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+} from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Icon } from '@/components/Icon';
-import { Button } from '@/components/ui/button';
 import { Sidebar, SidebarSection, SidebarItem } from './Sidebar';
 import { categories, icons, byName } from '@/lib/catalog';
 
@@ -56,11 +56,11 @@ export function CategorySidebar({
       >
         {displayControls}
       </div>
-      <ScrollArea.Root className="group/category-scroll -mr-4 -ml-1 min-h-0 flex-1">
+      <ScrollArea.Root className="-mr-4 -ml-1 flex-1">
         <ScrollArea.Viewport
           role="region"
           aria-label="Categories"
-          className="h-full scroll-fade-y scroll-py-1 overscroll-y-contain pr-4 pl-1 scroll-fade-b-0 scroll-fade-t-0 focus-visible:-outline-offset-2 data-[overflow-y-end]:scroll-fade-b-6 data-[overflow-y-start]:scroll-fade-t-6"
+          className="h-full scroll-py-1 pr-4 pl-1"
         >
           <ScrollArea.Content className="min-w-0!">
             <SidebarSection title="Categories">
@@ -83,9 +83,7 @@ export function CategorySidebar({
             </SidebarSection>
           </ScrollArea.Content>
         </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar className="flex w-1.5 justify-center opacity-0 group-has-[:focus-visible]/category-scroll:opacity-100 data-hovering:opacity-100 data-scrolling:opacity-100">
-          <ScrollArea.Thumb className="w-1 rounded-full bg-muted/50" />
-        </ScrollArea.Scrollbar>
+        <ScrollArea.Scrollbar />
       </ScrollArea.Root>
     </Sidebar>
   );
@@ -97,38 +95,39 @@ export function CategoryMenu({ value, onValueChange }: Props) {
     options.find((option) => option.value === value) ?? options[0];
   return (
     <div className="min-w-0 lg:hidden">
-      <Menu>
-        <MenuTrigger
+      <Select
+        items={options}
+        value={selected.value}
+        onValueChange={(next) => {
+          if (next !== null) onValueChange(next);
+        }}
+      >
+        <SelectTrigger
+          variant="text"
+          size="sm"
+          className="max-w-full"
           aria-label={
             value === 'all' ? 'Categories' : `Categories: ${selected.label}`
           }
-          render={
-            <Button
-              variant="text"
-              size="sm"
-              className="max-w-full min-w-0 px-0.5"
-              title={selected.label}
-            />
-          }
+          title={selected.label}
         >
           <Icon name={selected.icon} />
-          <span className="truncate">{selected.label}</span>
-          <Icon name="caret-down" className="shrink-0" />
-        </MenuTrigger>
-        <MenuContent className="w-72">
-          <MenuRadioGroup
-            value={value}
-            onValueChange={onValueChange}
-            aria-label="Icon categories"
-          >
+          <SelectValue className="truncate" />
+        </SelectTrigger>
+        <SelectContent aria-label="Icon categories" className="w-72">
+          <SelectGroup>
             {options.map((option) => (
-              <MenuRadioItem key={option.value} value={option.value} size="lg">
+              <SelectItem
+                key={option.value}
+                value={option.value}
+                label={option.label}
+              >
                 <CategoryLabel option={option} />
-              </MenuRadioItem>
+              </SelectItem>
             ))}
-          </MenuRadioGroup>
-        </MenuContent>
-      </Menu>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
     </div>
   );
 }

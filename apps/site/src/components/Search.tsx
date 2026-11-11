@@ -1,6 +1,6 @@
 import { Autocomplete } from '@base-ui/react/autocomplete';
 import { Dialog } from '@base-ui/react/dialog';
-import { ScrollArea } from '@base-ui/react/scroll-area';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useEffect, useRef, useState, type Ref, type RefObject } from 'react';
 import { Icon } from '@/components/Icon';
 import { IconButton } from '@/components/IconButton';
@@ -11,7 +11,8 @@ import { getIconDisplayName, icons, type IconRecord } from '@/lib/catalog';
 import Link from 'next/link';
 
 const searchPlaceholder = `Search ${icons.length.toLocaleString('en-US')} icons…`;
-const searchPageSize = 100;
+// Divisible by every responsive column count: 3, 4, 6, and 8.
+const searchPageSize = 96;
 // Tailwind's lg, md, and sm viewport breakpoints. Base UI needs the same
 // column count for the rendered rows and arrow-key navigation.
 const gridBreakpoints = [
@@ -129,6 +130,7 @@ function Search({
 }) {
   useCategoryReadiness();
   const [limit, setLimit] = useState(searchPageSize);
+  const [highlightedIcon, setHighlightedIcon] = useState<IconRecord>();
   const matches = searchIcons(icons, value);
   const shownCount = Math.min(limit, matches.length);
   const moreCount = Math.min(searchPageSize, matches.length - shownCount);
@@ -149,8 +151,9 @@ function Search({
       }}
       itemToStringValue={getIconDisplayName}
       autoHighlight={false}
+      onItemHighlighted={setHighlightedIcon}
     >
-      <Autocomplete.InputGroup className="flex h-14 min-w-0 shrink-0 items-center gap-3 border-b border-line ps-6 pe-3">
+      <Autocomplete.InputGroup className="flex h-14 min-w-0 shrink-0 items-center gap-3 ps-6 pe-3">
         <Icon name="search" size={20} />
         <Autocomplete.Input
           ref={inputRef}
@@ -169,7 +172,7 @@ function Search({
           render={
             <IconButton
               icon="x"
-              variant="outline"
+              variant="fancy"
               className="rounded-full"
               label="Close search"
             />
@@ -194,40 +197,74 @@ function Search({
           </p>
         </div>
       </Autocomplete.Empty>
-      <ScrollArea.Root className="group/search-scroll flex min-h-0 flex-1 flex-col">
-        <ScrollArea.Viewport className="min-h-0 flex-1 overscroll-y-contain focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-muted">
-          <Autocomplete.List
-            render={<ScrollArea.Content />}
-            aria-label="Icon search results"
-            className="min-w-0! p-3 empty:hidden sm:p-4"
-          >
-            <SearchResults select={select} />
-          </Autocomplete.List>
+      <ScrollArea.Root className="flex flex-1 flex-col">
+        <ScrollArea.Viewport className="flex-1">
+          <ScrollArea.Content className="min-w-0!">
+            <Autocomplete.List
+              aria-label="Icon search results"
+              className="p-3 empty:hidden sm:p-4"
+            >
+              <SearchResults select={select} />
+            </Autocomplete.List>
+            {matches.length > searchPageSize && (
+              <div className="flex justify-center px-4 pb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={moreCount === 0}
+                  focusableWhenDisabled
+                  onClick={() =>
+                    setLimit((current) => current + searchPageSize)
+                  }
+                  className="data-disabled:opacity-40"
+                >
+                  <Icon name="arrow-down" size={16} />
+                  {moreCount > 0
+                    ? `Load ${moreCount} more`
+                    : 'All results shown'}
+                </Button>
+              </div>
+            )}
+          </ScrollArea.Content>
         </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar className="m-1 flex w-1.5 justify-center opacity-0 group-has-focus-visible/search-scroll:opacity-100 data-hovering:opacity-100 data-scrolling:opacity-100">
-          <ScrollArea.Thumb className="w-1 rounded-full bg-muted/50" />
-        </ScrollArea.Scrollbar>
+        <ScrollArea.Scrollbar />
       </ScrollArea.Root>
-      <div className="flex shrink-0 items-center justify-between gap-3 border-t border-line px-4 py-3">
-        <Autocomplete.Status className="text-xs text-muted">
+      <div className="flex shrink-0 flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-line px-4 py-3 text-xs text-muted">
+        <Autocomplete.Status className="shrink-0">
           {shownCount < matches.length
             ? `${shownCount.toLocaleString('en-US')} of `
             : ''}
           {matches.length.toLocaleString('en-US')} results
         </Autocomplete.Status>
-        {matches.length > searchPageSize && (
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={moreCount === 0}
-            focusableWhenDisabled
-            onClick={() => setLimit((current) => current + searchPageSize)}
-            className="data-disabled:opacity-40"
-          >
-            <Icon name="arrow-down" size={16} />
-            {moreCount > 0 ? `Load ${moreCount} more` : 'All results shown'}
-          </Button>
-        )}
+        <div className="ms-auto flex min-w-0 flex-wrap items-center justify-end gap-x-3 gap-y-2">
+          {highlightedIcon && (
+            <>
+              <span className="flex min-w-0 items-center gap-2">
+                <span className="wrap-anywhere">
+                  View{' '}
+                  <span className="text-ink">
+                    {getIconDisplayName(highlightedIcon)}
+                  </span>
+                </span>
+                <kbd aria-label="Enter" className="flex shrink-0 items-center">
+                  <Icon name="kbd-return" size={12} />
+                </kbd>
+              </span>
+              <span aria-hidden="true" className="hidden sm:inline">
+                ∙
+              </span>
+            </>
+          )}
+          <span className="hidden shrink-0 items-center gap-1 sm:flex">
+            <kbd aria-label="Left arrow" className="flex items-center">
+              <Icon name="arrow-left" size={12} />
+            </kbd>
+            <kbd aria-label="Right arrow" className="flex items-center">
+              <Icon name="arrow-right" size={12} />
+            </kbd>
+            <span className="ms-1">Navigate</span>
+          </span>
+        </div>
       </div>
     </Autocomplete.Root>
   );

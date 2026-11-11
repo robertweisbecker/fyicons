@@ -16,14 +16,18 @@ const categoryConfig = JSON.parse(
 
 // Adapt the production module graph and browser APIs for Node. Application
 // behavior remains in the imported modules. Each fixture gets fresh state.
-export function createDomFixture(t, url, { pending = false } = {}) {
+export function createDomFixture(
+  t,
+  url,
+  { pending = false, mobile = false } = {},
+) {
   const dom = new JSDOM('<div id="root"></div>', {
     url,
     pretendToBeVisual: true,
   });
   const matchMedia = (media) => ({
     media,
-    matches: false,
+    matches: mobile && media === '(width < 768px)',
     addEventListener() {},
     removeEventListener() {},
     addListener() {},
@@ -77,11 +81,8 @@ export function createDomFixture(t, url, { pending = false } = {}) {
     resolveResponse = resolve;
     rejectResponse = reject;
   });
-  const requests = [];
-  globals.fetch = (url, options) => {
-    requests.push({ url, options });
-    return pending ? response : Promise.resolve(Response.json(categoryConfig));
-  };
+  globals.fetch = () =>
+    pending ? response : Promise.resolve(Response.json(categoryConfig));
   const saved = new Map();
   for (const [name, value] of Object.entries(globals)) {
     saved.set(name, Object.getOwnPropertyDescriptor(globalThis, name));
@@ -164,7 +165,6 @@ export function createDomFixture(t, url, { pending = false } = {}) {
       unmount = callback;
     },
     window: dom.window,
-    requests,
     load: (relative) => import(new URL(`${relative}?${graph}`, sourceRoot)),
     async resolveCategories(readiness, config = categoryConfig, status = 200) {
       await act(async () => {

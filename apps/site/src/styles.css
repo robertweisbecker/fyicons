@@ -46,6 +46,28 @@
   --color-danger: var(--color-red-500);
   --color-dialog: var(--dialog);
   --color-focus: var(--focus);
+
+  --shadow-fancy:
+    0 1px 1px -0.5px --alpha(var(--text) / 6%),
+    0 2px 2px -1px --alpha(var(--text) / 6%),
+    0 4px 4px -2px --alpha(var(--text) / 6%),
+    0 8px 8px -4px --alpha(var(--text) / 6%);
+  --inset-shadow-fancy:
+    inset 0 1.5px 1px --alpha(var(--surface) / 90%),
+    inset 0 -1.5px 1px --alpha(var(--surface) / 90%),
+    inset 0 6px 6px -3px --alpha(var(--text) / 8%),
+    inset 0 -4px 4px -2px --alpha(var(--text) / 10%);
+  --inset-shadow-fancy-dark:
+    inset 0 1px 0 --alpha(var(--text) / 35%),
+    inset 0 -1px 0 --alpha(var(--text) / 14%),
+    inset 0 0 0 1px --alpha(var(--text) / 10%),
+    inset 0 6px 6px -3px --alpha(var(--inset) / 40%),
+    inset 0 -4px 4px -2px --alpha(var(--inset) / 50%);
+  --text-shadow-fancy:
+    0 1px 0
+      light-dark(--alpha(var(--surface) / 75%), --alpha(var(--inset) / 75%)),
+    0 1px 2px
+      light-dark(--alpha(var(--text) / 25%), --alpha(var(--inset) / 25%));
 }
 
 :root {

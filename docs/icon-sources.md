@@ -16,7 +16,7 @@ npm run generate:icons
 
 This writes `packages/fyicons/src/`, `apps/site/src/data/catalog-runtime.json`, and the category schema. The compact catalog stores compressed SVG data and public metadata. The shared decoder restores the classed SVG exports and public metadata for the site and release tools.
 
-`dev` and `build` generate at startup. During a running development session, run the generation command after an SVG edit. `npm run check:icons` does checks of source validity and generated file freshness without writing files.
+`npm run check:icons` checks source validity and generated file freshness without writing files.
 
 See [Contributing](../CONTRIBUTING.md#choose-checks-for-the-change) for verification. See [Releases](releases.md) when a source change also affects the package or registry.
 
@@ -78,6 +78,6 @@ For a narrow exception, use `exactNames`. These entries match a complete normali
 
 Choose rules for the icon's meaning. For example, a `circle` keyword would collect unrelated controls and alerts. Use exact names for standalone shapes when a keyword would match too much.
 
-The browser fetches category rules on page load without caching. Save and refresh to use edited rules. A running dev or preview server needs no restart. Without a running server, use `npm run generate:category-schema` after an inventory change to refresh editor suggestions.
+Use `npm run generate:category-schema` after an inventory change to refresh editor suggestions.
 
-If category loading fails, the library keeps all icons available and shows a notice. ZIP manifests include category definitions, rules, and computed memberships. Production builds minify the category JSON without changing its data.
+ZIP manifests include category definitions, rules, and computed memberships. See the [website guide](../apps/site/CONTRIBUTING.md#edit-category-rules) for previewing category changes.

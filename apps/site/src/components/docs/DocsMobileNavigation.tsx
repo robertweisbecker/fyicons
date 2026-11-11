@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { MouseEvent } from 'react';
 import IconChevronDown from 'fyicons/icons/IconChevronDown';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
@@ -12,6 +11,14 @@ import {
   MenuLinkItem,
   MenuTrigger,
 } from '@/components/ui/menu';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+} from '@/components/ui/select';
 import { docsNavigation } from '@/lib/docs-navigation';
 import type { DocHeading } from './TableOfContents';
 
@@ -24,13 +31,18 @@ export function DocsMobileNavigation({
 }: {
   headings: DocHeading[];
   active: string | undefined;
-  onHeadingSelect: (id: string, event: MouseEvent<HTMLAnchorElement>) => void;
+  onHeadingSelect: (id: string) => void;
 }) {
   const pathname = usePathname();
   const page = pages.find(
     ({ href }) => href.replace(/\/$/, '') === pathname.replace(/\/$/, ''),
   );
-  const current = headings.find(({ id }) => id === active) ?? headings[0];
+  const mobileHeadings = headings.filter(({ level }) => level === 2);
+  const activeIndex = headings.findIndex(({ id }) => id === active);
+  let current = mobileHeadings[0];
+  for (let index = 0; index <= activeIndex; index++) {
+    if (headings[index].level === 2) current = headings[index];
+  }
   return (
     <nav
       aria-label="Documentation navigation"
@@ -76,43 +88,37 @@ export function DocsMobileNavigation({
           <span aria-hidden="true" className="text-muted/50">
             /
           </span>
-          <Menu>
-            <MenuTrigger
+          <Select
+            items={mobileHeadings.map(({ id, title }) => ({
+              value: id,
+              label: title,
+            }))}
+            value={current.id}
+            onValueChange={(id) => {
+              if (id !== null) onHeadingSelect(id);
+            }}
+          >
+            <SelectTrigger
+              variant="text"
+              size="unstyled"
               aria-label={`On this page: ${current.title}`}
-              render={
-                <Button
-                  variant="text"
-                  size="unstyled"
-                  className="docs-breadcrumb-trigger min-w-0 flex-1 shrink justify-start"
-                />
-              }
+              className="docs-breadcrumb-trigger min-w-0 flex-1 shrink justify-start"
             >
-              <span key={current.id} className="docs-breadcrumb-label">
-                <span className="truncate">{current.title}</span>
-                <IconChevronDown />
-              </span>
-            </MenuTrigger>
-            <MenuContent
-              aria-label="On this page"
-              align="start"
-              className="w-[min(18rem,var(--anchor-width))] min-w-0"
-            >
-              {headings.map(({ id, title, level }) => (
-                <MenuLinkItem
-                  key={id}
-                  href={`#${id}`}
-                  aria-current={active === id ? 'location' : undefined}
-                  data-level={level}
-                  closeOnClick
-                  onClick={(event) => onHeadingSelect(id, event)}
-                  size="lg"
-                  className="data-[level=3]:ps-6 data-[level=4]:ps-9"
-                >
-                  {title}
-                </MenuLinkItem>
-              ))}
-            </MenuContent>
-          </Menu>
+              <SelectValue
+                key={current.id}
+                className="docs-breadcrumb-label truncate"
+              />
+            </SelectTrigger>
+            <SelectContent aria-label="On this page" className="w-72">
+              <SelectGroup>
+                {mobileHeadings.map(({ id, title }) => (
+                  <SelectItem key={id} value={id}>
+                    {title}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </>
       )}
     </nav>
