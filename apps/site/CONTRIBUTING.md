@@ -23,7 +23,11 @@ Website dependencies and Next.js settings stay in `apps/site`. The site imports 
 
 For website behavior, run `npm run test:site` and `npm run build`. Check affected screen widths, keyboard controls, accessible names, and browser errors. Use the static preview to check exported routes.
 
-`tests/site/` covers navigation, preferences, categories, catalog decoding, and ZIP downloads. Its DOM helpers are in `tests/site/helpers/`. `npm run test:site` builds the icon package first because the site imports it. Run `npm test` for both the package and website suites when changing shared behavior.
+`tests/site/` protects finding and inspecting icons, copying SVGs, downloading individual icons and selections, working links, saved preferences, and catalog integrity. Its DOM helpers are in `tests/site/helpers/`. `npm run test:site` builds the icon package first because the site imports it. Category source validation and release-history generation tests live in `tests/package/`. Run `npm test` for both suites when changing shared behavior.
+
+Add a test when a failure would block a core user task or damage saved data, downloads, or private-source boundaries. Extend existing coverage when possible. A UI fix does not need a new regression test by default. Check scroll highlighting, gesture details, animation, and layout in the browser. Do not copy current category assignments or historical release IDs into expected results.
+
+The DOM tests exercise production controls and capture clipboard and download output. They do not verify browser layout, native keyboard activation, or Next.js route transitions. Keep the static build checks and browser checks below; a passing DOM test is not evidence that those behaviors work.
 
 For changes to the ZIP README or archive contents, run `node --test tests/site/icon-archive.test.mjs`. Tests use temporary fixtures and in-memory archives. Verify ZIP contents with tests; do not use browser download controls or Save As dialogs for verification.
 

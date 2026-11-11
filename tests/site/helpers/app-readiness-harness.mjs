@@ -6,17 +6,26 @@ import {
 import { AppRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime.js';
 import { createDomFixture } from './dom-fixture.mjs';
 
-// Supply Next's real contexts; route transitions are checked in the static preview.
-export async function mountApp(t, url) {
-  const fixture = createDomFixture(t, url, { pending: true });
+// Supply Next's contexts and reflect native History API writes into search params.
+// This adapter does not test Next routing; refresh and Back/Forward need a browser.
+export async function mountApp(
+  t,
+  url,
+  { mobile = false, actions = false } = {},
+) {
+  const fixture = createDomFixture(t, url, { pending: true, mobile });
   const { IconsBrowser } = await fixture.load('components/IconsBrowser.tsx');
   const catalog = await fixture.load('lib/catalog.ts');
   const readiness = await fixture.load('lib/category-readiness.ts');
+  const { ToastProvider } = await fixture.load('components/ui/toast.tsx');
+  const { DownloadIconsButton } = await fixture.load(
+    'components/DownloadIconsButton.tsx',
+  );
   const { createRoot } = await import('react-dom/client');
   const root = createRoot(fixture.window.document.getElementById('root'));
   fixture.onUnmount(() => act(() => root.unmount()));
   const router = { prefetch() {} };
-  await act(async () =>
+  const render = () =>
     root.render(
       createElement(
         StrictMode,
@@ -30,24 +39,34 @@ export async function mountApp(t, url) {
             createElement(
               SearchParamsContext.Provider,
               { value: new URLSearchParams(fixture.window.location.search) },
-              createElement(IconsBrowser),
+              createElement(
+                ToastProvider,
+                null,
+                createElement(IconsBrowser),
+                actions && createElement(DownloadIconsButton),
+              ),
             ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  for (const method of ['pushState', 'replaceState']) {
+    const original = fixture.window.history[method].bind(
+      fixture.window.history,
+    );
+    t.mock.method(fixture.window.history, method, (...args) => {
+      original(...args);
+      render();
+    });
+  }
+  await act(async () => render());
   return {
+    window: fixture.window,
     document: fixture.window.document,
     catalog,
     readiness,
-    requests: fixture.requests,
     get tiles() {
       return [...fixture.window.document.querySelectorAll('.icon-tile')];
-    },
-    get count() {
-      return fixture.window.document.querySelector('p[role="status"]')
-        .textContent;
     },
     resolveCategories: (config) => fixture.resolveCategories(readiness, config),
     rejectCategories: () => fixture.rejectCategories(readiness),
