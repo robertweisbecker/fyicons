@@ -161,7 +161,9 @@ function ShapeGuides() {
 function ShapesCard() {
   const descriptionId = useId();
   const previewId = useId();
-  const [icon, setIcon] = useState<'grid' | 'shapes'>('shapes');
+  const [icon, setIcon] = useState<'grid' | 'shapes' | 'pointer-swarm'>(
+    'shapes',
+  );
 
   return (
     <StudyTile
@@ -196,13 +198,19 @@ function ShapesCard() {
             aria-label="Balanced shape example"
             value={[icon]}
             onValueChange={([value]) => {
-              if (value === 'grid' || value === 'shapes') setIcon(value);
+              if (
+                value === 'grid' ||
+                value === 'shapes' ||
+                value === 'pointer-swarm'
+              )
+                setIcon(value);
             }}
             className="rounded-xl bg-inset p-1"
           >
             {[
               { value: 'grid', label: 'Grid' },
               { value: 'shapes', label: 'Shapes' },
+              { value: 'pointer-swarm', label: 'PointerSwarm' },
             ].map(({ value, label }) => (
               <DemoToggle
                 key={value}

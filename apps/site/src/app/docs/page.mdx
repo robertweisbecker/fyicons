@@ -13,6 +13,12 @@ Some icons for you, from [bob.fyi](https://bob.fyi).
 
 `fyicons` is a collection of SVG icons and corresponding React components exported and generated directly from Figma. Each icon is drawn on a 16×16-pixel canvas with a base 1px stroke and a goal of pixel-perfection.
 
+## Optimization
+
+Figma exports pass through a shared cleanup process to become downloadable SVGs and/or React components. A script joins any overlapping fills and strokes into shared paths and removes any seams that sometimes crop up from Figma exports. [SVGO](https://svgo.dev/) then reduces markup and rounds points to 3 decimal places to reduce file size, while still preserving any masks, clipping, or transparency.
+
+[SVGR](https://react-svgr.com/) then transforms the SVGs into React components with shared props and exports. The React package uses ESM and supports tree shaking, so unused icons are kept out of your bundle.
+
 ## <IconBeaker className="inline-block size-5 mt-[-0.115em] text-lime-500" /> Pick your poison
 
 For React projects, you can import icon components via `npm install fyicons` or snag local copies with the shadcn/ui registry. For other uses, you can copy or download SVGs individually or in bulk. All formats use the same artwork.
