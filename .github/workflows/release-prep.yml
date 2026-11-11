@@ -82,6 +82,9 @@ jobs:
       - run: npm test
       - run: npm run typecheck
       - run: npm run build
+      - name: Verify website release notes and icon metadata
+        if: github.ref == 'refs/heads/changeset-release/main' || github.head_ref == 'changeset-release/main'
+        run: npm run verify:site-release
       - run: npm run verify:release
       - run: git diff --exit-code
       - name: Build icon comparison

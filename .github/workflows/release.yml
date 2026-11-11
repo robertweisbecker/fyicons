@@ -101,6 +101,8 @@ jobs:
       - run: npm run check:registry
       - run: npm test
       - run: npm run build
+      - name: Verify website release notes and icon metadata
+        run: npm run verify:site-release
       - run: npm run verify:release
       - run: git diff --exit-code
       - name: Build release comparison

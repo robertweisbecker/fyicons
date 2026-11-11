@@ -55,7 +55,7 @@ Follow [Icon sources](../../docs/icon-sources.md#category-rules) for rule syntax
 
 `npm run version:packages` updates the inspector's Added and Updated versions when it prepares a release. It compares canonical artwork and names by collection and component ID across the `fyicons@*` tags. For the version being prepared, it uses the current icon inventory until its tag exists. Fetch the release tags before running the version command locally.
 
-The version PR includes the generated `apps/site/src/data/icon-releases.json`. Release verification checks it for drift. Website builds read the saved file. An icon shows Added for its first release and Updated only for a later change. A rename keeps the original Added version. Changes to export formatting, import dates, or categories do not advance either version.
+The version PR includes the generated `apps/site/src/data/icon-releases.json`. After the site build, `npm run verify:site-release` checks the rendered release notes, release link, and Added/Updated coverage for every current icon. Version-PR verification and the publishing job both run this check before publication. The site tests also check recent-addition dots and inspector release links. Release verification checks it for drift. Website builds read the saved file. An icon shows Added for its first release and Updated only for a later change. A rename keeps the original Added version. Changes to export formatting, import dates, or categories do not advance either version.
 
 To verify the saved history after publication, run:
 
