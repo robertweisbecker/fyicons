@@ -59,7 +59,7 @@ const mixedIcons = [
   'wand',
   // 'alarm-clock',
   'border-width',
-  // 'box-shipping',
+  // 'box-taped',
   // 'cash',
   'microchip',
   'shield-user-solid',

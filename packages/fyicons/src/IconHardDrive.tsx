@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconHardDrive = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconHardDrive(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="hard-drive"><path fill="currentColor" d="M10.796 3a2.5 2.5 0 0 1 2.312 1.55l1.704 4.144c.125.302.188.625.188.952V10a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3v-.354c0-.327.064-.65.188-.952L2.891 4.55A2.5 2.5 0 0 1 5.204 3zM4 8a2 2 0 1 0 0 4h8a2 2 0 1 0 0-4zm5.5 2a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1zM12 9a1 1 0 1 1 0 2 1 1 0 0 1 0-2M5.204 4a1.5 1.5 0 0 0-1.388.93l-.941 2.289A3 3 0 0 1 4 7h8c.398 0 .777.078 1.124.219l-.94-2.29A1.5 1.5 0 0 0 10.796 4z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="hard-drive"><rect width={13} height={5} x={1.5} y={7.5} stroke="currentColor" rx={2.5} /><path stroke="currentColor" strokeLinecap="round" d="M1.5 10v-.12a2 2 0 0 1 .14-.733l1.725-4.38A2 2 0 0 1 5.225 3.5h5.55a2 2 0 0 1 1.86 1.267l1.726 4.38a2 2 0 0 1 .139.733V10" /><circle cx={12} cy={10} r={1} fill="currentColor" /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M9.5 10.5h-3" /></SvgRoot>;
 });
 export default IconHardDrive;

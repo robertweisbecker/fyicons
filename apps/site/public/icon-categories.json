@@ -89,7 +89,9 @@
         "shuffle",
         "loop"
       ],
-      "exactNames": ["line-wrap"]
+      "exactNames": [
+        "line-wrap"
+      ]
     },
     {
       "id": "code",
@@ -121,7 +123,13 @@
         "vector-svg",
         "network"
       ],
-      "exactNames": ["array", "letter-a", "letter-m", "letter-r", "letter-u"]
+      "exactNames": [
+        "array",
+        "letter-a",
+        "letter-m",
+        "letter-r",
+        "letter-u"
+      ]
     },
     {
       "id": "commerce",
@@ -155,7 +163,7 @@
       ],
       "exactNames": [
         "box",
-        "box-shipping",
+        "box-taped",
         "circle-dollar",
         "circle-dollar-fill",
         "square-percent"
@@ -168,6 +176,7 @@
       "keywords": [
         "broadcast",
         "bullhorn",
+        "megaphone",
         "chat",
         "chats",
         "envelope",
@@ -179,7 +188,9 @@
         "headset",
         "comment"
       ],
-      "exactNames": ["comments"]
+      "exactNames": [
+        "comments"
+      ]
     },
     {
       "id": "design",
@@ -233,7 +244,12 @@
         "bucket",
         "edit"
       ],
-      "exactNames": ["height", "quill", "scale", "width"]
+      "exactNames": [
+        "height",
+        "quill",
+        "scale",
+        "width"
+      ]
     },
     {
       "id": "devices",
@@ -241,6 +257,7 @@
       "icon": "devices",
       "keywords": [
         "browser",
+        "server",
         "computer",
         "desktop",
         "devices",
@@ -268,8 +285,16 @@
       "id": "emoji",
       "name": "Emoji",
       "icon": "emoji-smile",
-      "keywords": ["emoji", "ghost", "heart", "skull", "thumbs"],
-      "exactNames": ["snooze"]
+      "keywords": [
+        "emoji",
+        "ghost",
+        "heart",
+        "skull",
+        "thumbs"
+      ],
+      "exactNames": [
+        "snooze"
+      ]
     },
     {
       "id": "files",
@@ -339,7 +364,11 @@
         "widget",
         "tabs"
       ],
-      "exactNames": ["line-overflow", "line-wrap", "view-center"]
+      "exactNames": [
+        "line-overflow",
+        "line-wrap",
+        "view-center"
+      ]
     },
     {
       "id": "media",
@@ -472,7 +501,8 @@
         "archive",
         "bell",
         "binoculars",
-        "box-shipping",
+        "box-taped",
+        "box-solid",
         "box-face",
         "calculator",
         "card-open",
@@ -524,8 +554,17 @@
       "id": "people-identity",
       "name": "People & identity",
       "icon": "circle-user",
-      "keywords": ["user", "users", "ear", "person", "handshake"],
-      "exactNames": ["id", "id-fill"]
+      "keywords": [
+        "user",
+        "users",
+        "ear",
+        "person",
+        "handshake"
+      ],
+      "exactNames": [
+        "id",
+        "id-fill"
+      ]
     },
     {
       "id": "science",
@@ -556,7 +595,14 @@
         "shooting-star",
         "telescope"
       ],
-      "exactNames": ["bird", "bird-raven", "leaf", "droplet", "bee", "tree"]
+      "exactNames": [
+        "bird",
+        "bird-raven",
+        "leaf",
+        "droplet",
+        "bee",
+        "tree"
+      ]
     },
     {
       "id": "security",
@@ -778,7 +824,10 @@
         "app-notification",
         "network"
       ],
-      "exactNames": ["square-command", "letter-k"]
+      "exactNames": [
+        "square-command",
+        "letter-k"
+      ]
     },
     {
       "id": "time",
@@ -827,7 +876,9 @@
         "home-chimney",
         "campfire"
       ],
-      "exactNames": ["sign"]
+      "exactNames": [
+        "sign"
+      ]
     },
     {
       "id": "typography",
@@ -882,8 +933,7 @@
         "text-append",
         "text-submit",
         "bounding-box-heading",
-        "spell-check",
-        "spell-checked"
+        "spell-check"
       ],
       "exactNames": [
         "at-sign",
