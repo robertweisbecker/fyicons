@@ -26,8 +26,8 @@ console.log(
     ' bytes). No server functions.',
 );
 // Next exports complete page HTML and route payloads in addition to shared JS.
-// Allow the 1,285-icon inventory and the current optical-study website.
-if (bytes > 6.75 * 1024 * 1024)
+// Allow the 1,331-icon inventory and the current optical-study website.
+if (bytes > 7 * 1024 * 1024)
   throw new Error(
-    'Build exceeds the 6.75 MiB deployment budget. Check for duplicate icon data or media.',
+    'Build exceeds the 7 MiB deployment budget. Check for duplicate icon data or media.',
   );
