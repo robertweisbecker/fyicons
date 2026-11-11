@@ -5,7 +5,7 @@ import {
   type ReactNode,
   type KeyboardEvent,
 } from 'react';
-import { ScrollArea } from '@base-ui/react/scroll-area';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Icon } from '@/components/Icon';
 import { IconButton } from '@/components/IconButton';
 import { buttonVariants } from '@/components/ui/button';
@@ -76,10 +76,10 @@ export function IconGroupCarousel({ heading }: { heading: ReactNode }) {
   return (
     <>
       <div className="mb-6">{heading}</div>
-      <ScrollArea.Root className="icon-group-carousel group/carousel-scroll">
+      <ScrollArea.Root className="icon-group-carousel">
         <ScrollArea.Viewport
           ref={track}
-          className="relative snap-x snap-mandatory scroll-px-(--carousel-inset) overscroll-x-contain focus-visible:-outline-offset-2"
+          className="relative snap-x snap-mandatory scroll-px-(--carousel-inset)"
           role="region"
           aria-roledescription="carousel"
           aria-label="Icon groups"
@@ -132,10 +132,8 @@ export function IconGroupCarousel({ heading }: { heading: ReactNode }) {
         <ScrollArea.Scrollbar
           orientation="horizontal"
           keepMounted
-          className="mx-(--carousel-inset) flex h-4 items-center opacity-100 transition-opacity duration-150 ease-out select-none group-has-[:focus-visible]/carousel-scroll:pointer-events-auto group-has-[:focus-visible]/carousel-scroll:opacity-100 data-hovering:pointer-events-auto data-hovering:opacity-100 data-scrolling:pointer-events-auto data-scrolling:opacity-100 data-scrolling:duration-0 motion-reduce:transition-none md:pointer-events-none md:opacity-0"
-        >
-          <ScrollArea.Thumb className="h-1.5 rounded-full bg-neutral-400/70 hover:bg-neutral-400 active:bg-neutral-400" />
-        </ScrollArea.Scrollbar>
+          className="mx-(--carousel-inset) max-md:opacity-100"
+        />
       </ScrollArea.Root>
       <div className="mt-4 flex justify-end gap-2">
         <TooltipGroup>

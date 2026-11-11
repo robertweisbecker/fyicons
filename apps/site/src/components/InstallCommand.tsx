@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Icon } from './Icon';
 import { IconButton } from './IconButton';
-import { Button } from './ui/button';
+import { Button, type ButtonProps } from './ui/button';
 import { notify } from './ui/toast';
 import { copy } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
@@ -11,11 +11,13 @@ export function InstallCommand({
   label,
   className,
   appearance = 'code',
+  variant = 'outline',
 }: {
   command: string;
   label: string;
   className?: string;
   appearance?: 'code' | 'button';
+  variant?: ButtonProps['variant'];
 }) {
   const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
   const reset = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -71,7 +73,7 @@ export function InstallCommand({
         aria-label={`Copy ${label} install command`}
         data-copied={copied || undefined}
         className={className}
-        variant="outline"
+        variant={variant}
         size="lg"
       >
         <Icon name="terminal-bash" opacity={0.5} />

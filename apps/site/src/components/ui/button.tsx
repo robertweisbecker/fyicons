@@ -16,6 +16,12 @@ export const buttonVariants = cva(
         ghost:
           'hover:bg-current/8 aria-pressed:bg-current/12 active:bg-current/6 text-current',
         text: 'text-muted hover:text-ink [&>svg:not(:only-child)]:text-muted font-normal',
+        fancy: 'bg-bg',
+        'fancy-rainbow': [
+          'bg-ink/1 backdrop-blur-lg',
+          'before:pointer-events-none before:absolute before:inset-x-2 before:bottom-0 before:-z-1 before:h-2 before:translate-y-1/2 before:rounded-[inherit] before:bg-linear-to-r before:from-sky-200 before:via-pink-200 before:to-orange-200 before:blur-sm',
+          'dark:before:from-sky-400/20 dark:before:via-pink-400/20 dark:before:to-orange-400/20',
+        ],
         unstyled: '',
       },
       size: {
@@ -30,6 +36,13 @@ export const buttonVariants = cva(
       },
     },
     compoundVariants: [
+      {
+        variant: ['fancy', 'fancy-rainbow'],
+        className: [
+          'relative isolate whitespace-nowrap text-ink ring-[0.5px] ring-border transition-colors duration-200 hover:bg-surface active:bg-bg dark:ring-inset/80',
+          'shadow-fancy inset-shadow-fancy text-shadow-fancy dark:inset-shadow-fancy-dark dark:shadow-inset/40',
+        ],
+      },
       {
         variant: ['default', 'outline', 'ghost', 'text'],
         className: ' whitespace-nowrap',

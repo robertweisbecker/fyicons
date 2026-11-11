@@ -216,7 +216,10 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
       <DocsMobileNavigation
         headings={headings}
         active={active}
-        onHeadingSelect={selectHeading}
+        onHeadingSelect={(id) => {
+          selectSection(id);
+          window.location.hash = encodeURIComponent(id);
+        }}
       />
       <nav
         aria-label="On this page"
