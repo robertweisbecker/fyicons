@@ -1,6 +1,6 @@
 {
   "name": "fyicons",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "SVG icons for React with a 16 \u00d7 16 px canvas.",
   "license": "MIT",
   "type": "module",
