@@ -6,7 +6,6 @@ import { Icon } from '@/components/Icon';
 import { IconButton } from '@/components/IconButton';
 import { Button } from '@/components/ui/button';
 import { searchIcons } from '@/lib/icon-search';
-import { containSearchTouchScroll } from '@/lib/search-touch-scroll';
 import { useCategoryReadiness } from '@/lib/category-readiness';
 import { getIconDisplayName, icons, type IconRecord } from '@/lib/catalog';
 import Link from 'next/link';
@@ -301,12 +300,10 @@ export function GlobalSearch({
         `${viewport.offsetTop}px`,
       );
     };
-    const releaseTouchScroll = containSearchTouchScroll(popup);
     update();
     viewport.addEventListener('resize', update);
     viewport.addEventListener('scroll', update);
     return () => {
-      releaseTouchScroll();
       viewport.removeEventListener('resize', update);
       viewport.removeEventListener('scroll', update);
     };
