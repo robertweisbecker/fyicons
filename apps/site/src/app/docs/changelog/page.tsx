@@ -22,7 +22,7 @@ function linkCommitHash(children: ReactNode) {
   const parts = Children.toArray(children);
   const first = parts[0];
   if (typeof first !== 'string') return children;
-  const hash = first.match(/^[a-f0-9]{7,40}(?=:\s)/i)?.[0];
+  const hash = first.match(/^[a-f0-9]{7,40}(?=:(?:\s|$))/i)?.[0];
   if (!hash) return children;
 
   return (

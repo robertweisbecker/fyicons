@@ -4,7 +4,9 @@
 
 ### Minor Changes
 
-- 1b63881: ### Breaking changes
+- 1b63881:
+
+  #### Breaking changes
 
   Several icons have new names. Update imports, SVG filenames, and shadcn registry references:
 
@@ -19,7 +21,7 @@
 
   Removed `IconCloudDownloadAlt`, which was used for testing. Use `IconCloudDownload` instead. Also removed `IconSpellChecked` for now; combine `IconSpellCheck` with a check icon to represent a checked state.
 
-  ### Added
+  #### Added
   - Emoji: `IconSnooze`, `IconPartyPopper`, and `IconHundredPoints`.
   - `IconRabbit` and `IconTurtle` for speed options.
   - `IconBatteryMin` and `IconBatteryHigh` to expand the battery levels.
@@ -29,7 +31,7 @@
   - More user icons: `IconUserAdd`, `IconUserSubtract`, `IconUserKey`, `IconUserCard`, and `IconUserCardFill`.
   - Also added `Icon4k`, `Icon4kFill`, `IconArray`, `IconAttachments`, `IconBanFill`, `IconBell2Fill`, `IconBellDot`, `IconBellDotFill`, `IconBoxSolid`, `IconCameraSquareFlip`, `IconChartLineAxes`, `IconCircleDollar`, `IconCircleDollarFill`, `IconCommentNotification`, `IconComments`, `IconFan`, `IconFlashlightOn`, `IconId`, `IconIdFill`, `IconLetterU`, `IconMapFill`, `IconMegaphone`, `IconPageAdd`, `IconQuill`, `IconServer`, and `IconSquareMinusFill`.
 
-  ### Updated
+  #### Updated
   - Adjusted the battery fills to work with the expanded range.
   - Gave file type icons the same semi-rounded corners as other file icons.
   - Enlarged the mailbox flag and added a handle for legibility.
@@ -50,7 +52,9 @@
 
 ### Patch Changes
 
-- f9c3c1c: - Update artwork for 52 icons, including the comment, appearance, chart, flashlight, home, video, and luggage icons. `IconChartLine` now shows the lines without axes.
+- f9c3c1c:
+
+  - Update artwork for 52 icons, including the comment, appearance, chart, flashlight, home, video, and luggage icons. `IconChartLine` now shows the lines without axes.
   - Adjust SVG paths or subtle rendering for 12 more icons. These changes include small rounding and path optimization differences.
 
 ## 0.3.1
