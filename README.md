@@ -4,7 +4,7 @@ FYIcons is a collection of SVG icons for websites, applications, and design file
 
 Use an SVG wherever you need it, import a typed React component, or add editable source files through shadcn. Icons use `currentColor`, so inline SVGs and React components can follow the color of the surrounding text.
 
-[Browse the icons](https://icons.bob.fyi/icons/) · [See them in use](https://icons.bob.fyi/examples/) · [Read the changelog](packages/fyicons/CHANGELOG.md)
+[Browse the icons](https://fyicons.com/icons/) · [See them in use](https://fyicons.com/examples/) · [Read the changelog](packages/fyicons/CHANGELOG.md)
 
 ## Choose how to use the icons
 
@@ -136,7 +136,7 @@ Keep the release tag in the command so the icon and its helpers come from the sa
 
 ## Download SVG icons
 
-Browse the [icon library](https://icons.bob.fyi/icons/) to search by name or explore categories. Select an icon to open its details, then use **Copy SVG** to copy its markup or **Download** to save its SVG file.
+Browse the [icon library](https://fyicons.com/icons/) to search by name or explore categories. Select an icon to open its details, then use **Copy SVG** to copy its markup or **Download** to save its SVG file.
 
 For quick actions, right-click an icon in the grid, or long-press it on mobile. The context menu shows the icon's name and offers **Copy name**, **Copy SVG**, and **Download**.
 

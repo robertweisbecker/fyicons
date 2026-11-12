@@ -1,6 +1,6 @@
 export const githubHref = 'https://github.com/robertweisbecker/fyicons';
 export const npmHref = 'https://www.npmjs.com/package/fyicons';
-export const siteUrl = 'https://icons.bob.fyi';
+export const siteUrl = 'https://fyicons.com';
 export const siteNavigation = [
   { href: '/icons/', label: 'Icons' },
   { href: '/examples/', label: 'Examples' },

@@ -47,7 +47,7 @@ const items = prepared.icons.map((icon) => ({
 const registry = registrySchema.parse({
   $schema: 'https://ui.shadcn.com/schema/registry.json',
   name: 'fyicons',
-  homepage: 'https://icons.bob.fyi',
+  homepage: 'https://fyicons.com',
   items,
 });
 const source = JSON.stringify(registry, null, 2) + '\n';
