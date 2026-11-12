@@ -1,5 +1,11 @@
 # fyicons
 
+## 0.4.1
+
+### Patch Changes
+
+- 5a6c6fb: Update the package homepage and README links to fyicons.com. Icon artwork, React components, and the package description are unchanged.
+
 ## 0.4.0
 
 ### Minor Changes
