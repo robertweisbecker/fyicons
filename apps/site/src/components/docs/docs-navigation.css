@@ -11,22 +11,28 @@
     font-weight: 500;
     letter-spacing: -0.04em;
   }
+  .docs-article :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--text);
+  }
   .docs-article h2 {
-    margin-top: 4rem;
+    margin-top: 3rem;
     margin-bottom: 0.75rem;
     font-size: 1.25rem;
-    line-height: 1.75;
+    line-height: 1.4;
     font-weight: 500;
     letter-spacing: -0.025em;
   }
   .docs-article h3 {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
     font-weight: 500;
   }
   .docs-article h4 {
-    margin-top: 2rem;
+    margin-top: 1.25rem;
     margin-bottom: 0.5rem;
+    line-height: 1.4;
     font-weight: 500;
   }
   .docs-article :is(p, ul, ol, table) {

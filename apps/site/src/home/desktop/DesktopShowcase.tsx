@@ -80,6 +80,7 @@ function DesktopStatusBar() {
 
 export function DesktopShowcase() {
   const [activeApp, setActiveApp] = useState<string>('design');
+  const [visitedApps, setVisitedApps] = useState(() => new Set(['design']));
   const dockId = useId();
 
   return (
@@ -89,7 +90,12 @@ export function DesktopShowcase() {
     >
       <Tabs.Root
         value={activeApp}
-        onValueChange={setActiveApp}
+        onValueChange={(value) => {
+          setActiveApp(value);
+          setVisitedApps((previous) =>
+            previous.has(value) ? previous : new Set(previous).add(value),
+          );
+        }}
         className="group/desktop relative"
       >
         <div className="absolute bottom-2 left-1/2 z-20 w-max max-w-full -translate-x-1/2 translate-y-1/2">
@@ -160,18 +166,20 @@ export function DesktopShowcase() {
         <div className="rounded-2xl border border-border">
           {/* Clip the backdrop inside the border so it cannot cover the rounded frame. */}
           <div className="relative isolate overflow-hidden rounded-[calc(var(--radius-2xl)-1px)] bg-neutral-900 [clip-path:inset(0_round_calc(var(--radius-2xl)-1px))]">
-            {apps.map((app) => (
-              <img
-                key={app.id}
-                src={app.wallpaper}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                decoding="async"
-                data-active={activeApp === app.id ? '' : undefined}
-                className="pointer-events-none absolute inset-0 -z-10 size-full object-cover opacity-0 transition-opacity duration-200 ease-[ease] group-has-[[role=tab]:focus-visible]/desktop:transition-none! motion-reduce:transition-none data-active:opacity-100"
-              />
-            ))}
+            {apps
+              .filter((app) => visitedApps.has(app.id))
+              .map((app) => (
+                <img
+                  key={app.id}
+                  src={app.wallpaper}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  data-active={activeApp === app.id ? '' : undefined}
+                  className="pointer-events-none absolute inset-0 -z-10 size-full object-cover opacity-0 transition-opacity duration-200 ease-[ease] group-has-[[role=tab]:focus-visible]/desktop:transition-none! motion-reduce:transition-none data-active:opacity-100"
+                />
+              ))}
             <DesktopStatusBar />
             <div className="grid h-152 sm:h-144">
               <Tabs.Panel value="design" keepMounted className={panelClassName}>

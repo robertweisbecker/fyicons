@@ -73,10 +73,36 @@ for (const mobile of [false, true]) {
     const tile = h.tiles.find((element) => element.dataset.id === icon.id);
     await click(tile);
     assert.equal(
+      new URLSearchParams(h.window.location.search).has('icon'),
+      false,
+    );
+    const title = h.document.querySelector(
+      `#inspector button[aria-label="Copy link to ${h.catalog.getIconDisplayName(icon)}"]`,
+    );
+    h.window.navigator.clipboard.writeText = async () => {
+      throw new Error('denied');
+    };
+    await click(title);
+    assert.equal(
+      new URLSearchParams(h.window.location.search).has('icon'),
+      false,
+    );
+    h.window.navigator.clipboard.writeText = async (text) => copied.push(text);
+    await click(title);
+    assert.equal(
       new URLSearchParams(h.window.location.search).get('icon'),
       icon.name,
     );
+    assert.equal(new URL(copied.at(-1)).searchParams.get('icon'), icon.name);
+    copied.length = 0;
     if (mobile) {
+      assert.equal(
+        h.document
+          .querySelector('button[aria-label="Expand preview"]')
+          .getAttribute('aria-expanded'),
+        'false',
+        'Copying the title must not expand the drawer',
+      );
       await click(
         h.document.querySelector('button[aria-label="Expand preview"]'),
       );
@@ -110,8 +136,9 @@ for (const mobile of [false, true]) {
       h.document.querySelector('button[aria-label="Close icon details"]'),
     );
     assert.equal(
-      new URLSearchParams(h.window.location.search).has('icon'),
-      false,
+      new URLSearchParams(h.window.location.search).get('icon'),
+      icon.name,
+      'Closing the inspector must not change the shared URL',
     );
     assert.equal(tile.getAttribute('aria-pressed'), 'false');
   });

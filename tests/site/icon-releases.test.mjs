@@ -4,7 +4,7 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createDomFixture } from './helpers/dom-fixture.mjs';
 
-test('icon tiles mark additions in the current minor release and inspectors preserve Added and Updated links', async (t) => {
+test('icon tiles announce additions in the current minor release and inspectors preserve Added and Updated links', async (t) => {
   const fixture = createDomFixture(t, 'https://example.test/icons/');
   const { icons } = await fixture.load('lib/catalog.ts');
   const { default: history } = await fixture.load('data/icon-releases.json');
@@ -46,10 +46,6 @@ test('icon tiles mark additions in the current minor release and inspectors pres
     assert.equal(
       tile.getAttribute('aria-description'),
       kind === 'recent' ? `Added in v${added}` : null,
-    );
-    assert.equal(
-      Boolean(tile.querySelector('span[aria-hidden="true"]')),
-      kind === 'recent',
     );
     fixture.window.document.body.innerHTML = renderToStaticMarkup(
       createElement(IconReleaseInfo, { id: icon.id }),

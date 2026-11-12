@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import IconChevronDown from 'fyicons/icons/IconChevronDown';
 import { Icon } from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import {
@@ -33,6 +33,8 @@ export function DocsMobileNavigation({
   active: string | undefined;
   onHeadingSelect: (id: string) => void;
 }) {
+  const pageAnchor = useRef<HTMLSpanElement>(null);
+  const headingAnchor = useRef<HTMLSpanElement>(null);
   const pathname = usePathname();
   const page = pages.find(
     ({ href }) => href.replace(/\/$/, '') === pathname.replace(/\/$/, ''),
@@ -59,12 +61,22 @@ export function DocsMobileNavigation({
             />
           }
         >
-          <span key={page?.href} className="docs-breadcrumb-label">
+          <span
+            ref={pageAnchor}
+            key={page?.href}
+            className="docs-breadcrumb-label"
+          >
+            <Icon name="menu-alt" className="size-3" />
             <span className="truncate">{page?.title ?? 'Pages'}</span>
-            <IconChevronDown />
           </span>
         </MenuTrigger>
-        <MenuContent aria-label="Documentation pages" className="w-72">
+        <MenuContent
+          aria-label="Documentation pages"
+          anchor={pageAnchor}
+          positionMethod="fixed"
+          sideOffset={6}
+          className="w-72"
+        >
           {pages.map((item) => (
             <MenuLinkItem
               key={item.href}
@@ -89,6 +101,7 @@ export function DocsMobileNavigation({
             /
           </span>
           <Select
+            size="sm"
             items={mobileHeadings.map(({ id, title }) => ({
               value: id,
               label: title,
@@ -105,11 +118,17 @@ export function DocsMobileNavigation({
               className="docs-breadcrumb-trigger min-w-0 flex-1 shrink justify-start"
             >
               <SelectValue
+                ref={headingAnchor}
                 key={current.id}
                 className="docs-breadcrumb-label truncate"
               />
             </SelectTrigger>
-            <SelectContent aria-label="On this page" className="w-72">
+            <SelectContent
+              aria-label="On this page"
+              anchor={headingAnchor}
+              positionMethod="fixed"
+              className="w-72 min-w-0"
+            >
               <SelectGroup>
                 {mobileHeadings.map(({ id, title }) => (
                   <SelectItem key={id} value={id}>

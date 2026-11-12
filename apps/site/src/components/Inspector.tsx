@@ -41,6 +41,7 @@ import {
 } from '@/lib/catalog';
 import { useMobile, usePreference } from '@/lib/preferences';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
+import type { IconShareLink } from '@/lib/icon-inspection';
 import { IconCopyButton } from './IconCopyButton';
 import { IconDownloadButton, InspectorActions } from './InspectorActions';
 import { InspectorLink } from './InspectorLink';
@@ -53,7 +54,7 @@ type Props = {
   select: (icon: IconRecord) => void;
   navigate: (step: number) => void;
   close: () => void;
-  share: () => string;
+  share: (id: string) => IconShareLink;
   toggleSelection: (id: string) => void;
   finalFocus: () => HTMLElement | false;
   docked: boolean;
@@ -61,7 +62,8 @@ type Props = {
   onCategoryChange: (category: string) => void;
 };
 const compactHeight = 112;
-const snapPoints = [compactHeight, 1];
+const previewHeight = 356;
+const snapPoints = [compactHeight, previewHeight, 1];
 function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
   return (
     <span
@@ -269,6 +271,34 @@ function Pagination(props: Pick<Props, 'item' | 'visible' | 'navigate'>) {
   );
 }
 export function Inspector(props: Props) {
+  // Selection can clear immediately; keep the visible icon until exit ends.
+  const [presentation, setPresentation] = useState({
+    selectedItem: props.item,
+    renderedItem: props.item,
+  });
+  if (props.item !== presentation.selectedItem) {
+    setPresentation({
+      selectedItem: props.item,
+      renderedItem: props.item ?? presentation.renderedItem,
+    });
+  }
+  return (
+    <InspectorView
+      {...props}
+      item={presentation.renderedItem}
+      open={!!props.item}
+      onCloseComplete={() => {
+        setPresentation((current) =>
+          current.selectedItem ? current : { ...current, renderedItem: null },
+        );
+      }}
+    />
+  );
+}
+
+function InspectorView(
+  props: Props & { open: boolean; onCloseComplete: () => void },
+) {
   const {
     item,
     docked,
@@ -315,8 +345,20 @@ export function Inspector(props: Props) {
   );
   const reducedMotion = useReducedMotion();
   const inLayout = docked && !mobile && !!item;
-  const expanded = snapPoint !== snapPoints[0];
-  useDrawerPresentation(mobilePopup, mobile && !!item, expanded, compactHeight);
+  const expanded = snapPoint !== null && snapPoint !== snapPoints[0];
+  useDrawerPresentation(
+    mobilePopup,
+    mobile && props.open,
+    expanded,
+    compactHeight,
+    previewHeight,
+  );
+  function completeOpenChange(open: boolean) {
+    if (!open) {
+      setSnapPoint(snapPoints[0]);
+      props.onCloseComplete();
+    }
+  }
   const details = item && (
     <Details
       item={item}
@@ -334,7 +376,6 @@ export function Inspector(props: Props) {
         props.onCategoryChange(category);
         if (mobile) {
           close();
-          setSnapPoint(snapPoints[0]);
         }
       }}
     />
@@ -361,32 +402,24 @@ export function Inspector(props: Props) {
   if (mobile)
     return (
       <Drawer
-        open={!!item}
+        open={props.open}
         modal={expanded}
         disablePointerDismissal
         snapPoints={snapPoints}
         snapPoint={snapPoint}
         snapToSequentialPoints
-        onSnapPointChange={(next, details) => {
-          if (next === null && expanded) {
-            details.cancel();
-            setSnapPoint(snapPoints[0]);
-          } else {
-            setSnapPoint(next);
-          }
-        }}
+        onSnapPointChange={setSnapPoint}
         onOpenChange={(open) => {
           if (!open) {
             close();
-            setSnapPoint(snapPoints[0]);
           }
         }}
+        onOpenChangeComplete={completeOpenChange}
       >
         <DrawerContent
           id="inspector"
           ref={mobilePopupRef}
           expanded={expanded}
-          data-expanded={expanded || undefined}
           style={
             {
               '--inspector-compact-height': `${compactHeight}px`,
@@ -426,22 +459,11 @@ export function Inspector(props: Props) {
                     aria-label={getIconDisplayName(item)}
                     title={getIconDisplayName(item)}
                   >
-                    <Button
-                      variant="unstyled"
-                      size="unstyled"
-                      className="group/link max-w-full min-w-0 justify-start rounded-sm font-semibold"
-                      aria-label={`Open details for ${getIconDisplayName(item)}`}
-                      aria-expanded={expanded}
-                      onClick={() => {
-                        props.share();
-                        setSnapPoint(1);
-                      }}
-                      data-base-ui-swipe-ignore
-                    >
-                      <span className="truncate underline-offset-4 group-hover/link:underline">
-                        {getIconDisplayName(item)}
-                      </span>
-                    </Button>
+                    <InspectorLink
+                      key={item.id}
+                      name={getIconDisplayName(item)}
+                      share={() => props.share(item.id)}
+                    />
                   </DrawerTitle>
                   <div className="mobile-inspector-releases" inert={!expanded}>
                     <IconReleaseInfo id={item.id} />
@@ -471,7 +493,7 @@ export function Inspector(props: Props) {
                         }
                         aria-expanded={expanded}
                         onClick={() =>
-                          setSnapPoint(expanded ? snapPoints[0] : 1)
+                          setSnapPoint(expanded ? snapPoints[0] : previewHeight)
                         }
                         className="size-full overflow-hidden rounded-[inherit]"
                       >
@@ -500,9 +522,9 @@ export function Inspector(props: Props) {
                     >
                       <IconDownloadButton
                         item={item}
-                        className="@container/action w-full overflow-hidden"
+                        className="mobile-inspector-download-button w-full overflow-hidden"
                       >
-                        <span className="hidden whitespace-nowrap @min-[6.5rem]/action:inline">
+                        <span className="mobile-inspector-download-label whitespace-nowrap">
                           Download
                         </span>
                       </IconDownloadButton>
@@ -534,11 +556,12 @@ export function Inspector(props: Props) {
         className="sticky top-(--site-header-height) z-30 shrink-0 self-start"
       />
       <Sheet
-        open={!!item}
+        open={props.open}
         swipeDirection="right"
         onOpenChange={(open) => {
           if (!open) close();
         }}
+        onOpenChangeComplete={completeOpenChange}
         modal={false}
         disablePointerDismissal
       >
@@ -589,7 +612,7 @@ export function Inspector(props: Props) {
                     <InspectorLink
                       key={item.id}
                       name={getIconDisplayName(item)}
-                      share={props.share}
+                      share={() => props.share(item.id)}
                     />
                   </SheetTitle>
                 </div>

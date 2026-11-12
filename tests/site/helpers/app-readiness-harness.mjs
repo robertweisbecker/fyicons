@@ -18,6 +18,9 @@ export async function mountApp(
   const catalog = await fixture.load('lib/catalog.ts');
   const readiness = await fixture.load('lib/category-readiness.ts');
   const { ToastProvider } = await fixture.load('components/ui/toast.tsx');
+  const { IconInspectionProvider } = await fixture.load(
+    'lib/icon-inspection.tsx',
+  );
   const { DownloadIconsButton } = await fixture.load(
     'components/DownloadIconsButton.tsx',
   );
@@ -40,10 +43,14 @@ export async function mountApp(
               SearchParamsContext.Provider,
               { value: new URLSearchParams(fixture.window.location.search) },
               createElement(
-                ToastProvider,
+                IconInspectionProvider,
                 null,
-                createElement(IconsBrowser),
-                actions && createElement(DownloadIconsButton),
+                createElement(
+                  ToastProvider,
+                  null,
+                  createElement(IconsBrowser),
+                  actions && createElement(DownloadIconsButton),
+                ),
               ),
             ),
           ),

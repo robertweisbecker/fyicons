@@ -2,9 +2,17 @@
 @import 'shadcn/tailwind.css';
 
 @font-face {
-  font-family: 'Inter Variable';
-  src: url('./assets/fonts/InterVariable.woff2') format('woff2');
+  font-family: 'Intern';
+  src: url('./assets/fonts/Intern-Variable.woff2') format('woff2');
   font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Intern';
+  src: url('./assets/fonts/InterVariable-Italic.woff2') format('woff2');
+  font-style: italic;
   font-weight: 100 900;
   font-display: swap;
 }
@@ -20,7 +28,7 @@
 @custom-variant dark (&:is([data-theme='dark'] *));
 
 @theme {
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Intern', ui-sans-serif, system-ui, sans-serif;
   /* Single-storey a, discretionary ligatures, open digits, round quotes/commas. */
   --font-sans--font-feature-settings:
     'cv11' 1, 'dlig' 1, 'ss01' 1, 'ss03' 1, 'liga' 1, 'calt' 1;

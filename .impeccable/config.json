@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "aphoristic-cadence",
+        "value": "*",
+        "files": [
+          "artifacts/site/drawer-motion-2026-11-11/report.html"
+        ],
+        "createdAt": "2026-11-12T06:53:58.292Z",
+        "reason": "Agent triage: this internal QA report uses factual negative test results and Git status statements, including No commit or deployment and No sampled release reversal or overshoot; these are evidence statements, not manufactured contrast."
+      }
+    ]
+  }
+}

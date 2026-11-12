@@ -7,12 +7,12 @@ import { Icon } from './Icon';
 import { Button } from './ui/button';
 import { Switch } from './ui/switch';
 import {
-  Menu,
-  MenuContent,
-  MenuRadioGroup,
-  MenuRadioItem,
-  MenuTrigger,
-} from './ui/menu';
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
 import { SelectedIconsDialog } from './SelectedIconsDialog';
 import { IconSearch } from './Search';
 import { searchIcons, type IconSort } from '@/lib/icon-search';
@@ -32,6 +32,10 @@ const sortOptions = {
   addedAt: { label: 'Newest', icon: 'stars' },
   updatedAt: { label: 'Last updated', icon: 'calendar' },
 } satisfies Record<IconSort, { label: string; icon: string }>;
+const sortItems = Object.entries(sortOptions).map(([value, option]) => ({
+  ...option,
+  value: value as IconSort,
+}));
 
 export function IconsBrowser() {
   const mobile = useMobile();
@@ -197,8 +201,40 @@ export function IconsBrowser() {
     document.addEventListener('keydown', key);
     return () => document.removeEventListener('keydown', key);
   });
+  const sortControl = (
+    <Select
+      size="sm"
+      items={sortItems}
+      value={sort}
+      onValueChange={(value) => {
+        if (value !== null) setSort(value);
+      }}
+    >
+      <SelectTrigger
+        aria-label={`Sort icons by ${sortOptions[sort].label}`}
+        variant="text"
+      >
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent aria-label="Sort icons by">
+        {sortItems.map(({ value, label, icon }) => (
+          <SelectItem
+            key={value}
+            value={value}
+            leading={<Icon name={icon} className="text-muted" />}
+          >
+            {label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
   const displayOptions = (
     <>
+      <div className="flex items-center justify-between gap-3 text-xs text-ink md:hidden">
+        <span>Sort by</span>
+        {sortControl}
+      </div>
       <PreviewSizeControl value={previewSize} onChange={setPreviewSize} />
       <label className="flex items-center justify-between gap-3 text-xs text-ink">
         Show filled variants
@@ -281,49 +317,21 @@ export function IconsBrowser() {
               </div>
               {/* The search row is h-11 with py-4, so this row sticks directly below it. */}
               <div className="sticky top-[calc(var(--site-header-height)+4.75rem)] z-20 -mx-1 mb-4 flex min-h-9 items-center justify-between gap-x-2 bg-canvas px-1 pb-2 text-xs text-muted before:pointer-events-none before:absolute before:inset-x-0 before:top-full before:h-4 before:bg-linear-to-b before:from-canvas before:to-transparent">
-                <div className="flex shrink-0 items-center gap-1.5">
-                  <Menu>
-                    <MenuTrigger
-                      aria-label={`Sort icons by ${sortOptions[sort].label}`}
-                      render={<Button variant="text" size="sm" />}
-                    >
-                      Sort:
-                      <span className="font-medium text-ink">
-                        {sortOptions[sort].label}
-                      </span>
-                      <Icon name="chevrons-up-down" />
-                    </MenuTrigger>
-                    <MenuContent>
-                      <MenuRadioGroup
-                        value={sort}
-                        onValueChange={setSort}
-                        aria-label="Sort icons by"
-                      >
-                        {Object.entries(sortOptions).map(
-                          ([value, { label, icon }]) => (
-                            <MenuRadioItem key={value} value={value}>
-                              <Icon name={icon} className="text-muted" />
-                              {label}
-                            </MenuRadioItem>
-                          ),
-                        )}
-                      </MenuRadioGroup>
-                    </MenuContent>
-                  </Menu>
-                  <span aria-hidden="true">·</span>
-                  <p
-                    role="status"
-                    aria-label="Matching icons / total icons"
-                    className="ps-1.5 tabular-nums"
-                  >
-                    {visible.length.toLocaleString('en-US')} /{' '}
-                    {icons.length.toLocaleString('en-US')}
-                  </p>
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                  <div className="hidden shrink-0 md:block">{sortControl}</div>
+                  <CategoryMenu
+                    value={activeCategory}
+                    onValueChange={setCategory}
+                  />
                 </div>
-                <CategoryMenu
-                  value={activeCategory}
-                  onValueChange={setCategory}
-                />
+                <p
+                  role="status"
+                  aria-label="Matching icons"
+                  className="shrink-0 tabular-nums"
+                >
+                  {visible.length.toLocaleString('en-US')}{' '}
+                  {visible.length === 1 ? 'icon' : 'icons'}
+                </p>
                 {!mobile && (
                   <SelectedIconsDialog
                     icons={selectedIcons}

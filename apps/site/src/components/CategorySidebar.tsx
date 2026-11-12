@@ -30,9 +30,9 @@ function CategoryLabel({
 }) {
   return (
     <>
-      <Icon name={option.icon} className="text-muted" />
+      <Icon name={option.icon} />
       <span className="truncate">{option.label}</span>
-      <Badge size="sm" variant="unstyled" className="p-0 text-xs text-muted">
+      <Badge size="sm" className="ms-auto">
         {option.count}
       </Badge>
     </>
@@ -96,6 +96,7 @@ export function CategoryMenu({ value, onValueChange }: Props) {
   return (
     <div className="min-w-0 lg:hidden">
       <Select
+        size="sm"
         items={options}
         value={selected.value}
         onValueChange={(next) => {
@@ -104,7 +105,6 @@ export function CategoryMenu({ value, onValueChange }: Props) {
       >
         <SelectTrigger
           variant="text"
-          size="sm"
           className="max-w-full"
           aria-label={
             value === 'all' ? 'Categories' : `Categories: ${selected.label}`
@@ -114,15 +114,17 @@ export function CategoryMenu({ value, onValueChange }: Props) {
           <Icon name={selected.icon} />
           <SelectValue className="truncate" />
         </SelectTrigger>
-        <SelectContent aria-label="Icon categories" className="w-72">
+        <SelectContent aria-label="Icon categories">
           <SelectGroup>
             {options.map((option) => (
               <SelectItem
                 key={option.value}
                 value={option.value}
                 label={option.label}
+                leading={<Icon name={option.icon} />}
+                trailing={<Badge size="sm">{option.count}</Badge>}
               >
-                <CategoryLabel option={option} />
+                {option.label}
               </SelectItem>
             ))}
           </SelectGroup>

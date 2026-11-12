@@ -36,7 +36,7 @@ function Callout({ className, ...props }: ComponentProps<'aside'>) {
     <aside
       {...props}
       className={cn(
-        'my-8 border-s-2 border-line px-5 py-1 [&>:first-child]:mt-0 [&>:last-child]:mb-0',
+        'my-8 border-s-3 border-line px-5 py-1 lg:-mx-5 [&>:first-child]:m-0 [&>:last-child]:mb-0',
         className,
       )}
     />

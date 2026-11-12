@@ -16,7 +16,12 @@ export const MenuRadioGroup = MenuPrimitive.RadioGroup;
 export type MenuContentProps = Omit<MenuPrimitive.Popup.Props, 'className'> &
   Pick<
     MenuPrimitive.Positioner.Props,
-    'side' | 'align' | 'sideOffset' | 'alignOffset'
+    | 'side'
+    | 'align'
+    | 'sideOffset'
+    | 'alignOffset'
+    | 'anchor'
+    | 'positionMethod'
   > & {
     className?: string;
     container?: MenuPrimitive.Portal.Props['container'];
@@ -29,6 +34,8 @@ export function MenuContent({
   align = 'start',
   sideOffset = 8,
   alignOffset,
+  anchor,
+  positionMethod,
   container,
   ...props
 }: MenuContentProps) {
@@ -40,6 +47,8 @@ export function MenuContent({
         align={align}
         sideOffset={sideOffset}
         alignOffset={alignOffset}
+        anchor={anchor}
+        positionMethod={positionMethod}
       >
         <MenuPrimitive.Popup
           data-slot="menu-content"

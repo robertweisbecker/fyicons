@@ -4,13 +4,14 @@ import { Button } from './ui/button';
 import { notify } from './ui/toast';
 import { copy } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
+import type { IconShareLink } from '@/lib/icon-inspection';
 
 export function InspectorLink({
   name,
   share,
 }: {
   name: string;
-  share: () => string;
+  share: () => IconShareLink;
 }) {
   const [copied, setCopied] = useState(false);
   const [pending, setPending] = useState(false);
@@ -26,11 +27,13 @@ export function InspectorLink({
 
   async function copyLink() {
     setPending(true);
-    const success = await copy(share());
+    const link = share();
+    const success = await copy(link.url);
+    if (success) link.publish();
     notify(
       success
         ? 'Link copied to clipboard!'
-        : 'Clipboard unavailable. Copy the link from the address bar.',
+        : 'Clipboard unavailable. Please try again.',
       { icon: success ? <Icon name="link" /> : undefined },
     );
     if (!mounted.current) return;

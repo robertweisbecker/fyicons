@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
 import { SiteHeader } from './SiteHeader';
@@ -11,12 +11,26 @@ import { ToastProvider } from './ui/toast';
 import { TooltipProvider } from './ui/tooltip';
 import { usePreference } from '@/lib/preferences';
 import { isEditableTarget } from '@/lib/keyboard';
+import {
+  IconInspectionProvider,
+  useIconInspection,
+} from '@/lib/icon-inspection';
 
 const isTheme = (value: unknown): value is 'light' | 'dark' =>
   value === 'light' || value === 'dark';
 
 export function SiteShell({ children }: { children: ReactNode }) {
+  return (
+    <IconInspectionProvider>
+      <SiteContent>{children}</SiteContent>
+    </IconInspectionProvider>
+  );
+}
+
+function SiteContent({ children }: { children: ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const inspection = useIconInspection();
   const [theme, setTheme] = usePreference<'light' | 'dark'>(
     'fyicons-theme-v1',
     'light',
@@ -83,9 +97,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
             onOpenChange={setSearchOpen}
             inputRef={input}
             returnFocusRef={returnFocus}
-            select={(icon) =>
-              router.push(`/icons/?icon=${encodeURIComponent(icon.name)}`)
-            }
+            select={(icon) => {
+              inspection.inspect(icon.id);
+              if (pathname.replace(/\/$/, '') !== '/icons')
+                router.push('/icons/');
+            }}
           />
           <main id="main-content" tabIndex={-1}>
             <SearchTriggerContext value={openSearch}>

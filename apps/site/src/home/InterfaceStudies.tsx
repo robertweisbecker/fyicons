@@ -32,7 +32,12 @@ export function StatusBarStudy() {
 
 export function EditorStudy() {
   return (
-    <div className={cn(panel, 'flex items-center justify-center gap-1 p-2')}>
+    <div
+      className={cn(
+        panel,
+        'flex max-w-full flex-wrap items-center justify-center gap-1 p-2',
+      )}
+    >
       <Glyph name="pointer" />
       <Glyph name="line-vertical" className="w-4 text-border" />
       <Glyph name="pen-tip" />

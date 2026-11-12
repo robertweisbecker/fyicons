@@ -68,9 +68,9 @@ export function IconTile({
           onClick={inspect}
         >
           {addedVersion && (
-            <span
-              aria-hidden="true"
-              className="absolute top-3 left-3 size-1.5 rounded-full bg-blue-500"
+            <Icon
+              name="diamond-fill"
+              className="absolute top-3 left-3 size-3 text-control-accent"
             />
           )}
           <Icon name={icon.id} className="bg-grid size-(--preview-size)" />
