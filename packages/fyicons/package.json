@@ -44,7 +44,7 @@
     "url": "git+https://github.com/robertweisbecker/fyicons.git",
     "directory": "packages/fyicons"
   },
-  "homepage": "https://icons.bob.fyi/",
+  "homepage": "https://fyicons.com/",
   "bugs": "https://github.com/robertweisbecker/fyicons/issues",
   "keywords": [
     "icons",

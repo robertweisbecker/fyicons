@@ -1,6 +1,6 @@
 # FYIcons
 
-SVG icons from https://icons.bob.fyi/.
+SVG icons from https://fyicons.com/.
 Each icon has a 16 × 16 px canvas.
 
 ## Files
@@ -28,11 +28,11 @@ These classes are styling hooks and do not apply styles on their own.
 Inline SVGs use currentColor and inherit the surrounding text color.
 Use CSS color to set the color, and width and height to change the size.
 An SVG loaded as an image does not inherit the page's text color or expose its classes to the page's CSS.
-See https://icons.bob.fyi/docs/styling/ for examples.
+See https://fyicons.com/docs/styling/ for examples.
 
 ## Get more icons
 
-Open https://icons.bob.fyi/icons/.
+Open https://fyicons.com/icons/.
 Select an icon, then use Copy SVG to copy its SVG code or Download to save its SVG file.
 Right-click an icon in the grid, or long-press it on mobile, to open its context menu.
 The menu shows the icon's name and offers Copy name, Copy SVG, and Download.

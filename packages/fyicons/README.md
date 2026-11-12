@@ -2,7 +2,7 @@
 
 FYIcons brings a collection of 16 × 16 SVG icons to React, with TypeScript types, accessible naming, and colors that follow your theme. Use them in compact controls, menus, toolbars, or anywhere your interface needs an icon.
 
-[Browse the library](https://icons.bob.fyi/icons/) · [See examples](https://icons.bob.fyi/examples/) · [Changelog](https://github.com/robertweisbecker/fyicons/blob/main/packages/fyicons/CHANGELOG.md)
+[Browse the library](https://fyicons.com/icons/) · [See examples](https://fyicons.com/examples/) · [Changelog](https://github.com/robertweisbecker/fyicons/blob/main/packages/fyicons/CHANGELOG.md)
 
 ## Install
 
@@ -114,7 +114,7 @@ The optional `fyicons/client` entry exports Client Components. A Server Componen
 
 ## SVG files and editable source
 
-The package includes SVG files in `svg/` and a `manifest.json` file with names, source IDs, and aliases. The SVG exports have the same `fy-icon` and `fy-{icon-name}` classes as React components, with the original artwork preserved. Style inline SVGs with CSS `color`, `width`, and `height`. You can also [browse and download SVGs](https://icons.bob.fyi/icons/) without installing the package.
+The package includes SVG files in `svg/` and a `manifest.json` file with names, source IDs, and aliases. The SVG exports have the same `fy-icon` and `fy-{icon-name}` classes as React components, with the original artwork preserved. Style inline SVGs with CSS `color`, `width`, and `height`. You can also [browse and download SVGs](https://fyicons.com/icons/) without installing the package.
 
 If you want editable React files in your project, use the [shadcn registry](https://github.com/robertweisbecker/fyicons#add-icons-with-shadcn). It copies selected icons and their shared helpers into your components directory.
 
