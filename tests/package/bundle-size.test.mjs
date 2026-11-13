@@ -95,6 +95,27 @@ test('comment reports both sizes, signed changes, unchanged rows and a zero base
   assert.match(text, /\+30 B \(\+10.00%\)/);
   assert.match(text, /— \*\*0 B \(0.00%\)/);
   assert.match(text, /actions\/runs\/123/);
+  const larger = {
+    ...report,
+    before: {
+      svg: { raw: 1000, gzip: 999, count: 2 },
+      react: { raw: 42221, gzip: 1000, count: 2 },
+      client: { raw: 1000, gzip: 1000, count: 3 },
+    },
+    after: {
+      svg: { raw: 1001, gzip: 1000, count: 2 },
+      react: { raw: 40468, gzip: 1001, count: 2 },
+      client: { raw: 3000, gzip: 1000, count: 3 },
+    },
+  };
+  const largerText = renderBundleComment(larger, repository, run.id);
+  assert.match(largerText, /1,000 B → 1\.00 KB/);
+  assert.match(largerText, /999 B → 1,000 B/);
+  assert.match(largerText, /42\.22 KB → 40\.47 KB/);
+  assert.match(largerText, /−1\.75 KB \(−4\.15%\)/);
+  assert.match(largerText, /\+2\.00 KB \(\+200\.00%\)/);
+  assert.equal(larger.before.react.raw, 42221);
+  assert.equal(larger.after.react.raw, 40468);
   const empty = {
     ...report,
     before: { ...sizes, svg: { raw: 0, gzip: 0, count: 0 } },

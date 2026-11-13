@@ -75,7 +75,7 @@ For a local preview bundle, add `--pr-preview` to `diff:icons`. This writes PNGs
 
 ### Compare bundle sizes in a pull request
 
-The [bundle-size workflow](../.github/workflows/bundle-size.yml) compares the PR merge-base with its current head. A [separate publisher](../.github/workflows/bundle-size-comment.yml) updates one bot comment with before-and-after bytes, gzip sizes, and percentage changes. It runs for open PRs in this repository after each push. To measure an existing PR, run **Bundle size** from the Actions tab on `main` and enter its PR number.
+The [bundle-size workflow](../.github/workflows/bundle-size.yml) compares the PR merge-base with its current head. A [separate publisher](../.github/workflows/bundle-size-comment.yml) updates one bot comment with before-and-after sizes, gzip sizes, and percentage changes. Values above 1 KB use decimal KB (1 KB = 1,000 bytes) with two decimal places, including size changes. The JSON report keeps exact byte counts. It runs for open PRs in this repository after each push. To measure an existing PR, run **Bundle size** from the Actions tab on `main` and enter its PR number.
 
 The SVG row sums the published SVG files, with each file compressed separately at gzip level 9. It is not the ZIP download size. The React rows measure separate minified ESM bundles for all exports of `fyicons` and `fyicons/client`. React and its JSX runtime remain external. These totals exclude declarations, source maps, metadata, and documentation. Consumers that import a subset of icons can receive smaller bundles through tree shaking.
 
