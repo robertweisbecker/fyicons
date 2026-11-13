@@ -83,7 +83,9 @@ export function validateBundleReport(report) {
 }
 
 function formatBytes(value) {
-  return `${value.toLocaleString('en-US')} B`;
+  return value > 1000
+    ? `${(value / 1000).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} KB`
+    : `${value.toLocaleString('en-US')} B`;
 }
 
 function comparison(before, after) {
@@ -109,6 +111,7 @@ export function renderBundleComment(report, repository, runId) {
     `\`${report.base.slice(0, 7)}\` → \`${report.head.slice(0, 7)}\` · [Details and JSON report](https://github.com/${repository}/actions/runs/${runId})\n\n` +
     `| Bundle | Raw / minified size · before → after | Gzip size · before → after |\n| --- | --- | --- |\n${rows.join('\n')}\n\n` +
     `<details>\n<summary>Measurement details</summary>\n\n` +
+    `Text uses decimal KB (1 KB = 1,000 bytes) above 1 KB, with two decimal places. The JSON report retains exact byte counts.\n\n` +
     `SVG: ${report.before.svg.count} → ${report.after.svg.count} files. Sizes sum the published SVG files; gzip compresses each file separately at level 9. This is not a ZIP size.\n\n` +
     `React: minified ESM bundles containing all exports of each entry point, with React and its JSX runtime external. Each row is a separate bundle. Individual imports can be smaller through tree shaking. Types, source maps, metadata, and documentation are excluded.\n\n` +
     `Both revisions use Node ${report.tools.node} and Rolldown ${report.tools.rolldown}. Each package is built with its own lockfile. The base is the PR merge-base.\n\n</details>\n`
