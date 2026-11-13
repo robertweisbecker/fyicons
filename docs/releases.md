@@ -73,6 +73,16 @@ Rendering has read-only permissions. The publisher runs trusted default-branch c
 
 For a local preview bundle, add `--pr-preview` to `diff:icons`. This writes PNGs and a public manifest under `artifacts/icon-diff/pr-preview/` without publishing them.
 
+### Compare bundle sizes in a pull request
+
+The [bundle-size workflow](../.github/workflows/bundle-size.yml) compares the PR merge-base with its current head. A [separate publisher](../.github/workflows/bundle-size-comment.yml) updates one bot comment with before-and-after bytes, gzip sizes, and percentage changes. It runs for open PRs in this repository after each push. To measure an existing PR, run **Bundle size** from the Actions tab on `main` and enter its PR number.
+
+The SVG row sums the published SVG files, with each file compressed separately at gzip level 9. It is not the ZIP download size. The React rows measure separate minified ESM bundles for all exports of `fyicons` and `fyicons/client`. React and its JSX runtime remain external. These totals exclude declarations, source maps, metadata, and documentation. Consumers that import a subset of icons can receive smaller bundles through tree shaking.
+
+Both revisions use the same Node and Rolldown versions. Each revision builds with its own lockfile. The workflow summary and downloadable JSON report record the fixed revisions and exact measurements. The comment is informational; size growth does not fail a PR.
+
+Measurement has read-only permissions. The publisher runs default-branch code without installing packages, validates the downloaded JSON, and checks that the PR still has the measured head and base. It does not execute code from the PR or artifact. Fork PRs do not publish size comments.
+
 ## Prepare release notes
 
 ```sh
