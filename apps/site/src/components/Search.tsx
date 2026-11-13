@@ -284,18 +284,18 @@ export function GlobalSearch({
 }) {
   const [value, setValue] = useState('');
   const selecting = useRef(false);
-  const popup = useRef<HTMLDivElement>(null);
+  const [popup, setPopup] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const viewport = window.visualViewport;
-    if (!open || !viewport) return;
+    if (!open || !viewport || !popup) return;
     // The software keyboard resizes the visual viewport, not Safari's dvh.
     const update = () => {
-      popup.current?.style.setProperty(
+      popup.style.setProperty(
         '--search-viewport-height',
         `${viewport.height}px`,
       );
-      popup.current?.style.setProperty(
+      popup.style.setProperty(
         '--search-viewport-top',
         `${viewport.offsetTop}px`,
       );
@@ -307,7 +307,7 @@ export function GlobalSearch({
       viewport.removeEventListener('resize', update);
       viewport.removeEventListener('scroll', update);
     };
-  }, [open]);
+  }, [open, popup]);
   return (
     <Dialog.Root
       open={open}
@@ -319,7 +319,7 @@ export function GlobalSearch({
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-70 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
         <Dialog.Popup
-          ref={popup}
+          ref={setPopup}
           initialFocus={inputRef}
           finalFocus={() =>
             selecting.current ? false : returnFocusRef.current
