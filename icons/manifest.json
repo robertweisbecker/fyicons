@@ -615,7 +615,7 @@
       ],
       "notes": [],
       "componentName": "IconAtSign",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "101:4284",
@@ -1016,7 +1016,7 @@
       ],
       "notes": [],
       "componentName": "IconTopHat",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "154:11361",
@@ -3846,7 +3846,7 @@
       ],
       "notes": [],
       "componentName": "IconDrawing",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "118:2178",
@@ -3961,7 +3961,7 @@
       ],
       "notes": [],
       "componentName": "IconFontLower",
-      "updatedAt": "2026-11-11T02:14:21.664Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "123:2510",
@@ -4061,7 +4061,7 @@
       ],
       "notes": [],
       "componentName": "IconHeading4",
-      "updatedAt": "2026-11-10T05:13:31.958Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "748:4522",
@@ -4420,7 +4420,7 @@
       ],
       "notes": [],
       "componentName": "IconMarker",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "58:9553",
@@ -4694,7 +4694,7 @@
       ],
       "notes": [],
       "componentName": "IconPilcrow",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "142:6375",
@@ -4904,7 +4904,7 @@
       ],
       "notes": [],
       "componentName": "IconTextBold",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "748:4345",
@@ -4920,7 +4920,7 @@
       ],
       "notes": [],
       "componentName": "IconTextBoldInactive",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "96:1635",
@@ -5196,7 +5196,7 @@
       ],
       "notes": [],
       "componentName": "IconPencilTip",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "507:4365",
@@ -5351,7 +5351,7 @@
       ],
       "notes": [],
       "componentName": "IconBorderRadius",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "408:11486",
@@ -6639,7 +6639,7 @@
       ],
       "notes": [],
       "componentName": "IconHook",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "702:1828",
@@ -6892,7 +6892,7 @@
       ],
       "notes": [],
       "componentName": "IconMenuAltSimple",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "97:1820",
@@ -15421,7 +15421,7 @@
       ],
       "notes": [],
       "componentName": "IconWorkflowDecision",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "679:2868",
@@ -15605,7 +15605,7 @@
       ],
       "notes": [],
       "componentName": "IconBox",
-      "updatedAt": "2026-11-11T02:14:21.664Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "994:34117",
@@ -17241,7 +17241,7 @@
       ],
       "notes": [],
       "componentName": "IconLineHeight",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "919:32764",
@@ -17605,7 +17605,7 @@
     },
     {
       "id": "679:3567",
-      "originalName": "square-asterisk",
+      "originalName": "Property 1=false",
       "width": 16,
       "height": 16,
       "name": "square-asterisk",
@@ -17617,7 +17617,12 @@
       ],
       "notes": [],
       "componentName": "IconSquareAsterisk",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "variantSetId": "1588:14018",
+      "variantSetName": "square-asterisk",
+      "variantProperties": {
+        "Property 1": "false"
+      },
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "667:891",
@@ -17982,11 +17987,6 @@
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1374",
-      "variantSetName": "number4",
-      "variantProperties": {
-        "fill": "false"
-      },
       "name": "number4",
       "baseName": "number4",
       "filename": "number4-16.svg",
@@ -18000,18 +18000,18 @@
       ],
       "notes": [],
       "componentName": "IconNumber4",
-      "updatedAt": "2026-11-10T05:13:31.958Z"
+      "variantSetId": "1368:1374",
+      "variantSetName": "number4",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "1350:3044",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1374",
-      "variantSetName": "number4",
-      "variantProperties": {
-        "fill": "true"
-      },
       "name": "number4-fill",
       "baseName": "number4",
       "filename": "number4-fill-16.svg",
@@ -18021,8 +18021,13 @@
       ],
       "notes": [],
       "componentName": "IconNumber4Fill",
+      "variantSetId": "1368:1374",
+      "variantSetName": "number4",
+      "variantProperties": {
+        "fill": "true"
+      },
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-10T05:13:31.958Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "667:1106",
@@ -18850,7 +18855,7 @@
       ],
       "notes": [],
       "componentName": "IconListLog",
-      "updatedAt": "2026-11-09T01:17:57.288Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "672:464",
@@ -19412,7 +19417,7 @@
       ],
       "notes": [],
       "componentName": "IconPictureFrame",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "96:1603",
@@ -22874,7 +22879,7 @@
       "notes": [],
       "componentName": "IconLetterK",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-10T05:13:31.958Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "1350:3033",
@@ -23125,11 +23130,13 @@
       "baseName": "menu-simple",
       "filename": "menu-simple-16.svg",
       "file": "svgs/1419-1272.svg",
-      "aliases": [],
+      "aliases": [
+        "1419-1272.svg"
+      ],
       "notes": [],
       "componentName": "IconMenuSimple",
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "1419:1365",
@@ -23232,12 +23239,13 @@
       "file": "svgs/1419-2170.svg",
       "aliases": [
         "page-attachment",
-        "page-attachment-16.svg"
+        "page-attachment-16.svg",
+        "1419-2170.svg"
       ],
       "notes": [],
       "componentName": "IconAttachment",
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-10T05:13:31.958Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "1419:2186",
@@ -23378,11 +23386,13 @@
       "baseName": "spell-check",
       "filename": "spell-check-16.svg",
       "file": "svgs/1426-10242.svg",
-      "aliases": [],
+      "aliases": [
+        "1426-10242.svg"
+      ],
       "notes": [],
       "componentName": "IconSpellCheck",
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-11T02:14:21.664Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "1431:10332",
@@ -23610,7 +23620,7 @@
       ],
       "componentName": "IconQuill",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-10T05:13:31.958Z"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "1470:13089",
@@ -23941,9 +23951,9 @@
         "1536-1257.svg"
       ],
       "file": "svgs/1536-1257.svg",
+      "componentName": "IconAttachments",
       "addedAt": "2026-11-10T05:13:31.958Z",
-      "updatedAt": "2026-11-10T05:13:31.958Z",
-      "componentName": "IconAttachments"
+      "updatedAt": "2026-11-14T05:06:25.731Z"
     },
     {
       "id": "1537:1623",
