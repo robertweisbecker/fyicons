@@ -676,7 +676,7 @@
       ],
       "notes": [],
       "componentName": "IconBellSlash",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T01:21:16.081Z"
     },
     {
       "id": "101:4283",
@@ -708,7 +708,7 @@
       ],
       "notes": [],
       "componentName": "IconBell2Slash",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T01:21:16.081Z"
     },
     {
       "id": "132:3059",
@@ -733,7 +733,7 @@
       ],
       "notes": [],
       "componentName": "IconQuotes",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:17.645Z"
     },
     {
       "id": "580:357",
@@ -756,7 +756,7 @@
       ],
       "notes": [],
       "componentName": "IconQuotesFill",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T01:21:17.645Z"
     },
     {
       "id": "286:19856",
@@ -1290,7 +1290,7 @@
       ],
       "notes": [],
       "componentName": "IconEmojiHappy",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "1323:11767",
@@ -1312,7 +1312,7 @@
       "notes": [],
       "componentName": "IconEmojiHappyFill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "356:10032",
@@ -1337,7 +1337,7 @@
       ],
       "notes": [],
       "componentName": "IconEmojiGrin",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "1323:11771",
@@ -1359,7 +1359,7 @@
       "notes": [],
       "componentName": "IconEmojiGrinFill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "1163:11207",
@@ -1381,7 +1381,7 @@
       "notes": [],
       "componentName": "IconEmojiBeam",
       "addedAt": "2026-10-25T21:05:47.178Z",
-      "updatedAt": "2026-11-08T22:27:12.607Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "1323:11765",
@@ -1403,7 +1403,7 @@
       "notes": [],
       "componentName": "IconEmojiBeamFill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-08T22:27:12.607Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "360:11297",
@@ -1469,7 +1469,7 @@
       ],
       "notes": [],
       "componentName": "IconEmojiNeutral",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "1323:11764",
@@ -1512,7 +1512,7 @@
       ],
       "notes": [],
       "componentName": "IconEmojiScared",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "1323:11763",
@@ -1555,7 +1555,7 @@
       ],
       "notes": [],
       "componentName": "IconEmojiSmile",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "1350:3009",
@@ -1577,7 +1577,7 @@
       "notes": [],
       "componentName": "IconEmojiSmileFill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "747:3661",
@@ -1593,7 +1593,7 @@
       ],
       "notes": [],
       "componentName": "IconEmojiAdd",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "747:3750",
@@ -17490,7 +17490,7 @@
     },
     {
       "id": "245:15233",
-      "originalName": "square",
+      "originalName": "fill=false",
       "width": 16,
       "height": 16,
       "name": "square",
@@ -17502,7 +17502,12 @@
       ],
       "notes": [],
       "componentName": "IconSquare",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T01:21:17.645Z",
+      "variantSetId": "1588:13936",
+      "variantSetName": "square",
+      "variantProperties": {
+        "fill": "false"
+      }
     },
     {
       "id": "288:20060",
@@ -22306,7 +22311,7 @@
       "notes": [],
       "componentName": "IconEmojiAddSimple",
       "addedAt": "2026-10-27T22:24:21.235Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:14.483Z"
     },
     {
       "id": "1211:11163",
@@ -23763,7 +23768,7 @@
         "1480-13281.svg"
       ],
       "addedAt": "2026-11-08T22:31:35.249Z",
-      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-14T01:21:16.081Z",
       "componentName": "IconBell2Fill"
     },
     {
@@ -24280,7 +24285,7 @@
       ],
       "file": "svgs/1569-11486.svg",
       "addedAt": "2026-11-11T02:14:21.664Z",
-      "updatedAt": "2026-11-11T02:14:21.664Z",
+      "updatedAt": "2026-11-14T01:21:16.081Z",
       "componentName": "IconBellDot"
     },
     {
@@ -24296,7 +24301,7 @@
       ],
       "file": "svgs/1569-11485.svg",
       "addedAt": "2026-11-11T02:14:21.664Z",
-      "updatedAt": "2026-11-11T02:14:21.664Z",
+      "updatedAt": "2026-11-14T01:21:16.081Z",
       "componentName": "IconBellDotFill"
     },
     {
