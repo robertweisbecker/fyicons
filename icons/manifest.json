@@ -733,7 +733,7 @@
       ],
       "notes": [],
       "componentName": "IconQuotes",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-14T01:21:17.645Z"
     },
     {
       "id": "580:357",
@@ -756,7 +756,7 @@
       ],
       "notes": [],
       "componentName": "IconQuotesFill",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T01:21:17.645Z"
     },
     {
       "id": "286:19856",
@@ -17490,7 +17490,7 @@
     },
     {
       "id": "245:15233",
-      "originalName": "square",
+      "originalName": "fill=false",
       "width": 16,
       "height": 16,
       "name": "square",
@@ -17502,7 +17502,12 @@
       ],
       "notes": [],
       "componentName": "IconSquare",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T01:21:17.645Z",
+      "variantSetId": "1588:13936",
+      "variantSetName": "square",
+      "variantProperties": {
+        "fill": "false"
+      }
     },
     {
       "id": "288:20060",
