@@ -1,5 +1,85 @@
 # fyicons
 
+## 0.4.2
+
+### Patch Changes
+
+- 26e0f68: Reduce the uncompressed SVG source size of 53 existing icons by 1.75 KB. This includes smaller exports for pause, volume-slash, arrow-external, arrow-down-arrow-up, and other icons while preserving their names, React exports, and 16 × 16 canvas. Render the width icon and the central height arrow at full opacity, matching their current design. Other reviewed rendering differences are limited to small edge and antialiasing changes.
+
+  Replace filled outlines with stroked paths in arrow-clockwise-lg, arrow-corner-minimize, arrow-corner-resize, arrow-down, arrow-down-arrow-up, arrow-external, picture-in-picture-enter, play, and volume-slash. The clockwise arrowhead and the filled portions of picture-in-picture-enter remain filled. Pause now uses two stroked rectangles instead of a filled outline path.
+
+- 239d13e: Correct bell clappers, slash details, and notification-dot shape and placement in `bell-slash`, `bell-2-slash`, `bell-2-fill`, `bell-dot`, and `bell-dot-fill`. Existing icon names and imports stay the same.
+- 779add3: Refine 14 existing device, media, grid, and frame icons. Adjust frame and grid proportions, grid positioning indicators, device and presentation details, the muted volume symbol, and Bluetooth.
+
+  Convert `laptop-simple` and `projector` from outlined filled geometry to live SVG strokes. Existing icon names and imports stay the same.
+
+- 94e04d0: Refine the artwork of 12 existing emoji icons: the happy, grin, beam, neutral, scared, smile, add, and add-simple designs and their selected filled variants. Existing icon names and imports stay the same.
+- b36c43d: Improve optical sizing of circles and quadrant elements in `apps`, `apps-search`, `apps-connected`, `apps-plus`, `shapes`, `math`, and `basket`.
+
+  Enlarge the app circles while preserving their 1 px outline weight, center the triangle in `shapes`, and lengthen the minus, division bar, and multiplication symbol in `math`. Refine the rounded basket outline for better optical balance.
+
+  Public icon names and imports remain unchanged. No outlined filled strokes were converted to stroked paths. Combined source SVG size changes from 3.83 KB to 4.04 KB (+207 B).
+
+- 563aa91: Refine rectangle radii and spacing in `credit-card`, `id`, `id-fill`, `hd`, `hd-fill`, `user-card`, `user-card-fill`, `briefcase`, and `luggage-rolling`.
+
+  Align the card and badge proportions, refine their rounded corners, and improve spacing around lettering and portrait details. Adjust the briefcase body and clasp and the luggage body and tag for clearer interior spacing.
+
+  Existing public icon names and imports remain unchanged. No outlined filled strokes were converted to stroked paths. Combined source SVG size changes from 5.32 KB to 5.26 KB (63 B smaller).
+
+- 7bbaf5d: Refine 13 existing status and control icons: `caret-down`, `caret-up`, `carets-y`, `square-check`, `square-alert`, and the outline and filled variants of `circle-stop`, `circle-no-entry`, `circle-minus`, and `circle-record`.
+
+  Adjust caret proportions and the interior status symbols. The record pair now uses a solid center in the outline variant and a filled outer circle with a contrasting ring in the filled variant. Existing icon names and imports stay the same.
+
+- 7e07e64: Refine typography, drawing tools, object details, and layout spacing across 26 existing icons. This includes glyph proportions and weight, drawing-tip contours, menu and list spacing, picture-frame details, and attachment geometry.
+
+  Convert `letter-k` from outlined filled geometry to live SVG strokes. Existing public icon names, imports, and historical lookup aliases remain available. The 26 artwork SVGs change from 16.32 KB to 16.34 KB (+19 B).
+
+- e912a3b: Reduce the combined SVG source size of `quotes`, `quotes-fill`, and `square` from 6.15 KB to 1.33 KB, saving 4.81 KB (78.3%), while preserving their appearance, full opacity, names, and imports. Small edge-rendering differences remain in the quotes pair.
+
+  Convert `quotes` from outlined filled geometry to a stroked path, and `square` to a stroked rounded rectangle. `quotes-fill` remains a filled path.
+
+- 49b6925: Remove redundant clipping paths from 37 icons to reduce SVG and React markup. Icon names, imports, and the 16 × 16 canvas stay the same.
+
+  Updated icons:
+
+  - `at-sign-plug`
+  - `bee`
+  - `comment-check`
+  - `comment-reply-check`
+  - `copied-sm`
+  - `diamond`
+  - `diamond-fill`
+  - `die`
+  - `file-audio`
+  - `file-image`
+  - `file-play`
+  - `file-video`
+  - `file-waveform`
+  - `flashlight`
+  - `flashlight-on`
+  - `flower-spiral`
+  - `lightbulb-on`
+  - `link`
+  - `link-linked`
+  - `link-slash`
+  - `marker-tip-duo`
+  - `page-add`
+  - `paperclip-tilt`
+  - `paperclip-wide-tilt`
+  - `plug-simple`
+  - `plugs`
+  - `plugs-plugged`
+  - `plugs-unplug`
+  - `sparkle`
+  - `sparkle-fill`
+  - `stars`
+  - `translate`
+  - `user-add`
+  - `user-bot-simple`
+  - `user-clank`
+  - `volume-high-fill`
+  - `wand`
+
 ## 0.4.1
 
 ### Patch Changes
