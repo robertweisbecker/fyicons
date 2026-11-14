@@ -34,6 +34,8 @@ The [documentation index](docs/README.md) lists the current guides. Local plans 
 
 Use Conventional Commits for new commit subjects and PR titles. See `CONTRIBUTING.md` for types, scopes, and breaking changes. A leading `[codex]` attribution prefix is accepted for compatibility but is not required by this repository. Changesets, not commit parsing, controls package versions and release notes.
 
+Apply exactly one release-impact label to every PR: `major`, `minor`, or `patch`. Follow the package's current version policy when choosing the label. During `0.x`, additions and breaking changes use `minor`; fixes use `patch`. Use `patch` for documentation, tooling, and website-only maintenance. A label does not by itself require a package Changeset or publication. Label a version PR with its planned release bump. Update the label when the PR scope changes, and remove conflicting release-impact labels.
+
 Keep unrelated edits unchanged. Builds regenerate tracked files; inspect the diff before and after generation. Use the checks for the affected behavior in `CONTRIBUTING.md` or `apps/site/CONTRIBUTING.md`. Documentation-only changes need no build or full test run. Do not repeat passing checks unless a later change or new evidence requires it.
 
 Local edits, disposable test fixtures, and artifact builds can proceed within the requested task. Publishing, remote settings changes, and destructive Git operations need explicit authorization. Report the changes, checks performed, and any remaining limits. Finish with `git diff --check`.
