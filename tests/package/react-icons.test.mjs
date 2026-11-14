@@ -286,6 +286,43 @@ test('rendered components honor SVG props and keep repeated definition and title
   }
 });
 
+test('generated components render nested SVG children after their artwork', async () => {
+  const { createElement } = await import('react');
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { JSDOM } = await import('jsdom');
+  const files = await renderReactIconFiles([
+    {
+      id: 'fixture:nested-child',
+      name: 'fixture',
+      componentName: 'IconFixture',
+      svg: '<svg viewBox="0 0 16 16"><path d="M1 1h14v14H1Z"/></svg>',
+    },
+  ]);
+  const Component = await loadComponent(
+    files.get('packages/fyicons/src/IconFixture.tsx'),
+  );
+  const html = renderToStaticMarkup(
+    createElement(
+      Component,
+      null,
+      createElement('circle', {
+        cx: 8,
+        cy: 8,
+        r: 2,
+        'data-child': 'nested',
+      }),
+    ),
+  );
+  const dom = new JSDOM(html);
+  const svg = dom.window.document.querySelector('svg');
+  assert.deepEqual(
+    [...svg.children].map((child) => child.tagName.toLowerCase()),
+    ['path', 'circle'],
+  );
+  assert.equal(svg.lastElementChild.getAttribute('data-child'), 'nested');
+  dom.window.close();
+});
+
 test('reference delimiters remain literal data in repeated rendered instances', async () => {
   const { createElement } = await import('react');
   const { renderToStaticMarkup } = await import('react-dom/server');

@@ -1,6 +1,8 @@
 import IconSun from 'fyicons/icons/IconSun';
 import IconSpinner from 'fyicons/icons/IconSpinner';
 import IconLoader from 'fyicons/icons/IconLoader';
+import IconSquareDashed from 'fyicons/icons/IconSquareDashed';
+import IconUser from 'fyicons/icons/IconUser';
 import { IconRays } from 'fyicons';
 import {
   FyiProvider,
@@ -16,6 +18,20 @@ const colors = [
   { label: 'Green', value: '#16a34a' },
   { label: 'Violet', value: '#8b5cf6' },
 ];
+
+export function NestedIconsExample() {
+  return (
+    <div
+      role="group"
+      aria-label="Nested user and dashed square icons"
+      className="my-6 flex min-h-32 items-center justify-center rounded-xl border border-line bg-surface p-5 sm:p-8"
+    >
+      <IconSquareDashed size={48} aria-label="User placeholder">
+        <IconUser size={8} x={4} y={4} />
+      </IconSquareDashed>
+    </div>
+  );
+}
 
 export function ProviderExample() {
   return (
