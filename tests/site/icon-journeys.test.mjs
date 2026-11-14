@@ -31,10 +31,6 @@ const click = (element) =>
     );
     element.click();
   });
-const button = (document, text) =>
-  [...document.querySelectorAll('button')].find(
-    (element) => element.textContent.trim() === text,
-  );
 
 async function search(h, value) {
   const input = h.document.querySelector('input[aria-label="Search icons"]');
@@ -169,16 +165,12 @@ test('users can filter, save and remove icons, then export the selection or full
     const tile = h.tiles.find((element) => element.dataset.id === icon.id);
     await click(tile.parentElement.querySelector('[role="checkbox"]'));
   }
-  await click(
-    [...h.document.querySelectorAll('button')].find((element) =>
-      /^Saved/.test(element.textContent.trim()),
-    ),
-  );
+  await click(h.document.querySelector('button[data-selection-trigger]'));
   const dialog = h.document.querySelector('[data-selection-dialog]');
   assert.equal(dialog.querySelectorAll('li').length, 2);
   await click(dialog.querySelector('[data-remove-icon]'));
   assert.equal(dialog.querySelectorAll('li').length, 1);
-  await click(button(dialog, 'Download zip'));
+  await click(dialog.querySelector('button[data-download-icons="selected"]'));
   assert.equal(downloads[0].filename, 'fyicons-selected.zip');
   const manifest = async ({ blob }) => {
     assert.equal(blob.type, 'application/zip');
@@ -189,7 +181,7 @@ test('users can filter, save and remove icons, then export the selection or full
     (await manifest(downloads[0])).icons.map(({ id }) => id),
     [selected[1].id],
   );
-  await click(button(h.document, 'Download'));
+  await click(h.document.querySelector('button[data-download-icons="all"]'));
   assert.equal(downloads.length, 2);
   assert.equal(downloads[1].filename, 'fyicons.zip');
   assert.deepEqual(

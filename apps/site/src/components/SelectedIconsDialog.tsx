@@ -35,7 +35,10 @@ export function SelectedIconsDialog({
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Dialog.Trigger render={<Button variant="text" size="sm" />}>
+      <Dialog.Trigger
+        data-selection-trigger=""
+        render={<Button variant="text" size="sm" />}
+      >
         <Icon name={icons.length > 0 ? 'bookmark-fill' : 'bookmark'} />
         Saved
         <Badge size="sm">{icons.length}</Badge>
@@ -135,6 +138,7 @@ export function SelectedIconsDialog({
               Close
             </Dialog.Close>
             <Button
+              data-download-icons="selected"
               disabled={!icons.length || packing}
               onClick={async () => {
                 if (await onDownload()) setOpen(false);

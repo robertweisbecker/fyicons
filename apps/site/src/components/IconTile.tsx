@@ -68,10 +68,37 @@ export function IconTile({
           onClick={inspect}
         >
           {addedVersion && (
-            <Icon
-              name="diamond-fill"
-              className="absolute top-3 left-3 size-3 text-control-accent"
-            />
+            // <Icon
+            //   name="diamond-fill"
+
+            // />
+            <svg
+              width={16}
+              height={16}
+              viewBox="0 0 16 16"
+              fill="none"
+              className="absolute top-1 right-[75%] size-4 text-control-accent"
+              strokeWidth={1.5}
+            >
+              <path
+                d="M9.5 9.5L5.5 5.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+              />
+              <path
+                d="M8.5 13.5H2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+              />
+              <path
+                d="M13.5 2.5V8.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+              />
+            </svg>
           )}
           <Icon name={icon.id} className="bg-grid size-(--preview-size)" />
           <span

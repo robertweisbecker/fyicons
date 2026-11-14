@@ -39,7 +39,7 @@ import {
   icons,
   type IconRecord,
 } from '@/lib/catalog';
-import { useMobile, usePreference } from '@/lib/preferences';
+import { readPreference, useMobile, usePreference } from '@/lib/preferences';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
 import type { IconShareLink } from '@/lib/icon-inspection';
 import { IconCopyButton } from './IconCopyButton';
@@ -64,6 +64,9 @@ type Props = {
 const compactHeight = 112;
 const previewHeight = 356;
 const snapPoints = [compactHeight, previewHeight, 1];
+const inspectorWidthKey = 'fyicons-inspector-width-v2';
+const isInspectorWidth = (value: unknown): value is number =>
+  typeof value === 'number' && Number.isFinite(value);
 function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
   return (
     <span
@@ -311,20 +314,37 @@ function InspectorView(
   } = props;
   const mobile = useMobile();
   const [viewportWidth, setViewportWidth] = useState(1440);
-  const defaultWidth = viewportWidth < 1024 ? 352 : 384;
-  const [preferredWidth, setPreferredWidth] = usePreference(
-    'fyicons-inspector-width-v1',
-    defaultWidth,
+  // Balance the shared 16rem sidebar column plus its 1.5rem gap on desktop.
+  const defaultWidth = 280;
+  const [preferredWidth, setPreferredWidth] = usePreference<number | null>(
+    inspectorWidthKey,
+    null,
+    isInspectorWidth,
   );
+  useEffect(() => {
+    if (
+      readPreference<number | null>(
+        inspectorWidthKey,
+        null,
+        isInspectorWidth,
+      ) !== null
+    )
+      return;
+    const legacyWidth = readPreference<number | null>(
+      'fyicons-inspector-width-v1',
+      null,
+      isInspectorWidth,
+    );
+    // Old defaults were saved automatically; retain only custom legacy widths.
+    if (legacyWidth !== null && legacyWidth !== 352 && legacyWidth !== 384)
+      setPreferredWidth(legacyWidth);
+  }, [setPreferredWidth]);
   const [resizing, setResizing] = useState(false);
   const minWidth = 176;
   const maxWidth = Math.max(minWidth, Math.min(640, viewportWidth - 320));
   const width = Math.min(
     maxWidth,
-    Math.max(
-      minWidth,
-      Number.isFinite(preferredWidth) ? preferredWidth : defaultWidth,
-    ),
+    Math.max(minWidth, preferredWidth ?? defaultWidth),
   );
   useEffect(() => {
     const update = () => setViewportWidth(window.innerWidth);
@@ -540,20 +560,29 @@ function InspectorView(
     );
   return (
     <>
-      <motion.div
-        ref={portalContainer}
-        initial={false}
+      {/* Balance the category rail; only a wider docked panel needs extra space. */}
+      <div
+        aria-hidden
+        data-slot="inspector-gap"
+        className="hidden [--inspector-resting-gap:0px] md:block lg:[--inspector-resting-gap:calc(var(--sidebar-width)+1.5rem)]"
         style={
           {
-            width: inLayout ? width : 0,
+            '--inspector-width': `${width}px`,
+            width:
+              docked && props.open
+                ? 'max(var(--inspector-resting-gap), calc(var(--inspector-width) - max(0px, (100vw - var(--icon-browser-max-width)) / 2)))'
+                : 'var(--inspector-resting-gap)',
+          } as CSSProperties
+        }
+      />
+      <div
+        ref={portalContainer}
+        style={
+          {
             '--inspector-width': `${width}px`,
           } as CSSProperties
         }
-        transition={{
-          duration: reducedMotion ? 0 : 0.24,
-          ease: [0.32, 0.72, 0, 1],
-        }}
-        className="sticky top-(--site-header-height) z-30 shrink-0 self-start"
+        className="fixed top-(--site-header-height) right-0 z-30 w-(--inspector-width)"
       />
       <Sheet
         open={props.open}
@@ -646,7 +675,12 @@ function InspectorView(
                 <IconReleaseInfo id={item.id} className="col-span-2" />
               </header>
               <DrawerScroll className="inspector-scroll min-h-0 flex-1 overflow-y-auto">
-                <Preview item={item} grid={grid} setGrid={setGrid}>
+                <Preview
+                  item={item}
+                  grid={grid}
+                  setGrid={setGrid}
+                  className="pt-12"
+                >
                   <div className="size-36">
                     <IconPreview item={item} grid={grid} />
                   </div>

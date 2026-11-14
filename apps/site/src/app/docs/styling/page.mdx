@@ -29,6 +29,8 @@ These are styling hooks; they do not apply styles on their own. Classes inside a
 
 Use `.fy-icon` for global styling in your root stylesheet. For example, you may want to make all icons match surrounding typography by default:
 
+<GlobalStylingExample />
+
 ```css
 /* Default all icons to inherit font-size. */
 .fy-icon {
@@ -42,13 +44,17 @@ Use `.fy-icon` for global styling in your root stylesheet. For example, you may 
 
 Use the `.fy-icon` class with a parent selector to style multiple icons in a group:
 
+<ToolbarStylingExample />
+
 ```css
 .toolbar .fy-icon {
-  color: var(--color-inverse);
+  color: #fff;
 }
 ```
 
 Use `.fy-{icon-name}` for targeted styling on a single icon:
+
+<NamedIconStylingExample />
 
 ```css
 .callout {
@@ -65,18 +71,22 @@ Use `.fy-{icon-name}` for targeted styling on a single icon:
 
 For additional specificity, you might chain the selectors, even if you find the thought repellent:
 
+<SpecificityStylingExample />
+
 ```css
 .fy-circle-check-fill {
-  color: var(--color-green);
+  color: #16a34a;
 }
 .fy-icon.fy-circle-check-fill {
-  color: var(--color-greener);
+  color: #15803d;
 }
 ```
 
 ## Color inheritance
 
 SVG paths use `currentColor` for fills, so they inherit the surrounding text's CSS `color` property by default. Simply set `color` on a parent to make its inline icons follow suit:
+
+<ColorInheritanceExample />
 
 ```css
 .btn-toolbar {
@@ -85,6 +95,8 @@ SVG paths use `currentColor` for fills, so they inherit the surrounding text's C
 ```
 
 Drop the SVG into your button's markup as-is, and it will take on the button's text color without any extra modification:
+
+<ColorInheritanceExample />
 
 ```html
 <button class="btn-toolbar" type="button" aria-label="Add item">

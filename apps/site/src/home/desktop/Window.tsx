@@ -38,7 +38,7 @@ export function Window({
   children,
   className,
 }: {
-  title: string;
+  title?: ReactNode;
   header?: ReactNode;
   children: ReactNode;
   className?: string;
@@ -54,7 +54,7 @@ export function Window({
         {header ?? (
           <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-line bg-bg text-xs text-muted">
             <WindowControls />
-            <span>{title}</span>
+            <span className="flex items-center gap-1">{title}</span>
             <span className="w-20" aria-hidden />
           </div>
         )}

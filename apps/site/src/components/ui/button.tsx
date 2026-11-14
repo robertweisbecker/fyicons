@@ -7,12 +7,11 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'border border-transparent bg-ink text-surface hover:bg-ink/92 active:bg-ink/84',
+        default: 'bg-ink text-surface hover:bg-ink/92 active:bg-ink/84',
         neutral:
-          'border border-transparent bg-current/5 text-ink hover:bg-current/10 active:bg-current/20',
+          'bg-current/5 text-ink hover:bg-current/10 active:bg-current/20',
         outline:
-          'outline outline-line outline-offset-[--surface-outline-offset] shadow-xs bg-surface hover:bg-hover active:bg-active text-ink',
+          'outline outline-line outline-offset-[--surface-outline-offset] shadow-xs bg-surface hover:bg-hover active:bg-active text-ink hover:outline-border active:shadow-current/20',
         ghost:
           'hover:bg-current/8 aria-pressed:bg-current/12 active:bg-current/6 text-current',
         text: 'text-muted hover:text-ink [&>svg:not(:only-child)]:text-muted font-normal',
@@ -27,7 +26,7 @@ export const buttonVariants = cva(
       size: {
         xs: 'h-6 px-1.5 gap-1 text-xs rounded-md',
         sm: 'h-7 px-2 gap-1 text-xs rounded-md',
-        default: 'h-9 px-3 gap-2 text-sm rounded-lg',
+        default: 'h-9 px-3 gap-1.5 text-sm rounded-lg',
         lg: 'h-11 px-3.5 font-normal gap-2 text-[15px] rounded-full',
         icon: 'size-8 p-0 rounded-lg',
         'icon-sm': 'size-7 p-0 rounded-md',

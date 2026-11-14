@@ -76,7 +76,7 @@ export default function ChangelogPage() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`Version ${version}${dateLabel ? `, ${dateLabel}` : ''} — GitHub release`}
-                className="changelog-release-link"
+                className="ms-auto inline-flex shrink-0 items-center gap-1.5 self-center text-xs font-normal whitespace-nowrap text-muted tabular-nums underline underline-offset-4"
               >
                 {date && <time dateTime={date}>{dateLabel}</time>}
                 <IconArrowUpRight className="size-4 text-muted" />

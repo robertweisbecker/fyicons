@@ -1,6 +1,7 @@
 import IconSun from 'fyicons/icons/IconSun';
 import IconSpinner from 'fyicons/icons/IconSpinner';
 import IconLoader from 'fyicons/icons/IconLoader';
+import IconGitMerge from 'fyicons/icons/IconGitMerge';
 import { IconRays } from 'fyicons';
 import {
   FyiProvider,
@@ -9,6 +10,8 @@ import {
   IconHome,
 } from 'fyicons/client';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { DocsExample } from './DocsExample';
 
 const colors = [
   { label: 'Inherited', value: undefined },
@@ -17,9 +20,71 @@ const colors = [
   { label: 'Violet', value: '#8b5cf6' },
 ];
 
+export function LightButtonExample() {
+  return (
+    <DocsExample aria-label="Customized React icon example">
+      <Button variant="outline" size="icon" aria-label="Switch to light mode">
+        <IconSun size={24} color="#2563eb" />
+      </Button>
+    </DocsExample>
+  );
+}
+
+export function ClassNameExample() {
+  return (
+    <DocsExample aria-label="Icon styled with a CSS class">
+      <IconSun size={32} className="text-blue-500" aria-label="Sun" />
+    </DocsExample>
+  );
+}
+
+export function DecorativeIconExample() {
+  return (
+    <DocsExample aria-label="Decorative icon with visible text">
+      <span className="flex items-center gap-2">
+        <IconSun /> Light mode
+      </span>
+    </DocsExample>
+  );
+}
+
+export function StandaloneIconExample() {
+  return (
+    <DocsExample aria-label="Standalone status icon">
+      <IconGitMerge size={32} aria-label="Status: Merged" />
+    </DocsExample>
+  );
+}
+
+export function IconButtonExample() {
+  return (
+    <DocsExample aria-label="Accessible icon button">
+      <Button variant="outline" size="icon" aria-label="Switch to light mode">
+        <IconSun />
+      </Button>
+    </DocsExample>
+  );
+}
+
+export function ExternalLabelExample() {
+  return (
+    <DocsExample aria-label="Icon with an external label">
+      <span className="flex items-center gap-2">
+        <span id="light-mode-label-example">Light mode</span>
+        <IconSun
+          aria-labelledby="light-mode-label-example"
+          role="img"
+          aria-hidden={false}
+        />
+      </span>
+    </DocsExample>
+  );
+}
+
 export function ProviderExample() {
   return (
     <div
+      data-not-typeset=""
       role="group"
       aria-label="Shared icon defaults example"
       className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"
@@ -47,6 +112,7 @@ export function ProviderExample() {
 export function SizeExamples() {
   return (
     <div
+      data-not-typeset=""
       role="group"
       aria-label="Icon sizes"
       className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"
@@ -68,6 +134,7 @@ export function SizeExamples() {
 export function InlineSizeExample() {
   return (
     <div
+      data-not-typeset=""
       role="group"
       aria-label="Icons inline with text"
       className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"
@@ -86,6 +153,7 @@ export function InlineSizeExample() {
 export function ColorExamples() {
   return (
     <div
+      data-not-typeset=""
       role="group"
       aria-label="Icon colors"
       className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"
@@ -107,6 +175,7 @@ export function ColorExamples() {
 export function LoadingExamples() {
   return (
     <div
+      data-not-typeset=""
       role="group"
       aria-label="Loading icon examples"
       className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"

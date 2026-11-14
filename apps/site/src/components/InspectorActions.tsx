@@ -48,14 +48,11 @@ export function InspectorActions({
         item={item}
         size="lg"
         showLabel
-        className="w-full px-3.5 @3xs:w-auto @3xs:flex-1"
-      >
-        <span className="hidden @3xs:inline @xs:hidden">Copy</span>
-        <span className="@3xs:hidden @xs:inline">Copy SVG</span>
-      </IconCopyButton>
+        className="w-full px-3.5 whitespace-nowrap @min-[14rem]:w-auto @min-[14rem]:flex-1"
+      />
       <IconDownloadButton
         item={item}
-        className="ml-auto @3xs:ml-0 @xs:w-auto @xs:flex-1 @xs:px-3.5"
+        className="ml-auto @min-[14rem]:ml-0 @xs:w-auto @xs:flex-1 @xs:px-3.5"
       >
         <span className="hidden @xs:inline">Download</span>
       </IconDownloadButton>

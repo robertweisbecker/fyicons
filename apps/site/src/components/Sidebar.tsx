@@ -58,8 +58,8 @@ export function SidebarItem({
   ...props
 }: ItemProps) {
   const className = cn(
-    'flex min-h-8 w-full items-center gap-2 rounded-md px-2 py-1.5 text-start text-xs text-muted transition-colors hover:bg-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-reduce:transition-none',
-    active && 'bg-active text-ink',
+    'flex min-h-8 w-full items-center gap-2 rounded-md px-2 py-1.5 text-start text-xs text-ink/72 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+    active ? 'bg-active text-ink' : 'hover:bg-hover hover:text-ink',
     nested && 'ps-6',
   );
   const content = (

@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'shadcn/tailwind.css';
+@import './typeset.css';
 
 @font-face {
   font-family: 'Intern';
@@ -88,8 +89,8 @@
   --muted: var(--color-taupe-500);
   --border: --alpha(var(--text) / 14%);
   --line: --alpha(var(--text) / 8%);
-  --hover: --alpha(var(--text) / 5%);
-  --active: --alpha(var(--text) / 10%);
+  --hover: --alpha(var(--text) / 4%);
+  --active: --alpha(var(--text) / 9%);
   --accent-bg: var(--color-blue-100);
   --grid: var(--color-pink-200);
   --control-accent: var(--color-blue-500);
@@ -97,6 +98,7 @@
   --track: var(--color-taupe-300);
   --inspector-width: calc(var(--spacing) * 96);
   --site-header-height: calc(3.5rem + env(safe-area-inset-top));
+  --sidebar-width: 16rem;
   --surface-outline-offset: 0px;
   color-scheme: light;
 }
@@ -111,8 +113,8 @@
   --muted: var(--color-neutral-400);
   --border: --alpha(var(--text) / 12%);
   --line: --alpha(var(--text) / 8%);
-  --hover: --alpha(var(--text) / 10%);
-  --active: --alpha(var(--text) / 6%);
+  --hover: --alpha(var(--text) / 6%);
+  --active: --alpha(var(--text) / 12%);
   --accent-bg: var(--color-blue-950);
   --control-accent: var(--color-blue-500);
   --grid: var(--color-pink-900);

@@ -28,9 +28,9 @@ import { isStringArray, useMobile, usePreference } from '@/lib/preferences';
 import { isEditableTarget } from '@/lib/keyboard';
 
 const sortOptions = {
-  alphabetical: { label: 'Alphabetically', icon: 'sort-down' },
-  addedAt: { label: 'Newest', icon: 'stars' },
-  updatedAt: { label: 'Last updated', icon: 'calendar' },
+  alphabetical: { label: 'Name (A to Z)', icon: 'sort-down' },
+  addedAt: { label: 'Newest', icon: 'fire-alt-fill' },
+  updatedAt: { label: 'Last updated', icon: 'history' },
 } satisfies Record<IconSort, { label: string; icon: string }>;
 const sortItems = Object.entries(sortOptions).map(([value, option]) => ({
   ...option,
@@ -89,14 +89,12 @@ export function IconsBrowser() {
     [selectedIds],
   );
   const current = byId.get(inspectedId ?? '') ?? null;
-  // Keep the inspected tile (or the first visible tile) in place when columns reflow.
+  // Keep the inspected tile visible when only the icon grid changes columns.
   function preserveGridPosition(preferredId = inspectedId) {
     if (!matchMedia('(min-width: 768px)').matches) return;
     const headerBottom =
       document.querySelector('.icon-browser-tools')?.getBoundingClientRect()
-        .bottom ??
-      document.querySelector('header')?.getBoundingClientRect().bottom ??
-      0;
+        .bottom ?? 0;
     const isVisible = (tile: HTMLElement) => {
       const rect = tile.getBoundingClientRect();
       return rect.top >= headerBottom && rect.bottom <= window.innerHeight;
@@ -232,7 +230,7 @@ export function IconsBrowser() {
   const displayOptions = (
     <>
       <div className="flex items-center justify-between gap-3 text-xs text-ink md:hidden">
-        <span>Sort by</span>
+        <span>Sort</span>
         {sortControl}
       </div>
       <PreviewSizeControl value={previewSize} onChange={setPreviewSize} />
@@ -249,15 +247,14 @@ export function IconsBrowser() {
   return (
     <div
       className={cn(
-        'group/app flex items-start',
+        '[--icon-browser-max-width:100rem]',
         current && 'max-md:pb-[calc(12rem+env(safe-area-inset-bottom))]',
-        current && inspectorDocked && 'has-docked-inspector',
       )}
     >
-      <div className="mx-auto max-w-400 min-w-0 flex-1 px-4 pb-10 sm:px-6">
+      <div className="mx-auto max-w-(--icon-browser-max-width) min-w-0 px-4 pb-10 sm:px-6">
         <div
           id="icons"
-          className="flex flex-col gap-6 pt-4 [--sidebar-width:13rem] lg:grid lg:min-h-[calc(100dvh-3.5rem)] lg:grid-cols-[var(--sidebar-width)_minmax(0,1fr)_var(--sidebar-width)] lg:group-[.has-docked-inspector]/app:grid-cols-[var(--sidebar-width)_minmax(0,1fr)]"
+          className="flex flex-col gap-6 pt-4 md:grid md:grid-cols-[minmax(0,1fr)_auto] md:gap-x-0 lg:min-h-[calc(100dvh-3.5rem)] lg:grid-cols-[calc(var(--sidebar-width)+1.5rem)_minmax(0,1fr)_auto]"
         >
           <CategorySidebar
             value={activeCategory}
@@ -385,28 +382,28 @@ export function IconsBrowser() {
               </div>
             )}
           </div>
-        </div>{' '}
+          <Inspector
+            item={current}
+            visible={visible}
+            selectedIds={selectedIds}
+            select={select}
+            navigate={navigate}
+            close={closeInspector}
+            share={filters.share}
+            docked={inspectorDocked}
+            onDockedChange={changeInspectorDocked}
+            onCategoryChange={setCategory}
+            toggleSelection={toggleSelection}
+            finalFocus={() =>
+              document.querySelector<HTMLElement>(
+                '[data-id="' + lastSelected.current + '"]',
+              ) ??
+              search.current ??
+              false
+            }
+          />
+        </div>
       </div>
-      <Inspector
-        item={current}
-        visible={visible}
-        selectedIds={selectedIds}
-        select={select}
-        navigate={navigate}
-        close={closeInspector}
-        share={filters.share}
-        docked={inspectorDocked}
-        onDockedChange={changeInspectorDocked}
-        onCategoryChange={setCategory}
-        toggleSelection={toggleSelection}
-        finalFocus={() =>
-          document.querySelector<HTMLElement>(
-            '[data-id="' + lastSelected.current + '"]',
-          ) ??
-          search.current ??
-          false
-        }
-      />
     </div>
   );
 }

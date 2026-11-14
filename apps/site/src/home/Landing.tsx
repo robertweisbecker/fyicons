@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { Icon } from '@/components/Icon';
 import { ShadcnIcon } from '@/components/BrandIcons';
 import { DownloadIconsButton } from '@/components/DownloadIconsButton';
@@ -9,6 +10,7 @@ import { SearchTrigger } from '@/components/SearchTrigger';
 import { buttonVariants } from '@/components/ui/button';
 import { icons } from '@/lib/catalog';
 import { assetPath } from '@/lib/navigation';
+import { useReducedMotionPreference } from '@/lib/preferences';
 import { Construction } from './Construction';
 import { DesktopShowcase } from './desktop/DesktopShowcase';
 import { IconGroupCarousel } from './IconGroupCarousel';
@@ -26,6 +28,49 @@ const sectionHeadingClassName =
 const featureHeadingClassName = 'text-2xl font-medium tracking-tight';
 const installationHeadingClassName =
   'flex items-center gap-2 text-lg font-medium tracking-tight';
+
+function BlinkingEyes() {
+  const reducedMotion = useReducedMotionPreference();
+  const [closed, setClosed] = useState(false);
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    let timer: number;
+    function scheduleBlink() {
+      timer = window.setTimeout(
+        () => {
+          setClosed(true);
+          timer = window.setTimeout(() => {
+            setClosed(false);
+            scheduleBlink();
+          }, 220);
+        },
+        2500 + Math.random() * 4000,
+      );
+    }
+    function reset() {
+      window.clearTimeout(timer);
+      setClosed(false);
+      if (!document.hidden) scheduleBlink();
+    }
+
+    reset();
+    document.addEventListener('visibilitychange', reset);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener('visibilitychange', reset);
+    };
+  }, [reducedMotion]);
+
+  const name = closed && !reducedMotion ? 'eye-closed' : 'eye-pupil';
+  return (
+    <>
+      <Icon name={name} size={20} className="inline" />
+      <Icon name={name} size={20} className="inline" />
+    </>
+  );
+}
 
 export default function Landing() {
   return (
@@ -94,11 +139,11 @@ export default function Landing() {
           <div className="my-6 flex items-center justify-center gap-4">
             <h2
               id="desktop-showcase-heading"
+              aria-label="Take a look"
               className={featureHeadingClassName}
             >
               Take a l
-              <Icon name="eye-pupil" size={20} className="inline" />
-              <Icon name="eye-pupil" size={20} className="inline" />k
+              <BlinkingEyes />k
             </h2>
           </div>
           <DesktopShowcase />
@@ -119,11 +164,15 @@ export default function Landing() {
             <article className="flex min-w-0 flex-col gap-4">
               <h3 className={installationHeadingClassName}>
                 <Icon name="atom-react" className="size-5 text-sky-400" />
-                React
+                Package
               </h3>
               <p className="text-muted">
                 Install the React components and use them in your project.
                 Tree-shakable and optimized.
+              </p>
+              <p className="flex gap-1 text-[11px] text-muted/72">
+                <Icon name="asterisk" className="size-3 text-red-500" />
+                Other package managers supported.
               </p>
               <InstallCommand
                 command="npm i fyicons"
@@ -148,13 +197,12 @@ export default function Landing() {
             </article>
             <article className="flex min-w-0 flex-col gap-4">
               <h3 className={installationHeadingClassName}>
-                <Icon name="file-zip" className="size-5 text-muted/50" />
+                <Icon name="vector-svg" className="size-5 text-orange-400" />
                 SVGs
               </h3>
               <p className="text-balance text-muted">
-                Download all {icons.length.toLocaleString('en-US')} icons as a
-                ZIP. Use them with any framework or drag them (gently) into your
-                design files.
+                Get all {icons.length.toLocaleString('en-US')} icons as a ZIP.
+                Use with any framework, or drag them (gently) into your designs.
               </p>
               <DownloadIconsButton className="mt-auto self-start max-md:w-full" />
             </article>

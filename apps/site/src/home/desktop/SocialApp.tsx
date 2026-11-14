@@ -63,7 +63,14 @@ function SocialPost() {
 export function SocialApp() {
   const [following, setFollowing] = useState(true);
   return (
-    <Window title="Bird App" className="max-w-2xl">
+    <Window
+      title={
+        <>
+          <Icon name="bird" /> Bird App
+        </>
+      }
+      className="max-w-2xl"
+    >
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain p-4 text-muted">
         <div className="mb-4 flex items-center gap-2 text-base font-semibold text-ink">
           <Glyph name="arrow-left" />
@@ -71,6 +78,8 @@ export function SocialApp() {
           <div className="ml-auto flex gap-2">
             <Glyph name="sparkles" />
             <Glyph name="search" />
+            <Glyph name="quill" />
+            <Glyph name="home-birdhouse" />
           </div>
         </div>
         <div className="mb-3 flex items-center gap-2 @md/window:gap-3">
@@ -97,21 +106,20 @@ export function SocialApp() {
               className="hidden size-8 rounded-full border border-line @sm/window:inline-flex"
             />
             <DemoToggle
-              label="Mute profile notifications"
+              label="Tweet notifications"
               icon="bell"
               activeIcon="bell-slash"
               size="icon"
-              className="rounded-full border border-line"
+              className="rounded-full outline outline-line"
             />
             <Button
-              aria-label={following ? 'Following wint' : 'Follow wint'}
               aria-pressed={following}
               onClick={() => setFollowing(!following)}
-              className="rounded-full ps-2"
+              className="rounded-full"
               variant={following ? 'default' : 'outline'}
             >
               <Icon name={following ? 'check' : 'plus'} />
-              {following ? 'Following' : 'Follow'}
+              Follow
             </Button>
           </div>
         </div>

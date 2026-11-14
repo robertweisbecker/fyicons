@@ -7,6 +7,13 @@ import {
   TableOfContents,
   type DocHeading,
 } from '@/components/docs/TableOfContents';
+import {
+  ColorInheritanceExample,
+  GlobalStylingExample,
+  NamedIconStylingExample,
+  SpecificityStylingExample,
+  ToolbarStylingExample,
+} from '@/components/docs/StylingExamples';
 import { cn } from '@/lib/utils';
 
 // The wrapper also styles literal HTML in MDX, such as tables and headings.
@@ -23,7 +30,7 @@ function DocsArticle({
       <TableOfContents headings={headings} />
       <article
         data-docs-content=""
-        className="docs-article mx-auto w-full max-w-3xl min-w-0 pt-8 lg:col-start-1 lg:row-start-1 lg:pt-7"
+        className="typeset typeset-docs mx-auto w-full max-w-3xl min-w-0 pt-8 lg:col-start-1 lg:row-start-1 lg:pt-7"
       >
         {children}
       </article>
@@ -36,7 +43,7 @@ function Callout({ className, ...props }: ComponentProps<'aside'>) {
     <aside
       {...props}
       className={cn(
-        'my-8 border-s-3 border-line px-5 py-1 lg:-mx-5 [&>:first-child]:m-0 [&>:last-child]:mb-0',
+        'my-8 border-s-3 border-line px-5 py-1 lg:-mx-5 [&>:first-child]:mt-0',
         className,
       )}
     />
@@ -51,6 +58,21 @@ const components: MDXComponents = {
   Callout,
   GitHubIcon,
   NpmIcon,
+  ColorInheritanceExample,
+  GlobalStylingExample,
+  NamedIconStylingExample,
+  SpecificityStylingExample,
+  ToolbarStylingExample,
+  table: (props) => (
+    <div
+      className="typeset-scroll"
+      role="region"
+      aria-label="Scrollable table"
+      tabIndex={0}
+    >
+      <table {...props} />
+    </div>
+  ),
   a: ({ href, children, ...props }) =>
     href?.startsWith('/') ? (
       <Link {...props} href={href}>

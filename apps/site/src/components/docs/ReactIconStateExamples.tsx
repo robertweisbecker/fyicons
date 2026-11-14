@@ -40,6 +40,7 @@ export function ToggleStateExample() {
 
   return (
     <div
+      data-not-typeset=""
       role="group"
       aria-label="Like and favorite examples"
       className="my-6 flex flex-wrap justify-center gap-3 rounded-xl border border-line bg-surface p-5 sm:p-8"
@@ -118,6 +119,7 @@ export function MediaStateExample() {
 
   return (
     <div
+      data-not-typeset=""
       role="group"
       aria-label="Video control bar example"
       className="my-6 rounded-xl border border-line bg-surface p-2 sm:p-4"
@@ -198,6 +200,7 @@ export function LevelStateExample() {
 
   return (
     <div
+      data-not-typeset=""
       role="group"
       aria-label="Meters and progress example"
       className="my-6 overflow-hidden rounded-xl border border-line bg-surface"

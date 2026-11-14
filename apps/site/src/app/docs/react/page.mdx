@@ -4,6 +4,12 @@ import {
   ColorExamples,
   LoadingExamples,
   ProviderExample,
+  LightButtonExample,
+  ClassNameExample,
+  DecorativeIconExample,
+  StandaloneIconExample,
+  IconButtonExample,
+  ExternalLabelExample,
 } from '@/components/docs/ReactIconExamples';
 import {
   ToggleStateExample,
@@ -35,6 +41,8 @@ npm install fyicons
 
 Import an icon by name:
 
+<LightButtonExample />
+
 ```tsx
 import { IconSun } from 'fyicons';
 
@@ -63,7 +71,9 @@ Icons from `fyicons` and `fyicons/icons/*` work in Server Components without a `
 
 </Callout>
 
-## Size
+## Usage
+
+### Size
 
 Use `size` to set both dimensions. The original 16×16 viewBox stays the same when the icon scales.
 
@@ -72,8 +82,6 @@ Use `size` to set both dimensions. The original 16×16 viewBox stays the same wh
 ```tsx
 <IconSun size={24} />
 ```
-
-### Inline with text
 
 Set `size="1em"` to match the surrounding font size. Use `inline-block`, `inline-flex`, or `inline-grid` to keep the SVG in the text flow.
 
@@ -85,7 +93,7 @@ Set `size="1em"` to match the surrounding font size. Use `inline-block`, `inline
 </span>
 ```
 
-## Color
+### Color
 
 Use `color` to set an individual icon's color. Leave it unset to inherit the surrounding text color through `currentColor`.
 
@@ -97,6 +105,8 @@ Use `color` to set an individual icon's color. Leave it unset to inherit the sur
 
 Or use a `className`; it will be added after the default classes:
 
+<ClassNameExample />
+
 ```tsx
 <IconSun className="text-blue-500" />
 // Renders class="fy-icon fy-sun text-blue-500"
@@ -104,85 +114,7 @@ Or use a `className`; it will be added after the default classes:
 
 See [Styling](/docs/styling/) for CSS examples. CSS `color` rules and inline styles can override the `color` prop, which is an SVG presentation attribute.
 
-## Usage with states
-
-While the library primarily includes outline-style icons, a good number of them have filled or otherwise stateful variants where it makes sense. Instead of having to hack your own version, just find and use the corresponding variant instead.
-
-### Booleans
-
-Icons with logical boolean use cases, like hearts and stars, have both outline and filled variants so you can swap between them when toggling. A few examples:
-
-<ToggleStateExample />
-
-```tsx
-'use client';
-
-import { useState } from 'react';
-import { IconHeart, IconHeartFill } from 'fyicons';
-
-export function LikeButton() {
-  const [liked, setLiked] = useState(false);
-
-  return (
-    <button type="button" aria-pressed={liked} onClick={() => setLiked(!liked)}>
-      {liked ? <IconHeartFill className="text-red-400" /> : <IconHeart />}
-      Like
-    </button>
-  );
-}
-```
-
-Media playback icons also have alternates for commonly-toggled actions:
-
-<MediaStateExample />
-
-### Meters and progress
-
-A few icon families represent levels or stages: `Battery`, `Signal`, `Gauge`, `Meter`, and `ProgressTask`.
-
-<LevelStateExample />
-
-If you find you're missing a step, families with fewer variants can reuse a state across multiple steps, or you can request an additional step by opening an issue. Choose thresholds that fit what your application represents:
-
-```tsx
-const progressIcons = [
-  IconProgressTaskTodo,
-  IconProgressTask25,
-  IconProgressTask50,
-  IconProgressTask75,
-  IconProgressTaskDone,
-];
-
-// level ranges from 0 to 100.
-const Progress = progressIcons[Math.floor(level / 25)];
-
-<Progress aria-label={`Progress: ${level}%`} />;
-```
-
-### Loading indicators
-
-The library currently includes `Loader`, `Spinner`, and `Rays`, which can be combined with keyframe animations for indeterminate or loading states. Unlike other icons, the former two are duotone with additional paths at lower opacities, so you get the full effect:
-
-<LoadingExamples />
-
-```tsx
-import { IconSpinner, IconLoader, IconRays } from 'fyicons';
-
-<IconSpinner
-  aria-label="Loading"
-  className="animate-spin [animation-timing-function:steps(10)] motion-reduce:animate-none"
-/>;
-<IconLoader
-  aria-label="Loading"
-  className="animate-spin motion-reduce:animate-none"
-/>;
-<IconRays
-  aria-label="Loading"
-  className="animate-spin motion-reduce:animate-none"
-/>;
-```
-
-<h2 id="shared-defaults">Shared defaults with FyiProvider</h2>
+<h3 id="shared-defaults">Provider</h3>
 
 In FYIcons 0.3.0 and later, `FyiProvider` lets a group of icons share `size`, `color`, `className`, or `style`. Import the provider and its icons from `fyicons/client`.
 
@@ -215,6 +147,84 @@ A nested provider can override defaults for a smaller group. Classes accumulate,
 
 Only icons imported from `fyicons/client` read these defaults. Use individual props or CSS for icons from `fyicons`, direct icon imports, and shadcn source icons.
 
+## Using states & variants
+
+While the library primarily includes outline-style icons, a good number of them have filled or otherwise stateful variants where it makes sense. Instead of having to hack your own version, just find and use the corresponding variant instead.
+
+#### Booleans
+
+Icons with logical boolean use cases, like hearts and stars, have both outline and filled variants so you can swap between them when toggling. A few examples:
+
+<ToggleStateExample />
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+import { IconHeart, IconHeartFill } from 'fyicons';
+
+export function LikeButton() {
+  const [liked, setLiked] = useState(false);
+
+  return (
+    <button type="button" aria-pressed={liked} onClick={() => setLiked(!liked)}>
+      {liked ? <IconHeartFill className="text-red-400" /> : <IconHeart />}
+      Like
+    </button>
+  );
+}
+```
+
+Media playback icons also have alternates for commonly-toggled actions:
+
+<MediaStateExample />
+
+#### Meters and progress
+
+A few icon families represent levels or stages: `Battery`, `Signal`, `Gauge`, `Meter`, and `ProgressTask`.
+
+If you find you're missing a step, families with fewer variants can reuse a state across multiple steps, or you can request an additional step by opening an issue. Choose thresholds that fit what your application represents:
+
+<LevelStateExample />
+
+```tsx
+const progressIcons = [
+  IconProgressTaskTodo,
+  IconProgressTask25,
+  IconProgressTask50,
+  IconProgressTask75,
+  IconProgressTaskDone,
+];
+
+// level ranges from 0 to 100.
+const Progress = progressIcons[Math.floor(level / 25)];
+
+<Progress aria-label={`Progress: ${level}%`} />;
+```
+
+#### Loading indicators
+
+The library currently includes `Loader`, `Spinner`, and `Rays`, which can be combined with keyframe animations for indeterminate or loading states. Unlike other icons, the former two are duotone with additional paths at lower opacities, so you get the full effect:
+
+<LoadingExamples />
+
+```tsx
+import { IconSpinner, IconLoader, IconRays } from 'fyicons';
+
+<IconSpinner
+  aria-label="Loading"
+  className="animate-spin [animation-timing-function:steps(10)] motion-reduce:animate-none"
+/>;
+<IconLoader
+  aria-label="Loading"
+  className="animate-spin motion-reduce:animate-none"
+/>;
+<IconRays
+  aria-label="Loading"
+  className="animate-spin motion-reduce:animate-none"
+/>;
+```
+
 <h2 id="props">API</h2>
 
 All props are optional. Components also accept standard React SVG props and event handlers. Many icons use filled paths, so `strokeWidth` does not change their visual weight.
@@ -243,6 +253,8 @@ For non-decorative standalone icons, be sure to name the information or action t
 
 Icons without an `aria-label` prop (or non-empty string) are given `aria-hidden="true"` by default. Leave this default when nearby text already explains the icon:
 
+<DecorativeIconExample />
+
 ```tsx
 <span>
   <IconSun /> Light mode
@@ -257,6 +269,8 @@ If the text is conditionally rendered (for example, hiding a label on mobile), p
 
 Add `aria-label` when the icon communicates information on its own, such as when it illustrates a concept not represented by surrounding text. Often, an icon will stand in for a status:
 
+<StandaloneIconExample />
+
 ```tsx
 <IconGitMerge aria-label="Status: Merged" />
 ```
@@ -268,6 +282,8 @@ In this case, the component sets `role="img"` and the `aria-label` is announced 
 <DocsAccordionItem title="Icon buttons" value="icon-buttons">
 
 For icon-only actions without a visible label, provide the accessible name on the parent and leave the icon decorative. This gives the control a single accessible name:
+
+<IconButtonExample />
 
 ```tsx
 <button type="button" aria-label="Switch to light mode">
@@ -282,6 +298,8 @@ You wouldn't set `aria-label` in this case, as it would read twice.
 <DocsAccordionItem title="External labels and titles" value="external-labels-and-titles">
 
 A `title` or `aria-labelledby` alone does not change the decorative default. For an external label, set all three props:
+
+<ExternalLabelExample />
 
 ```tsx
 <span id="light-mode-label">Light mode</span>

@@ -22,13 +22,23 @@ export function DownloadIconsButton({ className }: { className?: string }) {
 
   return (
     <Button
+      data-download-icons="all"
       disabled={packing}
       onClick={download}
       aria-busy={packing}
       className={className}
+      focusableWhenDisabled
     >
-      <IconDownloadSquare data-icon="inline-start" />
-      {packing ? 'Preparing download…' : 'Download'}
+      {packing ? (
+        <>
+          <IconDownloadSquare data-icon="inline-start" /> Preparing…
+        </>
+      ) : (
+        <>
+          <IconDownloadSquare data-icon="inline-start" />
+          Download all
+        </>
+      )}
     </Button>
   );
 }

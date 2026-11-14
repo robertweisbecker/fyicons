@@ -272,6 +272,8 @@
       "icon": "emoji-smile",
       "keywords": [],
       "exactNames": [
+        "emoji-add",
+        "emoji-add-simple",
         "emoji-angry",
         "emoji-angry-fill",
         "emoji-beam",

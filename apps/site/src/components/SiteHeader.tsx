@@ -55,7 +55,7 @@ export function SiteHeader({
             buttonVariants({ variant: 'unstyled', size: 'unstyled' }),
             'gap-2 text-sm',
           )}
-          aria-label="FYIcons home"
+          aria-label="fyicons.com home"
           href="/"
         >
           <BrandWordmark className="hidden sm:block" />
