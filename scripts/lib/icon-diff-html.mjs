@@ -15,13 +15,35 @@ const variants = (previews, render) =>
     )
     .join('');
 
-function sourceCell(icon, previews, side) {
+function sourceSize(svgBytes, side) {
+  const size = svgBytes?.[side];
+  if (!Number.isSafeInteger(size) || size < 0) return '';
+  let difference = '';
+  if (
+    side === 'after' &&
+    Number.isSafeInteger(svgBytes.before) &&
+    svgBytes.before >= 0
+  ) {
+    const delta = size - svgBytes.before;
+    const percent =
+      svgBytes.before > 0
+        ? ` (${((Math.abs(delta) / svgBytes.before) * 100).toFixed(1)}%)`
+        : '';
+    difference =
+      delta === 0
+        ? 'No size change'
+        : `${Math.abs(delta).toLocaleString('en-US')} B ${delta < 0 ? 'smaller' : 'larger'}${percent}`;
+  }
+  return `<p class="source-size">SVG · ${size.toLocaleString('en-US')} B${difference ? `<br><span>${difference}</span>` : ''}</p>`;
+}
+
+function sourceCell(icon, previews, side, svgBytes) {
   if (!icon) return '<td class="source"><p class="absent">No icon</p></td>';
   return `<td class="source">${variants(
     previews,
     (images) =>
       `<div class="canvas"><img src="${images[side]}" alt="${side === 'before' ? 'Before' : 'After'}: ${escape(icon.name)}"></div>`,
-  )}<p class="source-name"><code>${escape(icon.componentName)}</code><br>${escape(icon.filename)}</p></td>`;
+  )}<p class="source-name"><code>${escape(icon.componentName)}</code><br>${escape(icon.filename)}</p>${sourceSize(svgBytes, side)}</td>`;
 }
 
 function comparisonCell(change, previews) {
@@ -56,7 +78,7 @@ export function renderHtml(report, previews) {
       return `<tr data-search="${escape(search)}" data-flags="${change.flags.map(escape).join(' ')}" data-visual="${escape(change.visualChange ?? '')}">
       <th scope="row"><h2>${escape(name)}</h2><p class="flags">${change.visualChange ? `<span>rendering: ${escape(change.visualChange)}</span>` : ''}${change.flags.map((flag) => `<span>${escape(flag)}</span>`).join(' ')}</p>
       <details><summary>Source details</summary><pre>${escape(JSON.stringify(change, null, 2))}</pre></details></th>
-      ${sourceCell(before, previews[index], 'before')}${sourceCell(after, previews[index], 'after')}${comparisonCell(change, previews[index])}
+      ${sourceCell(before, previews[index], 'before', change.svgBytes)}${sourceCell(after, previews[index], 'after', change.svgBytes)}${comparisonCell(change, previews[index])}
     </tr>`;
     })
     .join('\n');
@@ -94,6 +116,7 @@ export function renderHtml(report, previews) {
   .canvas img{display:block;width:100%;height:100%;image-rendering:pixelated}
   body[data-theme=dark]{--canvas:#171717}.overlay img{position:absolute;inset:0}.old-layer{opacity:var(--old-opacity)}.new-layer{opacity:var(--new-opacity)}
   .source-name{font-size:11px;color:#666;overflow-wrap:anywhere;margin-top:12px}.absent,.unchanged{font-size:13px;color:#777}
+  .source-size{font-size:11px;color:#666;margin-top:4px;font-variant-numeric:tabular-nums}
   .comparison-images{display:flex;gap:48px}figure{margin:0}figcaption{font-size:11px;color:#666;margin-top:8px}.pixel-count{font-size:12px;color:#666;margin-top:12px;font-variant-numeric:tabular-nums}
   .view{display:none;--preview-size:calc(var(--view-size)*var(--zoom));min-height:calc(var(--preview-size) + 104px);padding-bottom:24px}
   .render-label{font-size:11px;line-height:16px;color:#666;margin:0 0 8px}
@@ -107,6 +130,7 @@ export function renderHtml(report, previews) {
   <h1>Icon changes</h1><p class="revisions">${escape(report.base)} → ${escape(report.head)}</p>
   <p class="summary">${report.totals.before} icons before · ${report.totals.after} icons after · ${report.totals.changed} icons with changes</p>
   <p class="help">Pixel checks use source SVG files with foreground colors set for the preview theme. They do not compare generated React components.</p>
+  <p class="help">SVG sizes are uncompressed source-file bytes. Savings can support an optimization patch after artwork and compatibility review.</p>
   ${report.reactGeneratorChanged ? '<p class="notice">The React generator changed. Do the package tests.</p>' : ''}
   ${report.categoriesChanged ? '<p class="notice">Category rules changed.</p>' : ''}
   ${report.collectionChanged ? '<p class="notice">Collection metadata changed. Read changes.json.</p>' : ''}

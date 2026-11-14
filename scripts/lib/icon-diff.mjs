@@ -136,6 +136,16 @@ export function compareSnapshots(before, after) {
         flags,
         before: a ? record(a) : null,
         after: b ? record(b) : null,
+        svgBytes: {
+          before:
+            typeof a?.svg === 'string'
+              ? Buffer.byteLength(a.svg, 'utf8')
+              : null,
+          after:
+            typeof b?.svg === 'string'
+              ? Buffer.byteLength(b.svg, 'utf8')
+              : null,
+        },
       });
   }
   const { icons: _oldIcons, ...oldCollection } = before.manifest;
