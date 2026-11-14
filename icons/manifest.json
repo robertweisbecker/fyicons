@@ -15693,19 +15693,19 @@
     },
     {
       "id": "154:11390",
+      "name": "basket",
       "originalName": "basket",
       "width": 16,
       "height": 16,
-      "name": "basket",
-      "baseName": "basket",
-      "filename": "basket-16.svg",
       "file": "svgs/154-11390.svg",
       "aliases": [
         "154-11390.svg"
       ],
       "notes": [],
-      "componentName": "IconBasket",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "baseName": "basket",
+      "updatedAt": "2026-11-14T04:55:18.627Z",
+      "filename": "basket-16.svg",
+      "componentName": "IconBasket"
     },
     {
       "id": "60:2333",
