@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconBellDotFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBellDotFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="bell-dot-fill"><path fill="currentColor" d="M8.004 1a1 1 0 0 1 1 1v.1q.55.114 1.048.34a3 3 0 0 0 2.846 3.558q.1.485.102 1.002v1.842c0 .062.02.123.057.173l.438.601c.723.991.015 2.384-1.211 2.384H10.49a2.5 2.5 0 0 1-4.975 0H3.717c-1.227 0-1.935-1.393-1.212-2.384l.439-.602A.3.3 0 0 0 3 8.842V7c0-2.42 1.72-4.44 4.004-4.901V2a1 1 0 0 1 1-1m-1.48 11a1.499 1.499 0 0 0 2.956 0z" /><rect width={4} height={4} x={11} y={1} fill="currentColor" rx={2} /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="bell-dot-fill"><path fill="currentColor" d="M8.004 1a1 1 0 0 1 1 1v.1l.05.011A3.5 3.5 0 0 0 13 7.353v1.489c0 .062.02.123.056.173l.439.601c.722.991.014 2.384-1.212 2.384H10.49a2.5 2.5 0 0 1-4.975 0H3.717c-1.227 0-1.935-1.393-1.212-2.384l.439-.602A.3.3 0 0 0 3 8.842V7c0-2.42 1.72-4.44 4.004-4.901V2a1 1 0 0 1 1-1m-1.48 11a1.499 1.499 0 0 0 2.956 0z" /><rect width={4} height={4} x={10} y={2} fill="currentColor" rx={2} /></SvgRoot>;
 });
 export default IconBellDotFill;
