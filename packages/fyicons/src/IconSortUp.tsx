@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconSortUp = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSortUp(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="sort-up"><path fill="currentColor" d="M12.5 12a.5.5 0 0 1 0 1h-10a.5.5 0 1 1 0-1zm-1.099-9.99a.5.5 0 0 1 .196 0l.046.013.047.016.04.02q.067.033.123.087l3 3a.501.501 0 0 1-.707.708L12 3.708v5.793a.5.5 0 0 1-1 0V3.706L8.854 5.854a.5.5 0 0 1-.708-.708l3-3a.5.5 0 0 1 .227-.127zM8.5 9a.5.5 0 0 1 0 1h-6a.5.5 0 1 1 0-1zm-3-3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="sort-up"><path fill="currentColor" d="M12.5 12a.5.5 0 0 1 0 1h-10a.5.5 0 1 1 0-1zm-1.099-9.99a.5.5 0 0 1 .196 0l.046.013.047.016.04.02q.067.033.123.087l3 3a.501.501 0 0 1-.707.708L12 3.708v5.793a.5.5 0 0 1-1 0V3.706L8.854 5.854a.5.5 0 0 1-.708-.708l3-3a.5.5 0 0 1 .227-.127zM8.5 9a.5.5 0 0 1 0 1h-6a.5.5 0 1 1 0-1zm-3-3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1z" />{props.children}</SvgRoot>;
 });
 export default IconSortUp;

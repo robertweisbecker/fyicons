@@ -4,6 +4,7 @@ import {
   ColorExamples,
   LoadingExamples,
   ProviderExample,
+  NestedIconsExample,
 } from '@/components/docs/ReactIconExamples';
 import {
   ToggleStateExample,
@@ -103,6 +104,22 @@ Or use a `className`; it will be added after the default classes:
 ```
 
 See [Styling](/docs/styling/) for CSS examples. CSS `color` rules and inline styles can override the `color` prop, which is an SVG presentation attribute.
+
+## Combining icons
+
+Combine icons by nesting one component inside another. The nested icon renders in the outer icon's 16×16 viewBox, so use `size`, `x`, and `y` to scale and position it.
+
+<NestedIconsExample />
+
+```tsx
+import { IconSquareDashed, IconUser } from 'fyicons';
+
+<IconSquareDashed size={48} aria-label="User placeholder">
+  <IconUser size={8} x={4} y={4} />
+</IconSquareDashed>;
+```
+
+Keep the nested icon within the outer 16×16 viewBox. You can also nest native SVG elements such as `circle`, `path`, and `text`.
 
 ## Usage with states
 
@@ -226,6 +243,7 @@ All props are optional. Components also accept standard React SVG props and even
 | `color`           | `string`                       | Sets the SVG color used by `currentColor`. Inherits the text color when omitted. |
 | `className`       | `string`                       | Adds your classes after `fy-icon` and `fy-{icon-name}`.                          |
 | `style`           | `React.CSSProperties`          | Applies inline CSS styles.                                                       |
+| `children`        | `React.ReactNode`              | Adds nested SVG elements or icon components after the icon artwork.              |
 | `title`           | `string`                       | Adds an SVG title. Does not change the decorative accessibility default.         |
 | `aria-label`      | `string`                       | Names the icon and sets `role="img"` by default.                                 |
 | `aria-labelledby` | `string`                       | References an external label. Also set `role="img"` and `aria-hidden={false}`.   |

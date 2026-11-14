@@ -189,6 +189,15 @@ function addInstanceSafeIds(jsx, iconName) {
       value: literal(iconName),
     },
   );
+  jsx.children.push({
+    type: 'JSXExpressionContainer',
+    expression: {
+      type: 'MemberExpression',
+      object: id('props'),
+      property: id('children'),
+      computed: false,
+    },
+  });
 }
 
 function assertComponentName(name) {

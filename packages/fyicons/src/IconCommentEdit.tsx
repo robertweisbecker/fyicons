@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconCommentEdit = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconCommentEdit(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="comment-edit"><path fill="currentColor" d="M8.5 1a6.5 6.5 0 1 1 0 13h-5A1.5 1.5 0 0 1 2 12.5v-5A6.5 6.5 0 0 1 8.5 1m0 1A5.5 5.5 0 0 0 3 7.5v5a.5.5 0 0 0 .5.5h5a5.5 5.5 0 1 0 0-11m.823 6.03-1.978 1.98a4.26 4.26 0 0 1-1.661 1.027l-.605.201a.251.251 0 0 1-.316-.316l.2-.605a4.25 4.25 0 0 1 1.028-1.66l1.979-1.98zm0-2.707a.958.958 0 0 1 1.354 1.354l-.647.646L8.677 5.97z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="comment-edit"><path fill="currentColor" d="M8.5 1a6.5 6.5 0 1 1 0 13h-5A1.5 1.5 0 0 1 2 12.5v-5A6.5 6.5 0 0 1 8.5 1m0 1A5.5 5.5 0 0 0 3 7.5v5a.5.5 0 0 0 .5.5h5a5.5 5.5 0 1 0 0-11m.823 6.03-1.978 1.98a4.26 4.26 0 0 1-1.661 1.027l-.605.201a.251.251 0 0 1-.316-.316l.2-.605a4.25 4.25 0 0 1 1.028-1.66l1.979-1.98zm0-2.707a.958.958 0 0 1 1.354 1.354l-.647.646L8.677 5.97z" />{props.children}</SvgRoot>;
 });
 export default IconCommentEdit;
