@@ -676,7 +676,7 @@
       ],
       "notes": [],
       "componentName": "IconBellSlash",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T01:21:16.081Z"
     },
     {
       "id": "101:4283",
@@ -708,7 +708,7 @@
       ],
       "notes": [],
       "componentName": "IconBell2Slash",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-14T01:21:16.081Z"
     },
     {
       "id": "132:3059",
@@ -23594,7 +23594,7 @@
       ],
       "componentName": "IconCommentNotification",
       "addedAt": "2026-11-07T09:04:04.547Z",
-      "updatedAt": "2026-11-07T09:04:04.547Z"
+      "updatedAt": "2026-11-14T01:21:16.081Z"
     },
     {
       "id": "1470:13121",
@@ -23763,7 +23763,7 @@
         "1480-13281.svg"
       ],
       "addedAt": "2026-11-08T22:31:35.249Z",
-      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-14T01:21:16.081Z",
       "componentName": "IconBell2Fill"
     },
     {
@@ -23795,7 +23795,7 @@
         "1480-13261.svg"
       ],
       "addedAt": "2026-11-08T22:31:35.249Z",
-      "updatedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-14T01:21:16.081Z",
       "componentName": "IconCommentReplyNotification"
     },
     {
@@ -24280,7 +24280,7 @@
       ],
       "file": "svgs/1569-11486.svg",
       "addedAt": "2026-11-11T02:14:21.664Z",
-      "updatedAt": "2026-11-11T02:14:21.664Z",
+      "updatedAt": "2026-11-14T01:21:16.081Z",
       "componentName": "IconBellDot"
     },
     {
@@ -24296,7 +24296,7 @@
       ],
       "file": "svgs/1569-11485.svg",
       "addedAt": "2026-11-11T02:14:21.664Z",
-      "updatedAt": "2026-11-11T02:14:21.664Z",
+      "updatedAt": "2026-11-14T01:21:16.081Z",
       "componentName": "IconBellDotFill"
     },
     {
