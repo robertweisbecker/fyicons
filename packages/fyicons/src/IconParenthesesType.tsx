@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconParenthesesType = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconParenthesesType(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="parentheses-type"><path fill="currentColor" d="M4.919 2a7 7 0 0 0-.214.317C3.658 4.004 3.178 6.01 3.18 8l.006.373c.055 1.867.538 3.728 1.52 5.31.065.105.14.216.213.317h-1.14c-1.224-1.746-1.802-3.89-1.799-6l.007-.412C2.055 5.612 2.634 3.632 3.78 2zm7.302 0c1.145 1.632 1.724 3.612 1.792 5.588L14.02 8c.003 2.11-.575 4.254-1.8 6h-1.139a7 7 0 0 0 .214-.317c.981-1.582 1.464-3.443 1.52-5.31L12.82 8c.002-1.99-.479-3.996-1.525-5.683A7 7 0 0 0 11.08 2z" /></SvgRoot>;
+});
+export default IconParenthesesType;
