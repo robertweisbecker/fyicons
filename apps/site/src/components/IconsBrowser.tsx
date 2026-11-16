@@ -26,6 +26,7 @@ import { byId, icons, type IconRecord } from '@/lib/catalog';
 import { downloadIcons } from '@/lib/downloads';
 import { isStringArray, useMobile, usePreference } from '@/lib/preferences';
 import { isEditableTarget } from '@/lib/keyboard';
+import { getRecentIconAddition } from '@/lib/icon-releases';
 
 const sortOptions = {
   alphabetical: { label: 'Name (A to Z)', icon: 'sort-down' },
@@ -74,6 +75,8 @@ export function IconsBrowser() {
         (icon) =>
           (activeCategory === 'all' ||
             icon.categories.includes(activeCategory)) &&
+          (sort !== 'addedAt' ||
+            getRecentIconAddition(icon.id) !== undefined) &&
           (showFilled || !icon.name.split('-').includes('fill')),
       ),
       query,
@@ -209,6 +212,7 @@ export function IconsBrowser() {
       }}
     >
       <SelectTrigger
+        data-icon-sort
         aria-label={`Sort icons by ${sortOptions[sort].label}`}
         variant="text"
       >
@@ -219,6 +223,7 @@ export function IconsBrowser() {
           <SelectItem
             key={value}
             value={value}
+            data-sort-value={value}
             leading={<Icon name={icon} className="text-muted" />}
           >
             {label}

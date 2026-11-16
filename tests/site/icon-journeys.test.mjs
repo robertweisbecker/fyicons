@@ -45,6 +45,29 @@ async function search(h, value) {
   });
 }
 
+test('Newest shows the same recent additions as tile indicators and other sorting restores older icons', async (t) => {
+  const h = await mountApp(t, 'https://example.test/icons/');
+  await h.resolveCategories();
+  const allIds = h.tiles.map((tile) => tile.dataset.id);
+  const recentIds = h.tiles
+    .filter((tile) => tile.hasAttribute('aria-description'))
+    .map((tile) => tile.dataset.id);
+  assert.ok(recentIds.length > 0 && recentIds.length < allIds.length);
+  await click(h.document.querySelector('[data-icon-sort]'));
+  await click(h.document.querySelector('[data-sort-value="addedAt"]'));
+  assert.deepEqual(
+    h.tiles.map((tile) => tile.dataset.id).sort(),
+    recentIds.sort(),
+  );
+  assert.ok(h.tiles.every((tile) => tile.hasAttribute('aria-description')));
+  await click(h.document.querySelector('[data-icon-sort]'));
+  await click(h.document.querySelector('[data-sort-value="alphabetical"]'));
+  assert.deepEqual(
+    h.tiles.map((tile) => tile.dataset.id).sort(),
+    allIds.sort(),
+  );
+});
+
 for (const mobile of [false, true]) {
   test(`${mobile ? 'mobile' : 'desktop'} users can find, inspect, copy and download an icon`, async (t) => {
     const h = await mountApp(t, 'https://example.test/icons/', { mobile });
