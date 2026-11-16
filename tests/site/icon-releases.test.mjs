@@ -4,7 +4,7 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createDomFixture } from './helpers/dom-fixture.mjs';
 
-test('icon tiles announce additions in the current minor release and inspectors preserve Added and Updated links', async (t) => {
+test('icon tiles announce additions in the latest two minor release lines and inspectors preserve Added and Updated links', async (t) => {
   const fixture = createDomFixture(t, 'https://example.test/icons/');
   const { icons } = await fixture.load('lib/catalog.ts');
   const { default: history } = await fixture.load('data/icon-releases.json');
@@ -16,6 +16,10 @@ test('icon tiles announce additions in the current minor release and inspectors 
     'components/IconReleaseInfo.tsx',
   );
   const minor = version.split('.').slice(0, 2).join('.') + '.';
+  const previous = history.releases.findLast(
+    (release) => !release.version.startsWith(minor),
+  )?.version;
+  const previousMinor = previous?.split('.').slice(0, 2).join('.') + '.';
   const samples = new Map();
   for (const icon of icons) {
     const added = history.releases.find((release) =>
@@ -26,13 +30,20 @@ test('icon tiles announce additions in the current minor release and inspectors 
       release.updated.includes(icon.id),
     )?.version;
     const kind = added.startsWith(minor)
-      ? 'recent'
-      : updated
-        ? 'updated'
-        : 'older';
+      ? 'current'
+      : added.startsWith(previousMinor)
+        ? 'previous'
+        : updated
+          ? 'updated'
+          : 'older';
     if (!samples.has(kind)) samples.set(kind, { icon, added, updated });
   }
-  assert.ok(samples.size, 'Release history supplies representative icons');
+  assert.ok(samples.has('current'), 'Current minor additions are covered');
+  assert.ok(samples.has('previous'), 'Previous minor additions are covered');
+  assert.ok(
+    samples.has('updated'),
+    'Updating an older icon does not make it new',
+  );
   for (const [kind, { icon, added, updated }] of samples) {
     fixture.window.document.body.innerHTML = renderToStaticMarkup(
       createElement(IconTile, {
@@ -45,7 +56,7 @@ test('icon tiles announce additions in the current minor release and inspectors 
     const tile = fixture.window.document.querySelector('.icon-tile');
     assert.equal(
       tile.getAttribute('aria-description'),
-      kind === 'recent' ? `Added in v${added}` : null,
+      ['current', 'previous'].includes(kind) ? `Added in v${added}` : null,
     );
     fixture.window.document.body.innerHTML = renderToStaticMarkup(
       createElement(IconReleaseInfo, { id: icon.id }),

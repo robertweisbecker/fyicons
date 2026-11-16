@@ -635,7 +635,8 @@
         "bee",
         "tree",
         "rabbit",
-        "turtle"
+        "turtle",
+        "leaf-monstera"
       ]
     },
     {
@@ -777,7 +778,9 @@
         "check-thick-xs",
         "rays",
         "rays-sm",
-        "shooting-star"
+        "shooting-star",
+        "square-fill",
+        "rays-corner"
       ]
     },
     {
@@ -1010,7 +1013,8 @@
         "ellipsis-v-sm",
         "text-title",
         "text-title-fill",
-        "letter-k"
+        "letter-k",
+        "spell-checked"
       ]
     }
   ]
