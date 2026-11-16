@@ -35,7 +35,7 @@ export function IconTile({
     if (await copy(value)) {
       notify(
         <>
-          <span className="font-semibold">{name}</span> {label} copied
+          &quot;<span className="font-semibold">{name}</span>&quot; copied
         </>,
         { id: `copy:${icon.id}:${label}`, icon: <Icon name={icon.id} /> },
       );
