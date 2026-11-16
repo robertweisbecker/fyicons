@@ -19633,21 +19633,23 @@
     },
     {
       "id": "732:428",
-      "originalName": "crown-lg",
+      "originalName": "crown-diamond",
       "width": 16,
       "height": 16,
-      "name": "crown-lg",
-      "baseName": "crown-lg",
-      "filename": "crown-lg-16.svg",
+      "name": "crown-diamond",
+      "baseName": "crown-diamond",
+      "filename": "crown-diamond-16.svg",
       "file": "svgs/732-428.svg",
       "aliases": [
         "732-428.svg",
         "crown-2",
-        "crown-2-16.svg"
+        "crown-2-16.svg",
+        "crown-lg",
+        "crown-lg-16.svg"
       ],
       "notes": [],
-      "componentName": "IconCrownLg",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "componentName": "IconCrownDiamond",
+      "updatedAt": "2026-11-16T09:24:30.884Z"
     },
     {
       "id": "732:455",
@@ -24393,6 +24395,234 @@
       "componentName": "IconEarbuds",
       "addedAt": "2026-11-11T08:10:45.858Z",
       "updatedAt": "2026-11-11T08:10:45.858Z"
+    },
+    {
+      "id": "1588:13937",
+      "name": "square-fill",
+      "baseName": "square",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-fill-16.svg",
+      "file": "svgs/1588-13937.svg",
+      "aliases": [
+        "1588-13937.svg"
+      ],
+      "variantSetId": "1588:13936",
+      "variantSetName": "square",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "componentName": "IconSquareFill",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1588:14014",
+      "name": "square-asterisk-fill",
+      "baseName": "square-asterisk",
+      "originalName": "Property 1=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-asterisk-fill-16.svg",
+      "file": "svgs/1588-14014.svg",
+      "aliases": [
+        "1588-14014.svg"
+      ],
+      "variantSetId": "1588:14018",
+      "variantSetName": "square-asterisk",
+      "variantProperties": {
+        "Property 1": "true"
+      },
+      "componentName": "IconSquareAsteriskFill",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1720:12541",
+      "name": "bookmark-check",
+      "baseName": "bookmark-check",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "bookmark-check-16.svg",
+      "file": "svgs/1720-12541.svg",
+      "aliases": [
+        "1720-12541.svg"
+      ],
+      "variantSetId": "1720:12540",
+      "variantSetName": "bookmark-check",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "componentName": "IconBookmarkCheck",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1720:12544",
+      "name": "bookmark-check-fill",
+      "baseName": "bookmark-check",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "bookmark-check-fill-16.svg",
+      "file": "svgs/1720-12544.svg",
+      "aliases": [
+        "1720-12544.svg"
+      ],
+      "variantSetId": "1720:12540",
+      "variantSetName": "bookmark-check",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "componentName": "IconBookmarkCheckFill",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1641:11684",
+      "name": "spell-checked",
+      "baseName": "spell-checked",
+      "originalName": "spell-checked",
+      "width": 16,
+      "height": 16,
+      "filename": "spell-checked-16.svg",
+      "file": "svgs/1641-11684.svg",
+      "aliases": [
+        "1641-11684.svg"
+      ],
+      "componentName": "IconSpellChecked",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1726:12970",
+      "name": "brightness-medium",
+      "baseName": "brightness-medium",
+      "originalName": "brightness-medium",
+      "width": 16,
+      "height": 16,
+      "filename": "brightness-medium-16.svg",
+      "file": "svgs/1726-12970.svg",
+      "aliases": [
+        "1726-12970.svg"
+      ],
+      "componentName": "IconBrightnessMedium",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1647:12009",
+      "name": "projector-on",
+      "baseName": "projector-on",
+      "originalName": "projector-on",
+      "width": 16,
+      "height": 16,
+      "filename": "projector-on-16.svg",
+      "file": "svgs/1647-12009.svg",
+      "aliases": [
+        "1647-12009.svg"
+      ],
+      "componentName": "IconProjectorOn",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1588:13804",
+      "name": "parentheses-type",
+      "baseName": "parentheses-type",
+      "originalName": "parentheses-type",
+      "width": 16,
+      "height": 16,
+      "filename": "parentheses-type-16.svg",
+      "file": "svgs/1588-13804.svg",
+      "aliases": [
+        "1588-13804.svg"
+      ],
+      "componentName": "IconParenthesesType",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1619:11865",
+      "name": "layout-table",
+      "baseName": "layout-table",
+      "originalName": "layout-table",
+      "width": 16,
+      "height": 16,
+      "filename": "layout-table-16.svg",
+      "file": "svgs/1619-11865.svg",
+      "aliases": [
+        "1619-11865.svg"
+      ],
+      "componentName": "IconLayoutTable",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1648:12080",
+      "name": "rays-corner",
+      "baseName": "rays-corner",
+      "originalName": "rays-corner",
+      "width": 16,
+      "height": 16,
+      "filename": "rays-corner-16.svg",
+      "file": "svgs/1648-12080.svg",
+      "aliases": [
+        "1648-12080.svg"
+      ],
+      "componentName": "IconRaysCorner",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1647:11846",
+      "name": "leaf-monstera",
+      "baseName": "leaf-monstera",
+      "originalName": "leaf-monstera",
+      "width": 16,
+      "height": 16,
+      "filename": "leaf-monstera-16.svg",
+      "file": "svgs/1647-11846.svg",
+      "aliases": [
+        "1647-11846.svg"
+      ],
+      "componentName": "IconLeafMonstera",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1724:12752",
+      "name": "film-clapper",
+      "baseName": "film-clapper",
+      "originalName": "film-clapper",
+      "width": 16,
+      "height": 16,
+      "filename": "film-clapper-16.svg",
+      "file": "svgs/1724-12752.svg",
+      "aliases": [
+        "1724-12752.svg"
+      ],
+      "componentName": "IconFilmClapper",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1727:13071",
+      "name": "cursor-default",
+      "baseName": "cursor-default",
+      "originalName": "cursor-default",
+      "width": 16,
+      "height": 16,
+      "filename": "cursor-default-16.svg",
+      "file": "svgs/1727-13071.svg",
+      "aliases": [
+        "1727-13071.svg"
+      ],
+      "componentName": "IconCursorDefault",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
     }
   ]
 }
