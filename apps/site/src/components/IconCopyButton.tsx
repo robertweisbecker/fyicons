@@ -43,8 +43,9 @@ export function IconCopyButton({
     if (success) {
       notify(
         <>
-          <span className="font-semibold">{getIconDisplayName(item)}</span>{' '}
-          copied to clipboard!
+          &quot;
+          <span className="font-semibold">{getIconDisplayName(item)}</span>
+          &quot; copied
         </>,
         { id: `copy:${item.id}`, icon: <Icon name={item.id} /> },
       );

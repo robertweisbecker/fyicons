@@ -31,9 +31,7 @@ export function InspectorLink({
     const success = await copy(link.url);
     if (success) link.publish();
     notify(
-      success
-        ? 'Link copied to clipboard!'
-        : 'Clipboard unavailable. Please try again.',
+      success ? 'Copied link' : 'Clipboard unavailable. Please try again.',
       { icon: success ? <Icon name="link" /> : undefined },
     );
     if (!mounted.current) return;

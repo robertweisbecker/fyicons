@@ -104,7 +104,7 @@ export function SiteHeader({
                   'rounded-full max-sm:size-9 max-sm:p-0',
                 )}
               >
-                <IconBeaker className="sm:hidden" />
+                <IconBeaker />
                 <span className="max-sm:hidden">Prototypes</span>
               </Link>
             </Tooltip>
