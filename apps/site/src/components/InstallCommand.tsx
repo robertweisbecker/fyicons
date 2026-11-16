@@ -35,7 +35,7 @@ export function InstallCommand({
   async function copyCommand() {
     const success = await copy(command);
     notify(
-      success ? `${label} copied.` : 'Clipboard unavailable. Please try again.',
+      success ? 'Copied command' : 'Clipboard unavailable. Please try again.',
       {
         id: `install:${command}`,
         icon: success ? <Icon name="terminal-square" /> : undefined,
