@@ -9928,7 +9928,7 @@
       ],
       "notes": [],
       "componentName": "IconImages",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "100:2289",
@@ -15805,7 +15805,7 @@
       ],
       "notes": [],
       "componentName": "IconTicket",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "114:2120",
@@ -18908,7 +18908,7 @@
       ],
       "notes": [],
       "componentName": "IconErasing",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "672:510",
@@ -20385,7 +20385,7 @@
       ],
       "notes": [],
       "componentName": "IconEraser",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "770:561",
@@ -22867,7 +22867,7 @@
       "notes": [],
       "componentName": "IconTelescope",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "1350:2717",
@@ -23120,11 +23120,13 @@
       "baseName": "die",
       "filename": "die-16.svg",
       "file": "svgs/1416-1095.svg",
-      "aliases": [],
+      "aliases": [
+        "1416-1095.svg"
+      ],
       "notes": [],
       "componentName": "IconDie",
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-13T18:09:19.720Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "1419:1272",
@@ -23167,11 +23169,13 @@
       "baseName": "die-fill",
       "filename": "die-fill-16.svg",
       "file": "svgs/1419-1446.svg",
-      "aliases": [],
+      "aliases": [
+        "1419-1446.svg"
+      ],
       "notes": [],
       "componentName": "IconDieFill",
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "1419:1511",
@@ -23250,7 +23254,7 @@
       "notes": [],
       "componentName": "IconAttachment",
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-14T05:06:25.731Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "1419:2186",
@@ -23958,7 +23962,7 @@
       "file": "svgs/1536-1257.svg",
       "componentName": "IconAttachments",
       "addedAt": "2026-11-10T05:13:31.958Z",
-      "updatedAt": "2026-11-14T05:06:25.731Z"
+      "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
       "id": "1537:1623",
