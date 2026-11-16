@@ -161,9 +161,9 @@ function ShapeGuides() {
 function ShapesCard() {
   const descriptionId = useId();
   const previewId = useId();
-  const [icon, setIcon] = useState<'grid' | 'shapes' | 'pointer-swarm'>(
-    'shapes',
-  );
+  const [icon, setIcon] = useState<
+    'grid' | 'shapes' | 'pointer-swarm' | 'apps' | 'math'
+  >('shapes');
 
   return (
     <StudyTile
@@ -201,7 +201,9 @@ function ShapesCard() {
               if (
                 value === 'grid' ||
                 value === 'shapes' ||
-                value === 'pointer-swarm'
+                value === 'apps' ||
+                value === 'pointer-swarm' ||
+                value === 'math'
               )
                 setIcon(value);
             }}
@@ -211,6 +213,8 @@ function ShapesCard() {
               { value: 'grid', label: 'Grid' },
               { value: 'shapes', label: 'Shapes' },
               { value: 'pointer-swarm', label: 'PointerSwarm' },
+              { value: 'apps', label: 'Apps' },
+              { value: 'math', label: 'Math' },
             ].map(({ value, label }) => (
               <DemoToggle
                 key={value}

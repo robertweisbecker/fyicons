@@ -28,10 +28,6 @@ const config = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
   images: { unoptimized: true },
-  experimental: {
-    // Avoid socket IPC for PostCSS and MDX loader workers.
-    turbopackPluginRuntimeStrategy: 'workerThreads',
-  },
   turbopack: {
     root: fileURLToPath(new URL('../..', import.meta.url)),
     rules: {
