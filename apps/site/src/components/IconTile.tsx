@@ -1,5 +1,5 @@
 import { ContextMenu } from '@base-ui/react/context-menu';
-import { IconRaysCorner } from 'fyicons';
+import IconRaysCorner from 'fyicons/icons/IconRaysCorner';
 import { Icon } from './Icon';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
