@@ -1,5 +1,21 @@
 # fyicons
 
+## 0.5.0
+
+### Minor Changes
+
+- cd37489: Add `bookmark-check`, `bookmark-check-fill`, `spell-checked`, `brightness-medium`, `projector-on`, `parentheses-type`, `square-fill`, `square-asterisk-fill`, `layout-table`, `rays-corner`, `leaf-monstera`, `film-clapper`, `cursor-default`. Rename `crown-lg` / `IconCrownLg` to `crown-diamond` / `IconCrownDiamond`; update existing imports.
+
+### Patch Changes
+
+- c94a809: Pixel-snap angled elements in `attachment`, `attachments`, `images`, `eraser`, `erasing`, `ticket`, `telescope`, `die`, `die-fill`.
+- 14dfc05: Refine checkmark alignment and stroke rendering in `clipboard-check`, `cloud-check`, `check`, `check-sm`, `check-thick`.
+- 3af21ec: Refine artwork and SVG stroke construction in `bookmark`, `bookmark-fill`, `paperclip`, `list-ordered`, `workflow-decision`, `tag-tilt`, `microphone-narrow`, `microphone-narrow-fill`, `thermometer`, `thermometer-min`, `thermometer-max`, `comment-reply-notification`. `bookmark`, `bookmark-fill`, `microphone-narrow`, `microphone-narrow-fill`, `thermometer` now use stroked paths instead of filled outlines.
+- c888841: Improve optical sizing and alignment in `shapes`, `grid-ruler`, `frame`, `arrow-down`, `arrow-up`, `sign`.
+- 80bd949: Refine playback shapes and alignment in `skip-backward`, `skip-forward`, `skip-forward-fill`.
+- 5e213f5: Improve small-size rendering in `dollar-sign`, `tablet-pencil`, `picture-frame`, `crown`, `crown-fill`, `eye-closed`, `eye-slash`, `eye-pupil-fill`, `eye-pupil-slash`, `eye-pupil-slash-fill`, `eye-slash-fill`, `turtle`.
+- b7cdfe9: Website: mark additions from the latest two minor release lines with `IconRaysCorner` and show the same set in Newest. Assign `square-fill`, `spell-checked`, `rays-corner`, and `leaf-monstera` to existing categories and refresh the pinned installation example.
+
 ## 0.4.2
 
 ### Patch Changes
