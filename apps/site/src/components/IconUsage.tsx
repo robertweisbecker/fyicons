@@ -48,14 +48,7 @@ export function IconUsage({ item }: { item: IconRecord }) {
 
   function copyToast(label: string) {
     return {
-      title: (
-        <>
-          <code className="rounded bg-hover px-[0.35em] py-[0.15em] font-mono text-[0.875em] wrap-anywhere text-ink">
-            {`<${item.componentName}>`}
-          </code>{' '}
-          {label} copied
-        </>
-      ),
+      title: `Copied ${label}`,
       icon: <Icon name={item.id} />,
     };
   }
@@ -75,14 +68,14 @@ export function IconUsage({ item }: { item: IconRecord }) {
         <UsageSection label="React" icon="atom" iconClass="text-sky-400">
           <CodeBlock
             aria-label="React import"
-            copyToast={copyToast('Import')}
+            copyToast={copyToast('import')}
             className="p-2 text-[11px] leading-5"
           >
             <code>{jsxImport}</code>
           </CodeBlock>
           <CodeBlock
             aria-label="React usage"
-            copyToast={copyToast('Usage')}
+            copyToast={copyToast('usage')}
             className="p-2 text-[11px] leading-5"
           >
             <code>{jsxUsage}</code>
@@ -91,7 +84,7 @@ export function IconUsage({ item }: { item: IconRecord }) {
         <UsageSection label="shadcn" icon="terminal">
           <CodeBlock
             aria-label="shadcn registry install"
-            copyToast={copyToast('Registry command')}
+            copyToast={copyToast('command')}
             className="p-2 text-[11px] leading-5"
           >
             <code>{shadcnCommand}</code>
