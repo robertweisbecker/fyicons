@@ -39,7 +39,7 @@ export function CodeBlock({
     setCopied(success);
     notify(
       success
-        ? (copyToast?.title ?? 'Code copied.')
+        ? (copyToast?.title ?? 'Copied code')
         : 'Clipboard unavailable. Select the code to copy it.',
       {
         id: `code-copy:${toastId}`,

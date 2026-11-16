@@ -19,14 +19,14 @@
 @layer components {
   .typeset {
     font-family: var(--typeset-font-body);
-    font-size: var(--typeset-size);
+    font-size: calc(var(--typeset-size) * 1.125);
     line-height: var(--typeset-leading);
     color: var(--color-ink, currentColor);
     overflow-wrap: break-word;
     margin-trim: block-start;
 
     @media (min-width: 48rem), print {
-      font-size: calc(var(--typeset-size) * 1.125);
+      font-size: var(--typeset-size);
     }
 
     --typeset-muted: var(
@@ -54,29 +54,35 @@
     &:where(p) {
       margin-block-start: var(--typeset-flow);
       margin-block-end: 0;
+      text-wrap: pretty;
+      color: var(--typeset-muted, currentColor);
     }
 
     /* Headings. */
     &:where(h1, h2, h3, h4, h5, h6) {
       color: var(--color-ink, currentColor);
       font-family: var(--typeset-font-heading);
-      font-weight: 600;
+      font-weight: 650;
       margin-block-end: 0;
     }
     &:where(h1) {
       font-size: 1.75em;
       line-height: 1.3;
+      letter-spacing: -0.03em;
       margin-block-start: var(--typeset-flow);
+      font-weight: 650;
     }
     &:where(h2) {
       font-size: 1.25em;
       line-height: 1.4;
+      letter-spacing: -0.02em;
       margin-block-start: calc(var(--typeset-flow) * 1.4);
     }
     &:where(h3) {
       font-size: 1.125em;
       line-height: 1.45;
-      margin-block-start: var(--typeset-flow);
+      letter-spacing: -0.02em;
+      margin-block-start: calc(var(--typeset-flow) * 1.2);
     }
     &:where(h4) {
       font-size: 1em;
@@ -114,9 +120,10 @@
 
     /* Links. */
     &:where(a) {
-      color: inherit;
-      font-weight: 500;
+      color: var(--color-ink, currentColor);
+      font-weight: 450;
       text-decoration-line: underline;
+      text-underline-offset: 0.1875em;
       text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
     }
     &:where(a:hover) {
@@ -281,9 +288,10 @@
         color-mix(in oklab, currentColor 8%, transparent)
       );
       font-family: var(--typeset-font-mono);
-      font-size: 0.75em;
+      font-size: 0.85em;
       border-radius: min(calc(var(--radius, 0.5em) * 0.6), 0.35em);
       padding: 0.125em 0.3em;
+      color: var(--color-ink, currentColor);
     }
 
     /* Code blocks. */
@@ -302,6 +310,7 @@
       overflow-x: auto;
       margin-block-start: calc(var(--typeset-flow) / 0.875);
       margin-block-end: 0;
+      color: var(--color-ink, currentColor);
     }
     &:where(pre code) {
       background-color: transparent;
@@ -318,6 +327,7 @@
       margin-block-start: var(--typeset-flow);
       margin-block-end: 0;
       margin-inline: 0;
+      color: var(--color-ink, currentColor);
     }
 
     /* Dividers. */
@@ -347,6 +357,7 @@
       overflow-x: auto;
       overflow-y: hidden;
       padding-block: 0.25em;
+      color: var(--color-ink, currentColor);
     }
 
     /* Media. */
