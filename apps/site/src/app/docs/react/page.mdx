@@ -151,7 +151,7 @@ Only icons imported from `fyicons/client` read these defaults. Use individual pr
 
 ## Compose icons
 
-Compose icons with nested icons or SVG elements. Children render after the built-in artwork, so they paint on top:
+Nest icons or SVG elements. Children render after the original artwork:
 
 <CompositionExample />
 
@@ -163,13 +163,11 @@ import { IconCircle, IconCheck } from 'fyicons';
 </IconCircle>;
 ```
 
-Each icon keeps its own SVG element and 16 × 16 viewBox. The child's numeric `x`, `y`, and `size` values use the parent's coordinate system: an 8-unit child fills half of a 16-unit parent. Scaling the outer icon scales the whole composition. Set the child size explicitly when using provider defaults.
+Each icon has its own SVG and 16 × 16 viewBox. Child `x`, `y`, and `size` use the parent's coordinates, so `size={8}` fills half its width. Scaling the parent scales the composition. Set child sizes explicitly with provider defaults.
 
-SVG children such as `<circle>`, `<g>`, and `<defs>` also work, as do fragments and components that return SVG content. Normal SVG clipping applies; set `overflow="visible"` on any SVG whose content should extend beyond its viewport. For backgrounds or full control of layer order, arrange the icons inside your own `<svg>`.
+Fragments and SVG components also work. Normal SVG clipping applies; use `overflow="visible"` to extend beyond a viewport. Use your own `<svg>` to control backgrounds and layer order.
 
-Label the outer icon when the composition conveys information; leave the nested icons decorative. Generated icon IDs stay unique. For IDs you add in custom definitions, use React's `useId()` and pass the matching references yourself.
-
-### SVG elements and definitions
+Label the outer icon and leave inner icons decorative. Generated IDs stay unique; use React's `useId()` for your own SVG definitions.
 
 Add SVG elements directly when you need a shape or annotation:
 
@@ -181,13 +179,13 @@ import { IconFolder } from 'fyicons';
 </IconFolder>;
 ```
 
-The `title` prop renders first, followed by the original artwork and then your children. Children add to the artwork; they do not replace it. Child props, refs, and event handlers keep their normal behavior. Each nested icon's ref points to its own SVG element.
+The `title` prop renders first, then artwork, then children. Child props, refs, and events retain normal behavior; each ref points to its own SVG.
 
-Color follows normal CSS inheritance. Icons from `fyicons/client` still read provider defaults individually, including when nested. Explicit child props override those defaults.
+Colors inherit through CSS. Nested `fyicons/client` icons each read provider defaults; explicit props take precedence.
 
 ### Cut out one icon with another
 
-Use a luminance mask to cut a shape out of a solid icon. White keeps the artwork visible; black removes it. Here, `IconStarFill` cuts a transparent star out of `IconCircleFill`. The two backgrounds show through the cutout.
+A luminance mask keeps white areas and removes black areas. Here, `IconStarFill` cuts a transparent star out of `IconCircleFill`, revealing each background.
 
 <MaskCompositionExample />
 
@@ -218,11 +216,11 @@ export function StarCutoutIcon() {
 }
 ```
 
-The outer SVG gives the mask and both icons a shared 16×16 coordinate system. Change its `width` and `height` to scale the whole result. Keep the inner circle at `size={16}`, and position the cutout with the star's `size`, `x`, and `y` props.
+The outer SVG provides the shared 16×16 coordinates. Change its `width` and `height` to scale the composition. Keep the circle at `size={16}`; adjust the star with `size`, `x`, and `y`.
 
-Set the cutout icon's `color` to black because FYIcons paths use `currentColor`. A `fill` prop on the icon does not override those path fills. Keep `maskType` set to `luminance`; an alpha mask uses opacity instead of brightness, so an opaque black icon would not make a hole.
+`color="black"` sets the cutout's `currentColor` paths; `fill` cannot override them. Use `luminance` masking because opaque black does not make a hole in an alpha mask.
 
-`useId()` gives each rendered instance its own mask ID. Name the outer SVG and leave the inner icons decorative. See the [SVG mask reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/mask) for more masking options.
+`useId()` keeps repeated masks independent. Label the outer SVG and leave inner icons decorative. See the [SVG mask reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/mask).
 
 ## Using states & variants
 
