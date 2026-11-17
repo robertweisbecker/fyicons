@@ -26744,6 +26744,34 @@
       "type": "registry:component"
     },
     {
+      "name": "square-fill",
+      "title": "IconSquareFill",
+      "description": "The square-fill icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconSquareFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconSquareFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
       "name": "square-dashed",
       "title": "IconSquareDashed",
       "description": "The square-dashed icon from FYIcons 0.5.0.",
@@ -26920,6 +26948,34 @@
           "path": "packages/fyicons/src/IconSquareAsterisk.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconSquareAsterisk.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "square-asterisk-fill",
+      "title": "IconSquareAsteriskFill",
+      "description": "The square-asterisk-fill icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconSquareAsteriskFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconSquareAsteriskFill.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -37252,62 +37308,6 @@
           "path": "packages/fyicons/src/IconEarbuds.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconEarbuds.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/base.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/base.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/types.ts",
-          "type": "registry:file",
-          "target": "@components/fyicons/types.ts"
-        },
-        {
-          "path": "LICENSE",
-          "type": "registry:file",
-          "target": "@components/fyicons/LICENSE"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "square-fill",
-      "title": "IconSquareFill",
-      "description": "The square-fill icon from FYIcons 0.5.0.",
-      "files": [
-        {
-          "path": "packages/fyicons/src/IconSquareFill.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/IconSquareFill.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/base.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/base.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/types.ts",
-          "type": "registry:file",
-          "target": "@components/fyicons/types.ts"
-        },
-        {
-          "path": "LICENSE",
-          "type": "registry:file",
-          "target": "@components/fyicons/LICENSE"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "square-asterisk-fill",
-      "title": "IconSquareAsteriskFill",
-      "description": "The square-asterisk-fill icon from FYIcons 0.5.0.",
-      "files": [
-        {
-          "path": "packages/fyicons/src/IconSquareAsteriskFill.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/IconSquareAsteriskFill.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
