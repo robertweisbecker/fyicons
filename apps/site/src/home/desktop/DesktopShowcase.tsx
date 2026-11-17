@@ -1,5 +1,4 @@
 import { createIconLookup } from '@/components/createIconLookup';
-
 import {
   DemoActivityBoundary,
   DeferredModule,
@@ -14,43 +13,44 @@ import {
   motion,
   MotionConfig,
 } from 'motion/react';
-
 import { DeviceBattery, DeviceClock } from '../DeviceStatus';
 import './DesktopShowcase.css';
+import {
+  IconPenTool,
+  IconFiles,
+  IconFilesTilt,
+  IconCode,
+  IconChatSparkles,
+  IconThumbsUp,
+  IconHeadphones,
+  IconCookieBiteFill,
+  IconStickyNoteAlt,
+  IconKeys,
+  IconKeyboard,
+  IconBluetooth,
+  IconWifiFill,
+  IconIntelligenceCupertino,
+  IconSwitchesCupertino,
+  IconUser,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconPenTool';
-import Glyph1 from 'fyicons/icons/IconFiles';
-import Glyph2 from 'fyicons/icons/IconFilesTilt';
-import Glyph3 from 'fyicons/icons/IconCode';
-import Glyph4 from 'fyicons/icons/IconChatSparkles';
-import Glyph5 from 'fyicons/icons/IconThumbsUp';
-import Glyph6 from 'fyicons/icons/IconHeadphones';
-import Glyph7 from 'fyicons/icons/IconCookieBiteFill';
-import Glyph8 from 'fyicons/icons/IconStickyNoteAlt';
-import Glyph9 from 'fyicons/icons/IconKeys';
-import Glyph10 from 'fyicons/icons/IconKeyboard';
-import Glyph11 from 'fyicons/icons/IconBluetooth';
-import Glyph12 from 'fyicons/icons/IconWifiFill';
-import Glyph13 from 'fyicons/icons/IconIntelligenceCupertino';
-import Glyph14 from 'fyicons/icons/IconSwitchesCupertino';
-import Glyph15 from 'fyicons/icons/IconUser';
 const Icon = createIconLookup({
-  'pen-tool': { Component: Glyph0, id: '58:9553' },
-  files: { Component: Glyph1, id: '717:4029' },
-  'files-tilt': { Component: Glyph2, id: '358:10825' },
-  code: { Component: Glyph3, id: '58:9531' },
-  'chat-sparkles': { Component: Glyph4, id: '344:9626' },
-  'thumbs-up': { Component: Glyph5, id: '171:11842' },
-  headphones: { Component: Glyph6, id: '123:2252' },
-  'cookie-bite-fill': { Component: Glyph7, id: '1013:19444' },
-  'sticky-note-alt': { Component: Glyph8, id: '392:10963' },
-  keys: { Component: Glyph9, id: '752:4321' },
-  keyboard: { Component: Glyph10, id: '495:2162' },
-  bluetooth: { Component: Glyph11, id: '101:4282' },
-  'wifi-fill': { Component: Glyph12, id: '498:491' },
-  'intelligence-cupertino': { Component: Glyph13, id: '1211:11163' },
-  'switches-cupertino': { Component: Glyph14, id: '732:1153' },
-  user: { Component: Glyph15, id: '101:2293' },
+  'pen-tool': IconPenTool,
+  files: IconFiles,
+  'files-tilt': IconFilesTilt,
+  code: IconCode,
+  'chat-sparkles': IconChatSparkles,
+  'thumbs-up': IconThumbsUp,
+  headphones: IconHeadphones,
+  'cookie-bite-fill': IconCookieBiteFill,
+  'sticky-note-alt': IconStickyNoteAlt,
+  keys: IconKeys,
+  keyboard: IconKeyboard,
+  bluetooth: IconBluetooth,
+  'wifi-fill': IconWifiFill,
+  'intelligence-cupertino': IconIntelligenceCupertino,
+  'switches-cupertino': IconSwitchesCupertino,
+  user: IconUser,
 });
 
 const apps = [

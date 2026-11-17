@@ -6,21 +6,17 @@ export type IconProps = GeneratedIconProps & {
   name: string;
 };
 
-/** Small, feature-local lookup composed from direct icon imports. */
+/** Feature-local lookup of explicitly imported React icon components. */
 export function createIconLookup(
-  entries: Record<
-    string,
-    { Component: ComponentType<GeneratedIconProps>; id: string }
-  >,
+  entries: Record<string, ComponentType<GeneratedIconProps>>,
 ) {
   return memo(
     forwardRef<SVGSVGElement, IconProps>(function Icon(
       { name, className = '', title, size, style, ...props },
       ref,
     ) {
-      const item = entries[name];
-      if (!item) throw new Error('Unknown static FYIcon: ' + name);
-      const Component = item.Component;
+      const Component = entries[name];
+      if (!Component) throw new Error('Unknown static FYIcon: ' + name);
 
       return (
         <Component
@@ -42,7 +38,6 @@ export function createIconLookup(
             title || props['aria-label'] ? (props.role ?? 'img') : props.role
           }
           focusable={props.focusable ?? false}
-          data-source-id={item.id}
           className={cn(
             'icon block shrink-0',
             size == null ? 'size-4' : '',

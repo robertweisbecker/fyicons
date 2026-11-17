@@ -1,35 +1,36 @@
 import { Collapsible } from '@base-ui/react/collapsible';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { fileIconColors, type ProjectFile } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
 import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { reviewChanges } from './codeReviewData';
+import {
+  IconArrowRight,
+  IconAtomReact,
+  IconChevronDownSm,
+  IconChevronRightSm,
+  IconEye,
+  IconEyeCheck,
+  IconEyeFill,
+  IconFileText,
+  IconGitBranch,
+  IconGitCommit,
+  IconMarkdownFill,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconArrowRight';
-import Glyph1 from 'fyicons/icons/IconAtomReact';
-import Glyph2 from 'fyicons/icons/IconChevronDownSm';
-import Glyph3 from 'fyicons/icons/IconChevronRightSm';
-import Glyph4 from 'fyicons/icons/IconEye';
-import Glyph5 from 'fyicons/icons/IconEyeCheck';
-import Glyph6 from 'fyicons/icons/IconEyeFill';
-import Glyph7 from 'fyicons/icons/IconFileText';
-import Glyph8 from 'fyicons/icons/IconGitBranch';
-import Glyph9 from 'fyicons/icons/IconGitCommit';
-import Glyph10 from 'fyicons/icons/IconMarkdownFill';
 const Icon = createIconLookup({
-  'arrow-right': { Component: Glyph0, id: '518:4810' },
-  'atom-react': { Component: Glyph1, id: '360:11316' },
-  'chevron-down-sm': { Component: Glyph2, id: '142:6351' },
-  'chevron-right-sm': { Component: Glyph3, id: '142:6353' },
-  eye: { Component: Glyph4, id: '120:2551' },
-  'eye-check': { Component: Glyph5, id: '849:16233' },
-  'eye-fill': { Component: Glyph6, id: '1010:19329' },
-  'file-text': { Component: Glyph7, id: '102:5434' },
-  'git-branch': { Component: Glyph8, id: '245:15918' },
-  'git-commit': { Component: Glyph9, id: '578:2492' },
-  'markdown-fill': { Component: Glyph10, id: '666:353' },
+  'arrow-right': IconArrowRight,
+  'atom-react': IconAtomReact,
+  'chevron-down-sm': IconChevronDownSm,
+  'chevron-right-sm': IconChevronRightSm,
+  eye: IconEye,
+  'eye-check': IconEyeCheck,
+  'eye-fill': IconEyeFill,
+  'file-text': IconFileText,
+  'git-branch': IconGitBranch,
+  'git-commit': IconGitCommit,
+  'markdown-fill': IconMarkdownFill,
 });
 
 export function CodeChanges({

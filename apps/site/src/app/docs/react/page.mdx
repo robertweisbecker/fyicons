@@ -49,7 +49,7 @@ import { IconSun } from 'fyicons';
 export function LightButton() {
   return (
     <button type="button" aria-label="Switch to light mode">
-      <IconSun size={24} color="#2563eb" />
+      <IconSun size={24} color="light-dark(#2563eb, #60a5fa)" />
     </button>
   );
 }
@@ -100,7 +100,7 @@ Use `color` to set an individual icon's color. Leave it unset to inherit the sur
 <ColorExamples />
 
 ```tsx
-<IconSun color="#2563eb" />
+<IconSun color="light-dark(#2563eb, #60a5fa)" />
 ```
 
 Or use a `className`; it will be added after the default classes:
@@ -108,8 +108,8 @@ Or use a `className`; it will be added after the default classes:
 <ClassNameExample />
 
 ```tsx
-<IconSun className="text-blue-500" />
-// Renders class="fy-icon fy-sun text-blue-500"
+<IconSun className="text-[light-dark(#3b82f6,#60a5fa)]" />
+// Renders class="fy-icon fy-sun text-[light-dark(#3b82f6,#60a5fa)]"
 ```
 
 See [Styling](/docs/styling/) for CSS examples. CSS `color` rules and inline styles can override the `color` prop, which is an SVG presentation attribute.
@@ -125,7 +125,11 @@ import { FyiProvider, IconBookmark, IconFolder } from 'fyicons/client';
 
 export function FileNavigation() {
   return (
-    <FyiProvider size={20} className="nav-icon" color="red">
+    <FyiProvider
+      size={20}
+      className="nav-icon"
+      color="light-dark(#dc2626, #f87171)"
+    >
       <nav aria-label="Files">
         <a href="/files">
           <IconFolder /> All files
@@ -168,7 +172,11 @@ export function LikeButton() {
 
   return (
     <button type="button" aria-pressed={liked} onClick={() => setLiked(!liked)}>
-      {liked ? <IconHeartFill className="text-red-400" /> : <IconHeart />}
+      {liked ? (
+        <IconHeartFill className="text-[light-dark(#ef4444,#f87171)]" />
+      ) : (
+        <IconHeart />
+      )}
       Like
     </button>
   );

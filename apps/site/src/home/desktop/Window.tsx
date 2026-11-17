@@ -1,46 +1,47 @@
 import { type ReactNode } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { cn } from '@/lib/utils';
 import { TooltipGroup } from '@/components/ui/tooltip';
+import {
+  IconArrowClockwise,
+  IconArrowLeft,
+  IconArrowRight,
+  IconCaretsMaximize,
+  IconCircleUserFill,
+  IconCircleXFill,
+  IconEllipsisV,
+  IconGas,
+  IconGasFill,
+  IconInfo,
+  IconInfoFill,
+  IconMinus,
+  IconPlus,
+  IconPuzzlePiece,
+  IconStarFill,
+  IconVideoFill,
+  IconX,
+  IconZoomIn,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconArrowClockwise';
-import Glyph1 from 'fyicons/icons/IconArrowLeft';
-import Glyph2 from 'fyicons/icons/IconArrowRight';
-import Glyph3 from 'fyicons/icons/IconCaretsMaximize';
-import Glyph4 from 'fyicons/icons/IconCircleUserFill';
-import Glyph5 from 'fyicons/icons/IconCircleXFill';
-import Glyph6 from 'fyicons/icons/IconEllipsisV';
-import Glyph7 from 'fyicons/icons/IconGas';
-import Glyph8 from 'fyicons/icons/IconGasFill';
-import Glyph9 from 'fyicons/icons/IconInfo';
-import Glyph10 from 'fyicons/icons/IconInfoFill';
-import Glyph11 from 'fyicons/icons/IconMinus';
-import Glyph12 from 'fyicons/icons/IconPlus';
-import Glyph13 from 'fyicons/icons/IconPuzzlePiece';
-import Glyph14 from 'fyicons/icons/IconStarFill';
-import Glyph15 from 'fyicons/icons/IconVideoFill';
-import Glyph16 from 'fyicons/icons/IconX';
-import Glyph17 from 'fyicons/icons/IconZoomIn';
 const Icon = createIconLookup({
-  'arrow-clockwise': { Component: Glyph0, id: '334:6678' },
-  'arrow-left': { Component: Glyph1, id: '518:4811' },
-  'arrow-right': { Component: Glyph2, id: '518:4810' },
-  'carets-maximize': { Component: Glyph3, id: '142:6370' },
-  'circle-user-fill': { Component: Glyph4, id: '390:10591' },
-  'circle-x-fill': { Component: Glyph5, id: '297:3620' },
-  'ellipsis-v': { Component: Glyph6, id: '487:403' },
-  gas: { Component: Glyph7, id: '1020:10458' },
-  'gas-fill': { Component: Glyph8, id: '1167:1488' },
-  info: { Component: Glyph9, id: '132:4339' },
-  'info-fill': { Component: Glyph10, id: '487:1519' },
-  minus: { Component: Glyph11, id: '667:899' },
-  plus: { Component: Glyph12, id: '120:2544' },
-  'puzzle-piece': { Component: Glyph13, id: '123:2474' },
-  'star-fill': { Component: Glyph14, id: '652:850' },
-  'video-fill': { Component: Glyph15, id: '1013:19487' },
-  x: { Component: Glyph16, id: '506:3897' },
-  'zoom-in': { Component: Glyph17, id: '716:3726' },
+  'arrow-clockwise': IconArrowClockwise,
+  'arrow-left': IconArrowLeft,
+  'arrow-right': IconArrowRight,
+  'carets-maximize': IconCaretsMaximize,
+  'circle-user-fill': IconCircleUserFill,
+  'circle-x-fill': IconCircleXFill,
+  'ellipsis-v': IconEllipsisV,
+  gas: IconGas,
+  'gas-fill': IconGasFill,
+  info: IconInfo,
+  'info-fill': IconInfoFill,
+  minus: IconMinus,
+  plus: IconPlus,
+  'puzzle-piece': IconPuzzlePiece,
+  'star-fill': IconStarFill,
+  'video-fill': IconVideoFill,
+  x: IconX,
+  'zoom-in': IconZoomIn,
 });
 
 export function WindowControls() {

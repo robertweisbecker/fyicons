@@ -1,149 +1,150 @@
 import { useState } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
 import { Badge } from '@/components/ui/badge';
+import {
+  IconAlert,
+  IconAlertFill,
+  IconApps,
+  IconArrowClockwise,
+  IconArrowLeft,
+  IconArrowRight,
+  IconCalendarSolid,
+  IconCarFront,
+  IconCaretDown,
+  IconCaretsMaximize,
+  IconChevronRightSm,
+  IconCircleCheckFill,
+  IconCircleQuestion,
+  IconCircleQuestionFill,
+  IconCircleUserFill,
+  IconCircleXFill,
+  IconClock,
+  IconClockFill,
+  IconCloud,
+  IconCollection,
+  IconDevices,
+  IconEllipsis,
+  IconEllipsisV,
+  IconEllipsisVSm,
+  IconFileCode,
+  IconFileSvg,
+  IconFileText,
+  IconFileZip,
+  IconFilterLines,
+  IconFolderOpen,
+  IconFolderOpenFill,
+  IconGas,
+  IconGasFill,
+  IconGaugeSimple,
+  IconGrid,
+  IconGridFill,
+  IconHardDrive,
+  IconHomeSimple,
+  IconHomeSimpleFill,
+  IconImage,
+  IconImageFill,
+  IconInfo,
+  IconInfoFill,
+  IconLightbulbSimpleFill,
+  IconListThumbnails,
+  IconListThumbnailsFill,
+  IconMinus,
+  IconPlus,
+  IconPuzzlePiece,
+  IconSearchSimple,
+  IconSettings,
+  IconSettingsFill,
+  IconSliders,
+  IconSlidersFill,
+  IconSparkleFill,
+  IconSparkles,
+  IconSparklesFill,
+  IconStar,
+  IconStarFill,
+  IconTrash,
+  IconUserFill,
+  IconUsersThreeFill,
+  IconUsersTwo,
+  IconUsersTwoFill,
+  IconVideo,
+  IconVideoFill,
+  IconX,
+  IconZoomIn,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconAlert';
-import Glyph1 from 'fyicons/icons/IconAlertFill';
-import Glyph2 from 'fyicons/icons/IconApps';
-import Glyph3 from 'fyicons/icons/IconArrowClockwise';
-import Glyph4 from 'fyicons/icons/IconArrowLeft';
-import Glyph5 from 'fyicons/icons/IconArrowRight';
-import Glyph6 from 'fyicons/icons/IconCalendarSolid';
-import Glyph7 from 'fyicons/icons/IconCarFront';
-import Glyph8 from 'fyicons/icons/IconCaretDown';
-import Glyph9 from 'fyicons/icons/IconCaretsMaximize';
-import Glyph10 from 'fyicons/icons/IconChevronRightSm';
-import Glyph11 from 'fyicons/icons/IconCircleCheckFill';
-import Glyph12 from 'fyicons/icons/IconCircleQuestion';
-import Glyph13 from 'fyicons/icons/IconCircleQuestionFill';
-import Glyph14 from 'fyicons/icons/IconCircleUserFill';
-import Glyph15 from 'fyicons/icons/IconCircleXFill';
-import Glyph16 from 'fyicons/icons/IconClock';
-import Glyph17 from 'fyicons/icons/IconClockFill';
-import Glyph18 from 'fyicons/icons/IconCloud';
-import Glyph19 from 'fyicons/icons/IconCollection';
-import Glyph20 from 'fyicons/icons/IconDevices';
-import Glyph21 from 'fyicons/icons/IconEllipsis';
-import Glyph22 from 'fyicons/icons/IconEllipsisV';
-import Glyph23 from 'fyicons/icons/IconEllipsisVSm';
-import Glyph24 from 'fyicons/icons/IconFileCode';
-import Glyph25 from 'fyicons/icons/IconFileSvg';
-import Glyph26 from 'fyicons/icons/IconFileText';
-import Glyph27 from 'fyicons/icons/IconFileZip';
-import Glyph28 from 'fyicons/icons/IconFilterLines';
-import Glyph29 from 'fyicons/icons/IconFolderOpen';
-import Glyph30 from 'fyicons/icons/IconFolderOpenFill';
-import Glyph31 from 'fyicons/icons/IconGas';
-import Glyph32 from 'fyicons/icons/IconGasFill';
-import Glyph33 from 'fyicons/icons/IconGaugeSimple';
-import Glyph34 from 'fyicons/icons/IconGrid';
-import Glyph35 from 'fyicons/icons/IconGridFill';
-import Glyph36 from 'fyicons/icons/IconHardDrive';
-import Glyph37 from 'fyicons/icons/IconHomeSimple';
-import Glyph38 from 'fyicons/icons/IconHomeSimpleFill';
-import Glyph39 from 'fyicons/icons/IconImage';
-import Glyph40 from 'fyicons/icons/IconImageFill';
-import Glyph41 from 'fyicons/icons/IconInfo';
-import Glyph42 from 'fyicons/icons/IconInfoFill';
-import Glyph43 from 'fyicons/icons/IconLightbulbSimpleFill';
-import Glyph44 from 'fyicons/icons/IconListThumbnails';
-import Glyph45 from 'fyicons/icons/IconListThumbnailsFill';
-import Glyph46 from 'fyicons/icons/IconMinus';
-import Glyph47 from 'fyicons/icons/IconPlus';
-import Glyph48 from 'fyicons/icons/IconPuzzlePiece';
-import Glyph49 from 'fyicons/icons/IconSearchSimple';
-import Glyph50 from 'fyicons/icons/IconSettings';
-import Glyph51 from 'fyicons/icons/IconSettingsFill';
-import Glyph52 from 'fyicons/icons/IconSliders';
-import Glyph53 from 'fyicons/icons/IconSlidersFill';
-import Glyph54 from 'fyicons/icons/IconSparkleFill';
-import Glyph55 from 'fyicons/icons/IconSparkles';
-import Glyph56 from 'fyicons/icons/IconSparklesFill';
-import Glyph57 from 'fyicons/icons/IconStar';
-import Glyph58 from 'fyicons/icons/IconStarFill';
-import Glyph59 from 'fyicons/icons/IconTrash';
-import Glyph60 from 'fyicons/icons/IconUserFill';
-import Glyph61 from 'fyicons/icons/IconUsersThreeFill';
-import Glyph62 from 'fyicons/icons/IconUsersTwo';
-import Glyph63 from 'fyicons/icons/IconUsersTwoFill';
-import Glyph64 from 'fyicons/icons/IconVideo';
-import Glyph65 from 'fyicons/icons/IconVideoFill';
-import Glyph66 from 'fyicons/icons/IconX';
-import Glyph67 from 'fyicons/icons/IconZoomIn';
 const Icon = createIconLookup({
-  alert: { Component: Glyph0, id: '667:563' },
-  'alert-fill': { Component: Glyph1, id: '667:570' },
-  apps: { Component: Glyph2, id: '507:4365' },
-  'arrow-clockwise': { Component: Glyph3, id: '334:6678' },
-  'arrow-left': { Component: Glyph4, id: '518:4811' },
-  'arrow-right': { Component: Glyph5, id: '518:4810' },
-  'calendar-solid': { Component: Glyph6, id: '96:1603' },
-  'car-front': { Component: Glyph7, id: '919:32915' },
-  'caret-down': { Component: Glyph8, id: '140:5990' },
-  'carets-maximize': { Component: Glyph9, id: '142:6370' },
-  'chevron-right-sm': { Component: Glyph10, id: '142:6353' },
-  'circle-check-fill': { Component: Glyph11, id: '506:2715' },
-  'circle-question': { Component: Glyph12, id: '124:2591' },
-  'circle-question-fill': { Component: Glyph13, id: '578:2391' },
-  'circle-user-fill': { Component: Glyph14, id: '390:10591' },
-  'circle-x-fill': { Component: Glyph15, id: '297:3620' },
-  clock: { Component: Glyph16, id: '245:15235' },
-  'clock-fill': { Component: Glyph17, id: '716:3694' },
-  cloud: { Component: Glyph18, id: '129:5293' },
-  collection: { Component: Glyph19, id: '737:7261' },
-  devices: { Component: Glyph20, id: '378:8613' },
-  ellipsis: { Component: Glyph21, id: '101:4340' },
-  'ellipsis-v': { Component: Glyph22, id: '487:403' },
-  'ellipsis-v-sm': { Component: Glyph23, id: '101:4341' },
-  'file-code': { Component: Glyph24, id: '548:8661' },
-  'file-svg': { Component: Glyph25, id: '820:11248' },
-  'file-text': { Component: Glyph26, id: '102:5434' },
-  'file-zip': { Component: Glyph27, id: '892:30534' },
-  'filter-lines': { Component: Glyph28, id: '388:10332' },
-  'folder-open': { Component: Glyph29, id: '102:4393' },
-  'folder-open-fill': { Component: Glyph30, id: '741:7694' },
-  gas: { Component: Glyph31, id: '1020:10458' },
-  'gas-fill': { Component: Glyph32, id: '1167:1488' },
-  'gauge-simple': { Component: Glyph33, id: '375:6428' },
-  grid: { Component: Glyph34, id: '102:4381' },
-  'grid-fill': { Component: Glyph35, id: '811:8579' },
-  'hard-drive': { Component: Glyph36, id: '505:527' },
-  'home-simple': { Component: Glyph37, id: '282:16541' },
-  'home-simple-fill': { Component: Glyph38, id: '487:1759' },
-  image: { Component: Glyph39, id: '132:4345' },
-  'image-fill': { Component: Glyph40, id: '1347:1840' },
-  info: { Component: Glyph41, id: '132:4339' },
-  'info-fill': { Component: Glyph42, id: '487:1519' },
-  'lightbulb-simple-fill': { Component: Glyph43, id: '849:17265' },
-  'list-thumbnails': { Component: Glyph44, id: '282:16080' },
-  'list-thumbnails-fill': { Component: Glyph45, id: '944:33003' },
-  minus: { Component: Glyph46, id: '667:899' },
-  plus: { Component: Glyph47, id: '120:2544' },
-  'puzzle-piece': { Component: Glyph48, id: '123:2474' },
-  'search-simple': { Component: Glyph49, id: '811:9121' },
-  settings: { Component: Glyph50, id: '60:2302' },
-  'settings-fill': { Component: Glyph51, id: '578:2559' },
-  sliders: { Component: Glyph52, id: '328:6275' },
-  'sliders-fill': { Component: Glyph53, id: '1084:11018' },
-  'sparkle-fill': { Component: Glyph54, id: '856:18075' },
-  sparkles: { Component: Glyph55, id: '11:883' },
-  'sparkles-fill': { Component: Glyph56, id: '856:18071' },
-  star: { Component: Glyph57, id: '127:4125' },
-  'star-fill': { Component: Glyph58, id: '652:850' },
-  trash: { Component: Glyph59, id: '100:2287' },
-  'user-fill': { Component: Glyph60, id: '328:6260' },
-  'users-three-fill': { Component: Glyph61, id: '606:5304' },
-  'users-two': { Component: Glyph62, id: '505:647' },
-  'users-two-fill': { Component: Glyph63, id: '578:2616' },
-  video: { Component: Glyph64, id: '734:6316' },
-  'video-fill': { Component: Glyph65, id: '1013:19487' },
-  x: { Component: Glyph66, id: '506:3897' },
-  'zoom-in': { Component: Glyph67, id: '716:3726' },
+  alert: IconAlert,
+  'alert-fill': IconAlertFill,
+  apps: IconApps,
+  'arrow-clockwise': IconArrowClockwise,
+  'arrow-left': IconArrowLeft,
+  'arrow-right': IconArrowRight,
+  'calendar-solid': IconCalendarSolid,
+  'car-front': IconCarFront,
+  'caret-down': IconCaretDown,
+  'carets-maximize': IconCaretsMaximize,
+  'chevron-right-sm': IconChevronRightSm,
+  'circle-check-fill': IconCircleCheckFill,
+  'circle-question': IconCircleQuestion,
+  'circle-question-fill': IconCircleQuestionFill,
+  'circle-user-fill': IconCircleUserFill,
+  'circle-x-fill': IconCircleXFill,
+  clock: IconClock,
+  'clock-fill': IconClockFill,
+  cloud: IconCloud,
+  collection: IconCollection,
+  devices: IconDevices,
+  ellipsis: IconEllipsis,
+  'ellipsis-v': IconEllipsisV,
+  'ellipsis-v-sm': IconEllipsisVSm,
+  'file-code': IconFileCode,
+  'file-svg': IconFileSvg,
+  'file-text': IconFileText,
+  'file-zip': IconFileZip,
+  'filter-lines': IconFilterLines,
+  'folder-open': IconFolderOpen,
+  'folder-open-fill': IconFolderOpenFill,
+  gas: IconGas,
+  'gas-fill': IconGasFill,
+  'gauge-simple': IconGaugeSimple,
+  grid: IconGrid,
+  'grid-fill': IconGridFill,
+  'hard-drive': IconHardDrive,
+  'home-simple': IconHomeSimple,
+  'home-simple-fill': IconHomeSimpleFill,
+  image: IconImage,
+  'image-fill': IconImageFill,
+  info: IconInfo,
+  'info-fill': IconInfoFill,
+  'lightbulb-simple-fill': IconLightbulbSimpleFill,
+  'list-thumbnails': IconListThumbnails,
+  'list-thumbnails-fill': IconListThumbnailsFill,
+  minus: IconMinus,
+  plus: IconPlus,
+  'puzzle-piece': IconPuzzlePiece,
+  'search-simple': IconSearchSimple,
+  settings: IconSettings,
+  'settings-fill': IconSettingsFill,
+  sliders: IconSliders,
+  'sliders-fill': IconSlidersFill,
+  'sparkle-fill': IconSparkleFill,
+  sparkles: IconSparkles,
+  'sparkles-fill': IconSparklesFill,
+  star: IconStar,
+  'star-fill': IconStarFill,
+  trash: IconTrash,
+  'user-fill': IconUserFill,
+  'users-three-fill': IconUsersThreeFill,
+  'users-two': IconUsersTwo,
+  'users-two-fill': IconUsersTwoFill,
+  video: IconVideo,
+  'video-fill': IconVideoFill,
+  x: IconX,
+  'zoom-in': IconZoomIn,
 });
 
 const locations = [

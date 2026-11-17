@@ -2,9 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import IconSunFill from 'fyicons/icons/IconSunFill';
-import IconMoon from 'fyicons/icons/IconMoon';
-import IconBeaker from 'fyicons/icons/IconBeaker';
+import { IconSunFill, IconMoon, IconBeaker } from 'fyicons';
+
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { BrandWordmark, BrandWordmarkMobile } from './BrandWordmark';
 import { GitHubIcon, NpmIcon } from './BrandIcons';

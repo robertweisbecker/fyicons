@@ -8,6 +8,7 @@ import { mountApp } from './helpers/app-readiness-harness.mjs';
 function captureDownloads(t, window) {
   const blobs = new Map();
   const downloads = [];
+  const listeners = new Set();
   t.mock.method(URL, 'createObjectURL', (blob) => {
     const url = `blob:download-${blobs.size}`;
     blobs.set(url, blob);
@@ -20,8 +21,23 @@ function captureDownloads(t, window) {
       href: this.href,
       blob: blobs.get(this.href),
     });
+    for (const resolve of listeners) resolve();
+    listeners.clear();
   });
-  return downloads;
+  function nextDownload() {
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(
+        () => reject(new Error('Download did not complete')),
+        10_000,
+      );
+      t.after(() => clearTimeout(timeout));
+      listeners.add(() => {
+        clearTimeout(timeout);
+        resolve();
+      });
+    });
+  }
+  return { downloads, nextDownload };
 }
 
 const click = (element) =>
@@ -77,7 +93,7 @@ for (const mobile of [false, true]) {
   test(`${mobile ? 'mobile' : 'desktop'} users can find, inspect, copy and download an icon`, async (t) => {
     const h = await mountApp(t, 'https://example.test/icons/', { mobile });
     await h.resolveCategories();
-    const downloads = captureDownloads(t, h.window);
+    const { downloads } = captureDownloads(t, h.window);
     const copied = [];
     Object.defineProperty(h.window.navigator, 'clipboard', {
       configurable: true,
@@ -189,7 +205,7 @@ test('users can filter, save and remove icons, then export the selection or full
       { id: 'buildings', name: 'Buildings', icon: 'home', keywords: ['home'] },
     ],
   });
-  const downloads = captureDownloads(t, h.window);
+  const { downloads, nextDownload } = captureDownloads(t, h.window);
   await click(
     h.document.querySelector(
       '[aria-label="Icon categories"] button[aria-label="Buildings"]',
@@ -212,7 +228,25 @@ test('users can filter, save and remove icons, then export the selection or full
   assert.equal(dialog.querySelectorAll('li').length, 2);
   await click(dialog.querySelector('[data-remove-icon]'));
   assert.equal(dialog.querySelectorAll('li').length, 1);
+  // Hold the source response to exercise real asynchronous packaging, rather than
+  // assuming React's click flush also finishes fetches and Web Crypto work.
+  const sourceGate = Promise.withResolvers();
+  const fetchSource = globalThis.fetch;
+  t.mock.method(globalThis, 'fetch', async (url, ...args) => {
+    if (String(url).includes('/icon-sources/')) await sourceGate.promise;
+    return fetchSource(url, ...args);
+  });
+  const selectedDownload = nextDownload();
   await click(dialog.querySelector('button[data-download-icons="selected"]'));
+  assert.equal(
+    downloads.length,
+    0,
+    'no archive downloads before its sources resolve',
+  );
+  await act(async () => {
+    sourceGate.resolve();
+    await selectedDownload;
+  });
   assert.equal(downloads[0].filename, 'fyicons-selected.zip');
   const manifest = async ({ blob }) => {
     assert.equal(blob.type, 'application/zip');
@@ -223,7 +257,11 @@ test('users can filter, save and remove icons, then export the selection or full
     (await manifest(downloads[0])).icons.map(({ id }) => id),
     [selected[1].id],
   );
+  const fullDownload = nextDownload();
   await click(h.document.querySelector('button[data-download-icons="all"]'));
+  await act(async () => {
+    await fullDownload;
+  });
   assert.equal(downloads.length, 2);
   assert.equal(downloads[1].filename, 'fyicons.zip');
   assert.equal(downloads[1].href, 'https://example.test/downloads/fyicons.zip');

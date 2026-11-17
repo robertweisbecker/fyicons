@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useIconSource } from '@/lib/use-icon-source';
 import { ContextMenu } from '@base-ui/react/context-menu';
-import IconRaysCorner from 'fyicons/icons/IconRaysCorner';
+import { IconRaysCorner } from 'fyicons';
+
 import { Icon } from './Icon';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';

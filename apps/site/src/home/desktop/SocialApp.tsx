@@ -1,118 +1,119 @@
 import { useState } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
 import { createDemoControls } from '@/demos/components/DemoControls';
 import { createGlyph } from '../Study';
 import { Window } from './Window';
+import {
+  IconArrowClockwise,
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowsRepost,
+  IconAtSign,
+  IconBell,
+  IconBellFill,
+  IconBellSlash,
+  IconBird,
+  IconBookmark,
+  IconBookmarkFill,
+  IconBriefcase,
+  IconCalendarSimpleDays,
+  IconCaretsMaximize,
+  IconChartHistogram,
+  IconChatRound,
+  IconCheck,
+  IconChevronRight,
+  IconCircleUserFill,
+  IconCircleXFill,
+  IconEllipsis,
+  IconEllipsisV,
+  IconEmojiMelt,
+  IconEmojiMeltFill,
+  IconGas,
+  IconGasFill,
+  IconHeartAlt,
+  IconHeartAltFill,
+  IconHomeBirdhouse,
+  IconHomeBirdhouseFill,
+  IconImages,
+  IconInfo,
+  IconInfoFill,
+  IconLink,
+  IconMapMarkerRound,
+  IconMinus,
+  IconPlus,
+  IconPosts,
+  IconPuzzlePiece,
+  IconQuill,
+  IconSearch,
+  IconShare,
+  IconSparkles,
+  IconSparklesFill,
+  IconStarFill,
+  IconUsersThreeFill,
+  IconUsersTwoFill,
+  IconVerifiedFill,
+  IconVideoFill,
+  IconVideos,
+  IconX,
+  IconZoomIn,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconArrowClockwise';
-import Glyph1 from 'fyicons/icons/IconArrowLeft';
-import Glyph2 from 'fyicons/icons/IconArrowRight';
-import Glyph3 from 'fyicons/icons/IconArrowsRepost';
-import Glyph4 from 'fyicons/icons/IconAtSign';
-import Glyph5 from 'fyicons/icons/IconBell';
-import Glyph6 from 'fyicons/icons/IconBellFill';
-import Glyph7 from 'fyicons/icons/IconBellSlash';
-import Glyph8 from 'fyicons/icons/IconBird';
-import Glyph9 from 'fyicons/icons/IconBookmark';
-import Glyph10 from 'fyicons/icons/IconBookmarkFill';
-import Glyph11 from 'fyicons/icons/IconBriefcase';
-import Glyph12 from 'fyicons/icons/IconCalendarSimpleDays';
-import Glyph13 from 'fyicons/icons/IconCaretsMaximize';
-import Glyph14 from 'fyicons/icons/IconChartHistogram';
-import Glyph15 from 'fyicons/icons/IconChatRound';
-import Glyph16 from 'fyicons/icons/IconCheck';
-import Glyph17 from 'fyicons/icons/IconChevronRight';
-import Glyph18 from 'fyicons/icons/IconCircleUserFill';
-import Glyph19 from 'fyicons/icons/IconCircleXFill';
-import Glyph20 from 'fyicons/icons/IconEllipsis';
-import Glyph21 from 'fyicons/icons/IconEllipsisV';
-import Glyph22 from 'fyicons/icons/IconEmojiMelt';
-import Glyph23 from 'fyicons/icons/IconEmojiMeltFill';
-import Glyph24 from 'fyicons/icons/IconGas';
-import Glyph25 from 'fyicons/icons/IconGasFill';
-import Glyph26 from 'fyicons/icons/IconHeartAlt';
-import Glyph27 from 'fyicons/icons/IconHeartAltFill';
-import Glyph28 from 'fyicons/icons/IconHomeBirdhouse';
-import Glyph29 from 'fyicons/icons/IconHomeBirdhouseFill';
-import Glyph30 from 'fyicons/icons/IconImages';
-import Glyph31 from 'fyicons/icons/IconInfo';
-import Glyph32 from 'fyicons/icons/IconInfoFill';
-import Glyph33 from 'fyicons/icons/IconLink';
-import Glyph34 from 'fyicons/icons/IconMapMarkerRound';
-import Glyph35 from 'fyicons/icons/IconMinus';
-import Glyph36 from 'fyicons/icons/IconPlus';
-import Glyph37 from 'fyicons/icons/IconPosts';
-import Glyph38 from 'fyicons/icons/IconPuzzlePiece';
-import Glyph39 from 'fyicons/icons/IconQuill';
-import Glyph40 from 'fyicons/icons/IconSearch';
-import Glyph41 from 'fyicons/icons/IconShare';
-import Glyph42 from 'fyicons/icons/IconSparkles';
-import Glyph43 from 'fyicons/icons/IconSparklesFill';
-import Glyph44 from 'fyicons/icons/IconStarFill';
-import Glyph45 from 'fyicons/icons/IconUsersThreeFill';
-import Glyph46 from 'fyicons/icons/IconUsersTwoFill';
-import Glyph47 from 'fyicons/icons/IconVerifiedFill';
-import Glyph48 from 'fyicons/icons/IconVideoFill';
-import Glyph49 from 'fyicons/icons/IconVideos';
-import Glyph50 from 'fyicons/icons/IconX';
-import Glyph51 from 'fyicons/icons/IconZoomIn';
 const Icon = createIconLookup({
-  'arrow-clockwise': { Component: Glyph0, id: '334:6678' },
-  'arrow-left': { Component: Glyph1, id: '518:4811' },
-  'arrow-right': { Component: Glyph2, id: '518:4810' },
-  'arrows-repost': { Component: Glyph3, id: '593:3691' },
-  'at-sign': { Component: Glyph4, id: '117:2152' },
-  bell: { Component: Glyph5, id: '101:4284' },
-  'bell-fill': { Component: Glyph6, id: '1205:10916' },
-  'bell-slash': { Component: Glyph7, id: '705:2000' },
-  bird: { Component: Glyph8, id: '1001:822' },
-  bookmark: { Component: Glyph9, id: '124:2571' },
-  'bookmark-fill': { Component: Glyph10, id: '506:2914' },
-  briefcase: { Component: Glyph11, id: '727:332' },
-  'calendar-simple-days': { Component: Glyph12, id: '736:7112' },
-  'carets-maximize': { Component: Glyph13, id: '142:6370' },
-  'chart-histogram': { Component: Glyph14, id: '736:7198' },
-  'chat-round': { Component: Glyph15, id: '245:15024' },
-  check: { Component: Glyph16, id: '96:1604' },
-  'chevron-right': { Component: Glyph17, id: '506:3912' },
-  'circle-user-fill': { Component: Glyph18, id: '390:10591' },
-  'circle-x-fill': { Component: Glyph19, id: '297:3620' },
-  ellipsis: { Component: Glyph20, id: '101:4340' },
-  'ellipsis-v': { Component: Glyph21, id: '487:403' },
-  'emoji-melt': { Component: Glyph22, id: '360:11297' },
-  'emoji-melt-fill': { Component: Glyph23, id: '1323:11766' },
-  gas: { Component: Glyph24, id: '1020:10458' },
-  'gas-fill': { Component: Glyph25, id: '1167:1488' },
-  'heart-alt': { Component: Glyph26, id: '378:8264' },
-  'heart-alt-fill': { Component: Glyph27, id: '378:8265' },
-  'home-birdhouse': { Component: Glyph28, id: '313:17365' },
-  'home-birdhouse-fill': { Component: Glyph29, id: '667:678' },
-  images: { Component: Glyph30, id: '132:4366' },
-  info: { Component: Glyph31, id: '132:4339' },
-  'info-fill': { Component: Glyph32, id: '487:1519' },
-  link: { Component: Glyph33, id: '58:9555' },
-  'map-marker-round': { Component: Glyph34, id: '376:6544' },
-  minus: { Component: Glyph35, id: '667:899' },
-  plus: { Component: Glyph36, id: '120:2544' },
-  posts: { Component: Glyph37, id: '521:7821' },
-  'puzzle-piece': { Component: Glyph38, id: '123:2474' },
-  quill: { Component: Glyph39, id: '1470:13121' },
-  search: { Component: Glyph40, id: '101:4349' },
-  share: { Component: Glyph41, id: '343:9459' },
-  sparkles: { Component: Glyph42, id: '11:883' },
-  'sparkles-fill': { Component: Glyph43, id: '856:18071' },
-  'star-fill': { Component: Glyph44, id: '652:850' },
-  'users-three-fill': { Component: Glyph45, id: '606:5304' },
-  'users-two-fill': { Component: Glyph46, id: '578:2616' },
-  'verified-fill': { Component: Glyph47, id: '282:17261' },
-  'video-fill': { Component: Glyph48, id: '1013:19487' },
-  videos: { Component: Glyph49, id: '752:5509' },
-  x: { Component: Glyph50, id: '506:3897' },
-  'zoom-in': { Component: Glyph51, id: '716:3726' },
+  'arrow-clockwise': IconArrowClockwise,
+  'arrow-left': IconArrowLeft,
+  'arrow-right': IconArrowRight,
+  'arrows-repost': IconArrowsRepost,
+  'at-sign': IconAtSign,
+  bell: IconBell,
+  'bell-fill': IconBellFill,
+  'bell-slash': IconBellSlash,
+  bird: IconBird,
+  bookmark: IconBookmark,
+  'bookmark-fill': IconBookmarkFill,
+  briefcase: IconBriefcase,
+  'calendar-simple-days': IconCalendarSimpleDays,
+  'carets-maximize': IconCaretsMaximize,
+  'chart-histogram': IconChartHistogram,
+  'chat-round': IconChatRound,
+  check: IconCheck,
+  'chevron-right': IconChevronRight,
+  'circle-user-fill': IconCircleUserFill,
+  'circle-x-fill': IconCircleXFill,
+  ellipsis: IconEllipsis,
+  'ellipsis-v': IconEllipsisV,
+  'emoji-melt': IconEmojiMelt,
+  'emoji-melt-fill': IconEmojiMeltFill,
+  gas: IconGas,
+  'gas-fill': IconGasFill,
+  'heart-alt': IconHeartAlt,
+  'heart-alt-fill': IconHeartAltFill,
+  'home-birdhouse': IconHomeBirdhouse,
+  'home-birdhouse-fill': IconHomeBirdhouseFill,
+  images: IconImages,
+  info: IconInfo,
+  'info-fill': IconInfoFill,
+  link: IconLink,
+  'map-marker-round': IconMapMarkerRound,
+  minus: IconMinus,
+  plus: IconPlus,
+  posts: IconPosts,
+  'puzzle-piece': IconPuzzlePiece,
+  quill: IconQuill,
+  search: IconSearch,
+  share: IconShare,
+  sparkles: IconSparkles,
+  'sparkles-fill': IconSparklesFill,
+  'star-fill': IconStarFill,
+  'users-three-fill': IconUsersThreeFill,
+  'users-two-fill': IconUsersTwoFill,
+  'verified-fill': IconVerifiedFill,
+  'video-fill': IconVideoFill,
+  videos: IconVideos,
+  x: IconX,
+  'zoom-in': IconZoomIn,
 });
 
 function SocialPost() {

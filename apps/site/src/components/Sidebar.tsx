@@ -75,6 +75,7 @@ export function SidebarItem({
   return href ? (
     <Link
       {...props}
+      prefetch={false}
       href={href}
       aria-current={active ? 'page' : undefined}
       className={className}

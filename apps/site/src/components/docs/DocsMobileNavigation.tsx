@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { Icon } from '@/components/UIIcon';
 import { Button } from '@/components/ui/button';
@@ -78,20 +78,24 @@ export function DocsMobileNavigation({
           className="w-72"
         >
           {pages.map((item) => (
-            <MenuLinkItem
-              key={item.href}
-              href={item.href}
-              render={<Link href={item.href} />}
-              aria-current={page?.href === item.href ? 'page' : undefined}
-              closeOnClick
-              size="lg"
-              className={
-                'nested' in item && item.nested === true ? 'ps-6' : undefined
-              }
-            >
-              <Icon name={item.icon} className="text-muted" />
-              {item.title}
-            </MenuLinkItem>
+            <Fragment key={item.href}>
+              {'separatorBefore' in item && item.separatorBefore && (
+                <div role="separator" className="my-1 border-t border-border" />
+              )}
+              <MenuLinkItem
+                href={item.href}
+                render={<Link href={item.href} prefetch={false} />}
+                aria-current={page?.href === item.href ? 'page' : undefined}
+                closeOnClick
+                size="lg"
+                className={
+                  'nested' in item && item.nested === true ? 'ps-6' : undefined
+                }
+              >
+                <Icon name={item.icon} className="text-muted" />
+                {item.title}
+              </MenuLinkItem>
+            </Fragment>
           ))}
         </MenuContent>
       </Menu>

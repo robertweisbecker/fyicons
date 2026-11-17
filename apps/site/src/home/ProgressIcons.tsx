@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import IconCircle from 'fyicons/icons/IconCircle';
-import IconCircleFill from 'fyicons/icons/IconCircleFill';
-import IconProgressPie20 from 'fyicons/icons/IconProgressPie20';
-import IconProgressPie40 from 'fyicons/icons/IconProgressPie40';
-import IconProgressPie60 from 'fyicons/icons/IconProgressPie60';
-import IconProgressPie80 from 'fyicons/icons/IconProgressPie80';
-import IconStar from 'fyicons/icons/IconStar';
-import IconStarFill from 'fyicons/icons/IconStarFill';
-import IconStarHalfFill from 'fyicons/icons/IconStarHalfFill';
+import {
+  IconCircle,
+  IconCircleFill,
+  IconProgressPie20,
+  IconProgressPie40,
+  IconProgressPie60,
+  IconProgressPie80,
+  IconStar,
+  IconStarFill,
+  IconStarHalfFill,
+} from 'fyicons';
+
 import { Slider, SliderControl } from '@/components/ui/slider';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { levelSteps } from '@/lib/icon-progress';

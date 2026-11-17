@@ -11,6 +11,13 @@ export const docsNavigation = [
       { title: 'Styling', href: '/docs/styling/', icon: 'palette' },
       { title: 'React', href: '/docs/react/', icon: 'atom-react' },
       { title: 'Changelog', href: '/docs/changelog/', icon: 'note' },
+      {
+        title: 'Colophon',
+        href: '/docs/colophon/',
+        icon: 'info',
+        separatorBefore: true,
+      },
+      { title: 'License', href: '/docs/license/', icon: 'file-text' },
     ],
   },
 ];

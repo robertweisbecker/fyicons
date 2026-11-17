@@ -1,10 +1,9 @@
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { cn } from '@/lib/utils';
+import { IconWaveform } from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconWaveform';
 const Icon = createIconLookup({
-  waveform: { Component: Glyph0, id: '372:5489' },
+  waveform: IconWaveform,
 });
 
 export const tracks = [

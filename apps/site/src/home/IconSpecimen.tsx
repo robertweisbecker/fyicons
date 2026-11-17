@@ -10,7 +10,6 @@ import {
 import { motion, MotionConfig } from 'motion/react';
 import { useReducedMotionPreference } from '@/lib/preferences';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import {
   guides,
@@ -20,38 +19,40 @@ import {
   type Guide,
 } from './construction-guides';
 import './IconSpecimen.css';
+import {
+  IconBlocks,
+  IconChatRoundEdit,
+  IconCircle,
+  IconCircleFill,
+  IconEnvelope,
+  IconFileZip,
+  IconPauseFill,
+  IconPlayFill,
+  IconPointDown,
+  IconScissors,
+  IconSkull,
+  IconSkullFill,
+  IconSquare,
+  IconSquareAsterisk,
+  IconSwatches,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconBlocks';
-import Glyph1 from 'fyicons/icons/IconChatRoundEdit';
-import Glyph2 from 'fyicons/icons/IconCircle';
-import Glyph3 from 'fyicons/icons/IconCircleFill';
-import Glyph4 from 'fyicons/icons/IconEnvelope';
-import Glyph5 from 'fyicons/icons/IconFileZip';
-import Glyph6 from 'fyicons/icons/IconPauseFill';
-import Glyph7 from 'fyicons/icons/IconPlayFill';
-import Glyph8 from 'fyicons/icons/IconPointDown';
-import Glyph9 from 'fyicons/icons/IconScissors';
-import Glyph10 from 'fyicons/icons/IconSkull';
-import Glyph11 from 'fyicons/icons/IconSkullFill';
-import Glyph12 from 'fyicons/icons/IconSquare';
-import Glyph13 from 'fyicons/icons/IconSquareAsterisk';
-import Glyph14 from 'fyicons/icons/IconSwatches';
 const Icon = createIconLookup({
-  blocks: { Component: Glyph0, id: '610:12461' },
-  'chat-round-edit': { Component: Glyph1, id: '652:1295' },
-  circle: { Component: Glyph2, id: '667:869' },
-  'circle-fill': { Component: Glyph3, id: '895:30806' },
-  envelope: { Component: Glyph4, id: '60:2290' },
-  'file-zip': { Component: Glyph5, id: '892:30534' },
-  'pause-fill': { Component: Glyph6, id: '101:4347' },
-  'play-fill': { Component: Glyph7, id: '311:10178' },
-  'point-down': { Component: Glyph8, id: '752:3991' },
-  scissors: { Component: Glyph9, id: '356:10736' },
-  skull: { Component: Glyph10, id: '727:401' },
-  'skull-fill': { Component: Glyph11, id: '1350:2860' },
-  square: { Component: Glyph12, id: '245:15233' },
-  'square-asterisk': { Component: Glyph13, id: '679:3567' },
-  swatches: { Component: Glyph14, id: '100:2283' },
+  blocks: IconBlocks,
+  'chat-round-edit': IconChatRoundEdit,
+  circle: IconCircle,
+  'circle-fill': IconCircleFill,
+  envelope: IconEnvelope,
+  'file-zip': IconFileZip,
+  'pause-fill': IconPauseFill,
+  'play-fill': IconPlayFill,
+  'point-down': IconPointDown,
+  scissors: IconScissors,
+  skull: IconSkull,
+  'skull-fill': IconSkullFill,
+  square: IconSquare,
+  'square-asterisk': IconSquareAsterisk,
+  swatches: IconSwatches,
 });
 
 const specimenTransition = {

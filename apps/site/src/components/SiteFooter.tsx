@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import IconArrowUpRight from 'fyicons/icons/IconArrowUpRight';
+import { IconArrowUpRight } from 'fyicons';
+
 import {
   githubHref,
   npmHref,

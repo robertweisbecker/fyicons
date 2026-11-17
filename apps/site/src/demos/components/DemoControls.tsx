@@ -3,9 +3,12 @@ import { Tooltip as DemoHint } from '@/components/ui/tooltip';
 import { Icon, IconRendererContext } from '@/components/UIIcon';
 import type { ComponentType, ComponentProps } from 'react';
 import type { IconProps } from '@/components/createIconLookup';
-import CopyGlyph from 'fyicons/icons/IconCopy';
-import CopiedGlyph from 'fyicons/icons/IconCopied';
-import AlertGlyph from 'fyicons/icons/IconAlert';
+import {
+  IconCopy as CopyGlyph,
+  IconCopied as CopiedGlyph,
+  IconAlert as AlertGlyph,
+} from 'fyicons';
+
 import { ToggleIcon } from '@/components/ToggleIcon';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { Toggle, type ToggleProps } from '@/components/ui/toggle';

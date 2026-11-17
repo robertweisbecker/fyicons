@@ -2,6 +2,8 @@
 @import 'shadcn/tailwind.css';
 @import './typeset.css';
 
+@source './prototypes/Bento.jsx';
+
 @custom-variant dark (&:is([data-theme='dark'] *));
 
 @theme {
@@ -63,6 +65,7 @@
   --surface: var(--color-white);
   --dialog: var(--color-taupe-50);
   --text: var(--color-taupe-900);
+  --text-secondary: var(--color-taupe-700);
   --muted: var(--color-taupe-500);
   --border: --alpha(var(--text) / 14%);
   --line: --alpha(var(--text) / 8%);
@@ -81,13 +84,14 @@
 }
 :root[data-theme='dark'],
 .dark {
-  --inset: var(--color-black);
-  --canvas: var(--color-neutral-950);
-  --bg: var(--color-neutral-900);
-  --surface: var(--color-neutral-900);
-  --dialog: var(--color-neutral-900);
-  --text: var(--color-neutral-100);
-  --muted: var(--color-neutral-400);
+  --inset: --alpha(var(--color-taupe-900) / 50%);
+  --canvas: var(--color-taupe-950);
+  --bg: var(--color-taupe-900);
+  --surface: var(--color-taupe-900);
+  --dialog: var(--color-taupe-900);
+  --text: var(--color-taupe-100);
+  --text-secondary: var(--color-taupe-300);
+  --muted: var(--color-taupe-400);
   --border: --alpha(var(--text) / 12%);
   --line: --alpha(var(--text) / 8%);
   --hover: --alpha(var(--text) / 6%);

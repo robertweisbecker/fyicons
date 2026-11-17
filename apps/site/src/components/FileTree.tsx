@@ -1,40 +1,41 @@
 import { Collapsible } from '@base-ui/react/collapsible';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
+import {
+  IconAtomReact,
+  IconChevronDownSm,
+  IconChevronRightSm,
+  IconFolder,
+  IconFolderFill,
+  IconFolderOpen,
+  IconFolderOpenFill,
+  IconGhost,
+  IconLetterM,
+  IconMarkdownFill,
+  IconPage,
+  IconSquareDot,
+  IconTextTitle,
+  IconTextTitleFill,
+  IconFileText,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconAtomReact';
-import Glyph1 from 'fyicons/icons/IconChevronDownSm';
-import Glyph2 from 'fyicons/icons/IconChevronRightSm';
-import Glyph3 from 'fyicons/icons/IconFolder';
-import Glyph4 from 'fyicons/icons/IconFolderFill';
-import Glyph5 from 'fyicons/icons/IconFolderOpen';
-import Glyph6 from 'fyicons/icons/IconFolderOpenFill';
-import Glyph7 from 'fyicons/icons/IconGhost';
-import Glyph8 from 'fyicons/icons/IconLetterM';
-import Glyph9 from 'fyicons/icons/IconMarkdownFill';
-import Glyph10 from 'fyicons/icons/IconPage';
-import Glyph11 from 'fyicons/icons/IconSquareDot';
-import Glyph12 from 'fyicons/icons/IconTextTitle';
-import Glyph13 from 'fyicons/icons/IconTextTitleFill';
-import Glyph14 from 'fyicons/icons/IconFileText';
 const Icon = createIconLookup({
-  'atom-react': { Component: Glyph0, id: '360:11316' },
-  'chevron-down-sm': { Component: Glyph1, id: '142:6351' },
-  'chevron-right-sm': { Component: Glyph2, id: '142:6353' },
-  folder: { Component: Glyph3, id: '102:4392' },
-  'folder-fill': { Component: Glyph4, id: '741:7685' },
-  'folder-open': { Component: Glyph5, id: '102:4393' },
-  'folder-open-fill': { Component: Glyph6, id: '741:7694' },
-  ghost: { Component: Glyph7, id: '727:314' },
-  'letter-m': { Component: Glyph8, id: '732:4681' },
-  'markdown-fill': { Component: Glyph9, id: '666:353' },
-  page: { Component: Glyph10, id: '820:11209' },
-  'square-dot': { Component: Glyph11, id: '732:4593' },
-  text: { Component: Glyph12, id: '58:9540' },
-  'text-fill': { Component: Glyph13, id: '1084:12366' },
-  'file-text': { Component: Glyph14, id: '102:5434' },
+  'atom-react': IconAtomReact,
+  'chevron-down-sm': IconChevronDownSm,
+  'chevron-right-sm': IconChevronRightSm,
+  folder: IconFolder,
+  'folder-fill': IconFolderFill,
+  'folder-open': IconFolderOpen,
+  'folder-open-fill': IconFolderOpenFill,
+  ghost: IconGhost,
+  'letter-m': IconLetterM,
+  'markdown-fill': IconMarkdownFill,
+  page: IconPage,
+  'square-dot': IconSquareDot,
+  text: IconTextTitle,
+  'text-fill': IconTextTitleFill,
+  'file-text': IconFileText,
 });
 
 export type ProjectFile = { path: string; icon: string; change?: string };

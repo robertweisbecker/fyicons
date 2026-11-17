@@ -1,8 +1,11 @@
-import IconSun from 'fyicons/icons/IconSun';
-import IconSpinner from 'fyicons/icons/IconSpinner';
-import IconLoader from 'fyicons/icons/IconLoader';
-import IconGitMerge from 'fyicons/icons/IconGitMerge';
-import { IconRays } from 'fyicons';
+import {
+  IconRays,
+  IconSun,
+  IconSpinner,
+  IconLoader,
+  IconGitMerge,
+} from 'fyicons';
+
 import {
   FyiProvider,
   IconBookmark,
@@ -15,16 +18,16 @@ import { DocsExample } from './DocsExample';
 
 const colors = [
   { label: 'Inherited', value: undefined },
-  { label: 'Blue', value: '#2563eb' },
-  { label: 'Green', value: '#16a34a' },
-  { label: 'Violet', value: '#8b5cf6' },
+  { label: 'Blue', value: 'light-dark(#2563eb, #60a5fa)' },
+  { label: 'Green', value: 'light-dark(#16a34a, #4ade80)' },
+  { label: 'Violet', value: 'light-dark(#8b5cf6, #a78bfa)' },
 ];
 
 export function LightButtonExample() {
   return (
     <DocsExample aria-label="Customized React icon example">
       <Button variant="outline" size="icon" aria-label="Switch to light mode">
-        <IconSun size={24} color="#2563eb" />
+        <IconSun size={24} color="light-dark(#2563eb, #60a5fa)" />
       </Button>
     </DocsExample>
   );
@@ -33,7 +36,11 @@ export function LightButtonExample() {
 export function ClassNameExample() {
   return (
     <DocsExample aria-label="Icon styled with a CSS class">
-      <IconSun size={32} className="text-blue-500" aria-label="Sun" />
+      <IconSun
+        size={32}
+        className="text-[light-dark(#3b82f6,#60a5fa)]"
+        aria-label="Sun"
+      />
     </DocsExample>
   );
 }
@@ -89,7 +96,11 @@ export function ProviderExample() {
       aria-label="Shared icon defaults example"
       className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"
     >
-      <FyiProvider size={20} className="nav-icon" color="red">
+      <FyiProvider
+        size={20}
+        className="nav-icon"
+        color="light-dark(#dc2626, #f87171)"
+      >
         <div className="mx-auto flex w-fit flex-col gap-4">
           <div className="flex items-center gap-2">
             <IconHome /> Home

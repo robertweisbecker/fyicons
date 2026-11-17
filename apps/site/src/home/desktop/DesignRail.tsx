@@ -1,5 +1,14 @@
 import { createIconLookup } from '@/components/createIconLookup';
 import { createGlyph } from '../Study';
+import {
+  IconFile,
+  IconSparkle,
+  IconCirclePlus,
+  IconToolbox,
+  IconLineHorizontal,
+  IconToken,
+  IconBookOpen3,
+} from 'fyicons';
 
 /** The compact rail moved from the standalone Examples study. */
 export function DesignRail() {
@@ -47,21 +56,14 @@ export function DesignRail() {
   );
 }
 
-import Glyph0 from 'fyicons/icons/IconFile';
-import Glyph1 from 'fyicons/icons/IconSparkle';
-import Glyph2 from 'fyicons/icons/IconCirclePlus';
-import Glyph3 from 'fyicons/icons/IconToolbox';
-import Glyph4 from 'fyicons/icons/IconLineHorizontal';
-import Glyph5 from 'fyicons/icons/IconToken';
-import Glyph6 from 'fyicons/icons/IconBookOpen3';
 const Icon = createIconLookup({
-  file: { Component: Glyph0, id: '224:14313' },
-  sparkle: { Component: Glyph1, id: '732:5505' },
-  'circle-plus': { Component: Glyph2, id: '721:395' },
-  toolbox: { Component: Glyph3, id: '702:1828' },
-  'line-horizontal': { Component: Glyph4, id: '475:520' },
-  token: { Component: Glyph5, id: '158:11621' },
-  'book-open-3': { Component: Glyph6, id: '918:31793' },
+  file: IconFile,
+  sparkle: IconSparkle,
+  'circle-plus': IconCirclePlus,
+  toolbox: IconToolbox,
+  'line-horizontal': IconLineHorizontal,
+  token: IconToken,
+  'book-open-3': IconBookOpen3,
 });
 
 const Glyph = createGlyph(Icon);

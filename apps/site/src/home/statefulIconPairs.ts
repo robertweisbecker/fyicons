@@ -1,22 +1,16 @@
 // [Default icon, alternate icon], grouped by action. Edit here to curate each row.
 export const statefulIconGroups = [
   {
-    label: 'Expand',
+    label: 'Open sesame',
     pairs: [
       ['chevrons-expand', 'chevrons-collapse'],
       ['arrows-expand', 'arrows-collapse'],
       ['arrows-maximize', 'arrows-minimize'],
       ['list-expand', 'list-collapse'],
       ['row-expand', 'row-collapse'],
-    ],
-  },
-  {
-    label: 'Open',
-    pairs: [
       ['book-open', 'book-reading'],
       ['door', 'door-open'],
       ['notebook', 'notebook-open'],
-      ['journal', 'journal-open'],
       ['envelope-simple', 'envelope-simple-open'],
       ['eye-closed', 'eye'],
       ['folder', 'folder-open'],

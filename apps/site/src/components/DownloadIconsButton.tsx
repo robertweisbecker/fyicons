@@ -1,11 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import IconDownloadSquare from 'fyicons/icons/IconDownloadSquare';
-import { Button } from '@/components/ui/button';
+import { IconDownloadSquare } from 'fyicons';
+
+import { Button, type ButtonProps } from '@/components/ui/button';
 import { notify } from '@/components/ui/toast';
 
-export function DownloadIconsButton({ className }: { className?: string }) {
+const buttonSize = {
+  sm: 'sm',
+  md: 'default',
+  lg: 'lg',
+} as const satisfies Record<string, NonNullable<ButtonProps['size']>>;
+
+export function DownloadIconsButton({
+  className,
+  size = 'md',
+}: {
+  className?: string;
+  size?: keyof typeof buttonSize;
+}) {
   const [packing, setPacking] = useState(false);
 
   async function download() {
@@ -27,6 +40,7 @@ export function DownloadIconsButton({ className }: { className?: string }) {
       onClick={download}
       aria-busy={packing}
       className={className}
+      size={buttonSize[size]}
       focusableWhenDisabled
     >
       {packing ? (

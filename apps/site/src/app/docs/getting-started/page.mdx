@@ -112,34 +112,10 @@ For quick actions, right-click an icon in the grid, or long-press it on mobile. 
 
 Download the complete collection as a ZIP:
 
-<DownloadIconsButton />
+<DownloadIconsButton size="lg" />
 
 For a smaller collection, open the [icons page](/icons/) on a desktop screen, select icon checkboxes, open **Saved**, and choose **Download all**. You can also download an individual icon with the download button in its saved row.
 
 Each ZIP contains SVG files, a README, the MIT license, and a manifest with names, categories, and checksums. The preview size control does not change the downloaded files; they keep their 16×16 canvas.
 
-Use the SVG in your markup as you would any other SVG. Keep the default classes to allow [global styling](/docs/styling/#default-classes):
-
-<CodeBlock>
-  <code>
-    {'<svg\n  class="'}
-    <strong>fy-icon fy-plus</strong>
-    {[
-      '"',
-      '  xmlns="http://www.w3.org/2000/svg"',
-      '  width="16"',
-      '  height="16"',
-      '  fill="none"',
-      '  viewBox="0 0 16 16"',
-      '  aria-hidden="true"',
-      '>',
-      '  <path',
-      '    fill="currentColor"',
-      '    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5',
-      '       a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5',
-      '       A.5.5 0 0 1 8 2"',
-      '  />',
-      '</svg>',
-    ].join('\n')}
-  </code>
-</CodeBlock>
+Use the SVG in your markup as you would any other SVG. Keep the default classes to allow [global styling](/docs/styling/#default-classes).

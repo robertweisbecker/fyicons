@@ -3,29 +3,30 @@ import type { ComponentProps } from 'react';
 import { useId, useState, type ReactNode } from 'react';
 import { Field } from '@base-ui/react/field';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { createDemoControls } from '@/demos/components/DemoControls';
 import { OpticalStudy, StudyTile } from './optical/OpticalStudy';
+import {
+  IconApps,
+  IconFont,
+  IconGhost,
+  IconGrid,
+  IconGridFill,
+  IconMath,
+  IconPointerSwarm,
+  IconShapes,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconApps';
-import Glyph1 from 'fyicons/icons/IconFont';
-import Glyph2 from 'fyicons/icons/IconGhost';
-import Glyph3 from 'fyicons/icons/IconGrid';
-import Glyph4 from 'fyicons/icons/IconGridFill';
-import Glyph5 from 'fyicons/icons/IconMath';
-import Glyph6 from 'fyicons/icons/IconPointerSwarm';
-import Glyph7 from 'fyicons/icons/IconShapes';
 const Icon = createIconLookup({
-  apps: { Component: Glyph0, id: '507:4365' },
-  font: { Component: Glyph1, id: '148:6692' },
-  ghost: { Component: Glyph2, id: '727:314' },
-  grid: { Component: Glyph3, id: '102:4381' },
-  'grid-fill': { Component: Glyph4, id: '811:8579' },
-  math: { Component: Glyph5, id: '1120:12002' },
-  'pointer-swarm': { Component: Glyph6, id: '578:3170' },
-  shapes: { Component: Glyph7, id: '895:30930' },
+  apps: IconApps,
+  font: IconFont,
+  ghost: IconGhost,
+  grid: IconGrid,
+  'grid-fill': IconGridFill,
+  math: IconMath,
+  'pointer-swarm': IconPointerSwarm,
+  shapes: IconShapes,
 });
 
 function OpticalGrid({ children }: { children: ReactNode }) {

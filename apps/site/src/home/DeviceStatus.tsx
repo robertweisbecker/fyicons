@@ -1,22 +1,23 @@
 import { useDemoActivity } from '@/components/DeferredContent';
 import { useEffect, useState } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { cn } from '@/lib/utils';
+import {
+  IconBattery,
+  IconBatteryCharging,
+  IconBatteryEmpty,
+  IconBatteryFullCharging,
+  IconBatteryLow,
+  IconBatteryMedium,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconBattery';
-import Glyph1 from 'fyicons/icons/IconBatteryCharging';
-import Glyph2 from 'fyicons/icons/IconBatteryEmpty';
-import Glyph3 from 'fyicons/icons/IconBatteryFullCharging';
-import Glyph4 from 'fyicons/icons/IconBatteryLow';
-import Glyph5 from 'fyicons/icons/IconBatteryMedium';
 const Icon = createIconLookup({
-  battery: { Component: Glyph0, id: '101:4287' },
-  'battery-charging': { Component: Glyph1, id: '101:4288' },
-  'battery-empty': { Component: Glyph2, id: '101:4289' },
-  'battery-full-charging': { Component: Glyph3, id: '895:31023' },
-  'battery-low': { Component: Glyph4, id: '101:4286' },
-  'battery-medium': { Component: Glyph5, id: '101:4285' },
+  battery: IconBattery,
+  'battery-charging': IconBatteryCharging,
+  'battery-empty': IconBatteryEmpty,
+  'battery-full-charging': IconBatteryFullCharging,
+  'battery-low': IconBatteryLow,
+  'battery-medium': IconBatteryMedium,
 });
 
 const dateTimeFormat = new Intl.DateTimeFormat(undefined, {

@@ -78,7 +78,11 @@ const components: MDXComponents = {
       <Link
         {...props}
         href={href}
-        prefetch={/^\/(icons|examples)(?:\/|$)/.test(href) ? false : undefined}
+        prefetch={
+          /^\/(icons|examples|docs\/react)(?:\/|\?|#|$)/.test(href)
+            ? false
+            : undefined
+        }
       >
         {children}
       </Link>

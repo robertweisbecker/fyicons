@@ -8,8 +8,8 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import IconPlay from 'fyicons/icons/IconPlay';
-import IconWarning from 'fyicons/icons/IconWarning';
+import { IconPlay, IconWarning } from 'fyicons';
+
 import warningSvg from 'fyicons/svg/warning-16.svg?raw';
 import type { Act } from '@/vendor/stageshow/act';
 import { ThemedStage } from '@/components/ThemedStage';

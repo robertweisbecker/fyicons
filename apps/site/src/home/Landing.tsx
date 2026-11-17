@@ -1,6 +1,5 @@
 'use client';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { DeferredContent } from '@/components/DeferredContent';
 import {
   VariantPlaceholder,
@@ -8,10 +7,8 @@ import {
   OpticalPlaceholder,
   GroupPlaceholder,
 } from './DemoPlaceholders';
-
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
 import { ShadcnIcon } from '@/components/BrandIcons';
 import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { InstallCommand } from '@/components/InstallCommand';
@@ -24,28 +21,30 @@ import { DesktopShowcase } from './desktop/DesktopShowcase';
 import { IconExampleCard } from './IconExampleCard';
 import { IconSpecimen } from './IconSpecimen';
 import './Landing.css';
+import {
+  IconEyeClosed,
+  IconEyePupil,
+  IconPenToolAlt,
+  IconArrowRight,
+  IconAtomReact,
+  IconAsterisk,
+  IconVectorSvg,
+  IconShapes,
+  IconGridRuler,
+  IconBorderWidth,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconEyeClosed';
-import Glyph1 from 'fyicons/icons/IconEyePupil';
-import Glyph2 from 'fyicons/icons/IconPenToolAlt';
-import Glyph3 from 'fyicons/icons/IconArrowRight';
-import Glyph4 from 'fyicons/icons/IconAtomReact';
-import Glyph5 from 'fyicons/icons/IconAsterisk';
-import Glyph6 from 'fyicons/icons/IconVectorSvg';
-import Glyph7 from 'fyicons/icons/IconShapes';
-import Glyph8 from 'fyicons/icons/IconGridRuler';
-import Glyph9 from 'fyicons/icons/IconBorderWidth';
 const Icon = createIconLookup({
-  'eye-closed': { Component: Glyph0, id: '120:2553' },
-  'eye-pupil': { Component: Glyph1, id: '698:651' },
-  'pen-tool-alt': { Component: Glyph2, id: '314:17522' },
-  'arrow-right': { Component: Glyph3, id: '518:4810' },
-  'atom-react': { Component: Glyph4, id: '360:11316' },
-  asterisk: { Component: Glyph5, id: '378:8045' },
-  'vector-svg': { Component: Glyph6, id: '1211:11261' },
-  shapes: { Component: Glyph7, id: '895:30930' },
-  'grid-ruler': { Component: Glyph8, id: '993:34066' },
-  'border-width': { Component: Glyph9, id: '96:1547' },
+  'eye-closed': IconEyeClosed,
+  'eye-pupil': IconEyePupil,
+  'pen-tool-alt': IconPenToolAlt,
+  'arrow-right': IconArrowRight,
+  'atom-react': IconAtomReact,
+  asterisk: IconAsterisk,
+  'vector-svg': IconVectorSvg,
+  shapes: IconShapes,
+  'grid-ruler': IconGridRuler,
+  'border-width': IconBorderWidth,
 });
 
 const loadVariants = () =>
@@ -156,7 +155,7 @@ export default function Landing() {
                     href="/icons/"
                   >
                     Browse all
-                    <Icon name="arrow-right" size={16} />
+                    <Icon name="arrow-right" />
                   </Link>
                   <InstallCommand
                     command="npm i fyicons"

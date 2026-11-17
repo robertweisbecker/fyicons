@@ -2,21 +2,6 @@
 
 import { Fragment, useState } from 'react';
 import { Separator } from '@base-ui/react/separator';
-import IconHeart from 'fyicons/icons/IconHeart';
-import IconHeartFill from 'fyicons/icons/IconHeartFill';
-import IconStar from 'fyicons/icons/IconStar';
-import IconStarFill from 'fyicons/icons/IconStarFill';
-import IconPlayFill from 'fyicons/icons/IconPlayFill';
-import IconPauseFill from 'fyicons/icons/IconPauseFill';
-import IconVolumeX from 'fyicons/icons/IconVolumeX';
-import IconClosedCaptions from 'fyicons/icons/IconClosedCaptions';
-import IconClosedCaptionsFill from 'fyicons/icons/IconClosedCaptionsFill';
-import IconPictureInPictureEnter from 'fyicons/icons/IconPictureInPictureEnter';
-import IconPictureInPictureExit from 'fyicons/icons/IconPictureInPictureExit';
-import { Button } from '@/components/ui/button';
-import { Toggle } from '@/components/ui/toggle';
-import { Slider, SliderControl } from '@/components/ui/slider';
-import { levelSteps } from '@/lib/icon-progress';
 import {
   IconSwitchOn,
   IconSwitchOff,
@@ -27,7 +12,23 @@ import {
   IconAudioDescription,
   IconFullscreenExit,
   IconFullscreen,
+  IconHeart,
+  IconHeartFill,
+  IconStar,
+  IconStarFill,
+  IconPlayFill,
+  IconPauseFill,
+  IconVolumeX,
+  IconClosedCaptions,
+  IconClosedCaptionsFill,
+  IconPictureInPictureEnter,
+  IconPictureInPictureExit,
 } from 'fyicons';
+
+import { Button } from '@/components/ui/button';
+import { Toggle } from '@/components/ui/toggle';
+import { Slider, SliderControl } from '@/components/ui/slider';
+import { levelSteps } from '@/lib/icon-progress';
 
 export function ToggleStateExample() {
   const [liked, setLiked] = useState(false);
@@ -53,7 +54,7 @@ export function ToggleStateExample() {
       >
         <Heart
           data-icon="inline-start"
-          className="in-data-pressed:text-red-500"
+          className="in-data-pressed:text-[light-dark(#ef4444,#f87171)]"
         />
         Like
       </Toggle>
@@ -65,7 +66,7 @@ export function ToggleStateExample() {
       >
         <Star
           data-icon="inline-start"
-          className="in-data-pressed:text-amber-500 dark:in-data-pressed:text-amber-400"
+          className="in-data-pressed:text-[light-dark(#f59e0b,#fbbf24)]"
         />
         Favorite
       </Toggle>
@@ -79,7 +80,7 @@ export function ToggleStateExample() {
         Enable
         {switched ? (
           <IconSwitchOn
-            className="text-green-600 dark:text-green-400"
+            className="text-[light-dark(#16a34a,#4ade80)]"
             size={16}
           />
         ) : (

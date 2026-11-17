@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import { Accordion } from '@base-ui/react/accordion';
-import IconChevronDown from 'fyicons/icons/IconChevronDown';
+import { IconChevronDown } from 'fyicons';
 
 export function DocsAccordion({
   children,

@@ -1,42 +1,24 @@
 'use client';
-
 import { Select as SelectPrimitive } from '@base-ui/react/select';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { createContext, useContext, type ReactNode } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
-
-
-
-
-
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
+import {
+  IconAnchor,
+  IconCaretDown,
+  IconCaretUp,
+  IconCaretsY,
+  IconCheck,
+} from 'fyicons';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import Glyph0 from 'fyicons/icons/IconAnchor';
-import Glyph1 from 'fyicons/icons/IconCaretDown';
-import Glyph2 from 'fyicons/icons/IconCaretUp';
-import Glyph3 from 'fyicons/icons/IconCaretsY';
-import Glyph4 from 'fyicons/icons/IconCheck';
 const Icon = createIconLookup({
-"anchor": { Component: Glyph0, id: "702:1775" },
-"caret-down": { Component: Glyph1, id: "140:5990" },
-"caret-up": { Component: Glyph2, id: "140:5994" },
-"carets-y": { Component: Glyph3, id: "395:11445" },
-"check": { Component: Glyph4, id: "96:1604" }
+  anchor: IconAnchor,
+  'caret-down': IconCaretDown,
+  'caret-up': IconCaretUp,
+  'carets-y': IconCaretsY,
+  check: IconCheck,
 });
 
 type SelectSize = 'default' | 'sm';

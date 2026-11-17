@@ -1,65 +1,32 @@
 import { useEffect, useRef, useState } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
-
-
-
-
-
-
-
-
-
 import { IconButton } from './IconButton';
 import { Button, type ButtonProps } from './ui/button';
 import { notify } from './ui/toast';
 import { copy } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
+import {
+  IconCode,
+  IconCopiedFill,
+  IconCopy,
+  IconGhost,
+  IconTerminalBash,
+  IconTerminalSquare,
+  IconTerminalSquareFill,
+  IconTextTitle,
+  IconTextTitleFill,
+} from 'fyicons';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import Glyph0 from 'fyicons/icons/IconCode';
-import Glyph1 from 'fyicons/icons/IconCopiedFill';
-import Glyph2 from 'fyicons/icons/IconCopySm';
-import Glyph3 from 'fyicons/icons/IconGhost';
-import Glyph4 from 'fyicons/icons/IconTerminalBash';
-import Glyph5 from 'fyicons/icons/IconTerminalSquare';
-import Glyph6 from 'fyicons/icons/IconTerminalSquareFill';
-import Glyph7 from 'fyicons/icons/IconTextTitle';
-import Glyph8 from 'fyicons/icons/IconTextTitleFill';
 const Icon = createIconLookup({
-"code": { Component: Glyph0, id: "58:9531" },
-"copied-fill": { Component: Glyph1, id: "892:30476" },
-"copy-sm": { Component: Glyph2, id: "610:12055" },
-"ghost": { Component: Glyph3, id: "727:314" },
-"terminal-bash": { Component: Glyph4, id: "749:5069" },
-"terminal-square": { Component: Glyph5, id: "604:5134" },
-"terminal-square-fill": { Component: Glyph6, id: "667:1166" },
-"text": { Component: Glyph7, id: "58:9540" },
-"text-fill": { Component: Glyph8, id: "1084:12366" }
+  code: IconCode,
+  'copied-fill': IconCopiedFill,
+  copy: IconCopy,
+  ghost: IconGhost,
+  'terminal-bash': IconTerminalBash,
+  'terminal-square': IconTerminalSquare,
+  'terminal-square-fill': IconTerminalSquareFill,
+  text: IconTextTitle,
+  'text-fill': IconTextTitleFill,
 });
 
 export function InstallCommand({
@@ -104,9 +71,9 @@ export function InstallCommand({
   }
 
   const copyIcon = (
-    <span className="grid size-4" aria-hidden="true">
+    <span className="grid" aria-hidden="true">
       <Icon
-        name="copy-sm"
+        name="copy"
         className={cn(
           'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',
           copied && 'scale-75 opacity-0 blur-[2px]',

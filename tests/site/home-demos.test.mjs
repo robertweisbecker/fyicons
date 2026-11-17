@@ -10,9 +10,5 @@ for (const name of ['Design', 'Files', 'Code', 'Agents', 'Social', 'Music']) {
     const module = await fixture.load(`home/desktop/${name}App.tsx`);
     const html = renderToString(createElement(module[`${name}App`]));
     assert.ok(html.includes('<svg'), 'demo retains its icon artwork');
-    assert.ok(
-      html.includes('data-source-id'),
-      'decorative icons retain source identity',
-    );
   });
 }

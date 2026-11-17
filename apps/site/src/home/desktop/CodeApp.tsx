@@ -1,6 +1,5 @@
 import { useId, useRef, useState } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
-
 import { FileTree, fileFolders } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
 import { createDemoControls } from '@/demos/components/DemoControls';
@@ -8,102 +7,104 @@ import { cn } from '@/lib/utils';
 import { Window } from './Window';
 import { CodeChanges } from './CodeChanges';
 import { reviewFiles } from './codeReviewData';
+import {
+  IconAgent,
+  IconArrowClockwise,
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowsRotate,
+  IconAtomReact,
+  IconBookBookmark,
+  IconBug,
+  IconCaretsMaximize,
+  IconChevronDownSm,
+  IconChevronRightSm,
+  IconCircleUserFill,
+  IconCircleXFill,
+  IconEllipsis,
+  IconEllipsisV,
+  IconEye,
+  IconEyeCheck,
+  IconEyeFill,
+  IconFileSearch,
+  IconFileText,
+  IconFolderTree,
+  IconFolderTreeFill,
+  IconFolders,
+  IconFoldersFill,
+  IconGas,
+  IconGasFill,
+  IconGhost,
+  IconGitBranch,
+  IconGitCommit,
+  IconGitPullRequest,
+  IconInfo,
+  IconInfoFill,
+  IconLayoutRows,
+  IconLineOverflow,
+  IconLineWrap,
+  IconListCollapse,
+  IconListExpand,
+  IconMarkdownFill,
+  IconMinus,
+  IconPlus,
+  IconPuzzlePiece,
+  IconSearchSimple,
+  IconSlash,
+  IconStarFill,
+  IconVideoFill,
+  IconX,
+  IconZoomIn,
+} from 'fyicons';
 
-import Glyph0 from 'fyicons/icons/IconAgent';
-import Glyph1 from 'fyicons/icons/IconArrowClockwise';
-import Glyph2 from 'fyicons/icons/IconArrowLeft';
-import Glyph3 from 'fyicons/icons/IconArrowRight';
-import Glyph4 from 'fyicons/icons/IconArrowsRotate';
-import Glyph5 from 'fyicons/icons/IconAtomReact';
-import Glyph6 from 'fyicons/icons/IconBookBookmark';
-import Glyph7 from 'fyicons/icons/IconBug';
-import Glyph8 from 'fyicons/icons/IconCaretsMaximize';
-import Glyph9 from 'fyicons/icons/IconChevronDownSm';
-import Glyph10 from 'fyicons/icons/IconChevronRightSm';
-import Glyph11 from 'fyicons/icons/IconCircleUserFill';
-import Glyph12 from 'fyicons/icons/IconCircleXFill';
-import Glyph13 from 'fyicons/icons/IconEllipsis';
-import Glyph14 from 'fyicons/icons/IconEllipsisV';
-import Glyph15 from 'fyicons/icons/IconEye';
-import Glyph16 from 'fyicons/icons/IconEyeCheck';
-import Glyph17 from 'fyicons/icons/IconEyeFill';
-import Glyph18 from 'fyicons/icons/IconFileSearch';
-import Glyph19 from 'fyicons/icons/IconFileText';
-import Glyph20 from 'fyicons/icons/IconFolderTree';
-import Glyph21 from 'fyicons/icons/IconFolderTreeFill';
-import Glyph22 from 'fyicons/icons/IconFolders';
-import Glyph23 from 'fyicons/icons/IconFoldersFill';
-import Glyph24 from 'fyicons/icons/IconGas';
-import Glyph25 from 'fyicons/icons/IconGasFill';
-import Glyph26 from 'fyicons/icons/IconGhost';
-import Glyph27 from 'fyicons/icons/IconGitBranch';
-import Glyph28 from 'fyicons/icons/IconGitCommit';
-import Glyph29 from 'fyicons/icons/IconGitPullRequest';
-import Glyph30 from 'fyicons/icons/IconInfo';
-import Glyph31 from 'fyicons/icons/IconInfoFill';
-import Glyph32 from 'fyicons/icons/IconLayoutRows';
-import Glyph33 from 'fyicons/icons/IconLineOverflow';
-import Glyph34 from 'fyicons/icons/IconLineWrap';
-import Glyph35 from 'fyicons/icons/IconListCollapse';
-import Glyph36 from 'fyicons/icons/IconListExpand';
-import Glyph37 from 'fyicons/icons/IconMarkdownFill';
-import Glyph38 from 'fyicons/icons/IconMinus';
-import Glyph39 from 'fyicons/icons/IconPlus';
-import Glyph40 from 'fyicons/icons/IconPuzzlePiece';
-import Glyph41 from 'fyicons/icons/IconSearchSimple';
-import Glyph42 from 'fyicons/icons/IconSlash';
-import Glyph43 from 'fyicons/icons/IconStarFill';
-import Glyph44 from 'fyicons/icons/IconVideoFill';
-import Glyph45 from 'fyicons/icons/IconX';
-import Glyph46 from 'fyicons/icons/IconZoomIn';
 const Icon = createIconLookup({
-  agent: { Component: Glyph0, id: '154:11361' },
-  'arrow-clockwise': { Component: Glyph1, id: '334:6678' },
-  'arrow-left': { Component: Glyph2, id: '518:4811' },
-  'arrow-right': { Component: Glyph3, id: '518:4810' },
-  'arrows-rotate': { Component: Glyph4, id: '841:13053' },
-  'atom-react': { Component: Glyph5, id: '360:11316' },
-  'book-bookmark': { Component: Glyph6, id: '329:6351' },
-  bug: { Component: Glyph7, id: '129:6747' },
-  'carets-maximize': { Component: Glyph8, id: '142:6370' },
-  'chevron-down-sm': { Component: Glyph9, id: '142:6351' },
-  'chevron-right-sm': { Component: Glyph10, id: '142:6353' },
-  'circle-user-fill': { Component: Glyph11, id: '390:10591' },
-  'circle-x-fill': { Component: Glyph12, id: '297:3620' },
-  ellipsis: { Component: Glyph13, id: '101:4340' },
-  'ellipsis-v': { Component: Glyph14, id: '487:403' },
-  eye: { Component: Glyph15, id: '120:2551' },
-  'eye-check': { Component: Glyph16, id: '849:16233' },
-  'eye-fill': { Component: Glyph17, id: '1010:19329' },
-  'file-search': { Component: Glyph18, id: '841:12902' },
-  'file-text': { Component: Glyph19, id: '102:5434' },
-  'folder-tree': { Component: Glyph20, id: '738:7465' },
-  'folder-tree-fill': { Component: Glyph21, id: '749:4998' },
-  folders: { Component: Glyph22, id: '820:11253' },
-  'folders-fill': { Component: Glyph23, id: '841:13682' },
-  gas: { Component: Glyph24, id: '1020:10458' },
-  'gas-fill': { Component: Glyph25, id: '1167:1488' },
-  ghost: { Component: Glyph26, id: '727:314' },
-  'git-branch': { Component: Glyph27, id: '245:15918' },
-  'git-commit': { Component: Glyph28, id: '578:2492' },
-  'git-pull-request': { Component: Glyph29, id: '375:6478' },
-  info: { Component: Glyph30, id: '132:4339' },
-  'info-fill': { Component: Glyph31, id: '487:1519' },
-  'layout-rows': { Component: Glyph32, id: '140:5918' },
-  'line-overflow': { Component: Glyph33, id: '957:33092' },
-  'line-wrap': { Component: Glyph34, id: '717:4230' },
-  'list-collapse': { Component: Glyph35, id: '693:381' },
-  'list-expand': { Component: Glyph36, id: '693:382' },
-  'markdown-fill': { Component: Glyph37, id: '666:353' },
-  minus: { Component: Glyph38, id: '667:899' },
-  plus: { Component: Glyph39, id: '120:2544' },
-  'puzzle-piece': { Component: Glyph40, id: '123:2474' },
-  'search-simple': { Component: Glyph41, id: '811:9121' },
-  slash: { Component: Glyph42, id: '487:1663' },
-  'star-fill': { Component: Glyph43, id: '652:850' },
-  'video-fill': { Component: Glyph44, id: '1013:19487' },
-  x: { Component: Glyph45, id: '506:3897' },
-  'zoom-in': { Component: Glyph46, id: '716:3726' },
+  agent: IconAgent,
+  'arrow-clockwise': IconArrowClockwise,
+  'arrow-left': IconArrowLeft,
+  'arrow-right': IconArrowRight,
+  'arrows-rotate': IconArrowsRotate,
+  'atom-react': IconAtomReact,
+  'book-bookmark': IconBookBookmark,
+  bug: IconBug,
+  'carets-maximize': IconCaretsMaximize,
+  'chevron-down-sm': IconChevronDownSm,
+  'chevron-right-sm': IconChevronRightSm,
+  'circle-user-fill': IconCircleUserFill,
+  'circle-x-fill': IconCircleXFill,
+  ellipsis: IconEllipsis,
+  'ellipsis-v': IconEllipsisV,
+  eye: IconEye,
+  'eye-check': IconEyeCheck,
+  'eye-fill': IconEyeFill,
+  'file-search': IconFileSearch,
+  'file-text': IconFileText,
+  'folder-tree': IconFolderTree,
+  'folder-tree-fill': IconFolderTreeFill,
+  folders: IconFolders,
+  'folders-fill': IconFoldersFill,
+  gas: IconGas,
+  'gas-fill': IconGasFill,
+  ghost: IconGhost,
+  'git-branch': IconGitBranch,
+  'git-commit': IconGitCommit,
+  'git-pull-request': IconGitPullRequest,
+  info: IconInfo,
+  'info-fill': IconInfoFill,
+  'layout-rows': IconLayoutRows,
+  'line-overflow': IconLineOverflow,
+  'line-wrap': IconLineWrap,
+  'list-collapse': IconListCollapse,
+  'list-expand': IconListExpand,
+  'markdown-fill': IconMarkdownFill,
+  minus: IconMinus,
+  plus: IconPlus,
+  'puzzle-piece': IconPuzzlePiece,
+  'search-simple': IconSearchSimple,
+  slash: IconSlash,
+  'star-fill': IconStarFill,
+  'video-fill': IconVideoFill,
+  x: IconX,
+  'zoom-in': IconZoomIn,
 });
 
 export function CodeApp() {

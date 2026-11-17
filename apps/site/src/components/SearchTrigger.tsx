@@ -1,9 +1,9 @@
 'use client';
 
 import { createContext, useContext } from 'react';
-import IconSearch from 'fyicons/icons/IconSearch';
+import { IconSearch, IconKbdCommandK } from 'fyicons';
+
 import { Button } from './ui/button';
-import IconKbdCommandK from 'fyicons/icons/IconKbdCommandK';
 
 export const SearchTriggerContext = createContext<
   ((trigger: HTMLElement) => void) | null
