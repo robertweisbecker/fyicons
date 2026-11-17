@@ -61,7 +61,7 @@ function outerContour(svg: string) {
 
 const warningContour = outerContour(warningSvg);
 // Figma measures the triangle's vertices before rounding its corners or outlining the stroke.
-const playBox = { left: 3.5, top: 2, width: 11, height: 12 };
+const playBox = { left: 4.5, top: 1.75, width: 11, height: 12.5 };
 const playDraftLeft = 2;
 const playShift = playBox.left - playDraftLeft;
 const playDraftCenter = playDraftLeft + playBox.width / 2;
@@ -71,7 +71,7 @@ const playTipInset = playSlopeLength / playHalfHeight;
 const playGripX = playBox.left + playBox.width;
 
 // Inset each corner's arc center, then meet the original sides at their tangents.
-// At radius 1 this centerline lies halfway between the released SVG's two contours.
+// At radius 1 this matches the released Play icon's stroke centerline.
 function playCenterline(radius: number) {
   const { left, top, width, height } = playBox;
   const right = left + width;
