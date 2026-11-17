@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconHighlighterTip = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconHighlighterTip(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="highlighter-tip"><path fill="currentColor" d="M9.223 1.084A.5.5 0 0 1 10 1.5v3.64a2 2 0 0 1 1.231 1.468l.682 3.407q.087.436.087.883V15H4v-4.103q0-.447.087-.883l.682-3.407A2 2 0 0 1 6 5.14V3.5a.5.5 0 0 1 .223-.416zM5 11v3h6v-3zm1.73-5a1 1 0 0 0-.981.804L5.11 10h5.78l-.639-3.196A1 1 0 0 0 9.271 6z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="highlighter-tip"><path fill="currentColor" d="M9.223 1.084A.5.5 0 0 1 10 1.5v3.64a2 2 0 0 1 1.231 1.468l.682 3.407q.087.436.087.883V15H4v-4.103q0-.447.087-.883l.682-3.407A2 2 0 0 1 6 5.14V3.5a.5.5 0 0 1 .223-.416zM5 11v3h6v-3zm1.73-5a1 1 0 0 0-.981.804L5.11 10h5.78l-.639-3.196A1 1 0 0 0 9.271 6z" />{props.children}</SvgRoot>;
 });
 export default IconHighlighterTip;

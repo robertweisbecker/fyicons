@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconTextBoldInactive = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconTextBoldInactive(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="text-bold-inactive"><path fill="currentColor" d="M8.297 2c1.913 0 3.17 1.458 3.16 3.004-.008 1.012-.54 1.947-1.411 2.518 1.291.609 2.02 1.79 2.02 2.979C12.062 12.542 10.43 14 8.295 14H4.75a.75.75 0 0 1-.75-.75V2.75A.75.75 0 0 1 4.75 2zM5 13h3.297c1.66 0 2.767-1.086 2.768-2.501.002-1.082-.98-2.4-3.018-2.4H5zm0-5.9h3.047l.272-.012c1.328-.12 2.13-1.103 2.137-2.092C10.463 4.003 9.652 3 8.296 3H5z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="text-bold-inactive"><path fill="currentColor" d="M8.297 2c1.913 0 3.17 1.458 3.16 3.004-.008 1.012-.54 1.947-1.411 2.518 1.291.609 2.02 1.79 2.02 2.979C12.062 12.542 10.43 14 8.295 14H4.75a.75.75 0 0 1-.75-.75V2.75A.75.75 0 0 1 4.75 2zM5 13h3.297c1.66 0 2.767-1.086 2.768-2.501.002-1.082-.98-2.4-3.018-2.4H5zm0-5.9h3.047l.272-.012c1.328-.12 2.13-1.103 2.137-2.092C10.463 4.003 9.652 3 8.296 3H5z" />{props.children}</SvgRoot>;
 });
 export default IconTextBoldInactive;

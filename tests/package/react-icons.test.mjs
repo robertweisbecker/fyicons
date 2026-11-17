@@ -209,6 +209,86 @@ test('every generated component renders with default sizing, accessibility, and 
   }
 });
 
+test('caller children supplement artwork in order, including empty source SVGs', async () => {
+  const { createElement: h, Fragment } = await import('react');
+  const { renderToStaticMarkup } = await import('react-dom/server');
+  const { JSDOM } = await import('jsdom');
+  const fixtures = [
+    {
+      name: 'artwork',
+      componentName: 'IconArtwork',
+      svg: '<svg viewBox="0 0 16 16"><path d="M1 1h14v14H1Z" /></svg>',
+    },
+    {
+      name: 'empty',
+      componentName: 'IconEmpty',
+      svg: '<svg viewBox="0 0 16 16" />',
+    },
+    {
+      name: 'paired',
+      componentName: 'IconPaired',
+      svg: '<svg viewBox="0 0 16 16"></svg>',
+    },
+  ];
+  const files = await renderReactIconFiles(fixtures);
+  function CustomShape() {
+    return h(
+      'g',
+      { transform: 'translate(2 3)' },
+      h('rect', { width: 2, height: 2 }),
+    );
+  }
+  for (const fixture of fixtures) {
+    const Icon = await loadComponent(
+      files.get(`packages/fyicons/src/${fixture.componentName}.tsx`),
+    );
+    const props = { title: 'Composite', 'aria-label': 'Composite' };
+    const original = renderToStaticMarkup(h(Icon, props));
+    for (const children of [undefined, null, false, []]) {
+      assert.equal(renderToStaticMarkup(h(Icon, props, children)), original);
+    }
+    const dom = new JSDOM(
+      renderToStaticMarkup(
+        h(
+          Icon,
+          props,
+          h(
+            Fragment,
+            null,
+            h('circle', { cx: 8, cy: 8, r: 2, fill: 'currentColor' }),
+            [h(CustomShape, { key: 'shape' }), null, false],
+          ),
+        ),
+      ),
+    );
+    const svg = dom.window.document.querySelector('svg');
+    assert.deepEqual(
+      [...svg.children].map((node) => node.localName),
+      fixture.name === 'artwork'
+        ? ['title', 'path', 'circle', 'g']
+        : ['title', 'circle', 'g'],
+    );
+    assert.equal(
+      svg.querySelector('path')?.getAttribute('d'),
+      fixture.name === 'artwork' ? 'M1 1h14v14H1Z' : undefined,
+    );
+    assert.equal(svg.querySelectorAll('circle').length, 1);
+    assert.equal(svg.querySelectorAll('rect').length, 1);
+    assert.equal(
+      svg.querySelector('circle').namespaceURI,
+      'http://www.w3.org/2000/svg',
+    );
+    assert.equal(
+      svg.querySelector('g').getAttribute('transform'),
+      'translate(2 3)',
+    );
+    assert.equal(svg.getAttribute('aria-label'), 'Composite');
+    assert.equal(svg.getAttribute('role'), 'img');
+    assert.equal(svg.hasAttribute('aria-hidden'), false);
+    dom.window.close();
+  }
+});
+
 test('foreground normalization preserves geometry, opacity, and mask paint', () => {
   const source = `<svg viewBox="0 0 16 16" fill="none"><defs><mask id="cut"><path fill="white" d="M0 0h16v16H0Z"/><path fill="black" d="M4 4h8v8H4Z"/></mask><clipPath id="clip"><path fill="#1D1D1B" d="M1 1h14v14H1Z"/></clipPath></defs><path fill="#1D1D1B" style="fill:color(display-p3 0.114 0.114 0.106);fill-opacity:0.5" d="M2 2h12v12H2Z" mask="url(#cut)"/><path fill="none" stroke="#1d1d1b" stroke-opacity="0.4" d="M3 3h10"/></svg>`;
   const expected = source
@@ -230,6 +310,7 @@ test('foreground colors inherit independently of the exported palette', () => {
 test('rendered components honor SVG props and keep repeated definition and title IDs unique', async () => {
   const { createElement } = await import('react');
   const { renderToStaticMarkup } = await import('react-dom/server');
+  const { JSDOM } = await import('jsdom');
   const files = await renderReactIconFiles([
     {
       id: 'fixture:2',
@@ -245,17 +326,27 @@ test('rendered components honor SVG props and keep repeated definition and title
     createElement(
       'div',
       null,
-      createElement(Component, {
-        size: 24,
-        width: 32,
-        color: 'red',
-        className: 'sample',
-        title: 'Sample',
-        'aria-label': 'Sample',
-        style: { opacity: 0.5 },
-        'data-test': 'first',
-        viewBox: '0 0 32 24',
-      }),
+      createElement(
+        Component,
+        {
+          size: 24,
+          width: 32,
+          color: 'red',
+          className: 'sample',
+          title: 'Sample',
+          'aria-label': 'Sample',
+          style: { opacity: 0.5 },
+          'data-test': 'first',
+          viewBox: '0 0 32 24',
+        },
+        createElement(Component, {
+          title: 'Nested',
+          x: 4,
+          y: 5,
+          size: 8,
+          className: 'nested',
+        }),
+      ),
       createElement(Component, { title: 'Second', 'aria-hidden': true }),
     ),
   );
@@ -274,8 +365,8 @@ test('rendered components honor SVG props and keep repeated definition and title
   assert.match(html, /fill="currentColor"/);
   assert.match(html, /fill:currentColor/);
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
-  assert.equal(ids.length, 6);
-  assert.equal(new Set(ids).size, 6);
+  assert.equal(ids.length, 9);
+  assert.equal(new Set(ids).size, 9);
   for (const match of html.matchAll(
     /url\(#([^)]+)\)|aria-labelledby="([^"]+)"/g,
   )) {
@@ -284,6 +375,32 @@ test('rendered components honor SVG props and keep repeated definition and title
       'Every generated reference resolves in the rendered markup',
     );
   }
+  const dom = new JSDOM(html);
+  const nested = dom.window.document.querySelector('svg > svg');
+  for (const [name, value] of Object.entries({
+    x: '4',
+    y: '5',
+    width: '8',
+    height: '8',
+    viewBox: '0 0 16 16',
+    class: 'fy-icon fy-fixture nested',
+    'aria-hidden': 'true',
+  })) {
+    assert.equal(nested.getAttribute(name), value);
+  }
+  for (const path of dom.window.document.querySelectorAll(
+    'path[mask], path[fill^="url("]',
+  )) {
+    const reference = (
+      path.getAttribute('mask') ?? path.getAttribute('fill')
+    ).match(/url\(#([^)]+)\)/)[1];
+    assert.equal(
+      dom.window.document.getElementById(reference).closest('svg'),
+      path.closest('svg'),
+      'Each reference resolves inside its own icon',
+    );
+  }
+  dom.window.close();
 });
 
 test('reference delimiters remain literal data in repeated rendered instances', async () => {
