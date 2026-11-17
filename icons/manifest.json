@@ -4352,7 +4352,7 @@
       ],
       "notes": [],
       "componentName": "IconMenu",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "132:2732",
@@ -5551,7 +5551,7 @@
       "notes": [],
       "componentName": "IconTabs",
       "addedAt": "2026-10-21T20:29:05.169Z",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "578:2304",
@@ -6874,7 +6874,7 @@
       ],
       "notes": [],
       "componentName": "IconMenuAlt",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "604:5010",
@@ -6892,7 +6892,7 @@
       ],
       "notes": [],
       "componentName": "IconMenuAltSimple",
-      "updatedAt": "2026-11-14T05:06:25.731Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "97:1820",
@@ -9027,7 +9027,7 @@
       ],
       "notes": [],
       "componentName": "IconSwitchOn",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "841:12779",
@@ -9043,7 +9043,7 @@
       ],
       "notes": [],
       "componentName": "IconSwitchOff",
-      "updatedAt": "2026-11-06T00:41:40.347Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "101:4286",
@@ -10157,11 +10157,6 @@
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "659:226",
-      "variantSetName": "play",
-      "variantProperties": {
-        "fill": "false"
-      },
       "name": "play",
       "baseName": "play",
       "filename": "play-16.svg",
@@ -10171,18 +10166,18 @@
       ],
       "notes": [],
       "componentName": "IconPlay",
-      "updatedAt": "2026-11-13T18:21:21.566Z"
+      "variantSetId": "659:226",
+      "variantSetName": "play",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "311:10178",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
-      "variantSetId": "659:226",
-      "variantSetName": "play",
-      "variantProperties": {
-        "fill": "true"
-      },
       "name": "play-fill",
       "baseName": "play",
       "filename": "play-fill-16.svg",
@@ -10194,7 +10189,12 @@
       ],
       "notes": [],
       "componentName": "IconPlayFill",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "variantSetId": "659:226",
+      "variantSetName": "play",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "619:12605",
@@ -10723,7 +10723,7 @@
       ],
       "notes": [],
       "componentName": "IconCaretLeftLg",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "520:5228",
@@ -10803,7 +10803,7 @@
       ],
       "notes": [],
       "componentName": "IconCaretRightLg",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "140:5994",
@@ -10880,7 +10880,7 @@
       ],
       "notes": [],
       "componentName": "IconCaretUpLg",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "841:13118",
@@ -10896,7 +10896,7 @@
       ],
       "notes": [],
       "componentName": "IconCaretDownLg",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "142:6370",
@@ -11366,7 +11366,7 @@
       ],
       "notes": [],
       "componentName": "IconSignIn",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "578:3151",
@@ -11382,7 +11382,7 @@
       ],
       "notes": [],
       "componentName": "IconSignOut",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "98:1928",
@@ -11820,7 +11820,7 @@
       ],
       "notes": [],
       "componentName": "IconScale",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "604:5164",
@@ -12393,7 +12393,7 @@
       ],
       "notes": [],
       "componentName": "IconCheck",
-      "updatedAt": "2026-11-16T09:22:02.528Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "158:11581",
@@ -13769,7 +13769,7 @@
       ],
       "notes": [],
       "componentName": "IconSparkles",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-17T08:00:58.995Z"
     },
     {
       "id": "856:18071",
@@ -13790,7 +13790,7 @@
       ],
       "notes": [],
       "componentName": "IconSparklesFill",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-17T08:00:58.995Z"
     },
     {
       "id": "732:5505",
@@ -17510,6 +17510,27 @@
       "updatedAt": "2026-11-14T01:21:17.645Z"
     },
     {
+      "id": "1588:13937",
+      "name": "square-fill",
+      "baseName": "square",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-fill-16.svg",
+      "file": "svgs/1588-13937.svg",
+      "aliases": [
+        "1588-13937.svg"
+      ],
+      "variantSetId": "1588:13936",
+      "variantSetName": "square",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "componentName": "IconSquareFill",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
       "id": "288:20060",
       "originalName": "square-dashed",
       "width": 16,
@@ -17628,6 +17649,27 @@
         "Property 1": "false"
       },
       "updatedAt": "2026-11-14T05:06:25.731Z"
+    },
+    {
+      "id": "1588:14014",
+      "name": "square-asterisk-fill",
+      "baseName": "square-asterisk",
+      "originalName": "Property 1=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-asterisk-fill-16.svg",
+      "file": "svgs/1588-14014.svg",
+      "aliases": [
+        "1588-14014.svg"
+      ],
+      "variantSetId": "1588:14018",
+      "variantSetName": "square-asterisk",
+      "variantProperties": {
+        "Property 1": "true"
+      },
+      "componentName": "IconSquareAsteriskFill",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
     },
     {
       "id": "667:891",
@@ -19116,7 +19158,7 @@
       ],
       "notes": [],
       "componentName": "IconPointers",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "578:3170",
@@ -19132,7 +19174,7 @@
       ],
       "notes": [],
       "componentName": "IconPointerSwarm",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "701:1548",
@@ -21070,11 +21112,6 @@
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
-      "variantSetId": "1322:1003",
-      "variantSetName": "sparkles-three",
-      "variantProperties": {
-        "fill": "true"
-      },
       "name": "sparkles-three-fill",
       "baseName": "sparkles-three",
       "filename": "sparkles-three-fill-16.svg",
@@ -21086,18 +21123,18 @@
       ],
       "notes": [],
       "componentName": "IconSparklesThreeFill",
-      "updatedAt": "2026-11-13T18:21:21.566Z"
+      "variantSetId": "1322:1003",
+      "variantSetName": "sparkles-three",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "updatedAt": "2026-11-17T08:00:58.995Z"
     },
     {
       "id": "996:34274",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1322:1003",
-      "variantSetName": "sparkles-three",
-      "variantProperties": {
-        "fill": "false"
-      },
       "name": "sparkles-three",
       "baseName": "sparkles-three",
       "filename": "sparkles-three-16.svg",
@@ -21107,7 +21144,12 @@
       ],
       "notes": [],
       "componentName": "IconSparklesThree",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "variantSetId": "1322:1003",
+      "variantSetName": "sparkles-three",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "updatedAt": "2026-11-17T08:00:58.995Z"
     },
     {
       "id": "886:30418",
@@ -21195,7 +21237,7 @@
       "notes": [],
       "componentName": "IconMath",
       "addedAt": "2026-10-24T09:44:30.696Z",
-      "updatedAt": "2026-11-14T04:40:11.277Z"
+      "updatedAt": "2026-11-17T08:00:58.995Z"
     },
     {
       "id": "895:30733",
@@ -22920,7 +22962,7 @@
       "notes": [],
       "componentName": "IconCheckThick",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-16T09:22:02.528Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "1353:11438",
@@ -23145,7 +23187,7 @@
       "notes": [],
       "componentName": "IconMenuSimple",
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-14T05:06:25.731Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     },
     {
       "id": "1419:1365",
@@ -24397,48 +24439,6 @@
       "updatedAt": "2026-11-11T08:10:45.858Z"
     },
     {
-      "id": "1588:13937",
-      "name": "square-fill",
-      "baseName": "square",
-      "originalName": "fill=true",
-      "width": 16,
-      "height": 16,
-      "filename": "square-fill-16.svg",
-      "file": "svgs/1588-13937.svg",
-      "aliases": [
-        "1588-13937.svg"
-      ],
-      "variantSetId": "1588:13936",
-      "variantSetName": "square",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "componentName": "IconSquareFill",
-      "addedAt": "2026-11-16T08:50:25.145Z",
-      "updatedAt": "2026-11-16T08:50:25.145Z"
-    },
-    {
-      "id": "1588:14014",
-      "name": "square-asterisk-fill",
-      "baseName": "square-asterisk",
-      "originalName": "Property 1=true",
-      "width": 16,
-      "height": 16,
-      "filename": "square-asterisk-fill-16.svg",
-      "file": "svgs/1588-14014.svg",
-      "aliases": [
-        "1588-14014.svg"
-      ],
-      "variantSetId": "1588:14018",
-      "variantSetName": "square-asterisk",
-      "variantProperties": {
-        "Property 1": "true"
-      },
-      "componentName": "IconSquareAsteriskFill",
-      "addedAt": "2026-11-16T08:50:25.145Z",
-      "updatedAt": "2026-11-16T08:50:25.145Z"
-    },
-    {
       "id": "1720:12541",
       "name": "bookmark-check",
       "baseName": "bookmark-check",
@@ -24612,7 +24612,7 @@
       "id": "1727:13071",
       "name": "cursor-default",
       "baseName": "cursor-default",
-      "originalName": "cursor-default",
+      "originalName": "fill=false",
       "width": 16,
       "height": 16,
       "filename": "cursor-default-16.svg",
@@ -24621,8 +24621,13 @@
         "1727-13071.svg"
       ],
       "componentName": "IconCursorDefault",
+      "variantSetId": "1763:1504",
+      "variantSetName": "cursor-default",
+      "variantProperties": {
+        "fill": "false"
+      },
       "addedAt": "2026-11-16T08:50:25.145Z",
-      "updatedAt": "2026-11-16T08:50:25.145Z"
+      "updatedAt": "2026-11-17T07:08:16.027Z"
     }
   ]
 }
