@@ -1,7 +1,6 @@
-import { type ReactNode } from 'react';
-import { Icon } from '@/components/Icon';
+import { type ReactNode, type ComponentType } from 'react';
+import type { IconProps } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
-import { Badge } from '@/components/ui/badge';
 import { TooltipGroup } from '@/components/ui/tooltip';
 
 export const panel =
@@ -36,23 +35,25 @@ export function Study({
 }
 
 /** Decorative controls in the static Figma specimens stay out of the tab order. */
-export function Glyph({
-  name,
-  className,
-  size = 16,
-}: {
-  name: string;
-  className?: string;
-  size?: number;
-}) {
-  return (
-    <span
-      className={cn(
-        'inline-flex size-6 shrink-0 items-center justify-center',
-        className,
-      )}
-    >
-      <Icon name={name} size={size} />
-    </span>
-  );
+export function createGlyph(Icon: ComponentType<IconProps>) {
+  return function Glyph({
+    name,
+    className,
+    size = 16,
+  }: {
+    name: string;
+    className?: string;
+    size?: number;
+  }) {
+    return (
+      <span
+        className={cn(
+          'inline-flex size-6 shrink-0 items-center justify-center',
+          className,
+        )}
+      >
+        <Icon name={name} size={size} />
+      </span>
+    );
+  };
 }

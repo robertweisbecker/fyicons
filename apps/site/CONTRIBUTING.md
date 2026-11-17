@@ -47,6 +47,12 @@ Keep browser APIs inside Client Components and effects. Docs content renders as 
 
 The website uses local font files. Keep their notices in `apps/site/public/licenses/`. The icon package uses the root MIT license; the fonts have separate licenses.
 
+Interface text uses [Allo by Josh Puckett](https://allo.joshpuckett.me/). `AlloVariable.woff2` is the original Allo 1.0 variable webfont. CSS sets roundness to its maximum (`ROND=100`), with variable weight and automatic optical sizing. The regular and bold obliques are the original Allo webfonts. Code uses Paper Mono.
+
+Configure fonts with `next/font/local` in `src/app/fonts.ts` and apply their classes in the root layout. Upright Allo is preloaded. Oblique styles and Paper Mono load when used. The wordmarks use the shared `public/brand-wordmarks.svg` symbols; their lettering inherits the current text color in both themes.
+
+Development startup and production builds generate `public/downloads/fyicons.zip` from the current catalog and category rules. Full-library downloads use this static file. Custom selections are packaged in the browser. The generated ZIP is ignored by Git. After icon or category edits during a running development session, run `node scripts/build-site-archive.mjs` from the repository root to refresh it. Verify archive contents with `node --test tests/site/icon-archive.test.mjs`.
+
 ## Edit category rules
 
 Follow [Icon sources](../../docs/icon-sources.md#category-rules) for rule syntax and generation. The browser fetches category rules on page load without caching. Save and refresh to use edited rules; a running dev or preview server needs no restart. If category loading fails, the library keeps all icons available and shows a notice. Production builds minify the category JSON without changing its data.
@@ -67,6 +73,14 @@ node scripts/generate-icon-releases.mjs --check
 
 [The Pages workflow](../../.github/workflows/pages.yml) builds, tests, and deploys `apps/site/out/` from `main`. Pull requests run checks without deployment. Root documentation changes do not trigger a site build. Files under `apps/site/`, including this guide, match the workflow’s build paths. Changes to the ZIP README do trigger a build because downloads include that file.
 
-For a new GitHub Pages deployment, select **GitHub Actions** as the deployment source in the repository settings. The Next.js app uses static export with trailing slashes. For a project subpath, set `NEXT_PUBLIC_BASE_PATH=/project-name` when building and previewing. All routes must be known at build time; server actions and runtime API routes are not available. The build checks exported routes and docs links and enforces a 7.25 MiB limit, including pre-rendered HTML and Next.js route payloads. Demo wallpapers load from external Raycast URLs. Release artifacts stay outside `apps/site/out/`.
+For a new GitHub Pages deployment, select **GitHub Actions** as the deployment source in the repository settings. The Next.js app uses static export with trailing slashes. For a project subpath, set `NEXT_PUBLIC_BASE_PATH=/project-name` when building and previewing. All routes must be known at build time; server actions and runtime API routes are not available. The build checks exported routes and docs links. It reports the total export size and warns above 7.25 MiB, including pre-rendered HTML and Next.js route payloads. This warning does not block deployment. Demo backdrops use static CSS mesh gradients and make no image requests. Release artifacts stay outside `apps/site/out/`.
 
 Keep host credentials, DNS account details, and personal setup notes outside the repository. Use the host's documentation for domain setup.
+
+## Performance loading boundaries
+
+The generated runtime catalog contains metadata only. `src/data/catalog-summary.json` supplies counts without loading the catalog. Build and development startup generate checksum-addressed `public/icon-sources/` files and the full ZIP from the canonical package SVG exports. Copy actions fetch and verify an individual source; single downloads use its URL. Custom ZIPs resolve at most six sources concurrently and are created only after every source succeeds. These generated public files are ignored by Git.
+
+Keep shared clipboard controls independent of the catalog. Global search mounts its input during the opening gesture, then loads its data and results. Heavy homepage demos load within 600 px of the viewport, on focus, or when targeted by an anchor. Their outer layout and meaningful headings stay rendered. Preserve these boundaries when adding demonstrations or navigation links.
+
+GitHub Pages controls HTTP cache headers. Its current asset responses use `max-age=600`. Next.js response-header configuration does not apply to a static export, so it cannot remove the remaining cache-lifetime warning.

@@ -25,6 +25,7 @@ export function SiteFooter() {
     >
       <div className="shrink-0 space-y-2">
         <Link
+          prefetch={false}
           href="/"
           className={cn(linkClassName, 'font-medium tracking-tight text-ink')}
           aria-label="FYIcons home"
@@ -50,6 +51,7 @@ export function SiteFooter() {
         {[{ href: '/', label: 'Home' }, ...siteNavigation].map(
           ({ href, label }) => (
             <Link
+              prefetch={false}
               key={href}
               href={href}
               aria-current={isActiveRoute(pathname, href) ? 'page' : undefined}

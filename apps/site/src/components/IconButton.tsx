@@ -1,4 +1,4 @@
-import { Icon } from './Icon';
+import { Icon } from '@/components/UIIcon';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { Tooltip } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';

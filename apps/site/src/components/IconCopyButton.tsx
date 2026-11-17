@@ -5,11 +5,12 @@ import { Button, type ButtonProps } from './ui/button';
 import { notify } from './ui/toast';
 import { getIconDisplayName, type IconRecord } from '@/lib/catalog';
 import { copy } from '@/lib/downloads';
+import { useIconSource } from '@/lib/use-icon-source';
 import { cn } from '@/lib/utils';
 
 export function IconCopyButton({
   item,
-  text = item.svg,
+  text,
   label = 'Copy SVG',
   size = 'icon-sm',
   showLabel = false,
@@ -35,11 +36,25 @@ export function IconCopyButton({
       clearTimeout(reset.current);
     };
   }, []);
-  const copied = copiedText === text;
+  const source = useIconSource(item, text === undefined);
+  const value = text ?? source.text;
+  const sourceError = text === undefined ? source.error : undefined;
+  const loading = value === undefined && !sourceError;
+  const actionLabel = sourceError
+    ? 'Retry loading SVG'
+    : loading
+      ? 'Loading SVG…'
+      : label;
+  const copied = value !== undefined && copiedText === value;
 
   async function handleCopy() {
+    if (sourceError) {
+      source.retry();
+      return;
+    }
+    if (value === undefined) return;
     setPending(true);
-    const success = await copy(text);
+    const success = await copy(value);
     if (success) {
       notify(
         <>
@@ -55,7 +70,7 @@ export function IconCopyButton({
     if (!mounted.current) return;
     clearTimeout(reset.current);
     setPending(false);
-    setCopiedText(success ? text : null);
+    setCopiedText(success ? value : null);
     if (success) reset.current = setTimeout(() => setCopiedText(null), 2200);
   }
 
@@ -84,22 +99,22 @@ export function IconCopyButton({
         variant="neutral"
         size={size}
         className={cn('min-w-0 rounded-full', className)}
-        aria-label={label}
-        disabled={pending}
+        aria-label={actionLabel}
+        disabled={pending || loading}
         onClick={handleCopy}
         data-copied={copied || undefined}
       >
         {icon}
-        {children ?? label}
+        {children ?? actionLabel}
       </Button>
     );
 
   return (
     <IconButton
-      label={label}
+      label={actionLabel}
       size={size}
       className={className}
-      disabled={pending}
+      disabled={pending || loading}
       onClick={handleCopy}
       data-copied={copied || undefined}
       icon={icon}

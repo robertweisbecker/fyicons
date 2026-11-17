@@ -51,6 +51,7 @@ export function SiteHeader({
         )}
       >
         <Link
+          prefetch={false}
           className={cn(
             buttonVariants({ variant: 'unstyled', size: 'unstyled' }),
             'gap-2 text-sm',
@@ -74,6 +75,7 @@ export function SiteHeader({
         >
           {headerNavigation.map(({ href, label }) => (
             <Link
+              prefetch={false}
               key={href}
               href={href}
               aria-current={isActiveRoute(pathname, href) ? 'page' : undefined}
@@ -90,6 +92,7 @@ export function SiteHeader({
           {isDevelopment && (
             <Tooltip label="Prototypes">
               <Link
+                prefetch={false}
                 href="/prototypes/"
                 aria-label="Prototypes"
                 aria-current={

@@ -9,7 +9,6 @@ export type CatalogIcon = {
   file: string;
   width: number;
   height: number;
-  svg: string;
   sha256: string;
   aliases: string[];
   notes?: string[];
@@ -35,9 +34,8 @@ export type CompactCatalog = {
   metadataArchive: string;
   iconFields: readonly string[];
   iconArchive: string;
-  svgArchive: string;
 };
-type ArchivedIcon = Omit<CatalogIcon, 'svg' | 'width' | 'height' | 'file'> & {
+type ArchivedIcon = Omit<CatalogIcon, 'width' | 'height' | 'file'> & {
   sourceUrl?: string;
 };
 
@@ -51,10 +49,9 @@ function unpack(archive: string): unknown {
 }
 
 export function decodeCatalog(compact: CompactCatalog): Catalog {
-  const { metadataArchive, iconFields, iconArchive, svgArchive } = compact;
+  const { metadataArchive, iconFields, iconArchive } = compact;
   const metadata = unpack(metadataArchive) as Omit<Catalog, 'icons'>;
   const rows = unpack(iconArchive) as unknown[][];
-  const sourceSvgs = unpack(svgArchive) as string[];
   return {
     ...metadata,
     source: { id: metadata.source?.id ?? '' },
@@ -66,7 +63,6 @@ export function decodeCatalog(compact: CompactCatalog): Catalog {
       ) as ArchivedIcon;
       return {
         ...icon,
-        svg: sourceSvgs[index],
         width: 16,
         height: 16,
         file: `icons/${icon.filename}`,

@@ -1,11 +1,83 @@
 import { type ComponentProps } from 'react';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
+
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { FormatControls, TextAlignment } from '../FormatStudy';
-import { Glyph } from '../Study';
+import { createGlyph } from '../Study';
+
+import Glyph0 from 'fyicons/icons/IconAngle';
+import Glyph1 from 'fyicons/icons/IconApps';
+import Glyph2 from 'fyicons/icons/IconBorderRadius';
+import Glyph3 from 'fyicons/icons/IconBucket';
+import Glyph4 from 'fyicons/icons/IconCheckSm';
+import Glyph5 from 'fyicons/icons/IconChevronDownSm';
+import Glyph6 from 'fyicons/icons/IconChevronRightSm';
+import Glyph7 from 'fyicons/icons/IconComponent';
+import Glyph8 from 'fyicons/icons/IconEye';
+import Glyph9 from 'fyicons/icons/IconEyeFill';
+import Glyph10 from 'fyicons/icons/IconEyeSlash';
+import Glyph11 from 'fyicons/icons/IconEyeSlashFill';
+import Glyph12 from 'fyicons/icons/IconFont';
+import Glyph13 from 'fyicons/icons/IconFrame';
+import Glyph14 from 'fyicons/icons/IconHeight';
+import Glyph15 from 'fyicons/icons/IconItalic';
+import Glyph16 from 'fyicons/icons/IconLetterSpacing';
+import Glyph17 from 'fyicons/icons/IconLineHeight';
+import Glyph18 from 'fyicons/icons/IconLinkUnlink';
+import Glyph19 from 'fyicons/icons/IconListBullet';
+import Glyph20 from 'fyicons/icons/IconListOrdered';
+import Glyph21 from 'fyicons/icons/IconLockOpen';
+import Glyph22 from 'fyicons/icons/IconLockOpenFill';
+import Glyph23 from 'fyicons/icons/IconMinus';
+import Glyph24 from 'fyicons/icons/IconPlus';
+import Glyph25 from 'fyicons/icons/IconShadow';
+import Glyph26 from 'fyicons/icons/IconSlidersV';
+import Glyph27 from 'fyicons/icons/IconSwatches';
+import Glyph28 from 'fyicons/icons/IconTextBold';
+import Glyph29 from 'fyicons/icons/IconTextStrikethrough';
+import Glyph30 from 'fyicons/icons/IconTextTitle';
+import Glyph31 from 'fyicons/icons/IconTextTitleFill';
+import Glyph32 from 'fyicons/icons/IconTextUnderline';
+import Glyph33 from 'fyicons/icons/IconWidth';
+const Icon = createIconLookup({
+  angle: { Component: Glyph0, id: '895:30680' },
+  apps: { Component: Glyph1, id: '507:4365' },
+  'border-radius': { Component: Glyph2, id: '114:2223' },
+  bucket: { Component: Glyph3, id: '137:4742' },
+  'check-sm': { Component: Glyph4, id: '158:11581' },
+  'chevron-down-sm': { Component: Glyph5, id: '142:6351' },
+  'chevron-right-sm': { Component: Glyph6, id: '142:6353' },
+  component: { Component: Glyph7, id: '58:9529' },
+  eye: { Component: Glyph8, id: '120:2551' },
+  'eye-fill': { Component: Glyph9, id: '1010:19329' },
+  'eye-slash': { Component: Glyph10, id: '120:2554' },
+  'eye-slash-fill': { Component: Glyph11, id: '1366:1582' },
+  font: { Component: Glyph12, id: '148:6692' },
+  frame: { Component: Glyph13, id: '125:2609' },
+  height: { Component: Glyph14, id: '919:32764' },
+  italic: { Component: Glyph15, id: '161:11751' },
+  'letter-spacing': { Component: Glyph16, id: '919:32842' },
+  'line-height': { Component: Glyph17, id: '593:3739' },
+  'link-unlink': { Component: Glyph18, id: '550:8814' },
+  'list-bullet': { Component: Glyph19, id: '148:6841' },
+  'list-ordered': { Component: Glyph20, id: '132:2732' },
+  'lock-open': { Component: Glyph21, id: '193:13627' },
+  'lock-open-fill': { Component: Glyph22, id: '752:4267' },
+  minus: { Component: Glyph23, id: '667:899' },
+  plus: { Component: Glyph24, id: '120:2544' },
+  shadow: { Component: Glyph25, id: '130:2688' },
+  'sliders-v': { Component: Glyph26, id: '529:7914' },
+  swatches: { Component: Glyph27, id: '100:2283' },
+  'text-bold': { Component: Glyph28, id: '101:4281' },
+  'text-strikethrough': { Component: Glyph29, id: '338:7712' },
+  'text-title': { Component: Glyph30, id: '58:9540' },
+  'text-title-fill': { Component: Glyph31, id: '1084:12366' },
+  'text-underline': { Component: Glyph32, id: '100:2288' },
+  width: { Component: Glyph33, id: '919:32781' },
+});
 
 export const designFills = [
   { name: 'Lavender', color: 'var(--color-violet-300)' },
@@ -205,3 +277,7 @@ export function DesignInspector({
     </aside>
   );
 }
+
+const Glyph = createGlyph(Icon);
+
+const { DemoToggle } = createDemoControls(Icon);

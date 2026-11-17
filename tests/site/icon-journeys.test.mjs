@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { act } from 'react';
@@ -14,7 +15,11 @@ function captureDownloads(t, window) {
   });
   t.mock.method(URL, 'revokeObjectURL', () => {});
   t.mock.method(window.HTMLAnchorElement.prototype, 'click', function () {
-    downloads.push({ filename: this.download, blob: blobs.get(this.href) });
+    downloads.push({
+      filename: this.download,
+      href: this.href,
+      blob: blobs.get(this.href),
+    });
   });
   return downloads;
 }
@@ -132,18 +137,32 @@ for (const mobile of [false, true]) {
         'true',
       );
     }
-    const copyButton = h.document.querySelector(
-      '#inspector button[aria-label="Copy SVG"]',
+    let copyButton;
+    for (let attempt = 0; attempt < 100; attempt++) {
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 10));
+      });
+      copyButton = h.document.querySelector(
+        '#inspector button[aria-label="Copy SVG"]',
+      );
+      if (copyButton && !copyButton.disabled) break;
+    }
+    const sourceSvg = await readFile(
+      new URL(`../../packages/fyicons/svg/${icon.filename}`, import.meta.url),
+      'utf8',
     );
     await click(copyButton);
-    assert.deepEqual(copied, [icon.svg]);
+    assert.deepEqual(copied, [sourceSvg]);
     await click(
       h.document.querySelector('#inspector button[aria-label="Download SVG"]'),
     );
     assert.equal(downloads.length, 1);
     assert.equal(downloads[0].filename, icon.filename);
-    assert.equal(downloads[0].blob.type, 'image/svg+xml');
-    assert.equal(await downloads[0].blob.text(), icon.svg);
+    assert.equal(
+      downloads[0].href,
+      `https://example.test/icon-sources/${icon.sha256}.svg`,
+    );
+    assert.equal(downloads[0].blob, undefined);
     // Clipboard denial must report failure rather than claiming another success.
     h.window.navigator.clipboard.writeText = async () => {
       throw new Error('denied');
@@ -207,8 +226,6 @@ test('users can filter, save and remove icons, then export the selection or full
   await click(h.document.querySelector('button[data-download-icons="all"]'));
   assert.equal(downloads.length, 2);
   assert.equal(downloads[1].filename, 'fyicons.zip');
-  assert.deepEqual(
-    (await manifest(downloads[1])).icons.map(({ id }) => id).sort(),
-    h.catalog.icons.map(({ id }) => id).sort(),
-  );
+  assert.equal(downloads[1].href, 'https://example.test/downloads/fyicons.zip');
+  assert.equal(downloads[1].blob, undefined, 'full ZIP is served as a file');
 });

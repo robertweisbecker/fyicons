@@ -1,5 +1,11 @@
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
+
 import { cn } from '@/lib/utils';
+
+import Glyph0 from 'fyicons/icons/IconWaveform';
+const Icon = createIconLookup({
+  waveform: { Component: Glyph0, id: '372:5489' },
+});
 
 export const tracks = [
   { title: 'Soft Signal', artist: 'The Quiet Hours', length: 222 },

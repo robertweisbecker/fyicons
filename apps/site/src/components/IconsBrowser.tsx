@@ -1,4 +1,5 @@
 'use client';
+import { IconRendererContext } from './UIIcon';
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Popover } from '@base-ui/react/popover';
@@ -38,7 +39,7 @@ const sortItems = Object.entries(sortOptions).map(([value, option]) => ({
   value: value as IconSort,
 }));
 
-export function IconsBrowser() {
+function IconsBrowserContent() {
   const mobile = useMobile();
   const filters = useIconFilters();
   const {
@@ -165,7 +166,7 @@ export function IconsBrowser() {
     setPacking(true);
     try {
       await downloadIcons(
-        onlySelected ? selectedIcons : icons,
+        onlySelected ? selectedIcons : undefined,
         onlySelected ? 'fyicons-selected.zip' : 'fyicons.zip',
       );
       return true;
@@ -410,5 +411,13 @@ export function IconsBrowser() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function IconsBrowser() {
+  return (
+    <IconRendererContext value={Icon}>
+      <IconsBrowserContent />
+    </IconRendererContext>
   );
 }

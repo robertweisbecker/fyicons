@@ -4,9 +4,75 @@ import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleIcon } from '@/components/ToggleIcon';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
+
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { DemoIconButton } from './DemoControls';
+import { createDemoControls } from './DemoControls';
+
+import Glyph0 from 'fyicons/icons/IconAlert';
+import Glyph1 from 'fyicons/icons/IconAlertFill';
+import Glyph2 from 'fyicons/icons/IconBookmark';
+import Glyph3 from 'fyicons/icons/IconBookmarkFill';
+import Glyph4 from 'fyicons/icons/IconCalendar';
+import Glyph5 from 'fyicons/icons/IconCalendarFill';
+import Glyph6 from 'fyicons/icons/IconCalendarSolid';
+import Glyph7 from 'fyicons/icons/IconChevronDownSm';
+import Glyph8 from 'fyicons/icons/IconChevronRightSm';
+import Glyph9 from 'fyicons/icons/IconComponent';
+import Glyph10 from 'fyicons/icons/IconCopied';
+import Glyph11 from 'fyicons/icons/IconCopiedFill';
+import Glyph12 from 'fyicons/icons/IconCopy';
+import Glyph13 from 'fyicons/icons/IconError';
+import Glyph14 from 'fyicons/icons/IconErrorFill';
+import Glyph15 from 'fyicons/icons/IconFolder';
+import Glyph16 from 'fyicons/icons/IconFolderAdd';
+import Glyph17 from 'fyicons/icons/IconFolderFill';
+import Glyph18 from 'fyicons/icons/IconFolderOpen';
+import Glyph19 from 'fyicons/icons/IconFolderOpenFill';
+import Glyph20 from 'fyicons/icons/IconGhost';
+import Glyph21 from 'fyicons/icons/IconGlobe';
+import Glyph22 from 'fyicons/icons/IconHomeWide';
+import Glyph23 from 'fyicons/icons/IconHomeWideFill';
+import Glyph24 from 'fyicons/icons/IconPalette';
+import Glyph25 from 'fyicons/icons/IconPhone';
+import Glyph26 from 'fyicons/icons/IconPhoneFill';
+import Glyph27 from 'fyicons/icons/IconSettingsSmall';
+import Glyph28 from 'fyicons/icons/IconSettingsSmallFill';
+import Glyph29 from 'fyicons/icons/IconUsers';
+import Glyph30 from 'fyicons/icons/IconUsersFill';
+const Icon = createIconLookup({
+  alert: { Component: Glyph0, id: '667:563' },
+  'alert-fill': { Component: Glyph1, id: '667:570' },
+  bookmark: { Component: Glyph2, id: '124:2571' },
+  'bookmark-fill': { Component: Glyph3, id: '506:2914' },
+  calendar: { Component: Glyph4, id: '344:9669' },
+  'calendar-fill': { Component: Glyph5, id: '1350:2792' },
+  'calendar-solid': { Component: Glyph6, id: '96:1603' },
+  'chevron-down-sm': { Component: Glyph7, id: '142:6351' },
+  'chevron-right-sm': { Component: Glyph8, id: '142:6353' },
+  component: { Component: Glyph9, id: '58:9529' },
+  copied: { Component: Glyph10, id: '548:8698' },
+  'copied-fill': { Component: Glyph11, id: '892:30476' },
+  copy: { Component: Glyph12, id: '245:15242' },
+  error: { Component: Glyph13, id: '1001:675' },
+  'error-fill': { Component: Glyph14, id: '1001:681' },
+  folder: { Component: Glyph15, id: '102:4392' },
+  'folder-add': { Component: Glyph16, id: '747:3749' },
+  'folder-fill': { Component: Glyph17, id: '741:7685' },
+  'folder-open': { Component: Glyph18, id: '102:4393' },
+  'folder-open-fill': { Component: Glyph19, id: '741:7694' },
+  ghost: { Component: Glyph20, id: '727:314' },
+  globe: { Component: Glyph21, id: '158:11702' },
+  'home-wide': { Component: Glyph22, id: '957:33306' },
+  'home-wide-fill': { Component: Glyph23, id: '959:33671' },
+  palette: { Component: Glyph24, id: '479:1759' },
+  phone: { Component: Glyph25, id: '596:4380' },
+  'phone-fill': { Component: Glyph26, id: '596:4389' },
+  'settings-small': { Component: Glyph27, id: '178:12405' },
+  'settings-small-fill': { Component: Glyph28, id: '178:12414' },
+  users: { Component: Glyph29, id: '469:1440' },
+  'users-fill': { Component: Glyph30, id: '487:1492' },
+});
 
 export function SidebarDemo() {
   const [value, setValue] = useState(['Home']);
@@ -119,3 +185,5 @@ export function SidebarDemo() {
     </nav>
   );
 }
+
+const { DemoIconButton } = createDemoControls(Icon);

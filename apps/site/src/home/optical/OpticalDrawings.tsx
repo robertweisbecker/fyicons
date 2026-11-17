@@ -1,4 +1,5 @@
 'use client';
+import { useDemoActivity } from '@/components/DeferredContent';
 
 import {
   useId,
@@ -274,17 +275,19 @@ export function DrawingStage({
   cursorTarget?: string;
   children: (scene: Scene) => ReactNode;
 }) {
+  const active = useDemoActivity();
   const slot = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(288);
 
   useLayoutEffect(() => {
+    if (!active) return;
     const element = slot.current!;
     const measure = () => setWidth(Math.max(1, element.clientWidth));
     const observer = new ResizeObserver(measure);
     measure();
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [active]);
 
   return (
     <div

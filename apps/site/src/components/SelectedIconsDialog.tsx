@@ -5,7 +5,7 @@ import { IconButton } from './IconButton';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { getIconDisplayName, type IconRecord } from '@/lib/catalog';
-import { download } from '@/lib/downloads';
+import { downloadIcon } from '@/lib/downloads';
 
 export function SelectedIconsDialog({
   icons,
@@ -109,9 +109,7 @@ export function SelectedIconsDialog({
                       label={`Download ${name}`}
                       size="icon-sm"
                       disabled={packing}
-                      onClick={() =>
-                        download(icon.svg, icon.filename, 'image/svg+xml')
-                      }
+                      onClick={() => downloadIcon(icon)}
                     />
                     <Button
                       variant="ghost"

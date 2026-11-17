@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { IconRecord } from '@/lib/catalog';
-import { download } from '@/lib/downloads';
+import { downloadIcon } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
 import { Icon } from './Icon';
 import { IconCopyButton } from './IconCopyButton';
@@ -24,7 +24,7 @@ export function IconDownloadButton({
       size="lg"
       aria-label="Download SVG"
       className={cn('size-11 rounded-full p-0', className)}
-      onClick={() => download(item.svg, item.filename, 'image/svg+xml')}
+      onClick={() => downloadIcon(item)}
     >
       <Icon name="download-square" />
       {children}

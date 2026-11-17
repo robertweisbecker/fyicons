@@ -1,10 +1,66 @@
 import { useEffect, useRef, useState } from 'react';
-import { Icon } from './Icon';
+import { createIconLookup } from '@/components/createIconLookup';
+
+
+
+
+
+
+
+
+
 import { IconButton } from './IconButton';
 import { Button, type ButtonProps } from './ui/button';
 import { notify } from './ui/toast';
 import { copy } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import Glyph0 from 'fyicons/icons/IconCode';
+import Glyph1 from 'fyicons/icons/IconCopiedFill';
+import Glyph2 from 'fyicons/icons/IconCopySm';
+import Glyph3 from 'fyicons/icons/IconGhost';
+import Glyph4 from 'fyicons/icons/IconTerminalBash';
+import Glyph5 from 'fyicons/icons/IconTerminalSquare';
+import Glyph6 from 'fyicons/icons/IconTerminalSquareFill';
+import Glyph7 from 'fyicons/icons/IconTextTitle';
+import Glyph8 from 'fyicons/icons/IconTextTitleFill';
+const Icon = createIconLookup({
+"code": { Component: Glyph0, id: "58:9531" },
+"copied-fill": { Component: Glyph1, id: "892:30476" },
+"copy-sm": { Component: Glyph2, id: "610:12055" },
+"ghost": { Component: Glyph3, id: "727:314" },
+"terminal-bash": { Component: Glyph4, id: "749:5069" },
+"terminal-square": { Component: Glyph5, id: "604:5134" },
+"terminal-square-fill": { Component: Glyph6, id: "667:1166" },
+"text": { Component: Glyph7, id: "58:9540" },
+"text-fill": { Component: Glyph8, id: "1084:12366" }
+});
 
 export function InstallCommand({
   command,

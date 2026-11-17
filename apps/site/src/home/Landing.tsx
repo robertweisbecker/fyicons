@@ -1,26 +1,61 @@
 'use client';
+import { createIconLookup } from '@/components/createIconLookup';
+
+import { DeferredContent } from '@/components/DeferredContent';
+import {
+  VariantPlaceholder,
+  ConstructionPlaceholder,
+  OpticalPlaceholder,
+  GroupPlaceholder,
+} from './DemoPlaceholders';
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Icon } from '@/components/Icon';
+
 import { ShadcnIcon } from '@/components/BrandIcons';
 import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { InstallCommand } from '@/components/InstallCommand';
 import { SearchTrigger } from '@/components/SearchTrigger';
 import { buttonVariants } from '@/components/ui/button';
-import { icons } from '@/lib/catalog';
+import catalogSummary from '@/data/catalog-summary.json';
 import { assetPath } from '@/lib/navigation';
 import { useReducedMotionPreference } from '@/lib/preferences';
-import { Construction } from './Construction';
 import { DesktopShowcase } from './desktop/DesktopShowcase';
-import { IconGroupCarousel } from './IconGroupCarousel';
 import { IconExampleCard } from './IconExampleCard';
 import { IconSpecimen } from './IconSpecimen';
-import { IconVariants } from './IconVariants';
-import { OpticalAdjustments } from './OpticalAdjustments';
-import { ProgressIcons } from './ProgressIcons';
-import { StatefulIcons } from './StatefulIcons';
 import './Landing.css';
+
+import Glyph0 from 'fyicons/icons/IconEyeClosed';
+import Glyph1 from 'fyicons/icons/IconEyePupil';
+import Glyph2 from 'fyicons/icons/IconPenToolAlt';
+import Glyph3 from 'fyicons/icons/IconArrowRight';
+import Glyph4 from 'fyicons/icons/IconAtomReact';
+import Glyph5 from 'fyicons/icons/IconAsterisk';
+import Glyph6 from 'fyicons/icons/IconVectorSvg';
+import Glyph7 from 'fyicons/icons/IconShapes';
+import Glyph8 from 'fyicons/icons/IconGridRuler';
+import Glyph9 from 'fyicons/icons/IconBorderWidth';
+const Icon = createIconLookup({
+  'eye-closed': { Component: Glyph0, id: '120:2553' },
+  'eye-pupil': { Component: Glyph1, id: '698:651' },
+  'pen-tool-alt': { Component: Glyph2, id: '314:17522' },
+  'arrow-right': { Component: Glyph3, id: '518:4810' },
+  'atom-react': { Component: Glyph4, id: '360:11316' },
+  asterisk: { Component: Glyph5, id: '378:8045' },
+  'vector-svg': { Component: Glyph6, id: '1211:11261' },
+  shapes: { Component: Glyph7, id: '895:30930' },
+  'grid-ruler': { Component: Glyph8, id: '993:34066' },
+  'border-width': { Component: Glyph9, id: '96:1547' },
+});
+
+const loadVariants = () =>
+  import('./VariantExamples').then((module) => module.VariantExamples);
+const loadConstruction = () =>
+  import('./Construction').then((module) => module.Construction);
+const loadOptical = () =>
+  import('./OpticalAdjustments').then((module) => module.OpticalAdjustments);
+const loadGroups = () =>
+  import('./IconGroupCarousel').then((module) => module.IconGroupCarousel);
 
 // Landing heading styles live here alongside the page's section composition.
 const sectionHeadingClassName =
@@ -110,9 +145,10 @@ export default function Landing() {
               </div>
 
               <div className="space-y-4">
-                <SearchTrigger iconCount={icons.length} />
+                <SearchTrigger iconCount={catalogSummary.count} />
                 <div className="flex flex-col flex-wrap items-stretch gap-4 md:flex-row md:items-center">
                   <Link
+                    prefetch={false}
                     className={buttonVariants({
                       variant: 'default',
                       size: 'lg',
@@ -201,8 +237,9 @@ export default function Landing() {
                 SVGs
               </h3>
               <p className="text-balance text-muted">
-                Get all {icons.length.toLocaleString('en-US')} icons as a ZIP.
-                Use with any framework, or drag them (gently) into your designs.
+                Get all {catalogSummary.count.toLocaleString('en-US')} icons as
+                a ZIP. Use with any framework, or drag them (gently) into your
+                designs.
               </p>
               <DownloadIconsButton className="mt-auto self-start max-md:w-full" />
             </article>
@@ -224,7 +261,7 @@ export default function Landing() {
               <div className="flex flex-col items-center gap-5">
                 <Icon name="shapes" className="size-8" />
                 <p className="text-lg tracking-tight">
-                  {icons.length.toLocaleString('en-US')} icons
+                  {catalogSummary.count.toLocaleString('en-US')} icons
                 </p>
               </div>
               <div className="flex flex-col items-center gap-5">
@@ -245,18 +282,11 @@ export default function Landing() {
             <h3 id="icon-variants-heading" className={featureHeadingClassName}>
               More than just outlines
             </h3>
-            <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-6 sm:gap-x-4">
-              <IconVariants />
-              <IconExampleCard label="Progress" className="sm:col-span-3">
-                <ProgressIcons />
-              </IconExampleCard>
-              <IconExampleCard
-                label="Toggles"
-                className="col-span-2 sm:col-span-3"
-              >
-                <StatefulIcons />
-              </IconExampleCard>
-            </div>
+            <DeferredContent
+              loader={loadVariants}
+              componentProps={{}}
+              fallback={<VariantPlaceholder />}
+            />
           </section>
           <section aria-labelledby="construction-heading" className="space-y-6">
             <h3 id="construction-heading" className={featureHeadingClassName}>
@@ -265,31 +295,49 @@ export default function Landing() {
             <p className="text-lg font-medium text-balance text-muted">
               Designed on a consistent, pixel-aligned grid.
             </p>
-            <Construction />
+            <DeferredContent
+              loader={loadConstruction}
+              componentProps={{}}
+              fallback={<ConstructionPlaceholder />}
+            />
           </section>
           <section aria-labelledby="optical-adjustments-heading">
-            <OpticalAdjustments
-              heading={
-                <p
-                  id="optical-adjustments-heading"
-                  className="text-lg font-medium text-balance text-muted"
-                >
-                  With a range of optical adjustments.
-                </p>
-              }
+            <DeferredContent
+              loader={loadOptical}
+              componentProps={{
+                heading: (
+                  <p
+                    id="optical-adjustments-heading"
+                    className="text-lg font-medium text-balance text-muted"
+                  >
+                    With a range of optical adjustments.
+                  </p>
+                ),
+              }}
+              fallback={<OpticalPlaceholder />}
             />
           </section>
           <section aria-labelledby="icon-groups-heading">
-            <IconGroupCarousel
-              heading={
-                <h3
-                  id="icon-groups-heading"
-                  className={featureHeadingClassName}
-                >
-                  Categories galore
-                </h3>
-              }
+            <div className="mb-6">
+              <h3 id="icon-groups-heading" className={featureHeadingClassName}>
+                Categories galore
+              </h3>
+            </div>
+            <DeferredContent
+              loader={loadGroups}
+              componentProps={{}}
+              fallback={<GroupPlaceholder />}
             />
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/icons/"
+                prefetch={false}
+                className={buttonVariants({ variant: 'default', size: 'lg' })}
+              >
+                View all icons
+                <Icon name="arrow-right" size={20} />
+              </Link>
+            </div>
           </section>
         </section>
       </div>

@@ -1,0 +1,41 @@
+.showcase-mesh {
+  --mesh-a: var(--color-violet-600);
+  --mesh-b: var(--color-sky-400);
+  --mesh-c: var(--color-pink-400);
+  --mesh-base: var(--color-indigo-950);
+  background:
+    radial-gradient(ellipse at 12% 18%, var(--mesh-a), transparent 65%),
+    radial-gradient(ellipse at 88% 20%, var(--mesh-b), transparent 62%),
+    radial-gradient(ellipse at 68% 95%, var(--mesh-c), transparent 70%),
+    var(--mesh-base);
+}
+.showcase-mesh[data-app='files'] {
+  --mesh-a: var(--color-rose-300);
+  --mesh-b: var(--color-orange-300);
+  --mesh-c: var(--color-fuchsia-400);
+  --mesh-base: var(--color-rose-950);
+}
+.showcase-mesh[data-app='code'] {
+  --mesh-a: var(--color-slate-800);
+  --mesh-b: var(--color-slate-600);
+  --mesh-c: var(--color-teal-900);
+  --mesh-base: var(--color-slate-950);
+}
+.showcase-mesh[data-app='agents'] {
+  --mesh-a: var(--color-amber-400);
+  --mesh-b: var(--color-orange-600);
+  --mesh-c: var(--color-indigo-800);
+  --mesh-base: var(--color-indigo-950);
+}
+.showcase-mesh[data-app='social'] {
+  --mesh-a: var(--color-sky-400);
+  --mesh-b: var(--color-blue-600);
+  --mesh-c: var(--color-indigo-900);
+  --mesh-base: var(--color-blue-950);
+}
+.showcase-mesh[data-app='music'] {
+  --mesh-a: var(--color-fuchsia-500);
+  --mesh-b: var(--color-violet-600);
+  --mesh-c: var(--color-amber-300);
+  --mesh-base: var(--color-violet-950);
+}

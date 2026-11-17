@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { SiteShell } from '@/components/SiteShell';
 import { assetPath, siteUrl } from '@/lib/navigation';
+import { allo, alloObliques, paperMono } from './fonts';
 import '../styles.css';
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
+      className={`${allo.variable} ${alloObliques.className} ${paperMono.variable}`}
       data-theme="light"
       data-scroll-behavior="smooth"
       suppressHydrationWarning

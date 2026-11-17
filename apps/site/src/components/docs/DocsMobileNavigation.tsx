@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { Icon } from '@/components/Icon';
+import { Icon } from '@/components/UIIcon';
 import { Button } from '@/components/ui/button';
 import {
   Menu,

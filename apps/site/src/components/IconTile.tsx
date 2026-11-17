@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useIconSource } from '@/lib/use-icon-source';
 import { ContextMenu } from '@base-ui/react/context-menu';
 import IconRaysCorner from 'fyicons/icons/IconRaysCorner';
 import { Icon } from './Icon';
@@ -10,7 +12,7 @@ import {
   MenuItem,
 } from '@/components/ui/menu';
 import { notify } from '@/components/ui/toast';
-import { copy, download } from '@/lib/downloads';
+import { copy, downloadIcon } from '@/lib/downloads';
 import { cn } from '../lib/utils';
 import { getIconDisplayName, type IconRecord } from '../lib/catalog';
 import { getRecentIconAddition } from '@/lib/icon-releases';
@@ -28,6 +30,8 @@ export function IconTile({
   inspect: () => void;
   toggleSelection?: () => void;
 }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const source = useIconSource(icon, menuOpen);
   const name = getIconDisplayName(icon);
   const addedVersion = getRecentIconAddition(icon.id);
   const addedLabel = addedVersion ? `Added in v${addedVersion}` : undefined;
@@ -46,7 +50,7 @@ export function IconTile({
   }
 
   return (
-    <ContextMenu.Root>
+    <ContextMenu.Root onOpenChange={setMenuOpen}>
       <ContextMenu.Trigger
         className={cn(
           'group/tile relative min-w-0 rounded-lg outline outline-transparent hover:outline-line',
@@ -103,13 +107,23 @@ export function IconTile({
             <Icon name="text-title" />
             Copy name
           </MenuItem>
-          <MenuItem onClick={() => copyValue(icon.svg, 'SVG')}>
-            <Icon name="copy" />
-            Copy SVG
-          </MenuItem>
           <MenuItem
-            onClick={() => download(icon.svg, icon.filename, 'image/svg+xml')}
+            disabled={!source.text && !source.error}
+            closeOnClick={!source.error}
+            onClick={() =>
+              source.error
+                ? source.retry()
+                : source.text && copyValue(source.text, 'SVG')
+            }
           >
+            <Icon name="copy" />
+            {source.error
+              ? 'Retry loading SVG'
+              : source.text
+                ? 'Copy SVG'
+                : 'Loading SVG…'}
+          </MenuItem>
+          <MenuItem onClick={() => downloadIcon(icon)}>
             <Icon name="download-square" />
             Download
           </MenuItem>

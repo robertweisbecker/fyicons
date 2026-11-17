@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
-import { Glyph, panel } from './Study';
+import { createGlyph, panel } from './Study';
 
 export function FormatStudy() {
   return (
@@ -174,3 +174,44 @@ export function TextAlignment({
     </div>
   );
 }
+
+import { createIconLookup } from '@/components/createIconLookup';
+
+import Glyph0 from 'fyicons/icons/IconTextBold';
+import Glyph1 from 'fyicons/icons/IconItalic';
+import Glyph2 from 'fyicons/icons/IconTextUnderline';
+import Glyph3 from 'fyicons/icons/IconTextStrikethrough';
+import Glyph4 from 'fyicons/icons/IconMinus';
+import Glyph5 from 'fyicons/icons/IconListOrdered';
+import Glyph6 from 'fyicons/icons/IconListBullet';
+import Glyph7 from 'fyicons/icons/IconChevronRightSm';
+import Glyph8 from 'fyicons/icons/IconSlidersV';
+import Glyph9 from 'fyicons/icons/IconTextAlignStart';
+import Glyph10 from 'fyicons/icons/IconTextAlignCenter';
+import Glyph11 from 'fyicons/icons/IconTextAlignEnd';
+import Glyph12 from 'fyicons/icons/IconArrowToTop';
+import Glyph13 from 'fyicons/icons/IconArrowsToMiddle';
+import Glyph14 from 'fyicons/icons/IconArrowToBottom';
+import Glyph15 from 'fyicons/icons/IconTextAlignJustify';
+const Icon = createIconLookup({
+  'text-bold': { Component: Glyph0, id: '101:4281' },
+  italic: { Component: Glyph1, id: '161:11751' },
+  'text-underline': { Component: Glyph2, id: '100:2288' },
+  'text-strikethrough': { Component: Glyph3, id: '338:7712' },
+  minus: { Component: Glyph4, id: '667:899' },
+  'list-ordered': { Component: Glyph5, id: '132:2732' },
+  'list-bullet': { Component: Glyph6, id: '148:6841' },
+  'chevron-right-sm': { Component: Glyph7, id: '142:6353' },
+  'sliders-v': { Component: Glyph8, id: '529:7914' },
+  'text-align-start': { Component: Glyph9, id: '142:6374' },
+  'text-align-center': { Component: Glyph10, id: '142:6375' },
+  'text-align-end': { Component: Glyph11, id: '142:6376' },
+  'align-top': { Component: Glyph12, id: '518:4797' },
+  'align-middle': { Component: Glyph13, id: '521:7822' },
+  'align-bottom': { Component: Glyph14, id: '518:4796' },
+  'text-align-justify': { Component: Glyph15, id: '286:19656' },
+});
+
+const Glyph = createGlyph(Icon);
+
+const { DemoToggle } = createDemoControls(Icon);

@@ -1,6 +1,7 @@
 import { useRef, useState, type ReactNode, type Ref } from 'react';
 import { Popover } from '@base-ui/react/popover';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
+
 import { Button } from '@/components/ui/button';
 import {
   Menu,
@@ -11,12 +12,75 @@ import {
   MenuTrigger,
 } from '@/components/ui/menu';
 import { Slider } from '@/components/ui/slider';
-import {
-  DemoHint,
-  DemoIconButton,
-  DemoToggle,
-} from '@/demos/components/DemoControls';
+import { createDemoControls, DemoHint } from '@/demos/components/DemoControls';
 import { AlbumArtwork, tracks, trackTime } from './musicData';
+
+import Glyph0 from 'fyicons/icons/IconArrowsCollapse';
+import Glyph1 from 'fyicons/icons/IconArrowsExpand';
+import Glyph2 from 'fyicons/icons/IconCircleCheckFill';
+import Glyph3 from 'fyicons/icons/IconCirclePlus';
+import Glyph4 from 'fyicons/icons/IconCirclePlusFill';
+import Glyph5 from 'fyicons/icons/IconComputer';
+import Glyph6 from 'fyicons/icons/IconGhost';
+import Glyph7 from 'fyicons/icons/IconHeadphones';
+import Glyph8 from 'fyicons/icons/IconMicrophoneMusic';
+import Glyph9 from 'fyicons/icons/IconMicrophoneMusicFill';
+import Glyph10 from 'fyicons/icons/IconPauseFill';
+import Glyph11 from 'fyicons/icons/IconPictureInPicture';
+import Glyph12 from 'fyicons/icons/IconPictureInPictureExit';
+import Glyph13 from 'fyicons/icons/IconPlayFill';
+import Glyph14 from 'fyicons/icons/IconQueue';
+import Glyph15 from 'fyicons/icons/IconRepeat';
+import Glyph16 from 'fyicons/icons/IconRepeatOne';
+import Glyph17 from 'fyicons/icons/IconShuffle';
+import Glyph18 from 'fyicons/icons/IconSkipBackwardFill';
+import Glyph19 from 'fyicons/icons/IconSkipForwardFill';
+import Glyph20 from 'fyicons/icons/IconSpeakers';
+import Glyph21 from 'fyicons/icons/IconVideo';
+import Glyph22 from 'fyicons/icons/IconVideoFill';
+import Glyph23 from 'fyicons/icons/IconVolumeHigh';
+import Glyph24 from 'fyicons/icons/IconVolumeHighFill';
+import Glyph25 from 'fyicons/icons/IconVolumeLow';
+import Glyph26 from 'fyicons/icons/IconVolumeLowFill';
+import Glyph27 from 'fyicons/icons/IconVolumeNone';
+import Glyph28 from 'fyicons/icons/IconVolumeNoneFill';
+import Glyph29 from 'fyicons/icons/IconVolumeSlash';
+import Glyph30 from 'fyicons/icons/IconVolumeSlashFill';
+import Glyph31 from 'fyicons/icons/IconWaveform';
+const Icon = createIconLookup({
+  'arrows-collapse': { Component: Glyph0, id: '129:6740' },
+  'arrows-expand': { Component: Glyph1, id: '129:6741' },
+  'circle-check-fill': { Component: Glyph2, id: '506:2715' },
+  'circle-plus': { Component: Glyph3, id: '721:395' },
+  'circle-plus-fill': { Component: Glyph4, id: '721:399' },
+  computer: { Component: Glyph5, id: '193:12982' },
+  ghost: { Component: Glyph6, id: '727:314' },
+  headphones: { Component: Glyph7, id: '123:2252' },
+  'microphone-music': { Component: Glyph8, id: '1000:34302' },
+  'microphone-music-fill': { Component: Glyph9, id: '1253:11481' },
+  'pause-fill': { Component: Glyph10, id: '101:4347' },
+  'picture-in-picture': { Component: Glyph11, id: '996:34275' },
+  'picture-in-picture-exit': { Component: Glyph12, id: '1112:1687' },
+  'play-fill': { Component: Glyph13, id: '311:10178' },
+  queue: { Component: Glyph14, id: '828:11718' },
+  repeat: { Component: Glyph15, id: '98:1928' },
+  'repeat-one': { Component: Glyph16, id: '59:9707' },
+  shuffle: { Component: Glyph17, id: '101:4350' },
+  'skip-backward-fill': { Component: Glyph18, id: '619:12605' },
+  'skip-forward-fill': { Component: Glyph19, id: '619:12595' },
+  speakers: { Component: Glyph20, id: '741:8196' },
+  video: { Component: Glyph21, id: '734:6316' },
+  'video-fill': { Component: Glyph22, id: '1013:19487' },
+  'volume-high': { Component: Glyph23, id: '46:898' },
+  'volume-high-fill': { Component: Glyph24, id: '46:897' },
+  'volume-low': { Component: Glyph25, id: '472:595' },
+  'volume-low-fill': { Component: Glyph26, id: '498:688' },
+  'volume-none': { Component: Glyph27, id: '472:608' },
+  'volume-none-fill': { Component: Glyph28, id: '546:8639' },
+  'volume-slash': { Component: Glyph29, id: '472:629' },
+  'volume-slash-fill': { Component: Glyph30, id: '498:748' },
+  waveform: { Component: Glyph31, id: '372:5489' },
+});
 
 const playbackDevices = [
   { value: 'headphones', label: 'Headphones', icon: 'headphones' },
@@ -331,3 +395,5 @@ export function MusicPlayer({
     </footer>
   );
 }
+
+const { DemoIconButton, DemoToggle } = createDemoControls(Icon);

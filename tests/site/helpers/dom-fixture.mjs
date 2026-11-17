@@ -1,3 +1,4 @@
+import { decodeCatalog } from '../../../apps/site/src/lib/catalog-codec.ts';
 import { existsSync, readFileSync } from 'node:fs';
 import { registerHooks } from 'node:module';
 import { fileURLToPath } from 'node:url';
@@ -81,8 +82,33 @@ export function createDomFixture(
     resolveResponse = resolve;
     rejectResponse = reject;
   });
-  globals.fetch = () =>
-    pending ? response : Promise.resolve(Response.json(categoryConfig));
+  globals.fetch = (url) => {
+    const match = String(url).match(/\/icon-sources\/([a-f0-9]{64})\.svg/);
+    if (match) {
+      const catalog = decodeCatalog(
+        JSON.parse(
+          readFileSync(
+            new URL('data/catalog-runtime.json', sourceRoot),
+            'utf8',
+          ),
+        ),
+      );
+      const icon = catalog.icons.find((icon) => icon.sha256 === match[1]);
+      return Promise.resolve(
+        icon
+          ? new Response(
+              readFileSync(
+                new URL(
+                  `../../../packages/fyicons/svg/${icon.filename}`,
+                  sourceRoot,
+                ),
+              ),
+            )
+          : new Response('', { status: 404 }),
+      );
+    }
+    return pending ? response : Promise.resolve(Response.json(categoryConfig));
+  };
   const saved = new Map();
   for (const [name, value] of Object.entries(globals)) {
     saved.set(name, Object.getOwnPropertyDescriptor(globalThis, name));

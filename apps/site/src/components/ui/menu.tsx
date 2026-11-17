@@ -1,7 +1,27 @@
 import { Menu as MenuPrimitive } from '@base-ui/react/menu';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
+
+
+
 import { cn } from '@/lib/utils';
+
+
+
+
+
+
+
+
+
+import Glyph0 from 'fyicons/icons/IconAnchor';
+import Glyph1 from 'fyicons/icons/IconCheck';
+import Glyph2 from 'fyicons/icons/IconDotFill';
+const Icon = createIconLookup({
+"anchor": { Component: Glyph0, id: "702:1775" },
+"check": { Component: Glyph1, id: "96:1604" },
+"dot-fill": { Component: Glyph2, id: "506:3129" }
+});
 
 export function Menu<Payload = unknown>({
   modal = false,

@@ -17,6 +17,12 @@ const catalog = decodeCatalog(
   ),
 );
 
+for (const icon of catalog.icons)
+  icon.svg = await readFile(
+    new URL(`../../packages/fyicons/svg/${icon.filename}`, import.meta.url),
+    'utf8',
+  );
+
 test('SVG exports add default classes and hash their bytes without changing source artwork', async () => {
   assert.equal(catalog.icons.length, manifest.icons.length);
   for (const icon of manifest.icons) {
@@ -117,7 +123,7 @@ test('SVG export classes merge on the root and leave source hashes, attributes, 
       JSON.parse(
         prepared.expected.get('apps/site/src/data/catalog-runtime.json'),
       ),
-    ).icons[0].svg,
-    exported.svg,
+    ).icons[0].sha256,
+    exported.sha256,
   );
 });

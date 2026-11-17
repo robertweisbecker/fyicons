@@ -1,7 +1,21 @@
 import { Checkbox as CheckboxPrimitive } from '@base-ui/react/checkbox';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
+
+
 import { cn } from '@/lib/utils';
+
+
+
+
+
+
+import Glyph0 from 'fyicons/icons/IconCheckThickSm';
+import Glyph1 from 'fyicons/icons/IconMinus';
+const Icon = createIconLookup({
+"check-thick-sm": { Component: Glyph0, id: "96:1629" },
+"minus": { Component: Glyph1, id: "667:899" }
+});
 
 export const checkboxVariants = cva(
   'group/checkbox peer inline-flex shrink-0 items-center justify-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-muted data-disabled:pointer-events-none data-disabled:opacity-40',

@@ -314,10 +314,6 @@ export async function prepareIcons(input, categoryInput, readSvg) {
           Buffer.from(JSON.stringify(runtimeMetadata)),
           { level: 9, memLevel: 9 },
         ).toString('base64'),
-        svgArchive: deflateSync(
-          Buffer.from(JSON.stringify(exportedIcons.map((icon) => icon.svg))),
-          { level: 9, memLevel: 9 },
-        ).toString('base64'),
         iconFields,
         iconArchive: deflateSync(
           Buffer.from(
@@ -330,6 +326,15 @@ export async function prepareIcons(input, categoryInput, readSvg) {
           { level: 9, memLevel: 9 },
         ).toString('base64'),
       },
+      null,
+      2,
+    ) + '\n',
+  );
+
+  expected.set(
+    'apps/site/src/data/catalog-summary.json',
+    JSON.stringify(
+      { count: icons.length, version: manifest.version },
       null,
       2,
     ) + '\n',

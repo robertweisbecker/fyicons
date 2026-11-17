@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package",
+    "predev": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package && node ../../scripts/build-site-archive.mjs",
     "dev": "node ../../scripts/dev-site.mjs",
-    "prebuild": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package",
+    "prebuild": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package && node ../../scripts/build-site-archive.mjs",
     "build": "next build && node ../../scripts/compact-build-json.mjs && node ../../scripts/verify-site-export.mjs && node ../../scripts/measure-build.mjs",
     "preview": "node ../../scripts/preview-site.mjs",
     "typecheck": "next typegen && tsc --noEmit --incremental false"

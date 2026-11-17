@@ -1,3 +1,4 @@
+import { prepareRepositoryIcons } from '../../scripts/lib/prepare-icons.mjs';
 import test from 'node:test';
 import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -502,10 +503,13 @@ test('imports validate raw hashes before repair and keep source, catalog and Rea
       ),
     );
     const icon = catalog.icons.find((icon) => icon.id === 'fixture:1');
-    assert.equal(icon.svg.replace(' class="fy-icon fy-alpha"', ''), saved);
+    const exportedSvg = (
+      await prepareRepositoryIcons(f.root)
+    ).exportedIcons.find((item) => item.id === icon.id).svg;
+    assert.equal(exportedSvg.replace(' class="fy-icon fy-alpha"', ''), saved);
     assert.equal(
       icon.sha256,
-      createHash('sha256').update(icon.svg).digest('hex'),
+      createHash('sha256').update(exportedSvg).digest('hex'),
     );
     const react = await readFile(
       path.join(f.root, 'packages/fyicons/src/IconAlpha.tsx'),

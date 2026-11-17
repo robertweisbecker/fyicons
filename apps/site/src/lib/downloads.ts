@@ -1,16 +1,22 @@
-import { icons, getManifest, type IconRecord } from './catalog';
-import readme from '../data/README.txt?raw';
-import license from '../../../../LICENSE?raw';
+import type { IconRecord } from './catalog';
+import { assetPath } from './navigation';
+import { iconSourceUrl } from './icon-source';
 
-export function download(content: BlobPart, filename: string, type: string) {
-  const url = URL.createObjectURL(new Blob([content], { type }));
+export function downloadUrl(url: string, filename: string) {
   const link = document.createElement('a');
   link.href = url;
   link.download = filename;
   document.body.append(link);
   link.click();
   link.remove();
+}
+export function download(content: BlobPart, filename: string, type: string) {
+  const url = URL.createObjectURL(new Blob([content], { type }));
+  downloadUrl(url, filename);
   setTimeout(() => URL.revokeObjectURL(url), 1500);
+}
+export function downloadIcon(icon: IconRecord) {
+  downloadUrl(iconSourceUrl(icon), icon.filename);
 }
 export async function copy(text: string) {
   try {
@@ -21,11 +27,14 @@ export async function copy(text: string) {
   }
 }
 export async function downloadIcons(
-  selection: IconRecord[] = icons,
+  selection?: IconRecord[],
   filename = 'fyicons.zip',
 ) {
-  // Generated on demand: no duplicate SVG files or ZIP stored in each deployment.
-  const { createIconArchive } = await import('./icon-archive');
-  const bytes = createIconArchive(selection, getManifest(), readme, license);
+  if (!selection) {
+    downloadUrl(assetPath('/downloads/fyicons.zip'), filename);
+    return;
+  }
+  const { createSelectedArchive } = await import('./download-selection');
+  const bytes = await createSelectedArchive(selection);
   download(bytes.buffer as ArrayBuffer, filename, 'application/zip');
 }
