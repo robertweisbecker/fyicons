@@ -17510,6 +17510,27 @@
       "updatedAt": "2026-11-14T01:21:17.645Z"
     },
     {
+      "id": "1588:13937",
+      "name": "square-fill",
+      "baseName": "square",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-fill-16.svg",
+      "file": "svgs/1588-13937.svg",
+      "aliases": [
+        "1588-13937.svg"
+      ],
+      "variantSetId": "1588:13936",
+      "variantSetName": "square",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "componentName": "IconSquareFill",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
       "id": "288:20060",
       "originalName": "square-dashed",
       "width": 16,
@@ -17628,6 +17649,27 @@
         "Property 1": "false"
       },
       "updatedAt": "2026-11-14T05:06:25.731Z"
+    },
+    {
+      "id": "1588:14014",
+      "name": "square-asterisk-fill",
+      "baseName": "square-asterisk",
+      "originalName": "Property 1=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-asterisk-fill-16.svg",
+      "file": "svgs/1588-14014.svg",
+      "aliases": [
+        "1588-14014.svg"
+      ],
+      "variantSetId": "1588:14018",
+      "variantSetName": "square-asterisk",
+      "variantProperties": {
+        "Property 1": "true"
+      },
+      "componentName": "IconSquareAsteriskFill",
+      "addedAt": "2026-11-16T08:50:25.145Z",
+      "updatedAt": "2026-11-16T08:50:25.145Z"
     },
     {
       "id": "667:891",
@@ -24397,48 +24439,6 @@
       "updatedAt": "2026-11-11T08:10:45.858Z"
     },
     {
-      "id": "1588:13937",
-      "name": "square-fill",
-      "baseName": "square",
-      "originalName": "fill=true",
-      "width": 16,
-      "height": 16,
-      "filename": "square-fill-16.svg",
-      "file": "svgs/1588-13937.svg",
-      "aliases": [
-        "1588-13937.svg"
-      ],
-      "variantSetId": "1588:13936",
-      "variantSetName": "square",
-      "variantProperties": {
-        "fill": "true"
-      },
-      "componentName": "IconSquareFill",
-      "addedAt": "2026-11-16T08:50:25.145Z",
-      "updatedAt": "2026-11-16T08:50:25.145Z"
-    },
-    {
-      "id": "1588:14014",
-      "name": "square-asterisk-fill",
-      "baseName": "square-asterisk",
-      "originalName": "Property 1=true",
-      "width": 16,
-      "height": 16,
-      "filename": "square-asterisk-fill-16.svg",
-      "file": "svgs/1588-14014.svg",
-      "aliases": [
-        "1588-14014.svg"
-      ],
-      "variantSetId": "1588:14018",
-      "variantSetName": "square-asterisk",
-      "variantProperties": {
-        "Property 1": "true"
-      },
-      "componentName": "IconSquareAsteriskFill",
-      "addedAt": "2026-11-16T08:50:25.145Z",
-      "updatedAt": "2026-11-16T08:50:25.145Z"
-    },
-    {
       "id": "1720:12541",
       "name": "bookmark-check",
       "baseName": "bookmark-check",
@@ -24623,6 +24623,107 @@
       "componentName": "IconCursorDefault",
       "addedAt": "2026-11-16T08:50:25.145Z",
       "updatedAt": "2026-11-16T08:50:25.145Z"
+    },
+    {
+      "id": "1763:1503",
+      "name": "cursor-default-fill",
+      "baseName": "cursor-default",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "cursor-default-fill-16.svg",
+      "file": "svgs/1763-1503.svg",
+      "aliases": [
+        "1763-1503.svg"
+      ],
+      "variantSetId": "1763:1504",
+      "variantSetName": "cursor-default",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "componentName": "IconCursorDefaultFill",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1751:1381",
+      "name": "equals",
+      "baseName": "equals",
+      "originalName": "equals",
+      "width": 16,
+      "height": 16,
+      "filename": "equals-16.svg",
+      "file": "svgs/1751-1381.svg",
+      "aliases": [
+        "1751-1381.svg"
+      ],
+      "componentName": "IconEquals",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1755:1453",
+      "name": "scales",
+      "baseName": "scales",
+      "originalName": "scales",
+      "width": 16,
+      "height": 16,
+      "filename": "scales-16.svg",
+      "file": "svgs/1755-1453.svg",
+      "aliases": [
+        "1755-1453.svg"
+      ],
+      "componentName": "IconScales",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1762:13155",
+      "name": "search-sparkle",
+      "baseName": "search-sparkle",
+      "originalName": "search-sparkle",
+      "width": 16,
+      "height": 16,
+      "filename": "search-sparkle-16.svg",
+      "file": "svgs/1762-13155.svg",
+      "aliases": [
+        "1762-13155.svg"
+      ],
+      "componentName": "IconSearchSparkle",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1757:1555",
+      "name": "circle-dashed-2",
+      "baseName": "circle-dashed-2",
+      "originalName": "circle-dashed-2",
+      "width": 16,
+      "height": 16,
+      "filename": "circle-dashed-2-16.svg",
+      "file": "svgs/1757-1555.svg",
+      "aliases": [
+        "1757-1555.svg"
+      ],
+      "componentName": "IconCircleDashed2",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1763:1515",
+      "name": "cursor-default-solid",
+      "baseName": "cursor-default-solid",
+      "originalName": "cursor-default-solid",
+      "width": 16,
+      "height": 16,
+      "filename": "cursor-default-solid-16.svg",
+      "file": "svgs/1763-1515.svg",
+      "aliases": [
+        "1763-1515.svg"
+      ],
+      "componentName": "IconCursorDefaultSolid",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
     }
   ]
 }

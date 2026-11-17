@@ -26744,6 +26744,34 @@
       "type": "registry:component"
     },
     {
+      "name": "square-fill",
+      "title": "IconSquareFill",
+      "description": "The square-fill icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconSquareFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconSquareFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
       "name": "square-dashed",
       "title": "IconSquareDashed",
       "description": "The square-dashed icon from FYIcons 0.5.0.",
@@ -26920,6 +26948,34 @@
           "path": "packages/fyicons/src/IconSquareAsterisk.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconSquareAsterisk.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "square-asterisk-fill",
+      "title": "IconSquareAsteriskFill",
+      "description": "The square-asterisk-fill icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconSquareAsteriskFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconSquareAsteriskFill.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -37272,62 +37328,6 @@
       "type": "registry:component"
     },
     {
-      "name": "square-fill",
-      "title": "IconSquareFill",
-      "description": "The square-fill icon from FYIcons 0.5.0.",
-      "files": [
-        {
-          "path": "packages/fyicons/src/IconSquareFill.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/IconSquareFill.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/base.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/base.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/types.ts",
-          "type": "registry:file",
-          "target": "@components/fyicons/types.ts"
-        },
-        {
-          "path": "LICENSE",
-          "type": "registry:file",
-          "target": "@components/fyicons/LICENSE"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "square-asterisk-fill",
-      "title": "IconSquareAsteriskFill",
-      "description": "The square-asterisk-fill icon from FYIcons 0.5.0.",
-      "files": [
-        {
-          "path": "packages/fyicons/src/IconSquareAsteriskFill.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/IconSquareAsteriskFill.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/base.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/base.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/types.ts",
-          "type": "registry:file",
-          "target": "@components/fyicons/types.ts"
-        },
-        {
-          "path": "LICENSE",
-          "type": "registry:file",
-          "target": "@components/fyicons/LICENSE"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
       "name": "bookmark-check",
       "title": "IconBookmarkCheck",
       "description": "The bookmark-check icon from FYIcons 0.5.0.",
@@ -37616,6 +37616,174 @@
           "path": "packages/fyicons/src/IconCursorDefault.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconCursorDefault.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "cursor-default-fill",
+      "title": "IconCursorDefaultFill",
+      "description": "The cursor-default-fill icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCursorDefaultFill.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCursorDefaultFill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "equals",
+      "title": "IconEquals",
+      "description": "The equals icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconEquals.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconEquals.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "scales",
+      "title": "IconScales",
+      "description": "The scales icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconScales.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconScales.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "search-sparkle",
+      "title": "IconSearchSparkle",
+      "description": "The search-sparkle icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconSearchSparkle.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconSearchSparkle.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "circle-dashed-2",
+      "title": "IconCircleDashed2",
+      "description": "The circle-dashed-2 icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCircleDashed2.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCircleDashed2.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "cursor-default-solid",
+      "title": "IconCursorDefaultSolid",
+      "description": "The cursor-default-solid icon from FYIcons 0.5.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconCursorDefaultSolid.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconCursorDefaultSolid.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",

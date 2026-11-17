@@ -579,7 +579,8 @@
         "box",
         "flower-spiral",
         "sign",
-        "fan"
+        "fan",
+        "scales"
       ]
     },
     {
@@ -780,7 +781,9 @@
         "rays-sm",
         "shooting-star",
         "square-fill",
-        "rays-corner"
+        "rays-corner",
+        "equals",
+        "circle-dashed-2"
       ]
     },
     {
