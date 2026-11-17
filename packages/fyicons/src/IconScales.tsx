@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconScales = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconScales(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="scales"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M8 5.5v6.75m3.5-2.75h2" /><rect width={0.75} height={0.75} x={11.125} y={7.125} fill="currentColor" rx={0.375} /><rect width={0.5} height={0.5} x={12.25} y={6.25} fill="currentColor" rx={0.25} /><rect width={0.75} height={0.75} x={13.125} y={7.125} fill="currentColor" rx={0.375} /><rect width={1} height={1} x={14} y={8} fill="currentColor" rx={0.5} /><rect width={1} height={1} x={10} y={8} fill="currentColor" rx={0.5} /><rect width={2} height={2} x={7} y={3.5} stroke="currentColor" rx={1} /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M2.5 9.5h2" /><rect width={0.75} height={0.75} x={2.125} y={7.125} fill="currentColor" rx={0.375} /><rect width={0.5} height={0.5} x={3.25} y={6.25} fill="currentColor" rx={0.25} /><rect width={0.75} height={0.75} x={4.125} y={7.125} fill="currentColor" rx={0.375} /><rect width={1} height={1} x={5} y={8} fill="currentColor" rx={0.5} /><rect width={1} height={1} x={1} y={8} fill="currentColor" rx={0.5} /><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5a1.524 1.524 0 0 1-1.98.945L9 4.5m-6.5 0a1.524 1.524 0 0 0 1.98.945L7 4.5m2.5 8h-3" /></SvgRoot>;
+});
+export default IconScales;
