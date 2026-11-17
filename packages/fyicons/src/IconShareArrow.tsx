@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconShareArrow = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconShareArrow(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="share-arrow"><path fill="currentColor" d="M7 1.824a.75.75 0 0 1 1.26-.549l6.241 5.81a1.25 1.25 0 0 1 0 1.83l-6.24 5.81A.75.75 0 0 1 7 14.174V10.93a4.26 4.26 0 0 0-3.45 1.225l-.696.697A.5.5 0 0 1 2 12.5v-2a5.5 5.5 0 0 1 5-5.477zM8 5.5a.5.5 0 0 1-.5.5A4.5 4.5 0 0 0 3 10.5v.803a5.26 5.26 0 0 1 4.598-1.294.5.5 0 0 1 .402.49v3.103l5.82-5.42a.25.25 0 0 0 0-.365L8 2.397z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="share-arrow"><path fill="currentColor" d="M7 1.824a.75.75 0 0 1 1.26-.549l6.241 5.81a1.25 1.25 0 0 1 0 1.83l-6.24 5.81A.75.75 0 0 1 7 14.174V10.93a4.26 4.26 0 0 0-3.45 1.225l-.696.697A.5.5 0 0 1 2 12.5v-2a5.5 5.5 0 0 1 5-5.477zM8 5.5a.5.5 0 0 1-.5.5A4.5 4.5 0 0 0 3 10.5v.803a5.26 5.26 0 0 1 4.598-1.294.5.5 0 0 1 .402.49v3.103l5.82-5.42a.25.25 0 0 0 0-.365L8 2.397z" />{props.children}</SvgRoot>;
 });
 export default IconShareArrow;

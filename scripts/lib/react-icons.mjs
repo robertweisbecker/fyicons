@@ -253,6 +253,17 @@ export default SvgRoot;
         svgo: false,
         template: (variables, { tpl }) => {
           addInstanceSafeIds(variables.jsx, icon.name);
+          // Explicit JSX children replace props.children, so append the caller's
+          // content after the artwork.
+          variables.jsx.children.push({
+            type: 'JSXExpressionContainer',
+            expression: {
+              type: 'MemberExpression',
+              object: { type: 'Identifier', name: 'props' },
+              property: { type: 'Identifier', name: 'children' },
+              computed: false,
+            },
+          });
           return tpl`
           import * as React from 'react';
           import type { IconProps } from './types';

@@ -1,7 +1,12 @@
+import { useId } from 'react';
 import IconSun from 'fyicons/icons/IconSun';
 import IconSpinner from 'fyicons/icons/IconSpinner';
 import IconLoader from 'fyicons/icons/IconLoader';
 import IconGitMerge from 'fyicons/icons/IconGitMerge';
+import IconCircle from 'fyicons/icons/IconCircle';
+import IconCheck from 'fyicons/icons/IconCheck';
+import IconCircleFill from 'fyicons/icons/IconCircleFill';
+import IconStarFill from 'fyicons/icons/IconStarFill';
 import { IconRays } from 'fyicons';
 import {
   FyiProvider,
@@ -19,6 +24,51 @@ const colors = [
   { label: 'Green', value: '#16a34a' },
   { label: 'Violet', value: '#8b5cf6' },
 ];
+
+export function CompositionExample() {
+  return (
+    <DocsExample aria-label="Check icon nested inside a circle icon">
+      <IconCircle size={32} aria-label="Complete">
+        <IconCheck x={4} y={4} size={8} />
+      </IconCircle>
+    </DocsExample>
+  );
+}
+
+function StarCutoutIcon() {
+  const maskId = useId();
+
+  return (
+    <svg
+      width={48}
+      height={48}
+      viewBox="0 0 16 16"
+      role="img"
+      aria-label="Star cut out of a circle"
+    >
+      <defs>
+        <mask id={maskId} style={{ maskType: 'luminance' }}>
+          <rect width={16} height={16} fill="white" />
+          <IconStarFill size={8} x={4} y={4} color="black" />
+        </mask>
+      </defs>
+      <IconCircleFill size={16} mask={`url(#${maskId})`} />
+    </svg>
+  );
+}
+
+export function MaskCompositionExample() {
+  return (
+    <DocsExample aria-label="Star cutouts on two backgrounds" className="gap-4">
+      <div className="flex size-20 items-center justify-center rounded-lg bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200">
+        <StarCutoutIcon />
+      </div>
+      <div className="flex size-20 items-center justify-center rounded-lg bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200">
+        <StarCutoutIcon />
+      </div>
+    </DocsExample>
+  );
+}
 
 export function LightButtonExample() {
   return (

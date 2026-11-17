@@ -4,6 +4,8 @@ import {
   ColorExamples,
   LoadingExamples,
   ProviderExample,
+  CompositionExample,
+  MaskCompositionExample,
   LightButtonExample,
   ClassNameExample,
   DecorativeIconExample,
@@ -147,6 +149,81 @@ A nested provider can override defaults for a smaller group. Classes accumulate,
 
 Only icons imported from `fyicons/client` read these defaults. Use individual props or CSS for icons from `fyicons`, direct icon imports, and shadcn source icons.
 
+## Compose icons
+
+Compose icons with nested icons or SVG elements. Children render after the built-in artwork, so they paint on top:
+
+<CompositionExample />
+
+```tsx
+import { IconCircle, IconCheck } from 'fyicons';
+
+<IconCircle size={32} aria-label="Complete">
+  <IconCheck x={4} y={4} size={8} />
+</IconCircle>;
+```
+
+Each icon keeps its own SVG element and 16 × 16 viewBox. The child's numeric `x`, `y`, and `size` values use the parent's coordinate system: an 8-unit child fills half of a 16-unit parent. Scaling the outer icon scales the whole composition. Set the child size explicitly when using provider defaults.
+
+SVG children such as `<circle>`, `<g>`, and `<defs>` also work, as do fragments and components that return SVG content. Normal SVG clipping applies; set `overflow="visible"` on any SVG whose content should extend beyond its viewport. For backgrounds or full control of layer order, arrange the icons inside your own `<svg>`.
+
+Label the outer icon when the composition conveys information; leave the nested icons decorative. Generated icon IDs stay unique. For IDs you add in custom definitions, use React's `useId()` and pass the matching references yourself.
+
+### SVG elements and definitions
+
+Add SVG elements directly when you need a shape or annotation:
+
+```tsx
+import { IconFolder } from 'fyicons';
+
+<IconFolder aria-label="Folder with updates">
+  <circle cx={12} cy={4} r={2} fill="#2563eb" />
+</IconFolder>;
+```
+
+The `title` prop renders first, followed by the original artwork and then your children. Children add to the artwork; they do not replace it. Child props, refs, and event handlers keep their normal behavior. Each nested icon's ref points to its own SVG element.
+
+Color follows normal CSS inheritance. Icons from `fyicons/client` still read provider defaults individually, including when nested. Explicit child props override those defaults.
+
+### Cut out one icon with another
+
+Use a luminance mask to cut a shape out of a solid icon. White keeps the artwork visible; black removes it. Here, `IconStarFill` cuts a transparent star out of `IconCircleFill`. The two backgrounds show through the cutout.
+
+<MaskCompositionExample />
+
+```tsx
+import { useId } from 'react';
+import { IconCircleFill, IconStarFill } from 'fyicons';
+
+export function StarCutoutIcon() {
+  const maskId = useId();
+
+  return (
+    <svg
+      width={48}
+      height={48}
+      viewBox="0 0 16 16"
+      role="img"
+      aria-label="Star cut out of a circle"
+    >
+      <defs>
+        <mask id={maskId} style={{ maskType: 'luminance' }}>
+          <rect width={16} height={16} fill="white" />
+          <IconStarFill size={8} x={4} y={4} color="black" />
+        </mask>
+      </defs>
+      <IconCircleFill size={16} mask={`url(#${maskId})`} />
+    </svg>
+  );
+}
+```
+
+The outer SVG gives the mask and both icons a shared 16×16 coordinate system. Change its `width` and `height` to scale the whole result. Keep the inner circle at `size={16}`, and position the cutout with the star's `size`, `x`, and `y` props.
+
+Set the cutout icon's `color` to black because FYIcons paths use `currentColor`. A `fill` prop on the icon does not override those path fills. Keep `maskType` set to `luminance`; an alpha mask uses opacity instead of brightness, so an opaque black icon would not make a hole.
+
+`useId()` gives each rendered instance its own mask ID. Name the outer SVG and leave the inner icons decorative. See the [SVG mask reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/mask) for more masking options.
+
 ## Using states & variants
 
 While the library primarily includes outline-style icons, a good number of them have filled or otherwise stateful variants where it makes sense. Instead of having to hack your own version, just find and use the corresponding variant instead.
@@ -236,6 +313,7 @@ All props are optional. Components also accept standard React SVG props and even
 | `color`           | `string`                       | Sets the SVG color used by `currentColor`. Inherits the text color when omitted. |
 | `className`       | `string`                       | Adds your classes after `fy-icon` and `fy-{icon-name}`.                          |
 | `style`           | `React.CSSProperties`          | Applies inline CSS styles.                                                       |
+| `children`        | `React.ReactNode`              | Adds SVG content after the icon artwork.                                         |
 | `title`           | `string`                       | Adds an SVG title. Does not change the decorative accessibility default.         |
 | `aria-label`      | `string`                       | Names the icon and sets `role="img"` by default.                                 |
 | `aria-labelledby` | `string`                       | References an external label. Also set `role="img"` and `aria-hidden={false}`.   |
