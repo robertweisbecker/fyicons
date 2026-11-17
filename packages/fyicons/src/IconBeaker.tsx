@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconBeaker = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBeaker(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="beaker"><path fill="currentColor" d="M10.5 2a.5.5 0 0 1 0 1H10v3.293l3.395 3.395c.387.387.605.913.605 1.461A2.85 2.85 0 0 1 11.15 14h-6.3A2.85 2.85 0 0 1 2 11.15c0-.549.218-1.075.605-1.463L6 6.294V3h-.5a.5.5 0 0 1 0-1zM7 6.5a.5.5 0 0 1-.146.354L4.665 9.04a8.6 8.6 0 0 1 1.844.324c.635.191 1.125.438 1.597.661.915.433 1.954.878 4.52.96q.197.008.37.08a1.07 1.07 0 0 0-.309-.671l-3.54-3.541A.5.5 0 0 1 9 6.5V3H7z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="beaker"><path fill="currentColor" d="M10.5 2a.5.5 0 0 1 0 1H10v3.293l3.395 3.395c.387.387.605.913.605 1.461A2.85 2.85 0 0 1 11.15 14h-6.3A2.85 2.85 0 0 1 2 11.15c0-.549.218-1.075.605-1.463L6 6.294V3h-.5a.5.5 0 0 1 0-1zM7 6.5a.5.5 0 0 1-.146.354L4.665 9.04a8.6 8.6 0 0 1 1.844.324c.635.191 1.125.438 1.597.661.915.433 1.954.878 4.52.96q.197.008.37.08a1.07 1.07 0 0 0-.309-.671l-3.54-3.541A.5.5 0 0 1 9 6.5V3H7z" />{props.children}</SvgRoot>;
 });
 export default IconBeaker;
