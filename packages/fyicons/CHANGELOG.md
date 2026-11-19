@@ -1,11 +1,5 @@
 # fyicons
 
-## 0.5.2
-
-### Patch Changes
-
-- 6d7fe20: Fix alignment within `math` (`IconMath`): align the division symbol with the multiplication symbol and use equal horizontal and vertical spans for the plus sign.
-
 ## 0.5.1
 
 ### Patch Changes
