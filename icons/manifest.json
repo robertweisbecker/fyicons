@@ -10236,7 +10236,7 @@
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-11-19T19:16:23.379Z"
+      "updatedAt": "2026-11-19T19:21:33.358Z"
     },
     {
       "id": "820:11196",
@@ -21224,20 +21224,20 @@
     },
     {
       "id": "1120:12002",
+      "name": "math",
+      "baseName": "math",
       "originalName": "math",
       "width": 16,
       "height": 16,
-      "name": "math",
-      "baseName": "math",
       "filename": "math-16.svg",
       "file": "svgs/1120-12002.svg",
       "aliases": [
         "1120-12002.svg"
       ],
       "notes": [],
-      "componentName": "IconMath",
       "addedAt": "2026-10-24T09:44:30.696Z",
-      "updatedAt": "2026-11-17T08:00:58.995Z"
+      "updatedAt": "2026-11-17T19:45:48.883Z",
+      "componentName": "IconMath"
     },
     {
       "id": "895:30733",
