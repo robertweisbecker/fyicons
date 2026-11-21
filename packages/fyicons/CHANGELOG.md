@@ -1,5 +1,11 @@
 # fyicons
 
+## 0.5.3
+
+### Patch Changes
+
+- 6eaf450: Fix the `skip-backward` arrow size to match `skip-forward`.
+
 ## 0.5.2
 
 ### Patch Changes
