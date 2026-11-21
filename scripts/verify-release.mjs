@@ -140,7 +140,7 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
       fyicons: `file:${tarball}`,
       react: reactVersion,
       'react-dom': reactVersion,
-      ...(isNext ? { next: '16.4.2' } : {}),
+      ...(isNext ? { next: sitePkg.dependencies.next } : {}),
     },
     devDependencies: {
       '@types/react': isNext
@@ -518,7 +518,7 @@ await write(path.join(root, 'artifacts'), 'verification.json', {
   integrity: packed.integrity,
   consumers: scratch,
   react: ['18.3.1', sitePkg.dependencies.react],
-  next: '16.4.2',
+  next: sitePkg.dependencies.next,
   checks: [
     'tarball contents',
     'SVG byte fidelity',
