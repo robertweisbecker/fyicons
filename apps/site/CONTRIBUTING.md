@@ -47,7 +47,7 @@ Keep browser APIs inside Client Components and effects. Docs content renders as 
 
 The website uses local font files. Keep their notices in `apps/site/public/licenses/`. The icon package uses the root MIT license; the fonts have separate licenses.
 
-Interface text uses [Allo by Josh Puckett](https://allo.joshpuckett.me/). `AlloVariable.woff2` is the original Allo 1.0 variable webfont. CSS sets roundness to its maximum (`ROND=100`), with variable weight and automatic optical sizing. The regular and bold obliques are the original Allo webfonts. Code uses Paper Mono.
+Interface text uses [Allo by Josh Puckett](https://allo.joshpuckett.me/). `AlloVariable.woff2` is the original Allo 1.0.3 variable webfont. CSS sets roundness to its maximum (`ROND=100`), with variable weight and automatic optical sizing. The regular and bold obliques are the original Allo webfonts. Code uses Paper Mono.
 
 Configure fonts with `next/font/local` in `src/app/fonts.ts` and apply their classes in the root layout. Upright Allo is preloaded. Oblique styles and Paper Mono load when used. The wordmarks use the shared `public/brand-wordmarks.svg` symbols; their lettering inherits the current text color in both themes.
 

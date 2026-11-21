@@ -1,12 +1,9 @@
-import { IconExampleCard } from './IconExampleCard';
+import { IconExampleCard, VariantExampleGrid } from './IconExampleCard';
 import { guides, guideStrokeWidth } from './construction-guides';
 
 export function VariantPlaceholder() {
   return (
-    <div
-      aria-busy="true"
-      className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-6 sm:gap-x-4"
-    >
+    <VariantExampleGrid busy>
       {['Outline', 'Filled', 'Mixed'].map((label) => (
         <IconExampleCard key={label} label={label} className="sm:col-span-2">
           <div className="aspect-square min-h-26 flex-1 rounded-xl bg-surface sm:rounded-2xl" />
@@ -15,10 +12,10 @@ export function VariantPlaceholder() {
       <IconExampleCard label="Progress" className="sm:col-span-3">
         <div className="min-h-61 flex-1 rounded-xl bg-surface sm:rounded-2xl" />
       </IconExampleCard>
-      <IconExampleCard label="Toggles" className="col-span-2 sm:col-span-3">
+      <IconExampleCard label="Toggles" className="sm:col-span-3">
         <div className="h-114 flex-1 rounded-xl bg-surface sm:rounded-2xl lg:h-92" />
       </IconExampleCard>
-    </div>
+    </VariantExampleGrid>
   );
 }
 export function ConstructionPlaceholder() {

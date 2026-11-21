@@ -13,6 +13,7 @@ import { ShadcnIcon } from '@/components/BrandIcons';
 import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { InstallCommand } from '@/components/InstallCommand';
 import { SearchTrigger } from '@/components/SearchTrigger';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { buttonVariants } from '@/components/ui/button';
 import catalogSummary from '@/data/catalog-summary.json';
 import { assetPath } from '@/lib/navigation';
@@ -281,11 +282,22 @@ export default function Landing() {
             <h3 id="icon-variants-heading" className={featureHeadingClassName}>
               More than just outlines
             </h3>
-            <DeferredContent
-              loader={loadVariants}
-              componentProps={{}}
-              fallback={<VariantPlaceholder />}
-            />
+            <ScrollArea.Root>
+              <ScrollArea.Viewport
+                className="relative"
+                role="region"
+                aria-labelledby="icon-variants-heading"
+              >
+                <ScrollArea.Content className="w-max pb-3 sm:w-full sm:min-w-0! sm:pb-0">
+                  <DeferredContent
+                    loader={loadVariants}
+                    componentProps={{}}
+                    fallback={<VariantPlaceholder />}
+                  />
+                </ScrollArea.Content>
+              </ScrollArea.Viewport>
+              <ScrollArea.Scrollbar orientation="horizontal" />
+            </ScrollArea.Root>
           </section>
           <section aria-labelledby="construction-heading" className="space-y-6">
             <h3 id="construction-heading" className={featureHeadingClassName}>

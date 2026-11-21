@@ -7,6 +7,7 @@ import { IconSunFill, IconMoon, IconBeaker } from 'fyicons';
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { BrandWordmark, BrandWordmarkMobile } from './BrandWordmark';
 import { GitHubIcon, NpmIcon } from './BrandIcons';
+import { SoundToggle } from './SoundToggle';
 import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
@@ -144,6 +145,7 @@ export function SiteHeader({
               aria-hidden="true"
               className="hidden h-4 w-px shrink-0 bg-ink/30 md:block"
             />
+            <SoundToggle />
             <Tooltip label={`${theme === 'dark' ? 'Light' : 'Dark'} mode`}>
               <Button
                 aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}

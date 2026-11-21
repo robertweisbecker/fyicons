@@ -2,8 +2,6 @@
 @import 'shadcn/tailwind.css';
 @import './typeset.css';
 
-@source './prototypes/Bento.jsx';
-
 @custom-variant dark (&:is([data-theme='dark'] *));
 
 @theme {

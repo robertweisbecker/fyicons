@@ -1,17 +1,10 @@
-import { IconCatalogBoundary } from '@/components/IconCatalogBoundary';
 import type { Metadata } from 'next';
-import Examples from '@/demos/Examples';
+import Bento from '@/demos/bento/Bento';
 
 export const metadata: Metadata = {
   title: 'Examples',
   description: 'See FYIcons in menus, toolbars, and other interface examples.',
 };
 export default function ExamplesPage() {
-  return (
-    <div className="mx-auto max-w-400 px-4 pb-10 sm:px-6">
-      <IconCatalogBoundary>
-        <Examples />
-      </IconCatalogBoundary>
-    </div>
-  );
+  return <Bento />;
 }
