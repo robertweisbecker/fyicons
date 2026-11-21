@@ -13,7 +13,7 @@ export function VariantPlaceholder() {
         <div className="min-h-61 flex-1 rounded-xl bg-surface sm:rounded-2xl" />
       </IconExampleCard>
       <IconExampleCard label="Toggles" className="sm:col-span-3">
-        <div className="h-114 flex-1 rounded-xl bg-surface sm:rounded-2xl lg:h-92" />
+        <div className="flex-1 rounded-xl bg-surface sm:rounded-2xl" />
       </IconExampleCard>
     </VariantExampleGrid>
   );

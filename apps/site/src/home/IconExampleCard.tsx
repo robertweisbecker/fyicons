@@ -11,7 +11,7 @@ export function VariantExampleGrid({
   return (
     <div
       aria-busy={busy}
-      className="grid auto-cols-[min(82vw,20rem)] grid-flow-col items-start gap-3 sm:auto-cols-auto sm:grid-flow-row sm:grid-cols-6 sm:items-stretch sm:gap-x-4 sm:gap-y-5"
+      className="grid auto-cols-[min(82vw,20rem)] grid-flow-col auto-rows-fr gap-3 sm:auto-cols-auto sm:grid-flow-row sm:grid-cols-6 sm:gap-x-4 sm:gap-y-5"
     >
       {children}
     </div>

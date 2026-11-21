@@ -89,10 +89,10 @@ export function ProgressIcons() {
     <div
       role="group"
       aria-label="Progress"
-      className="flex min-w-0 flex-1 flex-col gap-2 rounded-xl bg-surface p-2 sm:gap-6 sm:rounded-2xl sm:p-5 lg:p-8"
+      className="flex min-w-0 flex-1 flex-col justify-center gap-2 rounded-xl bg-surface p-2 sm:gap-6 sm:rounded-2xl sm:p-5 lg:p-8"
     >
       <TooltipGroup>
-        <div className="flex flex-1 flex-col justify-center gap-1 sm:gap-4">
+        <div className="flex flex-col gap-1 sm:gap-4">
           <div className="mx-auto grid w-full max-w-64 grid-cols-3 sm:gap-4">
             {previews.filter(({ isEmoji }) => !isEmoji).map(renderPreview)}
           </div>

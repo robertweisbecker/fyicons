@@ -1,12 +1,12 @@
 import { createIconLookup } from '@/components/createIconLookup';
 import { IconRendererContext } from '@/components/UIIcon';
-import { useId, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Field } from '@base-ui/react/field';
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
-import { statefulIconGroups } from './statefulIconPairs';
+import { statefulIconPairs } from './statefulIconPairs';
 import {
   IconTextTitle,
   IconArrowCounterClockwise,
@@ -26,8 +26,6 @@ import {
   IconDoorOpen,
   IconNotebook,
   IconNotebookOpen,
-  IconJournal,
-  IconJournalOpen,
   IconEnvelopeSimple,
   IconEnvelopeSimpleOpen,
   IconEyeClosed,
@@ -54,16 +52,6 @@ import {
   IconLockFill,
   IconSwitchOff,
   IconSwitchOn,
-  IconBell,
-  IconBellSlash,
-  IconCloud,
-  IconCloudSlash,
-  IconLink,
-  IconLinkSlash,
-  IconVolumeHigh,
-  IconVolumeSlash,
-  IconWifi,
-  IconWifiError,
 } from 'fyicons';
 
 const Icon = createIconLookup({
@@ -85,8 +73,6 @@ const Icon = createIconLookup({
   'door-open': IconDoorOpen,
   notebook: IconNotebook,
   'notebook-open': IconNotebookOpen,
-  journal: IconJournal,
-  'journal-open': IconJournalOpen,
   'envelope-simple': IconEnvelopeSimple,
   'envelope-simple-open': IconEnvelopeSimpleOpen,
   'eye-closed': IconEyeClosed,
@@ -113,31 +99,16 @@ const Icon = createIconLookup({
   'lock-fill': IconLockFill,
   'switch-off': IconSwitchOff,
   'switch-on': IconSwitchOn,
-  bell: IconBell,
-  'bell-slash': IconBellSlash,
-  cloud: IconCloud,
-  'cloud-slash': IconCloudSlash,
-  link: IconLink,
-  'link-slash': IconLinkSlash,
-  'volume-high': IconVolumeHigh,
-  'volume-slash': IconVolumeSlash,
-  wifi: IconWifi,
-  'wifi-error': IconWifiError,
 });
 
-const groups = statefulIconGroups.map(({ label, pairs }) => ({
-  label,
-  ids: new Set(pairs.map(([icon, activeIcon]) => `${icon}/${activeIcon}`)),
-  pairs: pairs.map(([icon, activeIcon]) => ({
-    id: `${icon}/${activeIcon}`,
-    icon,
-    activeIcon,
-  })),
+const pairs = statefulIconPairs.map(([icon, activeIcon]) => ({
+  id: `${icon}/${activeIcon}`,
+  icon,
+  activeIcon,
 }));
-const pairIds = groups.flatMap(({ pairs }) => pairs.map(({ id }) => id));
+const pairIds = pairs.map(({ id }) => id);
 
 function StatefulIconsContent() {
-  const groupId = useId();
   const toggleAllRef = useRef<HTMLSpanElement>(null);
   const [flipped, setFlipped] = useState(false);
   const [activePairs, setActivePairs] = useState<string[]>([]);
@@ -158,51 +129,31 @@ function StatefulIconsContent() {
     <div
       role="group"
       aria-label="Toggles"
-      className="@container flex min-w-0 flex-1 flex-col gap-4 rounded-xl bg-surface p-4 sm:rounded-2xl sm:p-5 lg:p-8"
+      className="flex min-w-0 flex-1 flex-col justify-center gap-4 rounded-xl bg-surface p-4 sm:rounded-2xl sm:p-5 lg:p-8"
     >
-      <div className="flex flex-1 flex-col justify-center gap-4">
-        {groups.map(({ label, ids, pairs }) => (
-          <div
-            key={label}
-            className="grid gap-1 @sm:grid-cols-[5rem_minmax(0,1fr)] @sm:gap-3"
-          >
-            <span
-              id={`${groupId}-${label}`}
-              className="text-sm text-muted @sm:leading-9 pointer-coarse:@sm:leading-11"
-            >
-              {label}
-            </span>
-            <ToggleGroup
-              multiple
-              value={activePairs.filter((id) => ids.has(id))}
-              onValueChange={(values) =>
-                setActivePairs((current) => [
-                  ...current.filter((id) => !ids.has(id)),
-                  ...values,
-                ])
-              }
-              aria-labelledby={`${groupId}-${label}`}
-              className="flex-wrap gap-0"
-            >
-              {pairs.map(({ id, icon, activeIcon }) => (
-                <DemoToggle
-                  key={id}
-                  value={id}
-                  label={`${icon} / ${activeIcon}`}
-                  icon={icon}
-                  activeIcon={activeIcon}
-                  variant="text"
-                  className="size-9 touch-manipulation text-ink pointer-coarse:size-11 [&>svg]:size-5 sm:[&>svg]:size-6"
-                />
-              ))}
-            </ToggleGroup>
-          </div>
+      <ToggleGroup
+        multiple
+        value={activePairs}
+        onValueChange={setActivePairs}
+        aria-label="Icon states"
+        className="flex-wrap justify-center gap-1"
+      >
+        {pairs.map(({ id, icon, activeIcon }) => (
+          <DemoToggle
+            key={id}
+            value={id}
+            label={`${icon} / ${activeIcon}`}
+            icon={icon}
+            activeIcon={activeIcon}
+            variant="text"
+            className="size-9 touch-manipulation text-ink [&>svg]:size-5 sm:[&>svg]:size-6"
+          />
         ))}
-      </div>
-      <div className="flex min-h-11 items-center justify-center gap-2">
+      </ToggleGroup>
+      <div className="relative mx-auto flex min-h-11 items-center justify-center">
         <Field.Root>
           <Field.Label className="flex min-h-11 min-w-11 items-center justify-center gap-2.5 text-sm text-muted">
-            Toggle all
+            {flipped ? 'Close sesame?' : 'Open sesame'}
             <Switch
               ref={toggleAllRef}
               checked={flipped}
@@ -214,7 +165,7 @@ function StatefulIconsContent() {
           label="Reset states"
           icon="arrow-counter-clockwise"
           className={cn(
-            'size-9 text-muted pointer-coarse:size-11',
+            'absolute left-full ml-2 size-9 text-muted',
             !canReset && 'invisible',
           )}
           disabled={!canReset}
