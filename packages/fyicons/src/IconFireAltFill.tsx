@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconFireAltFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconFireAltFill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="fire-alt-fill"><path fill="currentColor" d="M9.596 1.022c.125-.014.189-.02.247.002a.26.26 0 0 1 .122.104c.032.054.036.128.044.275C10.214 5.503 14 5.6 14 9.501c0 2.708-2.5 5.5-6 5.5s-5.628-2.44-6-5c-.34-2.343 1.013-4.165 2.013-5.16.244-.243.366-.364.463-.37a.24.24 0 0 1 .212.101c.057.078.038.281-.001.686-.061.622.066 1.243.813 1.243 2.196 0 .769-5.102 4.096-5.479M10 7c-1 2.5-4.353 1.5-4.001 4.285C6.134 12.348 7.145 13 8.249 13s2.44-.814 2.751-2.143c.498-2.132-.985-3.84-1-3.857" />{props.children}</SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="fire-alt-fill"><path fill="currentColor" d="M9.596 1.023c.125-.015.188-.022.246 0 .05.02.094.056.122.101.032.053.038.129.049.28C10.262 4.809 14 5.625 14 9.5c0 3.459-3.25 5.5-5.5 5.5-4.75 0-6.328-2.918-6.5-5-.222-2.675 1.215-4.618 2.25-5.65.24-.24.36-.359.462-.36a.25.25 0 0 1 .216.117c.053.086.012.273-.069.647-.177.822-.191 1.746.641 1.746 2.196 0 .77-5.1 4.096-5.477M9.016 6c-.5 3-3.25 2.692-3 5 .135 1.24 1.146 2 2.25 2 1.105-.001 2.44-.95 2.75-2.5.499-2.49-1.98-4.485-2-4.5" />{props.children}</SvgRoot>;
 });
 export default IconFireAltFill;

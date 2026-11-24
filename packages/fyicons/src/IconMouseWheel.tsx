@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconMouseWheel = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconMouseWheel(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="mouse-wheel"><rect width={2} height={3} x={7} y={4} fill="currentColor" rx={1} /><path stroke="currentColor" d="M3.5 4.5a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v6a4 4 0 0 1-4 4h-1a4 4 0 0 1-4-4z" />{props.children}</SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="mouse-wheel"><path fill="currentColor" d="M7 5a1 1 0 0 1 2 0v1a1 1 0 0 1-2 0z" /><path stroke="currentColor" d="M7.5 14.5h1a4 4 0 0 0 4-4v-6a3 3 0 0 0-3-3h-3a3 3 0 0 0-3 3v6a4 4 0 0 0 4 4Z" />{props.children}</SvgRoot>;
 });
 export default IconMouseWheel;

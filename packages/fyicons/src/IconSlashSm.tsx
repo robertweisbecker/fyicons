@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconSlashSm = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSlashSm(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="slash-sm"><path fill="currentColor" d="M10.093 4.21a.5.5 0 0 1 .814.581l-5 7a.501.501 0 0 1-.814-.582z" />{props.children}</SvgRoot>;
+});
+export default IconSlashSm;

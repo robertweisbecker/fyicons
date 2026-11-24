@@ -185,7 +185,7 @@ export const iconGroups = [
         'emoji-melt',
       ],
       ['voltage', 'crown', 'treasure-chest', 'crystal-ball', 'sparkles'],
-      ['hand', 'thumbs-up', 'thumbs-up-down', 'thumbs-down'],
+      ['hand', 'thumbs-up', 'thumbs', 'thumbs-down'],
     ],
   },
   {

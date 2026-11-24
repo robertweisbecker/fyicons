@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconInfinity = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconInfinity(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="infinity"><path fill="currentColor" d="M12 4a4 4 0 0 1 .198 7.995L12 12l-.278-.01A4.05 4.05 0 0 1 8.43 9.864l-.48-.897-.782 1.266a3.72 3.72 0 0 1-3.156 1.765L4 12.002a4 4 0 0 1 0-8l.278.008A4.05 4.05 0 0 1 7.57 6.137l.444.828.7-1.133A3.86 3.86 0 0 1 12 4m-.008 1a2.86 2.86 0 0 0-2.428 1.358L8.56 7.984l.754 1.407A3.05 3.05 0 0 0 12 11.001a3 3 0 0 0 0-6zm-8.289.015A3 3 0 0 0 4 11c.944 0 1.822-.49 2.318-1.292l1.086-1.76-.716-1.338A3.05 3.05 0 0 0 4.21 5.007L4 5z" />{props.children}</SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="infinity"><path fill="currentColor" d="M12.674 5.004a3.5 3.5 0 0 1 0 6.992L12.5 12l-.25-.007c-2.157-.104-3.432-1.56-4.25-2.653C7.15 10.474 5.81 12 3.5 12l-.174-.004A3.5 3.5 0 0 1 3.5 5l.22.005C5.684 5.098 7.022 6.426 8 7.673 9.014 6.38 10.415 5 12.5 5zM3.5 6a2.5 2.5 0 0 0 0 5c1.952 0 3.034-1.353 3.876-2.496C6.369 7.182 5.199 6.001 3.5 6m8.831.004c-1.608.076-2.735 1.222-3.708 2.5.842 1.143 1.925 2.497 3.877 2.497a2.5 2.5 0 0 0 .247-4.989L12.5 6z" />{props.children}</SvgRoot>;
 });
 export default IconInfinity;
