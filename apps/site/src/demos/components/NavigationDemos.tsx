@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleIcon } from '@/components/ToggleIcon';
+import { IconRendererContext } from '@/components/UIIcon';
 import { createIconLookup } from '@/components/createIconLookup';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { createDemoControls } from './DemoControls';
@@ -122,7 +123,9 @@ export function SidebarDemo() {
             value={label}
             className="w-full justify-start gap-2 font-normal"
           >
-            <ToggleIcon icon={icon} activeIcon={active} />
+            <IconRendererContext value={Icon}>
+              <ToggleIcon icon={icon} activeIcon={active} />
+            </IconRendererContext>
             {label}
             <span className="ml-auto text-xs text-muted tabular-nums">
               {count}

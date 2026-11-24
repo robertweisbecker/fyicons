@@ -1,6 +1,7 @@
 import type { IconRecord } from './catalog';
 import { assetPath } from './navigation';
 import { iconSourceUrl } from './icon-source';
+import { play, unlock } from './sounds';
 
 export function downloadUrl(url: string, filename: string) {
   const link = document.createElement('a');
@@ -19,10 +20,14 @@ export function downloadIcon(icon: IconRecord) {
   downloadUrl(iconSourceUrl(icon), icon.filename);
 }
 export async function copy(text: string) {
+  // Resume audio within the gesture, before the clipboard promise settles.
+  void unlock();
   try {
     await navigator.clipboard.writeText(text);
+    play('success', { emphasis: 'subtle' });
     return true;
   } catch {
+    play('error', { emphasis: 'subtle' });
     return false;
   }
 }

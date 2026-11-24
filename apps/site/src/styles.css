@@ -82,12 +82,12 @@
 }
 :root[data-theme='dark'],
 .dark {
-  --inset: --alpha(var(--color-taupe-900) / 50%);
+  --inset: --alpha(var(--color-taupe-950) / 30%);
   --canvas: var(--color-taupe-950);
   --bg: var(--color-taupe-900);
   --surface: var(--color-taupe-900);
   --dialog: var(--color-taupe-900);
-  --text: var(--color-taupe-100);
+  --text: var(--color-taupe-50);
   --text-secondary: var(--color-taupe-300);
   --muted: var(--color-taupe-400);
   --border: --alpha(var(--text) / 12%);

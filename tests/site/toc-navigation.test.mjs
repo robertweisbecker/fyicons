@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { once } from 'node:events';
 import test from 'node:test';
 import { act, createElement } from 'react';
 import { PathnameContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime.js';
@@ -41,9 +42,11 @@ test('mobile heading navigation opens the selected section', async (t) => {
   ].find((element) => element.textContent.trim() === 'First');
   assert.ok(target, 'section is available in mobile navigation');
   await act(async () => {
+    const changed = once(fixture.window, 'hashchange', {
+      signal: AbortSignal.timeout(5000),
+    });
     target.click();
-    // Native anchor navigation updates the fragment on the next task.
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await changed;
   });
   assert.equal(fixture.window.location.hash, '#first');
   assert.ok(document.getElementById('first'));

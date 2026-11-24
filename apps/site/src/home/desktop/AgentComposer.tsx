@@ -114,12 +114,14 @@ export function AgentActivity({
           <Button
             variant="ghost"
             size="unstyled"
-            className="group hover:bg-unset w-fit justify-start gap-1 rounded-sm text-xs leading-4 font-normal hover:text-ink"
+            className="group hover:bg-unset active:scale-initial w-fit justify-start gap-1 rounded-sm text-xs leading-4 font-normal hover:text-ink"
           />
         }
       >
         <Icon name="thought-bubble" />
-        <span className="shimmer">Thinking…</span>
+        <span className="shimmer shimmer-duration-1200 shimmer-spread-6">
+          Thinking…
+        </span>
         <Icon
           name="chevron-right-sm"
           className="ml-auto transition-transform duration-150 ease-out group-focus-visible:transition-none group-data-panel-open:rotate-90 motion-reduce:transition-none"
@@ -261,9 +263,9 @@ export function AgentComposer() {
             <DemoIconButton
               label="Send"
               icon="arrow-up"
-              variant="default"
+              variant="unstyled"
               size="icon-xs"
-              className="rounded-full bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700"
+              className="ring-none shadow-unset rounded-full bg-blue-500 text-white outline-none hover:bg-blue-600 active:bg-blue-700"
             />
           </div>
         </div>

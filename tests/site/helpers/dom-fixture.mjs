@@ -78,14 +78,9 @@ export function createDomFixture(
     'MutationObserver',
   ])
     globals[name] = dom.window[name];
-  let resolveResponse;
-  let rejectResponse;
-  const response = new Promise((resolve, reject) => {
-    resolveResponse = resolve;
-    rejectResponse = reject;
-  });
+  const categories = Promise.withResolvers();
   const requests = [];
-  globals.fetch = (input, options) => {
+  globals.fetch = async (input, options) => {
     const url = new URL(
       input instanceof Request ? input.url : input,
       dom.window.location.href,
@@ -93,7 +88,13 @@ export function createDomFixture(
     const method =
       options?.method ?? (input instanceof Request ? input.method : 'GET');
     requests.push(`${method} ${url.href}`);
-    const match = url.href.match(/\/icon-sources\/([a-f0-9]{64})\.svg/);
+    if (method !== 'GET' || url.origin !== dom.window.location.origin)
+      throw new Error(`Unexpected request: ${method} ${url.href}`);
+    if (url.pathname + url.search === '/icon-categories.json')
+      return pending ? categories.promise : Response.json(categoryConfig);
+    const match = (url.pathname + url.search).match(
+      /^\/icon-sources\/([a-f0-9]{64})\.svg$/,
+    );
     if (match) {
       const catalog = decodeCatalog(
         JSON.parse(
@@ -104,20 +105,18 @@ export function createDomFixture(
         ),
       );
       const icon = catalog.icons.find((icon) => icon.sha256 === match[1]);
-      return Promise.resolve(
-        icon
-          ? new Response(
-              readFileSync(
-                new URL(
-                  `../../../packages/fyicons/svg/${icon.filename}`,
-                  sourceRoot,
-                ),
+      return icon
+        ? new Response(
+            readFileSync(
+              new URL(
+                `../../../packages/fyicons/svg/${icon.filename}`,
+                sourceRoot,
               ),
-            )
-          : new Response('', { status: 404 }),
-      );
+            ),
+          )
+        : new Response('', { status: 404 });
     }
-    return pending ? response : Promise.resolve(Response.json(categoryConfig));
+    throw new Error(`Unexpected request: ${method} ${url.href}`);
   };
   const saved = new Map();
   for (const [name, value] of Object.entries(globals)) {
@@ -201,18 +200,16 @@ export function createDomFixture(
       unmount = callback;
     },
     window: dom.window,
-    requests,
     load: (relative) => import(new URL(`${relative}?${graph}`, sourceRoot)),
-    async resolveCategories(readiness, config = categoryConfig, status = 200) {
+    requests,
+    async resolveCategories(config = categoryConfig) {
       await act(async () => {
-        resolveResponse(Response.json(config, { status }));
-        await readiness.loadCategories();
+        categories.resolve(Response.json(config));
       });
     },
-    async rejectCategories(readiness) {
+    async rejectCategories() {
       await act(async () => {
-        rejectResponse(new Error('Category request failed'));
-        await readiness.loadCategories();
+        categories.reject(new Error('Category request failed'));
       });
     },
   };

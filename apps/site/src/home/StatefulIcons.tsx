@@ -6,6 +6,7 @@ import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
+import { play } from '@/lib/sounds';
 import { statefulIconPairs } from './statefulIconPairs';
 import {
   IconTextTitle,
@@ -117,6 +118,10 @@ function StatefulIconsContent() {
     : activePairs.length > 0;
 
   function flipAll(checked: boolean) {
+    play('toggle', {
+      emphasis: 'subtle',
+      direction: checked ? 'forward' : 'back',
+    });
     setFlipped(checked);
     // Invert every pair, including any that were toggled individually.
     setActivePairs((current) => {

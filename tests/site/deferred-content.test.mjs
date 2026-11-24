@@ -10,13 +10,25 @@ test('deferred demos wait for approach, retry failed loading, and preserve mount
   );
   const observers = [];
   class Observer {
+    targets = new Set();
     constructor(callback, options) {
       this.callback = callback;
       this.options = options;
       observers.push(this);
     }
-    observe() {}
-    disconnect() {}
+    observe(target) {
+      this.targets.add(target);
+    }
+    disconnect() {
+      this.targets.clear();
+    }
+    intersect(target, isIntersecting) {
+      assert.ok(
+        this.targets.has(target),
+        'the demo must be observed before it can intersect',
+      );
+      this.callback([{ target, isIntersecting }]);
+    }
   }
   const previousObserver = globalThis.IntersectionObserver;
   fixture.window.IntersectionObserver = Observer;
@@ -53,15 +65,16 @@ test('deferred demos wait for approach, retry failed loading, and preserve mount
   );
   assert.equal(calls, 0);
   assert.equal(observers[0].options.rootMargin, '600px 0px');
-  await act(async () => observers[0].callback([{ isIntersecting: true }]));
+  const demo = container.firstElementChild;
+  await act(async () => observers[0].intersect(demo, true));
   assert.match(container.textContent, /could not be loaded/);
   await act(async () => container.querySelector('button').click());
   assert.equal(calls, 2);
   const input = container.querySelector('input');
   input.value = 'edited';
-  await act(async () => observers[1].callback([{ isIntersecting: true }]));
+  await act(async () => observers[1].intersect(demo, true));
   assert.match(container.textContent, /true/);
-  await act(async () => observers[1].callback([{ isIntersecting: false }]));
+  await act(async () => observers[1].intersect(demo, false));
   assert.match(container.textContent, /false/);
   assert.equal(container.querySelector('input'), input);
   assert.equal(input.value, 'edited');

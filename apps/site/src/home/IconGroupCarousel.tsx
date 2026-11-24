@@ -698,7 +698,9 @@ export function IconGroupCarousel() {
                     </div>
                   ))}
                 </div>
-                <figcaption className="px-3 text-lg leading-snug font-medium text-muted">
+                <figcaption
+                  className={`px-3 text-lg font-medium text-muted ${group.id === '857:27892' ? 'leading-[1.25]' : 'leading-snug'}`}
+                >
                   <span className="font-semibold text-ink">{group.name}</span>{' '}
                   {group.caption}
                 </figcaption>

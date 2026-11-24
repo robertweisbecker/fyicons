@@ -52,7 +52,7 @@ export function CodeBlock({
   return (
     <ScrollArea.Root
       data-slot="code-block"
-      className="relative flex max-w-full items-start rounded-2xl bg-inset text-ink dark:outline dark:outline-line"
+      className="relative flex max-w-full items-start rounded-xl bg-current/10 text-ink dark:outline dark:outline-line"
     >
       <ScrollArea.Viewport
         aria-label="Code example"

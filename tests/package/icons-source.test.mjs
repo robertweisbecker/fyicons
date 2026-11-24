@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import { JSDOM } from 'jsdom';
 import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
 import { prepareIcons } from '../../scripts/lib/prepare-icons.mjs';
 
@@ -54,7 +55,6 @@ test('SVG exports add default classes and hash their bytes without changing sour
 });
 
 test('all downloadable icons inherit foreground color without altering definition paint', async () => {
-  const { JSDOM } = await import('jsdom');
   const dom = new JSDOM(
     catalog.icons
       .map((icon) => `<div data-icon-id="${icon.id}">${icon.svg}</div>`)

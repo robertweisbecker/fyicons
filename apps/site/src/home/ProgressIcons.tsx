@@ -14,6 +14,7 @@ import {
 import { Slider, SliderControl } from '@/components/ui/slider';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { levelSteps } from '@/lib/icon-progress';
+import { play } from '@/lib/sounds';
 
 const pieSteps = [
   IconCircle,
@@ -125,7 +126,15 @@ export function ProgressIcons() {
         <Slider.Root
           className="grid w-full max-w-80 grid-cols-[minmax(0,1fr)_3rem] items-center gap-1 sm:gap-3"
           value={level}
-          onValueChange={setLevel}
+          onValueChange={(value) => {
+            if (value !== level) {
+              play('select', {
+                emphasis: 'subtle',
+                direction: value > level ? 'forward' : 'back',
+              });
+            }
+            setLevel(value);
+          }}
           min={0}
           max={100}
           step={12.5}

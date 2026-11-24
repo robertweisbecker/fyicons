@@ -60,22 +60,31 @@ test('selection sources use at most six concurrent requests and fail instead of 
     (_, i) => `<svg id="selection-${i}"/>`,
   );
   const records = texts.map(icon);
-  const byHash = new Map(records.map((r, i) => [r.sha256, texts[i]]));
-  let active = 0,
-    maximum = 0;
+  const files = new Map(
+    records.map((record, i) => [`${record.sha256}.svg`, texts[i]]),
+  );
+  const started = records.map(() => Promise.withResolvers());
+  const held = [];
   t.mock.method(globalThis, 'fetch', async (url) => {
-    active++;
-    maximum = Math.max(maximum, active);
-    await new Promise((resolve) => setTimeout(resolve, 2));
-    active--;
-    return new Response(byHash.get(String(url).split('/').pop().slice(0, -4)));
+    const gate = Promise.withResolvers();
+    held.push(gate);
+    started[held.length - 1].resolve();
+    await gate.promise;
+    return new Response(files.get(String(url).split('/').at(-1)));
   });
-  const resolved = await resolveIconSources(records);
+  const selection = resolveIconSources(records);
+  // Keep five requests in flight while the sixth slot processes the rest.
+  for (let i = 5; i < records.length; i++) {
+    await started[i].promise;
+    assert.equal(held.length, i + 1, 'only one request per available slot');
+    held[i].resolve();
+  }
+  for (const gate of held.slice(0, 5)) gate.resolve();
+  const resolved = await selection;
   assert.deepEqual(
     resolved.map((i) => i.svg),
     texts,
   );
-  assert.equal(maximum, 6);
   t.mock.method(
     globalThis,
     'fetch',

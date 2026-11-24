@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { JSDOM } from 'jsdom';
+import { createElement as h, Fragment } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { transformWithOxc } from 'vite';
 import {
   normalizeDisplayPaint,
   renderReactIconFiles,
@@ -23,7 +27,6 @@ const generatedFiles = await renderReactIconFiles(
 
 // Exercise generated modules and their shared SVG root as executable code.
 const svgRootModule = (async () => {
-  const { transformWithOxc } = await import('vite');
   const { code } = await transformWithOxc(
     generatedFiles.get('packages/fyicons/src/base.tsx'),
     'base.tsx',
@@ -40,7 +43,6 @@ const svgRootModule = (async () => {
   );
 })();
 async function componentModule(source) {
-  const { transformWithOxc } = await import('vite');
   const { code } = await transformWithOxc(source, 'Icon.tsx', {
     jsx: { runtime: 'classic' },
   });
@@ -56,7 +58,6 @@ async function loadComponent(source) {
 }
 
 const clientIcons = (async () => {
-  const { transformWithOxc } = await import('vite');
   const files = await renderReactIconFiles([
     {
       name: 'fixture',
@@ -99,9 +100,6 @@ const clientIcons = (async () => {
 })();
 
 test('provider defaults compose across scopes and yield to local icon props', async () => {
-  const { createElement: h } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
-  const { JSDOM } = await import('jsdom');
   const { FyiProvider, IconFixture } = await clientIcons;
   const html = renderToStaticMarkup(
     h(
@@ -191,14 +189,12 @@ test('provider defaults compose across scopes and yield to local icon props', as
 });
 
 test('every generated component renders with default sizing, accessibility, and classes', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
   for (const icon of catalog.icons) {
     const source = generatedFiles.get(
       `packages/fyicons/src/${icon.componentName}.tsx`,
     );
     const Component = await loadComponent(source);
-    const html = renderToStaticMarkup(createElement(Component));
+    const html = renderToStaticMarkup(h(Component));
     assert.match(html, /width="16"/, icon.name);
     assert.match(html, /height="16"/, icon.name);
     assert.match(html, /viewBox="0 0 16 16"/, icon.name);
@@ -210,9 +206,6 @@ test('every generated component renders with default sizing, accessibility, and 
 });
 
 test('caller children supplement artwork in order, including empty source SVGs', async () => {
-  const { createElement: h, Fragment } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
-  const { JSDOM } = await import('jsdom');
   const fixtures = [
     {
       name: 'artwork',
@@ -308,9 +301,6 @@ test('foreground colors inherit independently of the exported palette', () => {
 });
 
 test('rendered components honor SVG props and keep repeated definition and title IDs unique', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
-  const { JSDOM } = await import('jsdom');
   const files = await renderReactIconFiles([
     {
       id: 'fixture:2',
@@ -323,10 +313,10 @@ test('rendered components honor SVG props and keep repeated definition and title
     files.get('packages/fyicons/src/IconFixture.tsx'),
   );
   const html = renderToStaticMarkup(
-    createElement(
+    h(
       'div',
       null,
-      createElement(
+      h(
         Component,
         {
           size: 24,
@@ -339,7 +329,7 @@ test('rendered components honor SVG props and keep repeated definition and title
           'data-test': 'first',
           viewBox: '0 0 32 24',
         },
-        createElement(Component, {
+        h(Component, {
           title: 'Nested',
           x: 4,
           y: 5,
@@ -347,7 +337,7 @@ test('rendered components honor SVG props and keep repeated definition and title
           className: 'nested',
         }),
       ),
-      createElement(Component, { title: 'Second', 'aria-hidden': true }),
+      h(Component, { title: 'Second', 'aria-hidden': true }),
     ),
   );
   assert.match(html, /width="32"/);
@@ -388,24 +378,19 @@ test('rendered components honor SVG props and keep repeated definition and title
   })) {
     assert.equal(nested.getAttribute(name), value);
   }
-  for (const path of dom.window.document.querySelectorAll(
-    'path[mask], path[fill^="url("]',
-  )) {
-    const reference = (
-      path.getAttribute('mask') ?? path.getAttribute('fill')
-    ).match(/url\(#([^)]+)\)/)[1];
-    assert.equal(
-      dom.window.document.getElementById(reference).closest('svg'),
-      path.closest('svg'),
-      'Each reference resolves inside its own icon',
-    );
+  const instances = dom.window.document.querySelectorAll('svg');
+  assert.equal(instances.length, 3);
+  for (const instance of instances) {
+    const [masked, painted] = instance.querySelectorAll(':scope > path');
+    const mask = instance.querySelector(':scope > defs > mask');
+    const gradient = instance.querySelector(':scope > defs > linearGradient');
+    assert.equal(masked.getAttribute('mask'), `url(#${mask.id})`);
+    assert.equal(painted.getAttribute('fill'), `url(#${gradient.id})`);
   }
   dom.window.close();
 });
 
 test('reference delimiters remain literal data in repeated rendered instances', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
   const sourceIds = [
     'paint`',
     'paint\\',
@@ -438,12 +423,7 @@ test('reference delimiters remain literal data in repeated rendered instances', 
     const source = files.get(`packages/fyicons/src/${componentName}.tsx`);
     const Component = await loadComponent(source);
     const html = renderToStaticMarkup(
-      createElement(
-        'div',
-        null,
-        createElement(Component),
-        createElement(Component),
-      ),
+      h('div', null, h(Component), h(Component)),
     );
     const instances = [...html.matchAll(/<svg\b[^>]*>(.*?)<\/svg>/g)];
     assert.equal(instances.length, 2);
@@ -472,8 +452,6 @@ test('reference delimiters remain literal data in repeated rendered instances', 
 });
 
 test('aria-label controls accessibility defaults while explicit SVG attributes pass through', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
   const Component = await loadComponent(
     generatedFiles.get(
       `packages/fyicons/src/${catalog.icons[0].componentName}.tsx`,
@@ -530,7 +508,7 @@ test('aria-label controls accessibility defaults while explicit SVG attributes p
     },
   ];
   for (const { name, props, label, labelledby, role, hidden } of cases) {
-    const html = renderToStaticMarkup(createElement(Component, props));
+    const html = renderToStaticMarkup(h(Component, props));
     const root = html.match(/^<svg\b([^>]*)>/)[1];
     const attributes = Object.fromEntries(
       [...root.matchAll(/([\w-]+)="([^"]*)"/g)].map((match) => [

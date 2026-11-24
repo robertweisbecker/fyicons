@@ -58,8 +58,7 @@ const loadGroups = () =>
   import('./IconGroupCarousel').then((module) => module.IconGroupCarousel);
 
 // Landing heading styles live here alongside the page's section composition.
-const sectionHeadingClassName =
-  'text-3xl font-medium tracking-tight sm:text-4xl';
+const sectionHeadingClassName = 'text-3xl font-medium sm:text-4xl';
 const featureHeadingClassName = 'text-2xl font-medium tracking-tight';
 const installationHeadingClassName =
   'flex items-center gap-2 text-lg font-medium tracking-tight';
@@ -116,7 +115,7 @@ export default function Landing() {
           className="mx-auto grid max-w-135 grid-cols-1 items-center gap-6 px-2 pt-8 pb-12 md:max-w-292 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-8 md:px-6 md:py-14 lg:gap-18 lg:px-8 lg:pt-18 lg:pb-16"
         >
           <div className="hero-copy pt-8 pb-0 md:pt-13 md:pb-7">
-            <h1 className="hero-headline text-[clamp(23px,7vw,36px)] leading-[1.125] tracking-[-0.035em] md:text-[clamp(28px,3.3vw,42px)]">
+            <h1 className="hero-headline text-[clamp(32px,7vw,48px)] leading-[1.125] tracking-[-0.035em] md:text-[clamp(28px,3.3vw,42px)]">
               <span className="hero-headline-line font-normal">
                 Some icons I made{' '}
                 <span className="hero-pen-word">
@@ -192,7 +191,7 @@ export default function Landing() {
         >
           <h2
             id="installation-heading"
-            className={`mb-8 ${sectionHeadingClassName}`}
+            className={`mb-8 ${sectionHeadingClassName} tracking-tight`}
           >
             Quick start
           </h2>
@@ -299,13 +298,16 @@ export default function Landing() {
               <ScrollArea.Scrollbar orientation="horizontal" />
             </ScrollArea.Root>
           </section>
-          <section aria-labelledby="construction-heading" className="space-y-6">
-            <h3 id="construction-heading" className={featureHeadingClassName}>
-              Constructed with care
-            </h3>
-            <p className="text-lg font-medium text-balance text-muted">
-              Designed on a consistent, pixel-aligned grid.
-            </p>
+          <section aria-labelledby="construction-heading">
+            <div className="mb-6 flex flex-col gap-2 md:max-w-3xl">
+              <h3 id="construction-heading" className={featureHeadingClassName}>
+                Constructed with care
+              </h3>
+              <p className="text-lg font-medium text-pretty text-muted">
+                Each icon is designed on a consistent, pixel-aligned grid, at
+                the size you will actually use it.
+              </p>
+            </div>
             <DeferredContent
               loader={loadConstruction}
               componentProps={{}}
@@ -319,9 +321,9 @@ export default function Landing() {
                 heading: (
                   <p
                     id="optical-adjustments-heading"
-                    className="text-lg font-medium text-balance text-muted"
+                    className="text-lg font-medium text-pretty text-muted"
                   >
-                    With a range of optical adjustments.
+                    But some rules are made to be broken.
                   </p>
                 ),
               }}
@@ -343,7 +345,11 @@ export default function Landing() {
               <Link
                 href="/icons/"
                 prefetch={false}
-                className={buttonVariants({ variant: 'default', size: 'lg' })}
+                className={buttonVariants({
+                  variant: 'default',
+                  size: 'lg',
+                  className: 'min-w-[min(100%,var(--container-xs))]',
+                })}
               >
                 View all icons
                 <Icon name="arrow-right" size={20} />

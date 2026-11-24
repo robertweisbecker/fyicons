@@ -172,7 +172,7 @@ export function MusicApp() {
   return (
     <div
       ref={player}
-      className="dark flex h-full max-h-full min-h-0 w-full min-w-0"
+      className="dark flex h-full max-h-full min-h-0 w-full min-w-0 [font-variation-settings:'ROND'_0]"
       data-theme="dark"
     >
       <Window title="Music">

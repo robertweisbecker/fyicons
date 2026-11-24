@@ -160,7 +160,7 @@ export function DesktopShowcase() {
                             layoutId="active-app"
                             aria-hidden="true"
                             style={{ borderRadius: 999 }}
-                            className="pointer-events-none absolute inset-0 -z-10 bg-white/10 text-white shadow-[inset_0_2px_1px_-1px_--alpha(currentColor_/_10%),var(--shadow-md)] ring-1 ring-black/20"
+                            className="pointer-events-none absolute inset-0 -z-10 bg-white/10 text-white shadow-[inset_0_2px_1px_-1px_--alpha(currentColor/10%),var(--shadow-md)] ring-1 ring-black/20"
                           />
                         )}
                         <motion.span
