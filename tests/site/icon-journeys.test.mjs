@@ -198,6 +198,43 @@ for (const mobile of [false, true]) {
   });
 }
 
+test('the grid context menu copies from the tile that opened it', async (t) => {
+  const h = await mountApp(t, 'https://example.test/icons/?q=home');
+  await h.resolveCategories();
+  const copied = [];
+  Object.defineProperty(h.window.navigator, 'clipboard', {
+    configurable: true,
+    value: { writeText: async (text) => copied.push(text) },
+  });
+  const contextMenu = (target) =>
+    target.dispatchEvent(
+      new h.window.MouseEvent('contextmenu', {
+        bubbles: true,
+        cancelable: true,
+        button: 2,
+      }),
+    );
+  assert.ok(contextMenu(h.document.querySelector('.icon-grid')));
+  const tiles = h.tiles.slice(0, 2);
+  assert.equal(tiles.length, 2);
+  for (const tile of tiles) {
+    const name = h.catalog.getIconDisplayName(
+      h.catalog.byId.get(tile.dataset.id),
+    );
+    await act(async () => contextMenu(tile.querySelector('svg')));
+    const menu = h.document.querySelector(
+      `[role="menu"][aria-label="${name} actions"]`,
+    );
+    assert.ok(menu);
+    await click(
+      [...menu.querySelectorAll('[role="menuitem"]')].find(
+        (item) => item.textContent === 'Copy name',
+      ),
+    );
+    assert.equal(copied.at(-1), name);
+  }
+});
+
 test('users can filter, save and remove icons, then export the selection or full library', async (t) => {
   const h = await mountApp(t, 'https://example.test/icons/', { actions: true });
   await h.resolveCategories({

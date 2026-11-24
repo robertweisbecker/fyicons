@@ -68,6 +68,8 @@ export function createDomFixture(
     'Node',
     'Document',
     'DocumentFragment',
+    'DOMRect',
+    'AbortController',
     'ShadowRoot',
     'SVGElement',
     'Event',
@@ -82,8 +84,16 @@ export function createDomFixture(
     resolveResponse = resolve;
     rejectResponse = reject;
   });
-  globals.fetch = (url) => {
-    const match = String(url).match(/\/icon-sources\/([a-f0-9]{64})\.svg/);
+  const requests = [];
+  globals.fetch = (input, options) => {
+    const url = new URL(
+      input instanceof Request ? input.url : input,
+      dom.window.location.href,
+    );
+    const method =
+      options?.method ?? (input instanceof Request ? input.method : 'GET');
+    requests.push(`${method} ${url.href}`);
+    const match = url.href.match(/\/icon-sources\/([a-f0-9]{64})\.svg/);
     if (match) {
       const catalog = decodeCatalog(
         JSON.parse(
@@ -191,6 +201,7 @@ export function createDomFixture(
       unmount = callback;
     },
     window: dom.window,
+    requests,
     load: (relative) => import(new URL(`${relative}?${graph}`, sourceRoot)),
     async resolveCategories(readiness, config = categoryConfig, status = 200) {
       await act(async () => {

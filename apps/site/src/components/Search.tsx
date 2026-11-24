@@ -1,7 +1,7 @@
 import { Autocomplete } from '@base-ui/react/autocomplete';
 import { Dialog } from '@base-ui/react/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useEffect, useRef, useState, type RefObject } from 'react';
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import { Icon } from '@/components/UIIcon';
 import { IconButton } from '@/components/IconButton';
 import { Button } from '@/components/ui/button';
@@ -99,7 +99,7 @@ function Search({
   }, [attempt]);
   const [limit, setLimit] = useState(searchPageSize);
   const [highlightedIcon, setHighlightedIcon] = useState<IconRecord>();
-  const matches = catalog?.search(value) ?? [];
+  const matches = useMemo(() => catalog?.search(value) ?? [], [catalog, value]);
   const shownCount = Math.min(limit, matches.length);
   const moreCount = Math.min(searchPageSize, matches.length - shownCount);
   return (

@@ -72,6 +72,7 @@ export async function mountApp(
     document: fixture.window.document,
     catalog,
     readiness,
+    requests: fixture.requests,
     get tiles() {
       return [...fixture.window.document.querySelectorAll('.icon-tile')];
     },
