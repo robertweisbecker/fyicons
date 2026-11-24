@@ -18,8 +18,16 @@ test('category request failure leaves every icon available', async (t) => {
 
 test('icon browser remains useful while a linked category loads', async (t) => {
   const h = await mountApp(t, 'https://example.test/icons/?category=buildings');
+  const categoryLabel = (name) =>
+    h.document.querySelector(
+      `[aria-label="Icon categories"] button[aria-label="${name}"]`,
+    )?.textContent;
   assert.ok(h.document.querySelector('input[aria-label="Search icons"]'));
   assert.equal(h.tiles.length, h.catalog.icons.length);
+  assert.equal(
+    categoryLabel('Uncategorized'),
+    `Uncategorized${h.tiles.length}`,
+  );
   await h.resolveCategories(config);
   const categorized = h.catalog.icons.filter(({ categories }) =>
     categories.includes('buildings'),
@@ -27,6 +35,8 @@ test('icon browser remains useful while a linked category loads', async (t) => {
   assert.ok(
     categorized.length > 0 && categorized.length < h.catalog.icons.length,
   );
+  assert.equal(categoryLabel('Buildings'), `Buildings${categorized.length}`);
+  assert.equal(categoryLabel('All'), `All${h.catalog.icons.length}`);
   assert.deepEqual(
     h.tiles.map((tile) => tile.dataset.id).sort(),
     categorized.map(({ id }) => id).sort(),

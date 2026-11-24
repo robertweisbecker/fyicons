@@ -17,10 +17,15 @@ import {
 import { SelectedIconsDialog } from './SelectedIconsDialog';
 import { IconSearch } from './Search';
 import { searchIcons, type IconSort } from '@/lib/icon-search';
+import { IconGrid } from './IconGrid';
 import { IconTile } from './IconTile';
 import { PreviewSizeControl } from './PreviewSizeControl';
 import { useIconFilters } from '@/lib/use-icon-filters';
-import { CategoryMenu, CategorySidebar } from './CategorySidebar';
+import {
+  CategoryMenu,
+  CategorySidebar,
+  getCategoryOptions,
+} from './CategorySidebar';
 import { notify } from './ui/toast';
 import { Inspector } from './Inspector';
 import { byId, icons, type IconRecord } from '@/lib/catalog';
@@ -52,6 +57,9 @@ function IconsBrowserContent() {
   } = filters;
   const activeCategory =
     query.trim() || categoryReadiness.status === 'loading' ? 'all' : category;
+  const categoryOptions = useMemo(getCategoryOptions, [
+    categoryReadiness.version,
+  ]);
   const [showFilled, setShowFilled] = useState(true);
   const [previewSize, setPreviewSize] = useState(32);
   const [sort, setSort] = useState<IconSort>('alphabetical');
@@ -263,6 +271,7 @@ function IconsBrowserContent() {
           className="flex flex-col gap-6 pt-4 md:grid md:grid-cols-[minmax(0,1fr)_auto] md:gap-x-0 lg:min-h-[calc(100dvh-3.5rem)] lg:grid-cols-[calc(var(--sidebar-width)+1.5rem)_minmax(0,1fr)_auto]"
         >
           <CategorySidebar
+            options={categoryOptions}
             value={activeCategory}
             onValueChange={setCategory}
             displayControls={displayOptions}
@@ -323,6 +332,7 @@ function IconsBrowserContent() {
                 <div className="flex min-w-0 flex-1 items-center gap-3">
                   <div className="hidden shrink-0 md:block">{sortControl}</div>
                   <CategoryMenu
+                    options={categoryOptions}
                     value={activeCategory}
                     onValueChange={setCategory}
                   />
@@ -346,14 +356,7 @@ function IconsBrowserContent() {
                 )}
               </div>
             </>
-            <div
-              className="icon-grid grid grid-cols-[repeat(auto-fill,minmax(min(100%,var(--tile-min-size)),1fr))] gap-2 [--tile-min-size:max(4rem,calc(var(--preview-size)+1rem))] md:[--tile-min-size:clamp(4rem,calc(var(--preview-size)*4),10rem)]"
-              style={
-                {
-                  '--preview-size': `${previewSize}px`,
-                } as React.CSSProperties
-              }
-            >
+            <IconGrid previewSize={previewSize}>
               {visible.map((icon) => (
                 <IconTile
                   key={icon.id}
@@ -368,7 +371,7 @@ function IconsBrowserContent() {
                   }
                 />
               ))}
-            </div>
+            </IconGrid>
             {!visible.length && (
               <div
                 className={cn(

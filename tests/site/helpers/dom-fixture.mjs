@@ -68,6 +68,8 @@ export function createDomFixture(
     'Node',
     'Document',
     'DocumentFragment',
+    'DOMRect',
+    'AbortController',
     'ShadowRoot',
     'SVGElement',
     'Event',

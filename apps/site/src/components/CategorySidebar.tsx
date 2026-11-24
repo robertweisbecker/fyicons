@@ -13,21 +13,27 @@ import { Icon } from '@/components/Icon';
 import { Sidebar, SidebarSection, SidebarItem } from './Sidebar';
 import { categories, icons, byName } from '@/lib/catalog';
 
-const categoryOptions = () => [
-  { value: 'all', label: 'All', icon: 'grid', count: icons.length },
-  ...categories.map((category) => ({
-    value: category.id,
-    label: category.name,
-    icon: byName.has(category.icon) ? category.icon : 'tag',
-    count: icons.filter((icon) => icon.categories.includes(category.id)).length,
-  })),
-];
-type Props = { value: string; onValueChange: (value: string) => void };
-function CategoryLabel({
-  option,
-}: {
-  option: ReturnType<typeof categoryOptions>[number];
-}) {
+export function getCategoryOptions() {
+  const counts = new Map<string, number>();
+  for (const icon of icons) {
+    for (const id of icon.categories) counts.set(id, (counts.get(id) ?? 0) + 1);
+  }
+  return [
+    { value: 'all', label: 'All', icon: 'grid', count: icons.length },
+    ...categories.map((category) => ({
+      value: category.id,
+      label: category.name,
+      icon: byName.has(category.icon) ? category.icon : 'tag',
+      count: counts.get(category.id) ?? 0,
+    })),
+  ];
+}
+type Props = {
+  options: ReturnType<typeof getCategoryOptions>;
+  value: string;
+  onValueChange: (value: string) => void;
+};
+function CategoryLabel({ option }: { option: Props['options'][number] }) {
   return (
     <>
       <Icon name={option.icon} />
@@ -39,11 +45,11 @@ function CategoryLabel({
   );
 }
 export function CategorySidebar({
+  options,
   value,
   onValueChange,
   displayControls,
 }: Props & { displayControls: ReactNode }) {
-  const options = categoryOptions();
   return (
     <Sidebar
       aria-label="Icon filters"
@@ -89,8 +95,7 @@ export function CategorySidebar({
   );
 }
 
-export function CategoryMenu({ value, onValueChange }: Props) {
-  const options = categoryOptions();
+export function CategoryMenu({ options, value, onValueChange }: Props) {
   const selected =
     options.find((option) => option.value === value) ?? options[0];
   return (

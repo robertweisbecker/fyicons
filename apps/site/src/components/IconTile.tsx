@@ -1,19 +1,8 @@
-import { useState } from 'react';
-import { useIconSource } from '@/lib/use-icon-source';
-import { ContextMenu } from '@base-ui/react/context-menu';
 import { IconRaysCorner } from 'fyicons';
 
 import { Icon } from './Icon';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import {
-  MenuContent,
-  MenuGroup,
-  MenuGroupLabel,
-  MenuItem,
-} from '@/components/ui/menu';
-import { notify } from '@/components/ui/toast';
-import { copy, downloadIcon } from '@/lib/downloads';
 import { cn } from '../lib/utils';
 import { getIconDisplayName, type IconRecord } from '../lib/catalog';
 import { getRecentIconAddition } from '@/lib/icon-releases';
@@ -31,105 +20,60 @@ export function IconTile({
   inspect: () => void;
   toggleSelection?: () => void;
 }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const source = useIconSource(icon, menuOpen);
   const name = getIconDisplayName(icon);
   const addedVersion = getRecentIconAddition(icon.id);
   const addedLabel = addedVersion ? `Added in v${addedVersion}` : undefined;
 
-  async function copyValue(value: string, label: string) {
-    if (await copy(value)) {
-      notify(
-        <>
-          &quot;<span className="font-semibold">{name}</span>&quot; copied
-        </>,
-        { id: `copy:${icon.id}:${label}`, icon: <Icon name={icon.id} /> },
-      );
-    } else {
-      notify('Clipboard unavailable. Please try again.');
-    }
-  }
-
   return (
-    <ContextMenu.Root onOpenChange={setMenuOpen}>
-      <ContextMenu.Trigger
+    <div
+      data-icon-tile={icon.id}
+      className={cn(
+        'group/tile relative min-w-0 rounded-lg outline outline-transparent hover:outline-line',
+        inspected &&
+          'bg-selection outline-2 outline-focus hover:bg-selection hover:outline-focus',
+        selected && 'bg-surface outline-focus',
+      )}
+    >
+      <Button
+        variant="unstyled"
+        size="unstyled"
         className={cn(
-          'group/tile relative min-w-0 rounded-lg outline outline-transparent hover:outline-line',
-          inspected &&
-            'bg-selection outline-2 outline-focus hover:bg-selection hover:outline-focus',
-          selected && 'bg-surface outline-focus',
+          'icon-tile flex min-h-16 w-full min-w-0 flex-col items-center justify-center gap-2 rounded-lg p-2',
         )}
+        data-id={icon.id}
+        aria-label={'Inspect ' + name}
+        aria-description={addedLabel}
+        aria-pressed={inspected}
+        title={addedLabel}
+        onClick={inspect}
       >
-        <Button
-          variant="unstyled"
-          size="unstyled"
-          className={cn(
-            'icon-tile flex min-h-16 w-full min-w-0 flex-col items-center justify-center gap-2 rounded-lg p-2',
-          )}
-          data-id={icon.id}
-          aria-label={'Inspect ' + name}
-          aria-description={addedLabel}
-          aria-pressed={inspected}
-          title={addedLabel}
-          onClick={inspect}
-        >
-          {addedVersion && (
-            <IconRaysCorner
-              aria-hidden="true"
-              className="absolute top-1 right-[75%] size-4 text-control-accent"
-            />
-          )}
-          <Icon name={icon.id} className="bg-grid size-(--preview-size)" />
-          <span
-            className={cn(
-              'tile-name hidden max-w-full truncate text-[11px] leading-none font-normal wrap-anywhere text-muted opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 md:block',
-              (inspected || selected) && 'opacity-100',
-            )}
-            title={name}
-          >
-            {name}
-          </span>
-        </Button>
-        {toggleSelection && (
-          <Checkbox
-            checked={selected}
-            aria-label={'Select ' + name}
-            onCheckedChange={toggleSelection}
-            className={cn(
-              'absolute top-0 right-0 opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 data-checked:opacity-100 [@media(hover:none)]:opacity-100',
-            )}
+        {addedVersion && (
+          <IconRaysCorner
+            aria-hidden="true"
+            className="absolute top-1 right-[75%] size-4 text-control-accent"
           />
         )}
-      </ContextMenu.Trigger>
-      <MenuContent aria-label={`${name} actions`} sideOffset={0}>
-        <MenuGroup>
-          <MenuGroupLabel>{name}</MenuGroupLabel>
-          <MenuItem onClick={() => copyValue(name, 'Name')}>
-            <Icon name="text-title" />
-            Copy name
-          </MenuItem>
-          <MenuItem
-            disabled={!source.text && !source.error}
-            closeOnClick={!source.error}
-            onClick={() =>
-              source.error
-                ? source.retry()
-                : source.text && copyValue(source.text, 'SVG')
-            }
-          >
-            <Icon name="copy" />
-            {source.error
-              ? 'Retry loading SVG'
-              : source.text
-                ? 'Copy SVG'
-                : 'Loading SVG…'}
-          </MenuItem>
-          <MenuItem onClick={() => downloadIcon(icon)}>
-            <Icon name="download-square" />
-            Download
-          </MenuItem>
-        </MenuGroup>
-      </MenuContent>
-    </ContextMenu.Root>
+        <Icon name={icon.id} className="bg-grid size-(--preview-size)" />
+        <span
+          className={cn(
+            'tile-name hidden max-w-full truncate text-[11px] leading-none font-normal wrap-anywhere text-muted opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 md:block',
+            (inspected || selected) && 'opacity-100',
+          )}
+          title={name}
+        >
+          {name}
+        </span>
+      </Button>
+      {toggleSelection && (
+        <Checkbox
+          checked={selected}
+          aria-label={'Select ' + name}
+          onCheckedChange={toggleSelection}
+          className={cn(
+            'absolute top-0 right-0 opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 data-checked:opacity-100 [@media(hover:none)]:opacity-100',
+          )}
+        />
+      )}
+    </div>
   );
 }
