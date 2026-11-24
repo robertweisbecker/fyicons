@@ -1,0 +1,32 @@
+[
+  {
+    "name": "letter-a",
+    "from": "811:9135",
+    "to": "1880:3157",
+    "replacement": "square-letter-a"
+  },
+  {
+    "name": "letter-k",
+    "from": "1350:2717",
+    "to": "1880:3167",
+    "replacement": "square-letter-k"
+  },
+  {
+    "name": "letter-m",
+    "from": "732:4681",
+    "to": "1880:3169",
+    "replacement": "square-letter-m"
+  },
+  {
+    "name": "letter-r",
+    "from": "811:9138",
+    "to": "1880:3176",
+    "replacement": "square-letter-r"
+  },
+  {
+    "name": "letter-u",
+    "from": "1485:1224",
+    "to": "1880:3178",
+    "replacement": "square-letter-u"
+  }
+]
