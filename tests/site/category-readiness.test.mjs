@@ -10,6 +10,9 @@ const config = {
 
 test('category request failure leaves every icon available', async (t) => {
   const h = await mountApp(t, 'https://example.test/icons/');
+  assert.deepEqual(h.requests, [
+    'GET https://example.test/icon-categories.json',
+  ]);
   await h.rejectCategories();
   assert.ok(h.document.querySelector('input[aria-label="Search icons"]'));
   assert.equal(h.tiles.length, h.catalog.icons.length);
@@ -22,6 +25,9 @@ test('icon browser remains useful while a linked category loads', async (t) => {
     h.document.querySelector(
       `[aria-label="Icon categories"] button[aria-label="${name}"]`,
     )?.textContent;
+  assert.deepEqual(h.requests, [
+    'GET https://example.test/icon-categories.json',
+  ]);
   assert.ok(h.document.querySelector('input[aria-label="Search icons"]'));
   assert.equal(h.tiles.length, h.catalog.icons.length);
   assert.equal(

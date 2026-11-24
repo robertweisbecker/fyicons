@@ -31,7 +31,7 @@ export function IconTile({
         'group/tile relative min-w-0 rounded-lg outline outline-transparent hover:outline-line',
         inspected &&
           'bg-selection outline-2 outline-focus hover:bg-selection hover:outline-focus',
-        selected && 'bg-surface outline-focus',
+        selected && 'bg-surface outline-line',
       )}
     >
       <Button
