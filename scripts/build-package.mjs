@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { prepareRepositoryIcons } from './lib/prepare-icons.mjs';
+import { renderClientDistribution } from './lib/react-provider.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const target = path.join(root, 'packages/fyicons');
@@ -56,6 +57,10 @@ execFileSync(
   ['-p', path.join(stage, 'tsconfig.json')],
   { stdio: 'inherit' },
 );
+await mkdir(path.join(stage, 'dist/client'));
+for (const [file, source] of renderClientDistribution(prepared.icons)) {
+  await writeFile(path.join(stage, 'dist', file), source);
+}
 await mkdir(path.join(stage, 'svg'));
 for (const icon of prepared.exportedIcons) {
   await writeFile(path.join(stage, 'svg', icon.filename), icon.svg);
