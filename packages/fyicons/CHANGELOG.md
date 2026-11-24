@@ -1,5 +1,17 @@
 # fyicons
 
+## 0.6.0
+
+### Minor Changes
+
+- 87682f5: Expand the emoji collection and add weather and animal icons. Add a full A–Z alphabet in plain, square outline, and square filled styles.
+
+  Add `equals`, `scales`, `search-sparkle`, `circle-dashed-2`, `cursor-default-fill`, and `cursor-default-solid`, along with new archive, background, keyboard, and other symbols.
+
+### Patch Changes
+
+- 4b229fa: Reduce the JavaScript bundled by Next.js when importing a few icons from `fyicons/client`. Each provider-aware icon now has its own internal module.
+
 ## 0.5.3
 
 ### Patch Changes
