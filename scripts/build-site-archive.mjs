@@ -3,10 +3,6 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { decodeCatalog } from '../apps/site/src/lib/catalog-codec.ts';
-import {
-  categorizeIcons,
-  parseIconCategories,
-} from '../apps/site/src/lib/icon-categories.ts';
 import { createIconArchive } from '../apps/site/src/lib/icon-archive.ts';
 
 const root = new URL('../', import.meta.url);
@@ -14,18 +10,19 @@ const defaultOutput = new URL('apps/site/public/downloads/fyicons.zip', root);
 
 /** Build the same complete archive as selection downloads, outside the browser. */
 export async function buildSiteArchive(output = defaultOutput) {
-  const [compact, rules, readme, license] = await Promise.all([
+  const [compact, readme, license] = await Promise.all([
     readFile(new URL('apps/site/src/data/catalog-runtime.json', root), 'utf8'),
-    readFile(new URL('apps/site/public/icon-categories.json', root), 'utf8'),
     readFile(new URL('apps/site/src/data/README.txt', root), 'utf8'),
     readFile(new URL('LICENSE', root), 'utf8'),
   ]);
-  const catalog = decodeCatalog(JSON.parse(compact));
-  const exported = [];
-  for (let index = 0; index < catalog.icons.length; index += 24) {
-    exported.push(
+  const { icons: catalogIcons, ...metadata } = decodeCatalog(
+    JSON.parse(compact),
+  );
+  const icons = [];
+  for (let index = 0; index < catalogIcons.length; index += 24) {
+    icons.push(
       ...(await Promise.all(
-        catalog.icons.slice(index, index + 24).map(async (icon) => {
+        catalogIcons.slice(index, index + 24).map(async (icon) => {
           const svg = await readFile(
             new URL(`packages/fyicons/svg/${icon.filename}`, root),
             'utf8',
@@ -40,15 +37,6 @@ export async function buildSiteArchive(output = defaultOutput) {
       )),
     );
   }
-  const { icons, categories } = categorizeIcons(
-    exported,
-    parseIconCategories(JSON.parse(rules)),
-  );
-  const metadata = {
-    ...catalog,
-    categories,
-    icons: icons.map(({ svg: _svg, ...record }) => record),
-  };
   const archive = createIconArchive(icons, metadata, readme, license);
   const sourceDirectory = new URL('../icon-sources/', output);
   await mkdir(sourceDirectory, { recursive: true });

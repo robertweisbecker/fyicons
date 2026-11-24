@@ -1,6 +1,11 @@
 import { zipSync, strToU8 } from 'fflate';
 
-type ArchiveIcon = { id: string; file: string; svg: string };
+type ArchiveIcon = {
+  id: string;
+  file: string;
+  svg: string;
+  categories?: readonly string[];
+};
 type ArchiveMetadata = {
   duplicateGroups: Record<string, { id: string; file: string }[]>;
   [key: string]: unknown;
@@ -32,7 +37,9 @@ export function createIconArchive<T extends ArchiveIcon>(
         )
         .filter(([, variants]) => variants.length > 0),
     ),
-    icons: selection.map(({ svg: _svg, ...record }) => record),
+    icons: selection.map(
+      ({ svg: _svg, categories: _categories, ...record }) => record,
+    ),
   };
   files['manifest.json'] = strToU8(
     JSON.stringify(selectedManifest, null, 2) + '\n',

@@ -6,15 +6,11 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { unzipSync, strFromU8 } from 'fflate';
-import {
-  categorizeIcons,
-  parseIconCategories,
-} from '../../apps/site/src/lib/icon-categories.ts';
 import { createIconArchive } from '../../apps/site/src/lib/icon-archive.ts';
 import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
 import { buildSiteArchive } from '../../scripts/build-site-archive.mjs';
 
-const generated = decodeCatalog(
+const catalog = decodeCatalog(
   JSON.parse(
     await readFile(
       new URL('../../apps/site/src/data/catalog-runtime.json', import.meta.url),
@@ -22,32 +18,16 @@ const generated = decodeCatalog(
     ),
   ),
 );
-for (const icon of generated.icons)
+for (const icon of catalog.icons)
   icon.svg = await readFile(
     new URL(`../../packages/fyicons/svg/${icon.filename}`, import.meta.url),
     'utf8',
   );
 
-const assignments = parseIconCategories(
-  JSON.parse(
-    await readFile(
-      new URL('../../apps/site/public/icon-categories.json', import.meta.url),
-      'utf8',
-    ),
-  ),
-);
-const catalog = {
-  ...generated,
-  ...categorizeIcons(generated.icons, assignments),
-};
 const readme = await readFile(
   new URL('../../apps/site/src/data/README.txt', import.meta.url),
   'utf8',
 );
-const metadata = {
-  ...catalog,
-  icons: catalog.icons.map(({ svg, ...record }) => record),
-};
 const license = await readFile(
   new URL('../../LICENSE', import.meta.url),
   'utf8',
@@ -55,7 +35,7 @@ const license = await readFile(
 
 function verifyArchive(
   selection,
-  bytes = createIconArchive(selection, metadata, readme, license),
+  bytes = createIconArchive(selection, catalog, readme, license),
 ) {
   const archive = unzipSync(bytes);
   assert.deepEqual(
@@ -79,7 +59,7 @@ function verifyArchive(
     JSON.stringify(exported),
     /"(?:sourceUrl|fileKey)"|figma\.com\/(?:design|file)\//,
   );
-  assert.deepEqual(exported.categories, catalog.categories);
+  assert.ok(!Object.hasOwn(exported, 'categories'));
   assert.equal(exported.count, selection.length);
   assert.equal(exported.native16Count, selection.length);
   assert.deepEqual(
