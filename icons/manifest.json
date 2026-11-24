@@ -17744,15 +17744,11 @@
       "filename": "letter-m-16.svg",
       "file": "svgs/1880-3169.svg",
       "aliases": [
-        "732-4681.svg",
-        "square-modified",
-        "square-modified-16.svg",
-        "git-modified",
-        "git-modified-16.svg",
         "1880-3169.svg"
       ],
       "componentName": "IconLetterM",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "updatedAt": "2026-11-24T08:23:54.817Z",
+      "addedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "id": "1880:3176",
@@ -17764,13 +17760,11 @@
       "filename": "letter-r-16.svg",
       "file": "svgs/1880-3176.svg",
       "aliases": [
-        "811-9138.svg",
-        "git-removed",
-        "git-removed-16.svg",
         "1880-3176.svg"
       ],
       "componentName": "IconLetterR",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "updatedAt": "2026-11-24T08:23:54.817Z",
+      "addedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "id": "1880:3157",
@@ -17782,13 +17776,11 @@
       "filename": "letter-a-16.svg",
       "file": "svgs/1880-3157.svg",
       "aliases": [
-        "811-9135.svg",
-        "git-added",
-        "git-added-16.svg",
         "1880-3157.svg"
       ],
       "componentName": "IconLetterA",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "updatedAt": "2026-11-24T08:23:54.817Z",
+      "addedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "id": "667:1114",
@@ -22958,12 +22950,11 @@
       "filename": "letter-k-16.svg",
       "file": "svgs/1880-3167.svg",
       "aliases": [
-        "1350-2717.svg",
         "1880-3167.svg"
       ],
       "componentName": "IconLetterK",
-      "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "id": "1350:3033",
@@ -23987,12 +23978,11 @@
       "filename": "letter-u-16.svg",
       "file": "svgs/1880-3178.svg",
       "aliases": [
-        "1485-1224.svg",
         "1880-3178.svg"
       ],
       "componentName": "IconLetterU",
-      "addedAt": "2026-11-08T22:31:35.249Z",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "id": "1520:11511",
@@ -25692,8 +25682,8 @@
       "variantProperties": {
         "fill": "false"
       },
-      "addedAt": "2026-11-24T08:24:30.036Z",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "addedAt": "2026-11-08T22:31:35.249Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "variantSetId": "1880:3136",
@@ -25823,8 +25813,7 @@
       "variantProperties": {
         "fill": "false"
       },
-      "addedAt": "2026-11-24T08:24:30.036Z",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "updatedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "variantSetId": "1880:3139",
@@ -26040,8 +26029,7 @@
       "variantProperties": {
         "fill": "false"
       },
-      "addedAt": "2026-11-24T08:24:30.036Z",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "updatedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "variantSetId": "1880:3144",
@@ -26127,8 +26115,8 @@
       "variantProperties": {
         "fill": "false"
       },
-      "addedAt": "2026-11-24T08:24:30.036Z",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "addedAt": "2026-11-04T00:50:54.581Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "variantSetId": "1880:3146",
@@ -26552,8 +26540,7 @@
       "variantProperties": {
         "fill": "false"
       },
-      "addedAt": "2026-11-24T08:24:30.036Z",
-      "updatedAt": "2026-11-24T08:24:30.036Z"
+      "updatedAt": "2026-11-24T08:23:54.817Z"
     },
     {
       "variantSetId": "1880:3156",
