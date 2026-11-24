@@ -4568,14 +4568,14 @@
       "type": "registry:component"
     },
     {
-      "name": "file-waveform",
-      "title": "IconFileWaveform",
-      "description": "The file-waveform icon from FYIcons 0.6.0.",
+      "name": "file-chart",
+      "title": "IconFileChart",
+      "description": "The file-chart icon from FYIcons 0.6.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconFileWaveform.tsx",
+          "path": "packages/fyicons/src/IconFileChart.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconFileWaveform.tsx"
+          "target": "@components/fyicons/IconFileChart.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -21256,14 +21256,14 @@
       "type": "registry:component"
     },
     {
-      "name": "thumbs-up-down",
-      "title": "IconThumbsUpDown",
-      "description": "The thumbs-up-down icon from FYIcons 0.6.0.",
+      "name": "thumbs",
+      "title": "IconThumbs",
+      "description": "The thumbs icon from FYIcons 0.6.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconThumbsUpDown.tsx",
+          "path": "packages/fyicons/src/IconThumbs.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconThumbsUpDown.tsx"
+          "target": "@components/fyicons/IconThumbs.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -26716,14 +26716,14 @@
       "type": "registry:component"
     },
     {
-      "name": "slash-small",
-      "title": "IconSlashSmall",
-      "description": "The slash-small icon from FYIcons 0.6.0.",
+      "name": "slash-sm",
+      "title": "IconSlashSm",
+      "description": "The slash-sm icon from FYIcons 0.6.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconSlashSmall.tsx",
+          "path": "packages/fyicons/src/IconSlashSm.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconSlashSmall.tsx"
+          "target": "@components/fyicons/IconSlashSm.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -32176,14 +32176,14 @@
       "type": "registry:component"
     },
     {
-      "name": "vector-bezier",
-      "title": "IconVectorBezier",
-      "description": "The vector-bezier icon from FYIcons 0.6.0.",
+      "name": "bezier",
+      "title": "IconBezier",
+      "description": "The bezier icon from FYIcons 0.6.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconVectorBezier.tsx",
+          "path": "packages/fyicons/src/IconBezier.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconVectorBezier.tsx"
+          "target": "@components/fyicons/IconBezier.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -34164,14 +34164,14 @@
       "type": "registry:component"
     },
     {
-      "name": "appearance-simple-reverse",
-      "title": "IconAppearanceSimpleReverse",
-      "description": "The appearance-simple-reverse icon from FYIcons 0.6.0.",
+      "name": "appearance-simple-invert",
+      "title": "IconAppearanceSimpleInvert",
+      "description": "The appearance-simple-invert icon from FYIcons 0.6.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconAppearanceSimpleReverse.tsx",
+          "path": "packages/fyicons/src/IconAppearanceSimpleInvert.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconAppearanceSimpleReverse.tsx"
+          "target": "@components/fyicons/IconAppearanceSimpleInvert.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -34192,14 +34192,14 @@
       "type": "registry:component"
     },
     {
-      "name": "appearance-reversed",
-      "title": "IconAppearanceReversed",
-      "description": "The appearance-reversed icon from FYIcons 0.6.0.",
+      "name": "appearance-invert",
+      "title": "IconAppearanceInvert",
+      "description": "The appearance-invert icon from FYIcons 0.6.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconAppearanceReversed.tsx",
+          "path": "packages/fyicons/src/IconAppearanceInvert.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconAppearanceReversed.tsx"
+          "target": "@components/fyicons/IconAppearanceInvert.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",

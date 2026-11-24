@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconNumber2Fill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconNumber2Fill(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="number2-fill"><path fill="currentColor" d="M11.5 2A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5v-7A2.5 2.5 0 0 1 4.5 2zM8.089 5c-.857 0-1.64.485-2.024 1.251l-.012.025a.5.5 0 0 0 .894.448l.013-.026C7.174 6.271 7.61 6 8.089 6h.066a.85.85 0 0 1 .773 1.2c-.149.326-.51.578-.987.726-.406.126-.892.353-1.28.768C6.263 9.121 6 9.714 6 10.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1H7.059c.068-.271.192-.47.334-.623.228-.245.537-.4.844-.496.6-.187 1.283-.567 1.602-1.268A1.85 1.85 0 0 0 8.155 5z" />{props.children}</SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="number2-fill"><path fill="currentColor" d="M11.5 2A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5v-7A2.5 2.5 0 0 1 4.5 2zM8.17 5.004a1.995 1.995 0 0 0-2.147 1.335.5.5 0 0 0 .948.322 1 1 0 0 1 1.082-.666l.02.003c.627.063.977.51.927.945-.026.225-.142.413-.374.614-.248.214-.566.394-.953.627-.708.425-1.676 1.04-1.676 2.316a.5.5 0 0 0 .5.5l3-.001a.5.5 0 0 0 0-1H7.104c.174-.367.552-.639 1.084-.959.34-.205.761-.44 1.092-.727.347-.3.65-.699.714-1.256.128-1.12-.776-1.94-1.804-2.051l.001-.001-.017-.001-.002-.001z" />{props.children}</SvgRoot>;
 });
 export default IconNumber2Fill;

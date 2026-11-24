@@ -1,7 +1,7 @@
 import {
   IconBoundingBox,
   IconEasel,
-  IconVectorBezier,
+  IconBezier,
   IconVectorPath,
 } from 'fyicons';
 import {
@@ -15,7 +15,7 @@ import {
 const constructionIcons = {
   circle: { Icon: IconVectorPath, name: 'VectorPath' },
   square: { Icon: IconBoundingBox, name: 'BoundingBox' },
-  horizontal: { Icon: IconVectorBezier, name: 'VectorBezier' },
+  horizontal: { Icon: IconBezier, name: 'Bezier' },
   vertical: { Icon: IconEasel, name: 'Easel' },
 } as const;
 

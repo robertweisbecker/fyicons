@@ -263,7 +263,7 @@ export function Gallery() {
             </li>
             <li>
               <IconToggle
-                icons={['appearance-simple', 'appearance-simple-reverse']}
+                icons={['appearance-simple', 'appearance-simple-invert']}
                 label="Dark mode"
                 labels={['Light', 'Dark']}
               />

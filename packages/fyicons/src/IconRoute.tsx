@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconRoute = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconRoute(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="route"><path fill="currentColor" d="M4.501 1a2.5 2.5 0 0 1 2.45 2h3.299a2.75 2.75 0 0 1 0 5.5h-4.5a1.75 1.75 0 0 0 0 3.5h3.3a2.501 2.501 0 0 1 4.95.5 2.5 2.5 0 0 1-4.95.5h-3.3a2.75 2.75 0 0 1 0-5.5h4.5a1.75 1.75 0 0 0 0-3.5H6.951a2.5 2.5 0 1 1-2.45-3M11.5 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M4.501 2A1.5 1.5 0 1 0 6 3.506v-.013A1.5 1.5 0 0 0 4.501 2" />{props.children}</SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="route"><rect width={3} height={3} x={2.501} y={2.5} stroke="currentColor" rx={1.5} /><rect width={3} height={3} x={10.5} y={10.5} stroke="currentColor" rx={1.5} /><path stroke="currentColor" strokeLinecap="square" strokeLinejoin="round" d="M5.5 3.5h4.75a2.25 2.25 0 0 1 0 4.5h-4.5a2.25 2.25 0 0 0 0 4.5h4.75" />{props.children}</SvgRoot>;
 });
 export default IconRoute;

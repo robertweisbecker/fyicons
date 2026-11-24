@@ -23,7 +23,7 @@ function signature(icon) {
 
 // Release snapshots establish history by collection and component identity.
 // Import dates, aliases and category edits do not constitute a new release.
-export function buildIconReleaseHistory(snapshots, transfers = []) {
+export function buildIconReleaseHistory(snapshots) {
   if (!snapshots.length)
     throw new Error(
       'No published release tags found. Fetch the fyicons@* tags first.',
@@ -33,49 +33,24 @@ export function buildIconReleaseHistory(snapshots, transfers = []) {
     throw new Error('Release snapshot has no collection identity.');
   const seen = new Set();
   let previous = new Map();
-  const releases = [];
-  for (const { version, catalog } of snapshots) {
+  const releases = snapshots.map(({ version, catalog }) => {
     if (normalizeSource(catalog.source).id !== collection)
       throw new Error(
         'Release snapshots must belong to the same icon collection.',
       );
-    const current = new Map(catalog.icons.map((icon) => [icon.id, icon]));
-    for (const { name, from, to, replacement } of transfers) {
-      if (
-        previous.get(from)?.name !== name ||
-        seen.has(to) ||
-        current.get(to)?.name !== name ||
-        current.get(from)?.name !== replacement
-      )
-        continue;
-
-      // The plain export moved to a new node. The old node now supplies
-      // a different public icon, which starts its own release history.
-      for (const release of releases) {
-        for (const ids of [release.added, release.updated]) {
-          const index = ids.indexOf(from);
-          if (index !== -1) ids[index] = to;
-        }
-      }
-      seen.delete(from);
-      seen.add(to);
-      previous.set(to, previous.get(from));
-    }
-
     const added = [];
     const updated = [];
+    const current = new Map();
     for (const icon of catalog.icons) {
+      const value = signature(icon);
+      current.set(icon.id, value);
       if (!seen.has(icon.id)) added.push(icon.id);
-      else if (
-        !previous.has(icon.id) ||
-        signature(previous.get(icon.id)) !== signature(icon)
-      )
-        updated.push(icon.id);
+      else if (previous.get(icon.id) !== value) updated.push(icon.id);
       seen.add(icon.id);
     }
     previous = current;
-    releases.push({ version, added, updated });
-  }
+    return { version, added, updated };
+  });
   return { sourceId: collection, releases };
 }
 
@@ -138,13 +113,7 @@ async function generate() {
     const { manifest, icons } = await prepareRepositoryIcons(root);
     snapshots.push({ version, catalog: { source: manifest.source, icons } });
   }
-  const transfers = JSON.parse(
-    await readFile(
-      path.join(root, 'scripts/icon-release-transfers.json'),
-      'utf8',
-    ),
-  );
-  const history = buildIconReleaseHistory(snapshots, transfers);
+  const history = buildIconReleaseHistory(snapshots);
   const text = JSON.stringify(history, null, 2) + '\n';
   if (process.argv.includes('--check')) {
     if ((await readFile(output, 'utf8')) !== text)
