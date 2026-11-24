@@ -1,3 +1,4 @@
+import type { ComponentPropsWithoutRef } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
 import { IconWaveform } from 'fyicons';
@@ -19,12 +20,14 @@ export const trackTime = (seconds: number) =>
 export function AlbumArtwork({
   className,
   decorative = false,
-}: {
+  ...props
+}: ComponentPropsWithoutRef<'div'> & {
   className: string;
   decorative?: boolean;
 }) {
   return (
     <div
+      {...props}
       role={decorative ? undefined : 'img'}
       aria-label={decorative ? undefined : 'Abstract blue record sleeve'}
       aria-hidden={decorative || undefined}

@@ -220,50 +220,60 @@ function SettingSlider({
 export function Gallery() {
   return (
     <div>
-      <Section title="Appearance">
-        <Example title="Lights">
-          <IconToggle icons={['lightbulb', 'lightbulb-on']} label="Lights on" />
-        </Example>
-        <Example title="Light · Dark · System">
-          <Options
-            label="Appearance with desktop"
-            options={[
-              ['sun', 'Light'],
-              ['moon', 'Dark'],
-              ['desktop', 'System'],
-            ]}
-          />
-        </Example>
-        <Example title="Light · Dark · Auto">
-          <Options
-            label="Appearance with auto"
-            options={[
-              ['sun', 'Light'],
-              ['moon', 'Dark'],
-              ['appearance', 'Auto'],
-            ]}
-          />
-        </Example>
-        <Example title="Filled selection">
-          <Options
-            label="Appearance with filled selection"
-            options={[
-              ['sun', 'Light', 'sun-fill'],
-              ['moon', 'Dark', 'moon-fill'],
-            ]}
-          />
-        </Example>
-        <Example title="Labeled appearance">
-          <IconToggle
-            icons={['appearance-simple', 'appearance-simple-reverse']}
-            label="Dark mode"
-            labels={['Light', 'Dark']}
-          />
-        </Example>
-        <Example title="Sun & moon">
-          <IconToggle icons={['sun-lg', 'moon-fill']} label="Dark mode" />
-        </Example>
-      </Section>
+      <section aria-labelledby="appearance-heading" className="mb-10">
+        <h2 id="appearance-heading" className="mb-4 text-sm font-medium">
+          Appearance
+        </h2>
+        <div className="rounded-xl border border-line bg-ink/[0.025] px-3 py-6 sm:py-10">
+          <ul className="mx-auto max-w-md columns-[8rem] gap-3 [&>li]:flex [&>li]:break-inside-avoid [&>li]:justify-center [&>li]:py-2">
+            <li>
+              <IconToggle
+                icons={['lightbulb', 'lightbulb-on']}
+                label="Lights on"
+              />
+            </li>
+            <li>
+              <Options
+                label="Appearance with desktop"
+                options={[
+                  ['sun', 'Light'],
+                  ['moon', 'Dark'],
+                  ['desktop', 'System'],
+                ]}
+              />
+            </li>
+            <li>
+              <Options
+                label="Appearance with auto"
+                options={[
+                  ['sun', 'Light'],
+                  ['moon', 'Dark'],
+                  ['appearance', 'Auto'],
+                ]}
+              />
+            </li>
+            <li>
+              <Options
+                label="Appearance with filled selection"
+                options={[
+                  ['sun', 'Light', 'sun-fill'],
+                  ['moon', 'Dark', 'moon-fill'],
+                ]}
+              />
+            </li>
+            <li>
+              <IconToggle
+                icons={['appearance-simple', 'appearance-simple-reverse']}
+                label="Dark mode"
+                labels={['Light', 'Dark']}
+              />
+            </li>
+            <li>
+              <IconToggle icons={['sun-lg', 'moon-fill']} label="Dark mode" />
+            </li>
+          </ul>
+        </div>
+      </section>
       <Section title="Toolbars">
         <Example title="Text formatting">
           <Options

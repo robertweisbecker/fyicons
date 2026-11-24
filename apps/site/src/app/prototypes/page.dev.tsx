@@ -2,7 +2,12 @@ import Link from 'next/link';
 
 export const metadata = { title: 'Prototypes' };
 
-const prototypes = [{ href: '/prototypes/examples/', name: 'Icon examples' }];
+const prototypes = [
+  { href: '/prototypes/app-previews/', name: 'App previews' },
+  { href: '/prototypes/examples/', name: 'Icon examples' },
+  { href: '/prototypes/inspector/', name: 'Inspector sheet' },
+  { href: '/prototypes/magnetic-tools/', name: 'Magnetic tools' },
+];
 
 export default function PrototypesPage() {
   return (

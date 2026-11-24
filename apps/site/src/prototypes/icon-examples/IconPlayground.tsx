@@ -21,6 +21,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { byName } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
+import { copy as copyText } from '@/lib/downloads';
 import { Choice } from './Choice';
 import { IconPicker } from './IconPicker';
 import { IconInspector, type InspectorHandle } from './IconInspector';
@@ -191,14 +192,13 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
             (name) => byName.get(name)?.componentName,
           );
     if (kind === 'link') history.replaceState(null, '', hash);
-    try {
-      await navigator.clipboard.writeText(text);
+    if (await copyText(text)) {
       setMessage(
         kind === 'link'
           ? 'Preview link copied. Opens on this local server.'
           : 'React components copied.',
       );
-    } catch {
+    } else {
       setMessage(
         kind === 'link'
           ? 'Link saved in the address bar. Copy it to keep your work.'

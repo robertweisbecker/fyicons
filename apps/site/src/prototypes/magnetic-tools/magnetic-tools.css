@@ -1,0 +1,42 @@
+.magnetic-frame {
+  display: flex;
+  min-width: 0;
+  min-height: clamp(320px, 44vw, 470px);
+  max-height: 70svh;
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-radius: 16px;
+  background-color: color-mix(in srgb, currentColor 3%, transparent);
+  background-image: radial-gradient(
+    color-mix(in srgb, currentColor 12%, transparent) 0.7px,
+    transparent 0.8px
+  );
+  background-size: 12px 12px;
+  cursor: crosshair;
+  user-select: none;
+}
+.magnetic-grid {
+  position: relative;
+  justify-content: center;
+  flex: none;
+  display: grid;
+  margin: auto;
+}
+.magnetic-pivot {
+  display: block;
+  transition: transform var(--rotation);
+}
+.magnetic-tool {
+  display: block;
+  height: 100%;
+  background: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .magnetic-pivot {
+    transition: none;
+  }
+}
