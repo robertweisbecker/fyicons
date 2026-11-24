@@ -81,3 +81,35 @@ test('release histories cannot merge unrelated collections or invent a missing f
     /same icon collection/,
   );
 });
+
+test('a verified component transfer preserves history for the continuing public export', () => {
+  const plain = { ...icon, name: 'letter-a', componentName: 'IconLetterA' };
+  const nextPlain = { ...plain, id: '2:2', sha256: 'refined' };
+  const square = {
+    ...plain,
+    name: 'square-letter-a',
+    componentName: 'IconSquareLetterA',
+  };
+  const { releases } = buildIconReleaseHistory(
+    [
+      snapshot('0.1.0', [plain]),
+      snapshot('0.5.3', [{ ...plain, sha256: 'intermediate' }]),
+      snapshot('0.6.0', [nextPlain, square]),
+      snapshot('0.6.1', [nextPlain, { ...square, sha256: 'refined-square' }]),
+    ],
+    [
+      {
+        name: 'letter-a',
+        from: plain.id,
+        to: nextPlain.id,
+        replacement: square.name,
+      },
+    ],
+  );
+  assert.deepEqual(releases, [
+    { version: '0.1.0', added: [nextPlain.id], updated: [] },
+    { version: '0.5.3', added: [], updated: [nextPlain.id] },
+    { version: '0.6.0', added: [square.id], updated: [nextPlain.id] },
+    { version: '0.6.1', added: [], updated: [square.id] },
+  ]);
+});

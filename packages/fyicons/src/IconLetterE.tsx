@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconLetterE = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconLetterE(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="letter-e"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M11.5 2.5h-7v5.077m0 0h5m-5 0V13.5h7" />{props.children}</SvgRoot>;
+});
+export default IconLetterE;

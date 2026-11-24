@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconEmojiHeartEyesFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconEmojiHeartEyesFill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="emoji-heart-eyes-fill"><path fill="currentColor" d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m3.576 9.07c-.712.287-1.956.664-3.576.664s-2.864-.377-3.576-.665c-.223-.09-.457.138-.335.345C4.648 11.364 5.913 13 8 13s3.352-1.635 3.911-2.586c.122-.207-.112-.434-.335-.345M7.146 5.9c-.155-.546-.694-.974-1.317-.811-.62.162-.824.983-.828.998-.008-.008-.602-.616-1.225-.448-.625.168-.883.809-.735 1.361.291 1.087 2.736 1.985 2.736 1.985S7.455 6.982 7.147 5.9m3.045-.876c-.622-.163-1.162.266-1.318.812-.305 1.073 1.343 3.053 1.37 3.084 0 0 2.444-.898 2.736-1.984.148-.553-.11-1.193-.736-1.362-.62-.167-1.211.436-1.223.448 0 0-.203-.833-.829-.998" />{props.children}</SvgRoot>;
+});
+export default IconEmojiHeartEyesFill;

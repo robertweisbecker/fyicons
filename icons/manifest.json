@@ -7977,6 +7977,27 @@
       "updatedAt": "2026-11-04T00:50:54.581Z"
     },
     {
+      "variantSetId": "1894:1497",
+      "variantSetName": "kbd-caps-lock",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1894:1462",
+      "name": "kbd-caps-lock-fill",
+      "baseName": "kbd-caps-lock",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "kbd-caps-lock-fill-16.svg",
+      "file": "svgs/1894-1462.svg",
+      "aliases": [
+        "1894-1462.svg"
+      ],
+      "componentName": "IconKbdCapsLockFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
       "id": "502:466",
       "originalName": "kbd-opt",
       "width": 16,
@@ -17704,60 +17725,60 @@
       "updatedAt": "2026-10-28T06:48:53.832Z"
     },
     {
-      "id": "732:4681",
+      "id": "1880:3169",
+      "name": "letter-m",
+      "baseName": "letter-m",
       "originalName": "letter-m",
       "width": 16,
       "height": 16,
-      "name": "letter-m",
-      "baseName": "letter-m",
       "filename": "letter-m-16.svg",
-      "file": "svgs/732-4681.svg",
+      "file": "svgs/1880-3169.svg",
       "aliases": [
         "732-4681.svg",
         "square-modified",
         "square-modified-16.svg",
         "git-modified",
-        "git-modified-16.svg"
+        "git-modified-16.svg",
+        "1880-3169.svg"
       ],
-      "notes": [],
       "componentName": "IconLetterM",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-24T08:24:30.036Z"
     },
     {
-      "id": "811:9138",
+      "id": "1880:3176",
+      "name": "letter-r",
+      "baseName": "letter-r",
       "originalName": "letter-r",
       "width": 16,
       "height": 16,
-      "name": "letter-r",
-      "baseName": "letter-r",
       "filename": "letter-r-16.svg",
-      "file": "svgs/811-9138.svg",
+      "file": "svgs/1880-3176.svg",
       "aliases": [
         "811-9138.svg",
         "git-removed",
-        "git-removed-16.svg"
+        "git-removed-16.svg",
+        "1880-3176.svg"
       ],
-      "notes": [],
       "componentName": "IconLetterR",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-24T08:24:30.036Z"
     },
     {
-      "id": "811:9135",
+      "id": "1880:3157",
+      "name": "letter-a",
+      "baseName": "letter-a",
       "originalName": "letter-a",
       "width": 16,
       "height": 16,
-      "name": "letter-a",
-      "baseName": "letter-a",
       "filename": "letter-a-16.svg",
-      "file": "svgs/811-9135.svg",
+      "file": "svgs/1880-3157.svg",
       "aliases": [
         "811-9135.svg",
         "git-added",
-        "git-added-16.svg"
+        "git-added-16.svg",
+        "1880-3157.svg"
       ],
-      "notes": [],
       "componentName": "IconLetterA",
-      "updatedAt": "2026-11-10T05:13:31.958Z"
+      "updatedAt": "2026-11-24T08:24:30.036Z"
     },
     {
       "id": "667:1114",
@@ -21235,9 +21256,9 @@
         "1120-12002.svg"
       ],
       "notes": [],
+      "componentName": "IconMath",
       "addedAt": "2026-10-24T09:44:30.696Z",
-      "updatedAt": "2026-11-17T19:45:48.883Z",
-      "componentName": "IconMath"
+      "updatedAt": "2026-11-17T19:45:48.883Z"
     },
     {
       "id": "895:30733",
@@ -22914,21 +22935,21 @@
       "updatedAt": "2026-11-16T09:23:41.503Z"
     },
     {
-      "id": "1350:2717",
+      "id": "1880:3167",
+      "name": "letter-k",
+      "baseName": "letter-k",
       "originalName": "letter-k",
       "width": 16,
       "height": 16,
-      "name": "letter-k",
-      "baseName": "letter-k",
       "filename": "letter-k-16.svg",
-      "file": "svgs/1350-2717.svg",
+      "file": "svgs/1880-3167.svg",
       "aliases": [
-        "1350-2717.svg"
+        "1350-2717.svg",
+        "1880-3167.svg"
       ],
-      "notes": [],
       "componentName": "IconLetterK",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-14T05:06:25.731Z"
+      "updatedAt": "2026-11-24T08:24:30.036Z"
     },
     {
       "id": "1350:3033",
@@ -23917,20 +23938,21 @@
       "updatedAt": "2026-11-08T22:31:35.249Z"
     },
     {
-      "id": "1485:1224",
+      "id": "1880:3178",
       "name": "letter-u",
       "baseName": "letter-u",
       "originalName": "letter-u",
       "width": 16,
       "height": 16,
       "filename": "letter-u-16.svg",
-      "file": "svgs/1485-1224.svg",
+      "file": "svgs/1880-3178.svg",
       "aliases": [
-        "1485-1224.svg"
+        "1485-1224.svg",
+        "1880-3178.svg"
       ],
       "componentName": "IconLetterU",
       "addedAt": "2026-11-08T22:31:35.249Z",
-      "updatedAt": "2026-11-10T05:13:31.958Z"
+      "updatedAt": "2026-11-24T08:24:30.036Z"
     },
     {
       "id": "1520:11511",
@@ -24628,6 +24650,2083 @@
       },
       "addedAt": "2026-11-16T08:50:25.145Z",
       "updatedAt": "2026-11-17T07:08:16.027Z"
+    },
+    {
+      "variantSetId": "1763:1504",
+      "variantSetName": "cursor-default",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1763:1503",
+      "name": "cursor-default-fill",
+      "baseName": "cursor-default",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "cursor-default-fill-16.svg",
+      "file": "svgs/1763-1503.svg",
+      "aliases": [
+        "1763-1503.svg"
+      ],
+      "componentName": "IconCursorDefaultFill",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1882:3544",
+      "name": "archive-fill",
+      "baseName": "archive-fill",
+      "originalName": "archive-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "archive-fill-16.svg",
+      "file": "svgs/1882-3544.svg",
+      "aliases": [
+        "1882-3544.svg"
+      ],
+      "componentName": "IconArchiveFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1751:1381",
+      "name": "equals",
+      "baseName": "equals",
+      "originalName": "equals",
+      "width": 16,
+      "height": 16,
+      "filename": "equals-16.svg",
+      "file": "svgs/1751-1381.svg",
+      "aliases": [
+        "1751-1381.svg"
+      ],
+      "componentName": "IconEquals",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1894:1451",
+      "name": "feather",
+      "baseName": "feather",
+      "originalName": "feather",
+      "width": 16,
+      "height": 16,
+      "filename": "feather-16.svg",
+      "file": "svgs/1894-1451.svg",
+      "aliases": [
+        "1894-1451.svg"
+      ],
+      "componentName": "IconFeather",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1755:1453",
+      "name": "scales",
+      "baseName": "scales",
+      "originalName": "scales",
+      "width": 16,
+      "height": 16,
+      "filename": "scales-16.svg",
+      "file": "svgs/1755-1453.svg",
+      "aliases": [
+        "1755-1453.svg"
+      ],
+      "componentName": "IconScales",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1762:13155",
+      "name": "search-sparkle",
+      "baseName": "search-sparkle",
+      "originalName": "search-sparkle",
+      "width": 16,
+      "height": 16,
+      "filename": "search-sparkle-16.svg",
+      "file": "svgs/1762-13155.svg",
+      "aliases": [
+        "1762-13155.svg"
+      ],
+      "componentName": "IconSearchSparkle",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1757:1555",
+      "name": "circle-dashed-2",
+      "baseName": "circle-dashed-2",
+      "originalName": "circle-dashed-2",
+      "width": 16,
+      "height": 16,
+      "filename": "circle-dashed-2-16.svg",
+      "file": "svgs/1757-1555.svg",
+      "aliases": [
+        "1757-1555.svg"
+      ],
+      "componentName": "IconCircleDashed2",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "id": "1880:3186",
+      "name": "lady-bug",
+      "baseName": "lady-bug",
+      "originalName": "lady-bug",
+      "width": 16,
+      "height": 16,
+      "filename": "lady-bug-16.svg",
+      "file": "svgs/1880-3186.svg",
+      "aliases": [
+        "1880-3186.svg"
+      ],
+      "componentName": "IconLadyBug",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1878:2486",
+      "name": "rocket-launch",
+      "baseName": "rocket-launch",
+      "originalName": "rocket-launch",
+      "width": 16,
+      "height": 16,
+      "filename": "rocket-launch-16.svg",
+      "file": "svgs/1878-2486.svg",
+      "aliases": [
+        "1878-2486.svg"
+      ],
+      "componentName": "IconRocketLaunch",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1763:1515",
+      "name": "cursor-default-solid",
+      "baseName": "cursor-default-solid",
+      "originalName": "cursor-default-solid",
+      "width": 16,
+      "height": 16,
+      "filename": "cursor-default-solid-16.svg",
+      "file": "svgs/1763-1515.svg",
+      "aliases": [
+        "1763-1515.svg"
+      ],
+      "componentName": "IconCursorDefaultSolid",
+      "addedAt": "2026-11-17T06:30:35.627Z",
+      "updatedAt": "2026-11-17T06:30:35.627Z"
+    },
+    {
+      "variantSetId": "1877:1507",
+      "variantSetName": "emoji-alien",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1877:1489",
+      "name": "emoji-alien",
+      "baseName": "emoji-alien",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "emoji-alien-16.svg",
+      "file": "svgs/1877-1489.svg",
+      "aliases": [
+        "1877-1489.svg"
+      ],
+      "componentName": "IconEmojiAlien",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1877:1507",
+      "variantSetName": "emoji-alien",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1877:1506",
+      "name": "emoji-alien-fill",
+      "baseName": "emoji-alien",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "emoji-alien-fill-16.svg",
+      "file": "svgs/1877-1506.svg",
+      "aliases": [
+        "1877-1506.svg"
+      ],
+      "componentName": "IconEmojiAlienFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1878:2009",
+      "name": "at-sign-italic",
+      "baseName": "at-sign-italic",
+      "originalName": "at-sign-italic",
+      "width": 16,
+      "height": 16,
+      "filename": "at-sign-italic-16.svg",
+      "file": "svgs/1878-2009.svg",
+      "aliases": [
+        "1878-2009.svg"
+      ],
+      "componentName": "IconAtSignItalic",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1878:2592",
+      "name": "squircle-fill",
+      "baseName": "squircle-fill",
+      "originalName": "squircle-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "squircle-fill-16.svg",
+      "file": "svgs/1878-2592.svg",
+      "aliases": [
+        "1878-2592.svg"
+      ],
+      "componentName": "IconSquircleFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1878:2591",
+      "name": "squircle",
+      "baseName": "squircle",
+      "originalName": "squircle",
+      "width": 16,
+      "height": 16,
+      "filename": "squircle-16.svg",
+      "file": "svgs/1878-2591.svg",
+      "aliases": [
+        "1878-2591.svg"
+      ],
+      "componentName": "IconSquircle",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1879:2593",
+      "name": "emoji-pray",
+      "baseName": "emoji-pray",
+      "originalName": "emoji-pray",
+      "width": 16,
+      "height": 16,
+      "filename": "emoji-pray-16.svg",
+      "file": "svgs/1879-2593.svg",
+      "aliases": [
+        "1879-2593.svg"
+      ],
+      "componentName": "IconEmojiPray",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2601",
+      "name": "snowflake",
+      "baseName": "snowflake",
+      "originalName": "snowflake",
+      "width": 16,
+      "height": 16,
+      "filename": "snowflake-16.svg",
+      "file": "svgs/1880-2601.svg",
+      "aliases": [
+        "1880-2601.svg"
+      ],
+      "componentName": "IconSnowflake",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2607",
+      "name": "sunrise",
+      "baseName": "sunrise",
+      "originalName": "sunrise",
+      "width": 16,
+      "height": 16,
+      "filename": "sunrise-16.svg",
+      "file": "svgs/1880-2607.svg",
+      "aliases": [
+        "1880-2607.svg"
+      ],
+      "componentName": "IconSunrise",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2616",
+      "name": "sunset",
+      "baseName": "sunset",
+      "originalName": "sunset",
+      "width": 16,
+      "height": 16,
+      "filename": "sunset-16.svg",
+      "file": "svgs/1880-2616.svg",
+      "aliases": [
+        "1880-2616.svg"
+      ],
+      "componentName": "IconSunset",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2626",
+      "name": "cloud-sun",
+      "baseName": "cloud-sun",
+      "originalName": "cloud-sun",
+      "width": 16,
+      "height": 16,
+      "filename": "cloud-sun-16.svg",
+      "file": "svgs/1880-2626.svg",
+      "aliases": [
+        "1880-2626.svg"
+      ],
+      "componentName": "IconCloudSun",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2636",
+      "name": "clouds",
+      "baseName": "clouds",
+      "originalName": "clouds",
+      "width": 16,
+      "height": 16,
+      "filename": "clouds-16.svg",
+      "file": "svgs/1880-2636.svg",
+      "aliases": [
+        "1880-2636.svg"
+      ],
+      "componentName": "IconClouds",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2640",
+      "name": "cloud-rain",
+      "baseName": "cloud-rain",
+      "originalName": "cloud-rain",
+      "width": 16,
+      "height": 16,
+      "filename": "cloud-rain-16.svg",
+      "file": "svgs/1880-2640.svg",
+      "aliases": [
+        "1880-2640.svg"
+      ],
+      "componentName": "IconCloudRain",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2647",
+      "name": "cloud-drizzle",
+      "baseName": "cloud-drizzle",
+      "originalName": "cloud-drizzle",
+      "width": 16,
+      "height": 16,
+      "filename": "cloud-drizzle-16.svg",
+      "file": "svgs/1880-2647.svg",
+      "aliases": [
+        "1880-2647.svg"
+      ],
+      "componentName": "IconCloudDrizzle",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2659",
+      "name": "emoji-heart-eyes",
+      "baseName": "emoji-heart-eyes",
+      "originalName": "emoji-heart-eyes",
+      "width": 16,
+      "height": 16,
+      "filename": "emoji-heart-eyes-16.svg",
+      "file": "svgs/1880-2659.svg",
+      "aliases": [
+        "1880-2659.svg"
+      ],
+      "componentName": "IconEmojiHeartEyes",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:2676",
+      "name": "emoji-heart-eyes-fill",
+      "baseName": "emoji-heart-eyes-fill",
+      "originalName": "emoji-heart-eyes-fill",
+      "width": 16,
+      "height": 16,
+      "filename": "emoji-heart-eyes-fill-16.svg",
+      "file": "svgs/1880-2676.svg",
+      "aliases": [
+        "1880-2676.svg"
+      ],
+      "componentName": "IconEmojiHeartEyesFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3158",
+      "name": "letter-b",
+      "baseName": "letter-b",
+      "originalName": "letter-b",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-b-16.svg",
+      "file": "svgs/1880-3158.svg",
+      "aliases": [
+        "1880-3158.svg"
+      ],
+      "componentName": "IconLetterB",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3161",
+      "name": "letter-e",
+      "baseName": "letter-e",
+      "originalName": "letter-e",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-e-16.svg",
+      "file": "svgs/1880-3161.svg",
+      "aliases": [
+        "1880-3161.svg"
+      ],
+      "componentName": "IconLetterE",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3162",
+      "name": "letter-f",
+      "baseName": "letter-f",
+      "originalName": "letter-f",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-f-16.svg",
+      "file": "svgs/1880-3162.svg",
+      "aliases": [
+        "1880-3162.svg"
+      ],
+      "componentName": "IconLetterF",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3159",
+      "name": "letter-c",
+      "baseName": "letter-c",
+      "originalName": "letter-c",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-c-16.svg",
+      "file": "svgs/1880-3159.svg",
+      "aliases": [
+        "1880-3159.svg"
+      ],
+      "componentName": "IconLetterC",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3163",
+      "name": "letter-g",
+      "baseName": "letter-g",
+      "originalName": "letter-g",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-g-16.svg",
+      "file": "svgs/1880-3163.svg",
+      "aliases": [
+        "1880-3163.svg"
+      ],
+      "componentName": "IconLetterG",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3164",
+      "name": "letter-h",
+      "baseName": "letter-h",
+      "originalName": "letter-h",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-h-16.svg",
+      "file": "svgs/1880-3164.svg",
+      "aliases": [
+        "1880-3164.svg"
+      ],
+      "componentName": "IconLetterH",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3165",
+      "name": "letter-i",
+      "baseName": "letter-i",
+      "originalName": "letter-i",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-i-16.svg",
+      "file": "svgs/1880-3165.svg",
+      "aliases": [
+        "1880-3165.svg"
+      ],
+      "componentName": "IconLetterI",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3168",
+      "name": "letter-l",
+      "baseName": "letter-l",
+      "originalName": "letter-l",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-l-16.svg",
+      "file": "svgs/1880-3168.svg",
+      "aliases": [
+        "1880-3168.svg"
+      ],
+      "componentName": "IconLetterL",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3170",
+      "name": "letter-n",
+      "baseName": "letter-n",
+      "originalName": "letter-n",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-n-16.svg",
+      "file": "svgs/1880-3170.svg",
+      "aliases": [
+        "1880-3170.svg"
+      ],
+      "componentName": "IconLetterN",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3171",
+      "name": "letter-o",
+      "baseName": "letter-o",
+      "originalName": "letter-o",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-o-16.svg",
+      "file": "svgs/1880-3171.svg",
+      "aliases": [
+        "1880-3171.svg"
+      ],
+      "componentName": "IconLetterO",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3174",
+      "name": "letter-q-alt",
+      "baseName": "letter-q-alt",
+      "originalName": "letter-q-alt",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-q-alt-16.svg",
+      "file": "svgs/1880-3174.svg",
+      "aliases": [
+        "1880-3174.svg"
+      ],
+      "componentName": "IconLetterQAlt",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3173",
+      "name": "letter-q",
+      "baseName": "letter-q",
+      "originalName": "letter-q",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-q-16.svg",
+      "file": "svgs/1880-3173.svg",
+      "aliases": [
+        "1880-3173.svg"
+      ],
+      "componentName": "IconLetterQ",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3172",
+      "name": "letter-p",
+      "baseName": "letter-p",
+      "originalName": "letter-p",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-p-16.svg",
+      "file": "svgs/1880-3172.svg",
+      "aliases": [
+        "1880-3172.svg"
+      ],
+      "componentName": "IconLetterP",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3175",
+      "name": "letter-s",
+      "baseName": "letter-s",
+      "originalName": "letter-s",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-s-16.svg",
+      "file": "svgs/1880-3175.svg",
+      "aliases": [
+        "1880-3175.svg"
+      ],
+      "componentName": "IconLetterS",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3177",
+      "name": "letter-t",
+      "baseName": "letter-t",
+      "originalName": "letter-t",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-t-16.svg",
+      "file": "svgs/1880-3177.svg",
+      "aliases": [
+        "1880-3177.svg"
+      ],
+      "componentName": "IconLetterT",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3179",
+      "name": "letter-v",
+      "baseName": "letter-v",
+      "originalName": "letter-v",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-v-16.svg",
+      "file": "svgs/1880-3179.svg",
+      "aliases": [
+        "1880-3179.svg"
+      ],
+      "componentName": "IconLetterV",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3180",
+      "name": "letter-w",
+      "baseName": "letter-w",
+      "originalName": "letter-w",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-w-16.svg",
+      "file": "svgs/1880-3180.svg",
+      "aliases": [
+        "1880-3180.svg"
+      ],
+      "componentName": "IconLetterW",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3181",
+      "name": "letter-x",
+      "baseName": "letter-x",
+      "originalName": "letter-x",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-x-16.svg",
+      "file": "svgs/1880-3181.svg",
+      "aliases": [
+        "1880-3181.svg"
+      ],
+      "componentName": "IconLetterX",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3182",
+      "name": "letter-y",
+      "baseName": "letter-y",
+      "originalName": "letter-y",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-y-16.svg",
+      "file": "svgs/1880-3182.svg",
+      "aliases": [
+        "1880-3182.svg"
+      ],
+      "componentName": "IconLetterY",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3183",
+      "name": "letter-z",
+      "baseName": "letter-z",
+      "originalName": "letter-z",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-z-16.svg",
+      "file": "svgs/1880-3183.svg",
+      "aliases": [
+        "1880-3183.svg"
+      ],
+      "componentName": "IconLetterZ",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3166",
+      "name": "letter-j",
+      "baseName": "letter-j",
+      "originalName": "letter-j",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-j-16.svg",
+      "file": "svgs/1880-3166.svg",
+      "aliases": [
+        "1880-3166.svg"
+      ],
+      "componentName": "IconLetterJ",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3160",
+      "name": "letter-d",
+      "baseName": "letter-d",
+      "originalName": "letter-d",
+      "width": 16,
+      "height": 16,
+      "filename": "letter-d-16.svg",
+      "file": "svgs/1880-3160.svg",
+      "aliases": [
+        "1880-3160.svg"
+      ],
+      "componentName": "IconLetterD",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3131",
+      "variantSetName": "square-letter-z",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2840",
+      "name": "square-letter-z",
+      "baseName": "square-letter-z",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-z-16.svg",
+      "file": "svgs/1880-2840.svg",
+      "aliases": [
+        "1880-2840.svg"
+      ],
+      "componentName": "IconSquareLetterZ",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3131",
+      "variantSetName": "square-letter-z",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3121",
+      "name": "square-letter-z-fill",
+      "baseName": "square-letter-z",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-z-fill-16.svg",
+      "file": "svgs/1880-3121.svg",
+      "aliases": [
+        "1880-3121.svg"
+      ],
+      "componentName": "IconSquareLetterZFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3132",
+      "variantSetName": "square-letter-y",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2842",
+      "name": "square-letter-y",
+      "baseName": "square-letter-y",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-y-16.svg",
+      "file": "svgs/1880-2842.svg",
+      "aliases": [
+        "1880-2842.svg"
+      ],
+      "componentName": "IconSquareLetterY",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3132",
+      "variantSetName": "square-letter-y",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3107",
+      "name": "square-letter-y-fill",
+      "baseName": "square-letter-y",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-y-fill-16.svg",
+      "file": "svgs/1880-3107.svg",
+      "aliases": [
+        "1880-3107.svg"
+      ],
+      "componentName": "IconSquareLetterYFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3133",
+      "variantSetName": "square-letter-x",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2846",
+      "name": "square-letter-x",
+      "baseName": "square-letter-x",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-x-16.svg",
+      "file": "svgs/1880-2846.svg",
+      "aliases": [
+        "1880-2846.svg"
+      ],
+      "componentName": "IconSquareLetterX",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3133",
+      "variantSetName": "square-letter-x",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3109",
+      "name": "square-letter-x-fill",
+      "baseName": "square-letter-x",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-x-fill-16.svg",
+      "file": "svgs/1880-3109.svg",
+      "aliases": [
+        "1880-3109.svg"
+      ],
+      "componentName": "IconSquareLetterXFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3134",
+      "variantSetName": "square-letter-w",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2839",
+      "name": "square-letter-w",
+      "baseName": "square-letter-w",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-w-16.svg",
+      "file": "svgs/1880-2839.svg",
+      "aliases": [
+        "1880-2839.svg"
+      ],
+      "componentName": "IconSquareLetterW",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3134",
+      "variantSetName": "square-letter-w",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3120",
+      "name": "square-letter-w-fill",
+      "baseName": "square-letter-w",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-w-fill-16.svg",
+      "file": "svgs/1880-3120.svg",
+      "aliases": [
+        "1880-3120.svg"
+      ],
+      "componentName": "IconSquareLetterWFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3135",
+      "variantSetName": "square-letter-v",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2841",
+      "name": "square-letter-v",
+      "baseName": "square-letter-v",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-v-16.svg",
+      "file": "svgs/1880-2841.svg",
+      "aliases": [
+        "1880-2841.svg"
+      ],
+      "componentName": "IconSquareLetterV",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3135",
+      "variantSetName": "square-letter-v",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3114",
+      "name": "square-letter-v-fill",
+      "baseName": "square-letter-v",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-v-fill-16.svg",
+      "file": "svgs/1880-3114.svg",
+      "aliases": [
+        "1880-3114.svg"
+      ],
+      "componentName": "IconSquareLetterVFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1485:1224",
+      "name": "square-letter-u",
+      "baseName": "square-letter-u",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-u-16.svg",
+      "file": "svgs/1485-1224.svg",
+      "aliases": [],
+      "componentName": "IconSquareLetterU",
+      "variantSetId": "1880:3136",
+      "variantSetName": "square-letter-u",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "addedAt": "2026-11-24T08:24:30.036Z",
+      "updatedAt": "2026-11-24T08:24:30.036Z"
+    },
+    {
+      "variantSetId": "1880:3136",
+      "variantSetName": "square-letter-u",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3128",
+      "name": "square-letter-u-fill",
+      "baseName": "square-letter-u",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-u-fill-16.svg",
+      "file": "svgs/1880-3128.svg",
+      "aliases": [
+        "1880-3128.svg"
+      ],
+      "componentName": "IconSquareLetterUFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3137",
+      "variantSetName": "square-letter-t",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2843",
+      "name": "square-letter-t",
+      "baseName": "square-letter-t",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-t-16.svg",
+      "file": "svgs/1880-2843.svg",
+      "aliases": [
+        "1880-2843.svg"
+      ],
+      "componentName": "IconSquareLetterT",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3137",
+      "variantSetName": "square-letter-t",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3110",
+      "name": "square-letter-t-fill",
+      "baseName": "square-letter-t",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-t-fill-16.svg",
+      "file": "svgs/1880-3110.svg",
+      "aliases": [
+        "1880-3110.svg"
+      ],
+      "componentName": "IconSquareLetterTFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3138",
+      "variantSetName": "square-letter-s",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2845",
+      "name": "square-letter-s",
+      "baseName": "square-letter-s",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-s-16.svg",
+      "file": "svgs/1880-2845.svg",
+      "aliases": [
+        "1880-2845.svg"
+      ],
+      "componentName": "IconSquareLetterS",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3138",
+      "variantSetName": "square-letter-s",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3111",
+      "name": "square-letter-s-fill",
+      "baseName": "square-letter-s",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-s-fill-16.svg",
+      "file": "svgs/1880-3111.svg",
+      "aliases": [
+        "1880-3111.svg"
+      ],
+      "componentName": "IconSquareLetterSFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "811:9138",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "name": "square-letter-r",
+      "baseName": "square-letter-r",
+      "filename": "square-letter-r-16.svg",
+      "file": "svgs/811-9138.svg",
+      "aliases": [],
+      "notes": [],
+      "componentName": "IconSquareLetterR",
+      "variantSetId": "1880:3139",
+      "variantSetName": "square-letter-r",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "addedAt": "2026-11-24T08:24:30.036Z",
+      "updatedAt": "2026-11-24T08:24:30.036Z"
+    },
+    {
+      "variantSetId": "1880:3139",
+      "variantSetName": "square-letter-r",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3115",
+      "name": "square-letter-r-fill",
+      "baseName": "square-letter-r",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-r-fill-16.svg",
+      "file": "svgs/1880-3115.svg",
+      "aliases": [
+        "1880-3115.svg"
+      ],
+      "componentName": "IconSquareLetterRFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3140",
+      "variantSetName": "square-letter-q",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2857",
+      "name": "square-letter-q",
+      "baseName": "square-letter-q",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-q-16.svg",
+      "file": "svgs/1880-2857.svg",
+      "aliases": [
+        "1880-2857.svg"
+      ],
+      "componentName": "IconSquareLetterQ",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3140",
+      "variantSetName": "square-letter-q",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3113",
+      "name": "square-letter-q-fill",
+      "baseName": "square-letter-q",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-q-fill-16.svg",
+      "file": "svgs/1880-3113.svg",
+      "aliases": [
+        "1880-3113.svg"
+      ],
+      "componentName": "IconSquareLetterQFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3141",
+      "variantSetName": "square-letter-p",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2847",
+      "name": "square-letter-p",
+      "baseName": "square-letter-p",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-p-16.svg",
+      "file": "svgs/1880-2847.svg",
+      "aliases": [
+        "1880-2847.svg"
+      ],
+      "componentName": "IconSquareLetterP",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3141",
+      "variantSetName": "square-letter-p",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3112",
+      "name": "square-letter-p-fill",
+      "baseName": "square-letter-p",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-p-fill-16.svg",
+      "file": "svgs/1880-3112.svg",
+      "aliases": [
+        "1880-3112.svg"
+      ],
+      "componentName": "IconSquareLetterPFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3142",
+      "variantSetName": "square-letter-o",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2850",
+      "name": "square-letter-o",
+      "baseName": "square-letter-o",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-o-16.svg",
+      "file": "svgs/1880-2850.svg",
+      "aliases": [
+        "1880-2850.svg"
+      ],
+      "componentName": "IconSquareLetterO",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3142",
+      "variantSetName": "square-letter-o",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3118",
+      "name": "square-letter-o-fill",
+      "baseName": "square-letter-o",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-o-fill-16.svg",
+      "file": "svgs/1880-3118.svg",
+      "aliases": [
+        "1880-3118.svg"
+      ],
+      "componentName": "IconSquareLetterOFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3143",
+      "variantSetName": "square-letter-n",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2852",
+      "name": "square-letter-n",
+      "baseName": "square-letter-n",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-n-16.svg",
+      "file": "svgs/1880-2852.svg",
+      "aliases": [
+        "1880-2852.svg"
+      ],
+      "componentName": "IconSquareLetterN",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3143",
+      "variantSetName": "square-letter-n",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3116",
+      "name": "square-letter-n-fill",
+      "baseName": "square-letter-n",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-n-fill-16.svg",
+      "file": "svgs/1880-3116.svg",
+      "aliases": [
+        "1880-3116.svg"
+      ],
+      "componentName": "IconSquareLetterNFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "732:4681",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "name": "square-letter-m",
+      "baseName": "square-letter-m",
+      "filename": "square-letter-m-16.svg",
+      "file": "svgs/732-4681.svg",
+      "aliases": [],
+      "notes": [],
+      "componentName": "IconSquareLetterM",
+      "variantSetId": "1880:3144",
+      "variantSetName": "square-letter-m",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "addedAt": "2026-11-24T08:24:30.036Z",
+      "updatedAt": "2026-11-24T08:24:30.036Z"
+    },
+    {
+      "variantSetId": "1880:3144",
+      "variantSetName": "square-letter-m",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3130",
+      "name": "square-letter-m-fill",
+      "baseName": "square-letter-m",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-m-fill-16.svg",
+      "file": "svgs/1880-3130.svg",
+      "aliases": [
+        "1880-3130.svg"
+      ],
+      "componentName": "IconSquareLetterMFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3145",
+      "variantSetName": "square-letter-l",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2848",
+      "name": "square-letter-l",
+      "baseName": "square-letter-l",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-l-16.svg",
+      "file": "svgs/1880-2848.svg",
+      "aliases": [
+        "1880-2848.svg"
+      ],
+      "componentName": "IconSquareLetterL",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3145",
+      "variantSetName": "square-letter-l",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3117",
+      "name": "square-letter-l-fill",
+      "baseName": "square-letter-l",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-l-fill-16.svg",
+      "file": "svgs/1880-3117.svg",
+      "aliases": [
+        "1880-3117.svg"
+      ],
+      "componentName": "IconSquareLetterLFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1350:2717",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "name": "square-letter-k",
+      "baseName": "square-letter-k",
+      "filename": "square-letter-k-16.svg",
+      "file": "svgs/1350-2717.svg",
+      "aliases": [],
+      "notes": [],
+      "componentName": "IconSquareLetterK",
+      "variantSetId": "1880:3146",
+      "variantSetName": "square-letter-k",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "addedAt": "2026-11-24T08:24:30.036Z",
+      "updatedAt": "2026-11-24T08:24:30.036Z"
+    },
+    {
+      "variantSetId": "1880:3146",
+      "variantSetName": "square-letter-k",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3127",
+      "name": "square-letter-k-fill",
+      "baseName": "square-letter-k",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-k-fill-16.svg",
+      "file": "svgs/1880-3127.svg",
+      "aliases": [
+        "1880-3127.svg"
+      ],
+      "componentName": "IconSquareLetterKFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3147",
+      "variantSetName": "square-letter-j",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2844",
+      "name": "square-letter-j",
+      "baseName": "square-letter-j",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-j-16.svg",
+      "file": "svgs/1880-2844.svg",
+      "aliases": [
+        "1880-2844.svg"
+      ],
+      "componentName": "IconSquareLetterJ",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3147",
+      "variantSetName": "square-letter-j",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3106",
+      "name": "square-letter-j-fill",
+      "baseName": "square-letter-j",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-j-fill-16.svg",
+      "file": "svgs/1880-3106.svg",
+      "aliases": [
+        "1880-3106.svg"
+      ],
+      "componentName": "IconSquareLetterJFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3148",
+      "variantSetName": "square-letter-i",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2849",
+      "name": "square-letter-i",
+      "baseName": "square-letter-i",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-i-16.svg",
+      "file": "svgs/1880-2849.svg",
+      "aliases": [
+        "1880-2849.svg"
+      ],
+      "componentName": "IconSquareLetterI",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3148",
+      "variantSetName": "square-letter-i",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3119",
+      "name": "square-letter-i-fill",
+      "baseName": "square-letter-i",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-i-fill-16.svg",
+      "file": "svgs/1880-3119.svg",
+      "aliases": [
+        "1880-3119.svg"
+      ],
+      "componentName": "IconSquareLetterIFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3149",
+      "variantSetName": "square-letter-h",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2851",
+      "name": "square-letter-h",
+      "baseName": "square-letter-h",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-h-16.svg",
+      "file": "svgs/1880-2851.svg",
+      "aliases": [
+        "1880-2851.svg"
+      ],
+      "componentName": "IconSquareLetterH",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3149",
+      "variantSetName": "square-letter-h",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3125",
+      "name": "square-letter-h-fill",
+      "baseName": "square-letter-h",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-h-fill-16.svg",
+      "file": "svgs/1880-3125.svg",
+      "aliases": [
+        "1880-3125.svg"
+      ],
+      "componentName": "IconSquareLetterHFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3150",
+      "variantSetName": "square-letter-g",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2853",
+      "name": "square-letter-g",
+      "baseName": "square-letter-g",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-g-16.svg",
+      "file": "svgs/1880-2853.svg",
+      "aliases": [
+        "1880-2853.svg"
+      ],
+      "componentName": "IconSquareLetterG",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3150",
+      "variantSetName": "square-letter-g",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3129",
+      "name": "square-letter-g-fill",
+      "baseName": "square-letter-g",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-g-fill-16.svg",
+      "file": "svgs/1880-3129.svg",
+      "aliases": [
+        "1880-3129.svg"
+      ],
+      "componentName": "IconSquareLetterGFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3151",
+      "variantSetName": "square-letter-f",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2856",
+      "name": "square-letter-f",
+      "baseName": "square-letter-f",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-f-16.svg",
+      "file": "svgs/1880-2856.svg",
+      "aliases": [
+        "1880-2856.svg"
+      ],
+      "componentName": "IconSquareLetterF",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3151",
+      "variantSetName": "square-letter-f",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3123",
+      "name": "square-letter-f-fill",
+      "baseName": "square-letter-f",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-f-fill-16.svg",
+      "file": "svgs/1880-3123.svg",
+      "aliases": [
+        "1880-3123.svg"
+      ],
+      "componentName": "IconSquareLetterFFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3152",
+      "variantSetName": "square-letter-e",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2858",
+      "name": "square-letter-e",
+      "baseName": "square-letter-e",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-e-16.svg",
+      "file": "svgs/1880-2858.svg",
+      "aliases": [
+        "1880-2858.svg"
+      ],
+      "componentName": "IconSquareLetterE",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3152",
+      "variantSetName": "square-letter-e",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3122",
+      "name": "square-letter-e-fill",
+      "baseName": "square-letter-e",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-e-fill-16.svg",
+      "file": "svgs/1880-3122.svg",
+      "aliases": [
+        "1880-3122.svg"
+      ],
+      "componentName": "IconSquareLetterEFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3153",
+      "variantSetName": "square-letter-d",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2838",
+      "name": "square-letter-d",
+      "baseName": "square-letter-d",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-d-16.svg",
+      "file": "svgs/1880-2838.svg",
+      "aliases": [
+        "1880-2838.svg"
+      ],
+      "componentName": "IconSquareLetterD",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3153",
+      "variantSetName": "square-letter-d",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3108",
+      "name": "square-letter-d-fill",
+      "baseName": "square-letter-d",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-d-fill-16.svg",
+      "file": "svgs/1880-3108.svg",
+      "aliases": [
+        "1880-3108.svg"
+      ],
+      "componentName": "IconSquareLetterDFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3154",
+      "variantSetName": "square-letter-c",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2854",
+      "name": "square-letter-c",
+      "baseName": "square-letter-c",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-c-16.svg",
+      "file": "svgs/1880-2854.svg",
+      "aliases": [
+        "1880-2854.svg"
+      ],
+      "componentName": "IconSquareLetterC",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3154",
+      "variantSetName": "square-letter-c",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3124",
+      "name": "square-letter-c-fill",
+      "baseName": "square-letter-c",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-c-fill-16.svg",
+      "file": "svgs/1880-3124.svg",
+      "aliases": [
+        "1880-3124.svg"
+      ],
+      "componentName": "IconSquareLetterCFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3155",
+      "variantSetName": "square-letter-b",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "id": "1880:2855",
+      "name": "square-letter-b",
+      "baseName": "square-letter-b",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-b-16.svg",
+      "file": "svgs/1880-2855.svg",
+      "aliases": [
+        "1880-2855.svg"
+      ],
+      "componentName": "IconSquareLetterB",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "variantSetId": "1880:3155",
+      "variantSetName": "square-letter-b",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3126",
+      "name": "square-letter-b-fill",
+      "baseName": "square-letter-b",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-b-fill-16.svg",
+      "file": "svgs/1880-3126.svg",
+      "aliases": [
+        "1880-3126.svg"
+      ],
+      "componentName": "IconSquareLetterBFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "811:9135",
+      "originalName": "fill=false",
+      "width": 16,
+      "height": 16,
+      "name": "square-letter-a",
+      "baseName": "square-letter-a",
+      "filename": "square-letter-a-16.svg",
+      "file": "svgs/811-9135.svg",
+      "aliases": [],
+      "notes": [],
+      "componentName": "IconSquareLetterA",
+      "variantSetId": "1880:3156",
+      "variantSetName": "square-letter-a",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "addedAt": "2026-11-24T08:24:30.036Z",
+      "updatedAt": "2026-11-24T08:24:30.036Z"
+    },
+    {
+      "variantSetId": "1880:3156",
+      "variantSetName": "square-letter-a",
+      "variantProperties": {
+        "fill": "true"
+      },
+      "id": "1880:3105",
+      "name": "square-letter-a-fill",
+      "baseName": "square-letter-a",
+      "originalName": "fill=true",
+      "width": 16,
+      "height": 16,
+      "filename": "square-letter-a-fill-16.svg",
+      "file": "svgs/1880-3105.svg",
+      "aliases": [
+        "1880-3105.svg"
+      ],
+      "componentName": "IconSquareLetterAFill",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3200",
+      "name": "background-pattern",
+      "baseName": "background-pattern",
+      "originalName": "background-pattern",
+      "width": 16,
+      "height": 16,
+      "filename": "background-pattern-16.svg",
+      "file": "svgs/1880-3200.svg",
+      "aliases": [
+        "1880-3200.svg"
+      ],
+      "componentName": "IconBackgroundPattern",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1880:3214",
+      "name": "background-transparent",
+      "baseName": "background-transparent",
+      "originalName": "background-transparent",
+      "width": 16,
+      "height": 16,
+      "filename": "background-transparent-16.svg",
+      "file": "svgs/1880-3214.svg",
+      "aliases": [
+        "1880-3214.svg"
+      ],
+      "componentName": "IconBackgroundTransparent",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1881:3510",
+      "name": "bench",
+      "baseName": "bench",
+      "originalName": "bench",
+      "width": 16,
+      "height": 16,
+      "filename": "bench-16.svg",
+      "file": "svgs/1881-3510.svg",
+      "aliases": [
+        "1881-3510.svg"
+      ],
+      "componentName": "IconBench",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1888:11563",
+      "name": "turtle-simple",
+      "baseName": "turtle-simple",
+      "originalName": "turtle-simple",
+      "width": 16,
+      "height": 16,
+      "filename": "turtle-simple-16.svg",
+      "file": "svgs/1888-11563.svg",
+      "aliases": [
+        "1888-11563.svg"
+      ],
+      "componentName": "IconTurtleSimple",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1892:1350",
+      "name": "snail",
+      "baseName": "snail",
+      "originalName": "snail",
+      "width": 16,
+      "height": 16,
+      "filename": "snail-16.svg",
+      "file": "svgs/1892-1350.svg",
+      "aliases": [
+        "1892-1350.svg"
+      ],
+      "componentName": "IconSnail",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1892:1358",
+      "name": "cat-face",
+      "baseName": "cat-face",
+      "originalName": "cat-face",
+      "width": 16,
+      "height": 16,
+      "filename": "cat-face-16.svg",
+      "file": "svgs/1892-1358.svg",
+      "aliases": [
+        "1892-1358.svg"
+      ],
+      "componentName": "IconCatFace",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1892:1372",
+      "name": "dog-face",
+      "baseName": "dog-face",
+      "originalName": "dog-face",
+      "width": 16,
+      "height": 16,
+      "filename": "dog-face-16.svg",
+      "file": "svgs/1892-1372.svg",
+      "aliases": [
+        "1892-1372.svg"
+      ],
+      "componentName": "IconDogFace",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1892:1380",
+      "name": "dog-retriever-face",
+      "baseName": "dog-retriever-face",
+      "originalName": "dog-retriever-face",
+      "width": 16,
+      "height": 16,
+      "filename": "dog-retriever-face-16.svg",
+      "file": "svgs/1892-1380.svg",
+      "aliases": [
+        "1892-1380.svg"
+      ],
+      "componentName": "IconDogRetrieverFace",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1892:1390",
+      "name": "owl",
+      "baseName": "owl",
+      "originalName": "owl",
+      "width": 16,
+      "height": 16,
+      "filename": "owl-16.svg",
+      "file": "svgs/1892-1390.svg",
+      "aliases": [
+        "1892-1390.svg"
+      ],
+      "componentName": "IconOwl",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1892:1409",
+      "name": "whale",
+      "baseName": "whale",
+      "originalName": "whale",
+      "width": 16,
+      "height": 16,
+      "filename": "whale-16.svg",
+      "file": "svgs/1892-1409.svg",
+      "aliases": [
+        "1892-1409.svg"
+      ],
+      "componentName": "IconWhale",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1892:1416",
+      "name": "squirrel",
+      "baseName": "squirrel",
+      "originalName": "squirrel",
+      "width": 16,
+      "height": 16,
+      "filename": "squirrel-16.svg",
+      "file": "svgs/1892-1416.svg",
+      "aliases": [
+        "1892-1416.svg"
+      ],
+      "componentName": "IconSquirrel",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1892:1417",
+      "name": "penguin",
+      "baseName": "penguin",
+      "originalName": "penguin",
+      "width": 16,
+      "height": 16,
+      "filename": "penguin-16.svg",
+      "file": "svgs/1892-1417.svg",
+      "aliases": [
+        "1892-1417.svg"
+      ],
+      "componentName": "IconPenguin",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1899:1543",
+      "name": "fish",
+      "baseName": "fish",
+      "originalName": "fish",
+      "width": 16,
+      "height": 16,
+      "filename": "fish-16.svg",
+      "file": "svgs/1899-1543.svg",
+      "aliases": [
+        "1899-1543.svg"
+      ],
+      "componentName": "IconFish",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
+    },
+    {
+      "id": "1900:1551",
+      "name": "fox-face",
+      "baseName": "fox-face",
+      "originalName": "fox-face",
+      "width": 16,
+      "height": 16,
+      "filename": "fox-face-16.svg",
+      "file": "svgs/1900-1551.svg",
+      "aliases": [
+        "1900-1551.svg"
+      ],
+      "componentName": "IconFoxFace",
+      "addedAt": "2026-11-24T08:23:54.817Z",
+      "updatedAt": "2026-11-24T08:23:54.817Z"
     }
   ]
 }
