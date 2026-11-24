@@ -257,6 +257,7 @@ const ref:FyiProviderProps={ref:createRef<SVGSVGElement>()};
     );
     const vite = await import('vite');
     let included;
+    let wrappers;
     let includesProvider;
     await vite.build({
       root: cwd,
@@ -275,6 +276,9 @@ const ref:FyiProviderProps={ref:createRef<SVGSVGElement>()};
             included = modules.filter((file) =>
               file.includes('/fyicons/dist/icons/'),
             );
+            wrappers = modules
+              .filter((file) => file.includes('/fyicons/dist/client/'))
+              .map((file) => path.basename(file));
             includesProvider = modules.some((file) =>
               file.endsWith('/fyicons/dist/provider.js'),
             );
@@ -288,6 +292,10 @@ const ref:FyiProviderProps={ref:createRef<SVGSVGElement>()};
       `Only one icon should reach the bundle: ${included}`,
     );
     assert.match(included[0], /IconSun\.js$/);
+    assert.deepEqual(
+      wrappers,
+      entry === 'fyicons/client' ? ['IconSun.js'] : [],
+    );
     assert.equal(
       includesProvider,
       entry === 'fyicons/client',
