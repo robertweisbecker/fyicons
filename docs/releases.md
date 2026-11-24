@@ -10,7 +10,7 @@ Generated React sources are in `packages/fyicons/src/`. The package builder uses
 
 Package `dist/`, `svg/`, `manifest.json`, and the copied `LICENSE` are generated and ignored by Git. Package metadata keeps the source date version and adds `packageVersion`. The root [`LICENSE`](../LICENSE) is also included in SVG ZIP downloads.
 
-The optional `fyicons/client` entry exports `FyiProvider` and provider-aware wrappers around the same icons. Its generated `client.tsx` and `provider.tsx` files retain their `use client` directives in the package build. The regular entry and shadcn items remain context-free and do not import the provider runtime. Keep the client entry tree-shakeable so unused wrappers and artwork do not reach consumer bundles.
+The optional `fyicons/client` entry exports `FyiProvider` and provider-aware wrappers around the same icons. In the npm package, `dist/client.js` re-exports each wrapper from its own module in `dist/client/`. This lets bundlers load the artwork for the imported icons. The public client entry and the provider carry the `use client` directive. The regular entry and shadcn items remain context-free and do not import the provider runtime.
 
 ## Build artifacts
 

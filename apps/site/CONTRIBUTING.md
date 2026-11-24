@@ -51,7 +51,7 @@ Interface text uses [Allo by Josh Puckett](https://allo.joshpuckett.me/). `AlloV
 
 Configure fonts with `next/font/local` in `src/app/fonts.ts` and apply their classes in the root layout. Upright Allo is preloaded. Oblique styles and Paper Mono load when used. The wordmarks use the shared `public/brand-wordmarks.svg` symbols; their lettering inherits the current text color in both themes.
 
-Development startup and production builds generate `public/downloads/fyicons.zip` from the current catalog and category rules. Full-library downloads use this static file. Custom selections are packaged in the browser. The generated ZIP is ignored by Git. After icon or category edits during a running development session, run `node scripts/build-site-archive.mjs` from the repository root to refresh it. Verify archive contents with `node --test tests/site/icon-archive.test.mjs`.
+Development startup and production builds generate `public/downloads/fyicons.zip` from the current catalog and package SVGs. Full-library downloads use this static file. Custom selections are packaged in the browser. The generated ZIP is ignored by Git. After icon edits during a running development session, run `node scripts/build-site-archive.mjs` from the repository root to refresh it. Verify archive contents with `node --test tests/site/icon-archive.test.mjs`.
 
 ## Edit category rules
 

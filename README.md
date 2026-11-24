@@ -161,7 +161,7 @@ For quick actions, right-click an icon in the grid, or long-press it on mobile. 
 
 Use **Download** in the homepage's **Quick start** section to get the complete collection as a ZIP. On a desktop screen, you can also select icon checkboxes, open **Saved**, and choose **Download all** to get a smaller collection. Each saved row also has an individual download button.
 
-Each ZIP includes the SVG files, a README, the MIT license, and a `manifest.json` file with names, category data, and SHA-256 checksums. It does not include React components. The site's size control changes the preview only; downloaded SVG files keep their original canvas.
+Each ZIP includes the SVG files, a README, the MIT license, and a `manifest.json` file with icon names, filenames, and SHA-256 checksums. It does not include React components. The site's size control changes the preview only; downloaded SVG files keep their original canvas. To group downloaded icons by category, match their names against the [category rules](apps/site/public/icon-categories.json).
 
 Copied and downloaded SVGs include the same `fy-icon` and `fy-{icon-name}` classes as React components. Style inline SVGs with CSS `color`, `width`, and `height`. The classes do not apply any styles on their own. ZIP checksums match the exported files, including their classes.
 

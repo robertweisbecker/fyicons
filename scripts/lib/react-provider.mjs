@@ -1,3 +1,27 @@
+function clientIcon(name, artworkPath) {
+  return `import Static${name} from '${artworkPath}';\nexport const ${name} = /* @__PURE__ */ createClientIcon(Static${name}, '${name}');`;
+}
+
+// A re-export-only entry lets bundlers select an icon before loading its artwork.
+// TypeScript already emits the public declarations from the generated client.tsx.
+export function renderClientDistribution(icons) {
+  const files = new Map();
+  const entry = [
+    "'use client';",
+    "export { FyiProvider } from './provider.js';",
+  ];
+  for (const { componentName: name } of icons) {
+    const file = `client/${name}.js`;
+    files.set(
+      file,
+      `import { createClientIcon } from '../provider.js';\n${clientIcon(name, `../icons/${name}.js`)}\n`,
+    );
+    entry.push(`export { ${name} } from './${file}';`);
+  }
+  files.set('client.js', entry.join('\n') + '\n');
+  return files;
+}
+
 /** Generate the opt-in context entry without adding context to static icons. */
 export function renderReactProviderFiles(icons) {
   return new Map([
@@ -47,10 +71,7 @@ export { FyiProvider } from './provider';
 export type { IconProps, IconDefaults, FyiProviderProps } from './types';
 
 ${icons
-  .map(
-    ({ componentName }) =>
-      `import Static${componentName} from './${componentName}';\nexport const ${componentName} = /* @__PURE__ */ createClientIcon(Static${componentName}, '${componentName}');`,
-  )
+  .map(({ componentName }) => clientIcon(componentName, `./${componentName}`))
   .join('\n')}
 `,
     ],
