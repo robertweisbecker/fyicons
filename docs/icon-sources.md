@@ -80,4 +80,4 @@ Choose rules for the icon's meaning. For example, a `circle` keyword would colle
 
 Use `npm run generate:category-schema` after an inventory change to refresh editor suggestions.
 
-ZIP manifests include category definitions, rules, and computed memberships. See the [website guide](../apps/site/CONTRIBUTING.md#edit-category-rules) for previewing category changes.
+To categorize icons from a ZIP, apply the repository's category rules to the icon names in its manifest. See the [website guide](../apps/site/CONTRIBUTING.md#edit-category-rules) for previewing category changes.

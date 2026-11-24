@@ -248,15 +248,14 @@ test('users can filter, save and remove icons, then export the selection or full
     await selectedDownload;
   });
   assert.equal(downloads[0].filename, 'fyicons-selected.zip');
-  const manifest = async ({ blob }) => {
-    assert.equal(blob.type, 'application/zip');
-    const archive = unzipSync(new Uint8Array(await blob.arrayBuffer()));
-    return JSON.parse(strFromU8(archive['manifest.json']));
-  };
-  assert.deepEqual(
-    (await manifest(downloads[0])).icons.map(({ id }) => id),
-    [selected[1].id],
-  );
+  const { blob } = downloads[0];
+  assert.equal(blob.type, 'application/zip');
+  const archive = unzipSync(new Uint8Array(await blob.arrayBuffer()));
+  const manifest = JSON.parse(strFromU8(archive['manifest.json']));
+  assert.ok(!Object.hasOwn(manifest, 'categories'));
+  const { categories, ...expectedIcon } = selected[1];
+  assert.deepEqual(categories, ['buildings']);
+  assert.deepEqual(manifest.icons, [expectedIcon]);
   const fullDownload = nextDownload();
   await click(h.document.querySelector('button[data-download-icons="all"]'));
   await act(async () => {

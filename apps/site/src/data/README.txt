@@ -6,7 +6,7 @@ Each icon has a 16 × 16 px canvas.
 ## Files
 
 The icons/ folder contains the SVG files.
-The manifest.json file contains icon names, category data, and SHA-256 checksums of the exported files.
+The manifest.json file contains icon names, filenames, and SHA-256 checksums of the exported files.
 It also contains Figma component IDs and previous names.
 Each icon variant has a separate SVG file.
 The ZIP file does not contain React components.

@@ -8,13 +8,16 @@ import {
 } from './icon-categories';
 import { assetPath } from './navigation';
 
-const data = decodeCatalog(compact);
+const { icons: catalogIcons, ...catalogMetadata } = decodeCatalog(compact);
+export { catalogMetadata };
 
-export type IconRecord = (typeof data.icons)[number] & { categories: string[] };
+export type IconRecord = (typeof catalogIcons)[number] & {
+  categories: string[];
+};
 export function getIconDisplayName(icon: IconRecord) {
   return icon.componentName.slice('Icon'.length);
 }
-export const icons: IconRecord[] = data.icons.map((icon) => ({
+export const icons: IconRecord[] = catalogIcons.map((icon) => ({
   ...icon,
   categories: [uncategorized.id],
 }));
@@ -57,11 +60,4 @@ for (const icon of icons) {
     if (typeof alias === 'string' && !byName.has(alias))
       byName.set(alias, icon);
   }
-}
-export function getManifest() {
-  return {
-    ...data,
-    categories,
-    icons,
-  };
 }
