@@ -88,6 +88,7 @@ import { IconSun } from 'fyicons';
 import DirectSun from 'fyicons/icons/IconSun';
 import { FyiProvider, IconSun as ClientSun } from 'fyicons/client';
 import { JSDOM } from ${JSON.stringify(import.meta.resolve('jsdom'))};
+import { verifyComposition } from './react-composition.mjs';
 assert.equal(IconSun, DirectSun);
 const ref = createRef();
 let clicks = 0;
@@ -124,6 +125,8 @@ assert.equal(ref.current.getAttribute('width'),'24');
 assert.equal(ref.current.getAttribute('color'),'blue');
 const ids=[...document.querySelectorAll('[id]')].map(node=>node.id);assert.equal(new Set(ids).size,ids.length);
 await act(async()=>mounted.unmount());dom.window.close(); console.log('SSR, provider hydration and updates, refs, event handlers, labels, classes, and direct imports passed.');
+for (const Icon of [IconSun, DirectSun, ClientSun]) await verifyComposition(Icon);
+console.log('Package, direct, and client icon composition passed.');
 `;
 for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
   const cwd = path.join(scratch, `react-${reactVersion}`);
@@ -137,7 +140,7 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
       fyicons: `file:${tarball}`,
       react: reactVersion,
       'react-dom': reactVersion,
-      ...(isNext ? { next: '16.4.2' } : {}),
+      ...(isNext ? { next: sitePkg.dependencies.next } : {}),
     },
     devDependencies: {
       '@types/react': isNext
@@ -190,6 +193,16 @@ for (const reactVersion of ['18.3.1', sitePkg.dependencies.react]) {
       `${icon.filename}: export must only add default classes`,
     );
   }
+  await write(
+    cwd,
+    'react-composition.mjs',
+    (
+      await readFile(
+        path.join(root, 'tests/package/fixtures/react-composition.mjs'),
+        'utf8',
+      )
+    ).replace("'jsdom'", JSON.stringify(import.meta.resolve('jsdom'))),
+  );
   await write(cwd, 'smoke.mjs', smoke);
   // act is development-only; an earlier Vite build can change NODE_ENV.
   run(process.execPath, ['smoke.mjs'], cwd, { NODE_ENV: 'development' });
@@ -204,6 +217,7 @@ const props:IconProps={size:'1em',title:'Light mode',ref:createRef<SVGSVGElement
 const defaults:IconDefaults={size:20,color:'red',className:'shared',style:{opacity:0.5}};
 const providerProps:FyiProviderProps={...defaults,children:<ClientSun {...props}/>};
 export const icon=<><IconSun {...props}/><DirectSun aria-label="Light mode" onClick={event=>event.currentTarget.focus()}/><FyiProvider {...providerProps}><ClientSun {...props}/></FyiProvider></>;
+export const composition=<IconSun {...props}><DirectSun x={4} y={4} size={8}><ClientSun ref={createRef<SVGSVGElement>()}><circle cx={8} cy={8} r={2}/></ClientSun></DirectSun></IconSun>;
 // @ts-expect-error Accessible names belong on individual icons.
 const label:FyiProviderProps={'aria-label':'Shared label'};
 // @ts-expect-error IDs belong on individual icons.
@@ -336,6 +350,29 @@ const ref:FyiProviderProps={ref:createRef<SVGSVGElement>()};
     await readFile(path.join(root, 'LICENSE'), 'utf8'),
   );
   run(path.join(root, 'node_modules/.bin/tsc'), ['--noEmit'], cwd);
+  const vite = await import('vite');
+  await vite.build({
+    root: cwd,
+    configFile: false,
+    logLevel: 'warn',
+    build: {
+      outDir: 'registry-runtime',
+      lib: {
+        entry: path.join(cwd, 'src/components/fyicons/IconSun.tsx'),
+        formats: ['es'],
+        fileName: 'sun',
+      },
+      rollupOptions: { external: ['react', 'react/jsx-runtime'] },
+    },
+  });
+  await write(
+    cwd,
+    'registry-composition.mjs',
+    `import IconSun from './registry-runtime/sun.js';import {verifyComposition} from './react-composition.mjs';await verifyComposition(IconSun);console.log('Installed shadcn icon composition passed.');`,
+  );
+  run(process.execPath, ['registry-composition.mjs'], cwd, {
+    NODE_ENV: 'development',
+  });
   if (isNext) {
     await write(cwd, 'tsconfig.json', {
       compilerOptions: {
@@ -358,12 +395,12 @@ const ref:FyiProviderProps={ref:createRef<SVGSVGElement>()};
     await write(
       cwd,
       'app/page.tsx',
-      `import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../src/components/fyicons/IconSun';export default async function Page(){await Promise.resolve();return <main><h1>FYIcons consumer</h1><IconSun title="Package icon" aria-label="Package icon"/><DirectSun title="Direct icon" aria-label="Direct icon"/><RegistrySun title="Registry icon" aria-label="Registry icon" className="consumer-icon"/></main>}`,
+      `import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../src/components/fyicons/IconSun';export default async function Page(){await Promise.resolve();return <main><h1>FYIcons consumer</h1><IconSun title="Package icon" aria-label="Package icon"><DirectSun title="Nested package" x={4} y={4} size={8}/></IconSun><DirectSun title="Direct icon" aria-label="Direct icon"><IconSun title="Nested direct" x={4} y={4} size={8}/></DirectSun><RegistrySun title="Registry icon" aria-label="Registry icon" className="consumer-icon"><RegistrySun title="Nested registry" x={4} y={4} size={8}/></RegistrySun></main>}`,
     );
     await write(
       cwd,
       'app/interactive/page.tsx',
-      `'use client';import {useRef,useState} from 'react';import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../../src/components/fyicons/IconSun';export default function Page(){const ref=useRef<SVGSVGElement>(null);const [clicks,setClicks]=useState(0);return <main><button type="button" onClick={()=>setClicks(clicks+1)}><IconSun ref={ref} title="Package icon" aria-label="Package icon"/><DirectSun title="Direct icon" aria-label="Direct icon"/><RegistrySun title="Registry icon" aria-label="Registry icon" className="consumer-icon"/></button><output>{clicks}</output></main>}`,
+      `'use client';import {useRef,useState} from 'react';import {IconSun} from 'fyicons';import DirectSun from 'fyicons/icons/IconSun';import RegistrySun from '../../src/components/fyicons/IconSun';export default function Page(){const ref=useRef<SVGSVGElement>(null);const [clicks,setClicks]=useState(0);return <main><button type="button" onClick={()=>setClicks(clicks+1)}><IconSun ref={ref} title="Package icon" aria-label="Package icon"><DirectSun title="Nested package" x={4} y={4} size={8}/></IconSun><DirectSun title="Direct icon" aria-label="Direct icon"><IconSun title="Nested direct" x={4} y={4} size={8}/></DirectSun><RegistrySun title="Registry icon" aria-label="Registry icon" className="consumer-icon"><RegistrySun title="Nested registry" x={4} y={4} size={8}/></RegistrySun></button><output>{clicks}</output></main>}`,
     );
     await write(
       cwd,
@@ -388,8 +425,8 @@ const ref:FyiProviderProps={ref:createRef<SVGSVGElement>()};
     );
     assert.equal(
       [...serverPayload.matchAll(/\["\$","svg",/g)].length,
-      3,
-      'Package, direct, and registry icons must render complete SVGs in the server payload.',
+      6,
+      'Package, direct, and registry compositions must render complete SVGs in the server payload.',
     );
     const clientReferences = await readFile(
       path.join(
@@ -405,13 +442,31 @@ const ref:FyiProviderProps={ref:createRef<SVGSVGElement>()};
         'utf8',
       );
       const dom = new JSDOM(html);
-      const icons = [...dom.window.document.querySelectorAll('main svg')];
+      const icons = [
+        ...dom.window.document.querySelectorAll('main svg'),
+      ].filter((icon) => !icon.parentElement.closest('svg'));
       assert.deepEqual(
         icons.map((icon) => icon.querySelector('title')?.textContent),
         ['Package icon', 'Direct icon', 'Registry icon'],
       );
-      const ids = icons.map((icon) => icon.querySelector('title').id);
-      assert.equal(new Set(ids).size, icons.length);
+      const ids = [...dom.window.document.querySelectorAll('svg title')].map(
+        (title) => title.id,
+      );
+      assert.equal(ids.length, 6);
+      assert.equal(new Set(ids).size, ids.length);
+      assert.deepEqual(
+        icons.map(
+          (icon) =>
+            icon.querySelector('svg')?.querySelector('title')?.textContent,
+        ),
+        ['Nested package', 'Nested direct', 'Nested registry'],
+      );
+      for (const icon of icons) {
+        const child = icon.querySelector('svg');
+        assert.equal(child.parentElement, icon);
+        assert.equal(child.getAttribute('width'), '8');
+        assert.equal(child.getAttribute('aria-hidden'), 'true');
+      }
       for (const icon of icons) {
         assert.equal(
           icon.getAttribute('aria-label'),
@@ -463,13 +518,14 @@ await write(path.join(root, 'artifacts'), 'verification.json', {
   integrity: packed.integrity,
   consumers: scratch,
   react: ['18.3.1', sitePkg.dependencies.react],
-  next: '16.4.2',
+  next: sitePkg.dependencies.next,
   checks: [
     'tarball contents',
     'SVG byte fidelity',
     'MIT notice',
     'SSR',
     'hydration',
+    'SVG children and nested icons across package, direct, client, and shadcn imports',
     'provider defaults, hydration, and updates',
     'refs',
     'event handlers',

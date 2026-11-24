@@ -3,7 +3,7 @@
 import { Button } from '@base-ui/react/button';
 import Link from 'next/link';
 import type { ComponentProps, ReactNode } from 'react';
-import { Icon } from '@/components/Icon';
+import { Icon } from '@/components/UIIcon';
 import { cn } from '@/lib/utils';
 
 export function Sidebar({
@@ -75,6 +75,7 @@ export function SidebarItem({
   return href ? (
     <Link
       {...props}
+      prefetch={false}
       href={href}
       aria-current={active ? 'page' : undefined}
       className={className}

@@ -1,10 +1,33 @@
+import { IconRendererContext } from '@/components/UIIcon';
+import type { ComponentProps } from 'react';
 import { useId, useState, type ReactNode } from 'react';
 import { Field } from '@base-ui/react/field';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/demos/components/DemoControls';
 import { OpticalStudy, StudyTile } from './optical/OpticalStudy';
+import {
+  IconApps,
+  IconFont,
+  IconGhost,
+  IconGrid,
+  IconGridFill,
+  IconMath,
+  IconPointerSwarm,
+  IconShapes,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  apps: IconApps,
+  font: IconFont,
+  ghost: IconGhost,
+  grid: IconGrid,
+  'grid-fill': IconGridFill,
+  math: IconMath,
+  'pointer-swarm': IconPointerSwarm,
+  shapes: IconShapes,
+});
 
 function OpticalGrid({ children }: { children: ReactNode }) {
   return (
@@ -233,7 +256,7 @@ function ShapesCard() {
   );
 }
 
-export function OpticalAdjustments({ heading }: { heading: ReactNode }) {
+function OpticalAdjustmentsContent({ heading }: { heading: ReactNode }) {
   return (
     <OpticalStudy heading={heading}>
       <ShapesCard />
@@ -241,3 +264,15 @@ export function OpticalAdjustments({ heading }: { heading: ReactNode }) {
     </OpticalStudy>
   );
 }
+
+export function OpticalAdjustments(
+  props: ComponentProps<typeof OpticalAdjustmentsContent>,
+) {
+  return (
+    <IconRendererContext value={Icon}>
+      <OpticalAdjustmentsContent {...props} />
+    </IconRendererContext>
+  );
+}
+
+const { DemoToggle } = createDemoControls(Icon);

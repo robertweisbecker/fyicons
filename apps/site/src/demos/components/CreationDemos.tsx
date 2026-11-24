@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Button } from '@/components/ui/button';
 import {
   InputGroup,
@@ -14,7 +14,68 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { DemoIconButton, DemoToggle } from './DemoControls';
+import { createDemoControls } from './DemoControls';
+import {
+  IconAlert,
+  IconAlertFill,
+  IconBinoculars,
+  IconBolt,
+  IconBoltFill,
+  IconBrain,
+  IconCheck,
+  IconCircleCheck,
+  IconCircleCheckFill,
+  IconCode,
+  IconCopied,
+  IconCopiedFill,
+  IconCopy,
+  IconError,
+  IconErrorFill,
+  IconFileCode,
+  IconGhost,
+  IconGlobe,
+  IconKbdCommandSmall,
+  IconKbdReturn,
+  IconLock,
+  IconLockFill,
+  IconPaperclipTilt,
+  IconPlusSm,
+  IconSendFill,
+  IconThoughtBubble,
+  IconWorkflow,
+  IconX,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  alert: IconAlert,
+  'alert-fill': IconAlertFill,
+  binoculars: IconBinoculars,
+  bolt: IconBolt,
+  'bolt-fill': IconBoltFill,
+  brain: IconBrain,
+  check: IconCheck,
+  'circle-check': IconCircleCheck,
+  'circle-check-fill': IconCircleCheckFill,
+  code: IconCode,
+  copied: IconCopied,
+  'copied-fill': IconCopiedFill,
+  copy: IconCopy,
+  error: IconError,
+  'error-fill': IconErrorFill,
+  'file-code': IconFileCode,
+  ghost: IconGhost,
+  globe: IconGlobe,
+  'kbd-command-small': IconKbdCommandSmall,
+  'kbd-return': IconKbdReturn,
+  lock: IconLock,
+  'lock-fill': IconLockFill,
+  'paperclip-tilt': IconPaperclipTilt,
+  'plus-sm': IconPlusSm,
+  'send-fill': IconSendFill,
+  'thought-bubble': IconThoughtBubble,
+  workflow: IconWorkflow,
+  x: IconX,
+});
 
 const suggestions = [
   ['code', 'Review code', 'Review this component and suggest improvements.'],
@@ -178,3 +239,5 @@ export function ComposerDemo() {
     </form>
   );
 }
+
+const { DemoIconButton, DemoToggle } = createDemoControls(Icon);

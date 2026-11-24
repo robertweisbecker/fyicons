@@ -3,11 +3,12 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 export const buttonVariants = cva(
-  'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-muted disabled:pointer-events-none disabled:opacity-40 gap-1.5 font-[450] inline-flex shrink-0 items-center justify-center',
+  'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-muted disabled:pointer-events-none disabled:opacity-40 gap-1.5 font-[450] inline-flex shrink-0 items-center justify-center active:scale-[0.98] active:transition-[scale,color] hover:transition-colors',
   {
     variants: {
       variant: {
-        default: 'bg-ink text-surface hover:bg-ink/92 active:bg-ink/84',
+        default:
+          'bg-ink/92 text-surface hover:bg-ink/84 active:bg-ink shadow-[inset_0_0_0_1px_--alpha(var(--color-ink)/64%),inset_0_2.5px_1px_-1px_--alpha(white/30%),_var(--shadow-md)]',
         neutral:
           'bg-current/5 text-ink hover:bg-current/10 active:bg-current/20',
         outline:
@@ -27,7 +28,7 @@ export const buttonVariants = cva(
         xs: 'h-6 px-1.5 gap-1 text-xs rounded-md',
         sm: 'h-7 px-2 gap-1 text-xs rounded-md',
         default: 'h-9 px-3 gap-1.5 text-sm rounded-lg',
-        lg: 'h-11 px-3.5 font-normal gap-2 text-[15px] rounded-full',
+        lg: 'h-12 px-4 gap-3 text-[15px] rounded-full [&>svg]:size-5',
         icon: 'size-8 p-0 rounded-lg',
         'icon-sm': 'size-7 p-0 rounded-md',
         'icon-xs': 'size-6 p-0 rounded-sm',

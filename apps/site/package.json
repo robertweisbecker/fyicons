@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package",
+    "predev": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package && node ../../scripts/build-site-archive.mjs",
     "dev": "node ../../scripts/dev-site.mjs",
-    "prebuild": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package",
+    "prebuild": "npm --prefix ../.. run generate:icons && npm --prefix ../.. run build:package && node ../../scripts/build-site-archive.mjs",
     "build": "next build && node ../../scripts/compact-build-json.mjs && node ../../scripts/verify-site-export.mjs && node ../../scripts/measure-build.mjs",
     "preview": "node ../../scripts/preview-site.mjs",
     "typecheck": "next typegen && tsc --noEmit --incremental false"
@@ -14,27 +14,30 @@
   "dependencies": {
     "@base-ui/react": "1.9.0",
     "@mdx-js/react": "3.1.1",
+    "@ui-sdk/core": "0.1.0-beta.13",
+    "@ui-sdk/react": "0.1.0-beta.13",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
-    "dialkit": "^2.2.0",
+    "cuelume": "^0.2.8",
+    "dialkit": "^2.2.1",
     "fflate": "0.8.3",
-    "fyicons": "0.5.0",
-    "motion": "^14.0.0",
-    "next": "16.4.3",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
-    "tailwind-merge": "3.7.0"
+    "fyicons": "0.5.3",
+    "motion": "^14.14.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwind-merge": "3.7.1"
   },
   "devDependencies": {
     "@mdx-js/loader": "3.1.1",
-    "@next/mdx": "16.4.3",
-    "@tailwindcss/postcss": "4.3.3",
+    "@next/mdx": "16.4.6",
+    "@tailwindcss/postcss": "4.3.5",
     "@types/mdx": "2.0.14",
-    "@types/node": "26.6.3",
+    "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "remark-gfm": "4.0.1",
-    "tailwindcss": "4.3.3",
+    "tailwindcss": "4.3.5",
     "typescript": "7.0.2"
   }
 }

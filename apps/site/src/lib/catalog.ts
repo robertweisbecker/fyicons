@@ -62,6 +62,6 @@ export function getManifest() {
   return {
     ...data,
     categories,
-    icons: icons.map(({ svg: _svg, ...record }) => record),
+    icons,
   };
 }

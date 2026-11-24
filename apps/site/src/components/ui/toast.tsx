@@ -1,5 +1,6 @@
 import { Toast } from '@base-ui/react/toast';
-import IconX from 'fyicons/icons/IconX';
+import { IconX } from 'fyicons';
+
 import { Button } from '@/components/ui/button';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';

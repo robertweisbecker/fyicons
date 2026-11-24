@@ -49,6 +49,7 @@ Set `size` to change both dimensions. All icons use `currentColor`; leave `color
 | `color`           | Sets the icon color. Otherwise, the icon inherits the text color.      |
 | `className`       | Adds your classes after the default icon classes.                      |
 | `style`           | Applies inline CSS styles.                                             |
+| `children`        | Adds SVG content after the icon artwork.                               |
 | `title`           | Adds an SVG title.                                                     |
 | `aria-label`      | Names the icon and sets `role="img"` by default.                       |
 | `aria-labelledby` | Passes through an external label reference.                            |
@@ -62,6 +63,24 @@ Every icon has `fy-icon` and `fy-{icon-name}` classes. The icon name matches the
 <IconSun className="toolbar-icon" />
 // Renders class="fy-icon fy-sun toolbar-icon"
 ```
+
+## Compose icons
+
+Compose icons with nested icons or SVG elements. Children render after the built-in artwork, so they paint on top:
+
+```tsx
+import { IconCircle, IconCheck } from 'fyicons';
+
+<IconCircle size={32} aria-label="Complete">
+  <IconCheck x={4} y={4} size={8} />
+</IconCircle>;
+```
+
+Each icon keeps its own SVG element and 16 × 16 viewBox. The child's numeric `x`, `y`, and `size` values use the parent's coordinate system: an 8-unit child fills half of a 16-unit parent. Scaling the outer icon scales the whole composition. Set the child size explicitly when using provider defaults.
+
+SVG children such as `<circle>`, `<g>`, and `<defs>` also work, as do fragments and components that return SVG content. Normal SVG clipping applies; set `overflow="visible"` on any SVG whose content should extend beyond its viewport. For backgrounds or full control of layer order, arrange the icons inside your own `<svg>`.
+
+Label the outer icon when the composition conveys information; leave the nested icons decorative. Generated icon IDs stay unique. For IDs you add in custom definitions, use React's `useId()` and pass the matching references yourself.
 
 ## Shared defaults with FyiProvider
 

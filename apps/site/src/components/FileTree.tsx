@@ -1,7 +1,42 @@
 import { Collapsible } from '@base-ui/react/collapsible';
-import { Icon } from './Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
+import {
+  IconAtomReact,
+  IconChevronDownSm,
+  IconChevronRightSm,
+  IconFolder,
+  IconFolderFill,
+  IconFolderOpen,
+  IconFolderOpenFill,
+  IconGhost,
+  IconLetterM,
+  IconMarkdownFill,
+  IconPage,
+  IconSquareDot,
+  IconTextTitle,
+  IconTextTitleFill,
+  IconFileText,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  'atom-react': IconAtomReact,
+  'chevron-down-sm': IconChevronDownSm,
+  'chevron-right-sm': IconChevronRightSm,
+  folder: IconFolder,
+  'folder-fill': IconFolderFill,
+  'folder-open': IconFolderOpen,
+  'folder-open-fill': IconFolderOpenFill,
+  ghost: IconGhost,
+  'letter-m': IconLetterM,
+  'markdown-fill': IconMarkdownFill,
+  page: IconPage,
+  'square-dot': IconSquareDot,
+  text: IconTextTitle,
+  'text-fill': IconTextTitleFill,
+  'file-text': IconFileText,
+});
 
 export type ProjectFile = { path: string; icon: string; change?: string };
 export const fileIconColors: Record<string, string> = {

@@ -1,4 +1,5 @@
 'use client';
+import { useDemoActivity } from '@/components/DeferredContent';
 
 import {
   useId,
@@ -7,8 +8,8 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import IconPlay from 'fyicons/icons/IconPlay';
-import IconWarning from 'fyicons/icons/IconWarning';
+import { IconPlay, IconWarning } from 'fyicons';
+
 import warningSvg from 'fyicons/svg/warning-16.svg?raw';
 import type { Act } from '@/vendor/stageshow/act';
 import { ThemedStage } from '@/components/ThemedStage';
@@ -60,7 +61,7 @@ function outerContour(svg: string) {
 
 const warningContour = outerContour(warningSvg);
 // Figma measures the triangle's vertices before rounding its corners or outlining the stroke.
-const playBox = { left: 3.5, top: 2, width: 11, height: 12 };
+const playBox = { left: 4.5, top: 1.75, width: 11, height: 12.5 };
 const playDraftLeft = 2;
 const playShift = playBox.left - playDraftLeft;
 const playDraftCenter = playDraftLeft + playBox.width / 2;
@@ -70,7 +71,7 @@ const playTipInset = playSlopeLength / playHalfHeight;
 const playGripX = playBox.left + playBox.width;
 
 // Inset each corner's arc center, then meet the original sides at their tangents.
-// At radius 1 this centerline lies halfway between the released SVG's two contours.
+// At radius 1 this matches the released Play icon's stroke centerline.
 function playCenterline(radius: number) {
   const { left, top, width, height } = playBox;
   const right = left + width;
@@ -274,17 +275,19 @@ export function DrawingStage({
   cursorTarget?: string;
   children: (scene: Scene) => ReactNode;
 }) {
+  const active = useDemoActivity();
   const slot = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(288);
 
   useLayoutEffect(() => {
+    if (!active) return;
     const element = slot.current!;
     const measure = () => setWidth(Math.max(1, element.clientWidth));
     const observer = new ResizeObserver(measure);
     measure();
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [active]);
 
   return (
     <div

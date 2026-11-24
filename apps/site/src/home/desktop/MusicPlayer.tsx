@@ -1,6 +1,6 @@
 import { useRef, useState, type ReactNode, type Ref } from 'react';
 import { Popover } from '@base-ui/react/popover';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Button } from '@/components/ui/button';
 import {
   Menu,
@@ -11,12 +11,77 @@ import {
   MenuTrigger,
 } from '@/components/ui/menu';
 import { Slider } from '@/components/ui/slider';
-import {
-  DemoHint,
-  DemoIconButton,
-  DemoToggle,
-} from '@/demos/components/DemoControls';
+import { createDemoControls, DemoHint } from '@/demos/components/DemoControls';
 import { AlbumArtwork, tracks, trackTime } from './musicData';
+import {
+  IconArrowsCollapse,
+  IconArrowsExpand,
+  IconCircleCheckFill,
+  IconCirclePlus,
+  IconCirclePlusFill,
+  IconComputer,
+  IconGhost,
+  IconHeadphones,
+  IconMicrophoneMusic,
+  IconMicrophoneMusicFill,
+  IconPauseFill,
+  IconPictureInPicture,
+  IconPictureInPictureExit,
+  IconPlayFill,
+  IconQueue,
+  IconRepeat,
+  IconRepeatOne,
+  IconShuffle,
+  IconSkipBackwardFill,
+  IconSkipForwardFill,
+  IconSpeakers,
+  IconVideo,
+  IconVideoFill,
+  IconVolumeHigh,
+  IconVolumeHighFill,
+  IconVolumeLow,
+  IconVolumeLowFill,
+  IconVolumeNone,
+  IconVolumeNoneFill,
+  IconVolumeSlash,
+  IconVolumeSlashFill,
+  IconWaveform,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  'arrows-collapse': IconArrowsCollapse,
+  'arrows-expand': IconArrowsExpand,
+  'circle-check-fill': IconCircleCheckFill,
+  'circle-plus': IconCirclePlus,
+  'circle-plus-fill': IconCirclePlusFill,
+  computer: IconComputer,
+  ghost: IconGhost,
+  headphones: IconHeadphones,
+  'microphone-music': IconMicrophoneMusic,
+  'microphone-music-fill': IconMicrophoneMusicFill,
+  'pause-fill': IconPauseFill,
+  'picture-in-picture': IconPictureInPicture,
+  'picture-in-picture-exit': IconPictureInPictureExit,
+  'play-fill': IconPlayFill,
+  queue: IconQueue,
+  repeat: IconRepeat,
+  'repeat-one': IconRepeatOne,
+  shuffle: IconShuffle,
+  'skip-backward-fill': IconSkipBackwardFill,
+  'skip-forward-fill': IconSkipForwardFill,
+  speakers: IconSpeakers,
+  video: IconVideo,
+  'video-fill': IconVideoFill,
+  'volume-high': IconVolumeHigh,
+  'volume-high-fill': IconVolumeHighFill,
+  'volume-low': IconVolumeLow,
+  'volume-low-fill': IconVolumeLowFill,
+  'volume-none': IconVolumeNone,
+  'volume-none-fill': IconVolumeNoneFill,
+  'volume-slash': IconVolumeSlash,
+  'volume-slash-fill': IconVolumeSlashFill,
+  waveform: IconWaveform,
+});
 
 const playbackDevices = [
   { value: 'headphones', label: 'Headphones', icon: 'headphones' },
@@ -331,3 +396,5 @@ export function MusicPlayer({
     </footer>
   );
 }
+
+const { DemoIconButton, DemoToggle } = createDemoControls(Icon);

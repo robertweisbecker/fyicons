@@ -1,10 +1,37 @@
 import { Collapsible } from '@base-ui/react/collapsible';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { fileIconColors, type ProjectFile } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { reviewChanges } from './codeReviewData';
+import {
+  IconArrowRight,
+  IconAtomReact,
+  IconChevronDownSm,
+  IconChevronRightSm,
+  IconEye,
+  IconEyeCheck,
+  IconEyeFill,
+  IconFileText,
+  IconGitBranch,
+  IconGitCommit,
+  IconMarkdownFill,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  'arrow-right': IconArrowRight,
+  'atom-react': IconAtomReact,
+  'chevron-down-sm': IconChevronDownSm,
+  'chevron-right-sm': IconChevronRightSm,
+  eye: IconEye,
+  'eye-check': IconEyeCheck,
+  'eye-fill': IconEyeFill,
+  'file-text': IconFileText,
+  'git-branch': IconGitBranch,
+  'git-commit': IconGitCommit,
+  'markdown-fill': IconMarkdownFill,
+});
 
 export function CodeChanges({
   files,
@@ -163,3 +190,5 @@ export function CodeChanges({
     </>
   );
 }
+
+const { DemoToggle } = createDemoControls(Icon);

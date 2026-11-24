@@ -1,11 +1,25 @@
 'use client';
-
 import { Select as SelectPrimitive } from '@base-ui/react/select';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { createContext, useContext, type ReactNode } from 'react';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
+import {
+  IconAnchor,
+  IconCaretDown,
+  IconCaretUp,
+  IconCaretsY,
+  IconCheck,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  anchor: IconAnchor,
+  'caret-down': IconCaretDown,
+  'caret-up': IconCaretUp,
+  'carets-y': IconCaretsY,
+  check: IconCheck,
+});
 
 type SelectSize = 'default' | 'sm';
 const SelectSizeContext = createContext<SelectSize>('default');

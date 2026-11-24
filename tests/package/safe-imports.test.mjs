@@ -1,4 +1,5 @@
-import test from 'node:test';
+import { prepareRepositoryIcons } from '../../scripts/lib/prepare-icons.mjs';
+import test, { after, before } from 'node:test';
 import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import {
@@ -36,29 +37,37 @@ const record = (id, name) => ({
 });
 const json = (file, value) =>
   writeFile(file, JSON.stringify(value, null, 2) + '\n');
-async function fixture() {
-  const directory = await mkdtemp(path.join(tmpdir(), 'fyicons-safe-import-'));
-  const root = path.join(directory, 'repo');
-  const incoming = path.join(directory, 'incoming');
-  const outside = path.join(directory, 'outside');
-  await mkdir(path.join(root, 'icons'), { recursive: true });
-  await mkdir(path.join(root, 'apps/site/public'), { recursive: true });
-  await mkdir(path.join(root, 'apps/site/src/lib'), { recursive: true });
-  await mkdir(incoming);
-  await mkdir(outside);
-  await writeFile(path.join(outside, 'sentinel.svg'), svg);
+const categories = {
+  categories: [
+    {
+      id: 'files',
+      name: 'Files',
+      icon: 'Alpha',
+      keywords: ['alpha'],
+      exactNames: ['Alpha'],
+    },
+  ],
+};
+let templateRoot;
+before(async () => {
+  templateRoot = await mkdtemp(path.join(tmpdir(), 'fyicons-import-template-'));
+  await mkdir(path.join(templateRoot, 'icons'), { recursive: true });
+  await mkdir(path.join(templateRoot, 'apps/site/public'), { recursive: true });
+  await mkdir(path.join(templateRoot, 'apps/site/src/lib'), {
+    recursive: true,
+  });
   await cp(
     new URL('../../scripts/', import.meta.url),
-    path.join(root, 'scripts'),
+    path.join(templateRoot, 'scripts'),
     { recursive: true },
   );
   await cp(
     new URL('../../apps/site/src/lib/icon-categories.ts', import.meta.url),
-    path.join(root, 'apps/site/src/lib/icon-categories.ts'),
+    path.join(templateRoot, 'apps/site/src/lib/icon-categories.ts'),
   );
   await symlink(
     path.resolve('node_modules'),
-    path.join(root, 'node_modules'),
+    path.join(templateRoot, 'node_modules'),
     'dir',
   );
   const current = {
@@ -72,29 +81,34 @@ async function fixture() {
       record('fixture:2', 'Beta'),
     ],
   };
-  const categories = {
-    categories: [
-      {
-        id: 'files',
-        name: 'Files',
-        icon: 'Alpha',
-        keywords: ['alpha'],
-        exactNames: ['Alpha'],
-      },
-    ],
-  };
-  await json(path.join(root, 'icons/manifest.json'), current);
+  await json(path.join(templateRoot, 'icons/manifest.json'), current);
   await json(
-    path.join(root, 'apps/site/public/icon-categories.json'),
+    path.join(templateRoot, 'apps/site/public/icon-categories.json'),
     categories,
   );
-  await writeFile(path.join(root, 'icons/Alpha-16.svg'), svg);
-  await writeFile(path.join(root, 'icons/Beta-16.svg'), svg);
-  await run(process.execPath, ['scripts/generate-icons.mjs'], { cwd: root });
+  await writeFile(path.join(templateRoot, 'icons/Alpha-16.svg'), svg);
+  await writeFile(path.join(templateRoot, 'icons/Beta-16.svg'), svg);
+  await run(process.execPath, ['scripts/generate-icons.mjs'], {
+    cwd: templateRoot,
+  });
   await writeFile(
-    path.join(root, 'packages/fyicons/src/sentinel.txt'),
+    path.join(templateRoot, 'packages/fyicons/src/sentinel.txt'),
     'retain unrelated generated-directory files\n',
   );
+});
+after(async () => {
+  if (templateRoot) await rm(templateRoot, { recursive: true, force: true });
+});
+
+async function fixture() {
+  const directory = await mkdtemp(path.join(tmpdir(), 'fyicons-safe-import-'));
+  const root = path.join(directory, 'repo');
+  const incoming = path.join(directory, 'incoming');
+  const outside = path.join(directory, 'outside');
+  await cp(templateRoot, root, { recursive: true, verbatimSymlinks: true });
+  await mkdir(incoming);
+  await mkdir(outside);
+  await writeFile(path.join(outside, 'sentinel.svg'), svg);
   const imported = {
     name: 'FYIcons',
     icons: [
@@ -502,10 +516,13 @@ test('imports validate raw hashes before repair and keep source, catalog and Rea
       ),
     );
     const icon = catalog.icons.find((icon) => icon.id === 'fixture:1');
-    assert.equal(icon.svg.replace(' class="fy-icon fy-alpha"', ''), saved);
+    const exportedSvg = (
+      await prepareRepositoryIcons(f.root)
+    ).exportedIcons.find((item) => item.id === icon.id).svg;
+    assert.equal(exportedSvg.replace(' class="fy-icon fy-alpha"', ''), saved);
     assert.equal(
       icon.sha256,
-      createHash('sha256').update(icon.svg).digest('hex'),
+      createHash('sha256').update(exportedSvg).digest('hex'),
     );
     const react = await readFile(
       path.join(f.root, 'packages/fyicons/src/IconAlpha.tsx'),

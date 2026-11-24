@@ -2,12 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import IconSunFill from 'fyicons/icons/IconSunFill';
-import IconMoon from 'fyicons/icons/IconMoon';
-import IconBeaker from 'fyicons/icons/IconBeaker';
+import { IconSunFill, IconMoon, IconBeaker } from 'fyicons';
+
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { BrandWordmark, BrandWordmarkMobile } from './BrandWordmark';
 import { GitHubIcon, NpmIcon } from './BrandIcons';
+import { SoundToggle } from './SoundToggle';
 import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
@@ -51,6 +51,7 @@ export function SiteHeader({
         )}
       >
         <Link
+          prefetch={false}
           className={cn(
             buttonVariants({ variant: 'unstyled', size: 'unstyled' }),
             'gap-2 text-sm',
@@ -74,6 +75,7 @@ export function SiteHeader({
         >
           {headerNavigation.map(({ href, label }) => (
             <Link
+              prefetch={false}
               key={href}
               href={href}
               aria-current={isActiveRoute(pathname, href) ? 'page' : undefined}
@@ -90,6 +92,7 @@ export function SiteHeader({
           {isDevelopment && (
             <Tooltip label="Prototypes">
               <Link
+                prefetch={false}
                 href="/prototypes/"
                 aria-label="Prototypes"
                 aria-current={
@@ -142,6 +145,7 @@ export function SiteHeader({
               aria-hidden="true"
               className="hidden h-4 w-px shrink-0 bg-ink/30 md:block"
             />
+            <SoundToggle />
             <Tooltip label={`${theme === 'dark' ? 'Light' : 'Dark'} mode`}>
               <Button
                 aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}

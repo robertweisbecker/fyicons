@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import { JSDOM } from 'jsdom';
 import { decodeCatalog } from '../../apps/site/src/lib/catalog-codec.ts';
 import { prepareIcons } from '../../scripts/lib/prepare-icons.mjs';
 
@@ -16,6 +17,12 @@ const catalog = decodeCatalog(
     ),
   ),
 );
+
+for (const icon of catalog.icons)
+  icon.svg = await readFile(
+    new URL(`../../packages/fyicons/svg/${icon.filename}`, import.meta.url),
+    'utf8',
+  );
 
 test('SVG exports add default classes and hash their bytes without changing source artwork', async () => {
   assert.equal(catalog.icons.length, manifest.icons.length);
@@ -48,7 +55,6 @@ test('SVG exports add default classes and hash their bytes without changing sour
 });
 
 test('all downloadable icons inherit foreground color without altering definition paint', async () => {
-  const { JSDOM } = await import('jsdom');
   const dom = new JSDOM(
     catalog.icons
       .map((icon) => `<div data-icon-id="${icon.id}">${icon.svg}</div>`)
@@ -117,7 +123,7 @@ test('SVG export classes merge on the root and leave source hashes, attributes, 
       JSON.parse(
         prepared.expected.get('apps/site/src/data/catalog-runtime.json'),
       ),
-    ).icons[0].svg,
-    exported.svg,
+    ).icons[0].sha256,
+    exported.sha256,
   );
 });

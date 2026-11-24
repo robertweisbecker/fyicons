@@ -1,0 +1,339 @@
+.keycap-field {
+  position: relative;
+  display: grid;
+  flex: 1;
+  grid-template-rows: auto 1fr;
+  place-items: center;
+  gap: 8px;
+  isolation: isolate;
+  min-width: 0;
+  padding: 16px 16px 24px;
+  border-radius: 16px;
+  background: var(--field-color);
+  user-select: none;
+}
+.keycap-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #28332c;
+  color: oklch(
+    from var(--field-color) clamp(0.2, (0.65 - l) * 100, 0.97) 0.01 h
+  );
+}
+@media (min-width: 40rem) {
+  .keycap-field {
+    padding: 20px 20px 28px;
+  }
+}
+.keycap-swatch {
+  display: inline-block;
+  width: 24px;
+  height: 12px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #0002;
+}
+.keycap-tray {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  width: min(100%, 244px);
+  padding: 11px 11px 13px;
+  border-radius: 16px;
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--case-color), white 26%),
+    var(--case-color) 44%,
+    color-mix(in srgb, var(--case-color), black 18%)
+  );
+  box-shadow:
+    inset 0 1px 1px #eff4d7aa,
+    inset 0 -3px 1px color-mix(in srgb, var(--case-color), black 38%),
+    0 1px 0 1px color-mix(in srgb, var(--case-color), black 10%),
+    0 5px 0 color-mix(in srgb, var(--case-color), white 14%),
+    0 6px 0 color-mix(in srgb, var(--case-color), black 15%),
+    0 10px 12px -4px #15211c70,
+    0 16px 25px -10px #15211c55;
+}
+.keycap-caps-lamp {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  transform: translateY(-50%);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: linear-gradient(
+    145deg,
+    #c1c5b9,
+    #424c44 38%,
+    #202821 66%,
+    #879287
+  );
+  box-shadow: inset 0 0 0 1px #17201980;
+  pointer-events: none;
+}
+.keycap-caps-lamp::before,
+.keycap-caps-lamp::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 50%;
+}
+.keycap-caps-lamp::before {
+  background:
+    radial-gradient(ellipse at 32% 24%, #f6ffefbf 5%, transparent 22%),
+    radial-gradient(circle at 52% 60%, #798a68, #3f5545 46%, #18261d 84%);
+}
+.keycap-caps-lamp::after {
+  background:
+    radial-gradient(ellipse at 32% 24%, #fff 3%, transparent 22%),
+    radial-gradient(ellipse 30% 13% at 50% 57%, #fffed4 55%, transparent),
+    radial-gradient(
+      circle at 50% 52%,
+      #deffa0 12%,
+      #a4ec60 48%,
+      #468e3e 80%,
+      #304c2a
+    );
+  box-shadow:
+    0 0 4px #b8ff80,
+    0 0 9px #82ef6899;
+  opacity: 0;
+  transition: opacity 90ms ease-out;
+}
+.keycap-tray[data-caps-locked='true'] .keycap-caps-lamp::after {
+  opacity: 1;
+}
+.keycap-switch {
+  --cap-high: #fcf4de;
+  --cap-low: #e3dac3;
+  --cap-wall: #b7b09a;
+  --cap-foot: #958c78;
+  --cap-ink: #343e38;
+  position: relative;
+  display: block;
+  appearance: none;
+  min-width: 0;
+  aspect-ratio: 1.12;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--case-color), black 36%);
+  box-shadow:
+    0 1px 0 #ffffff2b,
+    inset 0 1px 2px #141f1ce6;
+  color: var(--cap-ink);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.keycap-switch[aria-pressed='true'] {
+  --cap-high: #686554;
+  --cap-low: #454538;
+  --cap-wall: #38392f;
+  --cap-foot: #292b24;
+  --cap-ink: #fff8df;
+}
+.keycap-switch[data-tone='secondary'] {
+  --key-color: var(--secondary-color);
+  --cap-ink: #f5f3df;
+}
+.keycap-switch[data-tone='command'] {
+  --key-color: var(--command-color);
+  --cap-ink: #34281f;
+}
+.keycap-switch[data-tone] {
+  --cap-high: color-mix(in srgb, var(--key-color), white 12%);
+  --cap-low: color-mix(in srgb, var(--key-color), black 7%);
+  --cap-wall: color-mix(in srgb, var(--key-color), black 23%);
+  --cap-foot: color-mix(in srgb, var(--key-color), black 40%);
+}
+@supports (color: contrast-color(red)) {
+  .keycap-switch[data-tone] {
+    --cap-ink: color-mix(
+      in srgb,
+      contrast-color(var(--key-color)) 92%,
+      var(--key-color)
+    );
+  }
+}
+.keycap-mount,
+.keycap-plunger,
+.keycap-top {
+  position: absolute;
+}
+.keycap-mount {
+  inset: 0;
+}
+.keycap-plunger {
+  inset: 1px 1px 5px;
+  border-radius: 7px;
+  background: linear-gradient(
+    90deg,
+    var(--cap-wall),
+    var(--cap-high) 50%,
+    var(--cap-wall)
+  );
+  box-shadow:
+    0 3px 0 var(--cap-foot),
+    0 4px 2px #18201c95;
+  transition:
+    transform var(--release),
+    box-shadow 160ms ease-out;
+}
+.keycap-top {
+  inset: 1px 3px 3px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 4px;
+  border-radius: 6px;
+  background: linear-gradient(165deg, var(--cap-high), var(--cap-low) 83%);
+  box-shadow:
+    inset 0 1px 1px #ffffff63,
+    inset 0 -1px 1px #363f3017;
+}
+.keycap-top svg {
+  filter: drop-shadow(0 1px 0 #ffffff29);
+}
+.keycap-legend {
+  font:
+    550 10px/1.1 var(--font-paper-mono),
+    monospace;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+.keycap-switch:is(:active, [data-held], [aria-pressed='true']) .keycap-plunger {
+  transform: translateY(4px) scale(0.973333);
+  box-shadow: 0 0 2px #18201c95;
+  transition-duration: 55ms;
+  transition-timing-function: ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .keycap-top::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 100ms ease-out;
+  }
+  .keycap-switch:hover .keycap-top::after {
+    opacity: 0.045;
+  }
+  .keycap-switch:hover:not(:active, [data-held], [aria-pressed='true'])
+    .keycap-plunger {
+    transform: translateY(0.6px);
+  }
+}
+.keycap-switch:focus-visible {
+  z-index: 1;
+  outline: 2px solid #172d30;
+  outline-offset: 2px;
+}
+.keycap-effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.keycap-burst,
+.keycap-fleck {
+  position: absolute;
+}
+.keycap-burst {
+  --fade-delay: 370ms;
+  --fade-duration: 150ms;
+  animation: keycap-fade var(--fade-duration) cubic-bezier(0, 0.25, 1, 0.66)
+    var(--fade-delay) both;
+}
+.keycap-fleck {
+  left: 0;
+  top: 0;
+  aspect-ratio: 1;
+  animation: keycap-flight
+    calc(var(--fade-delay) + var(--fade-duration) + var(--flight-variation))
+    linear both;
+  filter: drop-shadow(0 1px 1px #233b3a45);
+}
+.keycap-burst[data-plume] {
+  --fade-delay: 550ms;
+}
+.keycap-burst[data-plume] .keycap-fleck {
+  animation-name: keycap-plume;
+}
+@keyframes keycap-plume {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25);
+  }
+  12% {
+    opacity: 1;
+  }
+  30% {
+    transform: translate(
+        calc(-50% + var(--dx) * 0.08),
+        calc(-50% + var(--dy) * 0.74)
+      )
+      rotate(calc(var(--turn) * 0.12)) scale(0.72);
+  }
+  62% {
+    transform: translate(calc(-50% + var(--dx) * 0.7), calc(-50% + var(--dy)))
+      rotate(calc(var(--turn) * 0.6)) scale(1);
+  }
+  82% {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) * 0.92))
+      rotate(calc(var(--turn) * 0.85)) scale(0.88);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(
+        calc(-50% + var(--dx) * 0.9),
+        calc(-50% + var(--dy) * 0.77)
+      )
+      rotate(var(--turn)) scale(0.68);
+  }
+}
+@keyframes keycap-fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes keycap-flight {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+  12% {
+    opacity: 1;
+  }
+  48% {
+    transform: translate(
+        calc(-50% + var(--dx) * 0.72),
+        calc(-50% + var(--dy) * 0.72 - 12px)
+      )
+      rotate(calc(var(--turn) * 0.42)) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 16px))
+      rotate(var(--turn)) scale(0.55);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .keycap-plunger,
+  .keycap-caps-lamp::after,
+  .keycap-top::after {
+    transition: none;
+  }
+  .keycap-effects {
+    visibility: hidden;
+  }
+}

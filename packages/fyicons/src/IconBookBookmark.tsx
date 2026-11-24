@@ -3,6 +3,6 @@ import type { IconProps } from './types';
 import SvgRoot, { useIdPrefix } from './base';
 const IconBookBookmark = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconBookBookmark(props, ref) {
   const idPrefix = useIdPrefix();
-  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="book-bookmark"><path fill="currentColor" d="M12 2a1 1 0 0 1 1 1v8.5l-.003.023a.5.5 0 0 1-.013.095q-.007.027-.016.05-.005.018-.012.034l-.031.058-.013.021a.5.5 0 0 1-.057.07l-.018.015-.049.041-.035.022-.03.018a1.177 1.177 0 0 0 0 2.106.5.5 0 0 1-.223.947H5a2 2 0 0 1-2-2V4.5A2.5 2.5 0 0 1 5.5 2zM5 12a1 1 0 1 0 0 2h6.313a2.21 2.21 0 0 1 0-2zm.5-9A1.5 1.5 0 0 0 4 4.5v6.77A2 2 0 0 1 5 11h7V3h-2v4.037a.25.25 0 0 1-.445.156L8 5.25 6.445 7.193A.25.25 0 0 1 6 7.037V3z" /></SvgRoot>;
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="book-bookmark"><path fill="currentColor" d="M12 2a1 1 0 0 1 1 1v8.5l-.003.023a.5.5 0 0 1-.013.095q-.007.027-.016.05-.005.018-.012.034l-.031.058-.013.021a.5.5 0 0 1-.057.07l-.018.015-.049.041-.035.022-.03.018a1.177 1.177 0 0 0 0 2.106.5.5 0 0 1-.223.947H5a2 2 0 0 1-2-2V4.5A2.5 2.5 0 0 1 5.5 2zM5 12a1 1 0 1 0 0 2h6.313a2.21 2.21 0 0 1 0-2zm.5-9A1.5 1.5 0 0 0 4 4.5v6.77A2 2 0 0 1 5 11h7V3h-2v4.037a.25.25 0 0 1-.445.156L8 5.25 6.445 7.193A.25.25 0 0 1 6 7.037V3z" />{props.children}</SvgRoot>;
 });
 export default IconBookBookmark;

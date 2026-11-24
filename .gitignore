@@ -9,9 +9,10 @@ playwright-report/
 .DS_Store
 .vercel/
 artifacts/
-apps/site/src/app/prototypes/
-apps/site/src/prototypes/
+apps/site/public/downloads/
 packages/*/.build/
 packages/*/svg/
 packages/*/manifest.json
 packages/*/LICENSE
+
+apps/site/public/icon-sources/

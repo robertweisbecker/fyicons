@@ -1,7 +1,14 @@
 import { Menu as MenuPrimitive } from '@base-ui/react/menu';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
+import { IconAnchor, IconCheck, IconDotFill } from 'fyicons';
+
+const Icon = createIconLookup({
+  anchor: IconAnchor,
+  check: IconCheck,
+  'dot-fill': IconDotFill,
+});
 
 export function Menu<Payload = unknown>({
   modal = false,

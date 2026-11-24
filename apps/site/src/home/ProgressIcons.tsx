@@ -1,16 +1,20 @@
 import { useState } from 'react';
-import IconCircle from 'fyicons/icons/IconCircle';
-import IconCircleFill from 'fyicons/icons/IconCircleFill';
-import IconProgressPie20 from 'fyicons/icons/IconProgressPie20';
-import IconProgressPie40 from 'fyicons/icons/IconProgressPie40';
-import IconProgressPie60 from 'fyicons/icons/IconProgressPie60';
-import IconProgressPie80 from 'fyicons/icons/IconProgressPie80';
-import IconStar from 'fyicons/icons/IconStar';
-import IconStarFill from 'fyicons/icons/IconStarFill';
-import IconStarHalfFill from 'fyicons/icons/IconStarHalfFill';
+import {
+  IconCircle,
+  IconCircleFill,
+  IconProgressPie20,
+  IconProgressPie40,
+  IconProgressPie60,
+  IconProgressPie80,
+  IconStar,
+  IconStarFill,
+  IconStarHalfFill,
+} from 'fyicons';
+
 import { Slider, SliderControl } from '@/components/ui/slider';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { levelSteps } from '@/lib/icon-progress';
+import { play } from '@/lib/sounds';
 
 const pieSteps = [
   IconCircle,
@@ -86,10 +90,10 @@ export function ProgressIcons() {
     <div
       role="group"
       aria-label="Progress"
-      className="flex min-w-0 flex-1 flex-col gap-2 rounded-xl bg-surface p-2 sm:gap-6 sm:rounded-2xl sm:p-5 lg:p-8"
+      className="flex min-w-0 flex-1 flex-col justify-center gap-2 rounded-xl bg-surface p-2 sm:gap-6 sm:rounded-2xl sm:p-5 lg:p-8"
     >
       <TooltipGroup>
-        <div className="flex flex-1 flex-col justify-center gap-1 sm:gap-4">
+        <div className="flex flex-col gap-1 sm:gap-4">
           <div className="mx-auto grid w-full max-w-64 grid-cols-3 sm:gap-4">
             {previews.filter(({ isEmoji }) => !isEmoji).map(renderPreview)}
           </div>
@@ -122,7 +126,15 @@ export function ProgressIcons() {
         <Slider.Root
           className="grid w-full max-w-80 grid-cols-[minmax(0,1fr)_3rem] items-center gap-1 sm:gap-3"
           value={level}
-          onValueChange={setLevel}
+          onValueChange={(value) => {
+            if (value !== level) {
+              play('select', {
+                emphasis: 'subtle',
+                direction: value > level ? 'forward' : 'back',
+              });
+            }
+            setLevel(value);
+          }}
           min={0}
           max={100}
           step={12.5}

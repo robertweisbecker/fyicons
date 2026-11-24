@@ -9,8 +9,8 @@ import {
   type ReactNode,
 } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import IconCopySm from 'fyicons/icons/IconCopySm';
-import IconCheck from 'fyicons/icons/IconCheck';
+import { IconCopySm, IconCheck } from 'fyicons';
+
 import { IconButton } from '@/components/IconButton';
 import { notify } from '@/components/ui/toast';
 import { copy } from '@/lib/downloads';
@@ -52,7 +52,7 @@ export function CodeBlock({
   return (
     <ScrollArea.Root
       data-slot="code-block"
-      className="relative flex max-w-full items-start rounded-xl bg-inset text-ink dark:outline dark:outline-line"
+      className="relative flex max-w-full items-start rounded-xl bg-current/10 text-ink dark:outline dark:outline-line"
     >
       <ScrollArea.Viewport
         aria-label="Code example"

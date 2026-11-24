@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconKbdCapsLockFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconKbdCapsLockFill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="kbd-caps-lock-fill"><path fill="currentColor" stroke="currentColor" d="M9.998 11.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM7.673 2.612a.5.5 0 0 1 .654 0l5 4.309a.33.33 0 0 1-.215.58h-2.615V9a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V7.5H2.889a.33.33 0 0 1-.216-.58z" />{props.children}</SvgRoot>;
+});
+export default IconKbdCapsLockFill;

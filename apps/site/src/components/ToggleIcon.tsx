@@ -1,4 +1,4 @@
-import { Icon } from '@/components/Icon';
+import { Icon } from '@/components/UIIcon';
 
 /** Uses the parent Base UI toggle's state, including uncontrolled/group toggles. */
 export function ToggleIcon({

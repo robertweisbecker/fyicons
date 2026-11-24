@@ -1,8 +1,15 @@
-import IconSun from 'fyicons/icons/IconSun';
-import IconSpinner from 'fyicons/icons/IconSpinner';
-import IconLoader from 'fyicons/icons/IconLoader';
-import IconGitMerge from 'fyicons/icons/IconGitMerge';
-import { IconRays } from 'fyicons';
+import { useId } from 'react';
+import {
+  IconRays,
+  IconSun,
+  IconSpinner,
+  IconLoader,
+  IconGitMerge,
+  IconCircle,
+  IconCheck,
+  IconCircleFill,
+  IconStarFill,
+} from 'fyicons';
 import {
   FyiProvider,
   IconBookmark,
@@ -15,16 +22,61 @@ import { DocsExample } from './DocsExample';
 
 const colors = [
   { label: 'Inherited', value: undefined },
-  { label: 'Blue', value: '#2563eb' },
-  { label: 'Green', value: '#16a34a' },
-  { label: 'Violet', value: '#8b5cf6' },
+  { label: 'Blue', value: 'light-dark(#2563eb, #60a5fa)' },
+  { label: 'Green', value: 'light-dark(#16a34a, #4ade80)' },
+  { label: 'Violet', value: 'light-dark(#8b5cf6, #a78bfa)' },
 ];
+
+export function CompositionExample() {
+  return (
+    <DocsExample aria-label="Check icon nested inside a circle icon">
+      <IconCircle size={32} aria-label="Complete">
+        <IconCheck x={4} y={4} size={8} />
+      </IconCircle>
+    </DocsExample>
+  );
+}
+
+function StarCutoutIcon() {
+  const maskId = useId();
+
+  return (
+    <svg
+      width={48}
+      height={48}
+      viewBox="0 0 16 16"
+      role="img"
+      aria-label="Star cut out of a circle"
+    >
+      <defs>
+        <mask id={maskId} style={{ maskType: 'luminance' }}>
+          <rect width={16} height={16} fill="white" />
+          <IconStarFill size={8} x={4} y={4} color="black" />
+        </mask>
+      </defs>
+      <IconCircleFill size={16} mask={`url(#${maskId})`} />
+    </svg>
+  );
+}
+
+export function MaskCompositionExample() {
+  return (
+    <DocsExample aria-label="Star cutouts on two backgrounds" className="gap-4">
+      <div className="flex size-20 items-center justify-center rounded-lg bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200">
+        <StarCutoutIcon />
+      </div>
+      <div className="flex size-20 items-center justify-center rounded-lg bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200">
+        <StarCutoutIcon />
+      </div>
+    </DocsExample>
+  );
+}
 
 export function LightButtonExample() {
   return (
     <DocsExample aria-label="Customized React icon example">
       <Button variant="outline" size="icon" aria-label="Switch to light mode">
-        <IconSun size={24} color="#2563eb" />
+        <IconSun size={24} color="light-dark(#2563eb, #60a5fa)" />
       </Button>
     </DocsExample>
   );
@@ -33,7 +85,11 @@ export function LightButtonExample() {
 export function ClassNameExample() {
   return (
     <DocsExample aria-label="Icon styled with a CSS class">
-      <IconSun size={32} className="text-blue-500" aria-label="Sun" />
+      <IconSun
+        size={32}
+        className="text-[light-dark(#3b82f6,#60a5fa)]"
+        aria-label="Sun"
+      />
     </DocsExample>
   );
 }
@@ -89,7 +145,11 @@ export function ProviderExample() {
       aria-label="Shared icon defaults example"
       className="my-6 rounded-xl border border-line bg-surface p-5 sm:p-8"
     >
-      <FyiProvider size={20} className="nav-icon" color="red">
+      <FyiProvider
+        size={20}
+        className="nav-icon"
+        color="light-dark(#dc2626, #f87171)"
+      >
         <div className="mx-auto flex w-fit flex-col gap-4">
           <div className="flex items-center gap-2">
             <IconHome /> Home

@@ -1,46 +1,30 @@
 import { Autocomplete } from '@base-ui/react/autocomplete';
 import { Dialog } from '@base-ui/react/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useEffect, useRef, useState, type Ref, type RefObject } from 'react';
-import { Icon } from '@/components/Icon';
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
+import { Icon } from '@/components/UIIcon';
 import { IconButton } from '@/components/IconButton';
 import { Button } from '@/components/ui/button';
-import { searchIcons } from '@/lib/icon-search';
-import { useCategoryReadiness } from '@/lib/category-readiness';
-import { getIconDisplayName, icons, type IconRecord } from '@/lib/catalog';
+import type { IconRecord } from '@/lib/catalog';
+import catalogSummary from '@/data/catalog-summary.json';
+const getIconDisplayName = (icon: IconRecord) => icon.componentName.slice(4);
+type SearchCatalog = Awaited<
+  ReturnType<typeof import('./search-catalog').loadSearchCatalog>
+>;
+let catalogRequest: Promise<SearchCatalog> | undefined;
+function requestCatalog() {
+  return (catalogRequest ??= import('./search-catalog')
+    .then((module) => module.loadSearchCatalog())
+    .catch((error) => {
+      catalogRequest = undefined;
+      throw error;
+    }));
+}
 import Link from 'next/link';
 
-const searchPlaceholder = `Search ${icons.length.toLocaleString('en-US')} icons…`;
+const searchPlaceholder = `Search ${catalogSummary.count.toLocaleString('en-US')} icons…`;
 // Divisible by every responsive column count: 3, 4, 6, and 8.
 const searchPageSize = 96;
-// Tailwind's lg, md, and sm viewport breakpoints. Base UI needs the same
-// column count for the rendered rows and arrow-key navigation.
-const gridBreakpoints = [
-  { query: '(min-width: 64rem)', columns: 8 },
-  { query: '(min-width: 48rem)', columns: 6 },
-  { query: '(min-width: 40rem)', columns: 4 },
-];
-
-function getSearchColumns() {
-  return (
-    gridBreakpoints.find(({ query }) => matchMedia(query).matches)?.columns ?? 3
-  );
-}
-
-function useSearchColumns() {
-  const [columns, setColumns] = useState(8);
-  useEffect(() => {
-    const queries = gridBreakpoints.map(({ query }) => matchMedia(query));
-    const update = () => setColumns(getSearchColumns());
-    update();
-    queries.forEach((query) => query.addEventListener('change', update));
-    return () => {
-      queries.forEach((query) => query.removeEventListener('change', update));
-    };
-  }, []);
-  return columns;
-}
-
 export function IconSearch({
   value,
   onValueChange,
@@ -84,39 +68,6 @@ export function IconSearch({
   );
 }
 
-function SearchResults({ select }: { select: (icon: IconRecord) => void }) {
-  const columns = useSearchColumns();
-  const results = Autocomplete.useFilteredItems<IconRecord>();
-  // Real rows keep Base UI's arrow-key navigation and grid semantics aligned
-  // with the visible column count, including the final incomplete row.
-  const rows = Array.from(
-    { length: Math.ceil(results.length / columns) },
-    (_, index) => results.slice(index * columns, (index + 1) * columns),
-  );
-  return rows.map((row) => (
-    <Autocomplete.Row
-      key={row[0].id}
-      className="grid gap-0"
-      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
-    >
-      {row.map((icon) => (
-        <Autocomplete.Item
-          key={icon.id}
-          value={icon}
-          onClick={() => select(icon)}
-          aria-label={getIconDisplayName(icon)}
-          className="group/item relative flex min-h-24 min-w-0 cursor-default flex-col items-center justify-center gap-3 px-4 pt-4 pb-1 outline-none after:absolute after:inset-1 after:-z-1 after:rounded-xl after:bg-current/5 data-highlighted:after:bg-current/10 data-highlighted:after:outline-2 data-highlighted:after:-outline-offset-1 data-highlighted:after:outline-current"
-        >
-          <Icon name={icon.id} size={24} />
-          <span className="max-w-full truncate text-[11px] leading-3 text-muted group-hover/item:text-ink">
-            {getIconDisplayName(icon)}
-          </span>
-        </Autocomplete.Item>
-      ))}
-    </Autocomplete.Row>
-  ));
-}
-
 function Search({
   value,
   onValueChange,
@@ -126,12 +77,29 @@ function Search({
   value: string;
   onValueChange: (value: string) => void;
   select: (icon: IconRecord) => void;
-  inputRef?: Ref<HTMLInputElement>;
+  inputRef: RefObject<HTMLInputElement | null>;
 }) {
-  useCategoryReadiness();
+  const [catalog, setCatalog] = useState<SearchCatalog>();
+  const [error, setError] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  useEffect(() => {
+    let active = true;
+    setError(false);
+    requestCatalog().then(
+      (value) => {
+        if (active) setCatalog(value);
+      },
+      () => {
+        if (active) setError(true);
+      },
+    );
+    return () => {
+      active = false;
+    };
+  }, [attempt]);
   const [limit, setLimit] = useState(searchPageSize);
   const [highlightedIcon, setHighlightedIcon] = useState<IconRecord>();
-  const matches = searchIcons(icons, value);
+  const matches = useMemo(() => catalog?.search(value) ?? [], [catalog, value]);
   const shownCount = Math.min(limit, matches.length);
   const moreCount = Math.min(searchPageSize, matches.length - shownCount);
   return (
@@ -179,24 +147,52 @@ function Search({
           }
         />
       </Autocomplete.InputGroup>
-      <Autocomplete.Empty className="text-center">
-        <div className="flex flex-col items-center justify-center gap-3 px-4 py-12">
-          <Icon name="ghost" size={32} />
-          <h3 className="text-lg font-medium">
-            Boo! <span className="opacity-50">No matches.</span>
-          </h3>
-          <p className="">
-            Try another search, or{' '}
-            <Link
-              href="/icons"
-              className="text-ink underline decoration-1 underline-offset-4 hover:text-focus"
-            >
-              view all icons
-            </Link>
-            .
-          </p>
+      {catalog && (
+        <Autocomplete.Empty className="text-center">
+          <div className="flex flex-col items-center justify-center gap-3 px-4 py-12">
+            <Icon name="ghost" size={32} />
+            <h3 className="text-lg font-medium">
+              Boo! <span className="opacity-50">No matches.</span>
+            </h3>
+            <p className="">
+              Try another search, or{' '}
+              <Link
+                prefetch={false}
+                href="/icons"
+                className="text-ink underline decoration-1 underline-offset-4 hover:text-focus"
+              >
+                view all icons
+              </Link>
+              .
+            </p>
+          </div>
+        </Autocomplete.Empty>
+      )}
+      {!catalog && (
+        <div role="status" className="p-6 text-sm text-muted">
+          {error ? (
+            <>
+              <p>Search could not be loaded.</p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setAttempt((value) => value + 1);
+                  inputRef.current?.focus({ preventScroll: true });
+                }}
+              >
+                Retry search
+              </Button>
+            </>
+          ) : (
+            'Loading icons…'
+          )}
         </div>
-      </Autocomplete.Empty>
+      )}
+      {catalog?.warning && (
+        <p role="status" className="px-6 text-sm text-muted">
+          {catalog.warning}
+        </p>
+      )}
       <ScrollArea.Root className="flex flex-1 flex-col">
         <ScrollArea.Viewport className="flex-1">
           <ScrollArea.Content className="min-w-0!">
@@ -204,7 +200,7 @@ function Search({
               aria-label="Icon search results"
               className="p-3 empty:hidden sm:p-4"
             >
-              <SearchResults select={select} />
+              {catalog && <catalog.Results select={select} />}
             </Autocomplete.List>
             {matches.length > searchPageSize && (
               <div className="flex justify-center px-4 pb-4">

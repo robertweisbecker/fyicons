@@ -16,7 +16,6 @@ export async function mountApp(
   const fixture = createDomFixture(t, url, { pending: true, mobile });
   const { IconsBrowser } = await fixture.load('components/IconsBrowser.tsx');
   const catalog = await fixture.load('lib/catalog.ts');
-  const readiness = await fixture.load('lib/category-readiness.ts');
   const { ToastProvider } = await fixture.load('components/ui/toast.tsx');
   const { IconInspectionProvider } = await fixture.load(
     'lib/icon-inspection.tsx',
@@ -25,7 +24,8 @@ export async function mountApp(
     'components/DownloadIconsButton.tsx',
   );
   const { createRoot } = await import('react-dom/client');
-  const root = createRoot(fixture.window.document.getElementById('root'));
+  const container = fixture.window.document.getElementById('root');
+  let root = createRoot(container);
   fixture.onUnmount(() => act(() => root.unmount()));
   const router = { prefetch() {} };
   const render = () =>
@@ -71,11 +71,16 @@ export async function mountApp(
     window: fixture.window,
     document: fixture.window.document,
     catalog,
-    readiness,
+    requests: fixture.requests,
     get tiles() {
       return [...fixture.window.document.querySelectorAll('.icon-tile')];
     },
-    resolveCategories: (config) => fixture.resolveCategories(readiness, config),
-    rejectCategories: () => fixture.rejectCategories(readiness),
+    resolveCategories: fixture.resolveCategories,
+    rejectCategories: fixture.rejectCategories,
+    async remount() {
+      await act(() => root.unmount());
+      root = createRoot(container);
+      await act(async () => render());
+    },
   };
 }

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, type ReactNode } from 'react';
-import IconReplay from 'fyicons/icons/IconReplay';
+import { IconReplay } from 'fyicons';
+
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useReducedMotion } from '@/vendor/stageshow/reduced-motion';

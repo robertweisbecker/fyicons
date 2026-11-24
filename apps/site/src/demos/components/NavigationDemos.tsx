@@ -4,9 +4,77 @@ import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleIcon } from '@/components/ToggleIcon';
-import { Icon } from '@/components/Icon';
+import { IconRendererContext } from '@/components/UIIcon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { DemoIconButton } from './DemoControls';
+import { createDemoControls } from './DemoControls';
+import {
+  IconAlert,
+  IconAlertFill,
+  IconBookmark,
+  IconBookmarkFill,
+  IconCalendar,
+  IconCalendarFill,
+  IconCalendarSolid,
+  IconChevronDownSm,
+  IconChevronRightSm,
+  IconComponent,
+  IconCopied,
+  IconCopiedFill,
+  IconCopy,
+  IconError,
+  IconErrorFill,
+  IconFolder,
+  IconFolderAdd,
+  IconFolderFill,
+  IconFolderOpen,
+  IconFolderOpenFill,
+  IconGhost,
+  IconGlobe,
+  IconHomeWide,
+  IconHomeWideFill,
+  IconPalette,
+  IconPhone,
+  IconPhoneFill,
+  IconSettingsSmall,
+  IconSettingsSmallFill,
+  IconUsers,
+  IconUsersFill,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  alert: IconAlert,
+  'alert-fill': IconAlertFill,
+  bookmark: IconBookmark,
+  'bookmark-fill': IconBookmarkFill,
+  calendar: IconCalendar,
+  'calendar-fill': IconCalendarFill,
+  'calendar-solid': IconCalendarSolid,
+  'chevron-down-sm': IconChevronDownSm,
+  'chevron-right-sm': IconChevronRightSm,
+  component: IconComponent,
+  copied: IconCopied,
+  'copied-fill': IconCopiedFill,
+  copy: IconCopy,
+  error: IconError,
+  'error-fill': IconErrorFill,
+  folder: IconFolder,
+  'folder-add': IconFolderAdd,
+  'folder-fill': IconFolderFill,
+  'folder-open': IconFolderOpen,
+  'folder-open-fill': IconFolderOpenFill,
+  ghost: IconGhost,
+  globe: IconGlobe,
+  'home-wide': IconHomeWide,
+  'home-wide-fill': IconHomeWideFill,
+  palette: IconPalette,
+  phone: IconPhone,
+  'phone-fill': IconPhoneFill,
+  'settings-small': IconSettingsSmall,
+  'settings-small-fill': IconSettingsSmallFill,
+  users: IconUsers,
+  'users-fill': IconUsersFill,
+});
 
 export function SidebarDemo() {
   const [value, setValue] = useState(['Home']);
@@ -55,7 +123,9 @@ export function SidebarDemo() {
             value={label}
             className="w-full justify-start gap-2 font-normal"
           >
-            <ToggleIcon icon={icon} activeIcon={active} />
+            <IconRendererContext value={Icon}>
+              <ToggleIcon icon={icon} activeIcon={active} />
+            </IconRendererContext>
             {label}
             <span className="ml-auto text-xs text-muted tabular-nums">
               {count}
@@ -119,3 +189,5 @@ export function SidebarDemo() {
     </nav>
   );
 }
+
+const { DemoIconButton } = createDemoControls(Icon);

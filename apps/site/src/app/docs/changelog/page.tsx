@@ -1,5 +1,6 @@
 import { Children, type ComponentProps, type ReactNode } from 'react';
-import IconArrowUpRight from 'fyicons/icons/IconArrowUpRight';
+import { IconArrowUpRight } from 'fyicons';
+
 import ReleaseNotes from '../../../../../../packages/fyicons/CHANGELOG.md';
 import { githubHref } from '@/lib/navigation';
 import publishedDates from '@/data/release-dates.json';

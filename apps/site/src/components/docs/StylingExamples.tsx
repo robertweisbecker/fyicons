@@ -1,7 +1,5 @@
-import IconCircleCheckFill from 'fyicons/icons/IconCircleCheckFill';
-import IconMoon from 'fyicons/icons/IconMoon';
-import IconPlus from 'fyicons/icons/IconPlus';
-import IconSun from 'fyicons/icons/IconSun';
+import { IconCircleCheckFill, IconMoon, IconPlus, IconSun } from 'fyicons';
+
 import { Button } from '@/components/ui/button';
 import { DocsExample } from './DocsExample';
 
@@ -25,7 +23,7 @@ export function GlobalStylingExample() {
 export function ToolbarStylingExample() {
   return (
     <DocsExample aria-label="Toolbar icon color example">
-      <div className="toolbar flex items-center gap-1 rounded-lg bg-ink p-1 text-white">
+      <div className="toolbar flex items-center gap-1 rounded-lg bg-ink p-1 text-[light-dark(#fff,#000)]">
         <Button variant="ghost" size="icon" aria-label="Light theme">
           <IconSun />
         </Button>
@@ -43,9 +41,9 @@ export function ToolbarStylingExample() {
 export function NamedIconStylingExample() {
   return (
     <DocsExample aria-label="Targeted icon styling example">
-      <div className="callout flex items-center gap-3 rounded-lg bg-emerald-500/8 px-4 py-3">
+      <div className="callout flex items-center gap-3 rounded-lg bg-[light-dark(rgb(16_185_129_/_0.08),rgb(52_211_153_/_0.12))] px-4 py-3">
         <IconCircleCheckFill
-          className="h-[1lh] w-[1.5em] self-baseline text-green-600"
+          className="h-[1lh] w-[1.5em] self-baseline text-[light-dark(#16a34a,#4ade80)]"
           aria-hidden="true"
         />
         Your changes are saved.
@@ -59,7 +57,7 @@ export function SpecificityStylingExample() {
     <DocsExample aria-label="Chained icon selector example">
       <IconCircleCheckFill
         size={32}
-        className="text-green-700 dark:text-green-500"
+        className="text-[light-dark(#15803d,#22c55e)]"
         aria-label="Complete"
       />
     </DocsExample>
@@ -72,7 +70,7 @@ export function ColorInheritanceExample() {
       <Button
         variant="outline"
         size="icon"
-        className="btn-toolbar text-blue-600 dark:text-blue-400"
+        className="btn-toolbar text-[light-dark(#2563eb,#60a5fa)]"
         aria-label="Add item"
       >
         <IconPlus />

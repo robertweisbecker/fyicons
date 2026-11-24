@@ -1,6 +1,24 @@
+import { useDemoActivity } from '@/components/DeferredContent';
 import { useEffect, useState } from 'react';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
+import {
+  IconBattery,
+  IconBatteryCharging,
+  IconBatteryEmpty,
+  IconBatteryFullCharging,
+  IconBatteryLow,
+  IconBatteryMedium,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  battery: IconBattery,
+  'battery-charging': IconBatteryCharging,
+  'battery-empty': IconBatteryEmpty,
+  'battery-full-charging': IconBatteryFullCharging,
+  'battery-low': IconBatteryLow,
+  'battery-medium': IconBatteryMedium,
+});
 
 const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
   weekday: 'short',
@@ -11,9 +29,11 @@ const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
 });
 
 export function DeviceClock({ className }: { className?: string }) {
+  const active = useDemoActivity();
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    if (!active) return;
     let timer: number;
     function update() {
       window.clearTimeout(timer);
@@ -32,7 +52,7 @@ export function DeviceClock({ className }: { className?: string }) {
       document.removeEventListener('visibilitychange', onVisibilityChange);
       window.removeEventListener('focus', update);
     };
-  }, []);
+  }, [active]);
 
   return (
     <time
@@ -54,12 +74,14 @@ export function DeviceBattery({
 }: {
   percentageClassName?: string;
 }) {
+  const active = useDemoActivity();
   const [battery, setBattery] = useState<{
     level: number;
     charging: boolean;
   } | null>(null);
 
   useEffect(() => {
+    if (!active) return;
     const batteryNavigator = navigator as Navigator & {
       getBattery?: () => Promise<DeviceBatteryManager>;
     };
@@ -92,7 +114,7 @@ export function DeviceBattery({
       disposed = true;
       unsubscribe();
     };
-  }, []);
+  }, [active]);
 
   const { level, charging } = battery ?? { level: 1000, charging: false };
   const icon = charging

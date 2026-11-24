@@ -1,7 +1,48 @@
 import { type ReactNode } from 'react';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
 import { TooltipGroup } from '@/components/ui/tooltip';
+import {
+  IconArrowClockwise,
+  IconArrowLeft,
+  IconArrowRight,
+  IconCaretsMaximize,
+  IconCircleUserFill,
+  IconCircleXFill,
+  IconEllipsisV,
+  IconGas,
+  IconGasFill,
+  IconInfo,
+  IconInfoFill,
+  IconMinus,
+  IconPlus,
+  IconPuzzlePiece,
+  IconStarFill,
+  IconVideoFill,
+  IconX,
+  IconZoomIn,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  'arrow-clockwise': IconArrowClockwise,
+  'arrow-left': IconArrowLeft,
+  'arrow-right': IconArrowRight,
+  'carets-maximize': IconCaretsMaximize,
+  'circle-user-fill': IconCircleUserFill,
+  'circle-x-fill': IconCircleXFill,
+  'ellipsis-v': IconEllipsisV,
+  gas: IconGas,
+  'gas-fill': IconGasFill,
+  info: IconInfo,
+  'info-fill': IconInfoFill,
+  minus: IconMinus,
+  plus: IconPlus,
+  'puzzle-piece': IconPuzzlePiece,
+  'star-fill': IconStarFill,
+  'video-fill': IconVideoFill,
+  x: IconX,
+  'zoom-in': IconZoomIn,
+});
 
 export function WindowControls() {
   return (

@@ -52,6 +52,8 @@ for (const path of [
   await assert.rejects(access(new URL(path, output)), { code: 'ENOENT' });
 }
 await access(new URL('licenses/stageshow.txt', output));
+await access(new URL('downloads/fyicons.zip', output));
+await access(new URL('brand-wordmarks.svg', output));
 await access(new URL('404.html', output));
 console.log(
   `Verified ${routes.length} static routes, docs content and links, and public/private boundaries.`,

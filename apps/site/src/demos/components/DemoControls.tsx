@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Tooltip as DemoHint } from '@/components/ui/tooltip';
-import { Icon } from '@/components/Icon';
+import { Icon, IconRendererContext } from '@/components/UIIcon';
+import type { ComponentType, ComponentProps } from 'react';
+import type { IconProps } from '@/components/createIconLookup';
+import {
+  IconCopy as CopyGlyph,
+  IconCopied as CopiedGlyph,
+  IconAlert as AlertGlyph,
+} from 'fyicons';
+
 import { ToggleIcon } from '@/components/ToggleIcon';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { Toggle, type ToggleProps } from '@/components/ui/toggle';
@@ -89,6 +97,12 @@ export function CopyButton({
     setState(success ? 'copied' : 'error');
     reset.current = setTimeout(() => setState('idle'), 2200);
   }
+  const StatusIcon =
+    state === 'copied'
+      ? CopiedGlyph
+      : state === 'error'
+        ? AlertGlyph
+        : CopyGlyph;
   const status =
     state === 'copied'
       ? 'Copied'
@@ -105,15 +119,7 @@ export function CopyButton({
         aria-label={status}
         onClick={handleCopy}
       >
-        <Icon
-          name={
-            state === 'copied'
-              ? 'copied'
-              : state === 'error'
-                ? 'alert'
-                : 'copy'
-          }
-        />
+        <StatusIcon />
         {showLabel && (state === 'error' ? 'Try again' : status)}
         <span className="sr-only" role="status">
           {state === 'copied'
@@ -128,4 +134,20 @@ export function CopyButton({
 }
 export function ControlDivider() {
   return <span aria-hidden className="mx-1 h-4 w-px shrink-0 bg-line" />;
+}
+
+/** Bind demo controls to the feature's explicit set of icon imports. */
+export function createDemoControls(Renderer: ComponentType<IconProps>) {
+  return {
+    DemoIconButton: (props: ComponentProps<typeof DemoIconButton>) => (
+      <IconRendererContext value={Renderer}>
+        <DemoIconButton {...props} />
+      </IconRendererContext>
+    ),
+    DemoToggle: (props: ComponentProps<typeof DemoToggle>) => (
+      <IconRendererContext value={Renderer}>
+        <DemoToggle {...props} />
+      </IconRendererContext>
+    ),
+  };
 }

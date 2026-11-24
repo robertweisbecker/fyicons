@@ -6,6 +6,7 @@ export default function NotFound() {
       <h1 className="text-3xl font-medium tracking-tight">Page not found</h1>
       <p className="mt-4 text-muted">This page does not exist.</p>
       <Link
+        prefetch={false}
         href="/icons/"
         className="mt-6 inline-block underline underline-offset-4"
       >

@@ -1,30 +1,64 @@
 'use client';
-
+import { createIconLookup } from '@/components/createIconLookup';
+import { DeferredContent } from '@/components/DeferredContent';
+import {
+  VariantPlaceholder,
+  ConstructionPlaceholder,
+  OpticalPlaceholder,
+  GroupPlaceholder,
+} from './DemoPlaceholders';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Icon } from '@/components/Icon';
 import { ShadcnIcon } from '@/components/BrandIcons';
 import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { InstallCommand } from '@/components/InstallCommand';
 import { SearchTrigger } from '@/components/SearchTrigger';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { buttonVariants } from '@/components/ui/button';
-import { icons } from '@/lib/catalog';
+import catalogSummary from '@/data/catalog-summary.json';
 import { assetPath } from '@/lib/navigation';
 import { useReducedMotionPreference } from '@/lib/preferences';
-import { Construction } from './Construction';
 import { DesktopShowcase } from './desktop/DesktopShowcase';
-import { IconGroupCarousel } from './IconGroupCarousel';
 import { IconExampleCard } from './IconExampleCard';
 import { IconSpecimen } from './IconSpecimen';
-import { IconVariants } from './IconVariants';
-import { OpticalAdjustments } from './OpticalAdjustments';
-import { ProgressIcons } from './ProgressIcons';
-import { StatefulIcons } from './StatefulIcons';
 import './Landing.css';
+import {
+  IconEyeClosed,
+  IconEyePupil,
+  IconPenToolAlt,
+  IconArrowRight,
+  IconAtomReact,
+  IconAsterisk,
+  IconVectorSvg,
+  IconShapes,
+  IconGridRuler,
+  IconBorderWidth,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  'eye-closed': IconEyeClosed,
+  'eye-pupil': IconEyePupil,
+  'pen-tool-alt': IconPenToolAlt,
+  'arrow-right': IconArrowRight,
+  'atom-react': IconAtomReact,
+  asterisk: IconAsterisk,
+  'vector-svg': IconVectorSvg,
+  shapes: IconShapes,
+  'grid-ruler': IconGridRuler,
+  'border-width': IconBorderWidth,
+});
+
+const loadVariants = () =>
+  import('./VariantExamples').then((module) => module.VariantExamples);
+const loadConstruction = () =>
+  import('./Construction').then((module) => module.Construction);
+const loadOptical = () =>
+  import('./OpticalAdjustments').then((module) => module.OpticalAdjustments);
+const loadGroups = () =>
+  import('./IconGroupCarousel').then((module) => module.IconGroupCarousel);
 
 // Landing heading styles live here alongside the page's section composition.
-const sectionHeadingClassName =
-  'text-3xl font-medium tracking-tight sm:text-4xl';
+const sectionHeadingClassName = 'text-3xl font-medium sm:text-4xl';
 const featureHeadingClassName = 'text-2xl font-medium tracking-tight';
 const installationHeadingClassName =
   'flex items-center gap-2 text-lg font-medium tracking-tight';
@@ -81,7 +115,7 @@ export default function Landing() {
           className="mx-auto grid max-w-135 grid-cols-1 items-center gap-6 px-2 pt-8 pb-12 md:max-w-292 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-8 md:px-6 md:py-14 lg:gap-18 lg:px-8 lg:pt-18 lg:pb-16"
         >
           <div className="hero-copy pt-8 pb-0 md:pt-13 md:pb-7">
-            <h1 className="hero-headline text-[clamp(23px,7vw,36px)] leading-[1.125] tracking-[-0.035em] md:text-[clamp(28px,3.3vw,42px)]">
+            <h1 className="hero-headline text-[clamp(32px,7vw,48px)] leading-[1.125] tracking-[-0.035em] md:text-[clamp(28px,3.3vw,42px)]">
               <span className="hero-headline-line font-normal">
                 Some icons I made{' '}
                 <span className="hero-pen-word">
@@ -110,9 +144,10 @@ export default function Landing() {
               </div>
 
               <div className="space-y-4">
-                <SearchTrigger iconCount={icons.length} />
+                <SearchTrigger iconCount={catalogSummary.count} />
                 <div className="flex flex-col flex-wrap items-stretch gap-4 md:flex-row md:items-center">
                   <Link
+                    prefetch={false}
                     className={buttonVariants({
                       variant: 'default',
                       size: 'lg',
@@ -120,7 +155,7 @@ export default function Landing() {
                     href="/icons/"
                   >
                     Browse all
-                    <Icon name="arrow-right" size={16} />
+                    <Icon name="arrow-right" />
                   </Link>
                   <InstallCommand
                     command="npm i fyicons"
@@ -156,7 +191,7 @@ export default function Landing() {
         >
           <h2
             id="installation-heading"
-            className={`mb-8 ${sectionHeadingClassName}`}
+            className={`mb-8 ${sectionHeadingClassName} tracking-tight`}
           >
             Quick start
           </h2>
@@ -201,8 +236,9 @@ export default function Landing() {
                 SVGs
               </h3>
               <p className="text-balance text-muted">
-                Get all {icons.length.toLocaleString('en-US')} icons as a ZIP.
-                Use with any framework, or drag them (gently) into your designs.
+                Get all {catalogSummary.count.toLocaleString('en-US')} icons as
+                a ZIP. Use with any framework, or drag them (gently) into your
+                designs.
               </p>
               <DownloadIconsButton className="mt-auto self-start max-md:w-full" />
             </article>
@@ -224,7 +260,7 @@ export default function Landing() {
               <div className="flex flex-col items-center gap-5">
                 <Icon name="shapes" className="size-8" />
                 <p className="text-lg tracking-tight">
-                  {icons.length.toLocaleString('en-US')} icons
+                  {catalogSummary.count.toLocaleString('en-US')} icons
                 </p>
               </div>
               <div className="flex flex-col items-center gap-5">
@@ -245,51 +281,80 @@ export default function Landing() {
             <h3 id="icon-variants-heading" className={featureHeadingClassName}>
               More than just outlines
             </h3>
-            <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-6 sm:gap-x-4">
-              <IconVariants />
-              <IconExampleCard label="Progress" className="sm:col-span-3">
-                <ProgressIcons />
-              </IconExampleCard>
-              <IconExampleCard
-                label="Toggles"
-                className="col-span-2 sm:col-span-3"
+            <ScrollArea.Root>
+              <ScrollArea.Viewport
+                className="relative"
+                role="region"
+                aria-labelledby="icon-variants-heading"
               >
-                <StatefulIcons />
-              </IconExampleCard>
-            </div>
+                <ScrollArea.Content className="w-max pb-3 sm:w-full sm:min-w-0! sm:pb-0">
+                  <DeferredContent
+                    loader={loadVariants}
+                    componentProps={{}}
+                    fallback={<VariantPlaceholder />}
+                  />
+                </ScrollArea.Content>
+              </ScrollArea.Viewport>
+              <ScrollArea.Scrollbar orientation="horizontal" />
+            </ScrollArea.Root>
           </section>
-          <section aria-labelledby="construction-heading" className="space-y-6">
-            <h3 id="construction-heading" className={featureHeadingClassName}>
-              Constructed with care
-            </h3>
-            <p className="text-lg font-medium text-balance text-muted">
-              Designed on a consistent, pixel-aligned grid.
-            </p>
-            <Construction />
+          <section aria-labelledby="construction-heading">
+            <div className="mb-6 flex flex-col gap-2 md:max-w-3xl">
+              <h3 id="construction-heading" className={featureHeadingClassName}>
+                Constructed with care
+              </h3>
+              <p className="text-lg font-medium text-pretty text-muted">
+                Each icon is designed on a consistent, pixel-aligned grid, at
+                the size you will actually use it.
+              </p>
+            </div>
+            <DeferredContent
+              loader={loadConstruction}
+              componentProps={{}}
+              fallback={<ConstructionPlaceholder />}
+            />
           </section>
           <section aria-labelledby="optical-adjustments-heading">
-            <OpticalAdjustments
-              heading={
-                <p
-                  id="optical-adjustments-heading"
-                  className="text-lg font-medium text-balance text-muted"
-                >
-                  With a range of optical adjustments.
-                </p>
-              }
+            <DeferredContent
+              loader={loadOptical}
+              componentProps={{
+                heading: (
+                  <p
+                    id="optical-adjustments-heading"
+                    className="text-lg font-medium text-pretty text-muted"
+                  >
+                    But some rules are made to be broken.
+                  </p>
+                ),
+              }}
+              fallback={<OpticalPlaceholder />}
             />
           </section>
           <section aria-labelledby="icon-groups-heading">
-            <IconGroupCarousel
-              heading={
-                <h3
-                  id="icon-groups-heading"
-                  className={featureHeadingClassName}
-                >
-                  Categories galore
-                </h3>
-              }
+            <div className="mb-6">
+              <h3 id="icon-groups-heading" className={featureHeadingClassName}>
+                Categories galore
+              </h3>
+            </div>
+            <DeferredContent
+              loader={loadGroups}
+              componentProps={{}}
+              fallback={<GroupPlaceholder />}
             />
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/icons/"
+                prefetch={false}
+                className={buttonVariants({
+                  variant: 'default',
+                  size: 'lg',
+                  className: 'min-w-[min(100%,var(--container-xs))]',
+                })}
+              >
+                View all icons
+                <Icon name="arrow-right" size={20} />
+              </Link>
+            </div>
           </section>
         </section>
       </div>

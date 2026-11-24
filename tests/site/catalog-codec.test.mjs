@@ -26,7 +26,7 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
       ],
       ['second-16.svg', '90:12', [], null, null],
     ]),
-    svgArchive: pack(sourceSvgs),
+    svgArchive: 'Source SVGs are no longer part of the runtime payload',
   });
   assert.deepEqual(decoded, {
     ...metadata,
@@ -37,7 +37,6 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
         aliases: ['coffee', '☕'],
         variantProperties: { Style: '図形' },
         addedAt: '2026-10-01T00:00:00.000Z',
-        svg: sourceSvgs[0],
         width: 16,
         height: 16,
         file: 'icons/café-16.svg',
@@ -46,7 +45,6 @@ test('production decoder preserves metadata, Unicode, optional omissions and row
         filename: 'second-16.svg',
         id: '90:12',
         aliases: [],
-        svg: sourceSvgs[1],
         width: 16,
         height: 16,
         file: 'icons/second-16.svg',

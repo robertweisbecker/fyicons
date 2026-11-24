@@ -75,7 +75,15 @@ const components: MDXComponents = {
   ),
   a: ({ href, children, ...props }) =>
     href?.startsWith('/') ? (
-      <Link {...props} href={href}>
+      <Link
+        {...props}
+        href={href}
+        prefetch={
+          /^\/(icons|examples|docs\/react)(?:\/|\?|#|$)/.test(href)
+            ? false
+            : undefined
+        }
+      >
         {children}
       </Link>
     ) : (

@@ -1,11 +1,84 @@
 import { type ComponentProps } from 'react';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { FormatControls, TextAlignment } from '../FormatStudy';
-import { Glyph } from '../Study';
+import { createGlyph } from '../Study';
+import {
+  IconAngle,
+  IconApps,
+  IconBorderRadius,
+  IconBucket,
+  IconCheckSm,
+  IconChevronDownSm,
+  IconChevronRightSm,
+  IconComponent,
+  IconEye,
+  IconEyeFill,
+  IconEyeSlash,
+  IconEyeSlashFill,
+  IconFont,
+  IconFrame,
+  IconHeight,
+  IconItalic,
+  IconLetterSpacing,
+  IconLineHeight,
+  IconLinkUnlink,
+  IconListBullet,
+  IconListOrdered,
+  IconLockOpen,
+  IconLockOpenFill,
+  IconMinus,
+  IconPlus,
+  IconShadow,
+  IconSlidersV,
+  IconSwatches,
+  IconTextBold,
+  IconTextStrikethrough,
+  IconTextTitle,
+  IconTextTitleFill,
+  IconTextUnderline,
+  IconWidth,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  angle: IconAngle,
+  apps: IconApps,
+  'border-radius': IconBorderRadius,
+  bucket: IconBucket,
+  'check-sm': IconCheckSm,
+  'chevron-down-sm': IconChevronDownSm,
+  'chevron-right-sm': IconChevronRightSm,
+  component: IconComponent,
+  eye: IconEye,
+  'eye-fill': IconEyeFill,
+  'eye-slash': IconEyeSlash,
+  'eye-slash-fill': IconEyeSlashFill,
+  font: IconFont,
+  frame: IconFrame,
+  height: IconHeight,
+  italic: IconItalic,
+  'letter-spacing': IconLetterSpacing,
+  'line-height': IconLineHeight,
+  'link-unlink': IconLinkUnlink,
+  'list-bullet': IconListBullet,
+  'list-ordered': IconListOrdered,
+  'lock-open': IconLockOpen,
+  'lock-open-fill': IconLockOpenFill,
+  minus: IconMinus,
+  plus: IconPlus,
+  shadow: IconShadow,
+  'sliders-v': IconSlidersV,
+  swatches: IconSwatches,
+  'text-bold': IconTextBold,
+  'text-strikethrough': IconTextStrikethrough,
+  'text-title': IconTextTitle,
+  'text-title-fill': IconTextTitleFill,
+  'text-underline': IconTextUnderline,
+  width: IconWidth,
+});
 
 export const designFills = [
   { name: 'Lavender', color: 'var(--color-violet-300)' },
@@ -205,3 +278,7 @@ export function DesignInspector({
     </aside>
   );
 }
+
+const Glyph = createGlyph(Icon);
+
+const { DemoToggle } = createDemoControls(Icon);

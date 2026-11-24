@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconTurtleSimple = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconTurtleSimple(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="turtle-simple"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M12.5 12.5h-2l-1-1.75-.655.328a4 4 0 0 1-1.79.422H5.5l-1 1h-2l1-3h-2v-.646c0-.9.088-1.81.497-2.611C2.596 5.07 3.807 3.5 6 3.5c3.5 0 4.5 3 4.5 3l2-2h2v.324a5 5 0 0 1-2.226 4.16L11.5 9.5z" /><path stroke="currentColor" strokeLinecap="round" d="M10.5 6.5 9.247 7.574A8 8 0 0 1 4.04 9.5H1.5" />{props.children}</SvgRoot>;
+});
+export default IconTurtleSimple;

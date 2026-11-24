@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { motion, MotionConfig } from 'motion/react';
 import { useReducedMotionPreference } from '@/lib/preferences';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import {
   guides,
@@ -19,6 +19,41 @@ import {
   type Guide,
 } from './construction-guides';
 import './IconSpecimen.css';
+import {
+  IconBlocks,
+  IconChatRoundEdit,
+  IconCircle,
+  IconCircleFill,
+  IconEnvelope,
+  IconFileZip,
+  IconPauseFill,
+  IconPlayFill,
+  IconPointDown,
+  IconScissors,
+  IconSkull,
+  IconSkullFill,
+  IconSquare,
+  IconSquareAsterisk,
+  IconSwatches,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  blocks: IconBlocks,
+  'chat-round-edit': IconChatRoundEdit,
+  circle: IconCircle,
+  'circle-fill': IconCircleFill,
+  envelope: IconEnvelope,
+  'file-zip': IconFileZip,
+  'pause-fill': IconPauseFill,
+  'play-fill': IconPlayFill,
+  'point-down': IconPointDown,
+  scissors: IconScissors,
+  skull: IconSkull,
+  'skull-fill': IconSkullFill,
+  square: IconSquare,
+  'square-asterisk': IconSquareAsterisk,
+  swatches: IconSwatches,
+});
 
 const specimenTransition = {
   type: 'tween',

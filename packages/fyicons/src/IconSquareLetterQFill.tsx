@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconSquareLetterQFill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSquareLetterQFill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="square-letter-q-fill"><path fill="currentColor" d="M11.5 2A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5v-7A2.5 2.5 0 0 1 4.5 2zM8 4.9c-.972 0-1.71.415-2.191 1.028-.471.598-.684 1.363-.684 2.072s.213 1.474.684 2.072c.482.613 1.219 1.029 2.191 1.029.486 0 .912-.105 1.278-.286l.793.993a.5.5 0 0 0 .781-.625l-.778-.974q.06-.067.117-.137c.471-.598.684-1.363.684-2.072s-.213-1.474-.684-2.072C9.71 5.315 8.972 4.9 8 4.9m0 1c.657 0 1.107.268 1.405.647.31.393.47.928.47 1.453 0 .507-.151 1.022-.44 1.41l-.58-.727a.5.5 0 0 0-.782.625l.555.694a2 2 0 0 1-.628.099c-.657 0-1.107-.269-1.405-.647-.31-.393-.47-.929-.47-1.454s.16-1.06.47-1.453C6.893 6.168 7.343 5.9 8 5.9" />{props.children}</SvgRoot>;
+});
+export default IconSquareLetterQFill;

@@ -1,8 +1,27 @@
 import { useState } from 'react';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { DemoToggle } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
-import { Glyph, panel } from './Study';
+import { createGlyph, panel } from './Study';
+import { createIconLookup } from '@/components/createIconLookup';
+import {
+  IconTextBold,
+  IconItalic,
+  IconTextUnderline,
+  IconTextStrikethrough,
+  IconMinus,
+  IconListOrdered,
+  IconListBullet,
+  IconChevronRightSm,
+  IconSlidersV,
+  IconTextAlignStart,
+  IconTextAlignCenter,
+  IconTextAlignEnd,
+  IconArrowToTop,
+  IconArrowsToMiddle,
+  IconArrowToBottom,
+  IconTextAlignJustify,
+} from 'fyicons';
 
 export function FormatStudy() {
   return (
@@ -174,3 +193,26 @@ export function TextAlignment({
     </div>
   );
 }
+
+const Icon = createIconLookup({
+  'text-bold': IconTextBold,
+  italic: IconItalic,
+  'text-underline': IconTextUnderline,
+  'text-strikethrough': IconTextStrikethrough,
+  minus: IconMinus,
+  'list-ordered': IconListOrdered,
+  'list-bullet': IconListBullet,
+  'chevron-right-sm': IconChevronRightSm,
+  'sliders-v': IconSlidersV,
+  'text-align-start': IconTextAlignStart,
+  'text-align-center': IconTextAlignCenter,
+  'text-align-end': IconTextAlignEnd,
+  'align-top': IconArrowToTop,
+  'align-middle': IconArrowsToMiddle,
+  'align-bottom': IconArrowToBottom,
+  'text-align-justify': IconTextAlignJustify,
+});
+
+const Glyph = createGlyph(Icon);
+
+const { DemoToggle } = createDemoControls(Icon);

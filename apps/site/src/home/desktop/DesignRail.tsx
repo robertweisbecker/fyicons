@@ -1,4 +1,14 @@
-import { Glyph } from '../Study';
+import { createIconLookup } from '@/components/createIconLookup';
+import { createGlyph } from '../Study';
+import {
+  IconFile,
+  IconSparkle,
+  IconCirclePlus,
+  IconToolbox,
+  IconLineHorizontal,
+  IconToken,
+  IconBookOpen3,
+} from 'fyicons';
 
 /** The compact rail moved from the standalone Examples study. */
 export function DesignRail() {
@@ -45,3 +55,15 @@ export function DesignRail() {
     </div>
   );
 }
+
+const Icon = createIconLookup({
+  file: IconFile,
+  sparkle: IconSparkle,
+  'circle-plus': IconCirclePlus,
+  toolbox: IconToolbox,
+  'line-horizontal': IconLineHorizontal,
+  token: IconToken,
+  'book-open-3': IconBookOpen3,
+});
+
+const Glyph = createGlyph(Icon);

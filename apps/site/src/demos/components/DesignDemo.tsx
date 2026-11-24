@@ -1,13 +1,108 @@
 import { useState } from 'react';
 import { Field } from '@base-ui/react/field';
 import { NumberField } from '@base-ui/react/number-field';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
 import { Switch } from '@/components/ui/switch';
 import { Slider, SliderControl } from '@/components/ui/slider';
 import { cn } from '@/lib/utils';
-import { DemoIconButton, DemoToggle, ControlDivider } from './DemoControls';
+import { createDemoControls, ControlDivider } from './DemoControls';
+import {
+  IconAlert,
+  IconAlertFill,
+  IconArrowRestart,
+  IconArrowToLeft,
+  IconArrowToRight,
+  IconArrowX,
+  IconArrowY,
+  IconArrowsToCenter,
+  IconAsterisk,
+  IconBorderOuter,
+  IconBorderRadius,
+  IconBucket,
+  IconCheckSm,
+  IconCircleHalftone,
+  IconCopied,
+  IconCopiedFill,
+  IconCopy,
+  IconDrawing,
+  IconError,
+  IconErrorFill,
+  IconEye,
+  IconEyeClosed,
+  IconEyeFill,
+  IconFrame,
+  IconGhost,
+  IconGrid,
+  IconGridFill,
+  IconHand,
+  IconHandGrab,
+  IconLayers,
+  IconLinkSide,
+  IconLinkSideUnlink,
+  IconLock,
+  IconLockFill,
+  IconLockOpen,
+  IconLockOpenFill,
+  IconPenTool,
+  IconPointer,
+  IconPointerFill,
+  IconScribble,
+  IconShadow,
+  IconTextTitle,
+  IconTextTitleFill,
+  IconVectorPath,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  alert: IconAlert,
+  'alert-fill': IconAlertFill,
+  'arrow-restart': IconArrowRestart,
+  'arrow-to-left': IconArrowToLeft,
+  'arrow-to-right': IconArrowToRight,
+  'arrow-x': IconArrowX,
+  'arrow-y': IconArrowY,
+  'arrows-to-center': IconArrowsToCenter,
+  asterisk: IconAsterisk,
+  'border-outer': IconBorderOuter,
+  'border-radius': IconBorderRadius,
+  bucket: IconBucket,
+  'check-sm': IconCheckSm,
+  'circle-halftone': IconCircleHalftone,
+  copied: IconCopied,
+  'copied-fill': IconCopiedFill,
+  copy: IconCopy,
+  drawing: IconDrawing,
+  error: IconError,
+  'error-fill': IconErrorFill,
+  eye: IconEye,
+  'eye-closed': IconEyeClosed,
+  'eye-fill': IconEyeFill,
+  frame: IconFrame,
+  ghost: IconGhost,
+  grid: IconGrid,
+  'grid-fill': IconGridFill,
+  hand: IconHand,
+  'hand-grab': IconHandGrab,
+  layers: IconLayers,
+  'link-side': IconLinkSide,
+  'link-side-unlink': IconLinkSideUnlink,
+  lock: IconLock,
+  'lock-fill': IconLockFill,
+  'lock-open': IconLockOpen,
+  'lock-open-fill': IconLockOpenFill,
+  'pen-tool': IconPenTool,
+  pointer: IconPointer,
+  'pointer-fill': IconPointerFill,
+  scribble: IconScribble,
+  shadow: IconShadow,
+  text: IconTextTitle,
+  'text-fill': IconTextTitleFill,
+  'text-title': IconTextTitle,
+  'text-title-fill': IconTextTitleFill,
+  'vector-path': IconVectorPath,
+});
 
 const tools = [
   ['Select', 'pointer', 'pointer-fill'],
@@ -375,3 +470,5 @@ export function DesignDemo() {
     </div>
   );
 }
+
+const { DemoIconButton, DemoToggle } = createDemoControls(Icon);

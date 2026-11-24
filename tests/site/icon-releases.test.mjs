@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import packageInfo from 'fyicons/package.json' with { type: 'json' };
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createDomFixture } from './helpers/dom-fixture.mjs';
@@ -8,14 +9,11 @@ test('icon tiles announce additions in the latest two minor release lines and in
   const fixture = createDomFixture(t, 'https://example.test/icons/');
   const { icons } = await fixture.load('lib/catalog.ts');
   const { default: history } = await fixture.load('data/icon-releases.json');
-  const { version } = (
-    await import('fyicons/package.json', { with: { type: 'json' } })
-  ).default;
   const { IconTile } = await fixture.load('components/IconTile.tsx');
   const { IconReleaseInfo } = await fixture.load(
     'components/IconReleaseInfo.tsx',
   );
-  const minor = version.split('.').slice(0, 2).join('.') + '.';
+  const minor = packageInfo.version.split('.').slice(0, 2).join('.') + '.';
   const previous = history.releases.findLast(
     (release) => !release.version.startsWith(minor),
   )?.version;

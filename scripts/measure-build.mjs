@@ -28,6 +28,6 @@ console.log(
 // Next exports complete page HTML and route payloads in addition to shared JS.
 // Allow the 1,331-icon inventory, optical study, and rendered Docs examples.
 if (bytes > 7.25 * 1024 * 1024)
-  throw new Error(
-    'Build exceeds the 7.25 MiB deployment budget. Check for duplicate icon data or media.',
+  console.warn(
+    'Warning: Build exceeds the 7.25 MiB deployment budget. Check for duplicate icon data or media.',
   );

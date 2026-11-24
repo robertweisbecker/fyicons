@@ -48,7 +48,7 @@ Use the `.fy-icon` class with a parent selector to style multiple icons in a gro
 
 ```css
 .toolbar .fy-icon {
-  color: #fff;
+  color: light-dark(#fff, #000);
 }
 ```
 
@@ -64,7 +64,7 @@ Use `.fy-{icon-name}` for targeted styling on a single icon:
     align-self: baseline;
   }
   .fy-circle-check-fill {
-    color: #16a34a;
+    color: light-dark(#16a34a, #4ade80);
   }
 }
 ```
@@ -75,10 +75,10 @@ For additional specificity, you might chain the selectors, even if you find the 
 
 ```css
 .fy-circle-check-fill {
-  color: #16a34a;
+  color: light-dark(#16a34a, #4ade80);
 }
 .fy-icon.fy-circle-check-fill {
-  color: #15803d;
+  color: light-dark(#15803d, #22c55e);
 }
 ```
 
@@ -90,7 +90,7 @@ SVG paths use `currentColor` for fills, so they inherit the surrounding text's C
 
 ```css
 .btn-toolbar {
-  color: #2563eb;
+  color: light-dark(#2563eb, #60a5fa);
 }
 ```
 

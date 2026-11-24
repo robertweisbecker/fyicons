@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconAtSignItalic = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconAtSignItalic(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="at-sign-italic"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M10.5 13.5c-1.743 1.119-4.39 1.313-6.567-.43a6.5 6.5 0 0 1-1.8-7.864c1.256-2.64 4.294-4.53 7.74-3.56 3.46.975 4.245 3.733 4.377 4.978.305 2.88-1.67 4.885-3.387 3.786-1.21-.958-.863-2.95-.363-4.862M10 8.096c-.171 1.614-1.56 2.634-2.79 2.39-1.297-.256-2.015-1.799-1.433-3.297.463-1.195 1.591-1.944 2.715-1.64 1.06.286 1.634 1.364 1.508 2.547" />{props.children}</SvgRoot>;
+});
+export default IconAtSignItalic;

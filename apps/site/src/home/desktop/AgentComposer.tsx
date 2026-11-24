@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Collapsible } from '@base-ui/react/collapsible';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Button } from '@/components/ui/button';
 import {
   Menu,
@@ -9,7 +9,86 @@ import {
   MenuRadioGroup,
   MenuRadioItem,
 } from '@/components/ui/menu';
-import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/demos/components/DemoControls';
+import {
+  IconAgent,
+  IconArrowUp,
+  IconBolt,
+  IconBoltFill,
+  IconBookReading,
+  IconChevronRightSm,
+  IconChevronsExpand,
+  IconCirclePause,
+  IconCirclePauseFill,
+  IconCirclePlay,
+  IconCirclePlayFill,
+  IconFileSkill,
+  IconGaugeHigh,
+  IconGaugeLow,
+  IconGhost,
+  IconLightbulb,
+  IconLightbulbFill,
+  IconLightbulbOn,
+  IconLineVertical,
+  IconMicrophone,
+  IconMicrophoneFill,
+  IconNotePad,
+  IconPencil,
+  IconPlug,
+  IconPlusSm,
+  IconPointers,
+  IconShieldCode,
+  IconTarget,
+  IconTargetBullseye,
+  IconTextTitle,
+  IconTextTitleFill,
+  IconThoughtBubble,
+  IconTimer,
+  IconTimerFill,
+  IconTrash,
+  IconWaveform,
+  IconWrenchTilt,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  agent: IconAgent,
+  'arrow-up': IconArrowUp,
+  bolt: IconBolt,
+  'bolt-fill': IconBoltFill,
+  'book-reading': IconBookReading,
+  'chevron-right-sm': IconChevronRightSm,
+  'chevrons-maximize': IconChevronsExpand,
+  'circle-pause': IconCirclePause,
+  'circle-pause-fill': IconCirclePauseFill,
+  'circle-play': IconCirclePlay,
+  'circle-play-fill': IconCirclePlayFill,
+  'file-skill': IconFileSkill,
+  'gauge-high': IconGaugeHigh,
+  'gauge-low': IconGaugeLow,
+  ghost: IconGhost,
+  lightbulb: IconLightbulb,
+  'lightbulb-fill': IconLightbulbFill,
+  'lightbulb-on': IconLightbulbOn,
+  'line-vertical': IconLineVertical,
+  microphone: IconMicrophone,
+  'microphone-fill': IconMicrophoneFill,
+  'note-pad': IconNotePad,
+  pencil: IconPencil,
+  plug: IconPlug,
+  'plus-sm': IconPlusSm,
+  pointers: IconPointers,
+  'shield-code': IconShieldCode,
+  target: IconTarget,
+  'target-bullseye': IconTargetBullseye,
+  text: IconTextTitle,
+  'text-fill': IconTextTitleFill,
+  'thought-bubble': IconThoughtBubble,
+  timer: IconTimer,
+  'timer-fill': IconTimerFill,
+  trash: IconTrash,
+  waveform: IconWaveform,
+  'wrench-tilt': IconWrenchTilt,
+});
 
 const agentModes = {
   Plan: { icon: 'lightbulb', activeIcon: 'lightbulb-on' },
@@ -35,12 +114,14 @@ export function AgentActivity({
           <Button
             variant="ghost"
             size="unstyled"
-            className="group hover:bg-unset w-fit justify-start gap-1 rounded-sm text-xs leading-4 font-normal hover:text-ink"
+            className="group hover:bg-unset active:scale-initial w-fit justify-start gap-1 rounded-sm text-xs leading-4 font-normal hover:text-ink"
           />
         }
       >
         <Icon name="thought-bubble" />
-        <span className="shimmer">Thinking…</span>
+        <span className="shimmer shimmer-duration-1200 shimmer-spread-6">
+          Thinking…
+        </span>
         <Icon
           name="chevron-right-sm"
           className="ml-auto transition-transform duration-150 ease-out group-focus-visible:transition-none group-data-panel-open:rotate-90 motion-reduce:transition-none"
@@ -182,9 +263,9 @@ export function AgentComposer() {
             <DemoIconButton
               label="Send"
               icon="arrow-up"
-              variant="default"
+              variant="unstyled"
               size="icon-xs"
-              className="rounded-full bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700"
+              className="ring-none shadow-unset rounded-full bg-blue-500 text-white outline-none hover:bg-blue-600 active:bg-blue-700"
             />
           </div>
         </div>
@@ -192,3 +273,5 @@ export function AgentComposer() {
     </div>
   );
 }
+
+const { DemoIconButton, DemoToggle } = createDemoControls(Icon);

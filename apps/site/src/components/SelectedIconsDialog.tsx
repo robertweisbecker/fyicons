@@ -1,11 +1,89 @@
 import { useRef, useState, type MouseEvent } from 'react';
 import { Dialog } from '@base-ui/react/dialog';
+import { Tabs } from '@base-ui/react/tabs';
+import { CodeBlock } from './CodeBlock';
 import { Icon } from './Icon';
 import { IconButton } from './IconButton';
-import { Button } from './ui/button';
+import { Button, buttonVariants } from './ui/button';
 import { Badge } from './ui/badge';
 import { getIconDisplayName, type IconRecord } from '@/lib/catalog';
-import { download } from '@/lib/downloads';
+import { downloadIcon } from '@/lib/downloads';
+
+const codeTabClassName = buttonVariants({
+  variant: 'text',
+  size: 'sm',
+  className: 'data-active:text-ink',
+});
+
+function SelectedIconsCode({ icons }: { icons: IconRecord[] }) {
+  const names = icons.map((icon) => icon.componentName);
+  const singleLineImport = `import { ${names.join(', ')} } from 'fyicons';`;
+  const importStatement =
+    singleLineImport.length <= 80
+      ? singleLineImport
+      : [
+          'import {',
+          ...names.map((name) => `  ${name},`),
+          "} from 'fyicons';",
+        ].join('\n');
+  const jsx = [
+    importStatement,
+    '',
+    'export function SavedIcons() {',
+    '  return (',
+    '    <>',
+    ...names.map((name) => `      <${name} />`),
+    '    </>',
+    '  );',
+    '}',
+  ].join('\n');
+  const registryItems = icons.map(
+    (icon) => `robertweisbecker/fyicons/${icon.name}`,
+  );
+  const shadcnCommand = `npx shadcn@latest add ${registryItems.join(' ')}`;
+
+  return (
+    <Tabs.Root
+      defaultValue="jsx"
+      className="flex flex-col gap-2 px-3 pt-2 pb-3"
+    >
+      <Tabs.List
+        aria-label="Selected icon code"
+        activateOnFocus
+        className="group/code-tabs relative isolate grid w-fit grid-cols-2 gap-1"
+      >
+        <Tabs.Tab value="jsx" className={codeTabClassName}>
+          React JSX
+        </Tabs.Tab>
+        <Tabs.Tab value="shadcn" className={codeTabClassName}>
+          shadcn CLI
+        </Tabs.Tab>
+        <Tabs.Indicator
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 left-0 -z-10 h-full w-(--active-tab-width) translate-x-(--active-tab-left) rounded-md bg-inset transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-has-focus-visible/code-tabs:transition-none motion-reduce:transition-none"
+        />
+      </Tabs.List>
+      <Tabs.Panel value="jsx">
+        <CodeBlock
+          key={jsx}
+          aria-label="React JSX for selected icons"
+          className="text-xs leading-5"
+        >
+          <code>{jsx}</code>
+        </CodeBlock>
+      </Tabs.Panel>
+      <Tabs.Panel value="shadcn">
+        <CodeBlock
+          key={shadcnCommand}
+          aria-label="shadcn command for selected icons"
+          className="text-xs leading-5 wrap-anywhere whitespace-pre-wrap"
+        >
+          <code>{shadcnCommand}</code>
+        </CodeBlock>
+      </Tabs.Panel>
+    </Tabs.Root>
+  );
+}
 
 export function SelectedIconsDialog({
   icons,
@@ -48,7 +126,7 @@ export function SelectedIconsDialog({
         <Dialog.Popup
           data-selection-dialog=""
           initialFocus={title}
-          className="fixed top-1/2 left-1/2 z-70 flex max-h-[min(40rem,85dvh)] w-[min(30rem,calc(100%-2rem))] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl bg-surface text-ink shadow-xl outline-1 outline-ink/10 transition-[opacity,scale] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none"
+          className="fixed top-[min(4rem,10dvh)] left-1/2 z-70 flex max-h-[min(40rem,85dvh)] w-[min(30rem,calc(100%-2rem))] origin-top -translate-x-1/2 flex-col overflow-hidden rounded-2xl bg-surface text-ink shadow-xl outline-1 outline-ink/10 transition-[opacity,scale] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none"
         >
           <div className="shrink-0 border-b border-line p-5">
             <div className="flex items-center justify-between gap-4">
@@ -57,10 +135,7 @@ export function SelectedIconsDialog({
                 tabIndex={-1}
                 className="text-base font-semibold outline-none"
               >
-                {/* <Icon name="file-zip" className="me-2 inline size-[1lh]" /> */}
-                {icons.length &&
-                  `${icons.length} ${icons.length === 1 ? 'icon' : 'icons'}`}{' '}
-                selected
+                {icons.length} {icons.length === 1 ? 'icon' : 'icons'} selected
               </Dialog.Title>
               <Button
                 variant="ghost"
@@ -75,58 +150,50 @@ export function SelectedIconsDialog({
                 Clear
               </Button>
             </div>
-            {/* {icons.length && (
-              <Dialog.Description className="mt-1 text-sm text-muted">
-                {`${icons.length} ${icons.length === 1 ? 'icon' : 'icons'} ready to download.`}
-              </Dialog.Description>
-            )} */}
           </div>
           {icons.length ? (
-            <ul
-              role="list"
-              aria-label="Selected icons"
-              className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2"
-            >
-              {icons.map((icon) => {
-                const name = getIconDisplayName(icon);
-                return (
-                  <li
-                    key={icon.id}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2"
-                  >
-                    <Icon name={icon.id} />
-                    <span
-                      className="min-w-0 flex-1 truncate text-sm"
-                      title={name}
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2">
+              <ul role="list" aria-label="Selected icons">
+                {icons.map((icon) => {
+                  const name = getIconDisplayName(icon);
+                  return (
+                    <li
+                      key={icon.id}
+                      className="flex items-center gap-3 rounded-lg px-3 py-2"
                     >
-                      {name} ∙{' '}
-                      <span className="font-mono text-xs text-muted">
-                        {icon.name}.svg
+                      <Icon name={icon.id} />
+                      <span
+                        className="min-w-0 flex-1 truncate text-sm"
+                        title={name}
+                      >
+                        {name} ∙{' '}
+                        <span className="font-mono text-xs text-muted">
+                          {icon.name}-16.svg
+                        </span>
                       </span>
-                    </span>
-                    <IconButton
-                      icon="download-square"
-                      label={`Download ${name}`}
-                      size="icon-sm"
-                      disabled={packing}
-                      onClick={() =>
-                        download(icon.svg, icon.filename, 'image/svg+xml')
-                      }
-                    />
-                    <Button
-                      variant="ghost"
-                      size="icon-sm"
-                      data-remove-icon=""
-                      aria-label={`Remove ${name}`}
-                      disabled={packing}
-                      onClick={(event) => remove(icon.id, event)}
-                    >
-                      <Icon name="x" />
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
+                      <IconButton
+                        icon="download-square"
+                        label={`Download ${name}`}
+                        size="icon-sm"
+                        disabled={packing}
+                        onClick={() => downloadIcon(icon)}
+                      />
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        data-remove-icon=""
+                        aria-label={`Remove ${name}`}
+                        disabled={packing}
+                        onClick={(event) => remove(icon.id, event)}
+                      >
+                        <Icon name="x" />
+                      </Button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <SelectedIconsCode icons={icons} />
+            </div>
           ) : (
             <div className="flex min-h-40 flex-col items-center justify-center gap-3 pt-3 pb-6 text-sm text-muted">
               <Icon name="view-pointer" size={24} />

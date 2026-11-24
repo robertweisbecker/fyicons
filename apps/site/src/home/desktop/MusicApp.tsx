@@ -1,13 +1,130 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { Icon } from '@/components/Icon';
+import { useDemoActivity } from '@/components/DeferredContent';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Button } from '@/components/ui/button';
-import { DemoIconButton, DemoToggle } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
 import { MusicPlayer } from './MusicPlayer';
 import { AlbumArtwork, tracks, trackTime } from './musicData';
+import {
+  IconArrowClockwise,
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowsCollapse,
+  IconArrowsExpand,
+  IconBlock,
+  IconCaretsMaximize,
+  IconCircleCheckFill,
+  IconCirclePlus,
+  IconCirclePlusFill,
+  IconCircleUserFill,
+  IconCircleXFill,
+  IconClock,
+  IconClockFill,
+  IconComputer,
+  IconEllipsis,
+  IconEllipsisV,
+  IconGas,
+  IconGasFill,
+  IconGhost,
+  IconHeadphones,
+  IconInfo,
+  IconInfoFill,
+  IconLibraryLines,
+  IconListBullet,
+  IconMicrophoneMusic,
+  IconMicrophoneMusicFill,
+  IconMinus,
+  IconPauseFill,
+  IconPictureInPicture,
+  IconPictureInPictureExit,
+  IconPlayFill,
+  IconPlus,
+  IconPuzzlePiece,
+  IconQueue,
+  IconRepeat,
+  IconRepeatOne,
+  IconShuffle,
+  IconSkipBackwardFill,
+  IconSkipForwardFill,
+  IconSpeakers,
+  IconStarFill,
+  IconVideo,
+  IconVideoFill,
+  IconVolumeHigh,
+  IconVolumeHighFill,
+  IconVolumeLow,
+  IconVolumeLowFill,
+  IconVolumeNone,
+  IconVolumeNoneFill,
+  IconVolumeSlash,
+  IconVolumeSlashFill,
+  IconWaveform,
+  IconX,
+  IconZoomIn,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  'arrow-clockwise': IconArrowClockwise,
+  'arrow-left': IconArrowLeft,
+  'arrow-right': IconArrowRight,
+  'arrows-collapse': IconArrowsCollapse,
+  'arrows-expand': IconArrowsExpand,
+  block: IconBlock,
+  'carets-maximize': IconCaretsMaximize,
+  'circle-check-fill': IconCircleCheckFill,
+  'circle-plus': IconCirclePlus,
+  'circle-plus-fill': IconCirclePlusFill,
+  'circle-user-fill': IconCircleUserFill,
+  'circle-x-fill': IconCircleXFill,
+  clock: IconClock,
+  'clock-fill': IconClockFill,
+  computer: IconComputer,
+  ellipsis: IconEllipsis,
+  'ellipsis-v': IconEllipsisV,
+  gas: IconGas,
+  'gas-fill': IconGasFill,
+  ghost: IconGhost,
+  headphones: IconHeadphones,
+  info: IconInfo,
+  'info-fill': IconInfoFill,
+  'library-lines': IconLibraryLines,
+  'list-bullet': IconListBullet,
+  'microphone-music': IconMicrophoneMusic,
+  'microphone-music-fill': IconMicrophoneMusicFill,
+  minus: IconMinus,
+  'pause-fill': IconPauseFill,
+  'picture-in-picture': IconPictureInPicture,
+  'picture-in-picture-exit': IconPictureInPictureExit,
+  'play-fill': IconPlayFill,
+  plus: IconPlus,
+  'puzzle-piece': IconPuzzlePiece,
+  queue: IconQueue,
+  repeat: IconRepeat,
+  'repeat-one': IconRepeatOne,
+  shuffle: IconShuffle,
+  'skip-backward-fill': IconSkipBackwardFill,
+  'skip-forward-fill': IconSkipForwardFill,
+  speakers: IconSpeakers,
+  'star-fill': IconStarFill,
+  video: IconVideo,
+  'video-fill': IconVideoFill,
+  'volume-high': IconVolumeHigh,
+  'volume-high-fill': IconVolumeHighFill,
+  'volume-low': IconVolumeLow,
+  'volume-low-fill': IconVolumeLowFill,
+  'volume-none': IconVolumeNone,
+  'volume-none-fill': IconVolumeNoneFill,
+  'volume-slash': IconVolumeSlash,
+  'volume-slash-fill': IconVolumeSlashFill,
+  waveform: IconWaveform,
+  x: IconX,
+  'zoom-in': IconZoomIn,
+});
 
 export function MusicApp() {
+  const active = useDemoActivity();
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(84);
@@ -25,13 +142,14 @@ export function MusicApp() {
   const track = tracks[index];
 
   useEffect(() => {
+    if (!active) return;
     const observer = new ResizeObserver(([entry]) => {
       // Inactive app tabs are hidden; keep the last visible layout preference.
       if (entry.contentRect.width) setWide(entry.contentRect.width >= 768);
     });
     if (player.current) observer.observe(player.current);
     return () => observer.disconnect();
-  }, []);
+  }, [active]);
 
   function showNowPlaying() {
     if (!wide) setQueuePreference(false);
@@ -54,7 +172,7 @@ export function MusicApp() {
   return (
     <div
       ref={player}
-      className="dark flex h-full max-h-full min-h-0 w-full min-w-0"
+      className="dark flex h-full max-h-full min-h-0 w-full min-w-0 [font-variation-settings:'ROND'_0]"
       data-theme="dark"
     >
       <Window title="Music">
@@ -302,3 +420,5 @@ export function MusicApp() {
     </div>
   );
 }
+
+const { DemoIconButton, DemoToggle } = createDemoControls(Icon);

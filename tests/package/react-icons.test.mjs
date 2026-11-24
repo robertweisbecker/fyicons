@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { JSDOM } from 'jsdom';
+import { createElement as h, Fragment } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { transformWithOxc } from 'vite';
 import {
   normalizeDisplayPaint,
   renderReactIconFiles,
@@ -23,7 +27,6 @@ const generatedFiles = await renderReactIconFiles(
 
 // Exercise generated modules and their shared SVG root as executable code.
 const svgRootModule = (async () => {
-  const { transformWithOxc } = await import('vite');
   const { code } = await transformWithOxc(
     generatedFiles.get('packages/fyicons/src/base.tsx'),
     'base.tsx',
@@ -40,7 +43,6 @@ const svgRootModule = (async () => {
   );
 })();
 async function componentModule(source) {
-  const { transformWithOxc } = await import('vite');
   const { code } = await transformWithOxc(source, 'Icon.tsx', {
     jsx: { runtime: 'classic' },
   });
@@ -56,7 +58,6 @@ async function loadComponent(source) {
 }
 
 const clientIcons = (async () => {
-  const { transformWithOxc } = await import('vite');
   const files = await renderReactIconFiles([
     {
       name: 'fixture',
@@ -99,9 +100,6 @@ const clientIcons = (async () => {
 })();
 
 test('provider defaults compose across scopes and yield to local icon props', async () => {
-  const { createElement: h } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
-  const { JSDOM } = await import('jsdom');
   const { FyiProvider, IconFixture } = await clientIcons;
   const html = renderToStaticMarkup(
     h(
@@ -191,14 +189,12 @@ test('provider defaults compose across scopes and yield to local icon props', as
 });
 
 test('every generated component renders with default sizing, accessibility, and classes', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
   for (const icon of catalog.icons) {
     const source = generatedFiles.get(
       `packages/fyicons/src/${icon.componentName}.tsx`,
     );
     const Component = await loadComponent(source);
-    const html = renderToStaticMarkup(createElement(Component));
+    const html = renderToStaticMarkup(h(Component));
     assert.match(html, /width="16"/, icon.name);
     assert.match(html, /height="16"/, icon.name);
     assert.match(html, /viewBox="0 0 16 16"/, icon.name);
@@ -206,6 +202,83 @@ test('every generated component renders with default sizing, accessibility, and 
     assert.match(html, /aria-hidden="true"/, icon.name);
     assert.doesNotMatch(html, /role=|iconName=|idPrefix=/, icon.name);
     assert.ok(html.includes(`class="fy-icon fy-${icon.name}"`), icon.name);
+  }
+});
+
+test('caller children supplement artwork in order, including empty source SVGs', async () => {
+  const fixtures = [
+    {
+      name: 'artwork',
+      componentName: 'IconArtwork',
+      svg: '<svg viewBox="0 0 16 16"><path d="M1 1h14v14H1Z" /></svg>',
+    },
+    {
+      name: 'empty',
+      componentName: 'IconEmpty',
+      svg: '<svg viewBox="0 0 16 16" />',
+    },
+    {
+      name: 'paired',
+      componentName: 'IconPaired',
+      svg: '<svg viewBox="0 0 16 16"></svg>',
+    },
+  ];
+  const files = await renderReactIconFiles(fixtures);
+  function CustomShape() {
+    return h(
+      'g',
+      { transform: 'translate(2 3)' },
+      h('rect', { width: 2, height: 2 }),
+    );
+  }
+  for (const fixture of fixtures) {
+    const Icon = await loadComponent(
+      files.get(`packages/fyicons/src/${fixture.componentName}.tsx`),
+    );
+    const props = { title: 'Composite', 'aria-label': 'Composite' };
+    const original = renderToStaticMarkup(h(Icon, props));
+    for (const children of [undefined, null, false, []]) {
+      assert.equal(renderToStaticMarkup(h(Icon, props, children)), original);
+    }
+    const dom = new JSDOM(
+      renderToStaticMarkup(
+        h(
+          Icon,
+          props,
+          h(
+            Fragment,
+            null,
+            h('circle', { cx: 8, cy: 8, r: 2, fill: 'currentColor' }),
+            [h(CustomShape, { key: 'shape' }), null, false],
+          ),
+        ),
+      ),
+    );
+    const svg = dom.window.document.querySelector('svg');
+    assert.deepEqual(
+      [...svg.children].map((node) => node.localName),
+      fixture.name === 'artwork'
+        ? ['title', 'path', 'circle', 'g']
+        : ['title', 'circle', 'g'],
+    );
+    assert.equal(
+      svg.querySelector('path')?.getAttribute('d'),
+      fixture.name === 'artwork' ? 'M1 1h14v14H1Z' : undefined,
+    );
+    assert.equal(svg.querySelectorAll('circle').length, 1);
+    assert.equal(svg.querySelectorAll('rect').length, 1);
+    assert.equal(
+      svg.querySelector('circle').namespaceURI,
+      'http://www.w3.org/2000/svg',
+    );
+    assert.equal(
+      svg.querySelector('g').getAttribute('transform'),
+      'translate(2 3)',
+    );
+    assert.equal(svg.getAttribute('aria-label'), 'Composite');
+    assert.equal(svg.getAttribute('role'), 'img');
+    assert.equal(svg.hasAttribute('aria-hidden'), false);
+    dom.window.close();
   }
 });
 
@@ -228,8 +301,6 @@ test('foreground colors inherit independently of the exported palette', () => {
 });
 
 test('rendered components honor SVG props and keep repeated definition and title IDs unique', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
   const files = await renderReactIconFiles([
     {
       id: 'fixture:2',
@@ -242,21 +313,31 @@ test('rendered components honor SVG props and keep repeated definition and title
     files.get('packages/fyicons/src/IconFixture.tsx'),
   );
   const html = renderToStaticMarkup(
-    createElement(
+    h(
       'div',
       null,
-      createElement(Component, {
-        size: 24,
-        width: 32,
-        color: 'red',
-        className: 'sample',
-        title: 'Sample',
-        'aria-label': 'Sample',
-        style: { opacity: 0.5 },
-        'data-test': 'first',
-        viewBox: '0 0 32 24',
-      }),
-      createElement(Component, { title: 'Second', 'aria-hidden': true }),
+      h(
+        Component,
+        {
+          size: 24,
+          width: 32,
+          color: 'red',
+          className: 'sample',
+          title: 'Sample',
+          'aria-label': 'Sample',
+          style: { opacity: 0.5 },
+          'data-test': 'first',
+          viewBox: '0 0 32 24',
+        },
+        h(Component, {
+          title: 'Nested',
+          x: 4,
+          y: 5,
+          size: 8,
+          className: 'nested',
+        }),
+      ),
+      h(Component, { title: 'Second', 'aria-hidden': true }),
     ),
   );
   assert.match(html, /width="32"/);
@@ -274,8 +355,8 @@ test('rendered components honor SVG props and keep repeated definition and title
   assert.match(html, /fill="currentColor"/);
   assert.match(html, /fill:currentColor/);
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
-  assert.equal(ids.length, 6);
-  assert.equal(new Set(ids).size, 6);
+  assert.equal(ids.length, 9);
+  assert.equal(new Set(ids).size, 9);
   for (const match of html.matchAll(
     /url\(#([^)]+)\)|aria-labelledby="([^"]+)"/g,
   )) {
@@ -284,11 +365,32 @@ test('rendered components honor SVG props and keep repeated definition and title
       'Every generated reference resolves in the rendered markup',
     );
   }
+  const dom = new JSDOM(html);
+  const nested = dom.window.document.querySelector('svg > svg');
+  for (const [name, value] of Object.entries({
+    x: '4',
+    y: '5',
+    width: '8',
+    height: '8',
+    viewBox: '0 0 16 16',
+    class: 'fy-icon fy-fixture nested',
+    'aria-hidden': 'true',
+  })) {
+    assert.equal(nested.getAttribute(name), value);
+  }
+  const instances = dom.window.document.querySelectorAll('svg');
+  assert.equal(instances.length, 3);
+  for (const instance of instances) {
+    const [masked, painted] = instance.querySelectorAll(':scope > path');
+    const mask = instance.querySelector(':scope > defs > mask');
+    const gradient = instance.querySelector(':scope > defs > linearGradient');
+    assert.equal(masked.getAttribute('mask'), `url(#${mask.id})`);
+    assert.equal(painted.getAttribute('fill'), `url(#${gradient.id})`);
+  }
+  dom.window.close();
 });
 
 test('reference delimiters remain literal data in repeated rendered instances', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
   const sourceIds = [
     'paint`',
     'paint\\',
@@ -321,12 +423,7 @@ test('reference delimiters remain literal data in repeated rendered instances', 
     const source = files.get(`packages/fyicons/src/${componentName}.tsx`);
     const Component = await loadComponent(source);
     const html = renderToStaticMarkup(
-      createElement(
-        'div',
-        null,
-        createElement(Component),
-        createElement(Component),
-      ),
+      h('div', null, h(Component), h(Component)),
     );
     const instances = [...html.matchAll(/<svg\b[^>]*>(.*?)<\/svg>/g)];
     assert.equal(instances.length, 2);
@@ -355,8 +452,6 @@ test('reference delimiters remain literal data in repeated rendered instances', 
 });
 
 test('aria-label controls accessibility defaults while explicit SVG attributes pass through', async () => {
-  const { createElement } = await import('react');
-  const { renderToStaticMarkup } = await import('react-dom/server');
   const Component = await loadComponent(
     generatedFiles.get(
       `packages/fyicons/src/${catalog.icons[0].componentName}.tsx`,
@@ -413,7 +508,7 @@ test('aria-label controls accessibility defaults while explicit SVG attributes p
     },
   ];
   for (const { name, props, label, labelledby, role, hidden } of cases) {
-    const html = renderToStaticMarkup(createElement(Component, props));
+    const html = renderToStaticMarkup(h(Component, props));
     const root = html.match(/^<svg\b([^>]*)>/)[1];
     const attributes = Object.fromEntries(
       [...root.matchAll(/([\w-]+)="([^"]*)"/g)].map((match) => [

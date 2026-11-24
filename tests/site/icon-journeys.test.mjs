@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { act } from 'react';
@@ -7,6 +8,7 @@ import { mountApp } from './helpers/app-readiness-harness.mjs';
 function captureDownloads(t, window) {
   const blobs = new Map();
   const downloads = [];
+  const listeners = new Set();
   t.mock.method(URL, 'createObjectURL', (blob) => {
     const url = `blob:download-${blobs.size}`;
     blobs.set(url, blob);
@@ -14,9 +16,28 @@ function captureDownloads(t, window) {
   });
   t.mock.method(URL, 'revokeObjectURL', () => {});
   t.mock.method(window.HTMLAnchorElement.prototype, 'click', function () {
-    downloads.push({ filename: this.download, blob: blobs.get(this.href) });
+    downloads.push({
+      filename: this.download,
+      href: this.href,
+      blob: blobs.get(this.href),
+    });
+    for (const resolve of listeners) resolve();
+    listeners.clear();
   });
-  return downloads;
+  function nextDownload() {
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(
+        () => reject(new Error('Download did not complete')),
+        10_000,
+      );
+      t.after(() => clearTimeout(timeout));
+      listeners.add(() => {
+        clearTimeout(timeout);
+        resolve();
+      });
+    });
+  }
+  return { downloads, nextDownload };
 }
 
 const click = (element) =>
@@ -32,16 +53,46 @@ const click = (element) =>
     element.click();
   });
 
-async function search(h, value) {
+async function search(t, h, value) {
   const input = h.document.querySelector('input[aria-label="Search icons"]');
-  await act(async () => {
-    Object.getOwnPropertyDescriptor(
-      h.window.HTMLInputElement.prototype,
-      'value',
-    ).set.call(input, value);
-    input.dispatchEvent(new h.window.Event('input', { bubbles: true }));
-    // Let the production search debounce publish the query to the URL.
-    await new Promise((resolve) => setTimeout(resolve, 250));
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  try {
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(
+        h.window.HTMLInputElement.prototype,
+        'value',
+      ).set.call(input, value);
+      input.dispatchEvent(new h.window.Event('input', { bubbles: true }));
+    });
+    await act(async () => t.mock.timers.runAll());
+    assert.equal(new URL(h.window.location.href).searchParams.get('q'), value);
+  } finally {
+    t.mock.timers.reset();
+  }
+}
+
+function waitForCopyButton(h) {
+  const selector = '#inspector button[aria-label="Copy SVG"]:enabled';
+  return new Promise((resolve, reject) => {
+    const observer = new h.window.MutationObserver(check);
+    const timeout = setTimeout(() => {
+      observer.disconnect();
+      reject(new Error('The inspector did not enable Copy SVG'));
+    }, 5000);
+    function check() {
+      const button = h.document.querySelector(selector);
+      if (button) {
+        clearTimeout(timeout);
+        observer.disconnect();
+        resolve(button);
+      }
+    }
+    observer.observe(h.document.querySelector('#inspector'), {
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
+    check();
   });
 }
 
@@ -72,7 +123,7 @@ for (const mobile of [false, true]) {
   test(`${mobile ? 'mobile' : 'desktop'} users can find, inspect, copy and download an icon`, async (t) => {
     const h = await mountApp(t, 'https://example.test/icons/', { mobile });
     await h.resolveCategories();
-    const downloads = captureDownloads(t, h.window);
+    const { downloads } = captureDownloads(t, h.window);
     const copied = [];
     Object.defineProperty(h.window.navigator, 'clipboard', {
       configurable: true,
@@ -84,11 +135,11 @@ for (const mobile of [false, true]) {
     });
     const icon = h.catalog.icons.find(({ name }) => name === 'home');
     assert.ok(icon);
-    await search(h, 'no-such-fyicon-987654321');
+    await search(t, h, 'no-such-fyicon-987654321');
     assert.equal(h.tiles.length, 0);
     await click(h.document.querySelector('button[aria-label="Clear"]'));
     assert.ok(h.tiles.length > 0);
-    await search(h, icon.name);
+    await search(t, h, icon.name);
     const tile = h.tiles.find((element) => element.dataset.id === icon.id);
     await click(tile);
     assert.equal(
@@ -132,18 +183,23 @@ for (const mobile of [false, true]) {
         'true',
       );
     }
-    const copyButton = h.document.querySelector(
-      '#inspector button[aria-label="Copy SVG"]',
+    const copyButton = await waitForCopyButton(h);
+    const sourceSvg = await readFile(
+      new URL(`../../packages/fyicons/svg/${icon.filename}`, import.meta.url),
+      'utf8',
     );
     await click(copyButton);
-    assert.deepEqual(copied, [icon.svg]);
+    assert.deepEqual(copied, [sourceSvg]);
     await click(
       h.document.querySelector('#inspector button[aria-label="Download SVG"]'),
     );
     assert.equal(downloads.length, 1);
     assert.equal(downloads[0].filename, icon.filename);
-    assert.equal(downloads[0].blob.type, 'image/svg+xml');
-    assert.equal(await downloads[0].blob.text(), icon.svg);
+    assert.equal(
+      downloads[0].href,
+      `https://example.test/icon-sources/${icon.sha256}.svg`,
+    );
+    assert.equal(downloads[0].blob, undefined);
     // Clipboard denial must report failure rather than claiming another success.
     h.window.navigator.clipboard.writeText = async () => {
       throw new Error('denied');
@@ -163,6 +219,43 @@ for (const mobile of [false, true]) {
   });
 }
 
+test('the grid context menu copies from the tile that opened it', async (t) => {
+  const h = await mountApp(t, 'https://example.test/icons/?q=home');
+  await h.resolveCategories();
+  const copied = [];
+  Object.defineProperty(h.window.navigator, 'clipboard', {
+    configurable: true,
+    value: { writeText: async (text) => copied.push(text) },
+  });
+  const contextMenu = (target) =>
+    target.dispatchEvent(
+      new h.window.MouseEvent('contextmenu', {
+        bubbles: true,
+        cancelable: true,
+        button: 2,
+      }),
+    );
+  assert.ok(contextMenu(h.document.querySelector('.icon-grid')));
+  const tiles = h.tiles.slice(0, 2);
+  assert.equal(tiles.length, 2);
+  for (const tile of tiles) {
+    const name = h.catalog.getIconDisplayName(
+      h.catalog.byId.get(tile.dataset.id),
+    );
+    await act(async () => contextMenu(tile.querySelector('svg')));
+    const menu = h.document.querySelector(
+      `[role="menu"][aria-label="${name} actions"]`,
+    );
+    assert.ok(menu);
+    await click(
+      [...menu.querySelectorAll('[role="menuitem"]')].find(
+        (item) => item.textContent === 'Copy name',
+      ),
+    );
+    assert.equal(copied.at(-1), name);
+  }
+});
+
 test('users can filter, save and remove icons, then export the selection or full library', async (t) => {
   const h = await mountApp(t, 'https://example.test/icons/', { actions: true });
   await h.resolveCategories({
@@ -170,7 +263,16 @@ test('users can filter, save and remove icons, then export the selection or full
       { id: 'buildings', name: 'Buildings', icon: 'home', keywords: ['home'] },
     ],
   });
-  const downloads = captureDownloads(t, h.window);
+  const { downloads, nextDownload } = captureDownloads(t, h.window);
+  let copiedCommand;
+  Object.defineProperty(h.window.navigator, 'clipboard', {
+    configurable: true,
+    value: {
+      writeText: async (text) => {
+        copiedCommand = text;
+      },
+    },
+  });
   await click(
     h.document.querySelector(
       '[aria-label="Icon categories"] button[aria-label="Buildings"]',
@@ -190,10 +292,56 @@ test('users can filter, save and remove icons, then export the selection or full
   }
   await click(h.document.querySelector('button[data-selection-trigger]'));
   const dialog = h.document.querySelector('[data-selection-dialog]');
+  const [jsxTab, shadcnTab] = dialog.querySelectorAll('[role="tab"]');
+  const copyShadcnCommand = () =>
+    click(
+      dialog
+        .querySelector('pre[aria-label="shadcn command for selected icons"]')
+        ?.closest('[data-slot="code-block"]')
+        ?.querySelector('button[aria-label="Copy code"]'),
+    );
   assert.equal(dialog.querySelectorAll('li').length, 2);
+  assert.equal(jsxTab.getAttribute('aria-selected'), 'true');
+  assert.equal(shadcnTab.getAttribute('aria-selected'), 'false');
+  await click(shadcnTab);
+  assert.equal(shadcnTab.getAttribute('aria-selected'), 'true');
+  await copyShadcnCommand();
+  assert.equal(
+    copiedCommand,
+    `npx shadcn@latest add robertweisbecker/fyicons/${selected[0].name} robertweisbecker/fyicons/${selected[1].name}`,
+  );
   await click(dialog.querySelector('[data-remove-icon]'));
   assert.equal(dialog.querySelectorAll('li').length, 1);
+  await copyShadcnCommand();
+  assert.equal(
+    copiedCommand,
+    `npx shadcn@latest add robertweisbecker/fyicons/${selected[1].name}`,
+  );
+  await click(jsxTab);
+  const jsx = dialog.querySelector(
+    'pre[aria-label="React JSX for selected icons"]',
+  ).textContent;
+  assert.ok(jsx.includes(`<${selected[1].componentName} />`));
+  assert.ok(!jsx.includes(`<${selected[0].componentName} />`));
+  // Hold the source response to exercise real asynchronous packaging, rather than
+  // assuming React's click flush also finishes fetches and Web Crypto work.
+  const sourceGate = Promise.withResolvers();
+  const fetchSource = globalThis.fetch;
+  t.mock.method(globalThis, 'fetch', async (url, ...args) => {
+    if (String(url).includes('/icon-sources/')) await sourceGate.promise;
+    return fetchSource(url, ...args);
+  });
+  const selectedDownload = nextDownload();
   await click(dialog.querySelector('button[data-download-icons="selected"]'));
+  assert.equal(
+    downloads.length,
+    0,
+    'no archive downloads before its sources resolve',
+  );
+  await act(async () => {
+    sourceGate.resolve();
+    await selectedDownload;
+  });
   assert.equal(downloads[0].filename, 'fyicons-selected.zip');
   const manifest = async ({ blob }) => {
     assert.equal(blob.type, 'application/zip');
@@ -204,11 +352,23 @@ test('users can filter, save and remove icons, then export the selection or full
     (await manifest(downloads[0])).icons.map(({ id }) => id),
     [selected[1].id],
   );
+  const fullDownload = nextDownload();
   await click(h.document.querySelector('button[data-download-icons="all"]'));
+  await act(async () => {
+    await fullDownload;
+  });
   assert.equal(downloads.length, 2);
   assert.equal(downloads[1].filename, 'fyicons.zip');
+  assert.equal(downloads[1].href, 'https://example.test/downloads/fyicons.zip');
+  assert.equal(downloads[1].blob, undefined, 'full ZIP is served as a file');
+  await h.remount();
+  await click(h.document.querySelector('button[data-selection-trigger]'));
+  const restored = h.document.querySelectorAll(
+    '[data-selection-dialog] [data-remove-icon]',
+  );
   assert.deepEqual(
-    (await manifest(downloads[1])).icons.map(({ id }) => id).sort(),
-    h.catalog.icons.map(({ id }) => id).sort(),
+    [...restored].map((button) => button.getAttribute('aria-label')),
+    [`Remove ${h.catalog.getIconDisplayName(selected[1])}`],
+    'only the remaining icon is restored from storage',
   );
 });

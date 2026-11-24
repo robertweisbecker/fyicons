@@ -1,6 +1,11 @@
 import { useRef, type PointerEvent } from 'react';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
+import { IconGripV } from 'fyicons';
+
+const Icon = createIconLookup({
+  'grip-v': IconGripV,
+});
 
 type Props = {
   value: number;

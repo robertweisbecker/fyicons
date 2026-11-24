@@ -1,10 +1,33 @@
 import { useEffect, useRef, useState } from 'react';
-import { Icon } from './Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { IconButton } from './IconButton';
 import { Button, type ButtonProps } from './ui/button';
 import { notify } from './ui/toast';
 import { copy } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
+import {
+  IconCode,
+  IconCopiedFill,
+  IconCopy,
+  IconGhost,
+  IconTerminalBash,
+  IconTerminalSquare,
+  IconTerminalSquareFill,
+  IconTextTitle,
+  IconTextTitleFill,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  code: IconCode,
+  'copied-fill': IconCopiedFill,
+  copy: IconCopy,
+  ghost: IconGhost,
+  'terminal-bash': IconTerminalBash,
+  'terminal-square': IconTerminalSquare,
+  'terminal-square-fill': IconTerminalSquareFill,
+  text: IconTextTitle,
+  'text-fill': IconTextTitleFill,
+});
 
 export function InstallCommand({
   command,
@@ -48,9 +71,9 @@ export function InstallCommand({
   }
 
   const copyIcon = (
-    <span className="grid size-4" aria-hidden="true">
+    <span className="grid" aria-hidden="true">
       <Icon
-        name="copy-sm"
+        name="copy"
         className={cn(
           'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',
           copied && 'scale-75 opacity-0 blur-[2px]',

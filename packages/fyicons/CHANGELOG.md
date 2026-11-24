@@ -1,5 +1,24 @@
 # fyicons
 
+## 0.5.3
+
+### Patch Changes
+
+- 6eaf450: Fix the `skip-backward` arrow size to match `skip-forward`.
+
+## 0.5.2
+
+### Patch Changes
+
+- 6d7fe20: Fix alignment within `math` (`IconMath`): align the division symbol with the multiplication symbol and use equal horizontal and vertical spans for the plus sign.
+
+## 0.5.1
+
+### Patch Changes
+
+- 2091e32: Refine menu and tab spacing, playback and navigation shapes, checks and switches, pointer proportions, both sparkle families, and math and resize details across 26 existing icons. Convert `menu-simple`, `menu-alt`, `menu-alt-simple`, `sign-in`, and `sign-out` from filled outlines to live SVG strokes.
+- 5174b8b: Fix React icon components silently ignoring supplied children. Nested icons and SVG elements now render after the original artwork in package imports, client icons, and shadcn source icons.
+
 ## 0.5.0
 
 ### Minor Changes

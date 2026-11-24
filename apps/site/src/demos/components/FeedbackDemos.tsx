@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Icon } from '@/components/Icon';
+import { createIconLookup } from '@/components/createIconLookup';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
@@ -12,7 +12,94 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { CopyButton, DemoIconButton } from './DemoControls';
+import { createDemoControls, CopyButton } from './DemoControls';
+import {
+  IconAlert,
+  IconAlertFill,
+  IconArrowRevert,
+  IconArrowsSwap,
+  IconCheck,
+  IconCircleCheck,
+  IconCircleCheckFill,
+  IconClock,
+  IconClockFill,
+  IconCloudCheck,
+  IconCloudSlash,
+  IconCopied,
+  IconCopiedFill,
+  IconCopy,
+  IconDownload,
+  IconEdit,
+  IconError,
+  IconErrorFill,
+  IconEye,
+  IconEyeFill,
+  IconGhost,
+  IconInfo,
+  IconInfoFill,
+  IconLink,
+  IconLinkNewWindow,
+  IconLock,
+  IconLockFill,
+  IconPlugs,
+  IconProgressTask50,
+  IconProgressTaskTodo,
+  IconSend,
+  IconSendFill,
+  IconSparkles,
+  IconSparklesFill,
+  IconTag,
+  IconTags,
+  IconTextTitle,
+  IconTextTitleFill,
+  IconWarning,
+  IconWarningFill,
+  IconX,
+} from 'fyicons';
+
+const Icon = createIconLookup({
+  alert: IconAlert,
+  'alert-fill': IconAlertFill,
+  'arrow-revert': IconArrowRevert,
+  'arrows-swap': IconArrowsSwap,
+  check: IconCheck,
+  'circle-check': IconCircleCheck,
+  'circle-check-fill': IconCircleCheckFill,
+  clock: IconClock,
+  'clock-fill': IconClockFill,
+  'cloud-check': IconCloudCheck,
+  'cloud-slash': IconCloudSlash,
+  copied: IconCopied,
+  'copied-fill': IconCopiedFill,
+  copy: IconCopy,
+  download: IconDownload,
+  edit: IconEdit,
+  error: IconError,
+  'error-fill': IconErrorFill,
+  eye: IconEye,
+  'eye-fill': IconEyeFill,
+  ghost: IconGhost,
+  info: IconInfo,
+  'info-fill': IconInfoFill,
+  link: IconLink,
+  'link-new-window': IconLinkNewWindow,
+  lock: IconLock,
+  'lock-fill': IconLockFill,
+  plugs: IconPlugs,
+  'progress-task-50': IconProgressTask50,
+  'progress-task-todo': IconProgressTaskTodo,
+  send: IconSend,
+  'send-fill': IconSendFill,
+  sparkles: IconSparkles,
+  'sparkles-fill': IconSparklesFill,
+  tag: IconTag,
+  tags: IconTags,
+  text: IconTextTitle,
+  'text-fill': IconTextTitleFill,
+  warning: IconWarning,
+  'warning-fill': IconWarningFill,
+  x: IconX,
+});
 
 export function AlertsDemo() {
   const [connected, setConnected] = useState(false);
@@ -226,3 +313,5 @@ export function SharingDemo() {
     </div>
   );
 }
+
+const { DemoIconButton } = createDemoControls(Icon);
