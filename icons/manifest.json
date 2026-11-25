@@ -4165,13 +4165,16 @@
     },
     {
       "id": "148:6826",
-      "originalName": "checklist",
+      "name": "checklist-check",
+      "baseName": "checklist-check",
+      "originalName": "checklist-check",
+      "filename": "checklist-check-16.svg",
+      "file": "svgs/148-6826.svg",
       "width": 16,
       "height": 16,
-      "name": "checklist-1",
-      "baseName": "checklist",
-      "filename": "checklist-1-16.svg",
-      "file": "svgs/148-6826.svg",
+      "compatibilityNames": [
+        "checklist-1"
+      ],
       "aliases": [
         "148-6826.svg",
         "list-task-started",
@@ -4179,11 +4182,13 @@
         "checklist-started",
         "checklist-started-16.svg",
         "checklist",
-        "checklist-16.svg"
+        "checklist-16.svg",
+        "checklist-1",
+        "checklist-1-16.svg"
       ],
       "notes": [],
-      "componentName": "IconChecklist1",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "updatedAt": "2026-11-25T03:07:56.064Z",
+      "componentName": "IconChecklistCheck"
     },
     {
       "id": "578:3042",

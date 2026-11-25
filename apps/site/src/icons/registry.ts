@@ -228,7 +228,7 @@ export const iconBySourceId: Record<string, ComponentType<IconProps>> = {
   "129:6693": icons.IconHighlighter,
   "148:6841": icons.IconListBullet,
   "101:4338": icons.IconChecklist,
-  "148:6826": icons.IconChecklist1,
+  "148:6826": icons.IconChecklistCheck,
   "578:3042": icons.IconListDisc,
   "282:16080": icons.IconListThumbnails,
   "944:33003": icons.IconListThumbnailsFill,
