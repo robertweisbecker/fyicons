@@ -486,7 +486,7 @@ button { font: inherit; color: inherit; }
             <div class="spec"><span class="k">02</span><div><b>1 px walls on whole pixels</b><p>Outer edge at x 1, inner edge at x 2. Each wall fills one pixel column.</p></div><span class="v">1 → 2, 14 → 15</span></div>
             <div class="spec"><span class="k">03</span><div><b>Concentric corners</b><p>Outer radius 2, inner radius 1. The wall stays 1 px through the curve.</p></div><span class="v">r 2 / r 1</span></div>
             <div class="spec"><span class="k">04</span><div><b>Fits a keyline</b><p>Wide shapes use the 14 × 10 horizontal keyline, so they carry the same weight as round and tall icons.</p></div><span class="v">14 × 10</span></div>
-            <div class="spec"><span class="k">05</span><div><b>Filled outlines</b><p>Strokes are expanded to filled paths, so the icon looks the same in every renderer and in <code>currentColor</code>.</p></div><span class="v">fill="currentColor"</span></div>
+            <div class="spec"><span class="k">05</span><div><b>One paint color</b><p>All visible paint is <code>currentColor</code>, so the icon takes the text color around it. This one is a filled outline; others keep live 1 px strokes.</p></div><span class="v">currentColor</span></div>
           </div>
         </div>
       </div>

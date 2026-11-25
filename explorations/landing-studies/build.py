@@ -42,7 +42,8 @@ for entry in manifest['icons']:
         inner = inner.replace(f'id="{old}"', f'id="{new}"')
         inner = inner.replace(f'url(#{old})', f'url(#{new})')
         inner = inner.replace(f'href="#{old}"', f'href="#{new}"')
-    symbols.append(f'<symbol id="i-{name}" viewBox="0 0 16 16">{inner}</symbol>')
+    # Keep the root fill="none": open stroked paths rely on it instead of the default black fill.
+    symbols.append(f'<symbol id="i-{name}" viewBox="0 0 16 16"><g fill="none">{inner}</g></symbol>')
     n = norm(name)
     cats = [cid for cid, kws, exact in rules if n in exact or any(k in f"-{n}-" for k in kws)]
     icons.append({
