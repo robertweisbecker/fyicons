@@ -1,0 +1,823 @@
+<title>FYIcons Landing Studies</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: a long, quiet specimen sheet. Each study is a numbered entry (the number is a reference for review), with a white stage on the taupe page, mirroring the site's surface-on-canvas pattern. */
+@font-face { font-family: 'Allo'; src: url('/*FONT_ALLO*/') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Paper Mono'; src: url('/*FONT_MONO*/') format('woff2'); font-weight: 100 800; font-display: swap; }
+:root {
+  --canvas: oklch(0.962 0.004 60);
+  --bg: oklch(0.985 0.002 60);
+  --surface: #fff;
+  --ink: oklch(0.23 0.008 50);
+  --ink-2: oklch(0.42 0.01 50);
+  --muted: oklch(0.56 0.012 55);
+  --line: oklch(0.23 0.008 50 / 0.08);
+  --border: oklch(0.23 0.008 50 / 0.14);
+  --hover: oklch(0.23 0.008 50 / 0.04);
+  --accent: oklch(0.62 0.19 259);
+  --accent-soft: oklch(0.93 0.04 259);
+  --grid: oklch(0.7 0.13 255 / 0.55);
+  --k-circle: #ec4899; --k-square: #3b82f6; --k-horizontal: #10b981; --k-vertical: #f59e0b; --k-other: oklch(0.6 0.01 55);
+  --font-sans: 'Allo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Paper Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius: 16px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --canvas: oklch(0.17 0.006 50); --bg: oklch(0.2 0.007 50); --surface: oklch(0.225 0.008 50);
+  --ink: oklch(0.97 0.003 60); --ink-2: oklch(0.84 0.006 60); --muted: oklch(0.68 0.01 55);
+  --line: oklch(0.97 0.003 60 / 0.08); --border: oklch(0.97 0.003 60 / 0.13); --hover: oklch(0.97 0.003 60 / 0.06);
+  --accent: oklch(0.68 0.17 259); --accent-soft: oklch(0.32 0.08 259); --grid: oklch(0.7 0.13 255 / 0.45);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --canvas: oklch(0.17 0.006 50); --bg: oklch(0.2 0.007 50); --surface: oklch(0.225 0.008 50);
+  --ink: oklch(0.97 0.003 60); --ink-2: oklch(0.84 0.006 60); --muted: oklch(0.68 0.01 55);
+  --line: oklch(0.97 0.003 60 / 0.08); --border: oklch(0.97 0.003 60 / 0.13); --hover: oklch(0.97 0.003 60 / 0.06);
+  --accent: oklch(0.68 0.17 259); --accent-soft: oklch(0.32 0.08 259); --grid: oklch(0.7 0.13 255 / 0.45);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--canvas); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5;
+  font-variation-settings: 'ROND' 100; font-feature-settings: 'ss01' 1, 'ss03' 1;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 56px 96px; display: grid; gap: 96px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; font-weight: 500; letter-spacing: -0.025em; }
+p { margin: 0; }
+.mono, code { font-family: var(--font-mono); font-feature-settings: 'cv01' 1, 'ss02' 1, 'ss03' 1; }
+.i { width: 16px; height: 16px; display: inline-block; flex: none; color: inherit; vertical-align: -3px; }
+.muted { color: var(--muted); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Masthead */
+.mast { display: grid; gap: 28px; }
+.mast h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.05; letter-spacing: -0.04em; font-weight: 400; }
+.mast h1 b { font-weight: 700; }
+.mast .lede { font-size: 20px; color: var(--muted); max-width: 60ch; text-wrap: pretty; }
+.toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.toc section { background: var(--surface); border-radius: var(--radius); padding: 20px 22px; display: grid; gap: 10px; align-content: start; }
+.toc h2 { font-size: 15px; display: flex; gap: 8px; align-items: center; }
+.toc ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+.toc a { color: var(--ink-2); text-decoration: none; display: flex; gap: 10px; padding: 3px 0; font-size: 15px; }
+.toc a span { font-family: var(--font-mono); color: var(--muted); font-size: 12px; width: 2.4em; padding-top: 2px; }
+.toc a:hover { color: var(--ink); }
+
+/* Part and study scaffolding */
+.part { display: grid; gap: 72px; }
+.part-head { display: grid; gap: 10px; border-top: 1px solid var(--border); padding-top: 28px; }
+.part-head h2 { font-size: clamp(28px, 4vw, 40px); }
+.part-head p { color: var(--muted); font-size: 18px; max-width: 62ch; }
+.study { display: grid; gap: 18px; scroll-margin-top: 24px; }
+.study-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 8px 40px; align-items: end; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.02em; grid-column: 1 / -1; }
+.study h3 { font-size: clamp(22px, 2.6vw, 28px); }
+.note { font-size: 14px; color: var(--muted); text-wrap: pretty; }
+.note b { color: var(--ink-2); font-weight: 600; }
+@media (max-width: 760px) { .study-head { grid-template-columns: 1fr; } }
+.stage { background: var(--surface); border-radius: var(--radius); padding: clamp(18px, 3vw, 36px); min-width: 0; }
+.stage.flush { padding: 0; overflow: hidden; }
+.variants { display: grid; gap: 16px; }
+.vlabel { font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; display: block; }
+
+/* Chips and toggles */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--border); background: transparent; border-radius: 999px; padding: 4px 11px 4px 9px; font-size: 13px; display: inline-flex; gap: 6px; align-items: center; cursor: pointer; color: var(--ink-2); }
+.chip small { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.chip:hover { background: var(--hover); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.chip[aria-pressed="true"] small { color: inherit; opacity: 0.7; }
+
+/* 1.1 Feature strips */
+.strip-a { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-block: 1px solid var(--line); }
+.strip-a > div { padding: 22px 18px; display: grid; gap: 4px; border-left: 1px solid var(--line); }
+.strip-a > div:first-child { border-left: 0; }
+.strip-a strong { font-size: clamp(30px, 4vw, 44px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.strip-a span { color: var(--muted); font-size: 14px; }
+.strip-a .cluster { display: flex; gap: 6px; margin-top: 10px; color: var(--ink-2); }
+@media (max-width: 760px) { .strip-a { grid-template-columns: repeat(2, minmax(0, 1fr)); } .strip-a > div:nth-child(3) { border-left: 0; } .strip-a > div:nth-child(n+3) { border-top: 1px solid var(--line); } }
+.strip-b { font-size: clamp(24px, 3.4vw, 38px); line-height: 1.3; letter-spacing: -0.03em; text-wrap: balance; max-width: 26em; }
+.strip-b .tok { display: inline-flex; align-items: center; gap: 0.18em; padding: 0 0.22em; border-radius: 0.25em; background: var(--canvas); white-space: nowrap; }
+.strip-b .tok .i { width: 0.8em; height: 0.8em; vertical-align: 0; }
+.strip-c { display: grid; gap: 14px; overflow: hidden; }
+.marquee { display: flex; gap: 22px; width: max-content; animation: slide 90s linear infinite; color: var(--ink-2); }
+.marquee.rev { animation-direction: reverse; animation-duration: 110s; }
+.marquee .i { width: 20px; height: 20px; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.strip-c-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.strip-c-head strong { font-size: clamp(40px, 6vw, 72px); font-weight: 400; letter-spacing: -0.05em; line-height: 1; }
+.strip-c-head p { color: var(--muted); max-width: 28ch; }
+
+/* 1.2 Wall */
+.wall-bar { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; margin-bottom: 16px; flex-wrap: wrap; }
+.wall-count { font-size: 28px; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.wall-count small { font-size: 14px; color: var(--muted); letter-spacing: 0; margin-left: 6px; }
+.wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)); gap: 2px; margin-top: 18px; max-height: 520px; overflow: auto; overscroll-behavior: contain; border-radius: 10px; }
+.wall span { aspect-ratio: 1; display: grid; place-items: center; border-radius: 6px; color: var(--ink); transition: opacity .25s, color .25s; }
+.wall span:hover { background: var(--hover); }
+.wall.filtered span { opacity: 0.12; }
+.wall.filtered span.on { opacity: 1; color: var(--accent); }
+.wall-tip { font-family: var(--font-mono); font-size: 12px; color: var(--muted); min-height: 18px; }
+
+/* 1.3 Atlas */
+.atlas { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.card { background: var(--surface); border-radius: 14px; padding: 16px; display: grid; gap: 12px; text-align: left; border: 0; cursor: pointer; }
+.card:hover { box-shadow: 0 0 0 1px var(--border); }
+.card-top { display: flex; align-items: center; gap: 10px; }
+.card-top .badge { width: 32px; height: 32px; border-radius: 9px; background: var(--canvas); display: grid; place-items: center; }
+.card-top h4 { margin: 0; font-size: 15px; font-weight: 500; flex: 1; }
+.card-top .n { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.card .bar { height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.card .bar i { display: block; height: 100%; background: var(--ink); opacity: .7; }
+.card .samples { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; color: var(--ink-2); }
+.card .samples .i { width: 18px; height: 18px; }
+
+/* 1.4 Spectrum */
+.spectrum { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+.band { padding: 22px; display: grid; gap: 16px; align-content: start; border-left: 1px solid var(--line); }
+.band:first-child { border-left: 0; }
+.band h4 { margin: 0; font-size: 17px; font-weight: 500; }
+.band p { font-size: 14px; color: var(--muted); }
+.band .set { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px 8px; }
+.band .set .i { width: 24px; height: 24px; justify-self: center; }
+.band:nth-child(3) .set .i { color: var(--accent); }
+.spectrum-axis { grid-column: 1 / -1; height: 6px; margin: 0 22px; border-radius: 6px; background: linear-gradient(90deg, var(--line), var(--accent)); }
+@media (max-width: 760px) { .spectrum { grid-template-columns: 1fr; } .band { border-left: 0; border-top: 1px solid var(--line); } .spectrum-axis { display: none; } }
+
+/* 1.5 Families */
+.families { display: grid; gap: 4px; }
+.fam { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.fam:first-child { border-top: 0; }
+.fam-name { display: flex; align-items: baseline; gap: 8px; }
+.fam-name b { font-weight: 500; }
+.fam-name small { font-family: var(--font-mono); color: var(--muted); font-size: 12px; }
+.fam-row { display: flex; gap: 10px; overflow-x: auto; padding: 4px 0; scrollbar-width: thin; color: var(--ink-2); }
+.fam-row .i { width: 20px; height: 20px; }
+@media (max-width: 560px) { .fam { grid-template-columns: 1fr; gap: 4px; } }
+
+/* 1.6 Scenes */
+.scenes { display: grid; grid-template-columns: 1.35fr 1fr 0.62fr; gap: 12px; align-items: stretch; }
+@media (max-width: 960px) { .scenes { grid-template-columns: 1fr; } }
+.scene { background: var(--canvas); border-radius: 14px; padding: 14px; display: grid; gap: 10px; min-width: 0; align-content: start; font-size: 13px; }
+.scene .cap { font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.win { background: var(--surface); border-radius: 10px; box-shadow: 0 0 0 1px var(--line), 0 8px 24px -12px oklch(0 0 0 / .25); overflow: hidden; display: grid; }
+.win-bar { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+.win-bar .dots { display: flex; gap: 5px; margin-right: 8px; }
+.win-bar .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+.win-bar .sp { flex: 1; }
+.tb { width: 26px; height: 26px; border-radius: 6px; display: grid; place-items: center; }
+.tb.on { background: var(--accent-soft); color: var(--accent); }
+.app { display: grid; grid-template-columns: 150px minmax(0, 1fr); min-height: 260px; }
+.side { border-right: 1px solid var(--line); padding: 8px; display: grid; gap: 1px; align-content: start; color: var(--ink-2); }
+.side div { display: flex; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 6px; }
+.side div.on { background: var(--hover); color: var(--ink); }
+.side .grp { font-size: 11px; color: var(--muted); padding: 10px 8px 4px; }
+.rows { display: grid; align-content: start; }
+.rows > div { display: flex; gap: 10px; align-items: center; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.rows > div .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rows .ok { color: #10b981; } .rows .warn { color: #f59e0b; } .rows .bad { color: #ef4444; }
+.canvas-area { position: relative; min-height: 190px; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 14px 14px; }
+.menu { position: absolute; right: 14px; top: 18px; width: 180px; background: var(--surface); border-radius: 9px; box-shadow: 0 0 0 1px var(--line), 0 10px 30px -10px oklch(0 0 0 / .3); padding: 5px; display: grid; }
+.menu div { display: flex; gap: 9px; align-items: center; padding: 5px 8px; border-radius: 5px; color: var(--ink-2); }
+.menu div.on { background: var(--accent); color: #fff; }
+.menu kbd { margin-left: auto; font-family: var(--font-mono); font-size: 11px; opacity: .6; }
+.menu hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
+.shape-sel { position: absolute; left: 22px; top: 38px; width: 92px; height: 70px; border: 1px solid var(--accent); border-radius: 6px; background: var(--accent-soft); }
+.phone { background: var(--surface); border-radius: 22px; box-shadow: 0 0 0 1px var(--line), 0 8px 24px -12px oklch(0 0 0 / .25); padding: 14px 12px 8px; display: grid; gap: 10px; min-height: 360px; grid-template-rows: auto auto 1fr auto; }
+.phone .status { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-2); }
+.phone .status span { display: flex; gap: 4px; }
+.phone .status .i { width: 14px; height: 14px; }
+.notif { background: var(--canvas); border-radius: 12px; padding: 10px; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 12px; }
+.notif .i { grid-row: span 2; width: 20px; height: 20px; color: var(--accent); }
+.player { align-self: end; display: grid; gap: 8px; }
+.player .ctrls { display: flex; justify-content: space-around; color: var(--ink); }
+.player .ctrls .i { width: 20px; height: 20px; }
+.tabs { display: flex; justify-content: space-around; border-top: 1px solid var(--line); padding-top: 8px; color: var(--muted); }
+.tabs .on { color: var(--ink); }
+.tabs .i { width: 20px; height: 20px; }
+
+/* 1.7 Pairs */
+.pairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); gap: 6px; }
+.pair { aspect-ratio: 1; display: grid; place-items: center; border-radius: 10px; position: relative; color: var(--ink); background: transparent; border: 0; cursor: default; }
+.pair:hover { background: var(--hover); }
+.pair .i { width: 24px; height: 24px; grid-area: 1 / 1; transition: opacity .18s; }
+.pair .f { opacity: 0; color: var(--accent); }
+.pair.flip .o { opacity: 0; } .pair.flip .f { opacity: 1; }
+.pairs-foot { display: flex; justify-content: space-between; gap: 16px; margin-top: 18px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+
+/* Part 2 drawings */
+.anatomy { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+@media (max-width: 860px) { .anatomy { grid-template-columns: 1fr; } }
+.anatomy svg.big { width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto; overflow: visible; }
+.specs { display: grid; gap: 0; }
+.spec { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--line); }
+.spec:first-child { border-top: 0; }
+.spec .k { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.spec b { font-weight: 500; display: block; }
+.spec p { font-size: 14px; color: var(--muted); }
+.spec .v { font-family: var(--font-mono); font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+@media (max-width: 560px) { .spec { grid-template-columns: 28px minmax(0, 1fr); } .spec .v { grid-column: 2; } }
+.anno-text { font-family: var(--font-mono); font-size: 0.42px; fill: var(--muted); }
+
+.census-bar { display: flex; height: 36px; border-radius: 8px; overflow: hidden; gap: 2px; margin-bottom: 18px; }
+.census-bar button { border: 0; padding: 0 10px; color: #fff; font-family: var(--font-mono); font-size: 12px; display: flex; align-items: center; justify-content: space-between; gap: 6px; cursor: pointer; min-width: 0; overflow: hidden; white-space: nowrap; opacity: .55; transition: opacity .2s; }
+.census-bar button[aria-pressed="true"], .census-bar button:hover { opacity: 1; }
+@media (max-width: 700px) { .census-bar { flex-wrap: wrap; height: auto; } .census-bar button { flex: 1 1 40% !important; height: 32px; border-radius: 6px; } }
+.census { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 28px; align-items: start; }
+@media (max-width: 860px) { .census { grid-template-columns: 1fr; } }
+.census-insp { display: grid; gap: 10px; }
+.census-insp svg { width: 100%; height: auto; display: block; overflow: visible; }
+.census-insp .meta { display: flex; justify-content: space-between; font-size: 13px; gap: 8px; flex-wrap: wrap; }
+.census-insp .meta code { color: var(--muted); font-size: 12px; }
+.census-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 4px; }
+.census-grid button { aspect-ratio: 1; border: 0; background: transparent; border-radius: 8px; display: grid; place-items: center; cursor: pointer; color: var(--ink); }
+.census-grid button:hover, .census-grid button.sel { background: var(--hover); }
+.census-grid button.sel { box-shadow: inset 0 0 0 1px var(--border); }
+.census-grid .i { width: 20px; height: 20px; }
+.census-foot { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; font-size: 13px; color: var(--muted); flex-wrap: wrap; align-items: center; }
+.btn { border: 1px solid var(--border); background: var(--surface); border-radius: 8px; padding: 5px 12px; font-size: 13px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+.btn:hover { background: var(--hover); }
+.loading { font-family: var(--font-mono); font-size: 13px; color: var(--muted); padding: 30px 0; }
+
+.density { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+@media (max-width: 860px) { .density { grid-template-columns: 1fr; } }
+.density-fig { position: relative; width: 100%; max-width: 460px; aspect-ratio: 1; margin: 0 auto; }
+.density-fig canvas, .density-fig svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.density-fig canvas { image-rendering: auto; border-radius: 4px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--ink-2); }
+.legend label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.density-copy { display: grid; gap: 18px; }
+.density-copy .big { font-size: clamp(26px, 3vw, 34px); letter-spacing: -0.03em; line-height: 1.15; text-wrap: balance; }
+
+.proof { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 700px) { .proof { grid-template-columns: 1fr; } }
+.proof figure { margin: 0; display: grid; gap: 12px; background: var(--canvas); border-radius: 14px; padding: 18px; }
+.proof .zoom { position: relative; width: 100%; max-width: 320px; aspect-ratio: 1; margin: 0 auto; }
+.proof canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; background: var(--surface); }
+.proof .px-grid { position: absolute; inset: 0; background-image: linear-gradient(to right, var(--line) 1px, transparent 1px), linear-gradient(to bottom, var(--line) 1px, transparent 1px); background-size: 6.25% 6.25%; pointer-events: none; }
+.proof figcaption { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; font-size: 14px; flex-wrap: wrap; }
+.proof figcaption code { font-size: 12px; color: var(--muted); }
+.proof .score { font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border-radius: 99px; background: var(--surface); }
+.proof-actual { display: flex; gap: 16px; align-items: center; justify-content: center; font-size: 12px; color: var(--muted); }
+.proof-actual canvas { width: 16px; height: 16px; image-rendering: auto; background: transparent; }
+
+.ladder { display: grid; gap: 0; }
+.rung { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 16px; align-items: center; padding: 14px 0; border-top: 1px solid var(--line); }
+.rung:first-child { border-top: 0; }
+.rung code { font-size: 12px; color: var(--muted); }
+.rung .row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+
+.overlay-pairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.ov { background: var(--canvas); border-radius: 14px; padding: 16px; display: grid; gap: 10px; }
+.ov svg { width: 100%; height: auto; display: block; overflow: visible; }
+.ov code { font-size: 12px; color: var(--muted); }
+.ov .fillpart { color: var(--accent); opacity: .28; }
+
+.foot { color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; } .wall span, .pair .i { transition: none; } }
+</style>
+
+<!--SPRITE-->
+
+<main class="wrap">
+  <header class="mast">
+    <h1>Landing studies for <b>FYIcons</b></h1>
+    <p class="lede">Variations for two parts of the home page: how much the set covers, and how each icon is drawn. Every drawing on this page uses the real catalog. Counts and measurements are computed in your browser from the shipped SVGs.</p>
+    <nav class="toc" aria-label="Studies">
+      <section>
+        <h2><svg class="i"><use href="#i-shapes"/></svg> Part 1 · Breadth</h2>
+        <ol>
+          <li><a href="#s-strip"><span>1.1</span>Feature strip, three ways</a></li>
+          <li><a href="#s-wall"><span>1.2</span>The whole catalog, at once</a></li>
+          <li><a href="#s-atlas"><span>1.3</span>Category atlas</a></li>
+          <li><a href="#s-spectrum"><span>1.4</span>From everyday to oddly specific</a></li>
+          <li><a href="#s-families"><span>1.5</span>Depth per idea</a></li>
+          <li><a href="#s-scenes"><span>1.6</span>One set, every surface</a></li>
+          <li><a href="#s-pairs"><span>1.7</span>Outline and fill pairs</a></li>
+        </ol>
+      </section>
+      <section>
+        <h2><svg class="i"><use href="#i-grid-ruler"/></svg> Part 2 · Drawing style</h2>
+        <ol>
+          <li><a href="#s-anatomy"><span>2.1</span>Anatomy of one icon</a></li>
+          <li><a href="#s-census"><span>2.2</span>Keyline census</a></li>
+          <li><a href="#s-density"><span>2.3</span>Where the ink goes</a></li>
+          <li><a href="#s-proof"><span>2.4</span>Pixel proof</a></li>
+          <li><a href="#s-ladder"><span>2.5</span>Integer scale ladder</a></li>
+          <li><a href="#s-overlay"><span>2.6</span>Fills that follow the outline</a></li>
+        </ol>
+      </section>
+    </nav>
+  </header>
+
+  <!-- ============================ PART 1 ============================ -->
+  <section class="part" aria-labelledby="p1">
+    <div class="part-head">
+      <h2 id="p1">Part 1 · Breadth</h2>
+      <p>The current page says “1,458 icons” once, in a three-cell strip. These studies show the size of the set instead of stating it.</p>
+    </div>
+
+    <section class="study" id="s-strip">
+      <div class="study-head">
+        <p class="eyebrow">1.1 · Replaces the Features strip</p>
+        <h3>Feature strip, three ways</h3>
+        <p class="note"><b>A</b> keeps the strip and adds evidence under each number. <b>B</b> turns it into one sentence. <b>C</b> lets the icons scroll past as the proof.</p>
+      </div>
+      <div class="variants">
+        <div class="stage"><span class="vlabel">A · Numbers with evidence</span><div class="strip-a" id="stripA"></div></div>
+        <div class="stage"><span class="vlabel">B · One sentence</span><p class="strip-b" id="stripB"></p></div>
+        <div class="stage"><span class="vlabel">C · Moving proof</span>
+          <div class="strip-c">
+            <div class="strip-c-head"><strong id="stripCCount"></strong><p>icons, and every one of them is drawn on the same 16 × 16 grid.</p></div>
+            <div class="marquee" id="mq1"></div>
+            <div class="marquee rev" id="mq2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="study" id="s-wall">
+      <div class="study-head">
+        <p class="eyebrow">1.2 · New section after “Take a look”</p>
+        <h3>The whole catalog, at once</h3>
+        <p class="note">Every icon at 16 px in one field. Pick a category to light up its members. Icons can belong to more than one category, as on the browse page.</p>
+      </div>
+      <div class="stage">
+        <div class="wall-bar">
+          <div class="wall-count" id="wallCount"></div>
+          <div class="wall-tip" id="wallTip">Hover an icon to see its name</div>
+        </div>
+        <div class="chips" id="wallChips"></div>
+        <div class="wall" id="wall"></div>
+      </div>
+    </section>
+
+    <section class="study" id="s-atlas">
+      <div class="study-head">
+        <p class="eyebrow">1.3 · Alternative to “Categories galore” carousel</p>
+        <h3>Category atlas</h3>
+        <p class="note">All 25 categories, ordered by size, with a bar for relative size. Select a card to filter the catalog field in 1.2.</p>
+      </div>
+      <div class="atlas" id="atlas"></div>
+    </section>
+
+    <section class="study" id="s-spectrum">
+      <div class="study-head">
+        <p class="eyebrow">1.4 · New section</p>
+        <h3>From everyday to oddly specific</h3>
+        <p class="note">Coverage is not only a count. This places icons on a line from the controls every app needs to the ones that give an app character.</p>
+      </div>
+      <div class="stage flush">
+        <div class="spectrum" id="spectrum">
+          <div class="band"><h4>Every app needs</h4><p>Controls and states that appear on nearly every screen.</p><div class="set" data-set="core"></div></div>
+          <div class="band"><h4>Most apps need</h4><p>Product vocabulary: files, people, charts, AI, and media.</p><div class="set" data-set="mid"></div></div>
+          <div class="band"><h4>Your app, specifically</h4><p>The ones you are glad someone already drew.</p><div class="set" data-set="niche"></div></div>
+        </div>
+        <div class="spectrum-axis" style="margin-bottom:22px" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="study" id="s-families">
+      <div class="study-head">
+        <p class="eyebrow">1.5 · New section, or a band inside the atlas</p>
+        <h3>Depth per idea</h3>
+        <p class="note">The largest icon families by name prefix. One idea, many specific forms, so you rarely need to fake a variant.</p>
+      </div>
+      <div class="stage"><div class="families" id="families"></div></div>
+    </section>
+
+    <section class="study" id="s-scenes">
+      <div class="study-head">
+        <p class="eyebrow">1.6 · Companion to the desktop showcase</p>
+        <h3>One set, every surface</h3>
+        <p class="note">Three small product surfaces built only from FYIcons: a work app, a design canvas, and a phone. Lighter than the full desktop showcase, and it works on mobile.</p>
+      </div>
+      <div class="stage">
+        <div class="scenes">
+          <div class="scene"><span class="cap">Work app</span>
+            <div class="win">
+              <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><svg class="i"><use href="#i-sidebar-left"/></svg><span class="sp"></span><span class="tb"><svg class="i"><use href="#i-search"/></svg></span><span class="tb"><svg class="i"><use href="#i-filter"/></svg></span><span class="tb on"><svg class="i"><use href="#i-plus"/></svg></span></div>
+              <div class="app">
+                <div class="side" id="sceneSide"></div>
+                <div class="rows" id="sceneRows"></div>
+              </div>
+            </div>
+          </div>
+          <div class="scene"><span class="cap">Design canvas</span>
+            <div class="win">
+              <div class="win-bar" id="sceneTools"></div>
+              <div class="canvas-area"><div class="shape-sel"></div><div class="menu" id="sceneMenu"></div></div>
+            </div>
+          </div>
+          <div class="scene"><span class="cap">Phone</span>
+            <div class="phone">
+              <div class="status"><span>9:41</span><span><svg class="i"><use href="#i-wifi"/></svg><svg class="i"><use href="#i-battery-high"/></svg></span></div>
+              <div class="notif"><svg class="i"><use href="#i-bell-dot"/></svg><b>Build finished</b><span class="muted">fyicons 0.4.0 is ready</span></div>
+              <div class="player">
+                <div class="muted" style="font-size:12px;text-align:center">Now playing</div>
+                <div class="ctrls" id="scenePlayer"></div>
+              </div>
+              <div class="tabs" id="sceneTabs"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="study" id="s-pairs">
+      <div class="study-head">
+        <p class="eyebrow">1.7 · Extends “More than just outlines”</p>
+        <h3>Outline and fill pairs</h3>
+        <p class="note">Every icon with a fill variant. A wave flips outlines to fills; hover any cell to flip it yourself. Useful for selected and active states.</p>
+      </div>
+      <div class="stage">
+        <div class="pairs" id="pairs"></div>
+        <div class="pairs-foot"><span id="pairsCount"></span><button class="btn" id="pairsToggle" type="button"><svg class="i"><use href="#i-pause-fill"/></svg><span>Pause wave</span></button></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============================ PART 2 ============================ -->
+  <section class="part" aria-labelledby="p2">
+    <div class="part-head">
+      <h2 id="p2">Part 2 · Drawing style</h2>
+      <p>“Constructed with care” today shows four keylines. These studies make the drawing rules specific, then show that the rules hold across the set.</p>
+    </div>
+
+    <section class="study" id="s-anatomy">
+      <div class="study-head">
+        <p class="eyebrow">2.1 · Opener for “Constructed with care”</p>
+        <h3>Anatomy of one icon</h3>
+        <p class="note">One familiar icon, measured. Every value comes from the shipped path data of <code>envelope</code>.</p>
+      </div>
+      <div class="stage">
+        <div class="anatomy">
+          <svg class="big" viewBox="-2 -1.6 20 19" role="img" aria-label="Envelope icon magnified on a 16 by 16 pixel grid with dimension lines">
+            <defs>
+              <pattern id="pg" width="1" height="1" patternUnits="userSpaceOnUse"><path d="M1 0H0V1" fill="none" stroke="var(--grid)" stroke-width="0.03"/></pattern>
+            </defs>
+            <rect width="16" height="16" fill="url(#pg)"/>
+            <rect width="16" height="16" fill="none" stroke="var(--border)" stroke-width="0.04"/>
+            <rect x="1" y="3" width="14" height="10" rx="1" fill="var(--k-horizontal)" fill-opacity="0.08" stroke="var(--k-horizontal)" stroke-width="0.05" stroke-dasharray="0.2 0.12"/>
+            <use href="#i-envelope" width="16" height="16" style="color:var(--ink)" opacity="0.9"/>
+            <!-- width dimension -->
+            <g stroke="var(--k-circle)" stroke-width="0.04" fill="none"><path d="M1 1.6H15M1 1.3V1.9M15 1.3V1.9"/></g>
+            <text class="anno-text" x="8" y="1.25" text-anchor="middle" style="fill:var(--k-circle)">14 px</text>
+            <!-- height dimension -->
+            <g stroke="var(--k-circle)" stroke-width="0.04" fill="none"><path d="M16.6 3V13M16.3 3H16.9M16.3 13H16.9"/></g>
+            <text class="anno-text" x="16.85" y="8.15" style="fill:var(--k-circle)">10</text>
+            <!-- stroke callout -->
+            <g stroke="var(--accent)" stroke-width="0.04" fill="none"><path d="M1 11.6H2M1 11.4V11.8M2 11.4V11.8"/><path d="M1.5 11.6V15.1H3"/></g>
+            <text class="anno-text" x="3.15" y="15.25" style="fill:var(--accent)">1 px wall</text>
+            <!-- radius callouts -->
+            <circle cx="13" cy="5" r="2" fill="none" stroke="var(--k-vertical)" stroke-width="0.04" stroke-dasharray="0.12 0.1"/>
+            <circle cx="13" cy="5" r="0.07" fill="var(--k-vertical)"/>
+            <path d="M14.4 3.6L16.2 1.1" stroke="var(--k-vertical)" stroke-width="0.04"/>
+            <text class="anno-text" x="16.3" y="0.95" style="fill:var(--k-vertical)">r 2 outer</text>
+            <circle cx="3" cy="5" r="1" fill="none" stroke="var(--k-vertical)" stroke-width="0.04" stroke-dasharray="0.12 0.1"/>
+            <path d="M2.3 4.3L0.4 2.2" stroke="var(--k-vertical)" stroke-width="0.04"/>
+            <text class="anno-text" x="0.35" y="2.0" text-anchor="end" style="fill:var(--k-vertical)">r 1 inner</text>
+            <!-- margin -->
+            <text class="anno-text" x="8" y="14.9" text-anchor="middle">3 px clear</text>
+            <path d="M8 13.1V14.3" stroke="var(--muted)" stroke-width="0.03"/>
+          </svg>
+          <div class="specs">
+            <div class="spec"><span class="k">01</span><div><b>16 × 16 canvas</b><p>Drawn at the size it ships. No downscaled 24 px artwork.</p></div><span class="v">viewBox 0 0 16 16</span></div>
+            <div class="spec"><span class="k">02</span><div><b>1 px walls on whole pixels</b><p>Outer edge at x 1, inner edge at x 2. Each wall fills one pixel column.</p></div><span class="v">1 → 2, 14 → 15</span></div>
+            <div class="spec"><span class="k">03</span><div><b>Concentric corners</b><p>Outer radius 2, inner radius 1. The wall stays 1 px through the curve.</p></div><span class="v">r 2 / r 1</span></div>
+            <div class="spec"><span class="k">04</span><div><b>Fits a keyline</b><p>Wide shapes use the 14 × 10 horizontal keyline, so they carry the same weight as round and tall icons.</p></div><span class="v">14 × 10</span></div>
+            <div class="spec"><span class="k">05</span><div><b>Filled outlines</b><p>Strokes are expanded to filled paths, so the icon looks the same in every renderer and in <code>currentColor</code>.</p></div><span class="v">fill="currentColor"</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="study" id="s-census">
+      <div class="study-head">
+        <p class="eyebrow">2.2 · Expands the four keyline tiles</p>
+        <h3>Keyline census</h3>
+        <p class="note">Each icon is rasterized and sorted by its measured bounds and corner coverage. The sort is automatic and approximate, but it shows the four keylines at catalog scale. Select an icon to inspect it.</p>
+      </div>
+      <div class="stage">
+        <div id="census"><p class="loading">Measuring the catalog…</p></div>
+      </div>
+    </section>
+
+    <section class="study" id="s-density">
+      <div class="study-head">
+        <p class="eyebrow">2.3 · New section after the keylines</p>
+        <h3>Where the ink goes</h3>
+        <p class="note">Every icon stacked in one 16 × 16 cell. Darker areas hold more ink. The keyline shapes appear on their own.</p>
+      </div>
+      <div class="stage">
+        <div class="density">
+          <div class="density-fig">
+            <canvas id="densityCanvas" width="256" height="256" aria-label="Heat map of ink coverage for all icons stacked together"></canvas>
+            <svg viewBox="0 0 16 16" aria-hidden="true" id="densityGuides"></svg>
+          </div>
+          <div class="density-copy">
+            <p class="big" id="densityHead">Stacking the catalog…</p>
+            <p class="muted" id="densityBody"></p>
+            <div class="legend" id="densityLegend"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="study" id="s-proof">
+      <div class="study-head">
+        <p class="eyebrow">2.4 · Backs up “pixel-perfect” in the hero</p>
+        <h3>Pixel proof</h3>
+        <p class="note">The same icon rasterized at 16 px by your browser, on the grid and nudged by half a pixel. Soft pixels are partly covered pixels, which read as blur.</p>
+      </div>
+      <div class="stage">
+        <div class="chips" id="proofChips" style="margin-bottom:16px"></div>
+        <div class="proof">
+          <figure><div class="zoom"><canvas id="proofA" width="16" height="16"></canvas><div class="px-grid"></div></div>
+            <figcaption><span>As drawn</span><span class="score" id="proofAScore"></span></figcaption></figure>
+          <figure><div class="zoom"><canvas id="proofB" width="16" height="16"></canvas><div class="px-grid"></div></div>
+            <figcaption><span>Nudged 0.5 px</span><span class="score" id="proofBScore"></span></figcaption></figure>
+        </div>
+        <div class="proof-actual" style="margin-top:16px"><span>Actual size</span><canvas id="proofA1" width="32" height="32"></canvas><canvas id="proofB1" width="32" height="32"></canvas></div>
+      </div>
+    </section>
+
+    <section class="study" id="s-ladder">
+      <div class="study-head">
+        <p class="eyebrow">2.5 · Small add-on to 2.4</p>
+        <h3>Integer scale ladder</h3>
+        <p class="note">Drawn at 16, the icons stay sharp at whole multiples. Use 16, 32, and 48 for the cleanest results; 20 and 24 work for touch targets.</p>
+      </div>
+      <div class="stage"><div class="ladder" id="ladder"></div></div>
+    </section>
+
+    <section class="study" id="s-overlay">
+      <div class="study-head">
+        <p class="eyebrow">2.6 · Pairs with 1.7</p>
+        <h3>Fills that follow the outline</h3>
+        <p class="note">Fill variant in tint, outline on top. The silhouette matches, so a selected state never changes the icon's footprint.</p>
+      </div>
+      <div class="stage"><div class="overlay-pairs" id="overlay"></div></div>
+    </section>
+  </section>
+
+  <footer class="foot"><span id="footMeta"></span><span>Internal study, not for publication on the site as is.</span></footer>
+</main>
+
+<script>
+const DATA = /*DATA*/;
+const byName = new Map(DATA.icons.map((i) => [i.n, i]));
+const has = (n) => byName.has(n);
+const ico = (n, cls = '') => has(n) ? `<svg class="i ${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>` : '';
+const fmt = (n) => n.toLocaleString('en-US');
+const $ = (id) => document.getElementById(id);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const pick = (list) => list.filter(has);
+// Deterministic shuffle so the page is stable across reloads.
+function seeded(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+function shuffle(arr, seed = 7) { const r = seeded(seed), a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+const catCounts = new Map(DATA.categories.map((c) => [c.id, 0]));
+DATA.icons.forEach((i) => i.c.forEach((c) => catCounts.set(c, (catCounts.get(c) || 0) + 1)));
+const fillIcons = DATA.icons.filter((i) => i.f);
+const pairBases = fillIcons.map((f) => { const o = DATA.icons.find((i) => i.b === f.b && !i.f); return o ? { o: o.n, f: f.n } : null; }).filter(Boolean);
+const outlineIcons = DATA.icons.filter((i) => !i.f).map((i) => i.n);
+
+/* 1.1 Strips */
+$('stripA').innerHTML = [
+  [fmt(DATA.count), 'icons', ['skull', 'crystal-ball', 'rocket', 'folder-git', 'chart-donut']],
+  [DATA.categories.length, 'categories', DATA.categories.slice(0, 5).map((c) => c.icon)],
+  [fmt(pairBases.length), 'outline and fill pairs', ['heart', 'heart-fill', 'star', 'star-fill', 'bell-fill']],
+  ['1', 'grid, 16 × 16', ['grid-ruler', 'border-width', 'bounding-box', 'vector-path', 'bezier']],
+].map(([n, l, s]) => `<div><strong>${n}</strong><span>${l}</span><span class="cluster">${s.map((x) => ico(x)).join('')}</span></div>`).join('');
+$('stripB').innerHTML = `<span class="tok">${ico('shapes')}${fmt(DATA.count)} icons</span> in <span class="tok">${ico('folders')}${DATA.categories.length} categories</span>, each drawn on a <span class="tok">${ico('grid-ruler')}16 × 16 grid</span> with <span class="tok">${ico('border-width')}1 px walls</span> and <span class="tok">${ico('heart-fill')}${fmt(pairBases.length)} fill variants</span> for active states.`;
+$('stripCCount').textContent = fmt(DATA.count);
+const mqA = shuffle(outlineIcons, 3).slice(0, 70), mqB = shuffle(outlineIcons, 11).slice(0, 70);
+$('mq1').innerHTML = [...mqA, ...mqA].map((n) => ico(n)).join('');
+$('mq2').innerHTML = [...mqB, ...mqB].map((n) => ico(n)).join('');
+
+/* 1.2 Wall */
+const wall = $('wall');
+wall.innerHTML = DATA.icons.map((i) => `<span data-n="${i.n}" title="${i.n}">${ico(i.n)}</span>`).join('');
+const wallCells = [...wall.children];
+let activeCat = null;
+function setWallFilter(id) {
+  activeCat = id === activeCat ? null : id;
+  wall.classList.toggle('filtered', !!activeCat);
+  let on = 0;
+  wallCells.forEach((el) => { const m = activeCat && byName.get(el.dataset.n).c.includes(activeCat); el.classList.toggle('on', !!m); if (m) on++; });
+  const cat = DATA.categories.find((c) => c.id === activeCat);
+  $('wallCount').innerHTML = activeCat ? `${fmt(on)}<small>${cat.name}</small>` : `${fmt(DATA.count)}<small>icons, all of them</small>`;
+  document.querySelectorAll('#wallChips .chip').forEach((c) => c.setAttribute('aria-pressed', c.dataset.id === activeCat));
+  if (activeCat) { const first = wall.querySelector('span.on'); if (first) wall.scrollTo({ top: first.offsetTop - 10, behavior: reduced ? 'auto' : 'smooth' }); }
+}
+$('wallChips').innerHTML = DATA.categories.map((c) => `<button class="chip" type="button" data-id="${c.id}" aria-pressed="false">${ico(c.icon)}${c.name}<small>${catCounts.get(c.id)}</small></button>`).join('');
+$('wallChips').addEventListener('click', (e) => { const b = e.target.closest('.chip'); if (b) setWallFilter(b.dataset.id); });
+wall.addEventListener('mouseover', (e) => { const s = e.target.closest('span[data-n]'); if (s) $('wallTip').textContent = s.dataset.n; });
+setWallFilter(null);
+
+/* 1.3 Atlas */
+const maxCat = Math.max(...catCounts.values());
+$('atlas').innerHTML = [...DATA.categories].sort((a, b) => catCounts.get(b.id) - catCounts.get(a.id)).map((c) => {
+  const members = DATA.icons.filter((i) => i.c.includes(c.id) && !i.f && i.n !== c.icon).map((i) => i.n);
+  const samples = shuffle(members, c.id.length * 13).slice(0, 8);
+  return `<button class="card" type="button" data-id="${c.id}"><div class="card-top"><span class="badge">${ico(c.icon)}</span><h4>${c.name}</h4><span class="n">${catCounts.get(c.id)}</span></div><div class="bar"><i style="width:${(catCounts.get(c.id) / maxCat * 100).toFixed(1)}%"></i></div><div class="samples">${samples.map((n) => ico(n)).join('')}</div></button>`;
+}).join('');
+$('atlas').addEventListener('click', (e) => { const b = e.target.closest('.card'); if (!b) return; activeCat = null; setWallFilter(b.dataset.id); $('s-wall').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); });
+
+/* 1.4 Spectrum */
+const sets = {
+  core: ['search', 'settings', 'check', 'x', 'plus', 'trash', 'pencil', 'copy', 'download', 'upload', 'home', 'user', 'lock', 'calendar', 'clock', 'bell', 'link', 'filter'],
+  mid: ['chart-donut', 'file-pdf', 'folder-git', 'users-three', 'closed-captions', 'calendar-simple-days', 'link-unlink', 'search-sparkle', 'agent', 'workflow', 'file-table', 'user-key', 'chat-sparkles', 'bell-slash', 'lock-open', 'star-half-fill', 'file-diff', 'folder-tree'],
+  niche: ['crystal-ball', 'ghost', 'skull', 'cat-face', 'dog-retriever-face', 'fish', 'leaf-monstera', 'home-birdhouse', 'rocket-launch', 'planet', 'bug-beetle', 'umbrella', 'hat-side', 'pencil-ruler', 'bug-ant', 'agent-clank', 'glasses', 'anchor'],
+};
+document.querySelectorAll('#spectrum .set').forEach((el) => { el.innerHTML = pick(sets[el.dataset.set]).slice(0, 18).map((n) => `<span title="${n}" style="display:grid">${ico(n)}</span>`).join(''); });
+
+/* 1.5 Families */
+const fam = new Map();
+DATA.icons.forEach((i) => { if (i.f) return; const p = i.n.split('-')[0]; if (!fam.has(p)) fam.set(p, []); fam.get(p).push(i.n); });
+$('families').innerHTML = [...fam.entries()].sort((a, b) => b[1].length - a[1].length).slice(0, 10)
+  .map(([p, list]) => `<div class="fam"><div class="fam-name"><b>${p}</b><small>${list.length}</small></div><div class="fam-row">${list.map((n) => `<span title="${n}" style="display:grid">${ico(n)}</span>`).join('')}</div></div>`).join('');
+
+/* 1.6 Scenes */
+const sideItems = [['home', 'Home'], ['envelope', 'Inbox'], ['calendar', 'Calendar'], ['folder', 'Projects'], ['users', 'Team'], null, ['chart-donut', 'Reports'], ['settings', 'Settings']];
+$('sceneSide').innerHTML = sideItems.map((s, k) => s ? `<div class="${k === 3 ? 'on' : ''}">${ico(s[0])}${s[1]}</div>` : '<span class="grp">Workspace</span>').join('');
+const rows = [['circle-check', 'ok', 'Ship icon sync report', 'file-text'], ['clock', 'warn', 'Review registry changes', 'folder-git'], ['circle-x', 'bad', 'Fix preview workflow', 'bug'], ['circle-check', 'ok', 'Update category rules', 'tag'], ['circle-dashed', '', 'Draft 0.5.0 notes', 'pencil']];
+$('sceneRows').innerHTML = rows.map(([s, c, t, k]) => `<div><span class="${c}">${ico(has(s) ? s : 'circle')}</span><span class="t">${t}</span><span class="muted">${ico(k)}</span></div>`).join('');
+const tools = ['cursor-default', 'frame', 'square', 'circle', 'pen-tool-alt', 'font', 'image', 'hand'].filter(has);
+$('sceneTools').innerHTML = tools.map((t, k) => `<span class="tb ${k === 4 ? 'on' : ''}">${ico(t)}</span>`).join('') + '<span class="sp" style="flex:1"></span>' + ['grid-ruler', 'share'].filter(has).map((t) => `<span class="tb">${ico(t)}</span>`).join('');
+const menu = [['copy', 'Copy', '⌘C'], ['scissors', 'Cut', '⌘X'], ['duplicate', 'Duplicate', '⌘D'], 0, ['link', 'Copy link', ''], ['lock', 'Lock', '⇧⌘L'], ['eye-slash', 'Hide', '⇧⌘H'], 0, ['trash', 'Delete', '⌫']];
+$('sceneMenu').innerHTML = menu.map((m, k) => m ? `<div class="${k === 4 ? 'on' : ''}">${ico(has(m[0]) ? m[0] : 'square')}${m[1]}<kbd>${m[2]}</kbd></div>` : '<hr>').join('');
+$('scenePlayer').innerHTML = ['shuffle', 'skip-backward-fill', 'play-fill', 'skip-forward-fill', 'repeat'].map((n) => ico(n)).join('');
+$('sceneTabs').innerHTML = [['home-fill', 1], ['search', 0], ['heart', 0], ['user', 0]].map(([n, on]) => `<span class="${on ? 'on' : ''}">${ico(n)}</span>`).join('');
+
+/* 1.7 Pairs */
+$('pairs').innerHTML = pairBases.map((p) => `<span class="pair" title="${p.o}">${ico(p.o, 'o')}${ico(p.f, 'f')}</span>`).join('');
+$('pairsCount').textContent = `${fmt(pairBases.length)} icons have a fill variant`;
+const pairEls = [...document.querySelectorAll('#pairs .pair')];
+pairEls.forEach((el) => { el.addEventListener('mouseenter', () => el.classList.add('flip')); el.addEventListener('mouseleave', () => el.classList.remove('flip')); });
+let wave = !reduced, waveT = 0, waveTimer;
+function waveStep() {
+  const cols = Math.max(1, Math.round($('pairs').clientWidth / 50));
+  pairEls.forEach((el, k) => { const d = (k % cols) + Math.floor(k / cols); el.classList.toggle('flip', ((d - waveT) % 24 + 24) % 24 < 5); });
+  waveT++;
+}
+function setWave(on) { wave = on; clearInterval(waveTimer); if (on) waveTimer = setInterval(waveStep, 110); else pairEls.forEach((el) => el.classList.remove('flip')); $('pairsToggle').innerHTML = on ? `${ico('pause-fill')}<span>Pause wave</span>` : `${ico('play-fill')}<span>Play wave</span>`; }
+$('pairsToggle').addEventListener('click', () => setWave(!wave));
+setWave(wave);
+
+/* ---------- Part 2 ---------- */
+const KEYS = {
+  circle: { label: 'Circle', size: '14 Ø', color: 'var(--k-circle)', svg: '<circle cx="8" cy="8" r="7"/>' },
+  square: { label: 'Square', size: '12 × 12', color: 'var(--k-square)', svg: '<rect x="2" y="2" width="12" height="12" rx="1"/>' },
+  horizontal: { label: 'Horizontal', size: '14 × 10', color: 'var(--k-horizontal)', svg: '<rect x="1" y="3" width="14" height="10" rx="1"/>' },
+  vertical: { label: 'Vertical', size: '10 × 14', color: 'var(--k-vertical)', svg: '<rect x="3" y="1" width="10" height="14" rx="1"/>' },
+  other: { label: 'Other', size: '', color: 'var(--k-other)', svg: '' },
+};
+const cssVar = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function svgString(name, color, size) {
+  const sym = document.getElementById('i-' + name);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="${size}" height="${size}" color="${color}" style="color:${color}">${sym.innerHTML}</svg>`;
+}
+function loadImage(name, color, size) {
+  return new Promise((res) => {
+    const img = new Image();
+    img.onload = () => res(img); img.onerror = () => res(null);
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString(name, color, size));
+  });
+}
+
+/* 2.2 + 2.3 measurement pass */
+const R = 64; // raster size; 4 px per icon unit
+const density = new Float32Array(R * R);
+const measures = new Map();
+async function measureAll() {
+  const cv = document.createElement('canvas'); cv.width = cv.height = R;
+  const ctx = cv.getContext('2d', { willReadFrequently: true });
+  const names = DATA.icons.map((i) => i.n);
+  for (let k = 0; k < names.length; k += 60) {
+    const batch = names.slice(k, k + 60);
+    const imgs = await Promise.all(batch.map((n) => loadImage(n, '#000', R)));
+    imgs.forEach((img, j) => {
+      if (!img) return;
+      ctx.clearRect(0, 0, R, R); ctx.drawImage(img, 0, 0, R, R);
+      const a = ctx.getImageData(0, 0, R, R).data;
+      let x0 = R, y0 = R, x1 = -1, y1 = -1;
+      for (let p = 0; p < R * R; p++) { const v = a[p * 4 + 3]; density[p] += v / 255; if (v > 96) { const x = p % R, y = (p / R) | 0; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; } }
+      if (x1 < 0) return;
+      const w = (x1 - x0 + 1) / 4, h = (y1 - y0 + 1) / 4;
+      // Corner coverage: share of inked pixels in the four corner squares of the bounds.
+      const cs = Math.max(2, Math.round(Math.min(x1 - x0, y1 - y0) * 0.16));
+      let ink = 0, tot = 0;
+      for (const [cx, cy] of [[x0, y0], [x1 - cs + 1, y0], [x0, y1 - cs + 1], [x1 - cs + 1, y1 - cs + 1]])
+        for (let y = cy; y < cy + cs; y++) for (let x = cx; x < cx + cs; x++) { tot++; if (a[(y * R + x) * 4 + 3] > 96) ink++; }
+      const corner = ink / tot;
+      let cls;
+      if (Math.max(w, h) < 10 || Math.max(w, h) > 15.25) cls = 'other';
+      else if (w - h >= 2) cls = 'horizontal';
+      else if (h - w >= 2) cls = 'vertical';
+      else cls = corner < 0.1 ? 'circle' : 'square';
+      measures.set(batch[j], { w, h, x: x0 / 4, y: y0 / 4, corner, cls });
+    });
+    $('census').querySelector('.loading') && ($('census').querySelector('.loading').textContent = `Measuring the catalog… ${Math.min(k + 60, names.length)} / ${names.length}`);
+  }
+}
+
+function guideSvg(name, cls, m) {
+  const k = KEYS[cls];
+  const grid = `<defs><pattern id="cg" width="1" height="1" patternUnits="userSpaceOnUse"><path d="M1 0H0V1" fill="none" stroke="var(--grid)" stroke-width="0.035"/></pattern></defs><rect width="16" height="16" fill="url(#cg)"/><rect width="16" height="16" fill="none" stroke="var(--border)" stroke-width="0.05"/>`;
+  const key = k.svg ? `<g fill="${k.color}" fill-opacity="0.1" stroke="${k.color}" stroke-width="0.08">${k.svg}</g>` : '';
+  const bounds = m ? `<rect x="${m.x}" y="${m.y}" width="${m.w}" height="${m.h}" fill="none" stroke="var(--ink-2)" stroke-width="0.04" stroke-dasharray="0.15 0.12"/>` : '';
+  return `<svg viewBox="-0.5 -0.5 17 17" role="img" aria-label="${name} on the grid with the ${k.label.toLowerCase()} keyline">${grid}${key}<use href="#i-${name}" width="16" height="16" style="color:var(--ink)"/>${bounds}</svg>`;
+}
+
+function renderCensus() {
+  const groups = { circle: [], square: [], horizontal: [], vertical: [], other: [] };
+  DATA.icons.forEach((i) => { if (i.f) return; const m = measures.get(i.n); if (m) groups[m.cls].push(i.n); });
+  const total = Object.values(groups).reduce((s, g) => s + g.length, 0);
+  let cur = 'circle', seed = 1, sel = null;
+  const root = $('census');
+  root.innerHTML = `<div class="census-bar" id="cBar"></div><div class="census"><div class="census-insp" id="cInsp"></div><div><div class="census-grid" id="cGrid"></div><div class="census-foot"><span id="cFoot"></span><button class="btn" type="button" id="cShuffle">${ico('arrows-swap') || ico('shuffle')}Show others</button></div></div></div>`;
+  $('cBar').innerHTML = Object.entries(groups).map(([id, g]) => `<button type="button" data-id="${id}" style="flex:${g.length};background:${KEYS[id].color}" aria-pressed="false" title="${KEYS[id].label}: ${g.length}"><span>${KEYS[id].label}</span><span>${g.length}</span></button>`).join('');
+  function inspect(name) {
+    sel = name; const m = measures.get(name);
+    $('cInsp').innerHTML = guideSvg(name, cur, m) + `<div class="meta"><span>${name}</span><code>bounds ${m.w} × ${m.h}</code></div><div class="meta"><span class="muted">${KEYS[cur].label} keyline</span><code>${KEYS[cur].size}</code></div>`;
+    document.querySelectorAll('#cGrid button').forEach((b) => b.classList.toggle('sel', b.dataset.n === name));
+  }
+  function draw() {
+    document.querySelectorAll('#cBar button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.id === cur));
+    const list = shuffle(groups[cur], seed).slice(0, 48);
+    $('cGrid').innerHTML = list.map((n) => `<button type="button" data-n="${n}" title="${n}">${ico(n)}</button>`).join('');
+    $('cFoot').textContent = `${fmt(groups[cur].length)} outline icons (${Math.round(groups[cur].length / total * 100)}%) · showing ${list.length}`;
+    inspect(list[0]);
+  }
+  $('cBar').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { cur = b.dataset.id; draw(); } });
+  $('cGrid').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) inspect(b.dataset.n); });
+  $('cGrid').addEventListener('mouseover', (e) => { const b = e.target.closest('button'); if (b && b.dataset.n !== sel) inspect(b.dataset.n); });
+  $('cShuffle').addEventListener('click', () => { seed++; draw(); });
+  draw();
+}
+
+const densityShow = { circle: true, square: false, horizontal: false, vertical: false };
+function renderDensity() {
+  const cv = $('densityCanvas'), ctx = cv.getContext('2d');
+  const S = cv.width, img = ctx.createImageData(R, R);
+  let max = 0; for (const v of density) if (v > max) max = v;
+  // Use the ink color so the map follows the theme.
+  const probe = document.createElement('canvas').getContext('2d'); probe.fillStyle = cssVar('--ink'); probe.fillRect(0, 0, 1, 1);
+  const [r, g, b] = probe.getImageData(0, 0, 1, 1).data;
+  for (let p = 0; p < R * R; p++) { const t = Math.pow(density[p] / max, 2.2); img.data[p * 4] = r; img.data[p * 4 + 1] = g; img.data[p * 4 + 2] = b; img.data[p * 4 + 3] = Math.round(t * 255); }
+  const tmp = document.createElement('canvas'); tmp.width = tmp.height = R; tmp.getContext('2d').putImageData(img, 0, 0);
+  ctx.clearRect(0, 0, S, S); ctx.imageSmoothingEnabled = true; ctx.drawImage(tmp, 0, 0, S, S);
+  // Inner 14 px share: ink inside x/y 1..15.
+  let inner = 0, all = 0; for (let p = 0; p < R * R; p++) { const x = p % R, y = (p / R) | 0; all += density[p]; if (x >= 4 && x < 60 && y >= 4 && y < 60) inner += density[p]; }
+  $('densityHead').textContent = `${(inner / all * 100).toFixed(1)}% of all ink sits inside the 1 px safe margin.`;
+  $('densityBody').textContent = `Built from ${fmt(DATA.count)} icons rasterized at 64 px. The outer pixel ring stays nearly empty, and the darkest edges follow the rounded keyline shapes. Toggle the keylines to compare.`;
+}
+function renderDensityGuides() {
+  $('densityGuides').innerHTML = `<rect x="1" y="1" width="14" height="14" fill="none" stroke="var(--muted)" stroke-width="0.04" stroke-dasharray="0.2 0.15"/>` +
+    Object.entries(densityShow).filter(([, on]) => on).map(([id]) => `<g fill="none" stroke="${KEYS[id].color}" stroke-width="0.07">${KEYS[id].svg}</g>`).join('');
+  $('densityLegend').innerHTML = Object.keys(densityShow).map((id) => `<label><input type="checkbox" id="dk-${id}" data-id="${id}" ${densityShow[id] ? 'checked' : ''}><i style="background:${KEYS[id].color}"></i>${KEYS[id].label} ${KEYS[id].size}</label>`).join('') + `<span class="muted" style="font-size:12px">Dashed: 1 px margin</span>`;
+}
+$('densityLegend').addEventListener('change', (e) => { densityShow[e.target.dataset.id] = e.target.checked; renderDensityGuides(); });
+
+/* 2.4 Pixel proof */
+const proofNames = pick(['envelope', 'calendar', 'folder', 'lock', 'settings', 'skull']);
+let proofCur = proofNames[0];
+$('proofChips').innerHTML = proofNames.map((n) => `<button class="chip" type="button" data-n="${n}" aria-pressed="${n === proofCur}">${ico(n)}${n}</button>`).join('');
+$('proofChips').addEventListener('click', (e) => { const b = e.target.closest('.chip'); if (b) { proofCur = b.dataset.n; renderProof(); } });
+async function renderProof() {
+  document.querySelectorAll('#proofChips .chip').forEach((c) => c.setAttribute('aria-pressed', c.dataset.n === proofCur));
+  const ink = cssVar('--ink');
+  const img = await loadImage(proofCur, ink, 16), img2 = await loadImage(proofCur, ink, 32);
+  for (const [id, off, scoreId] of [['proofA', 0, 'proofAScore'], ['proofB', 0.5, 'proofBScore']]) {
+    const c = $(id).getContext('2d'); c.clearRect(0, 0, 16, 16); c.drawImage(img, off, off, 16, 16);
+    const a = c.getImageData(0, 0, 16, 16).data; let soft = 0, solid = 0;
+    for (let p = 0; p < 256; p++) { const v = a[p * 4 + 3]; if (v > 242) solid++; else if (v > 13) soft++; }
+    $(scoreId).textContent = `${solid} solid · ${soft} soft`;
+  }
+  for (const [id, off] of [['proofA1', 0], ['proofB1', 1]]) { const c = $(id).getContext('2d'); c.clearRect(0, 0, 32, 32); c.drawImage(img2, off, off, 32, 32); }
+}
+
+/* 2.5 Ladder */
+const ladderNames = pick(['envelope', 'folder-open', 'agent-clank', 'calendar-simple-days', 'crystal-ball', 'scissors']);
+$('ladder').innerHTML = [16, 20, 24, 32, 48].map((s) => `<div class="rung"><code>${s} px${s % 16 === 0 ? ` · ${s / 16}×` : ''}</code><div class="row">${ladderNames.map((n) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#i-${n}"/></svg>`).join('')}</div></div>`).join('');
+
+/* 2.6 Overlay pairs */
+const ovNames = pairBases.filter((p) => ['heart', 'star', 'bell', 'folder', 'home', 'lock', 'calendar', 'user', 'skull', 'settings', 'chart-donut', 'clock'].includes(p.o)).slice(0, 12);
+$('overlay').innerHTML = ovNames.map((p) => `<div class="ov"><svg viewBox="0 0 16 16" aria-label="${p.o} outline over ${p.f}" role="img"><use href="#i-${p.f}" class="fillpart" width="16" height="16"/><use href="#i-${p.o}" width="16" height="16" style="color:var(--ink)"/></svg><code>${p.o} / -fill</code></div>`).join('');
+
+$('footMeta').textContent = `Catalog ${DATA.version} · ${fmt(DATA.count)} icons · generated from icons/ and icon-categories.json`;
+
+/* Boot the measured studies after first paint. */
+renderDensityGuides();
+renderProof();
+requestAnimationFrame(async () => {
+  await measureAll();
+  renderCensus();
+  renderDensity();
+});
+const mq = matchMedia('(prefers-color-scheme: dark)');
+mq.addEventListener('change', () => { renderProof(); if (measures.size) renderDensity(); });
+new MutationObserver(() => { renderProof(); if (measures.size) renderDensity(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>

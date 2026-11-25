@@ -1,0 +1,791 @@
+<title>FYIcons Specimen Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: a type-foundry specimen for icons. Full-bleed bands alternate between ink and paper; each band is one interactive instrument with a mono spec rail. Allo's variable weight axis carries the personality/utility theme. */
+@font-face { font-family: 'Allo'; src: url('/*FONT_ALLO*/') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Paper Mono'; src: url('/*FONT_MONO*/') format('woff2'); font-weight: 100 800; font-display: swap; }
+:root {
+  --paper: oklch(0.975 0.004 60);
+  --surface: #fff;
+  --well: oklch(0.945 0.006 60);
+  --ink: oklch(0.22 0.008 50);
+  --ink-2: oklch(0.42 0.01 50);
+  --muted: oklch(0.56 0.012 55);
+  --line: oklch(0.22 0.008 50 / 0.09);
+  --border: oklch(0.22 0.008 50 / 0.16);
+  --accent: oklch(0.6 0.2 259);
+  --accent-ink: #fff;
+  --accent-soft: oklch(0.93 0.045 259);
+  --pink: #ec4899; --green: #10b981; --amber: #f59e0b; --blue: #3b82f6;
+  --grid: oklch(0.65 0.14 255 / 0.5);
+  /* Inverted band: always the opposite of the page. */
+  --band: oklch(0.2 0.008 50); --band-ink: oklch(0.97 0.004 60); --band-muted: oklch(0.7 0.01 55); --band-line: oklch(0.97 0.004 60 / 0.12); --band-well: oklch(0.26 0.009 50);
+  --font-sans: 'Allo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Paper Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50); --well: oklch(0.25 0.009 50);
+  --ink: oklch(0.96 0.004 60); --ink-2: oklch(0.84 0.006 60); --muted: oklch(0.68 0.01 55);
+  --line: oklch(0.96 0.004 60 / 0.08); --border: oklch(0.96 0.004 60 / 0.15);
+  --accent: oklch(0.68 0.17 259); --accent-soft: oklch(0.32 0.08 259); --grid: oklch(0.7 0.13 255 / 0.4);
+  --band: oklch(0.955 0.005 60); --band-ink: oklch(0.2 0.008 50); --band-muted: oklch(0.48 0.012 55); --band-line: oklch(0.2 0.008 50 / 0.12); --band-well: oklch(0.92 0.006 60);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50); --well: oklch(0.25 0.009 50);
+  --ink: oklch(0.96 0.004 60); --ink-2: oklch(0.84 0.006 60); --muted: oklch(0.68 0.01 55);
+  --line: oklch(0.96 0.004 60 / 0.08); --border: oklch(0.96 0.004 60 / 0.15);
+  --accent: oklch(0.68 0.17 259); --accent-soft: oklch(0.32 0.08 259); --grid: oklch(0.7 0.13 255 / 0.4);
+  --band: oklch(0.955 0.005 60); --band-ink: oklch(0.2 0.008 50); --band-muted: oklch(0.48 0.012 55); --band-line: oklch(0.2 0.008 50 / 0.12); --band-well: oklch(0.92 0.006 60);
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5; font-variation-settings: 'ROND' 100; font-feature-settings: 'ss01' 1, 'ss03' 1; }
+h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance; }
+p { margin: 0; }
+button, input { font: inherit; color: inherit; }
+.mono, code, kbd { font-family: var(--font-mono); font-feature-settings: 'cv01' 1, 'ss02' 1, 'ss03' 1; }
+.i { width: 16px; height: 16px; display: inline-block; flex: none; vertical-align: -3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.muted { color: var(--muted); }
+
+.band { padding-block: clamp(56px, 8vw, 112px); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band.ink { background: var(--band); color: var(--band-ink); --ink: var(--band-ink); --muted: var(--band-muted); --line: var(--band-line); --border: var(--band-line); --well: var(--band-well); --surface: var(--band-well); --ink-2: color-mix(in oklab, var(--band-ink) 82%, transparent); --paper: var(--band); }
+.band + .band:not(.ink) { border-top: 1px solid var(--line); }
+.in { max-width: 1240px; margin: 0 auto; display: grid; gap: 32px; }
+.kicker { display: flex; gap: 14px; align-items: baseline; font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.02em; flex-wrap: wrap; }
+.kicker b { color: var(--ink); font-weight: 500; }
+.title { font-size: clamp(34px, 5.4vw, 72px); line-height: 1; letter-spacing: -0.045em; font-weight: 400; max-width: 16em; }
+.lede { font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); max-width: 58ch; text-wrap: pretty; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 56px; align-items: end; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+.rail { display: grid; gap: 0; font-size: 13px; }
+.rail div { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid var(--line); }
+.rail div:first-child { border-top: 0; }
+.rail span:first-child { color: var(--muted); }
+.rail span:last-child { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 3px; gap: 2px; flex-wrap: wrap; }
+.seg button { border: 0; background: transparent; border-radius: 999px; padding: 4px 12px; font-size: 13px; cursor: pointer; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.band.ink .seg button[aria-pressed="true"] { color: var(--band); }
+.range { display: grid; gap: 6px; font-size: 13px; min-width: 180px; }
+.range label { display: flex; justify-content: space-between; color: var(--muted); }
+.range output { font-family: var(--font-mono); color: var(--ink); }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.tools { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: end; }
+.strip { display: flex; gap: 4px; flex-wrap: wrap; }
+.strip button { width: 40px; height: 40px; border-radius: 10px; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--ink); }
+.strip button:hover { background: var(--line); }
+.strip button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.band.ink .strip button[aria-pressed="true"] { color: var(--band); }
+.strip .i { width: 20px; height: 20px; }
+
+/* 0 Hero: personality dial */
+.hero { padding-top: clamp(40px, 6vw, 80px); }
+.hero-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px 48px; align-items: center; }
+@media (max-width: 860px) { .hero-top { grid-template-columns: 1fr; justify-items: start; } }
+.hero h1 { font-size: clamp(40px, 8.4vw, 116px); line-height: 0.95; letter-spacing: -0.05em; font-weight: 400; }
+.hero h1 .w { transition: font-variation-settings 0.12s linear; display: inline-block; }
+.dial-wrap { display: grid; gap: 10px; justify-items: center; user-select: none; }
+.dial { width: 220px; height: 220px; touch-action: none; cursor: grab; display: block; }
+.dial:active { cursor: grabbing; }
+.dial-read { font-family: var(--font-mono); font-size: 12px; color: var(--muted); display: flex; gap: 18px; }
+.dial-read b { color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.field { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+@media (max-width: 860px) { .field { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.cell { aspect-ratio: 1; border-radius: 14px; background: var(--well); position: relative; display: grid; place-items: center; overflow: hidden; transition: background-color .4s; }
+.cell .u, .cell .p { position: absolute; transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .25s; }
+.cell .u { width: 20px; height: 20px; }
+.cell .p { width: 46%; height: 46%; opacity: 0; transform: scale(.2) rotate(-25deg); }
+.cell.on { background: var(--accent); color: var(--accent-ink); }
+.cell.on .u { opacity: 0; transform: scale(.2) rotate(25deg); }
+.cell.on .p { opacity: 1; transform: none; }
+.cell small { position: absolute; bottom: 6px; left: 8px; font-family: var(--font-mono); font-size: 9px; opacity: 0; transition: opacity .2s; white-space: nowrap; }
+.cell:hover small { opacity: .7; }
+
+/* 1 Rebus tester */
+.tester { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 20px 0; display: grid; gap: 18px; }
+.tester input[type="text"] { width: 100%; border: 1px solid var(--border); background: var(--surface); border-radius: 12px; padding: 12px 14px; font-size: 16px; }
+.rebus { font-size: var(--rs, 64px); line-height: 1.12; letter-spacing: -0.035em; text-wrap: pretty; min-height: 1.2em; word-spacing: 0.05em; overflow-wrap: anywhere; }
+.rebus .i { width: 0.86em; height: 0.86em; vertical-align: -0.1em; margin: 0 0.04em; color: var(--accent); }
+.rebus .miss { color: var(--muted); }
+.rebus.only .word { display: none; }
+.rebus.only .i { margin: 0 0.12em; color: var(--ink); }
+.rebus-meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* 2 Render-size loupe */
+.loupe-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+@media (max-width: 900px) { .loupe-grid { grid-template-columns: 1fr; } }
+.zoombox { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1; background: var(--surface); border-radius: 18px; overflow: hidden; }
+.zoombox canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.zoombox .pxgrid { position: absolute; inset: 0; pointer-events: none; }
+.zoombox .tag { position: absolute; left: 14px; top: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font-family: var(--font-mono); font-size: 10px; fill: var(--muted); }
+.chart .axis { stroke: var(--line); }
+.chart-tip { font-family: var(--font-mono); font-size: 12px; color: var(--muted); min-height: 18px; }
+
+/* 3 Lineup */
+.lineup-wrap { overflow-x: auto; border-radius: 18px; background: var(--surface); }
+.lineup { border-collapse: collapse; width: 100%; min-width: 860px; }
+.lineup th, .lineup td { padding: 10px 6px; text-align: center; border-top: 1px solid var(--line); }
+.lineup thead th { border-top: 0; font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--muted); padding-top: 16px; }
+.lineup th.lib { text-align: left; padding-left: 18px; font-weight: 500; font-size: 14px; white-space: nowrap; font-family: var(--font-sans); color: var(--ink); }
+.lineup th.lib small { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--muted); font-weight: 400; }
+.lineup tr.fy th.lib { color: var(--accent); }
+.lineup td canvas { image-rendering: pixelated; display: block; margin: 0 auto; }
+.lineup td svg { display: block; margin: 0 auto; }
+.lineup td.score { text-align: left; padding-right: 18px; min-width: 150px; }
+.meter { display: grid; gap: 4px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.meter i { display: block; height: 6px; border-radius: 6px; background: var(--muted); opacity: .5; }
+.lineup tr.fy .meter i { background: var(--accent); opacity: 1; }
+.lineup .none { color: var(--muted); font-family: var(--font-mono); font-size: 11px; }
+.curve-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; }
+.curve-legend span { display: inline-flex; gap: 6px; align-items: center; }
+.curve-legend i { width: 14px; height: 2px; border-radius: 2px; display: inline-block; }
+
+/* 4 Expression range */
+.expr { display: grid; gap: 0; background: var(--surface); border-radius: 18px; overflow-x: auto; }
+.expr-row { display: grid; grid-template-columns: 140px repeat(6, minmax(52px, 1fr)) 24px repeat(6, minmax(52px, 1fr)); align-items: center; border-top: 1px solid var(--line); padding: 10px 18px; min-width: 900px; }
+.expr-row:first-child { border-top: 0; }
+.expr-row.head { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-align: center; }
+.expr-row.head span:first-child { text-align: left; }
+.expr-row .n { font-weight: 500; font-size: 14px; }
+.expr-row.fy .n { color: var(--accent); }
+.expr-row svg { width: 32px; height: 32px; justify-self: center; }
+.expr-row .gap { width: 1px; height: 28px; background: var(--line); justify-self: center; }
+.expr-row .none { justify-self: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.expr-row.fy { background: color-mix(in oklab, var(--accent) 22%, transparent); }
+
+/* 5/6 Optical breakdowns */
+.breakdown { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+@media (max-width: 860px) { .breakdown { grid-template-columns: 1fr; } }
+.bd-stage { background: var(--surface); border-radius: 18px; aspect-ratio: 4 / 3; display: grid; place-items: center; position: relative; overflow: hidden; }
+.bd-stage svg { width: 78%; height: auto; overflow: visible; }
+.steps { display: grid; gap: 0; counter-reset: s; }
+.steps button { all: unset; cursor: pointer; display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); color: var(--muted); }
+.steps button:first-child { border-top: 0; }
+.steps button::before { counter-increment: s; content: counter(s); font-family: var(--font-mono); font-size: 12px; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; }
+.steps button[aria-pressed="true"] { color: var(--ink); }
+.steps button[aria-pressed="true"]::before { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.band.ink .steps button[aria-pressed="true"]::before { color: var(--band); }
+.steps button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.steps b { font-weight: 500; display: block; color: inherit; }
+.steps p { font-size: 14px; }
+.playtable { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+.playtable td, .playtable th { padding: 7px 4px; border-top: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; }
+.playtable th { font-family: var(--font-mono); font-weight: 400; font-size: 10px; color: var(--muted); border-top: 0; }
+.playtable td:first-child, .playtable th:first-child { text-align: left; }
+.playtable td:nth-child(2) { text-align: center; }
+.playtable tr.fy td:first-child { color: var(--accent); font-weight: 500; }
+.playtable code { font-size: 12px; }
+
+/* 7 Field guide */
+.guide { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.specimen { background: var(--surface); border-radius: 18px; padding: 18px; display: grid; gap: 12px; position: relative; }
+.specimen .plate { aspect-ratio: 1; border-radius: 12px; background: var(--well); display: grid; place-items: center; position: relative; overflow: hidden; }
+.specimen .plate svg.art { width: 58%; height: 58%; transition: transform .6s cubic-bezier(.34,1.56,.64,1); }
+.specimen:hover .plate svg.art { transform: rotate(-6deg) scale(1.06); }
+.specimen .plate .bounds { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.specimen .no { position: absolute; top: 28px; right: 28px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.specimen h4 { font-size: 20px; font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+.specimen .common { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.specimen dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13px; }
+.specimen dt { color: var(--muted); }
+.specimen dd { margin: 0; }
+
+/* 8 Pixel loupe */
+.wallbox { position: relative; border-radius: 18px; overflow: hidden; background: var(--surface); cursor: none; touch-action: none; }
+.wallbox canvas.wall { display: block; width: 100%; height: 380px; image-rendering: pixelated; }
+.lens { position: absolute; width: 200px; height: 200px; border-radius: 50%; pointer-events: none; box-shadow: 0 0 0 1px var(--border), 0 18px 40px -12px oklch(0 0 0 / .35); overflow: hidden; left: 0; top: 0; transform: translate(-50%, -50%); background: var(--surface); }
+.lens canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+.lens-tag { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); font-family: var(--font-mono); font-size: 10px; background: var(--ink); color: var(--paper); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+
+/* 9 Contexts */
+.ctx { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.ctx > div { background: var(--surface); border-radius: 16px; padding: 16px; display: grid; gap: 12px; align-content: start; min-height: 170px; }
+.ctx .cap { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.c-btn { justify-self: start; display: inline-flex; gap: 8px; align-items: center; background: var(--ink); color: var(--paper); border-radius: 10px; padding: 8px 14px; font-size: 14px; font-weight: 500; }
+.c-btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--border); }
+.c-tools { display: flex; gap: 2px; padding: 4px; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line); justify-self: start; }
+.c-tools span { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 7px; color: var(--ink-2); }
+.c-tools span.on { background: var(--accent-soft); color: var(--accent); }
+.c-table { font-size: 13px; display: grid; }
+.c-table div { display: flex; gap: 8px; align-items: center; padding: 6px 0; border-top: 1px solid var(--line); color: var(--ink-2); }
+.c-table div:first-child { border-top: 0; }
+.c-toast { display: flex; gap: 10px; align-items: center; background: var(--well); border-radius: 12px; padding: 10px 12px; font-size: 13px; }
+.c-toast .dot { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: #fff; flex: none; }
+.c-empty { display: grid; justify-items: center; text-align: center; gap: 6px; padding: 8px 0; }
+.c-empty .i { width: 64px; height: 64px; color: var(--muted); }
+.c-empty b { font-weight: 500; }
+.c-empty p { font-size: 12px; color: var(--muted); }
+.c-sticker { display: grid; place-items: center; min-height: 130px; }
+.c-sticker span { width: 116px; height: 116px; border-radius: 34px; background: var(--pink); color: #fff; display: grid; place-items: center; transform: rotate(-8deg); box-shadow: 0 0 0 5px var(--surface), 0 0 0 6px var(--line), 0 14px 30px -10px oklch(0 0 0 / .4); }
+.c-sticker .i { width: 64px; height: 64px; }
+.c-term { background: oklch(0.18 0.01 260); color: oklch(0.86 0.17 150); border-radius: 12px; padding: 12px; font-family: var(--font-mono); font-size: 12px; display: grid; gap: 4px; }
+.c-term div { display: flex; gap: 8px; align-items: center; }
+.c-term .i { color: oklch(0.86 0.17 150); }
+.c-tabs { display: flex; justify-content: space-around; border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted); font-size: 10px; }
+.c-tabs span { display: grid; justify-items: center; gap: 3px; }
+.c-tabs .on { color: var(--accent); }
+.c-tabs .i { width: 20px; height: 20px; }
+.c-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.c-badges span { display: inline-flex; gap: 5px; align-items: center; font-size: 12px; padding: 3px 9px 3px 7px; border-radius: 99px; background: var(--well); }
+.c-badges span:nth-child(2) { background: color-mix(in oklab, var(--green) 18%, transparent); color: color-mix(in oklab, var(--green) 70%, var(--ink)); }
+.c-badges span:nth-child(3) { background: color-mix(in oklab, var(--amber) 22%, transparent); color: color-mix(in oklab, var(--amber) 60%, var(--ink)); }
+
+.foot { font-size: 13px; color: var(--muted); display: grid; gap: 8px; }
+.foot a { color: inherit; }
+@media (prefers-reduced-motion: reduce) { .cell .u, .cell .p, .specimen .plate svg.art, .hero h1 .w { transition: none; } }
+</style>
+
+<!--SPRITE-->
+<!--CSPRITE-->
+
+<!-- 0 · HERO -->
+<section class="band hero" aria-labelledby="hero-h">
+  <div class="in">
+    <p class="kicker"><b>FYIcons Specimen Lab</b><span>Landing studies, set II</span><span id="heroMeta"></span></p>
+    <div class="hero-top">
+      <h1 id="hero-h"><span class="w" id="wP">Personality</span> when you need it. <span class="w" id="wU">Utility</span> everywhere else.</h1>
+      <div class="dial-wrap">
+        <svg class="dial" id="dial" viewBox="-110 -110 220 220" role="slider" tabindex="0" aria-label="Personality" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30"></svg>
+        <div class="dial-read"><span>UTILITY <b id="dU"></b></span><span>PERSONALITY <b id="dP"></b></span></div>
+      </div>
+    </div>
+    <p class="lede">Turn the dial. Controls and arrows look the way you expect, with the optical care done for you. The creatures get opinions. Same grid, same 1 px walls, very different jobs.</p>
+    <div class="field" id="field"></div>
+  </div>
+</section>
+
+<!-- 1 · REBUS -->
+<section class="band" aria-labelledby="s1">
+  <div class="in">
+    <p class="kicker"><b>01</b><span>Icon tester · after a type tester</span></p>
+    <div class="split">
+      <h2 class="title" id="s1">Write a sentence. Get a rebus.</h2>
+      <p class="lede">Words that name an icon turn into it. It shows breadth faster than a count, and people will screenshot it.</p>
+    </div>
+    <div class="tester">
+      <input type="text" id="rebusIn" aria-label="Sentence to turn into icons" value="My cat ghosts the agent, then ships a rocket to the moon with a penguin and a skull">
+      <div class="tools">
+        <div class="range"><label for="rebusSize">Size <output id="rebusSizeOut"></output></label><input type="range" id="rebusSize" min="16" max="128" step="16" value="64"></div>
+        <div class="seg" role="group" aria-label="Display"><button type="button" data-m="rebus" aria-pressed="true">Rebus</button><button type="button" data-m="only" aria-pressed="false">Icons only</button></div>
+        <div class="seg" role="group" aria-label="Examples" id="rebusEx"></div>
+      </div>
+      <p class="rebus" id="rebus" aria-live="polite"></p>
+      <p class="rebus-meta" id="rebusMeta"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · RENDER-SIZE LOUPE -->
+<section class="band ink" aria-labelledby="s2">
+  <div class="in">
+    <p class="kicker"><b>02</b><span>Specimen loupe · for “Drawn pixel-perfect”</span></p>
+    <div class="split">
+      <h2 class="title" id="s2">Drawn at 16. Sharpest at 16.</h2>
+      <p class="lede">Your browser rasterizes the icon at the size you pick. The magnified pixels are exactly what a screen shows. The curve measures edge blur at every size from 10 to 48 px.</p>
+    </div>
+    <div class="strip" id="loupeStrip" role="group" aria-label="Icon"></div>
+    <div class="loupe-grid">
+      <div class="zoombox"><canvas id="zoomCv" width="16" height="16" aria-label="Magnified raster of the selected icon"></canvas><svg class="pxgrid" id="zoomGrid" preserveAspectRatio="none" aria-hidden="true"></svg><span class="tag" id="zoomTag"></span></div>
+      <div style="display:grid;gap:22px">
+        <div class="range"><label for="zoomSize">Render size <output id="zoomSizeOut"></output></label><input type="range" id="zoomSize" min="10" max="48" step="1" value="16"></div>
+        <div class="rail" id="zoomRail"></div>
+        <div>
+          <svg class="chart" id="sharpChart" viewBox="0 0 420 170" role="img" aria-label="Share of partly covered pixels by render size"></svg>
+          <p class="chart-tip" id="sharpTip">Edge blur: partly covered pixels per pixel of outline. Lower is sharper. Hover the curve.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · LINE-UP -->
+<section class="band" aria-labelledby="s3">
+  <div class="in">
+    <p class="kicker"><b>03</b><span>Comparison · real SVGs from each package</span></p>
+    <div class="split">
+      <h2 class="title" id="s3">Six sets at 16 px, the size dense UI uses.</h2>
+      <p class="lede">The same 14 controls, rasterized in your browser. Lucide, Remix, and Hugeicons are drawn for 24 px and go soft at 16. Phosphor and Font Awesome scale down to 16 cleanly, as FYIcons does. Pixel alignment is the floor. Studies 04 to 06 cover what sets the drawing apart.</p>
+    </div>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="Render size" id="luSize"><button type="button" data-s="16" aria-pressed="true">16 px</button><button type="button" data-s="20" aria-pressed="false">20 px</button><button type="button" data-s="24" aria-pressed="false">24 px</button></div>
+      <div class="seg" role="group" aria-label="View" id="luMode"><button type="button" data-m="px" aria-pressed="true">Pixels ×3</button><button type="button" data-m="vec" aria-pressed="false">Actual size</button></div>
+    </div>
+    <div class="lineup-wrap"><table class="lineup" id="lineup"></table></div>
+    <div class="split" style="align-items:start">
+      <div>
+        <svg class="chart" id="curve" viewBox="0 0 560 260" role="img" aria-label="Blur by render size for each icon set"></svg>
+        <p class="chart-tip" id="curveTip">Hover to read each size.</p>
+      </div>
+      <div style="display:grid;gap:14px">
+        <h3 style="font-size:22px">Each set is sharpest at its own grid</h3>
+        <p class="muted">Edge blur counts partly covered pixels per pixel of outline, summed over the 14 controls, so filled and outlined styles compare fairly. Lower is sharper. A curve dips where its drawing grid lines up with the pixel grid: 24 for Lucide and Remix, 16 and 32 for FYIcons, Phosphor, and Font Awesome. Diagonals, like the chevron and close icons, can never be fully crisp in any set.</p>
+        <div class="curve-legend" id="curveLegend"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · EXPRESSION RANGE -->
+<section class="band ink" aria-labelledby="s4">
+  <div class="in">
+    <p class="kicker"><b>04</b><span>Comparison · house style vs. range</span></p>
+    <div class="split">
+      <h2 class="title" id="s4">Quiet controls. Loud creatures.</h2>
+      <p class="lede">Most sets apply one house style to everything, so a cat is drawn with the same rules as a chevron. FYIcons changes its voice by subject: plain where you click, characterful where you look.</p>
+    </div>
+    <div class="expr" id="expr"></div>
+  </div>
+</section>
+
+<!-- 5 · PLAY OPTICS -->
+<section class="band" aria-labelledby="s5">
+  <div class="in">
+    <p class="kicker"><b>05</b><span>Breakdown · optical centering</span></p>
+    <div class="split">
+      <h2 class="title" id="s5">The play button is not centered. On purpose.</h2>
+      <p class="lede">A triangle centered by its box looks too far left, because most of its weight sits near the flat edge. Step through the fix, then compare each set's play icon, measured from its raster.</p>
+    </div>
+    <div class="breakdown">
+      <div class="bd-stage"><svg viewBox="0 0 200 150" id="playSvg" role="img" aria-label="Play triangle inside a circular button with alignment guides"></svg></div>
+      <div style="display:grid;gap:18px">
+        <div class="steps" id="playSteps" role="group" aria-label="Steps">
+          <button type="button" aria-pressed="true" data-t="0"><span><b>Center the box</b><p>The bounding box sits in the middle. The triangle drifts left.</p></span></button>
+          <button type="button" aria-pressed="false" data-t="1"><span><b>Center the mass</b><p>Move the centroid onto the center line. The weight now balances in the circle.</p></span></button>
+          <button type="button" aria-pressed="false" data-t="fy"><span><b>FYIcons, measured</b><p id="playFyNote"><code>play-fill</code> at its measured position.</p></span></button>
+        </div>
+        <div class="range"><label for="playT">Box ↔ mass <output id="playTOut"></output></label><input type="range" id="playT" min="0" max="100" value="0"></div>
+        <table class="playtable" id="playTable"></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · CIRCLE VS SQUARE -->
+<section class="band" aria-labelledby="s6" style="padding-top:0">
+  <div class="in">
+    <p class="kicker"><b>06</b><span>Breakdown · keyline sizes</span></p>
+    <div class="breakdown">
+      <div class="bd-stage"><svg viewBox="0 0 200 110" id="csSvg" role="img" aria-label="A circle and a rounded square side by side on pixel grids"></svg></div>
+      <div style="display:grid;gap:18px">
+        <h2 class="title" id="s6" style="font-size:clamp(28px,3.6vw,48px)">Why the circle gets 14 px and the square gets 12.</h2>
+        <p class="lede">Equal boxes don't look equal. A circle loses its corners, so it must be wider to carry the same weight. Drag the circle and watch the areas.</p>
+        <div class="range"><label for="csD">Circle diameter <output id="csDOut"></output></label><input type="range" id="csD" min="10" max="16" step="0.5" value="12"></div>
+        <div class="rail" id="csRail"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · FIELD GUIDE -->
+<section class="band ink" aria-labelledby="s7">
+  <div class="in">
+    <p class="kicker"><b>07</b><span>Personality · a field guide</span></p>
+    <div class="split">
+      <h2 class="title" id="s7">A field guide to the fauna.</h2>
+      <p class="lede">The opinionated subjects, catalogued like specimens. Bounds are measured from each drawing; habitats are where they are useful in a product.</p>
+    </div>
+    <div class="guide" id="guide"></div>
+  </div>
+</section>
+
+<!-- 8 · PIXEL LOUPE -->
+<section class="band" aria-labelledby="s8">
+  <div class="in">
+    <p class="kicker"><b>08</b><span>Instrument · loupe</span></p>
+    <div class="split">
+      <h2 class="title" id="s8">Bring your own loupe.</h2>
+      <p class="lede">Hundreds of icons at true 1× pixels. Move across them; the lens shows each screen pixel eight times larger. Look for crisp walls and clean corners.</p>
+    </div>
+    <div class="wallbox" id="wallbox"><canvas class="wall" id="wallCv" aria-label="Icons drawn at actual pixel size"></canvas><div class="lens" id="lens" hidden><canvas id="lensCv" width="200" height="200"></canvas><span class="lens-tag" id="lensTag">8×</span></div></div>
+  </div>
+</section>
+
+<!-- 9 · CONTEXTS -->
+<section class="band ink" aria-labelledby="s9">
+  <div class="in">
+    <p class="kicker"><b>09</b><span>Versatility · one icon, nine jobs</span></p>
+    <div class="split">
+      <h2 class="title" id="s9">One icon, nine jobs.</h2>
+      <p class="lede">Pick any icon. It has to work as a button, a badge, a table glyph, a sticker, and a terminal prompt. Utility icons disappear into the UI; creatures carry an empty state.</p>
+    </div>
+    <div class="strip" id="ctxStrip" role="group" aria-label="Icon"></div>
+    <div class="ctx" id="ctx"></div>
+  </div>
+</section>
+
+<section class="band" style="padding-block:40px">
+  <div class="in foot" id="foot"></div>
+</section>
+
+<script>
+const DATA = /*DATA*/;
+const CMP = /*COMPARE*/;
+const byName = new Map(DATA.icons.map((i) => [i.n, i]));
+const has = (n) => byName.has(n);
+const ico = (n, cls = '') => has(n) ? `<svg class="i ${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>` : '';
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => n.toLocaleString('en-US');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cssVar = (v, el = document.documentElement) => getComputedStyle(el).getPropertyValue(v).trim();
+function seeded(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+function shuffle(arr, seed = 7) { const r = seeded(seed), a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function segBind(el, fn) { el.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b)); fn(b); }); }
+
+/* ---------- Raster helpers ---------- */
+const imgCache = new Map();
+function symbolImage(id, color = '#000', size = 64) {
+  const key = id + color + size;
+  if (imgCache.has(key)) return imgCache.get(key);
+  const sym = document.getElementById(id);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${sym.getAttribute('viewBox')}" width="${size}" height="${size}" color="${color}" style="color:${color}">${sym.innerHTML}</svg>`;
+  const p = new Promise((res) => { const img = new Image(); img.onload = () => res(img); img.onerror = () => res(null); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
+  imgCache.set(key, p);
+  return p;
+}
+const scratch = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+function rasterStats(img, s, dx = 0) {
+  scratch.canvas.width = scratch.canvas.height = s;
+  scratch.clearRect(0, 0, s, s); scratch.drawImage(img, dx, 0, s, s);
+  const a = scratch.getImageData(0, 0, s, s).data;
+  let soft = 0, solid = 0, mx = 0, m = 0, x0 = s, x1 = -1, y0 = s, y1 = -1;
+  for (let p = 0; p < s * s; p++) { const v = a[p * 4 + 3]; if (v > 242) solid++; else if (v > 13) soft++; if (v > 0) { const x = p % s, y = (p / s) | 0; mx += (x + 0.5) * v; m += v; } if (v > 96) { const x = p % s, y = (p / s) | 0; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; } }
+  return { soft, solid, blur: soft / Math.max(1, soft + solid), cx: m ? mx / m : s / 2, box: [x0, y0, x1 + 1, y1 + 1] };
+}
+// Outline length in px at size s, from a 128 px raster: boundary pixels scale linearly with size.
+const edgeCache = new Map();
+async function edgeLength(id) {
+  if (edgeCache.has(id)) return edgeCache.get(id);
+  const img = await symbolImage(id, '#000', 128); const N = 128;
+  scratch.canvas.width = scratch.canvas.height = N; scratch.clearRect(0, 0, N, N); scratch.drawImage(img, 0, 0, N, N);
+  const a = scratch.getImageData(0, 0, N, N).data, on = (x, y) => x >= 0 && y >= 0 && x < N && y < N && a[(y * N + x) * 4 + 3] > 127;
+  let e = 0; for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (on(x, y) && (!on(x - 1, y) || !on(x + 1, y) || !on(x, y - 1) || !on(x, y + 1))) e++;
+  edgeCache.set(id, e); return e;
+}
+function inkColor(el) { const p = document.createElement('canvas').getContext('2d'); p.fillStyle = getComputedStyle(el).color; p.fillRect(0, 0, 1, 1); const [r, g, b] = p.getImageData(0, 0, 1, 1).data; return `rgb(${r},${g},${b})`; }
+
+$('heroMeta').textContent = `Catalog ${DATA.version} · ${fmt(DATA.count)} icons`;
+
+/* ---------- 0 Hero dial ---------- */
+const PAIRS = [
+  ['arrow-right', 'penguin'], ['chevron-down', 'cat-face'], ['x', 'ghost'], ['check', 'skull'], ['plus', 'agent-clank'], ['search', 'owl'],
+  ['settings', 'turtle'], ['bell', 'bird-raven'], ['play-fill', 'fish'], ['lock', 'snail'], ['folder', 'rabbit'], ['calendar', 'lady-bug'],
+  ['trash', 'bug-beetle'], ['download', 'dog-retriever-face'], ['copy', 'crystal-ball'], ['link', 'planet'], ['filter', 'rocket-launch'], ['menu', 'brain'],
+  ['home', 'home-birdhouse'], ['user', 'user-clank'], ['pencil', 'leaf-monstera'], ['upload', 'umbrella'], ['clock', 'fire-alt'], ['star', 'hat-side'],
+].filter(([u, p]) => has(u) && has(p));
+const thresholds = shuffle(PAIRS.map((_, k) => (k + 0.5) / PAIRS.length), 5);
+$('field').innerHTML = PAIRS.map(([u, p], k) => `<div class="cell" data-t="${thresholds[k]}"><svg class="u" aria-hidden="true"><use href="#i-${u}"/></svg><svg class="p" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-${p}"/></svg><small>${p}</small></div>`).join('');
+const cells = [...document.querySelectorAll('#field .cell')];
+const dial = $('dial');
+const A0 = -135, A1 = 135;
+let dialV = 0.3;
+(function drawDialBase() {
+  let ticks = '';
+  for (let k = 0; k <= 40; k++) { const a = (A0 + (A1 - A0) * k / 40 - 90) * Math.PI / 180, r1 = k % 10 === 0 ? 84 : 90; ticks += `<line x1="${Math.cos(a) * r1}" y1="${Math.sin(a) * r1}" x2="${Math.cos(a) * 100}" y2="${Math.sin(a) * 100}" stroke="currentColor" stroke-width="${k % 10 === 0 ? 2 : 1}" opacity="${k % 10 === 0 ? 0.7 : 0.3}"/>`; }
+  dial.innerHTML = `<g style="color:var(--ink)">${ticks}</g><path id="dialArc" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/><circle r="70" fill="var(--surface)" stroke="var(--border)"/><circle r="58" fill="var(--well)"/><g id="knob"><line x1="0" y1="-44" x2="0" y2="-62" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/></g><text y="6" text-anchor="middle" style="font:500 15px var(--font-mono);fill:var(--ink)" id="dialNum"></text>` +
+    `<text x="-78" y="104" text-anchor="middle" style="font:10px var(--font-mono);fill:var(--muted)">UTIL</text><text x="78" y="104" text-anchor="middle" style="font:10px var(--font-mono);fill:var(--muted)">PERS</text>`;
+})();
+function arcPath(t) { const a0 = (A0 - 90) * Math.PI / 180, a1 = (A0 + (A1 - A0) * t - 90) * Math.PI / 180, r = 77; const large = (A1 - A0) * t > 180 ? 1 : 0; return `M${Math.cos(a0) * r} ${Math.sin(a0) * r}A${r} ${r} 0 ${large} 1 ${Math.cos(a1) * r} ${Math.sin(a1) * r}`; }
+function setDial(v) {
+  dialV = Math.min(1, Math.max(0, v));
+  $('knob').setAttribute('transform', `rotate(${A0 + (A1 - A0) * dialV})`);
+  $('dialArc').setAttribute('d', dialV > 0.001 ? arcPath(dialV) : '');
+  $('dialNum').textContent = Math.round(dialV * 100);
+  dial.setAttribute('aria-valuenow', Math.round(dialV * 100));
+  $('dU').textContent = Math.round((1 - dialV) * 100); $('dP').textContent = Math.round(dialV * 100);
+  $('wP').style.fontVariationSettings = `'wght' ${Math.round(250 + 600 * dialV)}, 'ROND' 100`;
+  $('wU').style.fontVariationSettings = `'wght' ${Math.round(850 - 600 * dialV)}, 'ROND' 100`;
+  $('wP').style.fontStyle = dialV > 0.85 ? 'italic' : 'normal';
+  cells.forEach((c) => c.classList.toggle('on', dialV >= +c.dataset.t));
+}
+let dragging = false;
+function angleToV(e) { const r = dial.getBoundingClientRect(); const x = e.clientX - (r.left + r.width / 2), y = e.clientY - (r.top + r.height / 2); let a = Math.atan2(x, -y) * 180 / Math.PI; a = Math.max(A0, Math.min(A1, a)); return (a - A0) / (A1 - A0); }
+dial.addEventListener('pointerdown', (e) => { dragging = true; dial.setPointerCapture(e.pointerId); setDial(angleToV(e)); });
+dial.addEventListener('pointermove', (e) => { if (dragging) setDial(angleToV(e)); });
+dial.addEventListener('pointerup', () => { dragging = false; });
+dial.addEventListener('keydown', (e) => { const d = { ArrowRight: 0.05, ArrowUp: 0.05, ArrowLeft: -0.05, ArrowDown: -0.05, Home: -1, End: 1 }[e.key]; if (d != null) { e.preventDefault(); setDial(dialV + d); } });
+dial.addEventListener('wheel', (e) => { e.preventDefault(); setDial(dialV - e.deltaY / 800); }, { passive: false });
+setDial(dialV);
+
+/* ---------- 1 Rebus ---------- */
+const SYN = { cat: 'cat-face', cats: 'cat-face', dog: 'dog-retriever-face', robot: 'agent-clank', bot: 'agent-clank', agent: 'agent-clank', ghosts: 'ghost', ships: 'send', ship: 'send', sends: 'send', mail: 'envelope', email: 'envelope', letter: 'envelope', idea: 'lightbulb', ideas: 'lightbulb', love: 'heart', likes: 'heart', time: 'clock', money: 'dollar', music: 'music', song: 'music', code: 'code', bug: 'bug', bugs: 'bug', fire: 'fire', home: 'home', house: 'home', find: 'search', look: 'search', delete: 'trash', bin: 'trash', settings: 'settings', world: 'globe', earth: 'globe', cloud: 'cloud', rain: 'umbrella', sun: 'sun', moon: 'moon', star: 'star', stars: 'stars', key: 'key', door: 'door', pizza: 'pizza', coffee: 'coffee', ai: 'sparkles', magic: 'wand', friend: 'user', friends: 'users', team: 'users', chat: 'chat', talk: 'chat', ok: 'check', yes: 'check', no: 'x', photo: 'image', picture: 'image', book: 'book', read: 'book', laptop: 'laptop', phone: 'phone', bird: 'bird', owl: 'owl', slow: 'snail', fast: 'rabbit', brain: 'brain', think: 'brain', thinks: 'brain', crystal: 'crystal-ball', future: 'crystal-ball', ball: 'crystal-ball', fish: 'fish', boss: 'user-clank' };
+const STOP = new Set(['a', 'an', 'the', 'my', 'to', 'and', 'with', 'of', 'in', 'on', 'then', 'is', 'it', 'for', 'at', 'by', 'or', 'your', 'our', 'their', 'i', 'you', 'we', 'they', 'from', 'up', 'as', 'be', 'so']);
+const outlineNames = DATA.icons.filter((i) => !i.f).map((i) => i.n);
+function matchWord(w) {
+  if (STOP.has(w) || w.length < 2) return null;
+  const tries = [SYN[w], w, w.replace(/(es|s)$/, ''), w.replace(/ing$/, ''), w.replace(/ed$/, '')].filter(Boolean);
+  for (const t of tries) if (has(t)) return t;
+  for (const t of tries) { const c = outlineNames.filter((n) => n.startsWith(t + '-')).sort((a, b) => a.length - b.length)[0]; if (c) return c; }
+  return null;
+}
+const EXAMPLES = { Pets: 'My cat and dog chase a fish past the owl and the turtle', Ops: 'Find the bug, delete the cloud key, then ship it before the fire', Spooky: 'A ghost and a skull read the crystal ball under the moon' };
+$('rebusEx').innerHTML = Object.keys(EXAMPLES).map((k) => `<button type="button" aria-pressed="false" data-k="${k}">${k}</button>`).join('');
+segBind($('rebusEx'), (b) => { $('rebusIn').value = EXAMPLES[b.dataset.k]; renderRebus(); });
+segBind(document.querySelector('[aria-label="Display"]'), (b) => { $('rebus').classList.toggle('only', b.dataset.m === 'only'); });
+function renderRebus() {
+  const words = $('rebusIn').value.split(/(\s+)/);
+  let hits = 0, total = 0;
+  $('rebus').innerHTML = words.map((tok) => {
+    if (/^\s+$/.test(tok)) return tok;
+    const m = tok.match(/^([\W_]*)([A-Za-z0-9'-]+)([\W_]*)$/);
+    if (!m) return `<span class="word miss">${tok.replace(/</g, '&lt;')}</span>`;
+    const w = m[2].toLowerCase(); if (!STOP.has(w)) total++;
+    const n = matchWord(w);
+    if (n) { hits++; return `${m[1] ? `<span class="word">${m[1]}</span>` : ''}<span title="${m[2]} → ${n}">${ico(n)}</span>${m[3] ? `<span class="word">${m[3]}</span>` : ''}`; }
+    return `<span class="word ${STOP.has(w) ? 'miss' : ''}">${tok.replace(/</g, '&lt;')}</span>`;
+  }).join('');
+  $('rebusMeta').textContent = `${hits} of ${total} content words matched an icon`;
+}
+$('rebusIn').addEventListener('input', renderRebus);
+$('rebusSize').addEventListener('input', (e) => { $('rebus').style.setProperty('--rs', e.target.value + 'px'); $('rebusSizeOut').textContent = e.target.value + ' px'; });
+$('rebusSizeOut').textContent = '64 px';
+renderRebus();
+
+/* ---------- 2 Render-size loupe ---------- */
+const LOUPE = ['envelope', 'penguin', 'settings', 'calendar', 'agent-clank', 'folder-open', 'skull', 'chevron-down', 'cat-face', 'lock', 'owl', 'play-fill'].filter(has);
+let loupeCur = LOUPE[0], loupeCurve = [];
+$('loupeStrip').innerHTML = LOUPE.map((n) => `<button type="button" data-n="${n}" aria-pressed="${n === loupeCur}" title="${n}">${ico(n)}</button>`).join('');
+segBind($('loupeStrip'), (b) => { loupeCur = b.dataset.n; renderLoupe(true); });
+$('zoomSize').addEventListener('input', () => renderLoupe(false));
+async function renderLoupe(newIcon) {
+  const s = +$('zoomSize').value; $('zoomSizeOut').textContent = s + ' px';
+  const color = inkColor(document.querySelector('.band.ink'));
+  const img = await symbolImage('i-' + loupeCur, color, s);
+  const cv = $('zoomCv'); cv.width = cv.height = s; const c = cv.getContext('2d'); c.clearRect(0, 0, s, s); c.drawImage(img, 0, 0, s, s);
+  const st = rasterStats(img, s);
+  $('zoomGrid').setAttribute('viewBox', `0 0 ${s} ${s}`);
+  let g = ''; if (s <= 48) for (let k = 1; k < s; k++) g += `M${k} 0V${s}M0 ${k}H${s}`;
+  $('zoomGrid').innerHTML = `<path d="${g}" stroke="var(--line)" stroke-width="${0.6 / (560 / s)}" fill="none" vector-effect="non-scaling-stroke"/>`;
+  $('zoomTag').textContent = `${s} × ${s} px · ${(cv.clientWidth / s).toFixed(1)}× zoom`;
+  const meta = byName.get(loupeCur);
+  const eNow = await edgeLength('i-' + loupeCur);
+  $('zoomRail').innerHTML = [['Icon', loupeCur], ['Component', 'Icon' + loupeCur.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join('')], ['Categories', meta.c.map((id) => DATA.categories.find((c) => c.id === id)?.name).filter(Boolean).join(', ') || 'Uncategorized'], ['Solid pixels', st.solid], ['Partly covered pixels', st.soft], ['Edge blur at this size', (st.soft / (eNow * s / 128)).toFixed(2)]].map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join('');
+  if (newIcon || !loupeCurve.length) { loupeCurve = []; const e = await edgeLength('i-' + loupeCur); for (let z = 10; z <= 48; z++) { const im = await symbolImage('i-' + loupeCur, '#000', z); loupeCurve.push([z, rasterStats(im, z).soft / (e * z / 128)]); } }
+  drawSharp(s);
+}
+function drawSharp(cur) {
+  const W = 420, H = 170, L = 30, R = 10, T = 10, B = 26;
+  const MX = Math.max(0.5, Math.ceil(Math.max(...loupeCurve.map(([, v]) => v)) * 4) / 4);
+  const xs = (z) => L + (z - 10) / 38 * (W - L - R), ys = (v) => T + (1 - v / MX) * (H - T - B);
+  const pts = loupeCurve.map(([z, v]) => `${xs(z).toFixed(1)},${ys(v).toFixed(1)}`).join(' ');
+  let ax = ''; [0, MX / 2, MX].forEach((v) => { ax += `<line class="axis" x1="${L}" x2="${W - R}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${L - 6}" y="${ys(v) + 3}" text-anchor="end">${v.toFixed(2)}</text>`; });
+  [16, 32, 48].forEach((z) => { ax += `<line x1="${xs(z)}" x2="${xs(z)}" y1="${T}" y2="${H - B}" stroke="var(--accent)" stroke-opacity=".35" stroke-dasharray="2 3"/>`; });
+  [10, 16, 20, 24, 32, 40, 48].forEach((z) => { ax += `<text x="${xs(z)}" y="${H - 8}" text-anchor="middle">${z}</text>`; });
+  const c = loupeCurve.find(([z]) => z === cur);
+  $('sharpChart').innerHTML = ax + `<polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>` +
+    loupeCurve.filter(([z]) => z % 16 === 0).map(([z, v]) => `<circle cx="${xs(z)}" cy="${ys(v)}" r="4" fill="var(--accent)" stroke="var(--band)" stroke-width="2"/>`).join('') +
+    (c ? `<circle cx="${xs(c[0])}" cy="${ys(c[1])}" r="6" fill="none" stroke="var(--ink)" stroke-width="2"/>` : '') +
+    `<rect x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent" id="sharpHit"/>`;
+  $('sharpHit').addEventListener('mousemove', (e) => { const r = e.target.getBoundingClientRect(); const z = Math.round(10 + (e.clientX - r.left) / r.width * 38); const p = loupeCurve.find(([q]) => q === z); if (p) $('sharpTip').textContent = `${z} px · ${p[1].toFixed(2)} partly covered pixels per pixel of outline`; });
+  $('sharpHit').addEventListener('click', (e) => { const r = e.target.getBoundingClientRect(); $('zoomSize').value = Math.round(10 + (e.clientX - r.left) / r.width * 38); renderLoupe(false); });
+}
+
+/* ---------- 3 Line-up ---------- */
+const LIBS = [{ id: 'fy', name: 'FYIcons', version: DATA.version, license: 'MIT' }, ...CMP.libs];
+const UTIL = CMP.concepts.filter((c) => c.kind === 'utility');
+const symId = (lib, c) => lib === 'fy' ? (has(c.fy) ? 'i-' + c.fy : null) : (c.icons[lib] ? `c-${lib}-${c.id}` : null);
+const SIZES = []; for (let z = 12; z <= 32; z++) SIZES.push(z);
+let curves = null, luSize = 16, luMode = 'px';
+async function computeCurves() {
+  const out = {};
+  for (const lib of LIBS) {
+    const ids = UTIL.map((c) => symId(lib.id, c)).filter(Boolean);
+    const edges = await Promise.all(ids.map(edgeLength));
+    out[lib.id] = [];
+    for (const z of SIZES) {
+      const imgs = await Promise.all(ids.map((id) => symbolImage(id, '#000', z)));
+      let soft = 0, edge = 0; imgs.forEach((img, k) => { if (!img) return; soft += rasterStats(img, z).soft; edge += edges[k] * z / 128; });
+      out[lib.id].push(soft / edge);
+    }
+  }
+  return out;
+}
+async function renderLineup() {
+  const color = inkColor($('lineup'));
+  const head = `<thead><tr><th></th>${UTIL.map((c) => `<th>${c.id}</th>`).join('')}<th style="text-align:left">Edge blur at ${luSize} px</th></tr></thead>`;
+  const blurAt = (lib) => curves ? curves[lib][SIZES.indexOf(luSize)] : null;
+  const maxB = curves ? Math.max(...LIBS.map((l) => blurAt(l.id))) : 1;
+  const rows = LIBS.map((lib) => `<tr class="${lib.id === 'fy' ? 'fy' : ''}"><th class="lib">${lib.name}<small>${lib.version}</small></th>${UTIL.map((c) => { const id = symId(lib.id, c); if (!id) return '<td class="none">—</td>'; return luMode === 'px' ? `<td><canvas data-id="${id}" width="${luSize}" height="${luSize}" style="width:${luSize * 3}px;height:${luSize * 3}px"></canvas></td>` : `<td><svg width="${luSize}" height="${luSize}" style="color:var(--ink)" aria-hidden="true"><use href="#${id}"/></svg></td>`; }).join('')}<td class="score">${curves ? `<div class="meter"><span>${blurAt(lib.id).toFixed(2)}</span><i style="width:${(blurAt(lib.id) / maxB * 100).toFixed(0)}%"></i></div>` : '<span class="muted mono" style="font-size:11px">measuring…</span>'}</td></tr>`).join('');
+  $('lineup').innerHTML = head + '<tbody>' + rows + '</tbody>';
+  if (luMode === 'px') for (const cv of $('lineup').querySelectorAll('canvas')) { const img = await symbolImage(cv.dataset.id, color, luSize); const c = cv.getContext('2d'); c.clearRect(0, 0, luSize, luSize); c.drawImage(img, 0, 0, luSize, luSize); }
+}
+segBind($('luSize'), (b) => { luSize = +b.dataset.s; renderLineup(); drawCurve(); });
+segBind($('luMode'), (b) => { luMode = b.dataset.m; renderLineup(); });
+function drawCurve() {
+  if (!curves) return;
+  const W = 560, H = 260, L = 36, R = 92, T = 12, B = 28;
+  const max = Math.max(...Object.values(curves).flat()) * 1.05;
+  const xs = (z) => L + (z - 12) / 20 * (W - L - R), ys = (v) => T + (1 - v / max) * (H - T - B);
+  let s = '';
+  const gl = [0, max / 2, max]; gl.forEach((v) => { s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${L - 6}" y="${ys(v) + 3}" text-anchor="end">${v.toFixed(1)}</text>`; });
+  [12, 16, 20, 24, 28, 32].forEach((z) => { s += `<text x="${xs(z)}" y="${H - 8}" text-anchor="middle">${z}</text>`; });
+  s += `<line x1="${xs(luSize)}" x2="${xs(luSize)}" y1="${T}" y2="${H - B}" stroke="var(--ink)" stroke-opacity=".25"/>`;
+  const order = LIBS.filter((l) => l.id !== 'fy').concat(LIBS.filter((l) => l.id === 'fy'));
+  const labels = [];
+  order.forEach((lib) => {
+    const v = curves[lib.id]; const fy = lib.id === 'fy';
+    s += `<polyline data-lib="${lib.id}" points="${v.map((b, k) => `${xs(SIZES[k]).toFixed(1)},${ys(b).toFixed(1)}`).join(' ')}" fill="none" stroke="${fy ? 'var(--accent)' : 'var(--muted)'}" stroke-opacity="${fy ? 1 : 0.55}" stroke-width="2" stroke-linejoin="round"/>`;
+    labels.push({ y: ys(v[v.length - 1]), name: lib.name, fy });
+  });
+  labels.sort((a, b) => a.y - b.y); for (let k = 1; k < labels.length; k++) if (labels[k].y - labels[k - 1].y < 12) labels[k].y = labels[k - 1].y + 12;
+  labels.forEach((l) => { s += `<text x="${W - R + 6}" y="${l.y + 3}" style="fill:${l.fy ? 'var(--accent)' : 'var(--muted)'};font-weight:${l.fy ? 600 : 400}">${l.name}</text>`; });
+  s += `<rect x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent" id="curveHit"/><line id="curveX" y1="${T}" y2="${H - B}" stroke="var(--ink)" stroke-opacity=".5" visibility="hidden"/>`;
+  $('curve').innerHTML = s;
+  $('curveLegend').innerHTML = LIBS.map((l) => `<span><i style="background:${l.id === 'fy' ? 'var(--accent)' : 'var(--muted)'};opacity:${l.id === 'fy' ? 1 : .6}"></i>${l.name}</span>`).join('');
+  const hit = $('curveHit');
+  hit.addEventListener('mousemove', (e) => { const r = hit.getBoundingClientRect(); const z = Math.round(12 + (e.clientX - r.left) / r.width * 20); const k = SIZES.indexOf(z); if (k < 0) return; $('curveX').setAttribute('x1', xs(z)); $('curveX').setAttribute('x2', xs(z)); $('curveX').setAttribute('visibility', 'visible'); $('curveTip').textContent = `${z} px · ` + LIBS.map((l) => `${l.name} ${curves[l.id][k].toFixed(2)}`).join(' · '); });
+  hit.addEventListener('mouseleave', () => $('curveX').setAttribute('visibility', 'hidden'));
+}
+
+/* ---------- 4 Expression range ---------- */
+const PERS = CMP.concepts.filter((c) => c.kind === 'personality');
+const UT6 = ['arrow-right', 'chevron', 'close', 'check', 'play', 'settings'].map((id) => CMP.concepts.find((c) => c.id === id));
+$('expr').innerHTML = `<div class="expr-row head"><span></span>${UT6.map((c) => `<span>${c.id}</span>`).join('')}<span></span>${PERS.map((c) => `<span>${c.id}</span>`).join('')}</div>` +
+  LIBS.map((lib) => `<div class="expr-row ${lib.id === 'fy' ? 'fy' : ''}"><span class="n">${lib.name}</span>${UT6.map((c) => { const id = symId(lib.id, c); return id ? `<svg aria-hidden="true" style="color:var(--ink)"><use href="#${id}"/></svg>` : '<span class="none">—</span>'; }).join('')}<span class="gap"></span>${PERS.map((c) => { const id = symId(lib.id, c); return id ? `<svg aria-hidden="true" style="color:var(--ink)"><use href="#${id}"/></svg>` : '<span class="none">none</span>'; }).join('')}</div>`).join('');
+
+/* ---------- 5 Play optics ---------- */
+// Right-pointing triangle in a 120 unit box; centroid sits 1/3 from the flat edge.
+const TRI = { w: 52, h: 60 };
+let playFyT = null;
+function drawPlay(t) {
+  const cx = 100, cy = 75, boxOff = (TRI.w / 2 - TRI.w / 3) * t; // shift right by (box center - centroid) * t
+  const x0 = cx - TRI.w / 2 + boxOff, y0 = cy - TRI.h / 2;
+  const centroidX = x0 + TRI.w / 3, boxCX = x0 + TRI.w / 2;
+  $('playSvg').innerHTML = `<circle cx="${cx}" cy="${cy}" r="58" fill="var(--well)"/>
+    <line x1="${cx}" y1="8" x2="${cx}" y2="142" stroke="var(--ink)" stroke-opacity=".3" stroke-dasharray="3 3"/>
+    <rect x="${x0}" y="${y0}" width="${TRI.w}" height="${TRI.h}" fill="none" stroke="var(--blue)" stroke-width="1" stroke-dasharray="4 3"/>
+    <path d="M${x0} ${y0}L${x0 + TRI.w} ${cy}L${x0} ${y0 + TRI.h}Z" fill="var(--ink)" stroke="var(--ink)" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="${boxCX}" cy="${cy}" r="3.5" fill="var(--blue)"/><circle cx="${centroidX}" cy="${cy}" r="3.5" fill="var(--pink)"/>
+    <text x="${boxCX}" y="${y0 - 8}" text-anchor="middle" style="font:9px var(--font-mono);fill:var(--blue)">box center</text>
+    <text x="${centroidX}" y="${y0 + TRI.h + 16}" text-anchor="middle" style="font:9px var(--font-mono);fill:var(--pink)">centroid</text>`;
+  $('playTOut').textContent = Math.round(t * 100) + '%';
+}
+$('playT').addEventListener('input', (e) => { drawPlay(e.target.value / 100); $('playSteps').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', 'false')); });
+segBind($('playSteps'), (b) => { const t = b.dataset.t === 'fy' ? (playFyT ?? 0.5) : +b.dataset.t; $('playT').value = Math.round(t * 100); drawPlay(t); });
+async function measurePlay() {
+  const S = 96, rows = [];
+  for (const lib of LIBS) {
+    const c = CMP.concepts.find((x) => x.id === 'play'); const id = symId(lib.id, c); if (!id) continue;
+    const img = await symbolImage(id); const st = rasterStats(img, S);
+    const [x0, , x1] = st.box; const boxC = (x0 + x1) / 2, mid = S / 2;
+    // Position on the box→mass line: 0 = box centered, 1 = centroid centered.
+    const t = (boxC - mid) / Math.max(0.001, boxC - st.cx);
+    rows.push({ lib, id, boxShift: (boxC - mid) / S * 100, massShift: (st.cx - mid) / S * 100, t });
+  }
+  const fy = rows.find((r) => r.lib.id === 'fy'); playFyT = Math.max(0, Math.min(1, fy.t));
+  $('playFyNote').innerHTML = `<code>play-fill</code> sits ${Math.round(playFyT * 100)}% of the way from box-centered to mass-centered.`;
+  $('playTable').innerHTML = `<tr><th>Set</th><th>Icon</th><th>Box offset</th><th>Mass offset</th><th>Box ↔ mass</th></tr>` + rows.map((r) => `<tr class="${r.lib.id === 'fy' ? 'fy' : ''}"><td>${r.lib.name}</td><td><svg width="20" height="20" style="color:var(--ink);vertical-align:middle" aria-hidden="true"><use href="#${r.id}"/></svg></td><td><code>${r.boxShift >= 0 ? '+' : ''}${r.boxShift.toFixed(1)}%</code></td><td><code>${r.massShift >= 0 ? '+' : ''}${r.massShift.toFixed(1)}%</code></td><td><code>${Math.round(Math.max(0, Math.min(1, r.t)) * 100)}%</code></td></tr>`).join('') +
+    `<tr><td colspan="5" class="muted" style="text-align:left;font-size:12px">Offsets are horizontal, as a share of each icon's canvas. Positive is right. 0% box ↔ mass means the box is centered.</td></tr>`;
+}
+drawPlay(0);
+
+/* ---------- 6 Circle vs square ---------- */
+function drawCS(d) {
+  const sq = 12, r = 1;
+  const areaSq = sq * sq - (4 - Math.PI) * r * r, areaC = Math.PI * (d / 2) ** 2;
+  const grid = (ox) => { let g = ''; for (let k = 0; k <= 16; k++) g += `M${ox + k * 5} 15V95M${ox} ${15 + k * 5}H${ox + 80}`; return `<path d="${g}" stroke="var(--grid)" stroke-width=".25" fill="none"/><rect x="${ox}" y="15" width="80" height="80" fill="none" stroke="var(--border)" stroke-width=".5"/>`; };
+  const u = 5;
+  $('csSvg').innerHTML = grid(10) + grid(110) +
+    `<circle cx="${10 + 40}" cy="55" r="${d / 2 * u}" fill="var(--ink)"/>` +
+    `<rect x="${110 + 40 - sq / 2 * u}" y="${55 - sq / 2 * u}" width="${sq * u}" height="${sq * u}" rx="${r * u}" fill="var(--ink)"/>` +
+    `<text x="50" y="108" text-anchor="middle" style="font:6px var(--font-mono);fill:var(--muted)">${d} Ø</text><text x="150" y="108" text-anchor="middle" style="font:6px var(--font-mono);fill:var(--muted)">12 × 12</text>` +
+    (d === 14 ? `<text x="50" y="10" text-anchor="middle" style="font:6px var(--font-mono);fill:var(--accent)">FYIcons keyline</text>` : '');
+  const ratio = areaC / areaSq;
+  $('csDOut').textContent = d + ' px';
+  $('csRail').innerHTML = [['Circle area', areaC.toFixed(1) + ' px²'], ['Square area', areaSq.toFixed(1) + ' px²'], ['Circle ÷ square', ratio.toFixed(2) + '×'], ['Reads as', ratio < 0.95 ? 'Circle looks smaller' : ratio > 1.15 ? 'Circle looks bigger' : 'Same visual size']].map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join('');
+}
+$('csD').addEventListener('input', (e) => drawCS(+e.target.value));
+drawCS(12);
+
+/* ---------- 7 Field guide ---------- */
+const FAUNA = [
+  ['penguin', 'Spheniscus sedecimpixelis', 'Penguin', 'Onboarding, cold starts', 'Only one of the six sets here has one'],
+  ['cat-face', 'Felis currentcolor', 'Cat', 'Empty inboxes, 404 pages', 'Judges you, quietly'],
+  ['agent-clank', 'Automaton clankus', 'Agent', 'AI features, background jobs', 'Antenna for vibes'],
+  ['owl', 'Strix nocturna', 'Owl', 'Dark mode, night schedules', 'Sees in currentColor'],
+  ['snail', 'Helix lentus', 'Snail', 'Slow network, throttling', 'Leaves a 1 px trail'],
+  ['rabbit', 'Lepus celer', 'Rabbit', 'Fast mode, shortcuts', 'Always one frame ahead'],
+  ['ghost', 'Spectrum vacuum', 'Ghost', 'Deleted items, ghost users', 'Hollow, on purpose'],
+  ['lady-bug', 'Coccinella debuggae', 'Ladybug', 'Bug reports, QA queues', 'Spots count as features'],
+  ['turtle', 'Testudo ratelimita', 'Turtle', 'Rate limits, long tasks', 'Gets there'],
+  ['bird-raven', 'Corvus nuntius', 'Raven', 'Messages, announcements', 'Brings news, mostly good'],
+  ['skull', 'Calvaria finalis', 'Skull', 'Destructive actions, danger zones', 'Scalloped jaw, 1 px teeth'],
+  ['dog-retriever-face', 'Canis fetchus', 'Retriever', 'Fetch, sync, retrieve', 'Will bring it back'],
+].filter(([n]) => has(n));
+$('guide').innerHTML = FAUNA.map(([n, bin, common, hab, note], k) => `<article class="specimen" data-n="${n}"><div class="plate"><svg class="bounds" viewBox="0 0 16 16" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg><svg class="art" viewBox="0 0 16 16" role="img" aria-label="${common}"><use href="#i-${n}"/></svg></div><span class="no">No. ${String(k + 1).padStart(2, '0')}</span><div><h4>${bin}</h4><p class="common">${common} · <code>${n}</code></p></div><dl><dt>Habitat</dt><dd>${hab}</dd><dt>Size</dt><dd class="mono" data-size>measuring…</dd><dt>Note</dt><dd>${note}</dd></dl></article>`).join('');
+async function measureFauna() {
+  for (const el of document.querySelectorAll('#guide .specimen')) {
+    const img = await symbolImage('i-' + el.dataset.n); const st = rasterStats(img, 64); const [x0, y0, x1, y1] = st.box.map((v) => v / 4);
+    el.querySelector('[data-size]').textContent = `${x1 - x0} × ${y1 - y0} px on 16`;
+    // The art is drawn at 58% of the plate; map its bounds into the plate's 16 unit box.
+    const k = 0.58, o = 8 * (1 - k);
+    el.querySelector('svg.bounds').innerHTML = `<rect x="${o + x0 * k}" y="${o + y0 * k}" width="${(x1 - x0) * k}" height="${(y1 - y0) * k}" fill="none" stroke="var(--pink)" stroke-width=".05" stroke-dasharray=".2 .15"/><text x="${o + x0 * k}" y="${o + y0 * k - 0.3}" style="font:0.45px var(--font-mono);fill:var(--pink)">${x1 - x0} × ${y1 - y0}</text>`;
+  }
+}
+
+/* ---------- 8 Pixel loupe ---------- */
+async function drawWall() {
+  const cv = $('wallCv'); const w = Math.floor(cv.clientWidth), h = Math.floor(cv.clientHeight);
+  cv.width = w; cv.height = h; const c = cv.getContext('2d');
+  const color = inkColor(cv), step = 28, cols = Math.floor((w - 12) / step), rows = Math.floor((h - 12) / step);
+  const ox = Math.floor((w - cols * step) / 2) + 6, oy = Math.floor((h - rows * step) / 2) + 6;
+  const names = shuffle(outlineNames, 19).slice(0, cols * rows);
+  c.clearRect(0, 0, w, h);
+  const imgs = await Promise.all(names.map((n) => symbolImage('i-' + n, color)));
+  imgs.forEach((img, k) => { if (img) c.drawImage(img, ox + (k % cols) * step, oy + Math.floor(k / cols) * step, 16, 16); });
+}
+(function bindLens() {
+  const box = $('wallbox'), lens = $('lens'), lc = $('lensCv').getContext('2d'), Z = 8, N = 200 / Z;
+  function move(e) {
+    const r = box.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    lens.hidden = false; lens.style.left = x + 'px'; lens.style.top = y + 'px';
+    const cv = $('wallCv'), sx = cv.width / r.width, px = x * sx, py = y * sx;
+    lc.imageSmoothingEnabled = false; lc.fillStyle = getComputedStyle(box).backgroundColor; lc.fillRect(0, 0, 200, 200);
+    lc.drawImage(cv, px - N / 2, py - N / 2, N, N, 0, 0, 200, 200);
+    lc.strokeStyle = getComputedStyle(box).getPropertyValue('--line') || 'rgba(0,0,0,.08)'; lc.lineWidth = 1; lc.beginPath();
+    for (let k = 0; k <= N; k++) { const o = Math.round(k * Z - ((px - N / 2) % 1) * Z) + 0.5; lc.moveTo(o, 0); lc.lineTo(o, 200); lc.moveTo(0, o); lc.lineTo(200, o); }
+    lc.stroke();
+    $('lensTag').textContent = `${Z}× · x ${Math.round(px)} y ${Math.round(py)}`;
+  }
+  box.addEventListener('pointermove', move); box.addEventListener('pointerdown', move);
+  box.addEventListener('pointerleave', () => { lens.hidden = true; });
+})();
+
+/* ---------- 9 Contexts ---------- */
+const CTX = ['download', 'penguin', 'bell', 'cat-face', 'settings', 'agent-clank', 'trash', 'ghost', 'calendar', 'rocket-launch'].filter(has);
+let ctxCur = 'penguin';
+$('ctxStrip').innerHTML = CTX.map((n) => `<button type="button" data-n="${n}" aria-pressed="${n === ctxCur}" title="${n}">${ico(n)}</button>`).join('');
+segBind($('ctxStrip'), (b) => { ctxCur = b.dataset.n; renderCtx(); });
+function renderCtx() {
+  const n = ctxCur, I = (cls = '') => ico(n, cls), label = n.split('-')[0].replace(/^\w/, (c) => c.toUpperCase());
+  $('ctx').innerHTML = [
+    ['Buttons', `<span class="c-btn">${I()}${label}</span><span class="c-btn ghost">${I()}Secondary</span>`],
+    ['Toolbar · 16 px', `<div class="c-tools"><span>${ico('cursor-default')}</span><span class="on">${I()}</span><span>${ico('pen-tool-alt')}</span><span>${ico('font')}</span><span>${ico('image')}</span></div>`],
+    ['Table glyphs', `<div class="c-table"><div>${I()}<span>Quarterly report.pdf</span></div><div>${ico('folder')}<span>Assets</span></div><div>${I()}<span>Archive 2026</span></div></div>`],
+    ['Badges', `<div class="c-badges"><span>${I()}${label}</span><span>${ico('circle-check')}Passed</span><span>${I()}Review</span></div>`],
+    ['Toast', `<div class="c-toast"><span class="dot">${I()}</span><span><b style="font-weight:500">${label} updated</b><br><span class="muted" style="font-size:12px">Just now · Undo</span></span></div>`],
+    ['Empty state · 64 px', `<div class="c-empty">${I()}<b>Nothing here yet</b><p>Add your first item to get started.</p></div>`],
+    ['Sticker · 64 px', `<div class="c-sticker"><span>${I()}</span></div>`],
+    ['Terminal', `<div class="c-term"><div>${I()}<span>~/fyicons $ npm i fyicons</span></div><div>${ico('check')}<span>added 1 package</span></div></div>`],
+    ['Tab bar · 20 px', `<div class="c-tabs"><span>${ico('home')}Home</span><span class="on">${I()}${label}</span><span>${ico('search')}Search</span><span>${ico('user')}You</span></div>`],
+  ].map(([cap, html]) => `<div><span class="cap">${cap}</span>${html}</div>`).join('');
+}
+renderCtx();
+
+/* ---------- Footer ---------- */
+$('foot').innerHTML = `<p>Comparison icons come from the published npm packages, unmodified apart from color: ${CMP.libs.map((l) => `${l.name} ${l.version} (${l.license}${l.note ? '; ' + l.note : ''})`).join(', ')}. Font Awesome Free icons by Fonticons, Inc., licensed CC BY 4.0. Blur figures are measured in your browser and vary slightly by browser and operating system.</p><p>Set I of these studies is <code>landing-studies.html</code> in the same folder. Internal study, not for publication as is.</p>`;
+
+/* ---------- Boot measured parts ---------- */
+renderLoupe(true);
+renderLineup();
+requestAnimationFrame(async () => {
+  curves = await computeCurves(); renderLineup(); drawCurve();
+  measurePlay(); measureFauna(); drawWall();
+});
+let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(drawWall, 200); });
+const rerender = () => { renderLoupe(false); renderLineup(); drawWall(); };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', rerender);
+new MutationObserver(rerender).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>
