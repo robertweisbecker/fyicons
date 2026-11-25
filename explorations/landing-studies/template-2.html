@@ -194,9 +194,10 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .specimen dd { margin: 0; }
 
 /* 8 Pixel loupe */
-.wallbox { position: relative; border-radius: 18px; overflow: hidden; background: var(--surface); cursor: none; touch-action: none; }
-.wallbox canvas.wall { display: block; width: 100%; height: 380px; image-rendering: pixelated; }
-.lens { position: absolute; width: 200px; height: 200px; border-radius: 50%; pointer-events: none; box-shadow: 0 0 0 1px var(--border), 0 18px 40px -12px oklch(0 0 0 / .35); overflow: hidden; left: 0; top: 0; transform: translate(-50%, -50%); background: var(--surface); }
+.wallbox { position: relative; border-radius: 18px; background: var(--surface); cursor: none; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.wallbox canvas.wall { display: block; width: 100%; height: 380px; image-rendering: pixelated; border-radius: 18px; }
+.lens::after { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; transform: translate(-50%, -50%); box-shadow: 0 0 0 1px var(--accent); border-radius: 1px; }
+.lens { position: absolute; z-index: 5; width: 200px; height: 200px; border-radius: 50%; pointer-events: none; box-shadow: 0 0 0 1px var(--border), 0 18px 40px -12px oklch(0 0 0 / .35); overflow: hidden; left: 0; top: 0; transform: translate(-50%, -50%); background: var(--surface); }
 .lens canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
 .lens-tag { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); font-family: var(--font-mono); font-size: 10px; background: var(--ink); color: var(--paper); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
 
@@ -397,7 +398,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     <p class="kicker"><b>08</b><span>Instrument · loupe</span></p>
     <div class="split">
       <h2 class="title" id="s8">Bring your own loupe.</h2>
-      <p class="lede">Hundreds of icons at true 1× pixels. Move across them; the lens shows each screen pixel eight times larger. Look for crisp walls and clean corners.</p>
+      <p class="lede">Hundreds of icons at true 1× pixels. Move across them, or drag a finger; the lens shows each screen pixel eight times larger. Look for crisp walls and clean corners.</p>
     </div>
     <div class="wallbox" id="wallbox"><canvas class="wall" id="wallCv" aria-label="Icons drawn at actual pixel size"></canvas><div class="lens" id="lens" hidden><canvas id="lensCv" width="200" height="200"></canvas><span class="lens-tag" id="lensTag">8×</span></div></div>
   </div>
@@ -738,9 +739,14 @@ async function drawWall() {
 }
 (function bindLens() {
   const box = $('wallbox'), lens = $('lens'), lc = $('lensCv').getContext('2d'), Z = 8, N = 200 / Z;
+  // Touch and pen lift the lens above the contact point, like the iOS text loupe,
+  // and flip it below when there is no room above. The lens still magnifies the touched pixel.
+  const LIFT = 130;
   function move(e) {
     const r = box.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-    lens.hidden = false; lens.style.left = x + 'px'; lens.style.top = y + 'px';
+    const touch = e.pointerType !== 'mouse';
+    const lift = !touch ? 0 : (e.clientY - LIFT - 100 < 8 ? -LIFT : LIFT);
+    lens.hidden = false; lens.style.left = x + 'px'; lens.style.top = (y - lift) + 'px';
     const cv = $('wallCv'), sx = cv.width / r.width, px = x * sx, py = y * sx;
     lc.imageSmoothingEnabled = false; lc.fillStyle = getComputedStyle(box).backgroundColor; lc.fillRect(0, 0, 200, 200);
     lc.drawImage(cv, px - N / 2, py - N / 2, N, N, 0, 0, 200, 200);
@@ -751,6 +757,8 @@ async function drawWall() {
   }
   box.addEventListener('pointermove', move); box.addEventListener('pointerdown', move);
   box.addEventListener('pointerleave', () => { lens.hidden = true; });
+  box.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') lens.hidden = true; });
+  box.addEventListener('pointercancel', () => { lens.hidden = true; });
 })();
 
 /* ---------- 9 Contexts ---------- */
