@@ -53,7 +53,7 @@ export function usePreference<T>(
   }, [key, value, loaded]);
   return [value, setValue] as const;
 }
-function useMediaQuery(query: string) {
+export function useMediaQuery(query: string) {
   const subscribe = useCallback(
     (listener: () => void) => {
       const media = matchMedia(query);
