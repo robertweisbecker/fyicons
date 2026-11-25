@@ -13,7 +13,7 @@ export const emptyIconFilters: IconFilters = {
 export function readIconFilters(
   search: string,
   categoryIds: ReadonlySet<string> | null,
-  iconNames: ReadonlySet<string>,
+  iconNames: ReadonlyMap<string, string>,
 ): IconFilters {
   const params = new URLSearchParams(search);
   const category = params.get('category') ?? 'all';
@@ -21,7 +21,7 @@ export function readIconFilters(
   return {
     category: !categoryIds || categoryIds.has(category) ? category : 'all',
     query: params.get('q') ?? '',
-    icon: icon && iconNames.has(icon) ? icon : null,
+    icon: iconNames.get(icon ?? '') ?? null,
   };
 }
 

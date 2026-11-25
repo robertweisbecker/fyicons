@@ -7,7 +7,12 @@ import {
 } from '../../apps/site/src/lib/icon-filters.ts';
 
 const categories = new Set(['design', 'files', 'shapes-symbols']);
-const icons = new Set(['bezier', 'pencil-ruler', 'file-zip']);
+const icons = new Map([
+  ['bezier', 'bezier'],
+  ['pencil-ruler', 'pencil-ruler'],
+  ['file-zip', 'file-zip'],
+  ['old-file-zip', 'file-zip'],
+]);
 const read = (search) => readIconFilters(search, categories, icons);
 
 test('category, search, and explicit icon links work independently or together', () => {
@@ -26,6 +31,12 @@ test('category, search, and explicit icon links work independently or together',
     }),
     '?category=design&q=pen&icon=pencil-ruler',
   );
+});
+
+test('an existing icon link resolves a corrected name and generates the canonical URL', () => {
+  const state = read('?category=files&icon=old-file-zip');
+  assert.equal(state.icon, 'file-zip');
+  assert.equal(iconFilterSearch(state), '?category=files&icon=file-zip');
 });
 
 test('search text round-trips without being interpreted as other query parameters', () => {

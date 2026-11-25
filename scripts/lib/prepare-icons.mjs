@@ -332,7 +332,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
   const expected = new Map(reactFiles);
   // Reconstruct standard fields without retaining private source links.
   const compactIcons = exportedIcons.map(
-    ({ file, width, height, svg, compatibilityNames, ...icon }) => icon,
+    ({ file, width, height, svg, ...icon }) => icon,
   );
   // Store field names once rather than repeating every metadata key per icon.
   // Null marks an absent optional field; icon metadata does not contain null values.

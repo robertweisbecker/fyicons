@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { byId, categories, icons } from './catalog';
+import { byId, byName, categories, icons } from './catalog';
 import {
   getCategoryReadiness,
   useCategoryReadiness,
@@ -16,7 +16,9 @@ import {
   type IconFilters,
 } from './icon-filters';
 
-const names = new Set(icons.map(({ name }) => name));
+const names = new Map(icons.map(({ name }) => [name, name]));
+for (const { name, compatibilityNames = [] } of icons)
+  for (const alias of compatibilityNames) names.set(alias, name);
 function read(search: string) {
   return readIconFilters(
     search,
@@ -49,9 +51,7 @@ export function useIconFilters() {
     // Deep links and browser navigation select an icon. A plain library entry
     // preserves a selection handed over by global search in the shared shell.
     if (state.icon || previous !== undefined) {
-      inspection.inspect(
-        icons.find(({ name }) => name === state.icon)?.id ?? null,
-      );
+      inspection.inspect(byName.get(state.icon ?? '')?.id ?? null);
     }
   }, [state.icon, inspection.inspect]);
 
