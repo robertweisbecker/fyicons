@@ -198,7 +198,8 @@ function assertComponentName(name) {
 }
 
 /** Render generated React components without writing to the filesystem. */
-export async function renderReactIconFiles(icons) {
+export async function renderReactIconFiles(icons, compatibilityIcons = []) {
+  const publishedIcons = [...icons, ...compatibilityIcons];
   const files = new Map();
   const exports = [];
   // Share SVG prop and accessibility handling without changing each icon's artwork.
@@ -235,7 +236,7 @@ const SvgRoot = /* @__PURE__ */ React.forwardRef<SVGSVGElement, IconProps & { id
 export default SvgRoot;
 `,
   );
-  for (const icon of icons) {
+  for (const icon of publishedIcons) {
     assertComponentName(icon.componentName);
     const componentName = icon.componentName;
     if (files.has(`packages/fyicons/src/${componentName}.tsx`)) {
@@ -299,5 +300,5 @@ export default SvgRoot;
     'apps/site/src/icons/registry.ts',
     `import type { ComponentType } from 'react';\nimport type { IconProps } from 'fyicons';\nimport * as icons from 'fyicons';\n\nexport const iconBySourceId: Record<string, ComponentType<IconProps>> = {\n${icons.map((icon) => `  ${JSON.stringify(icon.id)}: icons.${icon.componentName},`).join('\n')}\n};\n`,
   );
-  return new Map([...files, ...renderReactProviderFiles(icons)]);
+  return new Map([...files, ...renderReactProviderFiles(publishedIcons)]);
 }
