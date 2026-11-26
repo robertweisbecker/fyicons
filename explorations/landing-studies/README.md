@@ -106,22 +106,27 @@ what the site and the prototypes already cover.
 
 ## Loupe tour: `template-loupe-tour.html`
 
-A variation on set II study 08 that plays by itself in a loop, about 16 seconds.
-A loupe moves along a toolbar drawn at 1× and stops on one pixel in five icons.
-The large number is the ink coverage of the pixel under the loupe, read from
-the screen raster.
+A variation on set II study 08 that plays by itself in a loop of about 20
+seconds. Staggered columns of 16 px icons drift up at 1×, in whole-pixel steps.
+A loupe floats between the columns. It stops over a column while icons pass
+under it, then moves to the next one on a small arc. The readout shows the icon
+and the pixel under the loupe's center, and that pixel's ink coverage.
 
-| Stop | Icon | Pixel | Coverage |
-| --- | --- | --- | --- |
-| Wall | `envelope` | x 7, y 3 | 100% |
-| Gap | `bell-dot` | x 9, y 2 | 0% |
-| Curve | `search` | x 1, y 4 | 61% |
-| Diagonal | `chevron-down-sm` | x 5, y 8 | 63% |
-| Small size, same wall | `copy-sm` | x 10, y 8 | 100% |
+- Each column moves one or two full cycles per loop, so the loop closes without
+  a jump.
+- The loupe parks on icon pixel columns 3, 7, and 12. Walls fall there most
+  often: 11% of pixels at columns 3 and 12 are solid, against 5% at columns 1
+  and 2, measured over the 67 icons in the pool.
+- The loupe magnifies the pixels under its own center and never moves away
+  from them. A test at widths of 390, 768, and 1100 px, at 1×, 2×, and 3×
+  pixel density, found a 0 px offset between the loupe and the pixels it
+  shows, and the same color for the boxed pixel and the screen pixel.
+- The first version stopped on five fixed pixels in a toolbar. On narrow
+  screens it pushed the loupe away from the edge, so the loupe did not sit on
+  the pixel it reported. This version replaces it.
 
-Coverage values come from Chromium. The page has Pause and Play, a progress bar
-you can select to jump to a stop, and it starts paused on the first stop when
-the reader prefers reduced motion. The build writes `loupe-tour.html`.
+The page has Pause and Play, and it starts paused when the reader prefers
+reduced motion. The build writes `loupe-tour.html`.
 
 ## Direction from review
 

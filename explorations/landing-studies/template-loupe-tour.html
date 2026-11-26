@@ -5,7 +5,7 @@
 <title>FYIcons Loupe Tour</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
-/* Layout: a variation on set II study 08. One self-running film: a loupe tours a toolbar drawn at 1× screen pixels and stops on one pixel in five icons. The readout under the stage is measured from the screen raster, not typed in. */
+/* Layout: a variation on set II study 08. One self-running loop: staggered columns of 16 px icons drift up at 1× in whole-pixel steps, and a loupe floats between the columns, settles over one while icons pass under it, then moves on. The readout is measured from the screen raster under the loupe's center. */
 @font-face { font-family: 'Allo'; src: url('/*FONT_ALLO*/') format('woff2'); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: 'Paper Mono'; src: url('/*FONT_MONO*/') format('woff2'); font-weight: 100 800; font-display: swap; }
 :root {
@@ -31,7 +31,6 @@ body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(
 h1, h3 { margin: 0; font-weight: 400; letter-spacing: -0.04em; text-wrap: balance; }
 p { margin: 0; }
 button { font: inherit; color: inherit; }
-code { font-family: var(--font-mono); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .band { padding: clamp(32px, 6vw, 80px) max(16px, env(safe-area-inset-right, 0px)) clamp(32px, 6vw, 80px) max(16px, env(safe-area-inset-left, 0px)); }
 .in { max-width: 1040px; margin: 0 auto; display: grid; gap: 20px; }
@@ -40,32 +39,25 @@ code { font-family: var(--font-mono); }
 h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1; }
 .lede { font-size: clamp(16px, 1.5vw, 19px); color: var(--muted); max-width: 58ch; text-wrap: pretty; }
 .film { background: var(--surface); border-radius: 20px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
-.stage { position: relative; height: var(--stage-h, 300px); }
-.stage > canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
-.lens { z-index: 2; position: absolute; left: 0; top: 0; width: var(--lens, 200px); height: var(--lens, 200px); border-radius: 50%; overflow: hidden; pointer-events: none; transform: translate(-50%, -50%) scale(var(--lens-s, 1)); background: var(--surface); box-shadow: 0 0 0 1px var(--border), 0 0 0 5px var(--surface), 0 0 0 6px var(--border), 0 22px 44px -16px oklch(0 0 0 / .45); will-change: transform, left, top; }
+.stage { position: relative; height: var(--stage-h, 380px); overflow: hidden; }
+.stage > canvas { position: absolute; left: 0; top: 0; image-rendering: pixelated; }
+/* The fade sits above the columns and below the loupe; the loupe reads the unfaded screen. */
+.stage::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(var(--surface), transparent 22%, transparent 78%, var(--surface)); }
+.stage-cap { position: absolute; left: 12px; top: 12px; z-index: 3; font-family: var(--font-mono); font-size: 11px; color: var(--muted); background: var(--surface); padding: 3px 8px; border-radius: 99px; box-shadow: 0 0 0 1px var(--line); }
+.lens { position: absolute; left: 0; top: 0; z-index: 2; width: var(--lens, 200px); height: var(--lens, 200px); border-radius: 50%; overflow: hidden; pointer-events: none; background: var(--surface); box-shadow: 0 0 0 1px var(--border), 0 0 0 5px var(--surface), 0 0 0 6px var(--border), 0 26px 50px -18px oklch(0 0 0 / .45); will-change: transform; }
 .lens canvas { width: 100%; height: 100%; display: block; }
-.stage-cap { position: absolute; left: 16px; top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); z-index: 1; }
-.lens-tag { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); font-family: var(--font-mono); font-size: 10px; background: var(--ink); color: var(--surface); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
-.readout { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 22px; align-items: center; padding: 18px 20px; border-top: 1px solid var(--line); min-height: 116px; }
+.readout { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 22px; align-items: center; padding: 16px 20px; border-top: 1px solid var(--line); }
 .cov { display: grid; justify-items: start; }
-.cov b { font-family: var(--font-mono); font-weight: 400; font-size: clamp(36px, 7vw, 56px); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; min-width: 3.2ch; }
+.cov b { font-family: var(--font-mono); font-weight: 400; font-size: clamp(34px, 6vw, 52px); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; min-width: 4ch; }
 .cov span, .meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
-.what { display: grid; gap: 4px; transition: opacity .25s; }
-.what h3 { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
-.what p:last-child { font-size: 15px; color: var(--muted); text-wrap: pretty; }
-.moving .what { opacity: .35; }
-.bar { display: flex; align-items: center; gap: 12px; padding: 0 20px 18px; }
-.bar > button { border: 1px solid var(--border); background: transparent; border-radius: 999px; min-height: 36px; padding: 0 14px; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; flex: none; }
-.bar > button svg { width: 14px; height: 14px; }
-.segs { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 6px; flex: 1; }
-.segs button { all: unset; cursor: pointer; display: grid; gap: 6px; padding: 8px 0; }
-.segs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
-.segs i { display: block; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
-.segs i::after { content: ""; display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--accent); }
-.segs span { font-family: var(--font-mono); font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.segs button[aria-current="true"] span { color: var(--ink); }
+.under { display: grid; gap: 2px; }
+.under h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; min-height: 30px; }
+.under h3 svg { width: 16px; height: 16px; flex: none; }
+.under.between h3 { color: var(--muted); }
+.readout > button { border: 1px solid var(--border); background: transparent; border-radius: 999px; min-height: 40px; padding: 0 14px; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.readout > button svg { width: 14px; height: 14px; }
 .notes { font-size: 13px; color: var(--muted); max-width: 70ch; text-wrap: pretty; }
-@media (max-width: 560px) { .readout { grid-template-columns: 1fr; } .segs span { display: none; } }
+@media (max-width: 560px) { .readout { grid-template-columns: auto minmax(0, 1fr); } .readout > button { grid-column: 1 / -1; justify-self: start; } }
 </style>
 
 <!--SPRITE-->
@@ -73,48 +65,47 @@ h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1; }
 <section class="band" aria-labelledby="tour-h">
   <div class="in">
     <p class="kicker"><b>Loupe tour</b><span>A variation on set II study 08</span><span>Plays by itself, in a loop</span></p>
-    <h1 id="tour-h">Five pixels, up close.</h1>
-    <p class="lede">A loupe moves along a toolbar drawn at true 1× pixels and stops on one pixel in five icons. The large number is the ink coverage of the pixel under the loupe, read from the screen raster as it moves.</p>
+    <h1 id="tour-h">A loupe over moving pixels.</h1>
+    <p class="lede">Columns of 16 px icons drift up at true 1× pixels, one whole pixel at a time. The loupe floats between them, stops over a column while icons pass under it, and moves on. The number is the ink coverage of the pixel under the loupe's center, read from the screen as it moves.</p>
     <div class="film" id="film">
-      <div class="stage" id="stage" role="img" aria-label="A toolbar of icons at actual pixel size, with a magnifying loupe that moves between icons">
+      <div class="stage" id="stage" role="img" aria-label="Columns of icons at actual pixel size drift upward while a magnifying loupe floats between them">
         <canvas id="screen"></canvas>
-        <span class="stage-cap">Toolbar · 16 px icons at 1×</span>
-        <div class="lens" id="lens"><canvas id="lensCv"></canvas><span class="lens-tag" id="lensTag"></span></div>
+        <span class="stage-cap">16 px icons at 1× · whole-pixel steps</span>
+        <div class="lens" id="lens"><canvas id="lensCv"></canvas></div>
       </div>
-      <div class="readout" aria-live="polite">
+      <div class="readout" aria-live="off">
         <div class="cov"><b id="covNum">–</b><span>ink coverage</span></div>
-        <div class="what"><p class="meta" id="stopMeta"></p><h3 id="stopTitle"></h3><p id="stopText"></p></div>
+        <div class="under" id="under"><span class="meta">Under the loupe</span><h3 id="underName">–</h3><span class="meta" id="underPx"></span></div>
+        <button type="button" id="play"></button>
       </div>
-      <div class="bar"><button type="button" id="play"></button><div class="segs" id="segs"></div></div>
     </div>
-    <p class="notes" id="notes">Coverage is the alpha of the icon ink at one pixel when your browser draws the icon at 16 px. 100% is a solid pixel and 0% is empty. Values can vary slightly by browser.</p>
+    <p class="notes">Coverage is the alpha of the icon ink at one screen pixel when your browser draws the icon at 16 px: 100% is a solid pixel and 0% is empty. The columns move in whole pixels, so every icon stays as sharp as a still one. Values can vary slightly by browser.</p>
   </div>
 </section>
 
 <script>
 {
 const DATA = /*DATA*/;
-const has = (n) => DATA.icons.some((i) => i.n === n);
+const names = new Set(DATA.icons.map((i) => i.n));
+const has = (n) => names.has(n);
 const $ = (id) => document.getElementById(id);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const ico = (n) => `<svg aria-hidden="true" viewBox="0 0 16 16"><use href="#i-${n}"/></svg>`;
+function seeded(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+function shuffle(arr, seed) { const r = seeded(seed), a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-// The toolbar, left to right. A null makes a separator.
-const BAR = ['envelope', 'calendar', 'folder', null, 'bell-dot', 'search', 'lock', null, 'copy-sm', 'chevron-down-sm', 'settings'].filter((n) => n === null || has(n));
-// Each stop is one pixel of one icon, in its 16 px grid.
-const STOPS = [
-  { n: 'envelope', x: 7, y: 3, title: 'Wall', text: 'The top wall fills one whole row of pixels. Its edges sit on the pixel grid.' },
-  { n: 'bell-dot', x: 9, y: 2, title: 'Gap', text: 'The bell is cut back, so one clear pixel separates it from the dot.' },
-  { n: 'search', x: 1, y: 4, title: 'Curve', text: 'A round edge passes through pixels, so its coverage is partial. That is correct for a curve.' },
-  { n: 'chevron-down-sm', x: 5, y: 8, title: 'Diagonal', text: 'No pixel on a diagonal is fully covered. This is true in every icon set.' },
-  { n: 'copy-sm', x: 10, y: 8, title: 'Small size, same wall', text: 'copy-sm draws a smaller glyph and keeps a full 1 px wall.' },
-].filter((s) => has(s.n));
-const TRAVEL = 1000, HOLD = 2200, STEP = TRAVEL + HOLD, TOTAL = STOPS.length * STEP;
+// Everyday interface icons. Each column takes its own order of eight.
+const POOL = ['envelope', 'calendar', 'folder', 'bell-dot', 'search', 'lock', 'copy-sm', 'chevron-down-sm', 'settings', 'home', 'user', 'trash', 'pencil', 'link', 'download', 'upload', 'clock', 'check', 'x', 'plus', 'filter', 'star', 'heart', 'chart-donut', 'file-text', 'image', 'camera', 'map-pin', 'globe', 'cloud', 'eye', 'key', 'tag', 'bookmark', 'send', 'paperclip', 'phone', 'microphone', 'inbox', 'sliders', 'share', 'archive', 'printer', 'compass', 'flag', 'code', 'terminal', 'database', 'shield-check', 'cloud-check', 'file-add', 'eye-slash', 'arrow-up-right', 'chevron-right-sm', 'circle-check', 'square-check', 'bolt', 'sun', 'moon', 'video-camera', 'headphones', 'book', 'credit-card', 'shopping-cart', 'gift', 'users', 'chat'].filter(has);
+const PER = 8, CELL = 24, CYCLE = PER * CELL;
+// The loupe settles over these columns, as fractions of the usable width, then floats to the next.
+// It parks on icon pixel columns 3, 7, and 12, where walls fall most often (11% of pixels there are solid, against 5% at columns 1 and 2).
+const STOPS = [0.12, 0.66, 0.34, 0.9, 0.5];
+const DWELL = 2600, TRAVEL = 1500, STEP = DWELL + TRAVEL, LOOP = STOPS.length * STEP;
 
 const stage = $('stage'), screen = $('screen'), sc = screen.getContext('2d');
 const ink = document.createElement('canvas'), ic = ink.getContext('2d', { willReadFrequently: true });
 const lens = $('lens'), lensCv = $('lensCv'), lc = lensCv.getContext('2d');
-let W = 0, H = 0, D = 200, Z = 10, slots = new Map(), current = -1;
+let W = 0, H = 0, D = 200, Z = 10, cols = [], stops = [], images = new Map(), C = {};
 
 const imgCache = new Map();
 function iconImage(name, color) {
@@ -125,94 +116,97 @@ function iconImage(name, color) {
   const p = new Promise((res) => { const img = new Image(); img.onload = () => res(img); img.onerror = () => res(null); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
   imgCache.set(key, p); return p;
 }
-const css = (v) => getComputedStyle(stage).getPropertyValue(v).trim();
-function colorOf(v) { const p = document.createElement('canvas').getContext('2d'); p.fillStyle = css(v); p.fillRect(0, 0, 1, 1); const [r, g, b, a] = p.getImageData(0, 0, 1, 1).data; return `rgba(${r},${g},${b},${a / 255})`; }
+function colorOf(v) { const p = document.createElement('canvas').getContext('2d'); p.fillStyle = getComputedStyle(stage).getPropertyValue(v).trim(); p.fillRect(0, 0, 1, 1); const [r, g, b, a] = p.getImageData(0, 0, 1, 1).data; return `rgba(${r},${g},${b},${a / 255})`; }
 
-// Lay out the toolbar on whole pixels and draw it at 1×.
-let images = new Map();
 async function build() {
+  stage.style.setProperty('--stage-h', (stage.clientWidth < 560 ? 320 : 380) + 'px');
   W = Math.floor(stage.clientWidth); H = Math.floor(stage.clientHeight);
-  D = Math.round(Math.min(220, Math.max(140, W * 0.42))); Z = D >= 190 ? 10 : 8;
+  // The canvas is exactly W × H CSS pixels, so one canvas pixel is one CSS pixel under the loupe.
+  for (const cv of [screen, ink]) { cv.width = W; cv.height = H; }
+  screen.style.width = W + 'px'; screen.style.height = H + 'px';
+  D = Math.round(Math.min(220, Math.max(150, W * 0.36))); Z = D >= 190 ? 10 : 8;
   stage.style.setProperty('--lens', D + 'px');
-  screen.width = ink.width = W; screen.height = ink.height = H;
   const dpr = Math.min(3, devicePixelRatio || 1); lensCv.width = lensCv.height = Math.round(D * dpr); lc.setTransform(dpr, 0, 0, dpr, 0, 0);
-  const icons = BAR.filter(Boolean).length, seps = BAR.length - icons;
-  const btn = W < 400 ? 30 : 34, gap = W < 400 ? 3 : 6, sepW = 9;
-  const barW = icons * btn + seps * sepW + (BAR.length - 1) * gap + 12;
-  const bx = Math.floor((W - barW) / 2), by = Math.floor(H / 2 - btn / 2) - 6;
-  slots = new Map(); let x = bx + 6; const ys = by;
-  layout = { bx, by: ys - 6, bw: barW, bh: btn + 12, btn, seps: [] };
-  for (const n of BAR) { if (n === null) { layout.seps.push(x + Math.floor(sepW / 2)); x += sepW + gap; continue; } slots.set(n, { x, y: ys, ix: x + Math.floor((btn - 16) / 2), iy: ys + Math.floor((btn - 16) / 2) }); x += btn + gap; }
-  C = { ink: colorOf('--ink'), surface: colorOf('--surface'), well: colorOf('--well'), border: colorOf('--border'), line: colorOf('--line'), accent: colorOf('--accent') };
-  const color = C.ink;
-  images = new Map(await Promise.all(BAR.filter(Boolean).map(async (n) => [n, await iconImage(n, color)])));
-  ic.clearRect(0, 0, W, H);
-  for (const [n, s] of slots) { const img = images.get(n); if (img) ic.drawImage(img, s.ix, s.iy, 16, 16); }
-  paintScreen();
+  C = { ink: colorOf('--ink'), surface: colorOf('--surface'), line: colorOf('--line'), accent: colorOf('--accent') };
+  // Several columns, not a wall: about a dozen on wide screens, with more air between them.
+  const pitch = Math.round(Math.min(72, Math.max(40, W / 12))), n = Math.max(4, Math.floor((W - 24) / pitch)), x0 = Math.floor((W - n * pitch) / 2);
+  cols = Array.from({ length: n }, (_, c) => ({
+    x: x0 + c * pitch + Math.floor((pitch - 16) / 2),
+    seq: shuffle(POOL, 11 + c * 7).slice(0, PER),
+    offset: (c % 2) * (CELL / 2) + 6,
+    turns: c % 3 === 1 ? 2 : 1,
+  }));
+  // Stops land on whole-pixel columns that keep the loupe inside the stage.
+  const R = D / 2 + 8, ok = cols.filter((col) => col.x + 8 > R && col.x + 8 < W - R);
+  const pool = ok.length ? ok : cols;
+  stops = STOPS.map((f, k) => { const col = pool[Math.round(f * (pool.length - 1))]; return { col, x: col.x + [3.5, 12.5, 7.5, 12.5, 3.5][k % 5] }; });
+  images = new Map(await Promise.all([...new Set(cols.flatMap((col) => col.seq))].map(async (nm) => [nm, await iconImage(nm, C.ink)])));
 }
-let layout = null, C = {};
-function roundRect(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
-function paintScreen() {
-  if (!layout) return;
-  sc.clearRect(0, 0, W, H);
-  sc.fillStyle = C.surface; sc.fillRect(0, 0, W, H);
-  sc.fillStyle = C.well; roundRect(sc, layout.bx, layout.by, layout.bw, layout.bh, 10); sc.fill();
-  const on = current >= 0 ? slots.get(STOPS[current].n) : null;
-  if (on) { sc.fillStyle = C.surface; roundRect(sc, on.x, on.y, layout.btn, layout.btn, 7); sc.fill(); sc.strokeStyle = C.border; sc.lineWidth = 1; roundRect(sc, on.x + 0.5, on.y + 0.5, layout.btn - 1, layout.btn - 1, 7); sc.stroke(); }
-  sc.fillStyle = C.border;
-  for (const sx of layout.seps) sc.fillRect(sx, layout.by + 10, 1, layout.bh - 20);
-  sc.drawImage(ink, 0, 0);
-}
-const target = (k) => { const s = STOPS[k], p = slots.get(s.n); return { x: p.ix + s.x, y: p.iy + s.y }; };
-const coverage = (x, y) => { x = Math.floor(x); y = Math.floor(y); if (x < 0 || y < 0 || x >= W || y >= H) return 0; return Math.round(ic.getImageData(x, y, 1, 1).data[3] / 255 * 100); };
 const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
-
-$('segs').style.setProperty('--n', STOPS.length);
-$('segs').innerHTML = STOPS.map((s, k) => `<button type="button" data-k="${k}" aria-label="Stop ${k + 1}: ${s.title}, ${s.n}"><i></i><span>${s.title}</span></button>`).join('');
-const segEls = [...$('segs').children];
-
-function setStop(k) {
-  if (k === current) return;
-  current = k; const s = STOPS[k];
-  $('stopMeta').textContent = `${String(k + 1).padStart(2, '0')} / ${String(STOPS.length).padStart(2, '0')} · ${s.n} · pixel x ${s.x}, y ${s.y}`;
-  $('stopTitle').textContent = s.title; $('stopText').textContent = s.text;
-  segEls.forEach((b, j) => b.setAttribute('aria-current', j === k));
-  paintScreen();
+// Column scroll for loop time t, in whole pixels. Each column moves one or two full cycles per loop, so the loop closes.
+const scrollOf = (col, t) => Math.round((t / LOOP) * col.turns * CYCLE) % CYCLE;
+function drawColumns(t) {
+  ic.clearRect(0, 0, W, H);
+  for (const col of cols) {
+    const s = scrollOf(col, t);
+    for (let y = col.offset - s - CYCLE, i = 0; y < H + CELL; y += CELL, i++) {
+      if (y < -16) continue;
+      const nm = col.seq[((i % PER) + PER) % PER], img = images.get(nm);
+      if (img) ic.drawImage(img, col.x, y, 16, 16);
+    }
+  }
+  sc.fillStyle = C.surface; sc.fillRect(0, 0, W, H); sc.drawImage(ink, 0, 0);
 }
-function frameAt(t) {
-  if (!slots.size) return;
-  t = ((t % TOTAL) + TOTAL) % TOTAL;
-  const k = Math.floor(t / STEP), u = t - k * STEP, prev = (k - 1 + STOPS.length) % STOPS.length;
-  const a = target(prev), b = target(k), moving = u < TRAVEL, e = moving ? ease(u / TRAVEL) : 1;
-  const px = a.x + 0.5 + (b.x - a.x) * e, py = a.y + 0.5 + (b.y - a.y) * e;
-  // Keep the loupe inside the stage. It still magnifies the pixels under its own center.
-  const R = D / 2 + 6, cx = Math.min(W - R, Math.max(R, px)), cy = Math.min(H - R, Math.max(R, py));
-  lens.style.left = cx + 'px'; lens.style.top = cy + 'px';
-  lens.style.setProperty('--lens-s', moving ? (0.94 + 0.06 * Math.abs(1 - 2 * e)).toFixed(3) : 1);
-  $('film').classList.toggle('moving', moving);
-  if (!moving || current < 0) setStop(k);
-  else if (u > TRAVEL * 0.5) setStop(k);
-  drawLens(cx, cy, moving ? null : b);
-  const cov = moving ? coverage(px, py) : coverage(b.x, b.y);
-  $('covNum').textContent = cov + '%';
-  $('lensTag').textContent = moving ? `${Z}×` : `${Z}× · ${STOPS[k].n}`;
-  segEls.forEach((el, j) => el.querySelector('i').style.setProperty('--p', j < k ? 1 : j > k ? 0 : (moving ? 0 : (u - TRAVEL) / HOLD).toFixed(3)));
+// Which icon and which of its pixels sit under a screen pixel.
+function iconAt(px, py, t) {
+  for (const col of cols) {
+    if (px < col.x || px >= col.x + 16) continue;
+    const s = scrollOf(col, t), rel = ((py - (col.offset - s)) % CYCLE + CYCLE) % CYCLE;
+    const i = Math.floor(rel / CELL), r = rel - i * CELL;
+    if (r < 16) return { name: col.seq[i % PER], x: px - col.x, y: r };
+  }
+  return null;
 }
-function drawLens(cx, cy, tgt) {
+function lensAt(t) {
+  const k = Math.floor(t / STEP), u = t - k * STEP, a = stops[k], b = stops[(k + 1) % stops.length];
+  const mid = H / 2, bob = 4 * Math.sin((t / LOOP) * Math.PI * 2 * 5);
+  if (u < DWELL) return { x: a.x, y: mid + bob, moving: false };
+  const e = ease((u - DWELL) / TRAVEL), arc = -26 * Math.sin(Math.PI * e);
+  return { x: a.x + (b.x - a.x) * e, y: mid + bob + arc, moving: true, e };
+}
+function drawLens(cx, cy) {
   const N = D / Z, sx = cx - N / 2, sy = cy - N / 2;
   lc.imageSmoothingEnabled = false;
   lc.fillStyle = C.surface; lc.fillRect(0, 0, D, D);
-  // Whole source pixels, so every magnified pixel keeps a hard edge while the loupe glides.
+  // Copy whole source pixels and offset them, so magnified pixels keep hard edges while the loupe glides.
   const x0 = Math.floor(sx), y0 = Math.floor(sy), n = Math.ceil(N) + 2, ox = (x0 - sx) * Z, oy = (y0 - sy) * Z;
   lc.drawImage(screen, x0, y0, n, n, ox, oy, n * Z, n * Z);
   lc.strokeStyle = C.line; lc.lineWidth = 1; lc.beginPath();
   for (let k = 0; k <= n; k++) { const gx = Math.round(ox + k * Z) + 0.5, gy = Math.round(oy + k * Z) + 0.5; lc.moveTo(gx, 0); lc.lineTo(gx, D); lc.moveTo(0, gy); lc.lineTo(D, gy); }
   lc.stroke();
-  if (tgt) { lc.strokeStyle = C.accent; lc.lineWidth = 2; lc.strokeRect(Math.round((tgt.x - sx) * Z) + 1, Math.round((tgt.y - sy) * Z) + 1, Z - 2, Z - 2); }
-  else { lc.strokeStyle = C.accent; lc.lineWidth = 1.5; const m = D / 2; lc.beginPath(); lc.moveTo(m - 6, m); lc.lineTo(m + 6, m); lc.moveTo(m, m - 6); lc.lineTo(m, m + 6); lc.stroke(); }
+  // Box the screen pixel that the readout measures: the one under the loupe's center.
+  const px = Math.floor(cx), py = Math.floor(cy);
+  lc.strokeStyle = C.accent; lc.lineWidth = 2;
+  lc.strokeRect(Math.round((px - sx) * Z) + 1, Math.round((py - sy) * Z) + 1, Z - 2, Z - 2);
+}
+let lastName = null;
+function frameAt(t) {
+  if (!cols.length) return;
+  t = ((t % LOOP) + LOOP) % LOOP;
+  drawColumns(t);
+  const L = lensAt(t), scale = L.moving ? 1 - 0.05 * Math.sin(Math.PI * L.e) : 1;
+  lens.style.transform = `translate3d(${(L.x - D / 2).toFixed(2)}px, ${(L.y - D / 2).toFixed(2)}px, 0) scale(${scale.toFixed(3)})`;
+  drawLens(L.x, L.y);
+  const px = Math.floor(L.x), py = Math.floor(L.y);
+  $('covNum').textContent = Math.round(ic.getImageData(px, py, 1, 1).data[3] / 255 * 100) + '%';
+  const hit = iconAt(px, py, t), name = hit ? hit.name : null;
+  $('under').classList.toggle('between', !hit);
+  if (name !== lastName) { $('underName').innerHTML = hit ? `${ico(name)}${name}` : 'Between icons'; lastName = name; }
+  $('underPx').textContent = hit ? `pixel x ${hit.x}, y ${hit.y} of 16` : `screen pixel ${px}, ${py}`;
+  window.__loupe = { cx: L.x, cy: L.y, px, py, D, Z };
 }
 
-let playing = !reduced, visible = true, clock = TRAVEL + 400, last = 0, raf = 0;
+let playing = !reduced, visible = true, clock = DWELL * 0.55, last = 0, raf = 0;
 function tick(now) {
   raf = 0;
   if (playing) clock += Math.min(64, now - (last || now));
@@ -220,16 +214,16 @@ function tick(now) {
   if (playing && visible) raf = requestAnimationFrame(tick); else last = 0;
 }
 function kick() { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } }
-function setPlaying(on) { playing = on; $('play').innerHTML = on ? `${ico('pause-fill')}Pause` : `${ico('play-fill')}Play`; $('play').setAttribute('aria-label', on ? 'Pause the tour' : 'Play the tour'); if (on) kick(); else frameAt(clock); }
+function setPlaying(on) { playing = on; $('play').innerHTML = on ? `${ico('pause-fill')}Pause` : `${ico('play-fill')}Play`; $('play').setAttribute('aria-label', on ? 'Pause the animation' : 'Play the animation'); if (on) kick(); else frameAt(clock); }
 $('play').addEventListener('click', () => setPlaying(!playing));
-$('segs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; clock = +b.dataset.k * STEP + TRAVEL + 1; current = -1; frameAt(clock); kick(); });
 new IntersectionObserver((es) => { visible = es[0].isIntersecting; if (visible && playing) kick(); }, { rootMargin: '80px' }).observe(stage);
 document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible && playing) kick(); });
-const relayout = async () => { stage.style.setProperty('--stage-h', (stage.clientWidth < 560 ? 230 : 300) + 'px'); await build(); current = -1; frameAt(clock); };
-let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(relayout, 120); }).observe(stage);
-const retheme = async () => { imgCache.clear(); await build(); current = -1; frameAt(clock); };
+const rebuild = async () => { await build(); lastName = undefined; frameAt(clock); };
+let rt, lastW = 0;
+new ResizeObserver(() => { const w = Math.floor(stage.clientWidth); if (w === lastW) return; lastW = w; clearTimeout(rt); rt = setTimeout(rebuild, 100); }).observe(stage);
+const retheme = async () => { imgCache.clear(); await rebuild(); };
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', retheme);
 new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-(async () => { await relayout(); setPlaying(playing); })();
+(async () => { lastW = Math.floor(stage.clientWidth); await build(); setPlaying(playing); frameAt(clock); })();
 }
 </script>
