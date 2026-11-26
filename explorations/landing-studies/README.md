@@ -104,6 +104,25 @@ what the site and the prototypes already cover.
 - 3.3 Overlap review: ideas that the home page, Examples, and Prototypes
   already cover, and which studies in sets I and II overlap them.
 
+## Loupe tour: `template-loupe-tour.html`
+
+A variation on set II study 08 that plays by itself in a loop, about 16 seconds.
+A loupe moves along a toolbar drawn at 1× and stops on one pixel in five icons.
+The large number is the ink coverage of the pixel under the loupe, read from
+the screen raster.
+
+| Stop | Icon | Pixel | Coverage |
+| --- | --- | --- | --- |
+| Wall | `envelope` | x 7, y 3 | 100% |
+| Gap | `bell-dot` | x 9, y 2 | 0% |
+| Curve | `search` | x 1, y 4 | 61% |
+| Diagonal | `chevron-down-sm` | x 5, y 8 | 63% |
+| Small size, same wall | `copy-sm` | x 10, y 8 | 100% |
+
+Coverage values come from Chromium. The page has Pause and Play, a progress bar
+you can select to jump to a stop, and it starts paused on the first stop when
+the reader prefers reduced motion. The build writes `loupe-tour.html`.
+
 ## Direction from review
 
 - Do not show a grid of the whole catalog or a large part of it. The catalog

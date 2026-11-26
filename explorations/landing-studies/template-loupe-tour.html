@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FYIcons Loupe Tour</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: a variation on set II study 08. One self-running film: a loupe tours a toolbar drawn at 1× screen pixels and stops on one pixel in five icons. The readout under the stage is measured from the screen raster, not typed in. */
+@font-face { font-family: 'Allo'; src: url('/*FONT_ALLO*/') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Paper Mono'; src: url('/*FONT_MONO*/') format('woff2'); font-weight: 100 800; font-display: swap; }
+:root {
+  --paper: oklch(0.975 0.004 60); --surface: #fff; --well: oklch(0.945 0.006 60);
+  --ink: oklch(0.22 0.008 50); --muted: oklch(0.56 0.012 55);
+  --line: oklch(0.22 0.008 50 / 0.09); --border: oklch(0.22 0.008 50 / 0.16);
+  --accent: oklch(0.6 0.2 259);
+  --font-sans: 'Allo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Paper Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50); --well: oklch(0.26 0.009 50);
+  --ink: oklch(0.96 0.004 60); --muted: oklch(0.68 0.01 55);
+  --line: oklch(0.96 0.004 60 / 0.08); --border: oklch(0.96 0.004 60 / 0.15); --accent: oklch(0.68 0.17 259);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50); --well: oklch(0.26 0.009 50);
+  --ink: oklch(0.96 0.004 60); --muted: oklch(0.68 0.01 55);
+  --line: oklch(0.96 0.004 60 / 0.08); --border: oklch(0.96 0.004 60 / 0.15); --accent: oklch(0.68 0.17 259);
+  color-scheme: dark; }
+* { box-sizing: border-box; min-width: 0; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5; font-variation-settings: 'ROND' 100; font-feature-settings: 'ss01' 1, 'ss03' 1; overflow-x: clip; }
+h1, h3 { margin: 0; font-weight: 400; letter-spacing: -0.04em; text-wrap: balance; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+code { font-family: var(--font-mono); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.band { padding: clamp(32px, 6vw, 80px) max(16px, env(safe-area-inset-right, 0px)) clamp(32px, 6vw, 80px) max(16px, env(safe-area-inset-left, 0px)); }
+.in { max-width: 1040px; margin: 0 auto; display: grid; gap: 20px; }
+.kicker { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.kicker b { color: var(--ink); font-weight: 500; }
+h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1; }
+.lede { font-size: clamp(16px, 1.5vw, 19px); color: var(--muted); max-width: 58ch; text-wrap: pretty; }
+.film { background: var(--surface); border-radius: 20px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
+.stage { position: relative; height: var(--stage-h, 300px); }
+.stage > canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.lens { z-index: 2; position: absolute; left: 0; top: 0; width: var(--lens, 200px); height: var(--lens, 200px); border-radius: 50%; overflow: hidden; pointer-events: none; transform: translate(-50%, -50%) scale(var(--lens-s, 1)); background: var(--surface); box-shadow: 0 0 0 1px var(--border), 0 0 0 5px var(--surface), 0 0 0 6px var(--border), 0 22px 44px -16px oklch(0 0 0 / .45); will-change: transform, left, top; }
+.lens canvas { width: 100%; height: 100%; display: block; }
+.stage-cap { position: absolute; left: 16px; top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); z-index: 1; }
+.lens-tag { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); font-family: var(--font-mono); font-size: 10px; background: var(--ink); color: var(--surface); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+.readout { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 22px; align-items: center; padding: 18px 20px; border-top: 1px solid var(--line); min-height: 116px; }
+.cov { display: grid; justify-items: start; }
+.cov b { font-family: var(--font-mono); font-weight: 400; font-size: clamp(36px, 7vw, 56px); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; min-width: 3.2ch; }
+.cov span, .meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.what { display: grid; gap: 4px; transition: opacity .25s; }
+.what h3 { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+.what p:last-child { font-size: 15px; color: var(--muted); text-wrap: pretty; }
+.moving .what { opacity: .35; }
+.bar { display: flex; align-items: center; gap: 12px; padding: 0 20px 18px; }
+.bar > button { border: 1px solid var(--border); background: transparent; border-radius: 999px; min-height: 36px; padding: 0 14px; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.bar > button svg { width: 14px; height: 14px; }
+.segs { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 6px; flex: 1; }
+.segs button { all: unset; cursor: pointer; display: grid; gap: 6px; padding: 8px 0; }
+.segs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.segs i { display: block; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.segs i::after { content: ""; display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--accent); }
+.segs span { font-family: var(--font-mono); font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.segs button[aria-current="true"] span { color: var(--ink); }
+.notes { font-size: 13px; color: var(--muted); max-width: 70ch; text-wrap: pretty; }
+@media (max-width: 560px) { .readout { grid-template-columns: 1fr; } .segs span { display: none; } }
+</style>
+
+<!--SPRITE-->
+
+<section class="band" aria-labelledby="tour-h">
+  <div class="in">
+    <p class="kicker"><b>Loupe tour</b><span>A variation on set II study 08</span><span>Plays by itself, in a loop</span></p>
+    <h1 id="tour-h">Five pixels, up close.</h1>
+    <p class="lede">A loupe moves along a toolbar drawn at true 1× pixels and stops on one pixel in five icons. The large number is the ink coverage of the pixel under the loupe, read from the screen raster as it moves.</p>
+    <div class="film" id="film">
+      <div class="stage" id="stage" role="img" aria-label="A toolbar of icons at actual pixel size, with a magnifying loupe that moves between icons">
+        <canvas id="screen"></canvas>
+        <span class="stage-cap">Toolbar · 16 px icons at 1×</span>
+        <div class="lens" id="lens"><canvas id="lensCv"></canvas><span class="lens-tag" id="lensTag"></span></div>
+      </div>
+      <div class="readout" aria-live="polite">
+        <div class="cov"><b id="covNum">–</b><span>ink coverage</span></div>
+        <div class="what"><p class="meta" id="stopMeta"></p><h3 id="stopTitle"></h3><p id="stopText"></p></div>
+      </div>
+      <div class="bar"><button type="button" id="play"></button><div class="segs" id="segs"></div></div>
+    </div>
+    <p class="notes" id="notes">Coverage is the alpha of the icon ink at one pixel when your browser draws the icon at 16 px. 100% is a solid pixel and 0% is empty. Values can vary slightly by browser.</p>
+  </div>
+</section>
+
+<script>
+{
+const DATA = /*DATA*/;
+const has = (n) => DATA.icons.some((i) => i.n === n);
+const $ = (id) => document.getElementById(id);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ico = (n) => `<svg aria-hidden="true" viewBox="0 0 16 16"><use href="#i-${n}"/></svg>`;
+
+// The toolbar, left to right. A null makes a separator.
+const BAR = ['envelope', 'calendar', 'folder', null, 'bell-dot', 'search', 'lock', null, 'copy-sm', 'chevron-down-sm', 'settings'].filter((n) => n === null || has(n));
+// Each stop is one pixel of one icon, in its 16 px grid.
+const STOPS = [
+  { n: 'envelope', x: 7, y: 3, title: 'Wall', text: 'The top wall fills one whole row of pixels. Its edges sit on the pixel grid.' },
+  { n: 'bell-dot', x: 9, y: 2, title: 'Gap', text: 'The bell is cut back, so one clear pixel separates it from the dot.' },
+  { n: 'search', x: 1, y: 4, title: 'Curve', text: 'A round edge passes through pixels, so its coverage is partial. That is correct for a curve.' },
+  { n: 'chevron-down-sm', x: 5, y: 8, title: 'Diagonal', text: 'No pixel on a diagonal is fully covered. This is true in every icon set.' },
+  { n: 'copy-sm', x: 10, y: 8, title: 'Small size, same wall', text: 'copy-sm draws a smaller glyph and keeps a full 1 px wall.' },
+].filter((s) => has(s.n));
+const TRAVEL = 1000, HOLD = 2200, STEP = TRAVEL + HOLD, TOTAL = STOPS.length * STEP;
+
+const stage = $('stage'), screen = $('screen'), sc = screen.getContext('2d');
+const ink = document.createElement('canvas'), ic = ink.getContext('2d', { willReadFrequently: true });
+const lens = $('lens'), lensCv = $('lensCv'), lc = lensCv.getContext('2d');
+let W = 0, H = 0, D = 200, Z = 10, slots = new Map(), current = -1;
+
+const imgCache = new Map();
+function iconImage(name, color) {
+  const key = name + color;
+  if (imgCache.has(key)) return imgCache.get(key);
+  const sym = document.getElementById('i-' + name);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" color="${color}" style="color:${color}">${sym.innerHTML}</svg>`;
+  const p = new Promise((res) => { const img = new Image(); img.onload = () => res(img); img.onerror = () => res(null); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
+  imgCache.set(key, p); return p;
+}
+const css = (v) => getComputedStyle(stage).getPropertyValue(v).trim();
+function colorOf(v) { const p = document.createElement('canvas').getContext('2d'); p.fillStyle = css(v); p.fillRect(0, 0, 1, 1); const [r, g, b, a] = p.getImageData(0, 0, 1, 1).data; return `rgba(${r},${g},${b},${a / 255})`; }
+
+// Lay out the toolbar on whole pixels and draw it at 1×.
+let images = new Map();
+async function build() {
+  W = Math.floor(stage.clientWidth); H = Math.floor(stage.clientHeight);
+  D = Math.round(Math.min(220, Math.max(140, W * 0.42))); Z = D >= 190 ? 10 : 8;
+  stage.style.setProperty('--lens', D + 'px');
+  screen.width = ink.width = W; screen.height = ink.height = H;
+  const dpr = Math.min(3, devicePixelRatio || 1); lensCv.width = lensCv.height = Math.round(D * dpr); lc.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const icons = BAR.filter(Boolean).length, seps = BAR.length - icons;
+  const btn = W < 400 ? 30 : 34, gap = W < 400 ? 3 : 6, sepW = 9;
+  const barW = icons * btn + seps * sepW + (BAR.length - 1) * gap + 12;
+  const bx = Math.floor((W - barW) / 2), by = Math.floor(H / 2 - btn / 2) - 6;
+  slots = new Map(); let x = bx + 6; const ys = by;
+  layout = { bx, by: ys - 6, bw: barW, bh: btn + 12, btn, seps: [] };
+  for (const n of BAR) { if (n === null) { layout.seps.push(x + Math.floor(sepW / 2)); x += sepW + gap; continue; } slots.set(n, { x, y: ys, ix: x + Math.floor((btn - 16) / 2), iy: ys + Math.floor((btn - 16) / 2) }); x += btn + gap; }
+  C = { ink: colorOf('--ink'), surface: colorOf('--surface'), well: colorOf('--well'), border: colorOf('--border'), line: colorOf('--line'), accent: colorOf('--accent') };
+  const color = C.ink;
+  images = new Map(await Promise.all(BAR.filter(Boolean).map(async (n) => [n, await iconImage(n, color)])));
+  ic.clearRect(0, 0, W, H);
+  for (const [n, s] of slots) { const img = images.get(n); if (img) ic.drawImage(img, s.ix, s.iy, 16, 16); }
+  paintScreen();
+}
+let layout = null, C = {};
+function roundRect(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+function paintScreen() {
+  if (!layout) return;
+  sc.clearRect(0, 0, W, H);
+  sc.fillStyle = C.surface; sc.fillRect(0, 0, W, H);
+  sc.fillStyle = C.well; roundRect(sc, layout.bx, layout.by, layout.bw, layout.bh, 10); sc.fill();
+  const on = current >= 0 ? slots.get(STOPS[current].n) : null;
+  if (on) { sc.fillStyle = C.surface; roundRect(sc, on.x, on.y, layout.btn, layout.btn, 7); sc.fill(); sc.strokeStyle = C.border; sc.lineWidth = 1; roundRect(sc, on.x + 0.5, on.y + 0.5, layout.btn - 1, layout.btn - 1, 7); sc.stroke(); }
+  sc.fillStyle = C.border;
+  for (const sx of layout.seps) sc.fillRect(sx, layout.by + 10, 1, layout.bh - 20);
+  sc.drawImage(ink, 0, 0);
+}
+const target = (k) => { const s = STOPS[k], p = slots.get(s.n); return { x: p.ix + s.x, y: p.iy + s.y }; };
+const coverage = (x, y) => { x = Math.floor(x); y = Math.floor(y); if (x < 0 || y < 0 || x >= W || y >= H) return 0; return Math.round(ic.getImageData(x, y, 1, 1).data[3] / 255 * 100); };
+const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+
+$('segs').style.setProperty('--n', STOPS.length);
+$('segs').innerHTML = STOPS.map((s, k) => `<button type="button" data-k="${k}" aria-label="Stop ${k + 1}: ${s.title}, ${s.n}"><i></i><span>${s.title}</span></button>`).join('');
+const segEls = [...$('segs').children];
+
+function setStop(k) {
+  if (k === current) return;
+  current = k; const s = STOPS[k];
+  $('stopMeta').textContent = `${String(k + 1).padStart(2, '0')} / ${String(STOPS.length).padStart(2, '0')} · ${s.n} · pixel x ${s.x}, y ${s.y}`;
+  $('stopTitle').textContent = s.title; $('stopText').textContent = s.text;
+  segEls.forEach((b, j) => b.setAttribute('aria-current', j === k));
+  paintScreen();
+}
+function frameAt(t) {
+  if (!slots.size) return;
+  t = ((t % TOTAL) + TOTAL) % TOTAL;
+  const k = Math.floor(t / STEP), u = t - k * STEP, prev = (k - 1 + STOPS.length) % STOPS.length;
+  const a = target(prev), b = target(k), moving = u < TRAVEL, e = moving ? ease(u / TRAVEL) : 1;
+  const px = a.x + 0.5 + (b.x - a.x) * e, py = a.y + 0.5 + (b.y - a.y) * e;
+  // Keep the loupe inside the stage. It still magnifies the pixels under its own center.
+  const R = D / 2 + 6, cx = Math.min(W - R, Math.max(R, px)), cy = Math.min(H - R, Math.max(R, py));
+  lens.style.left = cx + 'px'; lens.style.top = cy + 'px';
+  lens.style.setProperty('--lens-s', moving ? (0.94 + 0.06 * Math.abs(1 - 2 * e)).toFixed(3) : 1);
+  $('film').classList.toggle('moving', moving);
+  if (!moving || current < 0) setStop(k);
+  else if (u > TRAVEL * 0.5) setStop(k);
+  drawLens(cx, cy, moving ? null : b);
+  const cov = moving ? coverage(px, py) : coverage(b.x, b.y);
+  $('covNum').textContent = cov + '%';
+  $('lensTag').textContent = moving ? `${Z}×` : `${Z}× · ${STOPS[k].n}`;
+  segEls.forEach((el, j) => el.querySelector('i').style.setProperty('--p', j < k ? 1 : j > k ? 0 : (moving ? 0 : (u - TRAVEL) / HOLD).toFixed(3)));
+}
+function drawLens(cx, cy, tgt) {
+  const N = D / Z, sx = cx - N / 2, sy = cy - N / 2;
+  lc.imageSmoothingEnabled = false;
+  lc.fillStyle = C.surface; lc.fillRect(0, 0, D, D);
+  // Whole source pixels, so every magnified pixel keeps a hard edge while the loupe glides.
+  const x0 = Math.floor(sx), y0 = Math.floor(sy), n = Math.ceil(N) + 2, ox = (x0 - sx) * Z, oy = (y0 - sy) * Z;
+  lc.drawImage(screen, x0, y0, n, n, ox, oy, n * Z, n * Z);
+  lc.strokeStyle = C.line; lc.lineWidth = 1; lc.beginPath();
+  for (let k = 0; k <= n; k++) { const gx = Math.round(ox + k * Z) + 0.5, gy = Math.round(oy + k * Z) + 0.5; lc.moveTo(gx, 0); lc.lineTo(gx, D); lc.moveTo(0, gy); lc.lineTo(D, gy); }
+  lc.stroke();
+  if (tgt) { lc.strokeStyle = C.accent; lc.lineWidth = 2; lc.strokeRect(Math.round((tgt.x - sx) * Z) + 1, Math.round((tgt.y - sy) * Z) + 1, Z - 2, Z - 2); }
+  else { lc.strokeStyle = C.accent; lc.lineWidth = 1.5; const m = D / 2; lc.beginPath(); lc.moveTo(m - 6, m); lc.lineTo(m + 6, m); lc.moveTo(m, m - 6); lc.lineTo(m, m + 6); lc.stroke(); }
+}
+
+let playing = !reduced, visible = true, clock = TRAVEL + 400, last = 0, raf = 0;
+function tick(now) {
+  raf = 0;
+  if (playing) clock += Math.min(64, now - (last || now));
+  last = now; frameAt(clock);
+  if (playing && visible) raf = requestAnimationFrame(tick); else last = 0;
+}
+function kick() { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } }
+function setPlaying(on) { playing = on; $('play').innerHTML = on ? `${ico('pause-fill')}Pause` : `${ico('play-fill')}Play`; $('play').setAttribute('aria-label', on ? 'Pause the tour' : 'Play the tour'); if (on) kick(); else frameAt(clock); }
+$('play').addEventListener('click', () => setPlaying(!playing));
+$('segs').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; clock = +b.dataset.k * STEP + TRAVEL + 1; current = -1; frameAt(clock); kick(); });
+new IntersectionObserver((es) => { visible = es[0].isIntersecting; if (visible && playing) kick(); }, { rootMargin: '80px' }).observe(stage);
+document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible && playing) kick(); });
+const relayout = async () => { stage.style.setProperty('--stage-h', (stage.clientWidth < 560 ? 230 : 300) + 'px'); await build(); current = -1; frameAt(clock); };
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(relayout, 120); }).observe(stage);
+const retheme = async () => { imgCache.clear(); await build(); current = -1; frameAt(clock); };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', retheme);
+new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+(async () => { await relayout(); setPlaying(playing); })();
+}
+</script>

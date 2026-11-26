@@ -73,7 +73,7 @@ sprite = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"
 csprite = '<svg width="0" height="0" style="position:absolute" aria-hidden="true">' + compare['symbols'] + '</svg>'
 compare_data = {'libs': compare['libs'], 'concepts': compare['concepts']}
 
-for src, dst in [('template.html', 'landing-studies.html'), ('template-2.html', 'landing-studies-2.html'), ('template-3.html', 'landing-studies-3.html')]:
+for src, dst in [('template.html', 'landing-studies.html'), ('template-2.html', 'landing-studies-2.html'), ('template-3.html', 'landing-studies-3.html'), ('template-loupe-tour.html', 'loupe-tour.html')]:
     if not (HERE / src).exists():
         continue
     out = (
