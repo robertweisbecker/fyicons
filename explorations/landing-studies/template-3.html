@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FYIcons Construction Notes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: set III follows the set II specimen bands (paper and ink), with one instrument per band and a mono rail of measured values. It covers two construction rules the site uses but does not explain: optical sizes and modifiers. */
+@font-face { font-family: 'Allo'; src: url('/*FONT_ALLO*/') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Paper Mono'; src: url('/*FONT_MONO*/') format('woff2'); font-weight: 100 800; font-display: swap; }
+:root {
+  --paper: oklch(0.975 0.004 60); --surface: #fff; --well: oklch(0.945 0.006 60);
+  --ink: oklch(0.22 0.008 50); --ink-2: oklch(0.42 0.01 50); --muted: oklch(0.56 0.012 55);
+  --line: oklch(0.22 0.008 50 / 0.09); --border: oklch(0.22 0.008 50 / 0.16);
+  --accent: oklch(0.6 0.2 259); --pink: #db2777; --green: #059669; --amber: #d97706;
+  --grid: oklch(0.65 0.14 255 / 0.5);
+  --band: oklch(0.2 0.008 50); --band-ink: oklch(0.97 0.004 60); --band-muted: oklch(0.7 0.01 55); --band-line: oklch(0.97 0.004 60 / 0.12); --band-well: oklch(0.26 0.009 50);
+  --font-sans: 'Allo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Paper Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50); --well: oklch(0.25 0.009 50);
+  --ink: oklch(0.96 0.004 60); --ink-2: oklch(0.84 0.006 60); --muted: oklch(0.68 0.01 55);
+  --line: oklch(0.96 0.004 60 / 0.08); --border: oklch(0.96 0.004 60 / 0.15);
+  --accent: oklch(0.68 0.17 259); --pink: #f472b6; --green: #34d399; --amber: #fbbf24; --grid: oklch(0.7 0.13 255 / 0.4);
+  --band: oklch(0.955 0.005 60); --band-ink: oklch(0.2 0.008 50); --band-muted: oklch(0.48 0.012 55); --band-line: oklch(0.2 0.008 50 / 0.12); --band-well: oklch(0.92 0.006 60);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50); --well: oklch(0.25 0.009 50);
+  --ink: oklch(0.96 0.004 60); --ink-2: oklch(0.84 0.006 60); --muted: oklch(0.68 0.01 55);
+  --line: oklch(0.96 0.004 60 / 0.08); --border: oklch(0.96 0.004 60 / 0.15);
+  --accent: oklch(0.68 0.17 259); --pink: #f472b6; --green: #34d399; --amber: #fbbf24; --grid: oklch(0.7 0.13 255 / 0.4);
+  --band: oklch(0.955 0.005 60); --band-ink: oklch(0.2 0.008 50); --band-muted: oklch(0.48 0.012 55); --band-line: oklch(0.2 0.008 50 / 0.12); --band-well: oklch(0.92 0.006 60);
+  color-scheme: dark; }
+* { box-sizing: border-box; min-width: 0; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5; font-variation-settings: 'ROND' 100; font-feature-settings: 'ss01' 1, 'ss03' 1; overflow-x: clip; }
+h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.03em; text-wrap: balance; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+code, .mono { font-family: var(--font-mono); font-feature-settings: 'cv01' 1, 'ss02' 1, 'ss03' 1; }
+.i { width: 16px; height: 16px; display: inline-block; flex: none; vertical-align: -3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.muted { color: var(--muted); }
+.band { padding-block: clamp(48px, 8vw, 104px); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band.ink { background: var(--band); color: var(--band-ink); --ink: var(--band-ink); --muted: var(--band-muted); --line: var(--band-line); --border: var(--band-line); --well: var(--band-well); --surface: var(--band-well); --ink-2: color-mix(in oklab, var(--band-ink) 82%, transparent); --paper: var(--band); }
+.in { max-width: 1240px; margin: 0 auto; display: grid; gap: 28px; }
+.kicker { display: flex; gap: 14px; align-items: baseline; font-family: var(--font-mono); font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+.kicker b { color: var(--ink); font-weight: 500; }
+.title { font-size: clamp(32px, 5.2vw, 68px); line-height: 1; letter-spacing: -0.045em; font-weight: 400; max-width: 16em; }
+.lede { font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); max-width: 60ch; text-wrap: pretty; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+.rail { display: grid; font-size: 13px; }
+.rail div { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-top: 1px solid var(--line); }
+.rail div:first-child { border-top: 0; }
+.rail span:first-child { color: var(--muted); }
+.rail span:last-child { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 3px; gap: 2px; flex-wrap: wrap; }
+.seg button { border: 0; background: transparent; border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer; color: var(--muted); min-height: 32px; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.strip { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.strip button { width: 44px; height: 44px; border-radius: 10px; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--ink); }
+.strip button:hover { background: var(--line); }
+.strip button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.strip .sep { width: 1px; height: 24px; background: var(--line); margin: 0 6px; }
+.panel { background: var(--surface); border-radius: 18px; padding: clamp(14px, 2vw, 22px); }
+.cap { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+
+/* Hero */
+.hero h1 { font-size: clamp(38px, 7.4vw, 104px); line-height: 0.96; letter-spacing: -0.05em; font-weight: 400; max-width: 13em; }
+.toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.toc a { display: grid; gap: 4px; padding: 16px 18px; border-radius: 16px; background: var(--well); color: inherit; text-decoration: none; }
+.toc a b { font-weight: 500; }
+.toc a span { font-size: 14px; color: var(--muted); }
+
+/* 3.1 Optical sizes */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.trio figure { margin: 0; display: grid; gap: 10px; align-content: start; }
+.zoom { position: relative; aspect-ratio: 1; background: var(--well); border-radius: 14px; overflow: hidden; }
+.zoom canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.zoom svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.trio figcaption { display: grid; gap: 6px; font-size: 13px; }
+.trio figcaption b { font-weight: 500; font-size: 14px; }
+.trio .actual { display: flex; align-items: center; gap: 8px; min-height: 26px; color: var(--ink); }
+.trio .rail { font-size: 12px; }
+.trio figure.win .zoom { box-shadow: inset 0 0 0 2px var(--accent); }
+@media (max-width: 560px) { .trio .rail div { flex-direction: column; gap: 0; } .trio .rail span:last-child { text-align: left; } }
+.verdict { font-size: 15px; max-width: 70ch; text-wrap: pretty; }
+.ctx { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.ctx > div { background: var(--well); border-radius: 14px; padding: 14px; display: grid; gap: 10px; align-content: start; }
+.ui { font-size: 13px; color: var(--ink); }
+.ui-select { display: inline-flex; align-items: center; justify-content: space-between; gap: 6px; width: 140px; padding: 5px 8px 5px 10px; border-radius: 8px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); }
+.ui-tree { display: grid; gap: 2px; }
+.ui-tree div { display: flex; align-items: center; gap: 4px; padding: 3px 4px; border-radius: 6px; }
+.ui-tree div:nth-child(2) { padding-left: 24px; background: var(--surface); }
+.ui-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.ui-chips span { display: inline-flex; align-items: center; gap: 4px; padding: 2px 4px 2px 9px; border-radius: 99px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); }
+.ui-code { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 6px 6px 10px; border-radius: 8px; background: var(--surface); font-family: var(--font-mono); font-size: 12px; }
+.ui-code b, .ui-close b { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 6px; font-weight: 400; }
+.ui-close { display: flex; align-items: center; justify-content: space-between; padding: 8px 8px 8px 14px; border-radius: 12px; background: var(--surface); font-size: 15px; font-weight: 500; }
+.ui-close b { width: 40px; height: 40px; border-radius: 10px; background: var(--well); }
+.ui-menu { display: grid; padding: 4px; border-radius: 10px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); }
+.ui-menu div { display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; border-radius: 6px; }
+.ui-menu div:first-child { background: var(--well); }
+.ui svg { display: block; flex: none; }
+
+/* 3.2 Modifiers */
+.mods { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .mods { grid-template-columns: 1fr; } }
+.plate svg { width: 100%; height: auto; display: block; overflow: visible; }
+.plate circle.pt { cursor: pointer; }
+.legend { display: grid; gap: 6px; font-size: 13px; margin-top: 12px; }
+.legend div { display: flex; gap: 8px; align-items: center; }
+.legend i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.legend span:last-child { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.kinds { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.kind { display: grid; gap: 10px; align-content: start; }
+.kind .zoom { background: var(--paper); }
+.kind h3 { font-size: 18px; display: flex; gap: 8px; align-items: center; }
+.kind h3 i { width: 10px; height: 10px; border-radius: 50%; }
+.kind p { font-size: 13px; color: var(--muted); text-wrap: pretty; }
+.kind .pair { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.kind .pair svg { color: var(--ink); }
+.names { display: grid; font-size: 13px; }
+.names > div { display: grid; grid-template-columns: 90px 40px minmax(0, 1.2fr) minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.names > div:first-child { border-top: 0; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.names code { font-size: 12px; }
+.names .n { font-family: var(--font-mono); text-align: right; }
+@media (max-width: 640px) { .names > div { grid-template-columns: 70px 30px minmax(0, 1fr); } .names > div > :nth-child(4) { grid-column: 1 / -1; } .names > div:first-child > :nth-child(4) { display: none; } }
+.uses { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.uses > div { background: var(--paper); border-radius: 14px; padding: 14px; display: grid; gap: 10px; align-content: start; }
+.btnrow { display: flex; gap: 8px; flex-wrap: wrap; }
+.ubtn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 8px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); font-size: 13px; }
+.ulist { display: grid; gap: 2px; font-size: 13px; }
+.ulist div { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 6px; }
+.ufield { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 4px 4px 10px; border-radius: 8px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); font-family: var(--font-mono); font-size: 13px; }
+.ufield button { border: 0; background: transparent; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 6px; cursor: pointer; }
+.ufield button:hover { background: var(--well); }
+
+/* 3.3 Overlap */
+.overlap { display: grid; }
+.overlap > div { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr) minmax(0, 0.7fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.overlap > div:first-child { border-top: 0; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding-top: 0; }
+.overlap b { font-weight: 500; }
+.overlap .new { color: var(--accent); font-weight: 500; }
+@media (max-width: 700px) { .overlap > div { grid-template-columns: 1fr; gap: 4px; } .overlap > div:first-child { display: none; } }
+.foot { font-size: 13px; color: var(--muted); display: grid; gap: 8px; }
+</style>
+
+<!--SPRITE-->
+
+<section class="band hero" aria-labelledby="hero-h">
+  <div class="in">
+    <p class="kicker"><b>FYIcons Construction Notes</b><span>Landing studies, set III</span><span id="heroMeta"></span></p>
+    <h1 id="hero-h">Two drawing rules the site uses but does not explain.</h1>
+    <p class="lede">Each study uses a few icons in context, not the catalog. Every number on this page is measured in your browser from the shipped SVGs.</p>
+    <nav class="toc" aria-label="Studies">
+      <a href="#s31"><b>3.1 Optical sizes</b><span id="tocSizes">Smaller and larger glyphs are redrawn, not scaled.</span></a>
+      <a href="#s32"><b>3.2 Modifiers</b><span id="tocMods">Four kinds of added mark, measured.</span></a>
+      <a href="#s33"><b>3.3 Overlap review</b><span>What the site and the prototypes already cover.</span></a>
+    </nav>
+  </div>
+</section>
+
+<!-- 3.1 OPTICAL SIZES -->
+<section class="band" aria-labelledby="s31-h" id="s31" style="border-top:1px solid var(--line)">
+  <div class="in">
+    <p class="kicker"><b>3.1</b><span>Construction · optical sizes</span></p>
+    <div class="split">
+      <h2 class="title" id="s31-h">Size the glyph. Keep the line.</h2>
+      <p class="lede" id="sizesLede">Some controls ship a <code>-sm</code> or <code>-lg</code> drawing on the same 16 px canvas. The glyph gets smaller or larger, and the line stays at the weight of the set. Scaling the regular icon instead changes the line with it.</p>
+    </div>
+    <div class="strip" id="optStrip" role="group" aria-label="Optical size pair"></div>
+    <div class="panel">
+      <div class="trio" id="trio"></div>
+      <p class="verdict" id="optVerdict" style="margin-top:16px"></p>
+    </div>
+    <div style="display:grid;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h3 style="font-size:22px">In 13 px interface text</h3>
+        <div class="seg" role="group" aria-label="Icon choice" id="ctxMode"><button type="button" data-m="reg" aria-pressed="false">Regular at 16</button><button type="button" data-m="scaled" aria-pressed="false">Regular, scaled</button><button type="button" data-m="opt" aria-pressed="true">-sm or -lg</button></div>
+      </div>
+      <div class="ctx" id="ctx"></div>
+      <p class="cap">Each control shows the same three choices. Scaled sizes come from matching the glyph size of the optical drawing, rounded to whole pixels.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3.2 MODIFIERS -->
+<section class="band ink" aria-labelledby="s32-h" id="s32">
+  <div class="in">
+    <p class="kicker"><b>3.2</b><span>Construction · modifiers</span></p>
+    <div class="split">
+      <h2 class="title" id="s32-h">Four kinds of modifier.</h2>
+      <p class="lede" id="modsLede">A variant adds meaning to a base icon. The page compares each variant with its base, pixel by pixel, to find where the new ink lands and how much of the base it cuts away.</p>
+    </div>
+    <div class="mods">
+      <div class="panel plate">
+        <svg id="modPlate" viewBox="-0.6 -0.6 17.2 17.2" role="img" aria-label="Where the new ink of each modifier variant lands on the 16 px grid"></svg>
+        <div class="legend" id="modLegend"></div>
+        <p class="cap" id="modPick" style="margin-top:10px">Each dot is the center of the new ink in one variant. Select a dot to name it.</p>
+      </div>
+      <div class="kinds" id="kinds"></div>
+    </div>
+    <p class="cap">In the four drawings: <span style="color:var(--accent)">blue</span> is new ink, <span style="color:var(--pink)">pink</span> is ink cut from the base, and gray is shared.</p>
+    <div class="panel">
+      <h3 style="font-size:20px;margin-bottom:6px">What the names mean</h3>
+      <p class="muted" style="font-size:14px;margin-bottom:10px">Measured kind for each suffix. Exceptions are variants whose new ink lands somewhere else.</p>
+      <div class="names" id="names"></div>
+    </div>
+    <div class="panel">
+      <h3 style="font-size:20px;margin-bottom:12px">At 16 px in a product</h3>
+      <div class="uses" id="uses"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3.3 OVERLAP -->
+<section class="band" aria-labelledby="s33-h" id="s33">
+  <div class="in">
+    <p class="kicker"><b>3.3</b><span>Review · overlap with the site and the prototypes</span></p>
+    <div class="split">
+      <h2 class="title" id="s33-h">What is already covered.</h2>
+      <p class="lede">Checked against the home page, the Examples page, and the Prototypes pages on this branch. This set only adds what none of them explain.</p>
+    </div>
+    <div class="overlap">
+      <div><span>Idea</span><span>Already on</span><span>Here</span></div>
+      <div><b>Product UIs</b><span>Examples (15 tiles with Inspect), Take a look (Agents, Code, Design, Files, Music, Social), App previews and Issue boards prototypes.</span><span>Not repeated</span></div>
+      <div><b>States and toggles</b><span>Icon examples (States section and playground), More than just outlines (Toggles and Progress).</span><span>Not repeated</span></div>
+      <div><b>Sizes 16 to 48</b><span>Inspector sheet prototype (Preview sizes).</span><span>Not repeated</span></div>
+      <div><b>One-icon inspector</b><span>Inspector sheet prototype and the hero specimen. Measured bounds and solid pixels could go into its Drawing details.</span><span>Not repeated</span></div>
+      <div><b>Optical centering, shapes, ovals, ink traps</b><span>Optical adjustments on the home page.</span><span>Not repeated</span></div>
+      <div><b>Keylines</b><span>Constructed with care on the home page.</span><span>Not repeated</span></div>
+      <div><b>Optical sizes</b><span>Used in the site UI (for example <code>chevron-right-sm</code> in the file tree), not explained.</span><span class="new">3.1</span></div>
+      <div><b>Modifier kinds</b><span>Some variants appear in More than just outlines, without the rule behind them.</span><span class="new">3.2</span></div>
+      <div><b>Sets I and II</b><span>Set II 05 repeats Optical centering. Set II 06 and set I 2.2 are close to Constructed with care and Balanced shapes. Set I 1.2, 1.7, and 2.2 are catalog grids. Set I 1.6 and set II 09 overlap Examples and the desktop showcase.</span><span>Flagged</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-block:36px;border-top:1px solid var(--line)">
+  <div class="in foot"><p id="foot"></p><p>Internal study, not for publication as is. Set I is <code>landing-studies.html</code> and set II is <code>landing-studies-2.html</code> in the same folder.</p></div>
+</section>
+
+<script>
+{
+const DATA = /*DATA*/;
+const byName = new Map(DATA.icons.map((i) => [i.n, i]));
+const has = (n) => !!n && byName.has(n);
+const ico = (n, cls = '') => has(n) ? `<svg class="i ${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>` : '';
+const use = (n, s) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => n.toLocaleString('en-US');
+const r1 = (v) => Math.round(v * 10) / 10;
+function segBind(el, fn) { el.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b || !el.contains(b)) return; el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b)); fn(b); }); }
+function inkColor(el) { const p = document.createElement('canvas').getContext('2d'); p.fillStyle = getComputedStyle(el).color; p.fillRect(0, 0, 1, 1); const [r, g, b] = p.getImageData(0, 0, 1, 1).data; return `rgb(${r},${g},${b})`; }
+const imgCache = new Map();
+function iconImage(name, color = '#000', size = 64) {
+  const key = name + color + size;
+  if (imgCache.has(key)) return imgCache.get(key);
+  const sym = document.getElementById('i-' + name);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="${size}" height="${size}" color="${color}" style="color:${color}">${sym.innerHTML}</svg>`;
+  const p = new Promise((res) => { const img = new Image(); img.onload = () => res(img); img.onerror = () => res(null); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
+  imgCache.set(key, p); return p;
+}
+const scratch = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+async function alpha(name, N) { const img = await iconImage(name, '#000', N); scratch.canvas.width = scratch.canvas.height = N; scratch.clearRect(0, 0, N, N); if (img) scratch.drawImage(img, 0, 0, N, N); const d = scratch.getImageData(0, 0, N, N).data; const a = new Uint8ClampedArray(N * N); for (let p = 0; p < N * N; p++) a[p] = d[p * 4 + 3]; return a; }
+// Ink bounds in 16 px units, from a 64 px raster.
+const boundsCache = new Map();
+async function inkBounds(name) {
+  if (boundsCache.has(name)) return boundsCache.get(name);
+  const a = await alpha(name, 64); let x0 = 64, y0 = 64, x1 = -1, y1 = -1;
+  for (let p = 0; p < 4096; p++) if (a[p] > 127) { const x = p % 64, y = (p / 64) | 0; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  const b = { w: (x1 - x0 + 1) / 4, h: (y1 - y0 + 1) / 4 }; boundsCache.set(name, b); return b;
+}
+function pixelStats(data, n) { let solid = 0, soft = 0, max = 0; for (let p = 0; p < n; p++) { const v = data[p * 4 + 3]; if (v > max) max = v; if (v > 242) solid++; else if (v > 13) soft++; } return { solid, soft, max: Math.round(max / 255 * 100) }; }
+$('heroMeta').textContent = `Catalog ${DATA.version} · ${fmt(DATA.count)} icons`;
+
+/* ---------- 3.1 Optical sizes ---------- */
+const baseOf = (n) => n.replace(/-(sm|lg)$/, '');
+const allOpt = DATA.icons.map((i) => i.n).filter((n) => /-(sm|lg)$/.test(n) && has(baseOf(n)));
+const OPT = ['chevron-right-sm', 'chevron-down-sm', 'x-sm', 'plus-sm', 'check-sm', 'copy-sm', 'search-sm', 'ellipsis-sm', '|', 'x-lg', 'caret-down-lg', 'ellipsis-lg', 'arrow-clockwise-lg'].filter((n) => n === '|' || (has(n) && has(baseOf(n))));
+let optCur = has('copy-sm') ? 'copy-sm' : OPT[0], ctxMode = 'opt';
+const scaledSize = {};
+$('optStrip').innerHTML = OPT.map((n) => n === '|' ? '<span class="sep" aria-hidden="true"></span>' : `<button type="button" data-n="${n}" aria-pressed="${n === optCur}" title="${n}" aria-label="${n}">${ico(n)}</button>`).join('');
+segBind($('optStrip'), (b) => { optCur = b.dataset.n; renderOpt(); });
+async function scaleFor(v) {
+  if (scaledSize[v]) return scaledSize[v];
+  const bb = await inkBounds(baseOf(v)), bv = await inkBounds(v);
+  return (scaledSize[v] = Math.round(16 * Math.max(bv.w, bv.h) / Math.max(bb.w, bb.h)));
+}
+function gridSvg(B) { let d = ''; for (let k = 1; k < B; k++) d += `M${k} 0V${B}M0 ${k}H${B}`; return `<svg viewBox="0 0 ${B} ${B}" preserveAspectRatio="none" aria-hidden="true"><path d="${d}" stroke="var(--line)" stroke-width="1" vector-effect="non-scaling-stroke" fill="none"/><rect x="${(B - 16) / 2 | 0}" y="${(B - 16) / 2 | 0}" width="16" height="16" fill="none" stroke="var(--grid)" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="4 3"/></svg>`; }
+async function renderOpt() {
+  const v = optCur, b = baseOf(v), S = await scaleFor(v), B = Math.max(16, S), lg = v.endsWith('-lg');
+  const color = inkColor($('trio'));
+  const bb = await inkBounds(b), bv = await inkBounds(v);
+  const panels = [
+    { title: `${b} at 16`, n: b, size: 16, line: '1×, as drawn', glyph: `${bb.w} × ${bb.h}` },
+    { title: `${b} scaled to ${S} px`, n: b, size: S, line: `${(S / 16).toFixed(2)}×, scaled`, glyph: `${r1(bb.w * S / 16)} × ${r1(bb.h * S / 16)}` },
+    { title: `${v} at 16`, n: v, size: 16, line: '1×, as drawn', glyph: `${bv.w} × ${bv.h}` },
+  ];
+  $('trio').innerHTML = panels.map((p, k) => `<figure data-k="${k}"><div class="zoom"><canvas width="${B}" height="${B}"></canvas>${gridSvg(B)}</div><figcaption><b>${p.title}</b><span class="actual">${use(p.n, p.size)}<span class="cap">actual size</span></span><div class="rail" data-rail="${k}"></div></figcaption></figure>`).join('');
+  const stats = [];
+  for (const [k, p] of panels.entries()) {
+    const img = await iconImage(p.n, color, p.size);
+    const cv = $('trio').querySelectorAll('canvas')[k], c = cv.getContext('2d'), off = Math.floor((B - p.size) / 2);
+    c.clearRect(0, 0, B, B); if (img) c.drawImage(img, off, off, p.size, p.size);
+    const st = pixelStats(c.getImageData(0, 0, B, B).data, B * B); stats.push(st);
+    $('trio').querySelector(`[data-rail="${k}"]`).innerHTML = [['Glyph', p.glyph + ' px'], ['Line weight', p.line], ['Solid pixels', st.solid], ['Partly covered', st.soft], ['Darkest pixel', st.max + '%']].map(([a, bVal]) => `<div><span>${a}</span><span>${bVal}</span></div>`).join('');
+  }
+  const [, sc, op] = stats;
+  const crisper = op.solid > sc.solid || (op.solid === sc.solid && op.soft < sc.soft);
+  $('trio').querySelectorAll('figure')[2].classList.toggle('win', crisper);
+  $('optVerdict').textContent = `To match the ${bv.w} × ${bv.h} px glyph of ${v}, the regular ${b} must ${lg ? 'grow' : 'shrink'} to ${S} px, and its line ${lg ? 'thickens' : 'thins'} to ${(S / 16).toFixed(2)} of the set's weight. ` +
+    (op.solid || sc.solid ? `The drawn ${v} has ${op.solid} solid pixels; the scaled icon has ${sc.solid}. ` : `Diagonal lines are never fully solid at this size, in either drawing. `) +
+    `Partly covered pixels: ${op.soft} drawn, ${sc.soft} scaled. Darkest pixel: ${op.max}% drawn, ${sc.max}% scaled.` +
+    (crisper ? '' : ' Here the drawn version is not crisper; the gain is the line weight, which stays the same as its neighbors.');
+}
+// Small product controls, each with the three choices.
+const CTX = [
+  { v: 'chevron-down-sm', cap: 'Select', html: (i) => `<span class="ui-select ui"><span>Status</span>${i}</span>` },
+  { v: 'chevron-right-sm', cap: 'Tree', html: (i, j) => `<div class="ui-tree ui"><div>${j}<span>${ico('folder')}</span><span>src</span></div><div>${i}<span>${ico('folder')}</span><span>components</span></div></div>` },
+  { v: 'x-sm', cap: 'Chips', html: (i) => `<div class="ui-chips ui"><span>Design${i}</span><span>Icons${i}</span></div>` },
+  { v: 'copy-sm', cap: 'Code', html: (i) => `<div class="ui-code ui"><span>npm i fyicons</span><b>${i}</b></div>` },
+  { v: 'check-sm', cap: 'Menu', html: (i) => `<div class="ui-menu ui"><div><span>Outline</span>${i}</div><div><span>Fill</span></div></div>` },
+  { v: 'x-lg', cap: 'Dialog close, 40 px target', html: (i) => `<div class="ui-close ui"><span>Share icons</span><b>${i}</b></div>` },
+].filter((c) => has(c.v));
+async function renderCtx() {
+  const out = [];
+  for (const c of CTX) {
+    const b = baseOf(c.v), S = await scaleFor(c.v);
+    const pick = (v) => ctxMode === 'opt' ? use(v, 16) : ctxMode === 'scaled' ? use(baseOf(v), v === c.v ? S : 16) : use(baseOf(v), 16);
+    const other = c.v === 'chevron-right-sm' ? (ctxMode === 'opt' ? use('chevron-down-sm', 16) : ctxMode === 'scaled' ? use('chevron-down', scaledSize['chevron-down-sm'] || 13) : use('chevron-down', 16)) : '';
+    out.push(`<div><span class="cap">${c.cap} · <code>${ctxMode === 'opt' ? c.v : b}</code>${ctxMode === 'scaled' ? ` at ${S} px` : ' at 16 px'}</span>${c.html(pick(c.v), other)}</div>`);
+  }
+  $('ctx').innerHTML = out.join('');
+}
+segBind($('ctxMode'), (b) => { ctxMode = b.dataset.m; renderCtx(); });
+(async () => {
+  let smaller = 0, larger = 0, sm = 0, lg = 0;
+  for (const n of allOpt) { const a = await inkBounds(baseOf(n)), b = await inkBounds(n); const d = Math.max(b.w, b.h) - Math.max(a.w, a.h); if (n.endsWith('-sm')) { sm++; if (d < 0) smaller++; } else { lg++; if (d > 0) larger++; } }
+  $('sizesLede').innerHTML = `${sm} icons ship a <code>-sm</code> drawing and ${lg} ship a <code>-lg</code> drawing, on the same 16 px canvas. In ${smaller} of the ${sm} small ones the glyph is smaller, and in ${larger} of the ${lg} large ones it is larger. The others are different drawings for small use. The line stays at the weight of the set. Scaling the regular icon instead changes the line with it.`;
+  $('tocSizes').textContent = `${sm} -sm and ${lg} -lg drawings. The glyph changes size; the line does not.`;
+  await scaleFor('chevron-down-sm');
+  renderOpt(); renderCtx();
+})();
+
+/* ---------- 3.2 Modifiers ---------- */
+const KIND = {
+  inside: { label: 'Mark inside', color: 'var(--accent)', text: 'The mark sits inside the shape, centered on it. Nothing is cut away.' },
+  badge: { label: 'Corner badge', color: 'var(--pink)', text: 'A badge in the bottom-right corner. The base is cut back to leave a gap around it.' },
+  dot: { label: 'Status dot', color: 'var(--green)', text: 'A dot at the top right, with a gap cut into the base.' },
+  slash: { label: 'Slash', color: 'var(--amber)', text: 'A diagonal line through the center. Most cut the base where the line crosses it.' },
+};
+const SUF = ['plus', 'add', 'check', 'x', 'edit', 'question', 'dot', 'slash'];
+const MODS = [];
+for (const i of DATA.icons) { if (i.f) continue; for (const s of SUF) { if (i.n.endsWith('-' + s)) { const base = i.n.slice(0, -s.length - 1); if (has(base)) MODS.push({ v: i.n, base, suf: s }); } } }
+const EXAMPLE = { inside: ['cloud-check', 'cloud'], badge: ['file-add', 'file'], dot: ['bell-dot', 'bell'], slash: ['eye-slash', 'eye'] };
+async function measureMod(m) {
+  const N = 64, A = await alpha(m.base, N), B = await alpha(m.v, N);
+  let add = 0, cut = 0, cx = 0, cy = 0;
+  for (let p = 0; p < N * N; p++) { const a = A[p] > 127, b = B[p] > 127; if (b && !a) { add++; cx += p % N + 0.5; cy += ((p / N) | 0) + 0.5; } if (a && !b) cut++; }
+  m.x = add ? cx / add / 4 : 8; m.y = add ? cy / add / 4 : 8; m.add = add / 16; m.cut = cut / 16;
+  const d = Math.hypot(m.x - 8, m.y - 8);
+  m.kind = m.suf === 'slash' ? 'slash' : d < 2.5 ? 'inside' : m.y < 8 ? 'dot' : 'badge';
+}
+async function diffCanvas(cv, base, v) {
+  const N = 128, A = await alpha(base, N), B = await alpha(v, N), c = cv.getContext('2d');
+  const col = (name) => { const p = document.createElement('canvas').getContext('2d'); p.fillStyle = getComputedStyle(cv).getPropertyValue(name).trim() || '#888'; p.fillRect(0, 0, 1, 1); return p.getImageData(0, 0, 1, 1).data; };
+  const ink = col('--ink'), acc = col('--accent'), pink = col('--pink');
+  const img = c.createImageData(N, N);
+  for (let p = 0; p < N * N; p++) {
+    const a = A[p] / 255, b = B[p] / 255, shared = Math.min(a, b), added = Math.max(0, b - a), cut = Math.max(0, a - b), tot = shared * 0.55 + added + cut;
+    if (!tot) continue;
+    for (let k = 0; k < 3; k++) img.data[p * 4 + k] = (ink[k] * shared * 0.55 + acc[k] * added + pink[k] * cut) / tot;
+    img.data[p * 4 + 3] = Math.round(Math.max(shared * 0.55, added, cut) * 255);
+  }
+  c.putImageData(img, 0, 0);
+}
+function renderPlate() {
+  let g = ''; for (let k = 0; k <= 16; k++) g += `M${k} 0V16M0 ${k}H16`;
+  $('modPlate').innerHTML = `<path d="${g}" stroke="var(--line)" stroke-width=".04" fill="none"/><circle cx="8" cy="8" r="7" fill="none" stroke="var(--border)" stroke-width=".06" stroke-dasharray=".3 .2"/><path d="M8 0V16M0 8H16" stroke="var(--border)" stroke-width=".05" stroke-dasharray=".2 .2"/>` +
+    MODS.map((m, k) => `<circle class="pt" data-k="${k}" cx="${m.x.toFixed(2)}" cy="${m.y.toFixed(2)}" r=".34" fill="${KIND[m.kind].color}" fill-opacity=".85" stroke="var(--surface)" stroke-width=".08"><title>${m.v}</title></circle>`).join('');
+  const counts = Object.keys(KIND).map((k) => [k, MODS.filter((m) => m.kind === k).length]);
+  $('modLegend').innerHTML = counts.map(([k, n]) => `<div><i style="background:${KIND[k].color}"></i><span>${KIND[k].label}</span><span>${n}</span></div>`).join('');
+}
+$('modPlate').addEventListener('click', (e) => { const c = e.target.closest('circle.pt'); if (!c) return; const m = MODS[+c.dataset.k]; $('modPick').textContent = `${m.v}: ${KIND[m.kind].label.toLowerCase()}. New ink centered at ${r1(m.x)}, ${r1(m.y)}; ${r1(m.add)} px² added, ${r1(m.cut)} px² cut from ${m.base}.`; });
+function renderKinds() {
+  $('kinds').innerHTML = Object.entries(KIND).map(([k, K]) => {
+    const [v, base] = EXAMPLE[k]; const m = MODS.find((x) => x.v === v);
+    const same = MODS.filter((x) => x.kind === k && x.v !== v).slice(0, 5).map((x) => `<code>${x.v}</code>`).join(', ');
+    return `<div class="kind panel"><h3><i style="background:${K.color}"></i>${K.label}</h3><div class="zoom"><canvas width="128" height="128" data-v="${v}" data-b="${base}"></canvas>${gridSvg(16)}</div><div class="pair">${use(base, 16)}<span class="muted">→</span>${use(v, 16)}<code>${v}</code></div><p>${K.text}</p><div class="rail">${m ? [['New ink centered at', `${r1(m.x)}, ${r1(m.y)}`], ['New ink', `${r1(m.add)} px²`], ['Cut from the base', `${r1(m.cut)} px²`]].map(([a, b]) => `<div><span>${a}</span><span>${b}</span></div>`).join('') : ''}</div><p>Same kind: ${same || 'none'}</p></div>`;
+  }).join('');
+  $('kinds').querySelectorAll('canvas').forEach((cv) => diffCanvas(cv, cv.dataset.b, cv.dataset.v));
+}
+function renderNames() {
+  const rows = SUF.map((s) => {
+    const list = MODS.filter((m) => m.suf === s); if (!list.length) return '';
+    const tally = {}; list.forEach((m) => { tally[m.kind] = (tally[m.kind] || 0) + 1; });
+    const main = Object.entries(tally).sort((a, b) => b[1] - a[1])[0][0];
+    const kinds = Object.entries(tally).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${n} ${KIND[k].label.toLowerCase()}`).join(', ');
+    const ex = list.filter((m) => m.kind !== main).map((m) => `<code>${m.v}</code>`).join(', ');
+    return `<div><code>-${s}</code><span class="n">${list.length}</span><span>${kinds}</span><span class="muted">${ex || 'No exceptions'}</span></div>`;
+  }).join('');
+  $('names').innerHTML = `<div><span>Suffix</span><span class="n">Icons</span><span>Measured kind</span><span>Exceptions</span></div>${rows}`;
+  const plusIn = MODS.filter((m) => m.suf === 'plus' && m.kind === 'inside').length, plusN = MODS.filter((m) => m.suf === 'plus').length;
+  const addB = MODS.filter((m) => m.suf === 'add' && m.kind === 'badge').length, addN = MODS.filter((m) => m.suf === 'add').length;
+  $('modsLede').textContent = `${MODS.length} variants add a mark to a base icon. Comparing each one with its base, pixel by pixel, shows four kinds. The names follow them: in ${plusIn} of ${plusN} -plus icons the mark sits inside the shape, and in ${addB} of ${addN} -add icons it is a corner badge.`;
+  $('tocMods').textContent = `${MODS.length} variants, four kinds of added mark, measured.`;
+}
+let eyeOn = false;
+function renderUses() {
+  const pair = (a, b) => `<div class="btnrow"><span class="ubtn">${use(a, 16)}New file</span><span class="ubtn">${use(b, 16)}New file</span></div><span class="cap"><code>${a}</code> and <code>${b}</code></span>`;
+  $('uses').innerHTML = [
+    ['-plus or -add', has('file-plus') && has('file-add') ? pair('file-plus', 'file-add') : ''],
+    ['Sync status', `<div class="ulist">${[['cloud-check', 'Saved'], ['cloud-x', 'Not saved'], ['cloud-slash', 'Offline']].filter(([n]) => has(n)).map(([n, t]) => `<div>${use(n, 16)}${t}</div>`).join('')}</div>`],
+    ['Navigation', `<div class="ulist">${[['home', 'Home'], ['bell-dot', 'Inbox, 3 new'], ['settings', 'Settings']].filter(([n]) => has(n)).map(([n, t], k) => `<div style="${k === 1 ? 'background:var(--surface)' : ''}">${use(n, 16)}${t}</div>`).join('')}</div>`],
+    ['Password field', `<div class="ufield"><span>${eyeOn ? 'fy-icons-16' : '••••••••••'}</span><button type="button" id="eyeBtn" aria-label="${eyeOn ? 'Hide password' : 'Show password'}">${use(eyeOn ? 'eye-slash' : 'eye', 16)}</button></div><span class="cap">Select the eye to switch between <code>eye</code> and <code>eye-slash</code></span>`],
+  ].map(([t, h]) => `<div><span class="cap">${t}</span>${h}</div>`).join('');
+  $('eyeBtn').addEventListener('click', () => { eyeOn = !eyeOn; renderUses(); $('eyeBtn').focus(); });
+}
+(async () => {
+  for (const m of MODS) await measureMod(m);
+  renderPlate(); renderKinds(); renderNames();
+})();
+renderUses();
+
+$('foot').textContent = `Catalog ${DATA.version} · ${fmt(DATA.count)} icons. Rasters come from your browser, so values can vary slightly by browser and operating system.`;
+const rerender = () => { renderOpt(); renderCtx(); if (MODS.length && MODS[0].kind) renderKinds(); };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', rerender);
+new MutationObserver(rerender).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+}
+</script>
