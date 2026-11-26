@@ -106,8 +106,9 @@ what the site and the prototypes already cover.
 
 ## Loupe tour: `template-loupe-tour.html`
 
-A variation on set II study 08 in two takes. Each take plays by itself in a
-loop. There is no readout: the page shows only the icons and the loupe.
+A variation on set II study 08 in three takes. Each take plays by itself in a
+loop, and take C also follows the pointer. There is no readout: the page shows
+only the icons and the loupe.
 
 - A, columns: three to six columns, at least one loupe apart, drift up in
   whole-pixel steps. The loupe stops over each column while icons pass under
@@ -116,6 +117,13 @@ loop. There is no readout: the page shows only the icons and the loupe.
 - B, scattered: five to seven icons bob in place by a few pixels, each at its
   own speed. The loupe follows each icon while it stops on it, and moves back
   and forth between them in the same way.
+- C, follows the pointer: the columns of take A, drawn as SVG vectors on the
+  page. The loupe shows the same icons as 16 px rasters from a hidden 1×
+  canvas with the same layout. The pointer moves the loupe up and down, and
+  the loupe snaps to the nearest column. On touch, a tap or a drag moves it,
+  and it lifts above the finger. The left and right arrow keys move it between
+  columns. With no pointer, it tours the columns by itself. A test found a
+  0 px difference between the vector icons and the raster that the loupe reads.
 
 Icons are 16 px at 1×, and every position is a whole pixel, so the icons stay
 sharp. Every period divides the loop length, so each loop closes without a
