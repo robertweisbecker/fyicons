@@ -5,11 +5,11 @@
 <title>FYIcons Loupe Tour</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
-/* Layout: a variation on set II study 08. One self-running loop: staggered columns of 16 px icons drift up at 1× in whole-pixel steps, and a loupe floats between the columns, settles over one while icons pass under it, then moves on. The readout is measured from the screen raster under the loupe's center. */
+/* Layout: a variation on set II study 08, in two takes. A: a few wide-spaced columns drift up and the loupe visits each one, then comes back. B: a handful of icons bob in place, scattered, and the loupe ping-pongs between them. Icons are 16 px at 1× and move in whole pixels; the loupe magnifies the pixels under its own center. */
 @font-face { font-family: 'Allo'; src: url('/*FONT_ALLO*/') format('woff2'); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: 'Paper Mono'; src: url('/*FONT_MONO*/') format('woff2'); font-weight: 100 800; font-display: swap; }
 :root {
-  --paper: oklch(0.975 0.004 60); --surface: #fff; --well: oklch(0.945 0.006 60);
+  --paper: oklch(0.975 0.004 60); --surface: #fff;
   --ink: oklch(0.22 0.008 50); --muted: oklch(0.56 0.012 55);
   --line: oklch(0.22 0.008 50 / 0.09); --border: oklch(0.22 0.008 50 / 0.16);
   --accent: oklch(0.6 0.2 259);
@@ -17,18 +17,18 @@
   --font-mono: 'Paper Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50); --well: oklch(0.26 0.009 50);
+  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50);
   --ink: oklch(0.96 0.004 60); --muted: oklch(0.68 0.01 55);
   --line: oklch(0.96 0.004 60 / 0.08); --border: oklch(0.96 0.004 60 / 0.15); --accent: oklch(0.68 0.17 259);
   color-scheme: dark; } }
 :root[data-theme="dark"] {
-  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50); --well: oklch(0.26 0.009 50);
+  --paper: oklch(0.175 0.006 50); --surface: oklch(0.215 0.008 50);
   --ink: oklch(0.96 0.004 60); --muted: oklch(0.68 0.01 55);
   --line: oklch(0.96 0.004 60 / 0.08); --border: oklch(0.96 0.004 60 / 0.15); --accent: oklch(0.68 0.17 259);
   color-scheme: dark; }
 * { box-sizing: border-box; min-width: 0; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5; font-variation-settings: 'ROND' 100; font-feature-settings: 'ss01' 1, 'ss03' 1; overflow-x: clip; }
-h1, h3 { margin: 0; font-weight: 400; letter-spacing: -0.04em; text-wrap: balance; }
+h1 { margin: 0; font-weight: 400; letter-spacing: -0.04em; text-wrap: balance; font-size: clamp(34px, 6vw, 64px); line-height: 1; }
 p { margin: 0; }
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -36,50 +36,37 @@ button { font: inherit; color: inherit; }
 .in { max-width: 1040px; margin: 0 auto; display: grid; gap: 20px; }
 .kicker { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
 .kicker b { color: var(--ink); font-weight: 500; }
-h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1; }
 .lede { font-size: clamp(16px, 1.5vw, 19px); color: var(--muted); max-width: 58ch; text-wrap: pretty; }
-.film { background: var(--surface); border-radius: 20px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
-.stage { position: relative; height: var(--stage-h, 380px); overflow: hidden; }
+.take { display: grid; gap: 10px; margin-top: 12px; }
+.take-head { display: flex; gap: 10px; align-items: baseline; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.take-head b { color: var(--ink); font-weight: 500; }
+.stage { position: relative; height: var(--stage-h, 360px); overflow: hidden; background: var(--surface); border-radius: 20px; box-shadow: 0 0 0 1px var(--line); }
 .stage > canvas { position: absolute; left: 0; top: 0; image-rendering: pixelated; }
-/* The fade sits above the columns and below the loupe; the loupe reads the unfaded screen. */
-.stage::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(var(--surface), transparent 22%, transparent 78%, var(--surface)); }
-.stage-cap { position: absolute; left: 12px; top: 12px; z-index: 3; font-family: var(--font-mono); font-size: 11px; color: var(--muted); background: var(--surface); padding: 3px 8px; border-radius: 99px; box-shadow: 0 0 0 1px var(--line); }
-.lens { position: absolute; left: 0; top: 0; z-index: 2; width: var(--lens, 200px); height: var(--lens, 200px); border-radius: 50%; overflow: hidden; pointer-events: none; background: var(--surface); box-shadow: 0 0 0 1px var(--border), 0 0 0 5px var(--surface), 0 0 0 6px var(--border), 0 26px 50px -18px oklch(0 0 0 / .45); will-change: transform; }
+.stage.fade::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(var(--surface), transparent 20%, transparent 80%, var(--surface)); }
+.lens { position: absolute; left: 0; top: 0; z-index: 2; width: var(--lens, 180px); height: var(--lens, 180px); border-radius: 50%; overflow: hidden; pointer-events: none; background: var(--surface); box-shadow: 0 0 0 1px var(--border), 0 0 0 5px var(--surface), 0 0 0 6px var(--border), 0 26px 50px -18px oklch(0 0 0 / .4); will-change: transform; }
 .lens canvas { width: 100%; height: 100%; display: block; }
-.readout { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 22px; align-items: center; padding: 16px 20px; border-top: 1px solid var(--line); }
-.cov { display: grid; justify-items: start; }
-.cov b { font-family: var(--font-mono); font-weight: 400; font-size: clamp(34px, 6vw, 52px); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; min-width: 4ch; }
-.cov span, .meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
-.under { display: grid; gap: 2px; }
-.under h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; min-height: 30px; }
-.under h3 svg { width: 16px; height: 16px; flex: none; }
-.under.between h3 { color: var(--muted); }
-.readout > button { border: 1px solid var(--border); background: transparent; border-radius: 999px; min-height: 40px; padding: 0 14px; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-.readout > button svg { width: 14px; height: 14px; }
-.notes { font-size: 13px; color: var(--muted); max-width: 70ch; text-wrap: pretty; }
-@media (max-width: 560px) { .readout { grid-template-columns: auto minmax(0, 1fr); } .readout > button { grid-column: 1 / -1; justify-self: start; } }
+.play { position: absolute; right: 12px; top: 12px; z-index: 3; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--surface); box-shadow: 0 0 0 1px var(--line); display: grid; place-items: center; cursor: pointer; color: var(--muted); }
+.play:hover { color: var(--ink); }
+.play svg { width: 14px; height: 14px; }
 </style>
 
 <!--SPRITE-->
 
 <section class="band" aria-labelledby="tour-h">
   <div class="in">
-    <p class="kicker"><b>Loupe tour</b><span>A variation on set II study 08</span><span>Plays by itself, in a loop</span></p>
+    <p class="kicker"><b>Loupe tour</b><span>A variation on set II study 08</span><span>Two takes, each a loop</span></p>
     <h1 id="tour-h">A loupe over moving pixels.</h1>
-    <p class="lede">Columns of 16 px icons drift up at true 1× pixels, one whole pixel at a time. The loupe floats between them, stops over a column while icons pass under it, and moves on. The number is the ink coverage of the pixel under the loupe's center, read from the screen as it moves.</p>
-    <div class="film" id="film">
-      <div class="stage" id="stage" role="img" aria-label="Columns of icons at actual pixel size drift upward while a magnifying loupe floats between them">
-        <canvas id="screen"></canvas>
-        <span class="stage-cap">16 px icons at 1× · whole-pixel steps</span>
-        <div class="lens" id="lens"><canvas id="lensCv"></canvas></div>
-      </div>
-      <div class="readout" aria-live="off">
-        <div class="cov"><b id="covNum">–</b><span>ink coverage</span></div>
-        <div class="under" id="under"><span class="meta">Under the loupe</span><h3 id="underName">–</h3><span class="meta" id="underPx"></span></div>
-        <button type="button" id="play"></button>
-      </div>
+    <p class="lede">Icons are 16 px at 1× and move in whole pixels, so they stay sharp. The loupe magnifies the pixels under its own center.</p>
+
+    <div class="take">
+      <p class="take-head"><b>A</b><span>Columns · the loupe visits each one, then comes back</span></p>
+      <div class="stage fade" data-film="columns" role="img" aria-label="Five columns of icons drift upward while a magnifying loupe visits each column in turn"><canvas></canvas><div class="lens"><canvas></canvas></div><button type="button" class="play"></button></div>
     </div>
-    <p class="notes">Coverage is the alpha of the icon ink at one screen pixel when your browser draws the icon at 16 px: 100% is a solid pixel and 0% is empty. The columns move in whole pixels, so every icon stays as sharp as a still one. Values can vary slightly by browser.</p>
+
+    <div class="take">
+      <p class="take-head"><b>B</b><span>Scattered · icons bob in place, the loupe goes back and forth</span></p>
+      <div class="stage" data-film="scatter" role="img" aria-label="A few icons bob gently in place while a magnifying loupe moves back and forth between them"><canvas></canvas><div class="lens"><canvas></canvas></div><button type="button" class="play"></button></div>
+    </div>
   </div>
 </section>
 
@@ -88,25 +75,12 @@ h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1; }
 const DATA = /*DATA*/;
 const names = new Set(DATA.icons.map((i) => i.n));
 const has = (n) => names.has(n);
-const $ = (id) => document.getElementById(id);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const ico = (n) => `<svg aria-hidden="true" viewBox="0 0 16 16"><use href="#i-${n}"/></svg>`;
 function seeded(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
 function shuffle(arr, seed) { const r = seeded(seed), a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-
-// Everyday interface icons. Each column takes its own order of eight.
-const POOL = ['envelope', 'calendar', 'folder', 'bell-dot', 'search', 'lock', 'copy-sm', 'chevron-down-sm', 'settings', 'home', 'user', 'trash', 'pencil', 'link', 'download', 'upload', 'clock', 'check', 'x', 'plus', 'filter', 'star', 'heart', 'chart-donut', 'file-text', 'image', 'camera', 'map-pin', 'globe', 'cloud', 'eye', 'key', 'tag', 'bookmark', 'send', 'paperclip', 'phone', 'microphone', 'inbox', 'sliders', 'share', 'archive', 'printer', 'compass', 'flag', 'code', 'terminal', 'database', 'shield-check', 'cloud-check', 'file-add', 'eye-slash', 'arrow-up-right', 'chevron-right-sm', 'circle-check', 'square-check', 'bolt', 'sun', 'moon', 'video-camera', 'headphones', 'book', 'credit-card', 'shopping-cart', 'gift', 'users', 'chat'].filter(has);
-const PER = 8, CELL = 24, CYCLE = PER * CELL;
-// The loupe settles over these columns, as fractions of the usable width, then floats to the next.
-// It parks on icon pixel columns 3, 7, and 12, where walls fall most often (11% of pixels there are solid, against 5% at columns 1 and 2).
-const STOPS = [0.12, 0.66, 0.34, 0.9, 0.5];
-const DWELL = 2600, TRAVEL = 1500, STEP = DWELL + TRAVEL, LOOP = STOPS.length * STEP;
-
-const stage = $('stage'), screen = $('screen'), sc = screen.getContext('2d');
-const ink = document.createElement('canvas'), ic = ink.getContext('2d', { willReadFrequently: true });
-const lens = $('lens'), lensCv = $('lensCv'), lc = lensCv.getContext('2d');
-let W = 0, H = 0, D = 200, Z = 10, cols = [], stops = [], images = new Map(), C = {};
-
+const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+const TAU = Math.PI * 2;
 const imgCache = new Map();
 function iconImage(name, color) {
   const key = name + color;
@@ -116,114 +90,113 @@ function iconImage(name, color) {
   const p = new Promise((res) => { const img = new Image(); img.onload = () => res(img); img.onerror = () => res(null); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
   imgCache.set(key, p); return p;
 }
-function colorOf(v) { const p = document.createElement('canvas').getContext('2d'); p.fillStyle = getComputedStyle(stage).getPropertyValue(v).trim(); p.fillRect(0, 0, 1, 1); const [r, g, b, a] = p.getImageData(0, 0, 1, 1).data; return `rgba(${r},${g},${b},${a / 255})`; }
+function colorOf(el, v) { const p = document.createElement('canvas').getContext('2d'); p.fillStyle = getComputedStyle(el).getPropertyValue(v).trim(); p.fillRect(0, 0, 1, 1); const [r, g, b, a] = p.getImageData(0, 0, 1, 1).data; return `rgba(${r},${g},${b},${a / 255})`; }
 
-async function build() {
-  stage.style.setProperty('--stage-h', (stage.clientWidth < 560 ? 320 : 380) + 'px');
-  W = Math.floor(stage.clientWidth); H = Math.floor(stage.clientHeight);
-  // The canvas is exactly W × H CSS pixels, so one canvas pixel is one CSS pixel under the loupe.
-  for (const cv of [screen, ink]) { cv.width = W; cv.height = H; }
-  screen.style.width = W + 'px'; screen.style.height = H + 'px';
-  D = Math.round(Math.min(220, Math.max(150, W * 0.36))); Z = D >= 190 ? 10 : 8;
-  stage.style.setProperty('--lens', D + 'px');
-  const dpr = Math.min(3, devicePixelRatio || 1); lensCv.width = lensCv.height = Math.round(D * dpr); lc.setTransform(dpr, 0, 0, dpr, 0, 0);
-  C = { ink: colorOf('--ink'), surface: colorOf('--surface'), line: colorOf('--line'), accent: colorOf('--accent') };
-  // Several columns, not a wall: about a dozen on wide screens, with more air between them.
-  const pitch = Math.round(Math.min(72, Math.max(40, W / 12))), n = Math.max(4, Math.floor((W - 24) / pitch)), x0 = Math.floor((W - n * pitch) / 2);
-  cols = Array.from({ length: n }, (_, c) => ({
-    x: x0 + c * pitch + Math.floor((pitch - 16) / 2),
-    seq: shuffle(POOL, 11 + c * 7).slice(0, PER),
-    offset: (c % 2) * (CELL / 2) + 6,
-    turns: c % 3 === 1 ? 2 : 1,
-  }));
-  // Stops land on whole-pixel columns that keep the loupe inside the stage.
-  const R = D / 2 + 8, ok = cols.filter((col) => col.x + 8 > R && col.x + 8 < W - R);
-  const pool = ok.length ? ok : cols;
-  stops = STOPS.map((f, k) => { const col = pool[Math.round(f * (pool.length - 1))]; return { col, x: col.x + [3.5, 12.5, 7.5, 12.5, 3.5][k % 5] }; });
-  images = new Map(await Promise.all([...new Set(cols.flatMap((col) => col.seq))].map(async (nm) => [nm, await iconImage(nm, C.ink)])));
-}
-const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
-// Column scroll for loop time t, in whole pixels. Each column moves one or two full cycles per loop, so the loop closes.
-const scrollOf = (col, t) => Math.round((t / LOOP) * col.turns * CYCLE) % CYCLE;
-function drawColumns(t) {
-  ic.clearRect(0, 0, W, H);
-  for (const col of cols) {
-    const s = scrollOf(col, t);
-    for (let y = col.offset - s - CYCLE, i = 0; y < H + CELL; y += CELL, i++) {
-      if (y < -16) continue;
-      const nm = col.seq[((i % PER) + PER) % PER], img = images.get(nm);
-      if (img) ic.drawImage(img, col.x, y, 16, 16);
+const POOL = ['envelope', 'calendar', 'folder', 'bell-dot', 'search', 'lock', 'copy-sm', 'chevron-down-sm', 'settings', 'home', 'user', 'trash', 'pencil', 'link', 'download', 'upload', 'clock', 'check', 'x', 'plus', 'filter', 'star', 'heart', 'chart-donut', 'file-text', 'image', 'camera', 'map-pin', 'globe', 'cloud', 'eye', 'key', 'tag', 'bookmark', 'send', 'paperclip', 'phone', 'microphone', 'inbox', 'sliders', 'share', 'archive', 'printer', 'compass', 'flag', 'code', 'terminal', 'database', 'shield-check', 'cloud-check', 'file-add', 'eye-slash', 'arrow-up-right', 'circle-check', 'square-check', 'bolt', 'sun', 'moon', 'video-camera', 'headphones', 'book', 'credit-card', 'shopping-cart', 'gift', 'users', 'chat'].filter(has);
+// Scattered positions, as fractions of the area the loupe can reach. The loupe visits them left to right, then back.
+const SCATTER = {
+  wide: { icons: ['envelope', 'bell-dot', 'search', 'copy-sm', 'calendar', 'lock', 'settings'], at: [[0, 0.58], [0.16, 0.08], [0.34, 0.86], [0.5, 0.3], [0.67, 0.95], [0.84, 0.12], [1, 0.62]] },
+  narrow: { icons: ['envelope', 'bell-dot', 'search', 'copy-sm', 'settings'], at: [[0, 0.25], [0.26, 0.95], [0.5, 0.05], [0.74, 0.9], [1, 0.4]] },
+};
+
+function makeFilm(stage) {
+  const mode = stage.dataset.film;
+  const screen = stage.querySelector(':scope > canvas'), sc = screen.getContext('2d');
+  const lens = stage.querySelector('.lens'), lensCv = lens.querySelector('canvas'), lc = lensCv.getContext('2d');
+  const btn = stage.querySelector('.play');
+  let W = 0, H = 0, D = 180, Z = 9, C = {}, images = new Map(), cols = [], items = [], order = [], STEP = 3400, DWELL = 2100, LOOP = 1;
+
+  async function build() {
+    const narrow = stage.clientWidth < 560;
+    stage.style.setProperty('--stage-h', (narrow ? 300 : 360) + 'px');
+    W = Math.floor(stage.clientWidth); H = Math.floor(stage.clientHeight);
+    screen.width = W; screen.height = H; screen.style.width = W + 'px'; screen.style.height = H + 'px';
+    D = narrow ? 108 : 176; Z = narrow ? 6 : 8;
+    stage.style.setProperty('--lens', D + 'px');
+    const dpr = Math.min(3, devicePixelRatio || 1); lensCv.width = lensCv.height = Math.round(D * dpr); lc.setTransform(dpr, 0, 0, dpr, 0, 0);
+    C = { ink: colorOf(stage, '--ink'), surface: colorOf(stage, '--surface'), line: colorOf(stage, '--line') };
+    const R = D / 2 + 10;
+    if (mode === 'columns') {
+      // Columns at least one loupe apart, so the loupe sees one column at a time.
+      const pitch = D + (narrow ? 12 : 32), n = Math.max(3, Math.min(6, Math.floor((W - 16) / pitch))), x0 = Math.floor((W - n * pitch) / 2);
+      cols = Array.from({ length: n }, (_, c) => ({ x: x0 + c * pitch + Math.floor(pitch / 2) - 8, seq: shuffle(POOL, 5 + c * 13).slice(0, 8), offset: (c % 2) * 18 + 4, turns: c % 2 ? 2 : 1 }));
+      order = cols.map((col) => ({ x: col.x + 8, y: () => H / 2 }));
+      DWELL = 2200; STEP = 3500;
+    } else {
+      const set = narrow ? SCATTER.narrow : SCATTER.wide, rnd = seeded(29);
+      const x0 = R, x1 = W - R, y0 = R, y1 = H - R;
+      items = set.icons.filter(has).map((nm, k) => {
+        const [fx, fy] = set.at[k];
+        return { name: nm, bx: Math.round(x0 + fx * (x1 - x0)) - 8, by: Math.round(y0 + fy * (y1 - y0)) - 8, amp: 3 + Math.round(rnd() * 3), j: 3 + Math.floor(rnd() * 4), ph: rnd() * TAU, jx: 2 + Math.floor(rnd() * 3), phx: rnd() * TAU };
+      });
+      order = items.map((it) => it);
+      DWELL = 1900; STEP = 3300;
+    }
+    // Ping-pong: 0, 1, … , n-1, n-2, … , 1, then back to 0.
+    const n = order.length, seq = [...Array(n).keys(), ...Array.from({ length: Math.max(0, n - 2) }, (_, k) => n - 2 - k)];
+    order = seq.map((k) => order[k]);
+    LOOP = order.length * STEP;
+    const need = mode === 'columns' ? [...new Set(cols.flatMap((c) => c.seq))] : items.map((it) => it.name);
+    images = new Map(await Promise.all(need.map(async (nm) => [nm, await iconImage(nm, C.ink)])));
+  }
+  // Positions are whole pixels at every moment. The loops close: every period divides the loop length.
+  const CELL = 24, PER = 8, CYCLE = CELL * PER;
+  const scrollOf = (col, t) => Math.round((t / LOOP) * col.turns * CYCLE) % CYCLE;
+  const posOf = (it, t) => ({ x: it.bx + Math.round(Math.sin(TAU * it.jx * t / LOOP + it.phx)), y: it.by + Math.round(it.amp * Math.sin(TAU * it.j * t / LOOP + it.ph)) });
+  function drawScreen(t) {
+    sc.fillStyle = C.surface; sc.fillRect(0, 0, W, H);
+    if (mode === 'columns') {
+      for (const col of cols) {
+        const s = scrollOf(col, t);
+        for (let y = col.offset - s - CYCLE, i = 0; y < H + CELL; y += CELL, i++) { if (y < -16) continue; const img = images.get(col.seq[i % PER]); if (img) sc.drawImage(img, col.x, y, 16, 16); }
+      }
+    } else {
+      for (const it of items) { const p = posOf(it, t), img = images.get(it.name); if (img) sc.drawImage(img, p.x, p.y, 16, 16); }
     }
   }
-  sc.fillStyle = C.surface; sc.fillRect(0, 0, W, H); sc.drawImage(ink, 0, 0);
-}
-// Which icon and which of its pixels sit under a screen pixel.
-function iconAt(px, py, t) {
-  for (const col of cols) {
-    if (px < col.x || px >= col.x + 16) continue;
-    const s = scrollOf(col, t), rel = ((py - (col.offset - s)) % CYCLE + CYCLE) % CYCLE;
-    const i = Math.floor(rel / CELL), r = rel - i * CELL;
-    if (r < 16) return { name: col.seq[i % PER], x: px - col.x, y: r };
+  // Where a stop wants the loupe: a column center, or the center of a bobbing icon, followed pixel by pixel.
+  const stopAt = (s, t) => (mode === 'columns' ? { x: s.x, y: H / 2 + 3 * Math.sin(TAU * 4 * t / LOOP) } : (() => { const p = posOf(s, t); return { x: p.x + 8, y: p.y + 8 }; })());
+  function lensAt(t) {
+    const k = Math.floor(t / STEP), u = t - k * STEP, a = order[k], b = order[(k + 1) % order.length];
+    const pa = stopAt(a, t);
+    if (u < DWELL) return { ...pa, s: 1 };
+    const e = ease((u - DWELL) / (STEP - DWELL)), pb = stopAt(b, t), lift = (mode === 'columns' ? 22 : 30) * Math.sin(Math.PI * e);
+    return { x: pa.x + (pb.x - pa.x) * e, y: pa.y + (pb.y - pa.y) * e - lift, s: 1 - 0.05 * Math.sin(Math.PI * e) };
   }
-  return null;
+  function drawLens(cx, cy) {
+    const N = D / Z, sx = cx - N / 2, sy = cy - N / 2;
+    lc.imageSmoothingEnabled = false;
+    lc.fillStyle = C.surface; lc.fillRect(0, 0, D, D);
+    const x0 = Math.floor(sx), y0 = Math.floor(sy), n = Math.ceil(N) + 2, ox = (x0 - sx) * Z, oy = (y0 - sy) * Z;
+    lc.drawImage(screen, x0, y0, n, n, ox, oy, n * Z, n * Z);
+    lc.strokeStyle = C.line; lc.lineWidth = 1; lc.beginPath();
+    for (let k = 0; k <= n; k++) { const gx = Math.round(ox + k * Z) + 0.5, gy = Math.round(oy + k * Z) + 0.5; lc.moveTo(gx, 0); lc.lineTo(gx, D); lc.moveTo(0, gy); lc.lineTo(D, gy); }
+    lc.stroke();
+  }
+  function frameAt(t) {
+    if (!order.length) return;
+    t = ((t % LOOP) + LOOP) % LOOP;
+    drawScreen(t);
+    const L = lensAt(t);
+    lens.style.transform = `translate3d(${(L.x - D / 2).toFixed(2)}px, ${(L.y - D / 2).toFixed(2)}px, 0) scale(${L.s.toFixed(3)})`;
+    drawLens(L.x, L.y);
+    (window.__loupe ||= {})[mode] = { cx: L.x, cy: L.y, D, Z };
+  }
+  let playing = !reduced, visible = true, clock = 900, last = 0, raf = 0;
+  function tick(now) { raf = 0; if (playing) clock += Math.min(64, now - (last || now)); last = now; frameAt(clock); if (playing && visible) raf = requestAnimationFrame(tick); else last = 0; }
+  function kick() { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } }
+  function setPlaying(on) { playing = on; btn.innerHTML = ico(on ? 'pause-fill' : 'play-fill'); btn.setAttribute('aria-label', on ? 'Pause' : 'Play'); if (on) kick(); else frameAt(clock); }
+  btn.addEventListener('click', () => setPlaying(!playing));
+  new IntersectionObserver((es) => { visible = es[0].isIntersecting; if (visible && playing) kick(); }, { rootMargin: '80px' }).observe(stage);
+  document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible && playing) kick(); });
+  let rt, lastW = 0;
+  const rebuild = async () => { await build(); frameAt(clock); };
+  new ResizeObserver(() => { const w = Math.floor(stage.clientWidth); if (w === lastW) return; lastW = w; clearTimeout(rt); rt = setTimeout(rebuild, 100); }).observe(stage);
+  const retheme = async () => { imgCache.clear(); await rebuild(); };
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', retheme);
+  new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  (async () => { lastW = Math.floor(stage.clientWidth); await build(); setPlaying(playing); frameAt(clock); })();
 }
-function lensAt(t) {
-  const k = Math.floor(t / STEP), u = t - k * STEP, a = stops[k], b = stops[(k + 1) % stops.length];
-  const mid = H / 2, bob = 4 * Math.sin((t / LOOP) * Math.PI * 2 * 5);
-  if (u < DWELL) return { x: a.x, y: mid + bob, moving: false };
-  const e = ease((u - DWELL) / TRAVEL), arc = -26 * Math.sin(Math.PI * e);
-  return { x: a.x + (b.x - a.x) * e, y: mid + bob + arc, moving: true, e };
-}
-function drawLens(cx, cy) {
-  const N = D / Z, sx = cx - N / 2, sy = cy - N / 2;
-  lc.imageSmoothingEnabled = false;
-  lc.fillStyle = C.surface; lc.fillRect(0, 0, D, D);
-  // Copy whole source pixels and offset them, so magnified pixels keep hard edges while the loupe glides.
-  const x0 = Math.floor(sx), y0 = Math.floor(sy), n = Math.ceil(N) + 2, ox = (x0 - sx) * Z, oy = (y0 - sy) * Z;
-  lc.drawImage(screen, x0, y0, n, n, ox, oy, n * Z, n * Z);
-  lc.strokeStyle = C.line; lc.lineWidth = 1; lc.beginPath();
-  for (let k = 0; k <= n; k++) { const gx = Math.round(ox + k * Z) + 0.5, gy = Math.round(oy + k * Z) + 0.5; lc.moveTo(gx, 0); lc.lineTo(gx, D); lc.moveTo(0, gy); lc.lineTo(D, gy); }
-  lc.stroke();
-  // Box the screen pixel that the readout measures: the one under the loupe's center.
-  const px = Math.floor(cx), py = Math.floor(cy);
-  lc.strokeStyle = C.accent; lc.lineWidth = 2;
-  lc.strokeRect(Math.round((px - sx) * Z) + 1, Math.round((py - sy) * Z) + 1, Z - 2, Z - 2);
-}
-let lastName = null;
-function frameAt(t) {
-  if (!cols.length) return;
-  t = ((t % LOOP) + LOOP) % LOOP;
-  drawColumns(t);
-  const L = lensAt(t), scale = L.moving ? 1 - 0.05 * Math.sin(Math.PI * L.e) : 1;
-  lens.style.transform = `translate3d(${(L.x - D / 2).toFixed(2)}px, ${(L.y - D / 2).toFixed(2)}px, 0) scale(${scale.toFixed(3)})`;
-  drawLens(L.x, L.y);
-  const px = Math.floor(L.x), py = Math.floor(L.y);
-  $('covNum').textContent = Math.round(ic.getImageData(px, py, 1, 1).data[3] / 255 * 100) + '%';
-  const hit = iconAt(px, py, t), name = hit ? hit.name : null;
-  $('under').classList.toggle('between', !hit);
-  if (name !== lastName) { $('underName').innerHTML = hit ? `${ico(name)}${name}` : 'Between icons'; lastName = name; }
-  $('underPx').textContent = hit ? `pixel x ${hit.x}, y ${hit.y} of 16` : `screen pixel ${px}, ${py}`;
-  window.__loupe = { cx: L.x, cy: L.y, px, py, D, Z };
-}
-
-let playing = !reduced, visible = true, clock = DWELL * 0.55, last = 0, raf = 0;
-function tick(now) {
-  raf = 0;
-  if (playing) clock += Math.min(64, now - (last || now));
-  last = now; frameAt(clock);
-  if (playing && visible) raf = requestAnimationFrame(tick); else last = 0;
-}
-function kick() { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } }
-function setPlaying(on) { playing = on; $('play').innerHTML = on ? `${ico('pause-fill')}Pause` : `${ico('play-fill')}Play`; $('play').setAttribute('aria-label', on ? 'Pause the animation' : 'Play the animation'); if (on) kick(); else frameAt(clock); }
-$('play').addEventListener('click', () => setPlaying(!playing));
-new IntersectionObserver((es) => { visible = es[0].isIntersecting; if (visible && playing) kick(); }, { rootMargin: '80px' }).observe(stage);
-document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible && playing) kick(); });
-const rebuild = async () => { await build(); lastName = undefined; frameAt(clock); };
-let rt, lastW = 0;
-new ResizeObserver(() => { const w = Math.floor(stage.clientWidth); if (w === lastW) return; lastW = w; clearTimeout(rt); rt = setTimeout(rebuild, 100); }).observe(stage);
-const retheme = async () => { imgCache.clear(); await rebuild(); };
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', retheme);
-new MutationObserver(retheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-(async () => { lastW = Math.floor(stage.clientWidth); await build(); setPlaying(playing); frameAt(clock); })();
+document.querySelectorAll('[data-film]').forEach(makeFilm);
 }
 </script>

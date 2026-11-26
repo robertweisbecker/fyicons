@@ -106,27 +106,29 @@ what the site and the prototypes already cover.
 
 ## Loupe tour: `template-loupe-tour.html`
 
-A variation on set II study 08 that plays by itself in a loop of about 20
-seconds. Staggered columns of 16 px icons drift up at 1×, in whole-pixel steps.
-A loupe floats between the columns. It stops over a column while icons pass
-under it, then moves to the next one on a small arc. The readout shows the icon
-and the pixel under the loupe's center, and that pixel's ink coverage.
+A variation on set II study 08 in two takes. Each take plays by itself in a
+loop. There is no readout: the page shows only the icons and the loupe.
 
-- Each column moves one or two full cycles per loop, so the loop closes without
-  a jump.
-- The loupe parks on icon pixel columns 3, 7, and 12. Walls fall there most
-  often: 11% of pixels at columns 3 and 12 are solid, against 5% at columns 1
-  and 2, measured over the 67 icons in the pool.
-- The loupe magnifies the pixels under its own center and never moves away
-  from them. A test at widths of 390, 768, and 1100 px, at 1×, 2×, and 3×
-  pixel density, found a 0 px offset between the loupe and the pixels it
-  shows, and the same color for the boxed pixel and the screen pixel.
-- The first version stopped on five fixed pixels in a toolbar. On narrow
-  screens it pushed the loupe away from the edge, so the loupe did not sit on
-  the pixel it reported. This version replaces it.
+- A, columns: three to six columns, at least one loupe apart, drift up in
+  whole-pixel steps. The loupe stops over each column while icons pass under
+  it, then moves to the next one. It visits the columns from left to right
+  and then back.
+- B, scattered: five to seven icons bob in place by a few pixels, each at its
+  own speed. The loupe follows each icon while it stops on it, and moves back
+  and forth between them in the same way.
 
-The page has Pause and Play, and it starts paused when the reader prefers
-reduced motion. The build writes `loupe-tour.html`.
+Icons are 16 px at 1×, and every position is a whole pixel, so the icons stay
+sharp. Every period divides the loop length, so each loop closes without a
+jump. The loupe magnifies the pixels under its own center. A test at widths of
+390, 768, and 1100 px, at 1×, 2×, and 3× pixel density, found an offset under
+0.01 px and the same color for the screen pixel and the magnified pixel. The
+loupe stays inside the stage in both takes.
+
+Earlier versions: five fixed stops in a toolbar, with a coverage readout. On
+narrow screens they pushed the loupe away from the edge, so it did not sit on
+the pixel it reported. Then dense columns with a readout, which was too busy.
+Each take has a Pause button and starts paused when the reader prefers reduced
+motion. The build writes `loupe-tour.html`.
 
 ## Direction from review
 
