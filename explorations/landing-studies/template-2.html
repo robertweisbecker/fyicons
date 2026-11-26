@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FYIcons Specimen Lab</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -234,9 +238,88 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .c-badges span:nth-child(2) { background: color-mix(in oklab, var(--green) 18%, transparent); color: color-mix(in oklab, var(--green) 70%, var(--ink)); }
 .c-badges span:nth-child(3) { background: color-mix(in oklab, var(--amber) 22%, transparent); color: color-mix(in oklab, var(--amber) 60%, var(--ink)); }
 
+/* 10 Idle motion */
+.motion { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 20px; align-items: start; }
+@media (max-width: 980px) { .motion { grid-template-columns: 1fr; } }
+.m-left { display: grid; gap: 12px; min-width: 0; }
+.m-stage { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; touch-action: pan-y; }
+@media (min-width: 1180px) { .m-stage { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .m-stage { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.m-film { background: var(--surface); border-radius: 18px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; }
+.m-film-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.m-film-rows { display: grid; gap: 6px; overflow-x: auto; }
+.m-film-row { display: grid; grid-template-columns: 64px repeat(12, 56px); gap: 6px; align-items: center; width: max-content; }
+.m-film-row > span { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.m-film-row:first-child > span { color: var(--accent); }
+.m-film canvas { width: 56px; height: 56px; image-rendering: pixelated; background: var(--well); border-radius: 6px; display: block; }
+.m-tile { all: unset; box-sizing: border-box; position: relative; aspect-ratio: 1; border-radius: 16px; background: var(--well); overflow: hidden; cursor: pointer; color: var(--ink); }
+.m-tile svg.m-art { position: absolute; left: 0; top: 0; overflow: visible; }
+.m-tile .m-name, .m-tile .m-verb { position: absolute; left: 10px; font-family: var(--font-mono); font-size: 10px; white-space: nowrap; }
+.m-tile .m-name { bottom: 8px; color: var(--muted); }
+.m-tile .m-verb { top: 8px; color: var(--accent); }
+.m-tile[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--accent); }
+.m-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.m-panel { background: var(--surface); border-radius: 18px; padding: 16px; display: grid; gap: 16px; box-shadow: 0 0 0 1px var(--line), 0 18px 40px -24px oklch(0 0 0 / .3); }
+.m-panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.m-panel-head b { color: var(--ink); font-weight: 500; }
+.switch { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); gap: 12px; }
+.switch button { all: unset; width: 38px; height: 22px; border-radius: 22px; background: var(--border); position: relative; cursor: pointer; flex: none; }
+.switch button::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); transition: transform .2s; box-shadow: 0 1px 2px oklch(0 0 0 / .3); }
+.switch button[aria-checked="true"] { background: var(--accent); }
+.switch button[aria-checked="true"]::after { transform: translateX(16px); }
+.switch button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.m-meter { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: center; }
+.m-loupe { position: relative; width: 112px; height: 112px; border-radius: 10px; background: var(--well); overflow: hidden; }
+.m-loupe canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+.m-loupe svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.m-key { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); }
+.m-key span { display: inline-flex; gap: 6px; align-items: center; }
+.m-key i { width: 14px; height: 2px; border-radius: 2px; display: inline-block; }
+.btn2 { border: 1px solid var(--border); background: transparent; border-radius: 999px; padding: 4px 12px; font-size: 13px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+.btn2:hover { background: var(--line); }
+.m-css summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+.m-css pre { margin: 8px 0; padding: 10px 12px; background: var(--well); border-radius: 10px; overflow: auto; max-height: 240px; font-size: 11px; line-height: 1.5; }
+
+/* 11 Moods */
+.moods { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 20px; align-items: start; }
+@media (max-width: 1040px) { .moods { grid-template-columns: 1fr; } }
+.mood-grid { background: var(--surface); border-radius: 18px; overflow-x: auto; }
+.mood-row { display: grid; grid-template-columns: 104px repeat(3, minmax(150px, 1fr)); border-top: 1px solid var(--line); min-width: 590px; cursor: pointer; }
+.mood-row.head { border-top: 0; cursor: default; }
+.mood-row.head span { padding: 16px 14px 12px; font-size: 12px; color: var(--muted); border-left: 1px solid var(--line); text-wrap: pretty; }
+.mood-row.head span:first-child { border-left: 0; }
+.mood-row.head b { display: block; color: var(--ink); font-weight: 500; font-size: 15px; margin-bottom: 2px; }
+.mood-name { all: unset; padding: 14px; font-weight: 500; font-size: 14px; align-self: stretch; cursor: pointer; }
+.mood-name:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; border-radius: 8px; }
+.mood-row.sel { background: color-mix(in oklab, var(--accent) 16%, transparent); }
+.mood-row.sel .mood-name { color: var(--accent); }
+.mood-cell { padding: 12px 14px; display: grid; gap: 6px; align-content: start; border-left: 1px solid var(--line); }
+.mood-cell .sizes { display: flex; align-items: flex-end; gap: 14px; min-height: 48px; color: var(--ink); }
+.mood-cell .sizes canvas { image-rendering: pixelated; display: block; }
+.mood-cell code { font-size: 11px; color: var(--ink-2); }
+.mood-cell .solid { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+.mood-cell.empty { font-size: 12px; color: var(--muted); align-content: center; }
+.mdemo { background: var(--surface); border-radius: 18px; overflow: hidden; color: var(--ink); display: grid; }
+.mdemo-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+.mdemo-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+.mdemo-body { display: grid; grid-template-columns: 124px minmax(0, 1fr); min-height: 300px; }
+.md-side { border-right: 1px solid var(--line); padding: 8px; display: grid; gap: 1px; align-content: start; font-size: 13px; color: var(--ink-2); }
+.md-side div { display: flex; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 7px; white-space: nowrap; overflow: hidden; }
+.md-side div.on { background: var(--well); color: var(--ink); }
+.md-main { display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.md-rows div { display: flex; gap: 10px; align-items: center; padding: 9px 12px; border-bottom: 1px solid var(--line); font-size: 13px; min-width: 0; }
+.md-rows div span { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.md-rows .ph { height: 7px; border-radius: 7px; background: var(--line); flex: 1; }
+.md-rows .ph + .ph { flex: 0 0 40px; }
+.md-empty { display: grid; justify-items: center; align-content: center; text-align: center; gap: 6px; padding: 20px 12px; }
+.md-empty b { font-weight: 500; }
+.md-empty .c-btn { justify-self: center; font-size: 13px; padding: 6px 12px; }
+.mdemo-cap { display: flex; flex-wrap: wrap; gap: 4px 16px; padding: 10px 12px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+.mdemo-cap b { color: var(--ink); font-weight: 500; }
+
 .foot { font-size: 13px; color: var(--muted); display: grid; gap: 8px; }
 .foot a { color: inherit; }
-@media (prefers-reduced-motion: reduce) { .cell .u, .cell .p, .specimen .plate svg.art, .hero h1 .w { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .cell .u, .cell .p, .specimen .plate svg.art, .hero h1 .w, .switch button::after { transition: none; } }
 </style>
 
 <!--SPRITE-->
@@ -414,6 +497,59 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     </div>
     <div class="strip" id="ctxStrip" role="group" aria-label="Icon"></div>
     <div class="ctx" id="ctx"></div>
+  </div>
+</section>
+
+<!-- 10 · IDLE MOTION -->
+<section class="band" aria-labelledby="s10" id="motion">
+  <div class="in">
+    <p class="kicker"><b>10</b><span>Motion · idle loops on the pixel grid</span></p>
+    <div class="split">
+      <h2 class="title" id="s10">Creatures that move in whole pixels.</h2>
+      <p class="lede">Each loop uses parts and frames from the shipped drawings: the owl's eyes, the penguin's flippers, the snail's stalks, and outline and fill pairs. With snap on, every frame lands on whole pixels, so a moving icon stays as sharp as a still one. Turn snap off to see what sub-pixel motion costs.</p>
+    </div>
+    <div class="motion">
+      <div class="m-left">
+        <div class="m-stage" id="mStage" role="group" aria-label="Animated creatures. Select one to measure it."></div>
+        <div class="m-film"><div class="m-film-head"><span>Film strip · 12 frames of one loop at 16 px, magnified</span><span id="mFilmName"></span></div><div class="m-film-rows" id="mFilm"></div></div>
+      </div>
+      <aside class="m-panel" aria-label="Motion controls">
+        <div class="m-panel-head"><span>Dial · <b id="mSelName"></b></span><button class="btn2" id="mPlay" type="button"></button></div>
+        <div class="switch"><span id="mSnapLab">Snap to whole pixels</span><button type="button" role="switch" aria-checked="true" aria-labelledby="mSnapLab" id="mSnap"></button></div>
+        <div class="range"><label for="mAmp">Travel <output id="mAmpOut"></output></label><input type="range" id="mAmp" min="0.5" max="3" step="0.25" value="1.5"></div>
+        <div class="range"><label for="mTempo">Tempo <output id="mTempoOut"></output></label><input type="range" id="mTempo" min="0.5" max="2" step="0.25" value="1"></div>
+        <div class="seg" role="group" aria-label="Display size" id="mSize"><button type="button" data-s="16" aria-pressed="false">16 px</button><button type="button" data-s="24" aria-pressed="false">24</button><button type="button" data-s="32" aria-pressed="false">32</button><button type="button" data-s="48" aria-pressed="true">48</button></div>
+        <div class="m-meter">
+          <div class="m-loupe"><canvas id="mLoupe" width="28" height="28" aria-label="Selected creature at 16 px, magnified seven times"></canvas><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="6" y="6" width="16" height="16" fill="none" stroke="var(--accent)" stroke-width=".12" stroke-dasharray=".5 .4"/></svg></div>
+          <div class="rail" id="mRail"></div>
+        </div>
+        <div>
+          <svg class="chart" id="mChart" viewBox="0 0 300 120" role="img" aria-label="Fully covered pixels at 16 px over one loop, smooth and snapped"></svg>
+          <div class="m-key"><span><i style="background:var(--muted)"></i>Smooth</span><span><i style="background:var(--accent)"></i>Snapped</span><span><i style="background:var(--ink);opacity:.4"></i>At rest</span></div>
+          <p class="chart-tip" id="mTip">Fully covered pixels at 16 px, sampled 48 times over one loop. More is crisper.</p>
+        </div>
+        <details class="m-css"><summary>CSS for this loop</summary><pre id="mCss"></pre><button class="btn2" id="mCopy" type="button">Copy CSS</button></details>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · THREE MOODS -->
+<section class="band ink" aria-labelledby="s11" id="moods">
+  <div class="in">
+    <p class="kicker"><b>11</b><span>Personality · same subject, three moods</span></p>
+    <div class="split">
+      <h2 class="title" id="s11">Same subject, three moods.</h2>
+      <p class="lede">Many subjects ship in more than one voice. Use the quiet drawing in a 16 px toolbar, the character in a list, and the loud fill where it must read as a shape. An empty cell is a mood that is not drawn yet.</p>
+    </div>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="View" id="moodView"><button type="button" data-v="vec" aria-pressed="true">16, 24, 48 px</button><button type="button" data-v="px" aria-pressed="false">16 px pixels ×3</button></div>
+      <p class="muted" id="moodNote" style="font-size:14px;max-width:62ch"></p>
+    </div>
+    <div class="moods">
+      <div class="mood-grid" id="moodGrid"></div>
+      <div class="mdemo" id="moodDemo" aria-live="polite"></div>
+    </div>
   </div>
 </section>
 
@@ -782,6 +918,285 @@ function renderCtx() {
 }
 renderCtx();
 
+/* ---------- 10 Idle motion ---------- */
+// Each loop returns a state for phase p (0 to 1): frame, body offset, flip, part offsets, hidden parts, and extra marks.
+// Offsets are in grid units: 1 unit is 1 screen pixel at 16 px. `s` snaps a value to whole screen pixels at the current size.
+const SVGNS = 'http://www.w3.org/2000/svg';
+const TAU = Math.PI * 2;
+const bump = (p, a, d) => (p >= a && p < a + d ? Math.sin(Math.PI * (p - a) / d) : 0);
+const within = (p, a, d) => p >= a && p < a + d;
+const OWL_SHUT = '<path d="M5.75 4.5h1.5M9.75 4.5h1.5" stroke="currentColor" stroke-width=".75" stroke-linecap="round"/>';
+const FLICK = ['fire-alt', 'fire-alt', 'fire-alt-fill', 'fire-alt', 'fire-alt', 'fire-alt-fill', 'fire-alt-fill', 'fire-alt'];
+const FACE_IDLE = ['emoji-neutral', 'emoji-neutral', 'emoji-smile', 'emoji-happy', 'emoji-grin', 'emoji-happy', 'emoji-smile', 'emoji-neutral'];
+const MOTION = [
+  { n: 'ghost', verb: 'float', T: 3.2, how: 'Body moves up and down.', run: (p, A, s) => ({ y: s(A * Math.sin(TAU * p)) }) },
+  { n: 'penguin', verb: 'flap', T: 2.6, wrap: [4], how: 'Flippers (part 4) lift; the body follows by half.', run: (p, A, s) => { const f = bump(p, 0.08, 0.14) + bump(p, 0.26, 0.14); return { y: s(-0.5 * A * f), parts: { 4: { y: s(-A * f) } } }; } },
+  { n: 'owl', verb: 'blink', T: 3.8, wrap: [3, 4], how: 'Eye circles (parts 3 and 4) swap for closed lids.', run: (p) => (within(p, 0.8, 0.04) || within(p, 0.88, 0.04) ? { hide: [3, 4], add: OWL_SHUT } : {}) },
+  { n: 'snail', verb: 'peek', T: 4.2, wrap: [2, 3, 4], how: 'Eye stalks (parts 2 to 4) pull in, then come back.', run: (p, A, s) => { const d = s(Math.min(2, A) * bump(p, 0.45, 0.4)); return { parts: { 2: { y: d }, 3: { y: d }, 4: { y: d } } }; } },
+  { n: 'fish', verb: 'swim', T: 4.4, how: 'Body moves side to side and mirrors to face its way.', run: (p, A, s) => ({ x: s(1.4 * A * Math.sin(TAU * p)), flip: Math.cos(TAU * p) > 0 }) },
+  { n: 'rabbit', verb: 'hop', T: 2.2, how: 'Body jumps on a parabola, then rests.', run: (p, A, s) => { const u = p / 0.32; return { y: p < 0.32 ? s(-1.6 * A * 4 * u * (1 - u)) : 0 }; } },
+  { n: 'bee', verb: 'buzz', T: 0.9, how: 'Body traces a small figure on two sine waves.', run: (p, A, s) => ({ x: s(0.6 * A * Math.sin(TAU * 2 * p + 1)), y: s(0.6 * A * Math.sin(TAU * 3 * p)) }) },
+  { n: 'fire-alt', verb: 'flicker', T: 1.4, how: 'Swaps between the outline and fill pair.', run: (p) => ({ f: FLICK[Math.floor(p * FLICK.length) % FLICK.length] }) },
+  { n: 'emoji-neutral', verb: 'react', T: 6, react: true, how: 'Steps through six faces. Bring the pointer close and it reacts.', run: (p) => ({ f: FACE_IDLE[Math.floor(p * FACE_IDLE.length) % FACE_IDLE.length] }) },
+  { n: 'agent-clank', verb: 'glitch', T: 3.4, how: 'Swaps to agent-clank-doom for two short beats.', run: (p, A, s) => (within(p, 0.78, 0.05) ? { f: 'agent-clank-doom', x: s(0.6 * A) } : within(p, 0.86, 0.03) ? { f: 'agent-clank-doom', x: s(-0.6 * A) } : {}) },
+  { n: 'bird', verb: 'peck', T: 2.6, how: 'Body dips down and forward twice.', run: (p, A, s) => { const b = bump(p, 0.55, 0.1) + bump(p, 0.7, 0.1); return { x: s(-0.7 * A * b), y: s(0.7 * A * b) }; } },
+  { n: 'turtle-simple', verb: 'plod', T: 8, how: 'Body walks across and back, mirrored on the return.', run: (p, A, s) => ({ x: s(1.5 * A * (p < 0.5 ? 4 * p - 1 : 3 - 4 * p)), flip: p >= 0.5 }) },
+].filter((d) => has(d.n));
+let mSnap = true, mAmp = 1.5, mTempo = 1, mSize = 48, mPlaying = !reduced, mVisible = false, mClock = 0, mPrev = 0, mSel = 0;
+let mPointer = null, mRAF = 0, mAmpTimer = 0;
+const unitSnap = (S) => (v) => Math.round(v * S / 16) / (S / 16);
+const noSnap = (v) => v;
+function motionState(def, p, snap = mSnap, S = mSize, A = mAmp) {
+  const st = def.run(p, A, snap ? unitSnap(S) : noSnap) || {};
+  return { f: st.f || def.n, x: st.x || 0, y: st.y || 0, flip: !!st.flip, parts: st.parts || {}, hide: st.hide || [], add: st.add || '' };
+}
+// Copy a symbol's markup with per-copy IDs, and wrap the listed drawable parts in <g data-p="k"> so they can move.
+function frameMarkup(name, uid, wrap = []) {
+  const html = document.getElementById('i-' + name).innerHTML
+    .replace(/\bid="([^"]+)"/g, `id="$1-${uid}"`).replace(/url\(#([^)]+)\)/g, `url(#$1-${uid})`).replace(/href="#([^"]+)"/g, `href="#$1-${uid}"`);
+  if (!wrap.length) return html;
+  const g = document.createElementNS(SVGNS, 'g'); g.innerHTML = html;
+  const parts = [...g.querySelectorAll('path,circle,rect,ellipse')].filter((e) => !e.closest('mask,clipPath,defs'));
+  wrap.forEach((k) => { const el = parts[k]; if (!el) return; const w = document.createElementNS(SVGNS, 'g'); w.setAttribute('data-p', k); el.replaceWith(w); w.appendChild(el); });
+  return g.innerHTML;
+}
+const flipT = 'matrix(-1 0 0 1 16 0)';
+function stateSVG(def, st, color = '#000', pad = 6) {
+  const g = document.createElementNS(SVGNS, 'g');
+  g.innerHTML = frameMarkup(st.f, 'm', st.f === def.n ? def.wrap || [] : []);
+  g.querySelectorAll('[data-p]').forEach((w) => { const k = +w.dataset.p, pt = st.parts[k]; if (pt) w.setAttribute('transform', `translate(${pt.x || 0} ${pt.y || 0})`); if (st.hide.includes(k)) w.setAttribute('display', 'none'); });
+  const N = 16 + pad * 2;
+  return `<svg xmlns="${SVGNS}" viewBox="${-pad} ${-pad} ${N} ${N}" width="${N}" height="${N}" color="${color}" style="color:${color}"><g transform="translate(${st.x} ${st.y})"><g${st.flip ? ` transform="${flipT}"` : ''}>${g.innerHTML}${st.add}</g></g></svg>`;
+}
+const svgImgCache = new Map();
+function svgImage(str) {
+  if (svgImgCache.has(str)) return svgImgCache.get(str);
+  if (svgImgCache.size > 600) svgImgCache.clear();
+  const pr = new Promise((res) => { const img = new Image(); img.onload = () => res(img); img.onerror = () => res(null); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(str); });
+  svgImgCache.set(str, pr); return pr;
+}
+
+const mTiles = MOTION.map((def, k) => {
+  const el = document.createElement('button');
+  el.type = 'button'; el.className = 'm-tile'; el.setAttribute('aria-pressed', k === mSel); el.setAttribute('aria-label', `${def.n}, ${def.verb}`);
+  el.innerHTML = `<svg class="m-art" viewBox="0 0 16 16" aria-hidden="true"><g class="b"><g class="fl"><g class="fr"></g><g class="ad"></g></g></g></svg><span class="m-verb">${def.verb}</span><span class="m-name">${def.n}</span>`;
+  $('mStage').appendChild(el);
+  return { def, el, uid: 't' + k, svg: el.querySelector('svg'), b: el.querySelector('.b'), fl: el.querySelector('.fl'), fr: el.querySelector('.fr'), ad: el.querySelector('.ad'), f: null, parts: [], key: '' };
+});
+// Place each drawing on a whole CSS pixel, or a still icon would already be blurred before it moves.
+function pinTiles() {
+  for (const t of mTiles) {
+    const r = t.el.getBoundingClientRect();
+    t.svg.setAttribute('width', mSize); t.svg.setAttribute('height', mSize);
+    t.svg.style.left = (Math.round(r.left + (r.width - mSize) / 2) - r.left) + 'px';
+    t.svg.style.top = (Math.round(r.top + (r.height - mSize) / 2 - 4) - r.top) + 'px';
+  }
+}
+function applyTile(t, st) {
+  const key = JSON.stringify(st);
+  if (key === t.key) return; t.key = key;
+  if (t.f !== st.f) { t.fr.innerHTML = frameMarkup(st.f, t.uid, st.f === t.def.n ? t.def.wrap || [] : []); t.parts = [...t.fr.querySelectorAll('[data-p]')]; t.f = st.f; }
+  t.b.setAttribute('transform', `translate(${st.x} ${st.y})`);
+  if (st.flip) t.fl.setAttribute('transform', flipT); else t.fl.removeAttribute('transform');
+  for (const g of t.parts) { const k = +g.dataset.p, pt = st.parts[k]; if (pt) g.setAttribute('transform', `translate(${pt.x || 0} ${pt.y || 0})`); else g.removeAttribute('transform'); g.style.display = st.hide.includes(k) ? 'none' : ''; }
+  if (t.ad.innerHTML !== st.add) t.ad.innerHTML = st.add;
+}
+// The face reacts to the pointer: the nearer it is, the happier the face.
+function faceFrame(t) {
+  if (!mPointer) return null;
+  const r = t.el.getBoundingClientRect();
+  const d = Math.hypot(mPointer.x - (r.left + r.width / 2), mPointer.y - (r.top + r.height / 2)) / r.width;
+  if (d < 0.5) return mPointer.down ? 'emoji-heart-eyes-fill' : 'emoji-heart-eyes';
+  return d < 1.2 ? 'emoji-grin' : d < 2 ? 'emoji-happy' : d < 3 ? 'emoji-smile' : 'emoji-neutral';
+}
+function tileState(t) {
+  const p = ((mClock / 1000) * mTempo / t.def.T) % 1;
+  const st = motionState(t.def, p);
+  if (t.def.react) { const f = faceFrame(t); if (f) st.f = f; }
+  return st;
+}
+let mLoupeKey = '', mLoupeBusy = false;
+async function drawMotionLoupe(st) {
+  const color = inkColor($('mLoupe'));
+  const key = JSON.stringify(st) + color;
+  if (key === mLoupeKey || mLoupeBusy) return;
+  mLoupeBusy = true; mLoupeKey = key;
+  const img = await svgImage(stateSVG(mTiles[mSel].def, st, color));
+  const c = $('mLoupe').getContext('2d'); c.clearRect(0, 0, 28, 28); if (img) c.drawImage(img, 0, 0, 28, 28);
+  mLoupeBusy = false;
+}
+function motionFrame(now) {
+  mRAF = 0;
+  if (mPlaying) mClock += Math.min(64, now - (mPrev || now));
+  mPrev = now;
+  for (const t of mTiles) applyTile(t, tileState(t));
+  // The loupe always shows the 16 px raster, whatever the display size.
+  const t = mTiles[mSel], p = ((mClock / 1000) * mTempo / t.def.T) % 1;
+  const st16 = motionState(t.def, p, mSnap, 16);
+  if (t.def.react) { const f = faceFrame(t); if (f) st16.f = f; }
+  drawMotionLoupe(st16);
+  if (mPlaying && mVisible) mRAF = requestAnimationFrame(motionFrame); else mPrev = 0;
+}
+function kickMotion() { if (mVisible && !mRAF) { mPrev = 0; mRAF = requestAnimationFrame(motionFrame); } }
+new IntersectionObserver((es) => { const was = mVisible; mVisible = es[0].isIntersecting; if (mVisible && !was) kickMotion(); }, { rootMargin: '120px' }).observe($('motion'));
+
+// Measure one loop at 16 px: fully covered (crisp) pixels per frame, smooth against snapped.
+let mSeries = null, mMeasureId = 0;
+async function measureMotion() {
+  const id = ++mMeasureId, def = mTiles[mSel].def, N = 48;
+  const stats = async (st) => { const img = await svgImage(stateSVG(def, st)); return img ? rasterStats(img, 28).solid : 0; };
+  const rest = await stats(motionState(def, 0, true, 16, 0));
+  const smooth = [], snapped = [];
+  for (let k = 0; k < N; k++) {
+    const p = k / N;
+    smooth.push(await stats(motionState(def, p, false, 16)));
+    snapped.push(await stats(motionState(def, p, true, 16)));
+    if (id !== mMeasureId) return;
+  }
+  mSeries = { rest, smooth, snapped }; drawMotionChart(); drawFilm();
+}
+// Twelve frames of the loop at 16 px, snapped above smooth, each drawn with its 6 px margin and magnified.
+let mFilmId = 0;
+async function drawFilm() {
+  const id = ++mFilmId, def = mTiles[mSel].def, color = inkColor($('mFilm'));
+  $('mFilmName').textContent = `${def.n} · ${def.verb}`;
+  $('mFilm').innerHTML = ['Snapped', 'Smooth'].map((lab) => `<div class="m-film-row"><span>${lab}</span>${Array.from({ length: 12 }, () => '<canvas width="28" height="28"></canvas>').join('')}</div>`).join('');
+  const rows = $('mFilm').querySelectorAll('.m-film-row');
+  for (const [r, snap] of [[0, true], [1, false]]) {
+    const cvs = rows[r].querySelectorAll('canvas');
+    for (let k = 0; k < 12; k++) {
+      const img = await svgImage(stateSVG(def, motionState(def, k / 12, snap, 16), color));
+      if (id !== mFilmId) return;
+      const c = cvs[k].getContext('2d'); c.clearRect(0, 0, 28, 28); if (img) c.drawImage(img, 0, 0, 28, 28);
+    }
+  }
+}
+function drawMotionChart() {
+  if (!mSeries) return;
+  const { rest, smooth, snapped } = mSeries, N = smooth.length;
+  const W = 300, H = 120, L = 28, R = 8, T = 8, B = 20;
+  const max = Math.max(1, rest, ...smooth, ...snapped) * 1.15;
+  const xs = (k) => L + k / (N - 1) * (W - L - R), ys = (v) => T + (1 - v / max) * (H - T - B);
+  const line = (arr, color, op = 1) => `<polyline points="${arr.map((v, k) => `${xs(k).toFixed(1)},${ys(v).toFixed(1)}`).join(' ')}" fill="none" stroke="${color}" stroke-opacity="${op}" stroke-width="2" stroke-linejoin="round"/>`;
+  let s = '';
+  [0, Math.round(max / 2), Math.round(max)].forEach((v) => { s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${L - 5}" y="${ys(v) + 3}" text-anchor="end">${v}</text>`; });
+  s += `<text x="${L}" y="${H - 5}">loop start</text><text x="${W - R}" y="${H - 5}" text-anchor="end">loop end</text>`;
+  s += `<line x1="${L}" x2="${W - R}" y1="${ys(rest)}" y2="${ys(rest)}" stroke="var(--ink)" stroke-opacity=".4" stroke-dasharray="3 3"/>`;
+  s += line(smooth, 'var(--muted)', 0.8) + line(snapped, 'var(--accent)');
+  $('mChart').innerHTML = s;
+  const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+  const sm = mean(smooth), sn = mean(snapped), worst = Math.min(...smooth);
+  $('mRail').innerHTML = [['At rest', rest], ['Snapped, mean', sn.toFixed(1)], ['Smooth, mean', sm.toFixed(1)], ['Smooth, worst frame', worst]].map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join('');
+  const def = mTiles[mSel].def, moves = smooth.some((v, k) => v !== snapped[k]);
+  $('mTip').textContent = moves
+    ? `${def.how} Fully covered pixels at 16 px: smooth motion keeps ${Math.round(sm / Math.max(1, rest) * 100)}% of them on average, snapped keeps ${Math.round(sn / Math.max(1, rest) * 100)}%. Snapped frames differ from rest only where a part, a frame, or the mirror changes.`
+    : `${def.how} Frame swaps are always on the grid, so smooth and snapped are the same. The count changes with the frame drawn.`;
+}
+// CSS for the body motion of the selected loop, at the current size, tempo, and travel.
+function motionCSS() {
+  const def = mTiles[mSel].def, S = mSize, N = 24, slug = `fy-${def.n}-${def.verb}`;
+  const px = (v) => { const r = Math.round(v * S / 16 * 100) / 100; return (Object.is(r, -0) ? 0 : r) + 'px'; };
+  const rows = []; let prev = null, frames = false, parts = false;
+  for (let k = 0; k <= N; k++) {
+    const st = motionState(def, (k % N) / N);
+    if (st.f !== def.n) frames = true;
+    if (Object.keys(st.parts).length || st.hide.length) parts = true;
+    const tr = `translate(${px(st.x)}, ${px(st.y)})${st.flip ? ' scaleX(-1)' : ''}`;
+    if (mSnap && tr === prev && k < N) continue;
+    rows.push(`  ${+(k / N * 100).toFixed(2)}% { transform: ${tr}; }`); prev = tr;
+  }
+  const notes = [];
+  if (frames) notes.push('/* This loop also swaps frames. Stack the frames and step their opacity. */');
+  if (parts) notes.push('/* This loop also moves parts. That needs inline SVG; see the page script. */');
+  return `/* ${def.n} · ${def.verb} · ${S} px · ${mSnap ? 'snapped to whole pixels' : 'smooth'} */\n${notes.join('\n')}${notes.length ? '\n' : ''}@keyframes ${slug} {\n${rows.join('\n')}\n}\n.${slug} {\n  animation: ${slug} ${(def.T / mTempo).toFixed(2)}s ${mSnap ? 'step-end' : 'linear'} infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .${slug} { animation: none; }\n}`;
+}
+function selectMotion(k) {
+  mSel = k; mTiles.forEach((t, j) => t.el.setAttribute('aria-pressed', j === k));
+  $('mSelName').textContent = `${mTiles[k].def.n} · ${mTiles[k].def.verb}`;
+  mLoupeKey = ''; $('mCss').textContent = motionCSS(); measureMotion();
+  if (!mPlaying) motionFrame(performance.now());
+}
+function setPlaying(on) { mPlaying = on; $('mPlay').innerHTML = on ? `${ico('pause-fill')}Pause` : `${ico('play-fill')}Play`; if (on) kickMotion(); }
+$('mStage').addEventListener('click', (e) => { const b = e.target.closest('.m-tile'); if (b) selectMotion(mTiles.findIndex((t) => t.el === b)); });
+$('mStage').addEventListener('pointermove', (e) => { mPointer = { x: e.clientX, y: e.clientY, down: e.buttons > 0 }; if (!mPlaying) motionFrame(performance.now()); });
+$('mStage').addEventListener('pointerdown', (e) => { mPointer = { x: e.clientX, y: e.clientY, down: true }; });
+$('mStage').addEventListener('pointerup', (e) => { mPointer = e.pointerType === 'mouse' ? { x: e.clientX, y: e.clientY, down: false } : null; });
+$('mStage').addEventListener('pointerleave', () => { mPointer = null; });
+$('mStage').addEventListener('pointercancel', () => { mPointer = null; });
+$('mSnap').addEventListener('click', () => { mSnap = !mSnap; $('mSnap').setAttribute('aria-checked', mSnap); $('mCss').textContent = motionCSS(); if (!mPlaying) motionFrame(performance.now()); });
+$('mAmp').addEventListener('input', (e) => { mAmp = +e.target.value; $('mAmpOut').textContent = `${mAmp} px at 16`; $('mCss').textContent = motionCSS(); clearTimeout(mAmpTimer); mAmpTimer = setTimeout(measureMotion, 150); });
+$('mTempo').addEventListener('input', (e) => { mTempo = +e.target.value; $('mTempoOut').textContent = `${mTempo}×`; $('mCss').textContent = motionCSS(); });
+segBind($('mSize'), (b) => { mSize = +b.dataset.s; pinTiles(); $('mCss').textContent = motionCSS(); mTiles.forEach((t) => { t.key = ''; }); if (!mPlaying) motionFrame(performance.now()); });
+$('mPlay').addEventListener('click', () => setPlaying(!mPlaying));
+$('mCopy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText($('mCss').textContent); $('mCopy').textContent = 'Copied'; }
+  catch { const r = document.createRange(); r.selectNodeContents($('mCss')); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); $('mCopy').textContent = 'Selected. Press Copy.'; }
+  setTimeout(() => { $('mCopy').textContent = 'Copy CSS'; }, 1800);
+});
+$('mAmpOut').textContent = `${mAmp} px at 16`; $('mTempoOut').textContent = `${mTempo}×`;
+const mRO = new ResizeObserver(() => pinTiles()); mRO.observe($('mStage'));
+pinTiles(); setPlaying(mPlaying); selectMotion(Math.max(0, mTiles.findIndex((t) => t.def.n === 'fish'))); motionFrame(performance.now());
+
+/* ---------- 11 Three moods ---------- */
+const MOODS = [
+  { id: 'agent', name: 'Agent', q: 'agent-simple', c: 'agent-clank', l: 'agent-clank-doom', side: 'Agents', row: 'Nightly sync agent', empty: 'No agents running' },
+  { id: 'bug', name: 'Bug', q: 'bug', c: 'bug-beetle', l: 'lady-bug', side: 'Issues', row: 'Crash on export', empty: 'No open bugs' },
+  { id: 'face', name: 'Face', q: 'emoji-neutral', c: 'emoji-grin', l: 'emoji-heart-eyes-fill', side: 'Feedback', row: 'Rated the new editor', empty: 'No reactions yet' },
+  { id: 'fire', name: 'Fire', q: 'fire', c: 'fire-alt', l: 'fire-alt-fill', side: 'Trending', row: 'Hot this week', empty: 'Nothing trending' },
+  { id: 'home', name: 'Home', q: 'home-simple', c: 'home-birdhouse', l: 'home-birdhouse-fill', side: 'Home', row: 'Your nest', empty: 'Make yourself at home' },
+  { id: 'turtle', name: 'Turtle', q: 'turtle-simple', c: 'turtle', l: null, side: 'Slow queue', row: 'Rate limited: 42 jobs', empty: 'Nothing throttled' },
+  { id: 'bird', name: 'Bird', q: 'bird', c: 'bird-raven', l: null, side: 'Updates', row: 'New message from Ops', empty: 'No news yet' },
+  { id: 'skull', name: 'Skull', q: null, c: 'skull', l: 'skull-fill', side: 'Danger zone', row: 'Delete workspace', empty: 'Nothing to delete' },
+].map((m) => ({ ...m, q: has(m.q) ? m.q : null, c: has(m.c) ? m.c : null, l: has(m.l) ? m.l : null }));
+const MOOD_KEYS = [['q', 'Quiet', 'Plain shape. For toolbars and dense UI.'], ['c', 'Character', 'Details and a face. For lists and cards.'], ['l', 'Loud', 'The boldest drawing, often a solid fill. For badges, stickers, and empty states.']];
+const MOOD_NAME = { q: 'Quiet', c: 'Character', l: 'Loud' };
+let moodSel = 'agent', moodView = 'vec';
+const moodSolid = new Map();
+function moodCell(n) {
+  if (!n) return '<div class="mood-cell empty">Not drawn yet</div>';
+  const art = moodView === 'px'
+    ? `<canvas data-n="${n}" width="16" height="16" style="width:48px;height:48px" aria-label="${n} at 16 px, magnified"></canvas>`
+    : [16, 24, 48].map((s) => `<svg width="${s}" height="${s}" aria-hidden="true"><use href="#i-${n}"/></svg>`).join('');
+  return `<div class="mood-cell"><div class="sizes">${art}</div><code>${n}</code><span class="solid" data-solid="${n}" title="Share of fully covered pixels when rasterized at 16 px">${moodSolid.has(n) ? `${moodSolid.get(n)}% solid at 16 px` : ''}</span></div>`;
+}
+async function drawMoodPx() {
+  const color = inkColor($('moodGrid'));
+  for (const cv of $('moodGrid').querySelectorAll('canvas[data-n]')) { const img = await symbolImage('i-' + cv.dataset.n, color, 16); const c = cv.getContext('2d'); c.clearRect(0, 0, 16, 16); if (img) c.drawImage(img, 0, 0, 16, 16); }
+}
+function renderMoods() {
+  $('moodGrid').innerHTML = `<div class="mood-row head"><span>Subject</span>${MOOD_KEYS.map(([, t, d]) => `<span><b>${t}</b>${d}</span>`).join('')}</div>` +
+    MOODS.map((m) => `<div class="mood-row ${m.id === moodSel ? 'sel' : ''}" data-id="${m.id}"><button type="button" class="mood-name" aria-pressed="${m.id === moodSel}">${m.name}</button>${moodCell(m.q)}${moodCell(m.c)}${moodCell(m.l)}</div>`).join('');
+  if (moodView === 'px') drawMoodPx();
+}
+function renderMoodDemo() {
+  const m = MOODS.find((x) => x.id === moodSel);
+  const pick = (order) => { for (const k of order) if (m[k]) return [m[k], k]; return [null, null]; };
+  const [qn, qk] = pick(['q', 'c', 'l']), [cn, ck] = pick(['c', 'q', 'l']), [ln, lk] = pick(['l', 'c', 'q']);
+  const tag = (want, got) => `<b>${MOOD_NAME[got]}</b>${want === got ? '' : ' (no ' + MOOD_NAME[want].toLowerCase() + ' yet)'}`;
+  const i = (n, s) => `<svg width="${s}" height="${s}" aria-hidden="true" style="flex:none"><use href="#i-${n}"/></svg>`;
+  $('moodDemo').innerHTML = `<div class="mdemo-bar"><i></i><i></i><i></i></div><div class="mdemo-body">
+    <div class="md-side">${[['home', 'Home'], ['search', 'Search'], [qn, m.side, 1], ['settings', 'Settings']].filter(([n]) => has(n)).map(([n, t, on]) => `<div class="${on ? 'on' : ''}">${i(n, 16)}${t}</div>`).join('')}</div>
+    <div class="md-main"><div class="md-rows"><div>${i(cn, 24)}<span>${m.row}</span><span class="muted" style="flex:none;font-size:12px">now</span></div><div>${i(cn, 24)}<i class="ph"></i><i class="ph"></i></div><div>${i(cn, 24)}<i class="ph"></i><i class="ph"></i></div></div>
+    <div class="md-empty">${i(ln, 48)}<b>${m.empty}</b><span class="muted" style="font-size:12px">This panel uses the 48 px size.</span><span class="c-btn">${ico('plus')}Add</span></div></div></div>
+    <div class="mdemo-cap"><span>Sidebar 16 px · ${tag('q', qk)}</span><span>List 24 px · ${tag('c', ck)}</span><span>Empty 48 px · ${tag('l', lk)}</span></div>`;
+}
+async function measureMoods() {
+  const names = MOODS.flatMap((m) => [m.q, m.c, m.l]).filter(Boolean);
+  for (const n of names) {
+    const img = await symbolImage('i-' + n, '#000', 16); if (!img) continue;
+    const st = rasterStats(img, 16); moodSolid.set(n, Math.round(st.solid / Math.max(1, st.solid + st.soft) * 100));
+    document.querySelectorAll(`[data-solid="${n}"]`).forEach((el) => { el.textContent = `${moodSolid.get(n)}% solid at 16 px`; });
+  }
+  const span = (list) => { const v = list.map((n) => moodSolid.get(n)); return `${Math.min(...v)} to ${Math.max(...v)}%`; };
+  const fills = names.filter((n) => n.endsWith('-fill')), lines = names.filter((n) => !n.endsWith('-fill'));
+  const quietLoses = MOODS.filter((m) => m.q && m.c && moodSolid.get(m.q) < moodSolid.get(m.c)).map((m) => m.name.toLowerCase());
+  $('moodNote').textContent = `Measured at 16 px: the fills have ${span(fills)} fully covered pixels, the outline drawings ${span(lines)}.` +
+    (quietLoses.length ? ` The quiet drawing is simpler, not always crisper: the quiet ${quietLoses.join(' and ')} have fewer solid pixels than their characters.` : '');
+}
+$('moodGrid').addEventListener('click', (e) => { const r = e.target.closest('.mood-row[data-id]'); if (!r) return; moodSel = r.dataset.id; renderMoods(); renderMoodDemo(); });
+segBind($('moodView'), (b) => { moodView = b.dataset.v; renderMoods(); });
+renderMoods(); renderMoodDemo();
+
 /* ---------- Footer ---------- */
 $('foot').innerHTML = `<p>Comparison icons come from the published npm packages, unmodified apart from color: ${CMP.libs.map((l) => `${l.name} ${l.version} (${l.license}${l.note ? '; ' + l.note : ''})`).join(', ')}. Font Awesome Free icons by Fonticons, Inc., licensed CC BY 4.0. Blur figures are measured in your browser and vary slightly by browser and operating system.</p><p>Set I of these studies is <code>landing-studies.html</code> in the same folder. Internal study, not for publication as is.</p>`;
 
@@ -789,11 +1204,12 @@ $('foot').innerHTML = `<p>Comparison icons come from the published npm packages,
 renderLoupe(true);
 renderLineup();
 requestAnimationFrame(async () => {
+  // Start the light measurements first. The comparison curves rasterize six sets at 21 sizes and take longest.
+  measureFauna(); measurePlay(); drawWall(); measureMoods();
   curves = await computeCurves(); renderLineup(); drawCurve();
-  measurePlay(); measureFauna(); drawWall();
 });
 let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(drawWall, 200); });
-const rerender = () => { renderLoupe(false); renderLineup(); drawWall(); };
+const rerender = () => { renderLoupe(false); renderLineup(); drawWall(); drawFilm(); mLoupeKey = ''; if (moodView === 'px') drawMoodPx(); };
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', rerender);
 new MutationObserver(rerender).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 </script>
