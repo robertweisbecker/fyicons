@@ -28,7 +28,7 @@ import {
   IconMeter,
   IconMeterHigh,
   IconChecklist,
-  IconChecklistCheck,
+  IconChecklist1,
   IconChecklistChecked,
   IconVolumeX,
   IconVolumeNone,
@@ -117,7 +117,7 @@ export const levelSteps: {
     landingIcons: {
       IconSignalThree2,
       IconMeter,
-      IconChecklistCheck,
+      IconChecklist1,
       IconVolumeLow,
       IconEmojiNeutral,
       IconEmojiNeutralFill,
@@ -134,7 +134,7 @@ export const levelSteps: {
     landingIcons: {
       IconSignalThree2,
       IconMeter,
-      IconChecklistCheck,
+      IconChecklist1,
       IconVolumeMedium,
       IconEmojiSmile,
       IconEmojiSmileFill,
@@ -151,7 +151,7 @@ export const levelSteps: {
     landingIcons: {
       IconSignalThree2,
       IconMeter,
-      IconChecklistCheck,
+      IconChecklist1,
       IconVolumeMedium,
       IconEmojiGrin,
       IconEmojiGrinFill,

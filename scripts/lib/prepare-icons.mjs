@@ -17,17 +17,6 @@ function string(value, field) {
   if (typeof value !== 'string' || !value.trim())
     throw new Error(`Invalid ${field}.`);
 }
-export function componentNameForIcon(name) {
-  return (
-    'Icon' +
-    name
-      .split(/[^a-zA-Z0-9]+/)
-      .filter(Boolean)
-      .map((part) => part[0].toUpperCase() + part.slice(1))
-      .join('')
-  );
-}
-
 export function safeFilename(value) {
   string(value, 'filename');
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]*\.svg$/.test(value) || value.includes('..'))
@@ -107,16 +96,6 @@ export function normalizeManifest(value, { imported = false } = {}) {
         ))
     )
       throw new Error(`Invalid aliases: ${meta.name}`);
-    if (
-      meta.compatibilityNames !== undefined &&
-      (!Array.isArray(meta.compatibilityNames) ||
-        meta.compatibilityNames.some(
-          (name) =>
-            typeof name !== 'string' ||
-            !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name),
-        ))
-    )
-      throw new Error(`Invalid compatibility names: ${meta.name}`);
     for (const field of [
       'originalName',
       'sourceUrl',
@@ -245,20 +224,12 @@ export async function prepareIcons(input, categoryInput, readSvg) {
   const manifest = normalizeManifest(input);
   const categories = parseIconCategories(categoryInput);
   validateCategoryIcons(categories, manifest.icons);
-  const compatibilityMetadata = manifest.icons.flatMap((icon) =>
-    (icon.compatibilityNames ?? []).map((name) => ({
-      id: icon.id,
-      name,
-      filename: `${name}-16.svg`,
-      componentName: componentNameForIcon(name),
-    })),
-  );
   const seen = {
     filename: new Set(),
     name: new Set(),
     componentName: new Set(),
   };
-  for (const meta of [...manifest.icons, ...compatibilityMetadata]) {
+  for (const meta of manifest.icons) {
     for (const [field, values] of Object.entries(seen)) {
       const key = meta[field].toLowerCase();
       if (values.has(key))
@@ -284,12 +255,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
       };
     }),
   );
-  const artworkById = new Map(icons.map(({ id, svg }) => [id, svg]));
-  const compatibilityIcons = compatibilityMetadata.map((icon) => ({
-    ...icon,
-    svg: artworkById.get(icon.id),
-  }));
-  const reactFiles = await renderReactIconFiles(icons, compatibilityIcons);
+  const reactFiles = await renderReactIconFiles(icons);
   const groups = new Map();
   for (const icon of icons) {
     if (!groups.has(icon.baseName)) groups.set(icon.baseName, []);
@@ -302,16 +268,14 @@ export async function prepareIcons(input, categoryInput, readSvg) {
   }
   // Imports and React generation keep the source bytes. Downloads and the npm
   // SVG directory share these classed exports and hashes of the exported bytes.
-  function withExportedSvg(icon) {
+  const exportedIcons = icons.map((icon) => {
     const svg = withIconClasses(icon.svg, icon.name);
     return {
       ...icon,
       svg,
       sha256: createHash('sha256').update(svg).digest('hex'),
     };
-  }
-  const exportedIcons = icons.map(withExportedSvg);
-  const compatibilityExports = compatibilityIcons.map(withExportedSvg);
+  });
   const generatedManifest = {
     ...manifest,
     count: icons.length,
@@ -388,13 +352,7 @@ export async function prepareIcons(input, categoryInput, readSvg) {
     ...manifest,
     icons: manifest.icons.map(({ sha256: _sha, ...meta }) => meta),
   };
-  return {
-    manifest: sourceManifest,
-    icons,
-    exportedIcons,
-    compatibilityExports,
-    expected,
-  };
+  return { manifest: sourceManifest, icons, exportedIcons, expected };
 }
 
 export async function prepareRepositoryIcons(root) {

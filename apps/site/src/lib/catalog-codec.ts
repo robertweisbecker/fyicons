@@ -11,7 +11,6 @@ export type CatalogIcon = {
   height: number;
   sha256: string;
   aliases: string[];
-  compatibilityNames?: string[];
   notes?: string[];
   addedAt?: string;
   updatedAt?: string;

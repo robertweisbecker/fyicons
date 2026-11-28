@@ -43,17 +43,13 @@ assert.ok(
 const manifest = JSON.parse(
   await readFile(path.join(root, 'icons/manifest.json'), 'utf8'),
 );
-const publishedIconCount = manifest.icons.reduce(
-  (count, icon) => count + 1 + (icon.compatibilityNames?.length ?? 0),
-  0,
-);
 assert.equal(
   fileNames.filter((file) => file.startsWith('svg/')).length,
-  publishedIconCount,
+  manifest.icons.length,
 );
 assert.equal(
   fileNames.filter((file) => /^dist\/icons\/.*\.js$/.test(file)).length,
-  publishedIconCount,
+  manifest.icons.length,
 );
 const scratch = await mkdtemp(path.join(tmpdir(), 'fyicons-consumers-'));
 console.log(`Fresh consumers: ${scratch}`);

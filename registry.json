@@ -6304,14 +6304,14 @@
       "type": "registry:component"
     },
     {
-      "name": "checklist-check",
-      "title": "IconChecklistCheck",
-      "description": "The checklist-check icon from FYIcons 0.7.0.",
+      "name": "checklist-1",
+      "title": "IconChecklist1",
+      "description": "The checklist-1 icon from FYIcons 0.7.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconChecklistCheck.tsx",
+          "path": "packages/fyicons/src/IconChecklist1.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconChecklistCheck.tsx"
+          "target": "@components/fyicons/IconChecklist1.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -40808,34 +40808,6 @@
           "path": "packages/fyicons/src/IconFoxFace.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconFoxFace.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/base.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/base.tsx"
-        },
-        {
-          "path": "packages/fyicons/src/types.ts",
-          "type": "registry:file",
-          "target": "@components/fyicons/types.ts"
-        },
-        {
-          "path": "LICENSE",
-          "type": "registry:file",
-          "target": "@components/fyicons/LICENSE"
-        }
-      ],
-      "type": "registry:component"
-    },
-    {
-      "name": "checklist-1",
-      "title": "IconChecklist1",
-      "description": "The checklist-1 icon from FYIcons 0.7.0.",
-      "files": [
-        {
-          "path": "packages/fyicons/src/IconChecklist1.tsx",
-          "type": "registry:file",
-          "target": "@components/fyicons/IconChecklist1.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",

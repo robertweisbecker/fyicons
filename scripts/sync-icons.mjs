@@ -3,7 +3,6 @@ import { normalizeSvgExport } from './lib/svg-export.mjs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import {
-  componentNameForIcon,
   normalizeManifest,
   prepareIcons,
   safeFilename,
@@ -65,6 +64,12 @@ const reserved = new Set([
   ...imported.icons.map((icon) => icon.name),
   ...(useSourceNames ? [] : currentManifest.icons.map((icon) => icon.name)),
 ]);
+const pascal = (text) =>
+  text
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join('');
 const normalized = [];
 const syncedAt = new Date().toISOString();
 const sortedProperties = (properties = {}) =>
@@ -128,11 +133,8 @@ for (const [baseName, group] of groups) {
       updatedAt: _updatedAt,
       ...metadata
     } = icon;
-    const compatibilityNames =
-      icon.compatibilityNames ?? existing?.compatibilityNames;
     normalized.push({
       ...metadata,
-      ...(compatibilityNames ? { compatibilityNames } : {}),
       sha256: createHash('sha256').update(svg).digest('hex'),
       ...dates,
       id: icon.id,
@@ -140,8 +142,8 @@ for (const [baseName, group] of groups) {
       baseName: icon.baseName || existing?.baseName || baseName,
       filename,
       componentName: useSourceNames
-        ? componentNameForIcon(name)
-        : existing?.componentName || componentNameForIcon(name),
+        ? `Icon${pascal(name)}`
+        : existing?.componentName || `Icon${pascal(name)}`,
       aliases: [
         ...new Set(
           [

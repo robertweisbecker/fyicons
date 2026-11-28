@@ -5,7 +5,6 @@ import { JSDOM } from 'jsdom';
 import { createElement as h, Fragment } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { transformWithOxc } from 'vite';
-import { loadRegistryItem } from 'shadcn/registry';
 import {
   normalizeDisplayPaint,
   renderReactIconFiles,
@@ -25,43 +24,6 @@ const generatedFiles = await renderReactIconFiles(
     })),
   ),
 );
-
-test('the checklist name correction preserves the published icon entry points', async () => {
-  const { IconChecklistCheck, IconChecklist1 } = await import('fyicons');
-  const direct = await import('fyicons/icons/IconChecklist1');
-  const client = await import('fyicons/client');
-  assert.equal(direct.default, IconChecklist1);
-  assert.equal(
-    renderToStaticMarkup(h(IconChecklist1)).replace(
-      'fy-checklist-1',
-      'fy-checklist-check',
-    ),
-    renderToStaticMarkup(h(IconChecklistCheck)),
-  );
-  assert.match(
-    renderToStaticMarkup(
-      h(client.FyiProvider, { size: 24 }, h(client.IconChecklist1)),
-    ),
-    /width="24"[^>]+class="fy-icon fy-checklist-1"/,
-  );
-
-  const readSvg = (name) =>
-    readFile(
-      new URL(import.meta.resolve(`fyicons/svg/${name}-16.svg`)),
-      'utf8',
-    );
-  assert.equal(
-    (await readSvg('checklist-1')).replace(
-      'fy-checklist-1',
-      'fy-checklist-check',
-    ),
-    await readSvg('checklist-check'),
-  );
-  const item = await loadRegistryItem('checklist-1', { cwd: process.cwd() });
-  assert.ok(
-    item.files.some(({ path }) => path.endsWith('/IconChecklist1.tsx')),
-  );
-});
 
 // Exercise generated modules and their shared SVG root as executable code.
 const svgRootModule = (async () => {

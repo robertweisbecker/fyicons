@@ -26,8 +26,7 @@ const file = (name) => ({
   type: 'registry:file',
   target: `@components/fyicons/${name}`,
 });
-const publishedIcons = [...prepared.icons, ...prepared.compatibilityExports];
-const items = publishedIcons.map((icon) => ({
+const items = prepared.icons.map((icon) => ({
   name: icon.name,
   type: 'registry:component',
   title: icon.componentName,

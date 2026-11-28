@@ -58,15 +58,11 @@ execFileSync(
   { stdio: 'inherit' },
 );
 await mkdir(path.join(stage, 'dist/client'));
-const publishedIcons = [
-  ...prepared.exportedIcons,
-  ...prepared.compatibilityExports,
-];
-for (const [file, source] of renderClientDistribution(publishedIcons)) {
+for (const [file, source] of renderClientDistribution(prepared.icons)) {
   await writeFile(path.join(stage, 'dist', file), source);
 }
 await mkdir(path.join(stage, 'svg'));
-for (const icon of publishedIcons) {
+for (const icon of prepared.exportedIcons) {
   await writeFile(path.join(stage, 'svg', icon.filename), icon.svg);
 }
 const pkg = JSON.parse(
