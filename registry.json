@@ -16132,14 +16132,14 @@
       "type": "registry:component"
     },
     {
-      "name": "arrow-up-right-1",
-      "title": "IconArrowUpRight1",
-      "description": "The arrow-up-right-1 icon from FYIcons 0.7.0.",
+      "name": "arrow-up-left",
+      "title": "IconArrowUpLeft",
+      "description": "The arrow-up-left icon from FYIcons 0.7.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconArrowUpRight1.tsx",
+          "path": "packages/fyicons/src/IconArrowUpLeft.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconArrowUpRight1.tsx"
+          "target": "@components/fyicons/IconArrowUpLeft.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -20668,14 +20668,14 @@
       "type": "registry:component"
     },
     {
-      "name": "plus-large",
-      "title": "IconPlusLarge",
-      "description": "The plus-large icon from FYIcons 0.7.0.",
+      "name": "plus-lg",
+      "title": "IconPlusLg",
+      "description": "The plus-lg icon from FYIcons 0.7.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconPlusLarge.tsx",
+          "path": "packages/fyicons/src/IconPlusLg.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconPlusLarge.tsx"
+          "target": "@components/fyicons/IconPlusLg.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -32848,14 +32848,14 @@
       "type": "registry:component"
     },
     {
-      "name": "hand-recieve",
-      "title": "IconHandRecieve",
-      "description": "The hand-recieve icon from FYIcons 0.7.0.",
+      "name": "hand-receive",
+      "title": "IconHandReceive",
+      "description": "The hand-receive icon from FYIcons 0.7.0.",
       "files": [
         {
-          "path": "packages/fyicons/src/IconHandRecieve.tsx",
+          "path": "packages/fyicons/src/IconHandReceive.tsx",
           "type": "registry:file",
-          "target": "@components/fyicons/IconHandRecieve.tsx"
+          "target": "@components/fyicons/IconHandReceive.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -40968,6 +40968,34 @@
       "type": "registry:component"
     },
     {
+      "name": "arrow-up-right-1",
+      "title": "IconArrowUpRight1",
+      "description": "The arrow-up-right-1 icon from FYIcons 0.7.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconArrowUpRight1.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconArrowUpRight1.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
       "name": "redo-small",
       "title": "IconRedoSmall",
       "description": "The redo-small icon from FYIcons 0.7.0.",
@@ -41004,6 +41032,34 @@
           "path": "packages/fyicons/src/IconUndoSmall.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconUndoSmall.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "plus-large",
+      "title": "IconPlusLarge",
+      "description": "The plus-large icon from FYIcons 0.7.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconPlusLarge.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconPlusLarge.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",
@@ -41620,6 +41676,34 @@
           "path": "packages/fyicons/src/IconNumber0Fill.tsx",
           "type": "registry:file",
           "target": "@components/fyicons/IconNumber0Fill.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/base.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/base.tsx"
+        },
+        {
+          "path": "packages/fyicons/src/types.ts",
+          "type": "registry:file",
+          "target": "@components/fyicons/types.ts"
+        },
+        {
+          "path": "LICENSE",
+          "type": "registry:file",
+          "target": "@components/fyicons/LICENSE"
+        }
+      ],
+      "type": "registry:component"
+    },
+    {
+      "name": "hand-recieve",
+      "title": "IconHandRecieve",
+      "description": "The hand-recieve icon from FYIcons 0.7.0.",
+      "files": [
+        {
+          "path": "packages/fyicons/src/IconHandRecieve.tsx",
+          "type": "registry:file",
+          "target": "@components/fyicons/IconHandRecieve.tsx"
         },
         {
           "path": "packages/fyicons/src/base.tsx",

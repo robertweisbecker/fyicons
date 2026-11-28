@@ -10649,22 +10649,27 @@
     },
     {
       "id": "1431:10357",
-      "originalName": "arrow-up-right",
+      "originalName": "arrow-up-left",
       "width": 16,
       "height": 16,
-      "name": "arrow-up-right-1",
-      "baseName": "arrow-up-right",
-      "filename": "arrow-up-right-1-16.svg",
+      "name": "arrow-up-left",
+      "baseName": "arrow-up-left",
+      "filename": "arrow-up-left-16.svg",
       "file": "svgs/1431-10357.svg",
       "aliases": [
         "arrow-up-right",
         "arrow-up-right-16.svg",
-        "1431-10357.svg"
+        "1431-10357.svg",
+        "arrow-up-right-1",
+        "arrow-up-right-1-16.svg"
       ],
       "notes": [],
-      "componentName": "IconArrowUpRight1",
+      "componentName": "IconArrowUpLeft",
+      "compatibilityNames": [
+        "arrow-up-right-1"
+      ],
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "updatedAt": "2026-11-28T07:09:13.893Z"
     },
     {
       "id": "518:4795",
@@ -13668,19 +13673,24 @@
     },
     {
       "id": "101:3664",
-      "originalName": "plus-large",
+      "originalName": "plus-lg",
       "width": 16,
       "height": 16,
-      "name": "plus-large",
-      "baseName": "plus-large",
-      "filename": "plus-large-16.svg",
+      "name": "plus-lg",
+      "baseName": "plus-lg",
+      "filename": "plus-lg-16.svg",
       "file": "svgs/101-3664.svg",
       "aliases": [
-        "101-3664.svg"
+        "101-3664.svg",
+        "plus-large",
+        "plus-large-16.svg"
       ],
       "notes": [],
-      "componentName": "IconPlusLarge",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "componentName": "IconPlusLg",
+      "compatibilityNames": [
+        "plus-large"
+      ],
+      "updatedAt": "2026-11-28T07:09:13.893Z"
     },
     {
       "id": "101:3662",
@@ -21787,20 +21797,25 @@
     },
     {
       "id": "1083:10983",
-      "originalName": "hand-recieve",
+      "originalName": "hand-receive",
       "width": 16,
       "height": 16,
-      "name": "hand-recieve",
-      "baseName": "hand-recieve",
-      "filename": "hand-recieve-16.svg",
+      "name": "hand-receive",
+      "baseName": "hand-receive",
+      "filename": "hand-receive-16.svg",
       "file": "svgs/1083-10983.svg",
       "aliases": [
-        "1083-10983.svg"
+        "1083-10983.svg",
+        "hand-recieve",
+        "hand-recieve-16.svg"
       ],
       "notes": [],
-      "componentName": "IconHandRecieve",
+      "componentName": "IconHandReceive",
+      "compatibilityNames": [
+        "hand-recieve"
+      ],
       "addedAt": "2026-10-22T08:06:37.817Z",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-28T07:09:13.893Z"
     },
     {
       "id": "1064:757",
