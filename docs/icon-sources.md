@@ -70,7 +70,7 @@ Supplied dates must be valid, and `addedAt` must not follow `updatedAt`. Catalog
 
 ## Category rules
 
-Each category has an `id`, display `name`, sidebar `icon`, and `keywords`. The file order controls the menu order. An icon can match more than one category.
+Each category has an `id`, display `name`, sidebar `icon`, and `keywords`. The site lists categories alphabetically by display name after All. An icon can match more than one category.
 
 A keyword matches complete, consecutive name segments. Matching ignores case and treats hyphens, underscores, and spaces as separators. `file` matches `file-add`, but not `profile` or `files`. List singular and plural forms separately. `arrow-up` matches `circle-arrow-up-fill`, but not `arrow-right-up`.
 

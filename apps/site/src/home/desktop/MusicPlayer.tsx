@@ -19,11 +19,11 @@ import {
   IconCircleCheckFill,
   IconCirclePlus,
   IconCirclePlusFill,
-  IconComputer,
   IconGhost,
   IconHeadphones,
   IconMicrophoneMusic,
   IconMicrophoneMusicFill,
+  IconLaptop,
   IconPauseFill,
   IconPictureInPicture,
   IconPictureInPictureExit,
@@ -54,7 +54,7 @@ const Icon = createIconLookup({
   'circle-check-fill': IconCircleCheckFill,
   'circle-plus': IconCirclePlus,
   'circle-plus-fill': IconCirclePlusFill,
-  computer: IconComputer,
+  laptop: IconLaptop,
   ghost: IconGhost,
   headphones: IconHeadphones,
   'microphone-music': IconMicrophoneMusic,
@@ -86,7 +86,7 @@ const Icon = createIconLookup({
 const playbackDevices = [
   { value: 'headphones', label: 'Headphones', icon: 'headphones' },
   { value: 'speakers', label: 'Speaker group', icon: 'speakers' },
-  { value: 'computer', label: 'Computer', icon: 'computer' },
+  { value: 'computer', label: 'MacBob Air', icon: 'laptop' },
 ];
 
 function PlayerSlider({

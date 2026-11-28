@@ -21,6 +21,7 @@ import {
   IconThumbsDownFill,
   IconFileImage,
   IconFileVideo,
+  IconFileTable,
   IconFileZip,
   IconCircleCheckFill,
   IconProgressPie20,
@@ -115,9 +116,10 @@ export function Feedback() {
   );
 }
 const transfers = [
-  ['hero-shot.png', IconFileImage, 'text-pink-500'],
-  ['walkthrough.mp4', IconFileVideo, 'text-violet-500'],
-  ['icons.zip', IconFileZip, 'text-amber-500'],
+  ['hero-shot.png', IconFileImage, 'text-pink-500', 1],
+  ['walkthrough.mp4', IconFileVideo, 'text-violet-500', 2],
+  ['icons.zip', IconFileZip, 'text-amber-500', 0],
+  ['budget.xlsx', IconFileTable, 'text-emerald-500', 3],
 ];
 const progressIcons = [
   IconProgressPie20,
@@ -127,7 +129,7 @@ const progressIcons = [
   IconCircleCheckFill,
 ];
 export function Uploads() {
-  const [steps, setSteps] = useState([1, 2, 0]);
+  const [steps, setSteps] = useState(() => transfers.map((file) => file[3]));
   const [running, setRunning] = useState(false);
   const done = steps.every((s) => s === 4);
   useEffect(() => {
@@ -165,7 +167,7 @@ export function Uploads() {
             icon={<IconArrowCounterClockwise />}
             label="Restart uploads"
             onClick={() => {
-              setSteps([0, 0, 0]);
+              setSteps(transfers.map(() => 0));
               setRunning(true);
             }}
           />
@@ -214,11 +216,16 @@ export function Notifications() {
           size="xs"
           variant="ghost"
           className="ml-auto"
-          disabled={!unread}
-          onClick={() => setRead(notes.map(([name]) => name))}
+          onClick={() => {
+            if (unread) setRead(notes.map(([name]) => name));
+            else {
+              setRead([]);
+              setHidden([]);
+            }
+          }}
         >
-          <IconCheck />
-          Mark all read
+          {unread ? <IconCheck /> : <IconArrowCounterClockwise />}
+          {unread ? 'Mark all read' : 'Reset'}
         </Button>
       </div>
       {notes.map(([name, when, Glyph, color]) => (
@@ -233,7 +240,7 @@ export function Notifications() {
             <span
               className={cn(
                 'grid size-7 shrink-0 place-items-center rounded-full text-slate-900',
-                color,
+                read.includes(name) ? 'bg-ink/10 text-muted' : color,
               )}
             >
               <Glyph />

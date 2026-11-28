@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import './toast.css';
 
 type ToastData = { icon?: ReactNode };
-const toastManager = Toast.createToastManager<ToastData>();
+export const toastManager = Toast.createToastManager<ToastData>();
 export function notify(
   title: ReactNode,
   options?: ToastData & { id?: string },
@@ -58,6 +58,17 @@ function ToastViewport() {
                 <span className="shrink-0">{toast.data.icon}</span>
               )}
               <Toast.Title className="min-w-0 flex-1 text-sm break-words" />
+              {toast.actionProps && (
+                <Toast.Action
+                  render={
+                    <Button
+                      variant="neutral"
+                      size="sm"
+                      className="rounded-full"
+                    />
+                  }
+                />
+              )}
               <Toast.Close
                 render={
                   <Button

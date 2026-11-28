@@ -178,7 +178,6 @@ export function SocialApp() {
           <Icon name="bird" /> Bird App
         </>
       }
-      className="max-w-2xl"
     >
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain p-4 text-muted">
         <div className="mb-4 flex items-center gap-2 text-base font-semibold text-ink">

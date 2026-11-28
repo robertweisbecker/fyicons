@@ -20,12 +20,14 @@ export function getCategoryOptions() {
   }
   return [
     { value: 'all', label: 'All', icon: 'grid', count: icons.length },
-    ...categories.map((category) => ({
-      value: category.id,
-      label: category.name,
-      icon: byName.has(category.icon) ? category.icon : 'tag',
-      count: counts.get(category.id) ?? 0,
-    })),
+    ...categories
+      .map((category) => ({
+        value: category.id,
+        label: category.name,
+        icon: byName.has(category.icon) ? category.icon : 'tag',
+        count: counts.get(category.id) ?? 0,
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label, 'en')),
   ];
 }
 type Props = {

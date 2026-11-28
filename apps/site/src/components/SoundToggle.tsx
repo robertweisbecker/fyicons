@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { IconVolumeLow, IconVolumeSlash } from 'fyicons';
+import { IconVolumeHighFill, IconVolumeNone } from 'fyicons';
 import { Button } from '@/components/ui/button';
 import { Tooltip } from '@/components/ui/tooltip';
 import { notify } from '@/components/ui/toast';
@@ -58,7 +58,7 @@ export function SoundToggle() {
         className="max-sm:size-9"
         onClick={toggleSound}
       >
-        {enabled ? <IconVolumeLow /> : <IconVolumeSlash />}
+        {enabled ? <IconVolumeHighFill /> : <IconVolumeNone />}
       </Button>
     </Tooltip>
   );

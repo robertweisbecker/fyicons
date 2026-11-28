@@ -11,13 +11,16 @@ import {
   IconFolderOpen,
   IconFolderOpenFill,
   IconGhost,
-  IconLetterM,
+  IconSquareLetterM,
   IconMarkdownFill,
   IconPage,
   IconSquareDot,
   IconTextTitle,
   IconTextTitleFill,
   IconFileText,
+  IconFileAudio,
+  IconFileImage,
+  IconFileVideo,
 } from 'fyicons';
 
 const Icon = createIconLookup({
@@ -29,13 +32,16 @@ const Icon = createIconLookup({
   'folder-open': IconFolderOpen,
   'folder-open-fill': IconFolderOpenFill,
   ghost: IconGhost,
-  'letter-m': IconLetterM,
+  'letter-m': IconSquareLetterM,
   'markdown-fill': IconMarkdownFill,
   page: IconPage,
   'square-dot': IconSquareDot,
   text: IconTextTitle,
   'text-fill': IconTextTitleFill,
   'file-text': IconFileText,
+  'file-image': IconFileImage,
+  'file-video': IconFileVideo,
+  'file-audio': IconFileAudio,
 });
 
 export type ProjectFile = { path: string; icon: string; change?: string };
@@ -43,6 +49,9 @@ export const fileIconColors: Record<string, string> = {
   atom: 'text-sky-400',
   'atom-react': 'text-sky-400',
   'markdown-fill': 'text-zinc-500',
+  'file-image': 'text-pink-500',
+  'file-video': 'text-violet-500',
+  'file-audio': 'text-emerald-500',
 };
 type Node = {
   name: string;

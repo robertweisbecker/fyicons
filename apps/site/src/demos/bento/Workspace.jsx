@@ -3,6 +3,13 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { Toolbar } from '@base-ui/react/toolbar';
 import { Button } from '@/components/ui/button';
+import {
+  Menu,
+  MenuContent,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuTrigger,
+} from '@/components/ui/menu';
 import { IconButton } from '@/components/IconButton';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { FileTree } from '@/components/FileTree';
@@ -14,7 +21,7 @@ import {
   IconArrowDownRight,
   IconArrowRight,
   IconCloud,
-  IconPrinter,
+  IconCar,
   IconSuitcase,
   IconOffice,
   IconRepeat,
@@ -43,6 +50,14 @@ import {
   IconTextUnderline,
   IconTextStrikethrough,
   IconHeading1,
+  IconHeading2,
+  IconHeading3,
+  IconHeading4,
+  IconHeading5,
+  IconHeading6,
+  IconHeading,
+  IconChevronDownSm,
+  IconCircleUserDashed,
   IconCodeBlock,
   IconQuoteBlock,
   IconListBullet,
@@ -146,24 +161,44 @@ export function Sidebar() {
   );
 }
 
-const formats = [
-  ['Heading', IconHeading1],
-  ['Bold', IconTextBold],
-  ['Italic', IconItalic],
-  ['Underline', IconTextUnderline],
-  ['Strikethrough', IconTextStrikethrough],
-  ['Bullets', IconListBullet],
-  ['Numbering', IconListOrdered],
-  ['Quote', IconQuoteBlock],
-  ['Code', IconCodeBlock],
-  ['Link', IconLink],
-  ['Image', IconImage],
-  ['Mention', IconAtSign],
+const headings = [
+  ['p', 'Paragraph', IconHeading, 'text-lg'],
+  ['h1', 'Heading 1', IconHeading1, 'text-3xl font-semibold'],
+  ['h2', 'Heading 2', IconHeading2, 'text-2xl font-semibold'],
+  ['h3', 'Heading 3', IconHeading3, 'text-xl font-semibold'],
+  ['h4', 'Heading 4', IconHeading4, 'text-lg font-semibold'],
+  ['h5', 'Heading 5', IconHeading5, 'text-base font-semibold'],
+  ['h6', 'Heading 6', IconHeading6, 'text-sm font-semibold'],
+];
+const formatGroups = [
+  [
+    ['Bold', IconTextBold],
+    ['Italic', IconItalic],
+    ['Underline', IconTextUnderline],
+    ['Strikethrough', IconTextStrikethrough],
+  ],
+  [
+    ['Bullets', IconListBullet],
+    ['Numbering', IconListOrdered],
+    ['Quote', IconQuoteBlock],
+    ['Code', IconCodeBlock],
+  ],
+  [
+    ['Link', IconLink],
+    ['Image', IconImage],
+    ['Mention', IconAtSign],
+  ],
 ];
 export function Editor() {
   const [history, setHistory] = useState([[]]);
   const [at, setAt] = useState(0);
   const marks = history[at];
+  const [Block, blockLabel, HeadingIcon, blockClass] =
+    headings.find(([tag]) => marks.includes(tag)) ?? headings[0];
+  function record(next) {
+    setHistory([...history.slice(0, at + 1), next]);
+    setAt(at + 1);
+  }
   function toggle(name, on) {
     const blocks = ['Bullets', 'Numbering', 'Quote', 'Code'];
     const next = on
@@ -172,8 +207,7 @@ export function Editor() {
           name,
         ]
       : marks.filter((m) => m !== name);
-    setHistory([...history.slice(0, at + 1), next]);
-    setAt(at + 1);
+    record(next);
   }
   return (
     <div className="space-y-5">
@@ -181,41 +215,78 @@ export function Editor() {
         aria-label="Formatting"
         className="flex flex-wrap items-center gap-0.5 border-b border-line pb-2"
       >
-        <Toolbar.Button
-          render={<Button variant="ghost" size="icon-sm" />}
-          aria-label="Undo"
-          disabled={!at}
-          onClick={() => setAt(at - 1)}
-        >
-          <IconUndo />
-        </Toolbar.Button>
-        <Toolbar.Button
-          render={<Button variant="ghost" size="icon-sm" />}
-          aria-label="Redo"
-          disabled={at === history.length - 1}
-          onClick={() => setAt(at + 1)}
-        >
-          <IconRedo />
-        </Toolbar.Button>
-        <Toolbar.Separator className="mx-1 h-4 w-px bg-line" />
-        {formats.map(([name, Glyph]) => (
-          <Toolbar.Button
-            key={name}
-            render={<Button variant="ghost" size="icon-sm" />}
-            aria-label={name}
-            title={name}
-            aria-pressed={marks.includes(name)}
-            onClick={() => toggle(name, !marks.includes(name))}
+        <Menu>
+          <MenuTrigger
+            render={
+              <Toolbar.Button render={<Button size="sm" variant="ghost" />} />
+            }
+            aria-label={'Heading level: ' + blockLabel}
           >
-            <Glyph />
-          </Toolbar.Button>
+            <HeadingIcon />
+            <IconChevronDownSm size={12} />
+          </MenuTrigger>
+          <MenuContent>
+            <MenuRadioGroup
+              value={Block}
+              onValueChange={(value) => {
+                if (value !== Block)
+                  record([...marks.filter((mark) => mark !== Block), value]);
+              }}
+            >
+              {headings.map(([tag, label, Glyph]) => (
+                <MenuRadioItem key={tag} value={tag}>
+                  <Glyph />
+                  {label}
+                </MenuRadioItem>
+              ))}
+            </MenuRadioGroup>
+          </MenuContent>
+        </Menu>
+        {formatGroups.map((group) => (
+          <div key={group[0][0]} className="flex items-center gap-0.5">
+            <Toolbar.Separator className="mx-1 h-4 w-px bg-line" />
+            {group.map(([name, Glyph]) => (
+              <Toolbar.Button
+                key={name}
+                render={<Button variant="ghost" size="icon-sm" />}
+                aria-label={name}
+                title={name}
+                aria-pressed={marks.includes(name)}
+                onClick={() => toggle(name, !marks.includes(name))}
+              >
+                <Glyph />
+              </Toolbar.Button>
+            ))}
+          </div>
         ))}
+        <Toolbar.Group
+          aria-label="Edit history"
+          className="ml-auto flex items-center gap-0.5"
+        >
+          <Toolbar.Separator className="mx-1 h-4 w-px bg-line" />
+          <Toolbar.Button
+            render={<Button variant="ghost" size="icon-sm" />}
+            aria-label="Undo"
+            disabled={!at}
+            onClick={() => setAt(at - 1)}
+          >
+            <IconUndo />
+          </Toolbar.Button>
+          <Toolbar.Button
+            render={<Button variant="ghost" size="icon-sm" />}
+            aria-label="Redo"
+            disabled={at === history.length - 1}
+            onClick={() => setAt(at + 1)}
+          >
+            <IconRedo />
+          </Toolbar.Button>
+        </Toolbar.Group>
       </Toolbar.Root>
       <div className="min-h-24">
-        <p
+        <Block
           className={cn(
-            'text-lg leading-snug',
-            marks.includes('Heading') && 'text-2xl font-semibold',
+            'leading-snug',
+            blockClass,
             marks.includes('Bold') && 'font-bold',
             marks.includes('Italic') && 'italic',
             marks.includes('Link') && 'text-blue-600',
@@ -244,7 +315,7 @@ export function Editor() {
               @sam
             </span>
           )}
-        </p>
+        </Block>
         {marks.includes('Image') && (
           <div className="mt-3 flex items-center gap-2 rounded-lg bg-hover p-2 text-xs">
             <IconImage />
@@ -261,10 +332,13 @@ const projectFiles = [
   { path: 'src/components/Inspector.tsx', icon: 'atom-react' },
   { path: 'src/icons.ts', icon: 'file-text' },
   { path: 'public/logo.svg', icon: 'page' },
+  { path: 'public/cover.png', icon: 'file-image' },
+  { path: 'public/walkthrough.mp4', icon: 'file-video' },
+  { path: 'public/keyclick.wav', icon: 'file-audio' },
   { path: 'README.md', icon: 'markdown-fill' },
 ];
 export function Files() {
-  const [open, setOpen] = useState(['src', 'src/components']);
+  const [open, setOpen] = useState(['src', 'src/components', 'public']);
   const [selected, setSelected] = useState(projectFiles[0].path);
   return (
     <div>
@@ -293,13 +367,13 @@ const states = {
 const owners = {
   Ada: [IconUserPersonFill, 'bg-violet-200 text-violet-900'],
   Bob: [IconUserFill, 'bg-sky-200 text-sky-900'],
-  Sam: [IconUserPersonFill, 'bg-amber-200 text-amber-900'],
+  Unknown: [IconCircleUserDashed, 'bg-hover text-muted'],
   Jo: [IconUserFill, 'bg-rose-200 text-rose-900'],
 };
 const statusOrder = Object.keys(states);
 const billTags = {
   Hosting: [IconCloud, 'text-blue-700 dark:text-blue-300'],
-  Print: [IconPrinter, 'text-violet-700 dark:text-violet-300'],
+  'Car payment': [IconCar, 'text-violet-700 dark:text-violet-300'],
   Travel: [IconSuitcase, 'text-orange-700 dark:text-orange-300'],
   Rent: [IconOffice, 'text-teal-700 dark:text-teal-300'],
   Recurring: [IconRepeat, 'text-zinc-700 dark:text-zinc-300'],
@@ -314,17 +388,17 @@ const bills = [
     lastMonth: 500,
   },
   {
-    vendor: 'Birch Print',
+    vendor: 'Birch Auto',
     status: 'Approved',
     owner: 'Bob',
-    tags: ['Print'],
+    tags: ['Car payment'],
     amount: 384,
     lastMonth: 480,
   },
   {
     vendor: 'Northline Rail',
     status: 'Draft',
-    owner: 'Sam',
+    owner: 'Unknown',
     tags: ['Travel'],
     amount: 216,
     lastMonth: 200,
@@ -403,7 +477,7 @@ export function Table() {
                 <col className="w-[max(3.5rem,round(down,10cqw,1px))]" />
                 <col className="w-[max(5.5rem,round(down,17cqw,1px))]" />
                 <col className="w-[max(5.5rem,round(down,16cqw,1px))]" />
-                <col className="w-[max(3.5rem,round(down,11cqw,1px))]" />
+                <col className="w-[max(5rem,round(down,11cqw,1px))]" />
                 <col />
               </colgroup>
               <thead className="text-muted">
@@ -465,10 +539,10 @@ export function Table() {
                           <UpdateStatus name={vendor} initialStatus={status} />
                         </td>
                         <td>
-                          <span className="flex items-center gap-1.5">
+                          <span className="flex items-center gap-1">
                             <Avatar
                               aria-hidden="true"
-                              className={cn('size-6', avatarColor)}
+                              className={cn('size-5', avatarColor)}
                             >
                               <AvatarFallback>
                                 <UserGlyph size={16} />
@@ -486,7 +560,7 @@ export function Table() {
                                   key={tag}
                                   size="sm"
                                   className={cn(
-                                    'leading-4 not-last:min-w-18',
+                                    'leading-4 whitespace-nowrap',
                                     color,
                                   )}
                                   icon={

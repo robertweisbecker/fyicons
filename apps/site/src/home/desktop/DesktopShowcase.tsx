@@ -1,11 +1,12 @@
 import { createIconLookup } from '@/components/createIconLookup';
+import { cn } from '@/lib/utils';
 import {
   DemoActivityBoundary,
   DeferredModule,
   useNearViewport,
 } from '@/components/DeferredContent';
-import type { ComponentType } from 'react';
-import { useEffect, useId, useRef, useState } from 'react';
+import type { ComponentType, CSSProperties } from 'react';
+import { useId, useRef, useState } from 'react';
 import { Tabs } from '@base-ui/react/tabs';
 import {
   AnimatePresence,
@@ -17,6 +18,9 @@ import { DeviceBattery, DeviceClock } from '../DeviceStatus';
 import './DesktopShowcase.css';
 import {
   IconPenTool,
+  IconCaretsMaximize,
+  IconMinus,
+  IconX,
   IconFiles,
   IconFilesTilt,
   IconCode,
@@ -36,6 +40,9 @@ import {
 
 const Icon = createIconLookup({
   'pen-tool': IconPenTool,
+  'carets-maximize': IconCaretsMaximize,
+  minus: IconMinus,
+  x: IconX,
   files: IconFiles,
   'files-tilt': IconFilesTilt,
   code: IconCode,
@@ -71,13 +78,34 @@ const appLoaders: Record<string, () => Promise<ComponentType>> = {
   agents: () => import('./AgentsApp').then((module) => module.AgentsApp),
 };
 
-const panelClassName =
-  'col-start-1 row-start-1 z-1 grid h-full min-h-0 min-w-0 place-items-center p-3 pb-10 sm:p-6 sm:pb-10 lg:p-8 lg:pb-10 ' +
-  'transition-[opacity,translate] duration-[120ms,200ms] ease-[cubic-bezier(0.22,1,0.36,1)] ' +
-  'data-starting-style:opacity-0 data-ending-style:z-0 data-ending-style:opacity-0 data-ending-style:duration-180 data-ending-style:ease-[linear,cubic-bezier(0.22,1,0.36,1)] ' +
-  'data-starting-style:data-[activation-direction=right]:translate-x-2 data-starting-style:data-[activation-direction=left]:-translate-x-2 ' +
-  'data-ending-style:data-[activation-direction=right]:-translate-x-1 data-ending-style:data-[activation-direction=left]:translate-x-1 ' +
-  'group-has-[[role=tab]:focus-visible]/desktop:transition-none!';
+function WindowControls() {
+  return (
+    <span
+      className="group/traffic pointer-events-auto flex w-20 shrink-0 items-center justify-center gap-2"
+      aria-hidden
+    >
+      {[
+        ['x', 'bg-red-400'],
+        ['minus', 'bg-yellow-400'],
+        ['carets-maximize', 'bg-green-500'],
+      ].map(([icon, color]) => (
+        <span
+          key={icon}
+          className={cn(
+            'flex size-3.5 items-center justify-center rounded-full text-black/60 inset-ring inset-ring-black/5',
+            color,
+          )}
+        >
+          <Icon
+            name={icon}
+            size={11}
+            className="opacity-0 group-hover/traffic:opacity-100"
+          />
+        </span>
+      ))}
+    </span>
+  );
+}
 
 function DesktopStatusBar() {
   return (
@@ -110,6 +138,11 @@ function DesktopStatusBar() {
 export function DesktopShowcase() {
   const [activeApp, setActiveApp] = useState<string>('design');
   const [visitedApps, setVisitedApps] = useState(() => new Set(['design']));
+  const activeIndex = apps.findIndex((app) => app.id === activeApp);
+  const [keyboardSwitch, setKeyboardSwitch] = useState(false);
+  const dockTransition = keyboardSwitch
+    ? { duration: 0 }
+    : { type: 'spring' as const, duration: 0.28, bounce: 0 };
   const dockId = useId();
   const root = useRef<HTMLElement>(null);
   const { near, visible } = useNearViewport(root);
@@ -125,20 +158,24 @@ export function DesktopShowcase() {
         <MotionConfig reducedMotion="user">
           <Tabs.Root
             value={activeApp}
-            onValueChange={(value) => {
+            onValueChange={(value, { event }) => {
+              const target = event.target;
+              setKeyboardSwitch(
+                event instanceof KeyboardEvent ||
+                  (target instanceof Element &&
+                    target.matches(':focus-visible')),
+              );
               setRequested(true);
               setActiveApp(value);
               setVisitedApps((previous) =>
                 previous.has(value) ? previous : new Set(previous).add(value),
               );
             }}
-            className="group/desktop relative"
+            data-instant={keyboardSwitch || undefined}
+            className="desktop-showcase relative"
           >
             <div className="absolute bottom-2 left-1/2 z-20 w-max max-w-full -translate-x-1/2 translate-y-1/2">
-              <MotionConfig
-                reducedMotion="user"
-                transition={{ type: 'spring', duration: 0.28, bounce: 0 }}
-              >
+              <MotionConfig reducedMotion="user" transition={dockTransition}>
                 <LayoutGroup id={dockId}>
                   <Tabs.List
                     aria-label="Demo apps"
@@ -207,35 +244,66 @@ export function DesktopShowcase() {
             </div>
             <div className="rounded-2xl border border-border">
               {/* Clip the backdrop inside the border so it cannot cover the rounded frame. */}
-              <div className="relative isolate overflow-hidden rounded-[calc(var(--radius-2xl)-1px)] bg-neutral-900 [clip-path:inset(0_round_calc(var(--radius-2xl)-1px))]">
-                <MeshBackdrop active={activeApp} />
+              <div className="showcase-screen relative isolate overflow-hidden rounded-[calc(var(--radius-2xl)-1px)] bg-neutral-900 [clip-path:inset(0_round_calc(var(--radius-2xl)-1px))]">
+                <motion.div
+                  aria-hidden="true"
+                  className="showcase-wallpaper pointer-events-none absolute inset-y-0 left-0 -z-10"
+                  initial={false}
+                  animate={{ x: `${(-75 * activeIndex) / (apps.length - 1)}%` }}
+                  transition={dockTransition}
+                >
+                  {apps.slice(1).map((app, index) => (
+                    <span
+                      key={app.id}
+                      style={
+                        {
+                          '--from': `var(--${apps[index].id})`,
+                          '--to': `var(--${app.id})`,
+                        } as CSSProperties
+                      }
+                    />
+                  ))}
+                </motion.div>
                 <DesktopStatusBar />
-                <div className="grid h-152 sm:h-144">
-                  {apps
-                    .filter((app) => visitedApps.has(app.id))
-                    .map((app) => (
-                      <Tabs.Panel
-                        key={app.id}
-                        value={app.id}
-                        keepMounted
-                        className={panelClassName}
-                      >
-                        <DeferredModule
-                          loader={appLoaders[app.id]}
-                          enabled={near || requested}
-                          active={visible && activeApp === app.id}
-                          componentProps={{}}
-                          fallback={
-                            <div
-                              role="status"
-                              className="grid h-full w-full place-items-center text-sm text-white/70"
-                            >
-                              Loading demo…
-                            </div>
-                          }
-                        />
-                      </Tabs.Panel>
-                    ))}
+                <div className="grid h-152 p-3 pb-10 sm:h-144 sm:p-6 sm:pb-10 lg:p-8 lg:pb-10">
+                  <div
+                    className="showcase-windows relative isolate min-h-0 min-w-0"
+                    data-app={activeApp}
+                  >
+                    <div
+                      aria-hidden="true"
+                      className="showcase-window-shadow pointer-events-none absolute inset-0 -z-10"
+                    />
+                    <div className="showcase-window-frame grid h-full place-items-center bg-surface">
+                      {apps.map((app, index) => (
+                        <Tabs.Panel
+                          key={app.id}
+                          value={app.id}
+                          keepMounted
+                          data-app={app.id}
+                          data-side={index < activeIndex ? 'left' : 'right'}
+                          className="showcase-panel relative z-1 col-start-1 row-start-1 grid h-full min-h-0 w-full min-w-0 rounded-xl bg-surface focus-visible:-outline-offset-2"
+                        >
+                          {visitedApps.has(app.id) && (
+                            <DeferredModule
+                              loader={appLoaders[app.id]}
+                              enabled={near || requested}
+                              active={visible && activeApp === app.id}
+                              componentProps={{}}
+                              fallback={
+                                <div className="absolute inset-0 grid place-items-center text-sm text-muted">
+                                  Loading demo…
+                                </div>
+                              }
+                            />
+                          )}
+                        </Tabs.Panel>
+                      ))}
+                      <div className="showcase-window-controls pointer-events-none absolute inset-x-0 top-0 z-10 flex h-9 items-center">
+                        <WindowControls />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -243,37 +311,5 @@ export function DesktopShowcase() {
         </MotionConfig>
       </DemoActivityBoundary>
     </section>
-  );
-}
-
-function MeshBackdrop({ active }: { active: string }) {
-  const [layers, setLayers] = useState({
-    first: active,
-    second: active,
-    front: false,
-  });
-  useEffect(() => {
-    setLayers((previous) =>
-      previous.front
-        ? { ...previous, first: active, front: false }
-        : { ...previous, second: active, front: true },
-    );
-  }, [active]);
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10"
-    >
-      <div
-        className="showcase-mesh absolute inset-0 transition-opacity duration-200 motion-reduce:transition-none"
-        data-app={layers.first}
-        style={{ opacity: layers.front ? 0 : 1 }}
-      />
-      <div
-        className="showcase-mesh absolute inset-0 transition-opacity duration-200 motion-reduce:transition-none"
-        data-app={layers.second}
-        style={{ opacity: layers.front ? 1 : 0 }}
-      />
-    </div>
   );
 }

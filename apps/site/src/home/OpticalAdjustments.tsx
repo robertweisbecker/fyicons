@@ -7,6 +7,7 @@ import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { createDemoControls } from '@/demos/components/DemoControls';
 import { OpticalStudy, StudyTile } from './optical/OpticalStudy';
+import { formatPixels } from './optical/OpticalDrawings';
 import {
   IconApps,
   IconFont,
@@ -43,28 +44,67 @@ function OpticalGrid({ children }: { children: ReactNode }) {
   );
 }
 
+function BowlMeasurement({
+  left,
+  right,
+  labelClassName,
+}: {
+  left: number;
+  right: number;
+  labelClassName: string;
+}) {
+  return (
+    <g>
+      <path
+        d={`M${left} 13.5V14.4M${right} 13.5V14.4`}
+        strokeDasharray=".16 .14"
+      />
+      <path d={`M${left} 14.2v.4M${right} 14.2v.4M${left} 14.4H${right}`} />
+      <text
+        x={(left + right) / 2}
+        y="15.55"
+        textAnchor="middle"
+        stroke="none"
+        className={`font-mono text-[.75px] tabular-nums ${labelClassName}`}
+      >
+        {formatPixels(right - left)}
+      </text>
+    </g>
+  );
+}
+
 function FontGuides() {
   // Project the outer oval behind the stem from the visible bowl's bounds.
   const outerOval = { cx: 11.999, cy: 10, rx: 2.5, ry: 3 };
-  const innerOval = { cx: 12.165, cy: 10, rx: 1.667, ry: 1.909 };
+  const guideStroke = 0.085;
   const outerLeft = outerOval.cx - outerOval.rx;
   const outerRight = outerOval.cx + outerOval.rx;
-  const innerLeft = innerOval.cx - innerOval.rx;
-  const innerRight = innerOval.cx + innerOval.rx;
+  // The lowercase counter in font-16.svg has a flatter right side.
+  const innerLeft = 10.499;
+  const innerRight = 13.834;
 
   return (
-    <>
+    <g stroke="currentColor" strokeWidth={guideStroke}>
       <ellipse
-        {...outerOval}
+        cx={outerOval.cx}
+        cy={outerOval.cy}
+        rx={outerOval.rx - guideStroke / 2}
+        ry={outerOval.ry - guideStroke / 2}
         className="text-pink-400 dark:text-pink-300"
         fill="none"
         strokeDasharray="0.2 0.15"
       />
-      <ellipse
-        {...innerOval}
-        className="text-green-400 dark:text-green-400"
+      <path
+        d="M12.167 8.091
+           C11.247 8.091 10.5 8.946 10.499 10
+           S11.246 11.909 12.166 11.909
+           C13.336 11.909 13.834 11.054 13.834 9.999
+           C13.834 8.946 13.337 8.091 12.166 8.091Z"
+        className="text-green-400"
         fill="currentColor"
         fillOpacity="0.2"
+        strokeLinecap="round"
+        strokeDasharray="0 .2"
       />
       <g className="text-control-accent">
         <rect
@@ -77,6 +117,11 @@ function FontGuides() {
           stroke="none"
         />
         <path d={`M${outerLeft} 6.5V13.5M${innerLeft} 6.5V13.5`} />
+        <BowlMeasurement
+          left={outerLeft}
+          right={innerLeft}
+          labelClassName="fill-blue-800 dark:fill-blue-200"
+        />
       </g>
       <g className="text-green-400">
         <rect
@@ -88,12 +133,14 @@ function FontGuides() {
           fillOpacity="0.25"
           stroke="none"
         />
-        {/* <path d={`M${innerRight} 6.5V13.5`} strokeDasharray="0.2 0.15" /> */}
         <path d={`M${outerRight} 6.5V13.5`} />
-        <circle cx="13.92" cy="7.96" r="0.4" />
-        <circle cx="13.92" cy="12.04" r="0.4" />
+        <BowlMeasurement
+          left={innerRight}
+          right={outerRight}
+          labelClassName="fill-green-800 dark:fill-green-300"
+        />
       </g>
-    </>
+    </g>
   );
 }
 
@@ -142,11 +189,7 @@ function CurvesCard() {
             strokeWidth=".04"
           />
           <Icon name="font" size={16} />
-          {showGuides && (
-            <g stroke="currentColor" strokeWidth=".085">
-              <FontGuides />
-            </g>
-          )}
+          {showGuides && <FontGuides />}
         </svg>
         <Field.Root className="flex min-h-11 items-center gap-2.5">
           <Field.Label className="text-sm text-muted">Show guides</Field.Label>

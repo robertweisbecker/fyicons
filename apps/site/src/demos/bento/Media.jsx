@@ -27,7 +27,7 @@ import {
   IconThumbsUpFill,
   IconEmojiGrin,
   IconPartyPopper,
-  IconSkull,
+  IconSkullFill,
   IconPaperclipTilt,
   IconEmojiSmile,
   IconWifi,
@@ -269,7 +269,7 @@ const reactionsList = [
   ['Fire', IconFireAltFill, 'text-orange-500'],
   ['Grin', IconEmojiGrin, 'text-amber-500'],
   ['Celebrate', IconPartyPopper, 'text-violet-500'],
-  ['Skull', IconSkull, 'text-muted'],
+  ['Skull', IconSkullFill, 'text-muted'],
 ];
 
 export function Chat() {
@@ -297,13 +297,12 @@ export function Chat() {
         <Bubble>
           <BubbleContent>Ship it this week?</BubbleContent>
         </Bubble>
-        <div className="absolute top-0 left-2 z-1 w-52 max-w-[calc(100%-1rem)] rounded-full bg-dialog p-1 shadow-md ring-1 ring-line after:absolute after:-bottom-1 after:left-6 after:size-2.5 after:rounded-full after:bg-dialog">
+        <div className="absolute top-0 left-2 z-1 w-52 max-w-[calc(100%-1rem)] rounded-full bg-dialog p-1 shadow-md ring-1 ring-line after:absolute after:-bottom-1 after:left-6 after:size-2.5 after:rounded-full after:bg-dialog after:ring-1 after:ring-line after:[clip-path:inset(40%_-2px_-2px)]">
           <ScrollArea.Root className="rounded-full">
             <ScrollArea.Viewport className="overflow-x-auto [--fade-size:1rem]">
               <ScrollArea.Content>
                 <ToggleGroup
                   aria-label="React to Sam’s message"
-                  multiple
                   value={reactions}
                   onValueChange={setReactions}
                   className="flex w-max items-center gap-1 p-1"
@@ -314,10 +313,15 @@ export function Chat() {
                       value={name}
                       aria-label={name + ' reaction'}
                       size="icon"
-                      variant="elevated"
-                      className="rounded-full focus-visible:-outline-offset-2 data-pressed:bg-surface"
+                      variant="unstyled"
+                      className="rounded-full hover:bg-hover focus-visible:-outline-offset-2 data-pressed:bg-blue-600"
                     >
-                      <Glyph size={20} className={color} />
+                      <Glyph
+                        size={20}
+                        className={
+                          reactions.includes(name) ? 'text-white' : color
+                        }
+                      />
                     </Toggle>
                   ))}
                 </ToggleGroup>

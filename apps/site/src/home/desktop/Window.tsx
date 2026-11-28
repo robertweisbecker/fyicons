@@ -6,7 +6,6 @@ import {
   IconArrowClockwise,
   IconArrowLeft,
   IconArrowRight,
-  IconCaretsMaximize,
   IconCircleUserFill,
   IconCircleXFill,
   IconEllipsisV,
@@ -14,12 +13,10 @@ import {
   IconGasFill,
   IconInfo,
   IconInfoFill,
-  IconMinus,
   IconPlus,
   IconPuzzlePiece,
   IconStarFill,
   IconVideoFill,
-  IconX,
   IconZoomIn,
 } from 'fyicons';
 
@@ -27,7 +24,6 @@ const Icon = createIconLookup({
   'arrow-clockwise': IconArrowClockwise,
   'arrow-left': IconArrowLeft,
   'arrow-right': IconArrowRight,
-  'carets-maximize': IconCaretsMaximize,
   'circle-user-fill': IconCircleUserFill,
   'circle-x-fill': IconCircleXFill,
   'ellipsis-v': IconEllipsisV,
@@ -35,43 +31,12 @@ const Icon = createIconLookup({
   'gas-fill': IconGasFill,
   info: IconInfo,
   'info-fill': IconInfoFill,
-  minus: IconMinus,
   plus: IconPlus,
   'puzzle-piece': IconPuzzlePiece,
   'star-fill': IconStarFill,
   'video-fill': IconVideoFill,
-  x: IconX,
   'zoom-in': IconZoomIn,
 });
-
-export function WindowControls() {
-  return (
-    <span
-      className="group/traffic flex w-20 shrink-0 items-center justify-center gap-2"
-      aria-hidden
-    >
-      {[
-        ['x', 'bg-red-400'],
-        ['minus', 'bg-yellow-400'],
-        ['carets-maximize', 'bg-green-500'],
-      ].map(([icon, color]) => (
-        <span
-          key={icon}
-          className={cn(
-            'flex size-3.5 items-center justify-center rounded-full text-black/60 inset-ring inset-ring-black/5',
-            color,
-          )}
-        >
-          <Icon
-            name={icon}
-            size={11}
-            className="opacity-0 group-hover/traffic:opacity-100"
-          />
-        </span>
-      ))}
-    </span>
-  );
-}
 
 export function Window({
   title,
@@ -93,10 +58,8 @@ export function Window({
     >
       <TooltipGroup>
         {header ?? (
-          <div className="flex h-9 shrink-0 items-center justify-between gap-2 border-b border-line bg-bg text-xs text-muted">
-            <WindowControls />
+          <div className="flex h-9 shrink-0 items-center justify-center border-b border-line bg-bg px-20 text-xs text-muted">
             <span className="flex items-center gap-1">{title}</span>
-            <span className="w-20" aria-hidden />
           </div>
         )}
         {children}
@@ -117,13 +80,11 @@ export function BrowserWindow({
   return (
     <Window
       title={title}
-      className="max-w-3xl"
       header={
         <div
           aria-label="Browser tabs"
-          className="flex h-11 shrink-0 items-center gap-1 border-b border-line bg-bg pr-2 text-xs text-muted"
+          className="flex h-9 shrink-0 items-center gap-1 border-b border-line bg-bg pr-2 pl-21 text-xs text-muted"
         >
-          <WindowControls />
           <div className="flex h-6 max-w-44 min-w-0 flex-[1.2] items-center gap-2 rounded-lg bg-dialog px-1.5 text-ink shadow-xs ring-1 ring-line">
             <Icon name="gas" className="text-focus" />
             <span className="min-w-0 flex-1 truncate">{title}</span>

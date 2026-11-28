@@ -26,7 +26,6 @@ import {
   IconClockFill,
   IconClockSolid,
   IconCompass,
-  IconCompassFill,
   IconCookieBite,
   IconCookieBiteFill,
   IconCreditCard,
@@ -36,6 +35,8 @@ import {
   IconCursorFill,
   IconDiamond,
   IconDiamondFill,
+  IconDie,
+  IconDieFill,
   IconEditSolid,
   IconError,
   IconErrorFill,
@@ -122,7 +123,6 @@ const Icon = createIconLookup({
   'clock-fill': IconClockFill,
   'clock-solid': IconClockSolid,
   compass: IconCompass,
-  'compass-fill': IconCompassFill,
   'cookie-bite': IconCookieBite,
   'cookie-bite-fill': IconCookieBiteFill,
   'credit-card': IconCreditCard,
@@ -132,6 +132,8 @@ const Icon = createIconLookup({
   'cursor-fill': IconCursorFill,
   diamond: IconDiamond,
   'diamond-fill': IconDiamondFill,
+  die: IconDie,
+  'die-fill': IconDieFill,
   'edit-solid': IconEditSolid,
   error: IconError,
   'error-fill': IconErrorFill,
@@ -223,6 +225,7 @@ const variantIcons = [
   'stop',
   'circle-check',
   'clock',
+  'die',
 ] as const;
 
 const mixedIcons = [
@@ -262,33 +265,40 @@ const mixedIcons = [
   'progress-task-done',
 ] as const;
 
-const variants = [
-  { label: 'Outline', icons: variantIcons },
-  {
-    label: 'Filled',
-    icons: variantIcons.map((name) => `${name}-fill`),
-  },
-  { label: 'Mixed', icons: mixedIcons },
-] as const;
+const variants = {
+  Outline: variantIcons,
+  Filled: variantIcons.map((name) => `${name}-fill`),
+  Mixed: mixedIcons,
+};
+
+export function VariantIconGrid({
+  variant,
+}: {
+  variant: keyof typeof variants;
+}) {
+  return (
+    <ul
+      aria-label={`${variant} icons`}
+      role="list"
+      className="grid aspect-square min-h-26 w-full flex-1 auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
+    >
+      {variants[variant].map((name) => (
+        <li key={name} className="flex min-w-0 items-center justify-center">
+          <Icon
+            name={name}
+            className="size-4 sm:size-6"
+            aria-label={name.replaceAll('-', ' ')}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export function IconVariants() {
-  return variants.map(({ label, icons }) => (
+  return (['Outline', 'Filled', 'Mixed'] as const).map((label) => (
     <IconExampleCard key={label} label={label} className="sm:col-span-2">
-      <ul
-        aria-label={`${label} icons`}
-        role="list"
-        className="grid aspect-square min-h-26 w-full flex-1 auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
-      >
-        {icons.map((name) => (
-          <li key={name} className="flex min-w-0 items-center justify-center">
-            <Icon
-              name={name}
-              className="size-4 sm:size-6"
-              aria-label={name.replaceAll('-', ' ')}
-            />
-          </li>
-        ))}
-      </ul>
+      <VariantIconGrid variant={label} />
     </IconExampleCard>
   ));
 }

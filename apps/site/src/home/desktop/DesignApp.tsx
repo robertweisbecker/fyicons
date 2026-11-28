@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { createGlyph } from '../Study';
 import { DesignInspector, designFills } from './DesignInspector';
 import { DesignRail } from './DesignRail';
-import { Window, WindowControls } from './Window';
+import { Window } from './Window';
 import {
   IconAngle,
   IconApps,
@@ -157,10 +157,9 @@ export function DesignApp() {
       title="Design"
       header={
         <div
-          className="flex h-9 shrink-0 items-center border-b border-line bg-bg text-xs text-muted"
+          className="flex h-9 shrink-0 items-center border-b border-line bg-bg pl-20 text-xs text-muted"
           aria-label="Design app bar"
         >
-          <WindowControls />
           <DemoIconButton
             label="Design home"
             icon="home"

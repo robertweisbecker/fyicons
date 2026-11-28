@@ -46,7 +46,13 @@ const examples = [
     inset: true,
     dot: 'bg-violet-600',
   },
-  { title: 'Files', Content: Files, tall: true, dot: 'bg-amber-500' },
+  {
+    title: 'Files',
+    Content: Files,
+    tall: true,
+    alignStart: true,
+    dot: 'bg-amber-500',
+  },
   {
     title: 'Control center',
     Content: ControlCenter,
@@ -108,6 +114,7 @@ function ExampleTile({
   dot,
   inset,
   fullBleed,
+  alignStart,
   showSpecs,
   active,
   onInspect,
@@ -145,6 +152,7 @@ function ExampleTile({
               ? 'flex min-h-0 flex-1'
               : 'my-auto min-h-0 min-w-0 overflow-y-auto',
             inset && 'rounded-xl bg-surface p-3.5 text-ink shadow-sm sm:p-4',
+            alignStart && 'my-0',
           )}
         >
           <Content heading={fullBleed ? heading : undefined} />

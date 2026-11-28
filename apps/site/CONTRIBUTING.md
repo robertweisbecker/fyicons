@@ -35,24 +35,6 @@ Documentation-only changes need formatting, relative-link, and source checks. Th
 
 ## Change the website
 
-Use the shared controls in `apps/site/src/components/ui/`. Keep Tailwind utilities with their components. Keep conditional class names complete so Tailwind can detect them. `apps/site/src/styles.css` contains theme tokens and base rules.
-
-Use the shared Badge as a button or link for interactive category badges. Keep accessible names and keyboard behavior when changing controls.
-
-Routes live in `apps/site/src/app/`. The public pages are `/`, `/icons/`, `/examples/`, and `/docs/`. Add a docs page as `apps/site/src/app/docs/topic/page.mdx`; nesting another folder creates a subpage. Set its exported `metadata` title and description, then add its link to `apps/site/src/lib/docs-navigation.ts`. The shared docs layout keeps the sidebar mounted between pages. The Sidebar components also render the icon category filters.
-
-Use the Prototypes link in the local development header, or open `/prototypes/` directly, to review internal studies. The link and `page.dev.tsx` routes are included only in development.
-
-Keep browser APIs inside Client Components and effects. Docs content renders as static HTML. Icon filters use query parameters (`category`, `q`, and `icon`), and Next.js handles page navigation. Test direct entry, refresh, and Back/Forward for nested pages in the static preview, not only in the dev server.
-
-The website uses local font files. Keep their notices in `apps/site/public/licenses/`. The icon package uses the root MIT license; the fonts have separate licenses.
-
-Interface text uses the original webfonts from [Allo 1.1.0 by Josh Puckett](https://github.com/joshpuckett/allo/releases/tag/v1.1.0). `AlloVariable.woff2` is the upright font. CSS sets roundness to its maximum (`ROND=100`), with variable weight and automatic optical sizing. The regular and bold obliques use separate files. Code uses Paper Mono.
-
-Configure fonts with `next/font/local` in `src/app/fonts.ts` and apply their classes in the root layout. Upright Allo is preloaded. Oblique styles and Paper Mono load when used. The wordmarks use the shared `public/brand-wordmarks.svg` symbols; their lettering inherits the current text color in both themes.
-
-Development startup and production builds generate `public/downloads/fyicons.zip` from the current catalog and package SVGs. Full-library downloads use this static file. Custom selections are packaged in the browser. The generated ZIP is ignored by Git. After icon edits during a running development session, run `node scripts/build-site-archive.mjs` from the repository root to refresh it. Verify archive contents with `node --test tests/site/icon-archive.test.mjs`.
-
 ## Edit category rules
 
 Follow [Icon sources](../../docs/icon-sources.md#category-rules) for rule syntax and generation. The browser fetches category rules on page load without caching. Save and refresh to use edited rules; a running dev or preview server needs no restart. If category loading fails, the library keeps all icons available and shows a notice. Production builds minify the category JSON without changing its data.
@@ -61,7 +43,11 @@ Follow [Icon sources](../../docs/icon-sources.md#category-rules) for rule syntax
 
 `npm run version:packages` updates the inspector's Added and Updated versions when it prepares a release. It compares canonical artwork and names by collection and component ID across the `fyicons@*` tags. For the version being prepared, it uses the current icon inventory until its tag exists. Fetch the release tags before running the version command locally.
 
-The version PR includes the generated `apps/site/src/data/icon-releases.json`. After the site build, `npm run verify:site-release` checks the rendered release notes, release link, and Added/Updated coverage for every current icon. Version-PR verification and the publishing job both run this check before publication. The site tests also check recent-addition indicators and inspector release links. The indicators and Newest view include icons added in the latest two minor release lines, including their patch versions. Release verification checks the saved history for drift. Website builds read the saved file. An icon shows Added for its first release and Updated only for a later change. A rename keeps the original Added version. Changes to export formatting, import dates, or categories do not advance either version.
+The version PR includes the generated `apps/site/src/data/icon-releases.json`. After the site build, `npm run verify:site-release` checks the rendered release notes, release link, and Added/Updated coverage for every current icon. Version-PR verification and the publishing job both run this check before publication. Release verification checks the saved history for drift. Website builds read the saved file. An icon shows Added for its first release and Updated only for a later change. A rename keeps the original Added version. Changes to export formatting, import dates, or categories do not advance either version.
+
+Newest and Last updated sort the matching icons by Added and Updated release, respectively, with the most recent release first. Icons without the selected release information appear last. The recent-addition indicators mark icons added in the latest two minor release lines, including their patch versions. The site tests check sort order, indicators, and inspector release links.
+
+After a GitHub release is published, add its `published_at` timestamp to `apps/site/src/data/release-dates.json` so the changelog link shows the release date.
 
 To verify the saved history after publication, run:
 

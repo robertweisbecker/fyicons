@@ -16,7 +16,7 @@ import {
 } from './ui/select';
 import { SelectedIconsDialog } from './SelectedIconsDialog';
 import { IconSearch } from './Search';
-import { searchIcons, type IconSort } from '@/lib/icon-search';
+import { searchIcons } from '@/lib/icon-search';
 import { IconGrid } from './IconGrid';
 import { IconTile } from './IconTile';
 import { PreviewSizeControl } from './PreviewSizeControl';
@@ -32,13 +32,14 @@ import { byId, icons, type IconRecord } from '@/lib/catalog';
 import { downloadIcons } from '@/lib/downloads';
 import { isStringArray, useMobile, usePreference } from '@/lib/preferences';
 import { isEditableTarget } from '@/lib/keyboard';
-import { getRecentIconAddition } from '@/lib/icon-releases';
+import { getIconReleaseOrder } from '@/lib/icon-releases';
 
 const sortOptions = {
   alphabetical: { label: 'Name (A to Z)', icon: 'sort-down' },
   addedAt: { label: 'Newest', icon: 'fire-alt-fill' },
   updatedAt: { label: 'Last updated', icon: 'history' },
-} satisfies Record<IconSort, { label: string; icon: string }>;
+};
+type IconSort = keyof typeof sortOptions;
 const sortItems = Object.entries(sortOptions).map(([value, option]) => ({
   ...option,
   value: value as IconSort,
@@ -79,17 +80,21 @@ function IconsBrowserContent() {
   const search = useRef<HTMLInputElement>(null);
   const lastSelected = useRef<string | null>(null);
   const visible = useMemo(() => {
-    return searchIcons(
+    const results = searchIcons(
       icons.filter(
         (icon) =>
           (activeCategory === 'all' ||
             icon.categories.includes(activeCategory)) &&
-          (sort !== 'addedAt' ||
-            getRecentIconAddition(icon.id) !== undefined) &&
           (showFilled || !icon.name.split('-').includes('fill')),
       ),
       query,
-      sort,
+      'alphabetical',
+    );
+    if (sort === 'alphabetical') return results;
+    const field = sort === 'addedAt' ? 'added' : 'updated';
+    return results.sort(
+      (a, b) =>
+        getIconReleaseOrder(b.id, field) - getIconReleaseOrder(a.id, field),
     );
   }, [query, activeCategory, showFilled, categoryReadiness.version, sort]);
   const selectedIcons = useMemo(

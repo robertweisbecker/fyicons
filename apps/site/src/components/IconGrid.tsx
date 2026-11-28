@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/menu';
 import { notify } from '@/components/ui/toast';
 import { copy, downloadIcon } from '@/lib/downloads';
+import { copyMenuSvg } from './copy-menu-svg';
 
 function tileFor(target: EventTarget | null) {
   return target instanceof Element
@@ -66,13 +67,13 @@ export function IconGrid({
 function TileMenu({ icon }: { icon: IconRecord }) {
   const source = useIconSource(icon);
   const name = getIconDisplayName(icon);
-  async function copyValue(value: string, label: string) {
-    if (await copy(value)) {
+  async function copyName() {
+    if (await copy(name)) {
       notify(
         <>
           &quot;<span className="font-semibold">{name}</span>&quot; copied
         </>,
-        { id: `copy:${icon.id}:${label}`, icon: <Icon name={icon.id} /> },
+        { id: `copy:${icon.id}:Name`, icon: <Icon name={icon.id} /> },
       );
     } else {
       notify('Clipboard unavailable. Please try again.');
@@ -83,25 +84,13 @@ function TileMenu({ icon }: { icon: IconRecord }) {
     <MenuContent aria-label={`${name} actions`} sideOffset={0}>
       <MenuGroup>
         <MenuGroupLabel>{name}</MenuGroupLabel>
-        <MenuItem onClick={() => copyValue(name, 'Name')}>
+        <MenuItem onClick={copyName}>
           <Icon name="text-title" />
           Copy name
         </MenuItem>
-        <MenuItem
-          disabled={!source.text && !source.error}
-          closeOnClick={!source.error}
-          onClick={() =>
-            source.error
-              ? source.retry()
-              : source.text && copyValue(source.text, 'SVG')
-          }
-        >
+        <MenuItem onClick={() => copyMenuSvg(icon, source.text)}>
           <Icon name="copy" />
-          {source.error
-            ? 'Retry loading SVG'
-            : source.text
-              ? 'Copy SVG'
-              : 'Loading SVG…'}
+          Copy SVG
         </MenuItem>
         <MenuItem onClick={() => downloadIcon(icon)}>
           <Icon name="download-square" />
