@@ -40,10 +40,10 @@ Figma can wrap artwork in a group that is clipped to the full 16 × 16 frame. Th
 
 The removal applies only when all of these conditions are true:
 
-- The root has a `0 0 16 16` viewBox, equal width and height, and no `overflow`, `preserveAspectRatio`, `transform`, or `style` attribute.
+- The root has a `0 0 16 16` viewBox, equal width and height, and no `filter`, `overflow`, `preserveAspectRatio`, `transform`, or `style` attribute.
 - The `clipPath` uses user-space units and has one child: a rectangle or a straight-edged path that covers exactly `0 0 16 16`.
 - Exactly one attribute refers to the clip ID: the `clip-path` attribute of a group.
-- That group and its ancestor groups have no transform.
+- That group and its ancestor groups have no transform or filter, and no other element refers to their IDs. For example, a `<use>` element can draw the group again at another position.
 - The SVG has no CSS and no escaped references.
 
 The importer keeps all other clips, including partial clips and clips that more than one element uses.

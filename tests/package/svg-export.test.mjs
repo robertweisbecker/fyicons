@@ -285,10 +285,22 @@ test('partial, shared, transformed and styled clips are kept', () => {
     shape = '<rect width="16" height="16"/>',
     clip = 'id="c"',
     extra = '',
-  } = {}) =>
-    `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" ${root}><g ${group}>${body}</g>${extra}<defs><clipPath ${clip}>${shape}</clipPath></defs></svg>`;
+    outer = '',
+  } = {}) => {
+    const art = `<g ${group}>${body}</g>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" ${root}>${outer ? `<g ${outer}>${art}</g>` : art}${extra}<defs><clipPath ${clip}>${shape}</clipPath></defs></svg>`;
+  };
+  // An offset filter can move clipped-out pixels into the viewport.
+  const offset =
+    '<filter id="f" filterUnits="userSpaceOnUse" x="-20" y="0" width="60" height="16"><feOffset dx="-16"/></filter>';
   // The unmodified fixture is removable, so each case tests one guard.
   assert.doesNotMatch(normalizeSvgExport(svg()), /clip/);
+  assert.doesNotMatch(
+    normalizeSvgExport(
+      svg({ outer: 'opacity=".5"', group: 'id="art" clip-path="url(#c)"' }),
+    ),
+    /clip/,
+  );
   const kept = [
     svg({ shape: '<rect width="15" height="16"/>' }),
     svg({ shape: '<rect x="1" width="16" height="16"/>' }),
@@ -308,6 +320,18 @@ test('partial, shared, transformed and styled clips are kept', () => {
     svg({ root: 'viewBox="0 0 24 24"' }),
     svg({ root: 'viewBox="0 0 16 16" overflow="visible"' }),
     svg({ extra: '<style>g{opacity:.5}</style>' }),
+    // A reused group renders again in another coordinate system.
+    svg({
+      group: 'id="art" clip-path="url(#c)"',
+      extra: '<use href="#art" x="-16"/>',
+    }),
+    svg({
+      outer: 'id="outer"',
+      extra: '<use href="#outer" x="-16"/>',
+    }),
+    svg({ outer: 'filter="url(#f)"', extra: offset }),
+    svg({ group: 'clip-path="url(#c)" filter="url(#f)"', extra: offset }),
+    svg({ root: 'viewBox="0 0 16 16" filter="url(#f)"', extra: offset }),
   ];
   for (const candidate of kept)
     assert.match(
