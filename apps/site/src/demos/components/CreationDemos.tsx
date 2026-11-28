@@ -34,7 +34,7 @@ import {
   IconFileCode,
   IconGhost,
   IconGlobe,
-  IconKbdCommandSmall,
+  IconKbdCommandSm,
   IconKbdReturn,
   IconLock,
   IconLockFill,
@@ -65,7 +65,7 @@ const Icon = createIconLookup({
   'file-code': IconFileCode,
   ghost: IconGhost,
   globe: IconGlobe,
-  'kbd-command-small': IconKbdCommandSmall,
+  'kbd-command-sm': IconKbdCommandSm,
   'kbd-return': IconKbdReturn,
   lock: IconLock,
   'lock-fill': IconLockFill,
@@ -231,7 +231,7 @@ export function ComposerDemo() {
             ? 'Web search enabled'
             : 'Private conversation'}
         <span className="ml-auto hidden items-center gap-1 sm:flex">
-          <Icon name="kbd-command-small" />
+          <Icon name="kbd-command-sm" />
           <Icon name="kbd-return" />
           to send
         </span>

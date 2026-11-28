@@ -3020,19 +3020,24 @@
     },
     {
       "id": "224:14340",
-      "originalName": "file-small",
+      "originalName": "file-sm",
       "width": 16,
       "height": 16,
-      "name": "file-small",
-      "baseName": "file-small",
-      "filename": "file-small-16.svg",
+      "name": "file-sm",
+      "baseName": "file-sm",
+      "filename": "file-sm-16.svg",
       "file": "svgs/224-14340.svg",
       "aliases": [
-        "224-14340.svg"
+        "224-14340.svg",
+        "file-small",
+        "file-small-16.svg"
       ],
       "notes": [],
-      "componentName": "IconFileSmall",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "componentName": "IconFileSm",
+      "compatibilityNames": [
+        "file-small"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "102:5434",
@@ -4165,13 +4170,16 @@
     },
     {
       "id": "148:6826",
-      "originalName": "checklist",
+      "name": "checklist-check",
+      "baseName": "checklist-check",
+      "originalName": "checklist-check",
+      "filename": "checklist-check-16.svg",
+      "file": "svgs/148-6826.svg",
       "width": 16,
       "height": 16,
-      "name": "checklist-1",
-      "baseName": "checklist",
-      "filename": "checklist-1-16.svg",
-      "file": "svgs/148-6826.svg",
+      "compatibilityNames": [
+        "checklist-1"
+      ],
       "aliases": [
         "148-6826.svg",
         "list-task-started",
@@ -4179,11 +4187,13 @@
         "checklist-started",
         "checklist-started-16.svg",
         "checklist",
-        "checklist-16.svg"
+        "checklist-16.svg",
+        "checklist-1",
+        "checklist-1-16.svg"
       ],
       "notes": [],
-      "componentName": "IconChecklist1",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "componentName": "IconChecklistCheck",
+      "updatedAt": "2026-11-25T03:07:56.064Z"
     },
     {
       "id": "578:3042",
@@ -7878,21 +7888,26 @@
     },
     {
       "id": "297:3574",
-      "originalName": "kbd-command-small",
+      "originalName": "kbd-command-sm",
       "width": 16,
       "height": 16,
-      "name": "kbd-command-small",
-      "baseName": "kbd-command-small",
-      "filename": "kbd-command-small-16.svg",
+      "name": "kbd-command-sm",
+      "baseName": "kbd-command-sm",
+      "filename": "kbd-command-sm-16.svg",
       "file": "svgs/297-3574.svg",
       "aliases": [
         "297-3574.svg",
         "command-small",
-        "command-small-16.svg"
+        "command-small-16.svg",
+        "kbd-command-small",
+        "kbd-command-small-16.svg"
       ],
       "notes": [],
-      "componentName": "IconKbdCommandSmall",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "componentName": "IconKbdCommandSm",
+      "compatibilityNames": [
+        "kbd-command-small"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "297:3592",
@@ -8099,46 +8114,56 @@
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "name": "settings-small",
-      "baseName": "settings-small",
-      "filename": "settings-small-16.svg",
+      "name": "settings-sm",
+      "baseName": "settings-sm",
+      "filename": "settings-sm-16.svg",
       "file": "svgs/178-12405.svg",
       "aliases": [
         "178-12405.svg",
         "settings-small-off",
-        "settings-small-off-16.svg"
+        "settings-small-off-16.svg",
+        "settings-small",
+        "settings-small-16.svg"
       ],
       "notes": [],
-      "componentName": "IconSettingsSmall",
+      "componentName": "IconSettingsSm",
       "variantSetId": "578:2531",
-      "variantSetName": "settings-small",
+      "variantSetName": "settings-sm",
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "compatibilityNames": [
+        "settings-small"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "178:12414",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
-      "name": "settings-small-fill",
-      "baseName": "settings-small",
-      "filename": "settings-small-fill-16.svg",
+      "name": "settings-sm-fill",
+      "baseName": "settings-sm",
+      "filename": "settings-sm-fill-16.svg",
       "file": "svgs/178-12414.svg",
       "aliases": [
         "178-12414.svg",
         "settings-small-on",
-        "settings-small-on-16.svg"
+        "settings-small-on-16.svg",
+        "settings-small-fill",
+        "settings-small-fill-16.svg"
       ],
       "notes": [],
-      "componentName": "IconSettingsSmallFill",
+      "componentName": "IconSettingsSmFill",
       "variantSetId": "578:2531",
-      "variantSetName": "settings-small",
+      "variantSetName": "settings-sm",
       "variantProperties": {
         "fill": "true"
       },
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "compatibilityNames": [
+        "settings-small-fill"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "529:7914",
@@ -10624,22 +10649,27 @@
     },
     {
       "id": "1431:10357",
-      "originalName": "arrow-up-right",
+      "originalName": "arrow-up-left",
       "width": 16,
       "height": 16,
-      "name": "arrow-up-right-1",
-      "baseName": "arrow-up-right",
-      "filename": "arrow-up-right-1-16.svg",
+      "name": "arrow-up-left",
+      "baseName": "arrow-up-left",
+      "filename": "arrow-up-left-16.svg",
       "file": "svgs/1431-10357.svg",
       "aliases": [
         "arrow-up-right",
         "arrow-up-right-16.svg",
-        "1431-10357.svg"
+        "1431-10357.svg",
+        "arrow-up-right-1",
+        "arrow-up-right-1-16.svg"
       ],
       "notes": [],
-      "componentName": "IconArrowUpRight1",
+      "componentName": "IconArrowUpLeft",
+      "compatibilityNames": [
+        "arrow-up-right-1"
+      ],
       "addedAt": "2026-11-06T00:41:40.347Z",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "updatedAt": "2026-11-28T07:09:13.893Z"
     },
     {
       "id": "518:4795",
@@ -12360,35 +12390,45 @@
     },
     {
       "id": "469:1424",
-      "originalName": "redo-small",
+      "originalName": "redo-sm",
       "width": 16,
       "height": 16,
-      "name": "redo-small",
-      "baseName": "redo-small",
-      "filename": "redo-small-16.svg",
+      "name": "redo-sm",
+      "baseName": "redo-sm",
+      "filename": "redo-sm-16.svg",
       "file": "svgs/469-1424.svg",
       "aliases": [
-        "469-1424.svg"
+        "469-1424.svg",
+        "redo-small",
+        "redo-small-16.svg"
       ],
       "notes": [],
-      "componentName": "IconRedoSmall",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "componentName": "IconRedoSm",
+      "compatibilityNames": [
+        "redo-small"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "328:6263",
-      "originalName": "undo-small",
+      "originalName": "undo-sm",
       "width": 16,
       "height": 16,
-      "name": "undo-small",
-      "baseName": "undo-small",
-      "filename": "undo-small-16.svg",
+      "name": "undo-sm",
+      "baseName": "undo-sm",
+      "filename": "undo-sm-16.svg",
       "file": "svgs/328-6263.svg",
       "aliases": [
-        "328-6263.svg"
+        "328-6263.svg",
+        "undo-small",
+        "undo-small-16.svg"
       ],
       "notes": [],
-      "componentName": "IconUndoSmall",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "componentName": "IconUndoSm",
+      "compatibilityNames": [
+        "undo-small"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "154:11359",
@@ -13633,19 +13673,24 @@
     },
     {
       "id": "101:3664",
-      "originalName": "plus-large",
+      "originalName": "plus-lg",
       "width": 16,
       "height": 16,
-      "name": "plus-large",
-      "baseName": "plus-large",
-      "filename": "plus-large-16.svg",
+      "name": "plus-lg",
+      "baseName": "plus-lg",
+      "filename": "plus-lg-16.svg",
       "file": "svgs/101-3664.svg",
       "aliases": [
-        "101-3664.svg"
+        "101-3664.svg",
+        "plus-large",
+        "plus-large-16.svg"
       ],
       "notes": [],
-      "componentName": "IconPlusLarge",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "componentName": "IconPlusLg",
+      "compatibilityNames": [
+        "plus-large"
+      ],
+      "updatedAt": "2026-11-28T07:09:13.893Z"
     },
     {
       "id": "101:3662",
@@ -16375,19 +16420,25 @@
     },
     {
       "id": "520:5393",
-      "originalName": "flashlight-off-fill",
+      "originalName": "flashlight-sm",
       "width": 16,
       "height": 16,
-      "name": "flashlight-off-fill",
-      "baseName": "flashlight-off-fill",
-      "filename": "flashlight-off-fill-16.svg",
+      "name": "flashlight-sm",
+      "baseName": "flashlight-sm",
+      "filename": "flashlight-sm-16.svg",
       "file": "svgs/520-5393.svg",
       "aliases": [
-        "520-5393.svg"
+        "520-5393.svg",
+        "flashlight-off-fill",
+        "flashlight-off-fill-16.svg",
+        "flashlight-fill"
       ],
       "notes": [],
-      "componentName": "IconFlashlightOffFill",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "componentName": "IconFlashlightSm",
+      "compatibilityNames": [
+        "flashlight-off-fill"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "120:2550",
@@ -17420,21 +17471,25 @@
     },
     {
       "id": "599:4449",
-      "originalName": "pound-sign",
+      "originalName": "number-sign",
       "width": 16,
       "height": 16,
-      "name": "pound-sign",
-      "baseName": "pound-sign",
-      "filename": "pound-sign-16.svg",
+      "name": "number-sign",
+      "baseName": "number-sign",
+      "filename": "number-sign-16.svg",
       "file": "svgs/599-4449.svg",
       "aliases": [
         "599-4449.svg",
-        "number-sign",
-        "number-sign-16.svg"
+        "pound-sign",
+        "pound-sign-16.svg",
+        "hash"
       ],
       "notes": [],
-      "componentName": "IconPoundSign",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "componentName": "IconNumberSign",
+      "compatibilityNames": [
+        "pound-sign"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "679:3531",
@@ -17787,454 +17842,554 @@
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "name": "number2",
-      "baseName": "number2",
-      "filename": "number2-16.svg",
+      "name": "square-number-2",
+      "baseName": "square-number-2",
+      "filename": "square-number-2-16.svg",
       "file": "svgs/667-1114.svg",
       "aliases": [
         "667-1114.svg",
         "number-two",
-        "number-two-16.svg"
+        "number-two-16.svg",
+        "number2",
+        "number2-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber2",
+      "componentName": "IconSquareNumber2",
       "variantSetId": "1368:1368",
-      "variantSetName": "number2",
+      "variantSetName": "square-number-2",
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "compatibilityNames": [
+        "number2"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3046",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
-      "name": "number2-fill",
-      "baseName": "number2",
-      "filename": "number2-fill-16.svg",
+      "name": "square-number-2-fill",
+      "baseName": "square-number-2",
+      "filename": "square-number-2-fill-16.svg",
       "file": "svgs/1350-3046.svg",
       "aliases": [
-        "1350-3046.svg"
+        "1350-3046.svg",
+        "number2-fill",
+        "number2-fill-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber2Fill",
+      "componentName": "IconSquareNumber2Fill",
       "variantSetId": "1368:1368",
-      "variantSetName": "number2",
+      "variantSetName": "square-number-2",
       "variantProperties": {
         "fill": "true"
       },
+      "compatibilityNames": [
+        "number2-fill"
+      ],
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1112",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1369",
-      "variantSetName": "number7",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "name": "number7",
-      "baseName": "number7",
-      "filename": "number7-16.svg",
+      "name": "square-number-7",
+      "baseName": "square-number-7",
+      "filename": "square-number-7-16.svg",
       "file": "svgs/667-1112.svg",
       "aliases": [
         "667-1112.svg",
         "number-seven",
-        "number-seven-16.svg"
+        "number-seven-16.svg",
+        "number7",
+        "number7-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber7",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "componentName": "IconSquareNumber7",
+      "variantSetId": "1368:1369",
+      "variantSetName": "square-number-7",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "compatibilityNames": [
+        "number7"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3045",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
+      "name": "square-number-7-fill",
+      "baseName": "square-number-7",
+      "filename": "square-number-7-fill-16.svg",
+      "file": "svgs/1350-3045.svg",
+      "aliases": [
+        "1350-3045.svg",
+        "number7-fill",
+        "number7-fill-16.svg"
+      ],
+      "notes": [],
+      "componentName": "IconSquareNumber7Fill",
       "variantSetId": "1368:1369",
-      "variantSetName": "number7",
+      "variantSetName": "square-number-7",
       "variantProperties": {
         "fill": "true"
       },
-      "name": "number7-fill",
-      "baseName": "number7",
-      "filename": "number7-fill-16.svg",
-      "file": "svgs/1350-3045.svg",
-      "aliases": [
-        "1350-3045.svg"
+      "compatibilityNames": [
+        "number7-fill"
       ],
-      "notes": [],
-      "componentName": "IconNumber7Fill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1113",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1370",
-      "variantSetName": "number1",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "name": "number1",
-      "baseName": "number1",
-      "filename": "number1-16.svg",
+      "name": "square-number-1",
+      "baseName": "square-number-1",
+      "filename": "square-number-1-16.svg",
       "file": "svgs/667-1113.svg",
       "aliases": [
         "667-1113.svg",
         "number-one",
-        "number-one-16.svg"
+        "number-one-16.svg",
+        "number1",
+        "number1-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber1",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "componentName": "IconSquareNumber1",
+      "variantSetId": "1368:1370",
+      "variantSetName": "square-number-1",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "compatibilityNames": [
+        "number1"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3041",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
+      "name": "square-number-1-fill",
+      "baseName": "square-number-1",
+      "filename": "square-number-1-fill-16.svg",
+      "file": "svgs/1350-3041.svg",
+      "aliases": [
+        "1350-3041.svg",
+        "number1-fill",
+        "number1-fill-16.svg"
+      ],
+      "notes": [],
+      "componentName": "IconSquareNumber1Fill",
       "variantSetId": "1368:1370",
-      "variantSetName": "number1",
+      "variantSetName": "square-number-1",
       "variantProperties": {
         "fill": "true"
       },
-      "name": "number1-fill",
-      "baseName": "number1",
-      "filename": "number1-fill-16.svg",
-      "file": "svgs/1350-3041.svg",
-      "aliases": [
-        "1350-3041.svg"
+      "compatibilityNames": [
+        "number1-fill"
       ],
-      "notes": [],
-      "componentName": "IconNumber1Fill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1111",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1371",
-      "variantSetName": "number6",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "name": "number6",
-      "baseName": "number6",
-      "filename": "number6-16.svg",
+      "name": "square-number-6",
+      "baseName": "square-number-6",
+      "filename": "square-number-6-16.svg",
       "file": "svgs/667-1111.svg",
       "aliases": [
         "667-1111.svg",
         "number-six",
-        "number-six-16.svg"
+        "number-six-16.svg",
+        "number6",
+        "number6-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber6",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "componentName": "IconSquareNumber6",
+      "variantSetId": "1368:1371",
+      "variantSetName": "square-number-6",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "compatibilityNames": [
+        "number6"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3040",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
+      "name": "square-number-6-fill",
+      "baseName": "square-number-6",
+      "filename": "square-number-6-fill-16.svg",
+      "file": "svgs/1350-3040.svg",
+      "aliases": [
+        "1350-3040.svg",
+        "number6-fill",
+        "number6-fill-16.svg"
+      ],
+      "notes": [],
+      "componentName": "IconSquareNumber6Fill",
       "variantSetId": "1368:1371",
-      "variantSetName": "number6",
+      "variantSetName": "square-number-6",
       "variantProperties": {
         "fill": "true"
       },
-      "name": "number6-fill",
-      "baseName": "number6",
-      "filename": "number6-fill-16.svg",
-      "file": "svgs/1350-3040.svg",
-      "aliases": [
-        "1350-3040.svg"
+      "compatibilityNames": [
+        "number6-fill"
       ],
-      "notes": [],
-      "componentName": "IconNumber6Fill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1109",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "name": "number3",
-      "baseName": "number3",
-      "filename": "number3-16.svg",
+      "name": "square-number-3",
+      "baseName": "square-number-3",
+      "filename": "square-number-3-16.svg",
       "file": "svgs/667-1109.svg",
       "aliases": [
         "667-1109.svg",
         "number-three",
-        "number-three-16.svg"
+        "number-three-16.svg",
+        "number3",
+        "number3-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber3",
+      "componentName": "IconSquareNumber3",
       "variantSetId": "1368:1372",
-      "variantSetName": "number3",
+      "variantSetName": "square-number-3",
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "compatibilityNames": [
+        "number3"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3042",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
-      "name": "number3-fill",
-      "baseName": "number3",
-      "filename": "number3-fill-16.svg",
+      "name": "square-number-3-fill",
+      "baseName": "square-number-3",
+      "filename": "square-number-3-fill-16.svg",
       "file": "svgs/1350-3042.svg",
       "aliases": [
-        "1350-3042.svg"
+        "1350-3042.svg",
+        "number3-fill",
+        "number3-fill-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber3Fill",
+      "componentName": "IconSquareNumber3Fill",
       "variantSetId": "1368:1372",
-      "variantSetName": "number3",
+      "variantSetName": "square-number-3",
       "variantProperties": {
         "fill": "true"
       },
+      "compatibilityNames": [
+        "number3-fill"
+      ],
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-24T14:04:07.352Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1110",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1373",
-      "variantSetName": "number8",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "name": "number8",
-      "baseName": "number8",
-      "filename": "number8-16.svg",
+      "name": "square-number-8",
+      "baseName": "square-number-8",
+      "filename": "square-number-8-16.svg",
       "file": "svgs/667-1110.svg",
       "aliases": [
         "667-1110.svg",
         "number-eight",
-        "number-eight-16.svg"
+        "number-eight-16.svg",
+        "number8",
+        "number8-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber8",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "componentName": "IconSquareNumber8",
+      "variantSetId": "1368:1373",
+      "variantSetName": "square-number-8",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "compatibilityNames": [
+        "number8"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3039",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
+      "name": "square-number-8-fill",
+      "baseName": "square-number-8",
+      "filename": "square-number-8-fill-16.svg",
+      "file": "svgs/1350-3039.svg",
+      "aliases": [
+        "1350-3039.svg",
+        "number8-fill",
+        "number8-fill-16.svg"
+      ],
+      "notes": [],
+      "componentName": "IconSquareNumber8Fill",
       "variantSetId": "1368:1373",
-      "variantSetName": "number8",
+      "variantSetName": "square-number-8",
       "variantProperties": {
         "fill": "true"
       },
-      "name": "number8-fill",
-      "baseName": "number8",
-      "filename": "number8-fill-16.svg",
-      "file": "svgs/1350-3039.svg",
-      "aliases": [
-        "1350-3039.svg"
+      "compatibilityNames": [
+        "number8-fill"
       ],
-      "notes": [],
-      "componentName": "IconNumber8Fill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1107",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "name": "number4",
-      "baseName": "number4",
-      "filename": "number4-16.svg",
+      "name": "square-number-4",
+      "baseName": "square-number-4",
+      "filename": "square-number-4-16.svg",
       "file": "svgs/667-1107.svg",
       "aliases": [
         "667-1107.svg",
         "number-four",
         "number-four-16.svg",
         "number4-1",
-        "number4-1-16.svg"
+        "number4-1-16.svg",
+        "number4",
+        "number4-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber4",
+      "componentName": "IconSquareNumber4",
       "variantSetId": "1368:1374",
-      "variantSetName": "number4",
+      "variantSetName": "square-number-4",
       "variantProperties": {
         "fill": "false"
       },
-      "updatedAt": "2026-11-14T05:06:25.731Z"
+      "compatibilityNames": [
+        "number4"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3044",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
-      "name": "number4-fill",
-      "baseName": "number4",
-      "filename": "number4-fill-16.svg",
+      "name": "square-number-4-fill",
+      "baseName": "square-number-4",
+      "filename": "square-number-4-fill-16.svg",
       "file": "svgs/1350-3044.svg",
       "aliases": [
-        "1350-3044.svg"
+        "1350-3044.svg",
+        "number4-fill",
+        "number4-fill-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber4Fill",
+      "componentName": "IconSquareNumber4Fill",
       "variantSetId": "1368:1374",
-      "variantSetName": "number4",
+      "variantSetName": "square-number-4",
       "variantProperties": {
         "fill": "true"
       },
+      "compatibilityNames": [
+        "number4-fill"
+      ],
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-14T05:06:25.731Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1106",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1375",
-      "variantSetName": "number9",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "name": "number9",
-      "baseName": "number9",
-      "filename": "number9-16.svg",
+      "name": "square-number-9",
+      "baseName": "square-number-9",
+      "filename": "square-number-9-16.svg",
       "file": "svgs/667-1106.svg",
       "aliases": [
         "667-1106.svg",
         "square-nine",
-        "square-nine-16.svg"
+        "square-nine-16.svg",
+        "number9",
+        "number9-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber9",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "componentName": "IconSquareNumber9",
+      "variantSetId": "1368:1375",
+      "variantSetName": "square-number-9",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "compatibilityNames": [
+        "number9"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3043",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
+      "name": "square-number-9-fill",
+      "baseName": "square-number-9",
+      "filename": "square-number-9-fill-16.svg",
+      "file": "svgs/1350-3043.svg",
+      "aliases": [
+        "1350-3043.svg",
+        "number9-fill",
+        "number9-fill-16.svg"
+      ],
+      "notes": [],
+      "componentName": "IconSquareNumber9Fill",
       "variantSetId": "1368:1375",
-      "variantSetName": "number9",
+      "variantSetName": "square-number-9",
       "variantProperties": {
         "fill": "true"
       },
-      "name": "number9-fill",
-      "baseName": "number9",
-      "filename": "number9-fill-16.svg",
-      "file": "svgs/1350-3043.svg",
-      "aliases": [
-        "1350-3043.svg"
+      "compatibilityNames": [
+        "number9-fill"
       ],
-      "notes": [],
-      "componentName": "IconNumber9Fill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1105",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1376",
-      "variantSetName": "number5",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "name": "number5",
-      "baseName": "number5",
-      "filename": "number5-16.svg",
+      "name": "square-number-5",
+      "baseName": "square-number-5",
+      "filename": "square-number-5-16.svg",
       "file": "svgs/667-1105.svg",
       "aliases": [
         "667-1105.svg",
         "number-five",
         "number-five-16.svg",
         "number4",
-        "number4-16.svg"
+        "number4-16.svg",
+        "number5",
+        "number5-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber5",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "componentName": "IconSquareNumber5",
+      "variantSetId": "1368:1376",
+      "variantSetName": "square-number-5",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "compatibilityNames": [
+        "number5"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3037",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
+      "name": "square-number-5-fill",
+      "baseName": "square-number-5",
+      "filename": "square-number-5-fill-16.svg",
+      "file": "svgs/1350-3037.svg",
+      "aliases": [
+        "1350-3037.svg",
+        "number5-fill",
+        "number5-fill-16.svg"
+      ],
+      "notes": [],
+      "componentName": "IconSquareNumber5Fill",
       "variantSetId": "1368:1376",
-      "variantSetName": "number5",
+      "variantSetName": "square-number-5",
       "variantProperties": {
         "fill": "true"
       },
-      "name": "number5-fill",
-      "baseName": "number5",
-      "filename": "number5-fill-16.svg",
-      "file": "svgs/1350-3037.svg",
-      "aliases": [
-        "1350-3037.svg"
+      "compatibilityNames": [
+        "number5-fill"
       ],
-      "notes": [],
-      "componentName": "IconNumber5Fill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "667:1108",
       "originalName": "fill=false",
       "width": 16,
       "height": 16,
-      "variantSetId": "1368:1377",
-      "variantSetName": "number0",
-      "variantProperties": {
-        "fill": "false"
-      },
-      "name": "number0",
-      "baseName": "number0",
-      "filename": "number0-16.svg",
+      "name": "square-number-0",
+      "baseName": "square-number-0",
+      "filename": "square-number-0-16.svg",
       "file": "svgs/667-1108.svg",
       "aliases": [
         "667-1108.svg",
         "number-zero",
-        "number-zero-16.svg"
+        "number-zero-16.svg",
+        "number0",
+        "number0-16.svg"
       ],
       "notes": [],
-      "componentName": "IconNumber0",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "componentName": "IconSquareNumber0",
+      "variantSetId": "1368:1377",
+      "variantSetName": "square-number-0",
+      "variantProperties": {
+        "fill": "false"
+      },
+      "compatibilityNames": [
+        "number0"
+      ],
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "1350:3038",
       "originalName": "fill=true",
       "width": 16,
       "height": 16,
+      "name": "square-number-0-fill",
+      "baseName": "square-number-0",
+      "filename": "square-number-0-fill-16.svg",
+      "file": "svgs/1350-3038.svg",
+      "aliases": [
+        "1350-3038.svg",
+        "number0-fill",
+        "number0-fill-16.svg"
+      ],
+      "notes": [],
+      "componentName": "IconSquareNumber0Fill",
       "variantSetId": "1368:1377",
-      "variantSetName": "number0",
+      "variantSetName": "square-number-0",
       "variantProperties": {
         "fill": "true"
       },
-      "name": "number0-fill",
-      "baseName": "number0",
-      "filename": "number0-fill-16.svg",
-      "file": "svgs/1350-3038.svg",
-      "aliases": [
-        "1350-3038.svg"
+      "compatibilityNames": [
+        "number0-fill"
       ],
-      "notes": [],
-      "componentName": "IconNumber0Fill",
       "addedAt": "2026-11-04T00:50:54.581Z",
-      "updatedAt": "2026-11-04T00:50:54.581Z"
+      "updatedAt": "2026-11-28T07:03:03.638Z"
     },
     {
       "id": "140:6008",
@@ -21642,20 +21797,25 @@
     },
     {
       "id": "1083:10983",
-      "originalName": "hand-recieve",
+      "originalName": "hand-receive",
       "width": 16,
       "height": 16,
-      "name": "hand-recieve",
-      "baseName": "hand-recieve",
-      "filename": "hand-recieve-16.svg",
+      "name": "hand-receive",
+      "baseName": "hand-receive",
+      "filename": "hand-receive-16.svg",
       "file": "svgs/1083-10983.svg",
       "aliases": [
-        "1083-10983.svg"
+        "1083-10983.svg",
+        "hand-recieve",
+        "hand-recieve-16.svg"
       ],
       "notes": [],
-      "componentName": "IconHandRecieve",
+      "componentName": "IconHandReceive",
+      "compatibilityNames": [
+        "hand-recieve"
+      ],
       "addedAt": "2026-10-22T08:06:37.817Z",
-      "updatedAt": "2026-10-28T06:48:53.832Z"
+      "updatedAt": "2026-11-28T07:09:13.893Z"
     },
     {
       "id": "1064:757",

@@ -40,7 +40,7 @@ Use Figma file keys and component IDs to identify icons through private imports.
 
 Keep raw file keys, source URLs, and export scope in ignored local files, such as `artifacts/figma-source.json`. Do not commit or attach these files to public releases. The importer removes private source details before writing the tracked manifest, catalog, and package metadata. Generation checks reject private source fields in the tracked manifest. Diff reports also remove them when reading older commits.
 
-Numeric suffixes resolve duplicate names in the current inventory. They can change when the inventory changes. An alias does not keep an old named React export available. Review name reassignments as well as renames when preparing release notes.
+Numeric suffixes resolve duplicate names in the current inventory. They can change when the inventory changes. Lookup aliases do not provide React exports. Use an explicit `compatibilityNames` entry when correcting a name while keeping a previously published React export, SVG path, shadcn item, and website icon link. Review name reassignments as well as renames when preparing release notes.
 
 ## Import a complete inventory
 
