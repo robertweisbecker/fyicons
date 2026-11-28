@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { wheelTravel } from '../../apps/site/src/prototypes/inspector/inspector-wheel.ts';
+import {
+  wheelStream,
+  wheelTravel,
+} from '../../apps/site/src/prototypes/inspector/inspector-wheel.ts';
 
 const heights = [96, 400, 790];
 
@@ -53,4 +56,36 @@ test('reversing during a gesture immediately moves the presentation back', () =>
   assert.equal(travel.move(180, 16), 276);
   assert.equal(travel.move(-20, 16), 256);
   assert.equal(travel.target(), 0);
+});
+
+function momentum(carried, start, at = 0) {
+  const results = [];
+  for (let delta = start; Math.abs(delta) > 0.5; delta *= 0.94, at += 16)
+    results.push(carried(Math.round(delta), at));
+  return { results, at };
+}
+
+test('fading momentum stays one stream until it pauses', () => {
+  const carried = wheelStream();
+  const { results, at } = momentum(carried, -40);
+  assert.equal(results[0], false);
+  assert.ok(results.slice(1).every(Boolean));
+  assert.equal(carried(-3, at + 200), false);
+});
+
+test('renewed acceleration and reversal start a new stream', () => {
+  const carried = wheelStream();
+  const { at } = momentum(carried, 40);
+  assert.equal(carried(1, at), true);
+  assert.equal(carried(12, at + 16), false);
+  assert.equal(carried(10, at + 32), true);
+  assert.equal(carried(-10, at + 48), false);
+});
+
+test('steady input is deliberate after 100 ms', () => {
+  const carried = wheelStream();
+  const results = [];
+  for (let at = 0; at <= 128; at += 16) results.push(carried(12, at));
+  assert.deepEqual(results.slice(0, 6), [false, true, true, true, true, true]);
+  assert.equal(results.at(-1), false);
 });

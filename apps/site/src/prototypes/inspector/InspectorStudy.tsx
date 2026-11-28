@@ -49,7 +49,7 @@ function DrawingDetails({ item }: { item: Sample }) {
       .replaceAll(' ', '');
 
   return (
-    <div className="grid gap-6 pt-5 pb-[max(2rem,env(safe-area-inset-bottom))]">
+    <div className="grid gap-6 pt-5 pb-[max(2rem,env(safe-area-inset-bottom))] *:min-w-0">
       <section>
         <h3 className="mb-2 font-semibold">Preview sizes</h3>
         <div className="grid grid-cols-4 divide-x divide-line rounded-2xl bg-ink/[0.035] py-3">
@@ -116,7 +116,7 @@ function Sheet({
   return (
     <div className={styles.frame} ref={frame} data-color={item.color}>
       <DrawerHandle
-        className="mx-auto grid h-[1.375rem] w-36 shrink-0 cursor-grab touch-none place-items-center rounded-full active:cursor-grabbing"
+        className="relative z-2 mx-auto flex h-5 w-36 shrink-0 cursor-grab touch-none justify-center rounded-full pt-1.25 active:cursor-grabbing"
         aria-label="Resize inspector"
       >
         <span aria-hidden className="h-1.25 w-9 rounded-full bg-ink/30" />
@@ -126,12 +126,12 @@ function Sheet({
           <DrawerTitle className="truncate text-xl leading-tight font-semibold tracking-[-0.035em]">
             {item.name}
           </DrawerTitle>
-          <DrawerDescription className="truncate text-xs leading-5 text-(--text-secondary)">
+          <DrawerDescription className="truncate text-[0.8125rem] leading-5 text-(--text-secondary)">
             {item.category} · 16 × 16 px
           </DrawerDescription>
         </div>
         <DrawerClose
-          className={`${iconButton} pointer-events-auto absolute end-0 top-2`}
+          className={cn(iconButton, 'absolute end-0 top-0.5 size-11')}
           aria-label="Close inspector"
         >
           <IconX />
@@ -167,11 +167,13 @@ function Sheet({
               size="default"
               showLabel
               className={cn(buttonVariants(), 'w-full rounded-full px-2')}
-            />
+            >
+              <span className={styles.copyLabel}>Copy SVG</span>
+            </IconCopyButton>
             <div inert={compact} className={styles.download}>
               <IconDownloadButton
                 item={record}
-                className="h-9 w-full gap-1.5 px-2 text-sm [&>svg]:size-4"
+                className="w-full gap-1.5 px-2 [&>svg]:size-4"
               >
                 Download
               </IconDownloadButton>
@@ -183,28 +185,74 @@ function Sheet({
   );
 }
 
+// Safari on iOS tints its bars from pinned boxes at the page edges, and stops
+// reading them while anything is in the top layer. There the drawer stays in
+// the page, and boxes at the edges give Safari the bar colors.
+function usePageLayer(
+  open: boolean,
+  frame: React.RefObject<HTMLElement | null>,
+) {
+  const [active, setActive] = useState(false);
+  const tint = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    setActive(
+      CSS.supports('-webkit-touch-callout', 'none') ||
+        new URLSearchParams(location.search).has('page-layer'),
+    );
+  }, []);
+  useEffect(() => {
+    if (!active) return;
+    const keep = (event: Event) => {
+      const target = event.target as Element;
+      if (
+        (event as ToggleEvent).newState === 'open' &&
+        target.matches(
+          '[data-slot="drawer-viewport"], [data-slot="drawer-backdrop"]',
+        )
+      )
+        event.preventDefault();
+    };
+    document.addEventListener('beforetoggle', keep, true);
+    document.documentElement.dataset.inspectorLayer = 'page';
+    return () => {
+      document.removeEventListener('beforetoggle', keep, true);
+      delete document.documentElement.dataset.inspectorLayer;
+    };
+  }, [active]);
+  useEffect(() => {
+    if (!active || !open) return;
+    let request = requestAnimationFrame(function follow() {
+      request = requestAnimationFrame(follow);
+      const sheet = frame.current?.parentElement;
+      if (!sheet || !tint.current) return;
+      const dim = getComputedStyle(sheet).getPropertyValue('--inspector-dim');
+      if (tint.current.style.getPropertyValue('--dim') !== dim)
+        tint.current.style.setProperty('--dim', dim);
+    });
+    return () => cancelAnimationFrame(request);
+  }, [active, open, frame]);
+  return { active, tint };
+}
+
 export function InspectorStudy() {
   const [controller] = useState(() => createDrawerController<Sample>());
   const frame = useRef<HTMLDivElement>(null);
-  const backdrop = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   useEffect(
     () =>
       open
-        ? bindInspectorWheel(
-            () => frame.current,
-            controller,
-            stops,
-            () => backdrop.current,
-          )
+        ? bindInspectorWheel(() => frame.current, controller, stops)
         : undefined,
     [controller, open],
   );
   const activeTrigger = useRef<HTMLButtonElement>(null);
-  useEffect(
-    () => registerTools(createAgent(), { allow: (step) => !step.confirm }),
-    [],
-  );
+  const pageLayer = usePageLayer(open, frame);
+  useEffect(() => {
+    const agent = createAgent();
+    // Browsers without WebMCP reach the bridge here, from the console.
+    Object.assign(window, { inspectorAgent: agent });
+    return registerTools(agent, { allow: (step) => !step.confirm });
+  }, []);
 
   return (
     <Drawer
@@ -254,10 +302,13 @@ export function InspectorStudy() {
           ))}
         </div>
       </section>
-      <DrawerBackdrop
-        ref={backdrop}
-        className="fixed inset-0 bg-black/40 data-wheel-dim:opacity-(--wheel-dim)!"
-      />
+      <DrawerBackdrop className={`${styles.backdrop} fixed inset-0`} />
+      {open && pageLayer.active && (
+        <>
+          <div ref={pageLayer.tint} aria-hidden className={styles.tint} />
+          <div aria-hidden className={styles.floor} />
+        </>
+      )}
       <DrawerContent<Sample>
         className={styles.sheet}
         style={detentHeights}

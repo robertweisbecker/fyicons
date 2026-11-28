@@ -103,11 +103,40 @@ export function wheelTravel(height: number, [low, middle, high]: Heights) {
   };
 }
 
+// Momentum from one stroke keeps arriving after the fingers lift. This reports
+// whether an event continues the stream before it, so a stream that began in
+// the sheet or in its content cannot cross to the other side. A pause, a
+// reversal, renewed acceleration or 100 ms of steady speed starts a new one.
+export function wheelStream(gap = 80) {
+  let time = -Infinity;
+  let direction = 0;
+  let size = 0;
+  let anchor = 0;
+  let anchorTime = 0;
+
+  return (delta: number, at: number) => {
+    const next = Math.abs(delta);
+    const fresh =
+      at - time >= gap ||
+      Math.sign(delta) !== direction ||
+      (next > size * 1.35 && next - size > 2);
+    if (fresh || next < anchor * 0.9) {
+      anchor = next;
+      anchorTime = at;
+    }
+    // Integer deltas repeat in a slow momentum tail, so small values never count.
+    const steady = next >= 6 && at - anchorTime >= 100;
+    time = at;
+    direction = Math.sign(delta);
+    size = next;
+    return !fresh && !steady;
+  };
+}
+
 export function bindInspectorWheel(
   frame: () => HTMLElement | null,
   controller: Pick<DrawerController, 'getSnapPoint' | 'setSnapPoint'>,
   stops: readonly SnapPoint[],
-  backdrop: () => HTMLElement | null,
 ) {
   let travel: ReturnType<typeof wheelTravel> | undefined;
   let heights: Heights;
@@ -119,8 +148,21 @@ export function bindInspectorWheel(
   let release: ReturnType<typeof setTimeout>;
   let spring: ReturnType<typeof animate<number>> | undefined;
   let painted: HTMLElement | null = null;
-
   let generation = 0;
+  const carried = wheelStream();
+  let owner: 'sheet' | 'body' | undefined;
+
+  function measure(sheet: HTMLElement) {
+    const bounds = sheet.getBoundingClientRect();
+    const viewport = sheet.parentElement!.getBoundingClientRect();
+    heights = [
+      parseFloat(getComputedStyle(document.documentElement).fontSize) *
+        parseFloat(String(stops[0])),
+      viewport.height * Number(stops[1]),
+      bounds.height,
+    ];
+    return clamp(viewport.bottom - bounds.top, heights[0], heights[2]);
+  }
 
   function paint(value: number) {
     const sheet = frame()?.parentElement;
@@ -133,11 +175,6 @@ export function bindInspectorWheel(
     painted = sheet;
     sheet.style.setProperty('--wheel-height', height + 'px');
     sheet.setAttribute('data-wheel-height', '');
-    backdrop()?.style.setProperty(
-      '--wheel-dim',
-      String(clamp((height - heights[0]) / (heights[1] - heights[0]), 0, 1)),
-    );
-    backdrop()?.setAttribute('data-wheel-dim', '');
   }
 
   function clear() {
@@ -149,8 +186,6 @@ export function bindInspectorWheel(
     painted?.removeAttribute('data-wheel-height');
     painted?.style.removeProperty('--wheel-height');
     painted = null;
-    backdrop()?.removeAttribute('data-wheel-dim');
-    backdrop()?.style.removeProperty('--wheel-dim');
   }
 
   function settle() {
@@ -203,35 +238,34 @@ export function bindInspectorWheel(
       return;
     }
 
+    const unit =
+      event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
+    const delta = event.deltaY * unit;
     const body = panel.querySelector<HTMLElement>('[data-inspector-scroll]');
-    if (
+    const side =
       !travel &&
       (!spring || reachedFull || height >= heights[2] - 1) &&
       full &&
       body?.contains(target) &&
-      (event.deltaY > 0 || body.scrollTop > 1)
-    )
+      (delta > 0 || body.scrollTop > 1)
+        ? 'body'
+        : 'sheet';
+    if (!carried(delta, event.timeStamp)) owner = side;
+    if (owner !== side) {
+      event.preventDefault();
       return;
+    }
+    if (side === 'body') return;
     event.preventDefault();
     if (!travel) {
-      const bounds = sheet.getBoundingClientRect();
-      const viewport = sheet.parentElement!.getBoundingClientRect();
-      heights = [
-        parseFloat(getComputedStyle(document.documentElement).fontSize) *
-          parseFloat(String(stops[0])),
-        viewport.height * Number(stops[1]),
-        bounds.height,
-      ];
-      height = clamp(viewport.bottom - bounds.top, heights[0], heights[2]);
+      height = measure(sheet);
       generation++;
       spring?.stop();
       spring = undefined;
       reachedFull = false;
       travel = wheelTravel(height, heights);
     }
-    const unit =
-      event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? heights[2] : 1;
-    paint(travel.move(event.deltaY * unit, event.timeStamp - lastTime));
+    paint(travel.move(delta, event.timeStamp - lastTime));
     lastX = event.clientX;
     lastY = event.clientY;
     lastTime = event.timeStamp;
@@ -242,14 +276,38 @@ export function bindInspectorWheel(
     } else release = setTimeout(settle, 75);
   }
 
+  // ui-sdk 0.1.0-beta.13 keeps the previous snap point when a drag catches the
+  // sheet in flight and releases it at another stop. Adopt the resting stop.
+  function reconcile() {
+    const ticket = generation;
+    requestAnimationFrame(async () => {
+      const sheet = frame()?.parentElement;
+      if (!sheet) return;
+      await Promise.allSettled(
+        sheet.getAnimations().map((animation) => animation.finished),
+      );
+      if (ticket !== generation || travel || spring || !sheet.isConnected)
+        return;
+      if (sheet.getAnimations().length) return reconcile();
+      const rest = measure(sheet);
+      const index = heights.findIndex((stop) => Math.abs(stop - rest) < 2);
+      if (index >= 0 && controller.getSnapPoint() !== stops[index])
+        controller.setSnapPoint(stops[index]);
+    });
+  }
+
   document.addEventListener('wheel', wheel, { passive: false, capture: true });
   document.addEventListener('pointerdown', clear, true);
+  document.addEventListener('pointerup', reconcile, true);
+  document.addEventListener('pointercancel', reconcile, true);
   document.addEventListener('keydown', clear, true);
   window.addEventListener('resize', clear);
   return () => {
     clear();
     document.removeEventListener('wheel', wheel, true);
     document.removeEventListener('pointerdown', clear, true);
+    document.removeEventListener('pointerup', reconcile, true);
+    document.removeEventListener('pointercancel', reconcile, true);
     document.removeEventListener('keydown', clear, true);
     window.removeEventListener('resize', clear);
   };
