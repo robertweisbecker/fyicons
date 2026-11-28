@@ -1,0 +1,73 @@
+import type { ReactNode } from 'react';
+import type { IconRecord } from '@/lib/catalog';
+import { downloadIcon } from '@/lib/downloads';
+import { cn } from '@/lib/utils';
+import { CatalogIcon } from '@/components/CatalogIcon';
+import { IconCopyButton } from '@/components/browser/IconCopyButton';
+import { ToggleIcon } from '@/components/ToggleIcon';
+import { Button } from '@/components/ui/button';
+import { Toggle } from '@/components/ui/toggle';
+import { Tooltip } from '@/components/ui/tooltip';
+
+export function IconDownloadButton({
+  item,
+  className,
+  children,
+}: {
+  item: IconRecord;
+  className?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <Button
+      variant="neutral"
+      size="lg"
+      aria-label="Download SVG"
+      className={cn('size-11 rounded-full p-0', className)}
+      onClick={() => downloadIcon(item)}
+    >
+      <CatalogIcon name="download-square" />
+      {children}
+    </Button>
+  );
+}
+
+export function InspectorActions({
+  item,
+  selected,
+  toggleSelection,
+}: {
+  item: IconRecord;
+  selected: boolean;
+  toggleSelection: () => void;
+}) {
+  return (
+    <div className="@container flex min-w-0 flex-wrap items-center gap-2">
+      <IconCopyButton
+        key={item.id}
+        item={item}
+        size="lg"
+        showLabel
+        className="w-full px-3.5 whitespace-nowrap @min-[14rem]:w-auto @min-[14rem]:flex-1"
+      />
+      <IconDownloadButton
+        item={item}
+        className="ml-auto @min-[14rem]:ml-0 @xs:w-auto @xs:flex-1 @xs:px-3.5"
+      >
+        <span className="hidden @xs:inline">Download</span>
+      </IconDownloadButton>
+      <Tooltip label={selected ? 'Remove from Saved' : 'Add to Saved'}>
+        <Toggle
+          size="icon"
+          className="size-11 rounded-full data-pressed:text-control-accent"
+          aria-label="Add to Saved"
+          variant="outline"
+          pressed={selected}
+          onPressedChange={toggleSelection}
+        >
+          <ToggleIcon icon="bookmark" activeIcon="bookmark-fill" />
+        </Toggle>
+      </Tooltip>
+    </div>
+  );
+}

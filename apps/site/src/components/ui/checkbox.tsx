@@ -1,13 +1,7 @@
 import { Checkbox as CheckboxPrimitive } from '@base-ui/react/checkbox';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
 import { IconCheckThickSm, IconMinus } from 'fyicons';
-
-const Icon = createIconLookup({
-  'check-thick-sm': IconCheckThickSm,
-  minus: IconMinus,
-});
 
 export const checkboxVariants = cva(
   'group/checkbox peer inline-flex shrink-0 items-center justify-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-muted data-disabled:pointer-events-none data-disabled:opacity-40',
@@ -44,7 +38,11 @@ export function Checkbox({
         )}
       >
         <CheckboxPrimitive.Indicator data-slot="checkbox-indicator">
-          <Icon name={indeterminate ? 'minus' : 'check-thick-sm'} />
+          {indeterminate ? (
+            <IconMinus className="block" />
+          ) : (
+            <IconCheckThickSm className="block" />
+          )}
         </CheckboxPrimitive.Indicator>
       </span>
     </CheckboxPrimitive.Root>

@@ -1,7 +1,7 @@
 import { IconCircleCheckFill, IconMoon, IconPlus, IconSun } from 'fyicons';
 
 import { Button } from '@/components/ui/button';
-import { DocsExample } from './DocsExample';
+import { DocsExample } from '@/components/docs/DocsExample';
 
 export function GlobalStylingExample() {
   return (

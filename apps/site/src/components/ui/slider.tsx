@@ -1,5 +1,5 @@
 import { Slider } from '@base-ui/react/slider';
-import { cn } from '../../lib/utils';
+import { cn } from '@/lib/utils';
 
 export { Slider };
 

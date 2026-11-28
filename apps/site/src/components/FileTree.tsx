@@ -1,48 +1,55 @@
 import { Collapsible } from '@base-ui/react/collapsible';
-import { createIconLookup } from '@/components/createIconLookup';
-import { Button } from './ui/button';
+import type { ComponentProps } from 'react';
+import { createIconLookup } from '@/components/icon-lookup';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
   IconAtomReact,
   IconChevronDownSm,
   IconChevronRightSm,
   IconFolder,
-  IconFolderFill,
   IconFolderOpen,
-  IconFolderOpenFill,
   IconGhost,
-  IconLetterM,
+  IconSquareLetterM,
   IconMarkdownFill,
   IconPage,
   IconSquareDot,
-  IconTextTitle,
-  IconTextTitleFill,
   IconFileText,
+  IconFileAudio,
+  IconFileImage,
+  IconFileVideo,
 } from 'fyicons';
 
-const Icon = createIconLookup({
+/** Icons for project files and folders, shared with the code review demo. */
+export const FileIcon = createIconLookup({
   'atom-react': IconAtomReact,
   'chevron-down-sm': IconChevronDownSm,
   'chevron-right-sm': IconChevronRightSm,
   folder: IconFolder,
-  'folder-fill': IconFolderFill,
   'folder-open': IconFolderOpen,
-  'folder-open-fill': IconFolderOpenFill,
   ghost: IconGhost,
-  'letter-m': IconLetterM,
+  'letter-m': IconSquareLetterM,
   'markdown-fill': IconMarkdownFill,
   page: IconPage,
   'square-dot': IconSquareDot,
-  text: IconTextTitle,
-  'text-fill': IconTextTitleFill,
   'file-text': IconFileText,
+  'file-image': IconFileImage,
+  'file-video': IconFileVideo,
+  'file-audio': IconFileAudio,
 });
 
-export type ProjectFile = { path: string; icon: string; change?: string };
+export type ProjectFile = {
+  path: string;
+  icon: ComponentProps<typeof FileIcon>['name'];
+  change?: string;
+};
 export const fileIconColors: Record<string, string> = {
   atom: 'text-sky-400',
   'atom-react': 'text-sky-400',
   'markdown-fill': 'text-zinc-500',
+  'file-image': 'text-pink-500',
+  'file-video': 'text-violet-500',
+  'file-audio': 'text-emerald-500',
 };
 type Node = {
   name: string;
@@ -117,12 +124,12 @@ export function FileTree({
       )}
     >
       <span className="size-4 shrink-0" aria-hidden />
-      <Icon name={file.icon} className={fileIconColors[file.icon]} />
+      <FileIcon name={file.icon} className={fileIconColors[file.icon]} />
       <span className="min-w-0 flex-1 truncate text-left">
         {file.path.split('/').at(-1)}
       </span>
       {file.change === 'M' ? (
-        <Icon name="letter-m" className="text-muted" />
+        <FileIcon name="letter-m" className="text-muted" />
       ) : (
         file.change && <span className="text-xs text-muted">{file.change}</span>
       )}
@@ -153,17 +160,17 @@ export function FileTree({
             changedFolders.has(node.path) ? 'Contains changed files' : undefined
           }
         >
-          <Icon
+          <FileIcon
             name={open ? 'chevron-down-sm' : 'chevron-right-sm'}
             className="text-muted"
           />
-          <Icon
+          <FileIcon
             name={open ? 'folder-open' : 'folder'}
             className="text-blue-500"
           />
           <span className="min-w-0 flex-1 truncate">{node.name}</span>
           {changedFolders.has(node.path) && (
-            <Icon name="square-dot" className="text-muted" />
+            <FileIcon name="square-dot" className="text-muted" />
           )}
         </Collapsible.Trigger>
         <Collapsible.Panel

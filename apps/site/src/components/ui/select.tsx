@@ -2,24 +2,9 @@
 import { Select as SelectPrimitive } from '@base-ui/react/select';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { createContext, useContext, type ReactNode } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
-import {
-  IconAnchor,
-  IconCaretDown,
-  IconCaretUp,
-  IconCaretsY,
-  IconCheck,
-} from 'fyicons';
-
-const Icon = createIconLookup({
-  anchor: IconAnchor,
-  'caret-down': IconCaretDown,
-  'caret-up': IconCaretUp,
-  'carets-y': IconCaretsY,
-  check: IconCheck,
-});
+import { IconCaretDown, IconCaretUp, IconCaretsY, IconCheck } from 'fyicons';
 
 type SelectSize = 'default' | 'sm';
 const SelectSizeContext = createContext<SelectSize>('default');
@@ -82,7 +67,7 @@ export function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon className="flex shrink-0">
-        <Icon name="carets-y" />
+        <IconCaretsY />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -138,7 +123,7 @@ export function SelectContent({
             data-slot="select-scroll-up"
             className="top-1 right-1 left-1 z-10 flex h-6 cursor-default items-center justify-center rounded-t-lg bg-surface"
           >
-            <Icon name="caret-up" />
+            <IconCaretUp />
           </SelectPrimitive.ScrollUpArrow>
           <ScrollArea.Root className="flex min-h-0 flex-1 flex-col">
             <ScrollArea.Viewport
@@ -163,7 +148,7 @@ export function SelectContent({
             data-slot="select-scroll-down"
             className="right-1 bottom-1 left-1 z-10 flex h-6 cursor-default items-center justify-center rounded-b-lg bg-surface"
           >
-            <Icon name="caret-down" />
+            <IconCaretDown />
           </SelectPrimitive.ScrollDownArrow>
         </SelectPrimitive.Popup>
       </SelectPrimitive.Positioner>
@@ -198,7 +183,7 @@ export function SelectItem({
       </SelectPrimitive.ItemText>
       {trailing}
       <SelectPrimitive.ItemIndicator className="absolute right-2">
-        <Icon name="check" />
+        <IconCheck className="block" />
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>
   );

@@ -1,36 +1,32 @@
 import { Collapsible } from '@base-ui/react/collapsible';
-import { createIconLookup } from '@/components/createIconLookup';
-import { fileIconColors, type ProjectFile } from '@/components/FileTree';
+import { createIconLookup } from '@/components/icon-lookup';
+import {
+  FileIcon,
+  fileIconColors,
+  type ProjectFile,
+} from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { reviewChanges } from './codeReviewData';
+import { reviewChanges } from '@/home/desktop/code-review-data';
 import {
   IconArrowRight,
-  IconAtomReact,
   IconChevronDownSm,
   IconChevronRightSm,
   IconEye,
   IconEyeCheck,
-  IconEyeFill,
-  IconFileText,
   IconGitBranch,
   IconGitCommit,
-  IconMarkdownFill,
 } from 'fyicons';
 
 const Icon = createIconLookup({
   'arrow-right': IconArrowRight,
-  'atom-react': IconAtomReact,
   'chevron-down-sm': IconChevronDownSm,
   'chevron-right-sm': IconChevronRightSm,
   eye: IconEye,
   'eye-check': IconEyeCheck,
-  'eye-fill': IconEyeFill,
-  'file-text': IconFileText,
   'git-branch': IconGitBranch,
   'git-commit': IconGitCommit,
-  'markdown-fill': IconMarkdownFill,
 });
 
 export function CodeChanges({
@@ -95,7 +91,7 @@ export function CodeChanges({
                     name={open ? 'chevron-down-sm' : 'chevron-right-sm'}
                     className="text-muted"
                   />
-                  <Icon
+                  <FileIcon
                     name={file.icon}
                     className={fileIconColors[file.icon]}
                   />

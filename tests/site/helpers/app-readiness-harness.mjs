@@ -14,7 +14,9 @@ export async function mountApp(
   { mobile = false, actions = false } = {},
 ) {
   const fixture = createDomFixture(t, url, { pending: true, mobile });
-  const { IconsBrowser } = await fixture.load('components/IconsBrowser.tsx');
+  const { IconsBrowser } = await fixture.load(
+    'components/browser/IconsBrowser.tsx',
+  );
   const catalog = await fixture.load('lib/catalog.ts');
   const { ToastProvider } = await fixture.load('components/ui/toast.tsx');
   const { IconInspectionProvider } = await fixture.load(

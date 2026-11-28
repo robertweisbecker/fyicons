@@ -1,10 +1,7 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+export const isBoolean = (value: unknown): value is boolean =>
+  typeof value === 'boolean';
 
 export function isStringArray(value: unknown): value is string[] {
   return (
@@ -18,11 +15,7 @@ export function readPreference<T>(
   validate?: (value: unknown) => value is T,
 ): T {
   try {
-    const value: unknown = JSON.parse(
-      localStorage.getItem(key) ??
-        localStorage.getItem(key.replace('fyicons-', 'astra-')) ??
-        'null',
-    );
+    const value: unknown = JSON.parse(localStorage.getItem(key) ?? 'null');
     if (value == null || (validate && !validate(value))) return fallback;
     return value as T;
   } catch {
@@ -53,23 +46,3 @@ export function usePreference<T>(
   }, [key, value, loaded]);
   return [value, setValue] as const;
 }
-export function useMediaQuery(query: string) {
-  const subscribe = useCallback(
-    (listener: () => void) => {
-      const media = matchMedia(query);
-      media.addEventListener('change', listener);
-      return () => media.removeEventListener('change', listener);
-    },
-    [query],
-  );
-  // The first hydration render must match the static HTML. React then reads
-  // the browser preference and subscribes to changes.
-  return useSyncExternalStore(
-    subscribe,
-    () => matchMedia(query).matches,
-    () => false,
-  );
-}
-export const useMobile = () => useMediaQuery('(width < 768px)');
-export const useReducedMotionPreference = () =>
-  useMediaQuery('(prefers-reduced-motion: reduce)');

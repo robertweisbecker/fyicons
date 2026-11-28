@@ -3,13 +3,14 @@ import {
   useId,
   useRef,
   useState,
+  type ComponentProps,
   type CSSProperties,
   type FocusEvent,
   type PointerEvent,
 } from 'react';
 import { motion, MotionConfig } from 'motion/react';
-import { useReducedMotionPreference } from '@/lib/preferences';
-import { createIconLookup } from '@/components/createIconLookup';
+import { useReducedMotionPreference } from '@/lib/use-media-query';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import {
   guides,
@@ -17,13 +18,12 @@ import {
   GuideShape,
   PixelGrid,
   type Guide,
-} from './construction-guides';
-import './IconSpecimen.css';
+} from '@/home/construction-guides';
+import '@/home/IconSpecimen.css';
 import {
   IconBlocks,
   IconChatRoundEdit,
   IconCircle,
-  IconCircleFill,
   IconEnvelope,
   IconFileZip,
   IconPauseFill,
@@ -31,7 +31,6 @@ import {
   IconPointDown,
   IconScissors,
   IconSkull,
-  IconSkullFill,
   IconSquare,
   IconSquareAsterisk,
   IconSwatches,
@@ -41,7 +40,6 @@ const Icon = createIconLookup({
   blocks: IconBlocks,
   'chat-round-edit': IconChatRoundEdit,
   circle: IconCircle,
-  'circle-fill': IconCircleFill,
   envelope: IconEnvelope,
   'file-zip': IconFileZip,
   'pause-fill': IconPauseFill,
@@ -49,7 +47,6 @@ const Icon = createIconLookup({
   'point-down': IconPointDown,
   scissors: IconScissors,
   skull: IconSkull,
-  'skull-fill': IconSkullFill,
   square: IconSquare,
   'square-asterisk': IconSquareAsterisk,
   swatches: IconSwatches,
@@ -66,7 +63,11 @@ const specimenMotionStyle = {
   '--specimen-easing': `cubic-bezier(${specimenTransition.ease.join(',')})`,
 } as CSSProperties;
 
-const samples: { name: string; label: string; guide: Guide }[] = [
+const samples: {
+  name: ComponentProps<typeof Icon>['name'];
+  label: string;
+  guide: Guide;
+}[] = [
   {
     name: 'chat-round-edit',
     label: 'ChatRoundEdit',

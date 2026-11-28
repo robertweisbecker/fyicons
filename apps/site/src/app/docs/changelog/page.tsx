@@ -1,5 +1,6 @@
 import { Children, type ComponentProps, type ReactNode } from 'react';
 import { IconArrowUpRight } from 'fyicons';
+import packageInfo from 'fyicons/package.json' with { type: 'json' };
 
 import ReleaseNotes from '../../../../../../packages/fyicons/CHANGELOG.md';
 import { githubHref } from '@/lib/navigation';
@@ -67,22 +68,25 @@ export default function ChangelogPage() {
             ? dateFormatter.format(new Date(date))
             : undefined;
           return (
-            <h2
-              {...props}
-              className="flex flex-wrap items-baseline gap-x-2 gap-y-1"
-            >
-              {children}
-              <a
-                href={`${githubHref}/releases/tag/${encodeURIComponent(`fyicons@${version}`)}`}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Version ${version}${dateLabel ? `, ${dateLabel}` : ''} — GitHub release`}
-                className="ms-auto inline-flex shrink-0 items-center gap-1.5 self-center text-xs font-normal whitespace-nowrap text-muted tabular-nums underline underline-offset-4"
+            <>
+              {version !== packageInfo.version && <hr />}
+              <h2
+                {...props}
+                className="flex flex-wrap items-baseline gap-x-2 gap-y-1"
               >
-                {date && <time dateTime={date}>{dateLabel}</time>}
-                <IconArrowUpRight className="size-4 text-muted" />
-              </a>
-            </h2>
+                {children}
+                <a
+                  href={`${githubHref}/releases/tag/${encodeURIComponent(`fyicons@${version}`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Version ${version}${dateLabel ? `, ${dateLabel}` : ''} — GitHub release`}
+                  className="ms-auto inline-flex shrink-0 items-center gap-1.5 self-center text-xs font-normal whitespace-nowrap text-muted tabular-nums underline underline-offset-4"
+                >
+                  {date && <time dateTime={date}>{dateLabel}</time>}
+                  <IconArrowUpRight className="size-4 text-muted" />
+                </a>
+              </h2>
+            </>
           );
         },
         p: ({ children, ...props }) => (

@@ -1,41 +1,159 @@
-.showcase-mesh {
-  --mesh-a: var(--color-violet-600);
-  --mesh-b: var(--color-sky-400);
-  --mesh-c: var(--color-pink-400);
-  --mesh-base: var(--color-indigo-950);
-  background:
-    radial-gradient(ellipse at 12% 18%, var(--mesh-a), transparent 65%),
-    radial-gradient(ellipse at 88% 20%, var(--mesh-b), transparent 62%),
-    radial-gradient(ellipse at 68% 95%, var(--mesh-c), transparent 70%),
-    var(--mesh-base);
+@reference '../../styles.css';
+
+.showcase-wallpaper {
+  --design: light-dark(
+    --theme(--color-violet-200 inline),
+    --theme(--color-violet-900 inline)
+  );
+  --files: light-dark(
+    --theme(--color-amber-200 inline),
+    --theme(--color-amber-900 inline)
+  );
+  --code: light-dark(
+    --theme(--color-emerald-200 inline),
+    --theme(--color-emerald-900 inline)
+  );
+  --agents: light-dark(
+    --theme(--color-indigo-200 inline),
+    --theme(--color-indigo-900 inline)
+  );
+  --social: light-dark(
+    --theme(--color-rose-200 inline),
+    --theme(--color-rose-900 inline)
+  );
+  --music: light-dark(
+    --theme(--color-green-200 inline),
+    --theme(--color-green-900 inline)
+  );
+
+  /* The end caps center the first and last apps. Each intervening cell
+     connects a pair of app centers with one opaque radial gradient. */
+  display: flex;
+  width: 400%;
+  /* Match the colors underneath fractional-pixel joins as the strip moves. */
+  background: linear-gradient(
+    to right in oklch,
+    var(--design) 12.5%,
+    var(--files),
+    var(--code),
+    var(--agents),
+    var(--social),
+    var(--music) 87.5%
+  );
 }
-.showcase-mesh[data-app='files'] {
-  --mesh-a: var(--color-rose-300);
-  --mesh-b: var(--color-orange-300);
-  --mesh-c: var(--color-fuchsia-400);
-  --mesh-base: var(--color-rose-950);
+.showcase-wallpaper::before,
+.showcase-wallpaper::after {
+  content: '';
+  flex: 0 0 12.5%;
 }
-.showcase-mesh[data-app='code'] {
-  --mesh-a: var(--color-slate-800);
-  --mesh-b: var(--color-slate-600);
-  --mesh-c: var(--color-teal-900);
-  --mesh-base: var(--color-slate-950);
+.showcase-wallpaper > span {
+  flex: 1;
+  background: radial-gradient(
+    ellipse 85% 135% at 0% 32% in oklch,
+    var(--from) 51%,
+    var(--to) 94%
+  );
 }
-.showcase-mesh[data-app='agents'] {
-  --mesh-a: var(--color-amber-400);
-  --mesh-b: var(--color-orange-600);
-  --mesh-c: var(--color-indigo-800);
-  --mesh-base: var(--color-indigo-950);
+.showcase-wallpaper > span:nth-child(even) {
+  background: radial-gradient(
+    ellipse 85% 135% at 100% 68% in oklch,
+    var(--to) 51%,
+    var(--from) 94%
+  );
 }
-.showcase-mesh[data-app='social'] {
-  --mesh-a: var(--color-sky-400);
-  --mesh-b: var(--color-blue-600);
-  --mesh-c: var(--color-indigo-900);
-  --mesh-base: var(--color-blue-950);
+
+.showcase-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 42% 28%,
+    light-dark(rgb(255 255 255 / 0.36), rgb(255 255 255 / 0.06)),
+    transparent 58%,
+    light-dark(rgb(65 43 88 / 0.05), rgb(0 0 0 / 0.2))
+  );
 }
-.showcase-mesh[data-app='music'] {
-  --mesh-a: var(--color-fuchsia-500);
-  --mesh-b: var(--color-violet-600);
-  --mesh-c: var(--color-amber-300);
-  --mesh-base: var(--color-violet-950);
+
+.showcase-windows {
+  --frame-inset: 0%;
+}
+.showcase-windows[data-app='agents'] {
+  --frame-inset: max(0%, calc((100% - var(--container-3xl)) / 2));
+}
+.showcase-windows[data-app='social'] {
+  --frame-inset: max(0%, calc((100% - var(--container-2xl)) / 2));
+}
+
+/* Clip the solid desktop window and its contents together as its width changes.
+   Only the empty silhouette casts a shadow, so the filter never samples app content. */
+.showcase-window-shadow {
+  filter: drop-shadow(0 10px 12px rgb(0 0 0 / 0.15));
+}
+.showcase-window-shadow::before {
+  content: '';
+  display: block;
+  height: 100%;
+  background: var(--surface);
+}
+.showcase-window-frame,
+.showcase-window-shadow::before {
+  clip-path: inset(0 var(--frame-inset) round var(--radius-xl));
+  transition: clip-path 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* The overlay is as wide as the frame, so its translation resolves the same inset as the clip. */
+.showcase-window-controls {
+  transform: translateX(var(--frame-inset));
+  transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.showcase-panel {
+  --travel: clamp(8px, 2cqw, 16px);
+  transition:
+    transform 250ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.showcase-panel[data-app='agents'] {
+  max-width: var(--container-3xl);
+}
+.showcase-panel[data-app='social'] {
+  max-width: var(--container-2xl);
+}
+.showcase-panel[data-starting-style],
+.showcase-panel[data-ending-style] {
+  opacity: 0;
+}
+.showcase-panel[data-ending-style] {
+  z-index: 0;
+  pointer-events: none;
+}
+.showcase-panel[data-starting-style][data-activation-direction='right'],
+.showcase-panel[data-ending-style][data-side='right'] {
+  transform: translateX(var(--travel));
+}
+.showcase-panel[data-starting-style][data-activation-direction='left'],
+.showcase-panel[data-ending-style][data-side='left'] {
+  transform: translateX(calc(-1 * var(--travel)));
+}
+
+.desktop-showcase[data-instant]
+  :is(.showcase-panel, .showcase-window-frame, .showcase-window-controls),
+.desktop-showcase[data-instant] .showcase-window-shadow::before {
+  transition: none;
+}
+.desktop-showcase[data-instant] .showcase-panel {
+  transform: none;
+}
+.desktop-showcase[data-instant] .showcase-panel:not([inert]) {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .showcase-panel {
+    transform: none !important;
+  }
+  .showcase-panel:not([inert]) {
+    opacity: 1;
+  }
 }

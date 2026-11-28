@@ -3,7 +3,7 @@
 import { useMemo, useState, type RefObject } from 'react';
 import { Dialog } from '@base-ui/react/dialog';
 import { Field } from '@base-ui/react/field';
-import { Icon } from '@/components/Icon';
+import { CatalogIcon } from '@/components/CatalogIcon';
 import { Button } from '@/components/ui/button';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup } from '@/components/ui/toggle-group';
@@ -74,7 +74,7 @@ export function IconPicker({
                 />
               }
             >
-              <Icon name="x" />
+              <CatalogIcon name="x" />
             </Dialog.Close>
           </header>
           <div className="space-y-3 px-5 pt-4 pb-3">
@@ -83,7 +83,7 @@ export function IconPicker({
                 Search the icon library
               </Field.Label>
               <InputGroup className="flex-row items-center gap-2 rounded-lg px-3 py-2">
-                <Icon name="search" className="text-muted" />
+                <CatalogIcon name="search" className="text-muted" />
                 <Field.Control
                   autoFocus
                   value={query}
@@ -101,7 +101,7 @@ export function IconPicker({
                     aria-label="Clear icon search"
                     onClick={() => setQuery('')}
                   >
-                    <Icon name="x" />
+                    <CatalogIcon name="x" />
                   </Button>
                 )}
               </InputGroup>
@@ -153,7 +153,7 @@ export function IconPicker({
                         current === icon.name && 'bg-hover ring-1 ring-border',
                       )}
                     >
-                      <Icon name={icon.name} size={24} />
+                      <CatalogIcon name={icon.name} size={24} />
                       <span className="w-full truncate text-[10px] text-muted">
                         {icon.name}
                       </span>

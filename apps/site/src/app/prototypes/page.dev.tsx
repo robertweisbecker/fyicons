@@ -3,9 +3,13 @@ import Link from 'next/link';
 export const metadata = { title: 'Prototypes' };
 
 const prototypes = [
+  { href: '/prototypes/design-guidelines/', name: 'Design guidelines' },
   { href: '/prototypes/docs-navigation/', name: 'Combined docs navigation' },
+  { href: '/prototypes/progress-icons/', name: 'Progress icons' },
+  { href: '/prototypes/icon-reveal/', name: 'Outline and filled' },
+  { href: '/prototypes/letterpress/', name: 'Letterpress' },
   { href: '/prototypes/app-previews/', name: 'App previews' },
-  { href: '/prototypes/examples/', name: 'Icon examples' },
+  { href: '/prototypes/icon-examples/', name: 'Icon examples' },
   { href: '/prototypes/inspector/', name: 'Inspector sheet' },
   { href: '/prototypes/magnetic-tools/', name: 'Magnetic tools' },
 ];

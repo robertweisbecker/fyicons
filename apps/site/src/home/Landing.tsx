@@ -1,27 +1,27 @@
 'use client';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { DeferredContent } from '@/components/DeferredContent';
 import {
   VariantPlaceholder,
   ConstructionPlaceholder,
   OpticalPlaceholder,
   GroupPlaceholder,
-} from './DemoPlaceholders';
+} from '@/home/DemoPlaceholders';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ShadcnIcon } from '@/components/BrandIcons';
+import { ShadcnIcon } from '@/components/site/BrandIcons';
 import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { InstallCommand } from '@/components/InstallCommand';
-import { SearchTrigger } from '@/components/SearchTrigger';
+import { SearchTrigger } from '@/components/site/SearchTrigger';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { buttonVariants } from '@/components/ui/button';
 import catalogSummary from '@/data/catalog-summary.json';
 import { assetPath } from '@/lib/navigation';
-import { useReducedMotionPreference } from '@/lib/preferences';
-import { DesktopShowcase } from './desktop/DesktopShowcase';
-import { IconExampleCard } from './IconExampleCard';
-import { IconSpecimen } from './IconSpecimen';
-import './Landing.css';
+import { useReducedMotionPreference } from '@/lib/use-media-query';
+import { DesktopShowcase } from '@/home/desktop/DesktopShowcase';
+import { IconExampleCard } from '@/home/IconExampleCard';
+import { IconSpecimen } from '@/home/IconSpecimen';
+import '@/home/Landing.css';
 import {
   IconEyeClosed,
   IconEyePupil,
@@ -49,13 +49,15 @@ const Icon = createIconLookup({
 });
 
 const loadVariants = () =>
-  import('./VariantExamples').then((module) => module.VariantExamples);
+  import('@/home/VariantExamples').then((module) => module.VariantExamples);
 const loadConstruction = () =>
-  import('./Construction').then((module) => module.Construction);
+  import('@/home/Construction').then((module) => module.Construction);
 const loadOptical = () =>
-  import('./OpticalAdjustments').then((module) => module.OpticalAdjustments);
+  import('@/home/OpticalAdjustments').then(
+    (module) => module.OpticalAdjustments,
+  );
 const loadGroups = () =>
-  import('./IconGroupCarousel').then((module) => module.IconGroupCarousel);
+  import('@/home/IconGroupCarousel').then((module) => module.IconGroupCarousel);
 
 // Landing heading styles live here alongside the page's section composition.
 const sectionHeadingClassName = 'text-3xl font-medium sm:text-4xl';

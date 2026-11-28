@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { prepareRepositoryIcons } from './lib/prepare-icons.mjs';
 import { renderClientDistribution } from './lib/react-provider.mjs';
+import { generatedHeader } from './lib/react-icons.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const target = path.join(root, 'packages/fyicons');
@@ -19,15 +20,18 @@ for (const [file, source] of prepared.expected) {
     continue;
   // Node ESM and NodeNext consumers require explicit JS extensions.
   const component = path.basename(file).startsWith('Icon');
-  const code = source.replace(
-    /(from\s+['"])(\.\/[^'"]+)(['"])/g,
-    (_, lead, specifier, quote) => {
-      const relative = component
-        ? specifier.replace('./', '../')
-        : specifier.replace('./Icon', './icons/Icon');
-      return lead + relative + '.js' + quote;
-    },
-  );
+  // The header guards repository sources; published files do not need it.
+  const code = source
+    .replace(generatedHeader, '')
+    .replace(
+      /(from\s+['"])(\.\/[^'"]+)(['"])/g,
+      (_, lead, specifier, quote) => {
+        const relative = component
+          ? specifier.replace('./', '../')
+          : specifier.replace('./Icon', './icons/Icon');
+        return lead + relative + '.js' + quote;
+      },
+    );
   await writeFile(
     path.join(stage, 'src', component ? 'icons' : '', path.basename(file)),
     code,

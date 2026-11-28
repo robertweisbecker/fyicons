@@ -1,142 +1,44 @@
 import { useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { createGlyph } from '../Study';
-import { DesignInspector, designFills } from './DesignInspector';
-import { DesignRail } from './DesignRail';
-import { Window, WindowControls } from './Window';
+import { createGlyph } from '@/home/Study';
+import { DesignInspector, designFills } from '@/home/desktop/DesignInspector';
+import { DesignRail } from '@/home/desktop/DesignRail';
+import { Window } from '@/home/desktop/Window';
 import {
-  IconAngle,
-  IconApps,
   IconAppsPlus,
-  IconArrowClockwise,
-  IconArrowLeft,
-  IconArrowRight,
-  IconBookOpen3,
-  IconBorderRadius,
-  IconBucket,
-  IconCaretsMaximize,
   IconChatRound,
-  IconCheckSm,
-  IconChevronDownSm,
-  IconCirclePlus,
-  IconCirclePlusFill,
-  IconCircleUserFill,
-  IconCircleXFill,
   IconCode,
-  IconComponent,
-  IconEllipsisV,
-  IconEye,
-  IconEyeFill,
-  IconEyeSlash,
-  IconEyeSlashFill,
-  IconFile,
-  IconFont,
   IconFrame,
-  IconGas,
-  IconGasFill,
   IconGlobeSimple,
-  IconHeight,
   IconHome,
-  IconHomeFill,
-  IconInfo,
-  IconInfoFill,
-  IconLetterSpacing,
-  IconLineHeight,
-  IconLineHorizontal,
-  IconLinkUnlink,
-  IconLockOpen,
-  IconLockOpenFill,
-  IconMinus,
   IconPenTool,
   IconPlus,
   IconPointer,
-  IconPointerFill,
-  IconPuzzlePiece,
   IconRulersPointer,
   IconScribble,
-  IconShadow,
-  IconSparkle,
-  IconSparkleFill,
   IconSquare,
-  IconStarFill,
-  IconSwatches,
   IconTextTitle,
-  IconTextTitleFill,
-  IconToken,
-  IconToolbox,
-  IconVideoFill,
-  IconWidth,
   IconX,
-  IconZoomIn,
 } from 'fyicons';
 
 const Icon = createIconLookup({
-  angle: IconAngle,
-  apps: IconApps,
   'apps-plus': IconAppsPlus,
-  'arrow-clockwise': IconArrowClockwise,
-  'arrow-left': IconArrowLeft,
-  'arrow-right': IconArrowRight,
-  'book-open-3': IconBookOpen3,
-  'border-radius': IconBorderRadius,
-  bucket: IconBucket,
-  'carets-maximize': IconCaretsMaximize,
   'chat-round': IconChatRound,
-  'check-sm': IconCheckSm,
-  'chevron-down-sm': IconChevronDownSm,
-  'circle-plus': IconCirclePlus,
-  'circle-plus-fill': IconCirclePlusFill,
-  'circle-user-fill': IconCircleUserFill,
-  'circle-x-fill': IconCircleXFill,
   code: IconCode,
-  component: IconComponent,
-  'ellipsis-v': IconEllipsisV,
-  eye: IconEye,
-  'eye-fill': IconEyeFill,
-  'eye-slash': IconEyeSlash,
-  'eye-slash-fill': IconEyeSlashFill,
-  file: IconFile,
-  font: IconFont,
   frame: IconFrame,
-  gas: IconGas,
-  'gas-fill': IconGasFill,
   'globe-simple': IconGlobeSimple,
-  height: IconHeight,
   home: IconHome,
-  'home-fill': IconHomeFill,
-  info: IconInfo,
-  'info-fill': IconInfoFill,
-  'letter-spacing': IconLetterSpacing,
-  'line-height': IconLineHeight,
-  'line-horizontal': IconLineHorizontal,
-  'link-unlink': IconLinkUnlink,
-  'lock-open': IconLockOpen,
-  'lock-open-fill': IconLockOpenFill,
-  minus: IconMinus,
   'pen-tool': IconPenTool,
   plus: IconPlus,
   pointer: IconPointer,
-  'pointer-fill': IconPointerFill,
-  'puzzle-piece': IconPuzzlePiece,
   'rulers-pointer': IconRulersPointer,
   scribble: IconScribble,
-  shadow: IconShadow,
-  sparkle: IconSparkle,
-  'sparkle-fill': IconSparkleFill,
   square: IconSquare,
-  'star-fill': IconStarFill,
-  swatches: IconSwatches,
   'text-title': IconTextTitle,
-  'text-title-fill': IconTextTitleFill,
-  token: IconToken,
-  toolbox: IconToolbox,
-  'video-fill': IconVideoFill,
-  width: IconWidth,
   x: IconX,
-  'zoom-in': IconZoomIn,
 });
 
 const tools = [
@@ -157,10 +59,9 @@ export function DesignApp() {
       title="Design"
       header={
         <div
-          className="flex h-9 shrink-0 items-center border-b border-line bg-bg text-xs text-muted"
+          className="flex h-9 shrink-0 items-center border-b border-line bg-bg pl-20 text-xs text-muted"
           aria-label="Design app bar"
         >
-          <WindowControls />
           <DemoIconButton
             label="Design home"
             icon="home"
@@ -260,11 +161,13 @@ export function DesignApp() {
                 aria-label="Canvas mode"
                 className="max-w-full shrink-0 flex-wrap justify-center gap-0 rounded-md bg-canvas p-px"
               >
-                {[
-                  ['scribble', 'Draw'],
-                  ['rulers-pointer', 'Design'],
-                  ['code', 'Dev Mode'],
-                ].map(([icon, label]) => (
+                {(
+                  [
+                    ['scribble', 'Draw'],
+                    ['rulers-pointer', 'Design'],
+                    ['code', 'Dev Mode'],
+                  ] as const
+                ).map(([icon, label]) => (
                   <DemoToggle
                     key={icon}
                     value={icon}

@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-11-12T06:53:58.292Z",
         "reason": "Agent triage: this internal QA report uses factual negative test results and Git status statements, including No commit or deployment and No sampled release reversal or overshoot; these are evidence statements, not manufactured contrast."
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "apps/site/src/prototypes/letterpress/letterpress.css"
+        ],
+        "createdAt": "2026-11-25T00:51:57.331Z",
+        "reason": "Agent review: the 6px lower inset shadow models the lip of the skeuomorphic Ribbon typewriter case."
       }
     ]
   }

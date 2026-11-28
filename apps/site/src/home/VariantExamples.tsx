@@ -1,7 +1,7 @@
-import { IconVariants } from './IconVariants';
-import { ProgressIcons } from './ProgressIcons';
-import { StatefulIcons } from './StatefulIcons';
-import { IconExampleCard, VariantExampleGrid } from './IconExampleCard';
+import { IconVariants } from '@/home/IconVariants';
+import { ProgressIcons } from '@/home/ProgressIcons';
+import { StatefulIcons } from '@/home/StatefulIcons';
+import { IconExampleCard, VariantExampleGrid } from '@/home/IconExampleCard';
 export function VariantExamples() {
   return (
     <VariantExampleGrid>

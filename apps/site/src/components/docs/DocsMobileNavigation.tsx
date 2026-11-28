@@ -4,17 +4,18 @@ import { IconChevronDownSm, IconMenuAlt, IconSlashSm } from 'fyicons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
-import { Icon } from '@/components/UIIcon';
+import { UIIcon } from '@/components/UIIcon';
 import { Button } from '@/components/ui/button';
 import { docsPages, mobileDocSections } from '@/lib/docs-navigation';
-import { useMediaQuery } from '@/lib/preferences';
+import { isSameRoute } from '@/lib/navigation';
+import { useMediaQuery } from '@/lib/use-media-query';
 import { cn } from '@/lib/utils';
-import type { DocHeading } from './TableOfContents';
+import type { DocHeading } from '@/components/docs/TableOfContents';
 import {
   DocsNavigationPane,
   DocSectionLinks,
   docLinkClass,
-} from './DocsNavigationPane';
+} from '@/components/docs/DocsNavigationPane';
 
 // Shared popup motion and viewport sizing from Base UI's Tailwind Navigation Menu demo.
 const splitMenuClasses = {
@@ -73,12 +74,10 @@ export function DocsMobileNavigation({
   active: string | undefined;
   onHeadingSelect: (id: string) => void;
 }) {
-  const pathname = usePathname().replace(/\/$/, '');
+  const pathname = usePathname();
   const desktop = useMediaQuery('(width >= 64rem)');
   if (desktop) return null;
-  const page = docsPages.find(
-    ({ href }) => href.replace(/\/$/, '') === pathname,
-  );
+  const page = docsPages.find(({ href }) => isSameRoute(pathname, href));
   const { sections, current } = mobileDocSections(headings, active);
   const title = page?.title ?? 'Documentation';
   return (
@@ -105,7 +104,7 @@ export function DocsMobileNavigation({
                 render={<Link href={item.href} prefetch={false} />}
                 className={docLinkClass}
               >
-                <Icon name={item.icon} className="shrink-0 text-muted" />
+                <UIIcon name={item.icon} className="shrink-0 text-muted" />
                 {item.title}
               </NavigationMenu.Link>
             </li>

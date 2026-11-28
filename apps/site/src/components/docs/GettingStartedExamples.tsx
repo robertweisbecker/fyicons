@@ -1,6 +1,6 @@
 import { IconSun } from 'fyicons';
 
-import { DocsExample } from './DocsExample';
+import { DocsExample } from '@/components/docs/DocsExample';
 
 export function EditableIconExample() {
   return (

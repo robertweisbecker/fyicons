@@ -13,7 +13,7 @@ export interface WindowProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title
   /** Browser: back and forward buttons before the address. */
   nav?: boolean
   /** App: the window title. Centered in a plain title bar; with a `toolbar`, left-aligned 14px after the lights (a unified toolbar) with the toolbar on the right; beside a sidebar, the content column's heading at its 16px inset. */
-  title?: string
+  title?: ReactNode
   /** App: a full-height sidebar. The traffic lights sit in its top, the way Mail, Notes, Linear and Slack do it. */
   sidebar?: ReactNode
   /** The sidebar's width in px. */

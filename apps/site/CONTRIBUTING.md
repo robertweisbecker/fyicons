@@ -13,7 +13,7 @@ npm ci
 npm run dev
 ```
 
-`dev` generates the icons, builds the icon package, and starts Next.js at http://127.0.0.1:3000. After an SVG edit during a running development session, run `npm run generate:icons` again.
+`dev` generates the icons, builds the icon package, and starts Next.js at http://localhost:3000. Next.js also prints a network address. Use it to open the site on another device on the same network. After an SVG edit during a running development session, run `npm run generate:icons` again.
 
 `npm run build` generates the icons, builds the icon package, checks TypeScript, and exports the static website to `apps/site/out/`. `npm run preview` serves that export at http://127.0.0.1:4173. For a TypeScript check without a full site build, use `npm run typecheck`.
 
@@ -35,6 +35,23 @@ Documentation-only changes need formatting, relative-link, and source checks. Th
 
 ## Change the website
 
+### Source layout
+
+All paths in this list are in `apps/site/src/`.
+
+- `app/`: routes. A `page.dev.tsx` file is a development-only route.
+- `components/ui/`: the shared controls.
+- `components/browser/`: the icon browser at `/icons/`, including the inspector.
+- `components/site/`: the header, footer, shell, and global search.
+- `components/docs/`: documentation navigation and examples.
+- `components/`: components that more than one of these areas uses.
+- `home/`: the homepage. `examples/`: the `/examples/` page.
+- `prototypes/`: internal studies for the development-only routes. Each study is in a folder with the name of its route, `/prototypes/<name>/`.
+- `lib/`: logic without markup. A file that exports only hooks has the `use-` prefix.
+- `vendor/`: third-party source with its license.
+
+Use PascalCase file names for components and kebab-case for other modules. Import site source with the `@/` alias, also from the same folder, so that a file can move without changes to its own imports. Use a relative path only for a file outside `apps/site/src/`. Vendored source in `vendor/` keeps its own imports.
+
 Use the shared controls in `apps/site/src/components/ui/`. Keep Tailwind utilities with their components. Keep conditional class names complete so Tailwind can detect them. `apps/site/src/styles.css` contains theme tokens and base rules.
 
 Use the shared Badge as a button or link for interactive category badges. Keep accessible names and keyboard behavior when changing controls.
@@ -47,7 +64,7 @@ Keep browser APIs inside Client Components and effects. Docs content renders as 
 
 The website uses local font files. Keep their notices in `apps/site/public/licenses/`. The icon package uses the root MIT license; the fonts have separate licenses.
 
-Interface text uses [Allo by Josh Puckett](https://allo.joshpuckett.me/). `AlloVariable.woff2` is the original Allo 1.0.3 variable webfont. CSS sets roundness to its maximum (`ROND=100`), with variable weight and automatic optical sizing. The regular and bold obliques are the original Allo webfonts. Code uses Paper Mono.
+Interface text uses the original webfonts from [Allo 1.1.0 by Josh Puckett](https://github.com/joshpuckett/allo/releases/tag/v1.1.0). `AlloVariable.woff2` is the upright font. CSS sets roundness to its maximum (`ROND=100`), with variable weight and automatic optical sizing. The regular and bold obliques use separate files. Code uses Paper Mono.
 
 Configure fonts with `next/font/local` in `src/app/fonts.ts` and apply their classes in the root layout. Upright Allo is preloaded. Oblique styles and Paper Mono load when used. The wordmarks use the shared `public/brand-wordmarks.svg` symbols; their lettering inherits the current text color in both themes.
 
@@ -61,7 +78,11 @@ Follow [Icon sources](../../docs/icon-sources.md#category-rules) for rule syntax
 
 `npm run version:packages` updates the inspector's Added and Updated versions when it prepares a release. It compares canonical artwork and names by collection and component ID across the `fyicons@*` tags. For the version being prepared, it uses the current icon inventory until its tag exists. Fetch the release tags before running the version command locally.
 
-The version PR includes the generated `apps/site/src/data/icon-releases.json`. After the site build, `npm run verify:site-release` checks the rendered release notes, release link, and Added/Updated coverage for every current icon. Version-PR verification and the publishing job both run this check before publication. The site tests also check recent-addition indicators and inspector release links. The indicators and Newest view include icons added in the latest two minor release lines, including their patch versions. Release verification checks the saved history for drift. Website builds read the saved file. An icon shows Added for its first release and Updated only for a later change. A rename keeps the original Added version. Changes to export formatting, import dates, or categories do not advance either version.
+The version PR includes the generated `apps/site/src/data/icon-releases.json`. After the site build, `npm run verify:site-release` checks the rendered release notes, release link, and Added/Updated coverage for every current icon. Version-PR verification and the publishing job both run this check before publication. Release verification checks the saved history for drift. Website builds read the saved file. An icon shows Added for its first release and Updated only for a later change. A rename keeps the original Added version. Changes to export formatting, import dates, or categories do not advance either version.
+
+Newest and Last updated sort the matching icons by Added and Updated release, respectively, with the most recent release first. Icons without the selected release information appear last. The recent-addition indicators mark icons added in the latest two minor release lines, including their patch versions. The site tests check sort order, indicators, and inspector release links.
+
+After a GitHub release is published, add its `published_at` timestamp to `apps/site/src/data/release-dates.json` so the changelog link shows the release date.
 
 To verify the saved history after publication, run:
 
@@ -73,7 +94,7 @@ node scripts/generate-icon-releases.mjs --check
 
 [The Pages workflow](../../.github/workflows/pages.yml) builds, tests, and deploys `apps/site/out/` from `main`. Pull requests run checks without deployment. Root documentation changes do not trigger a site build. Files under `apps/site/`, including this guide, match the workflow’s build paths. Changes to the ZIP README do trigger a build because downloads include that file.
 
-For a new GitHub Pages deployment, select **GitHub Actions** as the deployment source in the repository settings. The Next.js app uses static export with trailing slashes. For a project subpath, set `NEXT_PUBLIC_BASE_PATH=/project-name` when building and previewing. All routes must be known at build time; server actions and runtime API routes are not available. The build checks exported routes and docs links. It reports the total export size and warns above 7.25 MiB, including pre-rendered HTML and Next.js route payloads. This warning does not block deployment. Demo backdrops use static CSS mesh gradients and make no image requests. Release artifacts stay outside `apps/site/out/`.
+For a new GitHub Pages deployment, select **GitHub Actions** as the deployment source in the repository settings. The Next.js app uses static export with trailing slashes. For a project subpath, set `NEXT_PUBLIC_BASE_PATH=/project-name` when building and previewing. All routes must be known at build time; server actions and runtime API routes are not available. The build checks exported routes and docs links. It reports the total export size and warns above 7.25 MiB, including pre-rendered HTML and Next.js route payloads. This warning does not block deployment. Demo backdrops use static CSS gradients and make no image requests. Release artifacts stay outside `apps/site/out/`.
 
 Keep host credentials, DNS account details, and personal setup notes outside the repository. Use the host's documentation for domain setup.
 
