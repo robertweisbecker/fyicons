@@ -35,13 +35,15 @@ export function Study({
 }
 
 /** Decorative controls in the static Figma specimens stay out of the tab order. */
-export function createGlyph(Icon: ComponentType<IconProps>) {
+export function createGlyph<Name extends string>(
+  Icon: ComponentType<IconProps<Name>>,
+) {
   return function Glyph({
     name,
     className,
     size = 16,
   }: {
-    name: string;
+    name: Name;
     className?: string;
     size?: number;
   }) {

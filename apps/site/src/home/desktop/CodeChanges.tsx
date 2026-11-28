@@ -1,6 +1,10 @@
 import { Collapsible } from '@base-ui/react/collapsible';
 import { createIconLookup } from '@/components/createIconLookup';
-import { fileIconColors, type ProjectFile } from '@/components/FileTree';
+import {
+  FileIcon,
+  fileIconColors,
+  type ProjectFile,
+} from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
 import { createDemoControls } from '@/demos/components/DemoControls';
 import { cn } from '@/lib/utils';
@@ -12,7 +16,6 @@ import {
   IconChevronRightSm,
   IconEye,
   IconEyeCheck,
-  IconEyeFill,
   IconFileText,
   IconGitBranch,
   IconGitCommit,
@@ -26,7 +29,6 @@ const Icon = createIconLookup({
   'chevron-right-sm': IconChevronRightSm,
   eye: IconEye,
   'eye-check': IconEyeCheck,
-  'eye-fill': IconEyeFill,
   'file-text': IconFileText,
   'git-branch': IconGitBranch,
   'git-commit': IconGitCommit,
@@ -95,7 +97,7 @@ export function CodeChanges({
                     name={open ? 'chevron-down-sm' : 'chevron-right-sm'}
                     className="text-muted"
                   />
-                  <Icon
+                  <FileIcon
                     name={file.icon}
                     className={fileIconColors[file.icon]}
                   />

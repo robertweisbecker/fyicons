@@ -1,11 +1,6 @@
 import { useRef, type PointerEvent } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
 import { IconGripV } from 'fyicons';
-
-const Icon = createIconLookup({
-  'grip-v': IconGripV,
-});
 
 type Props = {
   value: number;
@@ -99,7 +94,7 @@ export function InspectorResizeHandle({
         aria-hidden
         className="relative flex h-6 w-4 items-center justify-center rounded-sm bg-surface text-muted outline outline-offset-(--surface-outline-offset) outline-ink/20"
       >
-        <Icon name="grip-v" />
+        <IconGripV />
       </span>
     </div>
   );

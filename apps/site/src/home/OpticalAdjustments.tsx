@@ -1,5 +1,3 @@
-import { IconRendererContext } from '@/components/UIIcon';
-import type { ComponentProps } from 'react';
 import { useId, useState, type ReactNode } from 'react';
 import { Field } from '@base-ui/react/field';
 import { createIconLookup } from '@/components/createIconLookup';
@@ -13,7 +11,6 @@ import {
   IconFont,
   IconGhost,
   IconGrid,
-  IconGridFill,
   IconMath,
   IconPointerSwarm,
   IconShapes,
@@ -24,7 +21,6 @@ const Icon = createIconLookup({
   font: IconFont,
   ghost: IconGhost,
   grid: IconGrid,
-  'grid-fill': IconGridFill,
   math: IconMath,
   'pointer-swarm': IconPointerSwarm,
   shapes: IconShapes,
@@ -275,13 +271,15 @@ function ShapesCard() {
             }}
             className="rounded-xl bg-inset p-1"
           >
-            {[
-              { value: 'grid', label: 'Grid' },
-              { value: 'shapes', label: 'Shapes' },
-              { value: 'pointer-swarm', label: 'PointerSwarm' },
-              { value: 'apps', label: 'Apps' },
-              { value: 'math', label: 'Math' },
-            ].map(({ value, label }) => (
+            {(
+              [
+                { value: 'grid', label: 'Grid' },
+                { value: 'shapes', label: 'Shapes' },
+                { value: 'pointer-swarm', label: 'PointerSwarm' },
+                { value: 'apps', label: 'Apps' },
+                { value: 'math', label: 'Math' },
+              ] as const
+            ).map(({ value, label }) => (
               <DemoToggle
                 key={value}
                 value={value}
@@ -299,22 +297,12 @@ function ShapesCard() {
   );
 }
 
-function OpticalAdjustmentsContent({ heading }: { heading: ReactNode }) {
+export function OpticalAdjustments({ heading }: { heading: ReactNode }) {
   return (
     <OpticalStudy heading={heading}>
       <ShapesCard />
       <CurvesCard />
     </OpticalStudy>
-  );
-}
-
-export function OpticalAdjustments(
-  props: ComponentProps<typeof OpticalAdjustmentsContent>,
-) {
-  return (
-    <IconRendererContext value={Icon}>
-      <OpticalAdjustmentsContent {...props} />
-    </IconRendererContext>
   );
 }
 

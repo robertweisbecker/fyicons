@@ -19,19 +19,15 @@ import {
   IconChevronRightSm,
   IconChevronsExpand,
   IconCirclePause,
-  IconCirclePauseFill,
   IconCirclePlay,
-  IconCirclePlayFill,
   IconFileSkill,
   IconGaugeHigh,
   IconGaugeLow,
   IconGhost,
   IconLightbulb,
-  IconLightbulbFill,
   IconLightbulbOn,
   IconLineVertical,
   IconMicrophone,
-  IconMicrophoneFill,
   IconNotePad,
   IconPencil,
   IconPlug,
@@ -41,10 +37,8 @@ import {
   IconTarget,
   IconTargetBullseye,
   IconTextTitle,
-  IconTextTitleFill,
   IconThoughtBubble,
   IconTimer,
-  IconTimerFill,
   IconTrash,
   IconWaveform,
   IconWrenchTilt,
@@ -59,19 +53,15 @@ const Icon = createIconLookup({
   'chevron-right-sm': IconChevronRightSm,
   'chevrons-maximize': IconChevronsExpand,
   'circle-pause': IconCirclePause,
-  'circle-pause-fill': IconCirclePauseFill,
   'circle-play': IconCirclePlay,
-  'circle-play-fill': IconCirclePlayFill,
   'file-skill': IconFileSkill,
   'gauge-high': IconGaugeHigh,
   'gauge-low': IconGaugeLow,
   ghost: IconGhost,
   lightbulb: IconLightbulb,
-  'lightbulb-fill': IconLightbulbFill,
   'lightbulb-on': IconLightbulbOn,
   'line-vertical': IconLineVertical,
   microphone: IconMicrophone,
-  'microphone-fill': IconMicrophoneFill,
   'note-pad': IconNotePad,
   pencil: IconPencil,
   plug: IconPlug,
@@ -81,10 +71,8 @@ const Icon = createIconLookup({
   target: IconTarget,
   'target-bullseye': IconTargetBullseye,
   text: IconTextTitle,
-  'text-fill': IconTextTitleFill,
   'thought-bubble': IconThoughtBubble,
   timer: IconTimer,
-  'timer-fill': IconTimerFill,
   trash: IconTrash,
   waveform: IconWaveform,
   'wrench-tilt': IconWrenchTilt,
@@ -128,13 +116,15 @@ export function AgentActivity({
         />
       </Collapsible.Trigger>
       <Collapsible.Panel className="flex flex-col gap-2 pt-2">
-        {[
-          ['book-reading', 'Read 4 files'],
-          ['plug', 'Used a plugin'],
-          ['file-skill', 'Read a skill'],
-          ['note-pad', 'Referenced memory'],
-          ['wrench-tilt', 'Used tool'],
-        ].map(([icon, label]) => (
+        {(
+          [
+            ['book-reading', 'Read 4 files'],
+            ['plug', 'Used a plugin'],
+            ['file-skill', 'Read a skill'],
+            ['note-pad', 'Referenced memory'],
+            ['wrench-tilt', 'Used tool'],
+          ] as const
+        ).map(([icon, label]) => (
           <p key={icon} className="flex items-center gap-1">
             <Icon name={icon} />
             {label}

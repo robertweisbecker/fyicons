@@ -1,5 +1,4 @@
 import { createIconLookup } from '@/components/createIconLookup';
-import { IconRendererContext } from '@/components/UIIcon';
 import { useRef, useState } from 'react';
 import { Field } from '@base-ui/react/field';
 import { Switch } from '@/components/ui/switch';
@@ -109,7 +108,7 @@ const pairs = statefulIconPairs.map(([icon, activeIcon]) => ({
 }));
 const pairIds = pairs.map(({ id }) => id);
 
-function StatefulIconsContent() {
+export function StatefulIcons() {
   const toggleAllRef = useRef<HTMLSpanElement>(null);
   const [flipped, setFlipped] = useState(false);
   const [activePairs, setActivePairs] = useState<string[]>([]);
@@ -181,14 +180,6 @@ function StatefulIconsContent() {
         />
       </div>
     </div>
-  );
-}
-
-export function StatefulIcons() {
-  return (
-    <IconRendererContext value={Icon}>
-      <StatefulIconsContent />
-    </IconRendererContext>
   );
 }
 

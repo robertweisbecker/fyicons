@@ -2,8 +2,8 @@ import { forwardRef, memo, type ComponentType } from 'react';
 import { cn } from '../lib/utils';
 import type { IconProps as GeneratedIconProps } from 'fyicons';
 
-export type IconProps = GeneratedIconProps & {
-  name: string;
+export type IconProps<Name extends string = string> = GeneratedIconProps & {
+  name: Name;
 };
 
 type ResolvedIcon = {
@@ -17,9 +17,11 @@ type ResolvedIcon = {
  * defaults. `resolve` maps a name to its React icon and throws on an unknown
  * name. Keep this module independent of the catalog.
  */
-export function createIconRenderer(resolve: (name: string) => ResolvedIcon) {
+export function createIconRenderer<Name extends string = string>(
+  resolve: (name: Name) => ResolvedIcon,
+) {
   return memo(
-    forwardRef<SVGSVGElement, IconProps>(function Icon(
+    forwardRef<SVGSVGElement, IconProps<Name>>(function Icon(
       { name, className = '', title, size, style, ...props },
       ref,
     ) {
@@ -67,11 +69,14 @@ export function createIconRenderer(resolve: (name: string) => ResolvedIcon) {
   );
 }
 
-/** Feature-local lookup of explicitly imported React icon components. */
-export function createIconLookup(
-  entries: Record<string, ComponentType<GeneratedIconProps>>,
+/**
+ * Feature-local lookup of explicitly imported React icon components. The
+ * `name` prop accepts only the keys of `entries`.
+ */
+export function createIconLookup<Name extends string>(
+  entries: Record<Name, ComponentType<GeneratedIconProps>>,
 ) {
-  return createIconRenderer((name) => {
+  return createIconRenderer<Name>((name) => {
     const Component = entries[name];
     if (!Component) throw new Error('Unknown static FYIcon: ' + name);
     return { Component };

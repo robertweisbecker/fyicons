@@ -12,9 +12,6 @@ import {
   IconGhost,
   IconTerminalBash,
   IconTerminalSquare,
-  IconTerminalSquareFill,
-  IconTextTitle,
-  IconTextTitleFill,
 } from 'fyicons';
 
 const Icon = createIconLookup({
@@ -24,9 +21,6 @@ const Icon = createIconLookup({
   ghost: IconGhost,
   'terminal-bash': IconTerminalBash,
   'terminal-square': IconTerminalSquare,
-  'terminal-square-fill': IconTerminalSquareFill,
-  text: IconTextTitle,
-  'text-fill': IconTextTitleFill,
 });
 
 export function InstallCommand({

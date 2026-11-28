@@ -20,7 +20,6 @@ import {
   IconArrowToTop,
   IconArrowsToMiddle,
   IconArrowToBottom,
-  IconTextAlignJustify,
 } from 'fyicons';
 
 export function FormatStudy() {
@@ -60,12 +59,14 @@ export function FormatControls({
         aria-label="Text formatting"
         className={compact ? 'grid min-w-0 grid-cols-4 gap-0' : 'gap-px'}
       >
-        {[
-          ['bold', 'text-bold', 'Bold'],
-          ['italic', 'italic', 'Italic'],
-          ['underline', 'text-underline', 'Underline'],
-          ['strike', 'text-strikethrough', 'Strikethrough'],
-        ].map(([value, icon, label]) => (
+        {(
+          [
+            ['bold', 'text-bold', 'Bold'],
+            ['italic', 'italic', 'Italic'],
+            ['underline', 'text-underline', 'Underline'],
+            ['strike', 'text-strikethrough', 'Strikethrough'],
+          ] as const
+        ).map(([value, icon, label]) => (
           <DemoToggle
             key={value}
             value={value}
@@ -152,11 +153,11 @@ export function TextAlignment({
           compact ? 'grid min-w-0 grid-cols-3 gap-0' : 'w-fit gap-px',
         )}
       >
-        {['start', 'center', 'end'].map((value) => (
+        {(['start', 'center', 'end'] as const).map((value) => (
           <DemoToggle
             key={value}
             value={value}
-            icon={'text-align-' + value}
+            icon={`text-align-${value}`}
             label={'Align ' + value}
             size={size}
             variant="elevated"
@@ -174,11 +175,11 @@ export function TextAlignment({
             compact ? 'grid min-w-0 flex-1 grid-cols-3 gap-0' : 'gap-px',
           )}
         >
-          {['top', 'middle', 'bottom'].map((value) => (
+          {(['top', 'middle', 'bottom'] as const).map((value) => (
             <DemoToggle
               key={value}
               value={value}
-              icon={'align-' + value}
+              icon={`align-${value}`}
               label={'Align ' + value}
               size={size}
               variant="elevated"
@@ -210,7 +211,6 @@ const Icon = createIconLookup({
   'align-top': IconArrowToTop,
   'align-middle': IconArrowsToMiddle,
   'align-bottom': IconArrowToBottom,
-  'text-align-justify': IconTextAlignJustify,
 });
 
 const Glyph = createGlyph(Icon);

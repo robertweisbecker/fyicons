@@ -132,16 +132,31 @@ export function CopyButton({
     </DemoHint>
   );
 }
-/** Bind demo controls to the feature's explicit set of icon imports. */
-export function createDemoControls(Renderer: ComponentType<IconProps>) {
+/**
+ * Bind demo controls to the feature's explicit set of icon imports. The
+ * returned controls accept only the icon names of that set.
+ */
+export function createDemoControls<Name extends string>(
+  Renderer: ComponentType<IconProps<Name>>,
+) {
+  // The shared controls pass names through as plain strings. The typed props
+  // below keep every name inside this renderer's set.
+  const renderer = Renderer as ComponentType<IconProps>;
   return {
-    DemoIconButton: (props: ComponentProps<typeof DemoIconButton>) => (
-      <IconRendererContext value={Renderer}>
+    DemoIconButton: (
+      props: ComponentProps<typeof DemoIconButton> & { icon: Name },
+    ) => (
+      <IconRendererContext value={renderer}>
         <DemoIconButton {...props} />
       </IconRendererContext>
     ),
-    DemoToggle: (props: ComponentProps<typeof DemoToggle>) => (
-      <IconRendererContext value={Renderer}>
+    DemoToggle: (
+      props: ComponentProps<typeof DemoToggle> & {
+        icon: Name;
+        activeIcon?: Name;
+      },
+    ) => (
+      <IconRendererContext value={renderer}>
         <DemoToggle {...props} />
       </IconRendererContext>
     ),

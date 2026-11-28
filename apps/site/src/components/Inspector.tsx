@@ -39,7 +39,7 @@ import {
   icons,
   type IconRecord,
 } from '@/lib/catalog';
-import { readPreference, useMobile, usePreference } from '@/lib/preferences';
+import { useMobile, usePreference } from '@/lib/preferences';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
 import type { IconShareLink } from '@/lib/icon-inspection';
 import { IconCopyButton } from './IconCopyButton';
@@ -321,24 +321,6 @@ function InspectorView(
     null,
     isInspectorWidth,
   );
-  useEffect(() => {
-    if (
-      readPreference<number | null>(
-        inspectorWidthKey,
-        null,
-        isInspectorWidth,
-      ) !== null
-    )
-      return;
-    const legacyWidth = readPreference<number | null>(
-      'fyicons-inspector-width-v1',
-      null,
-      isInspectorWidth,
-    );
-    // Old defaults were saved automatically; retain only custom legacy widths.
-    if (legacyWidth !== null && legacyWidth !== 352 && legacyWidth !== 384)
-      setPreferredWidth(legacyWidth);
-  }, [setPreferredWidth]);
   const [resizing, setResizing] = useState(false);
   const minWidth = 176;
   const maxWidth = Math.max(minWidth, Math.min(640, viewportWidth - 320));

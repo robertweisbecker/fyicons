@@ -17,11 +17,8 @@ import {
   IconCircleCheckFill,
   IconCircleHalftone,
   IconCirclePause,
-  IconCirclePauseFill,
   IconCirclePlay,
-  IconCirclePlayFill,
   IconCircleStop,
-  IconCircleStopFill,
   IconClock,
   IconClockFill,
   IconClockSolid,
@@ -45,7 +42,6 @@ import {
   IconEyedropper,
   IconFileAdd,
   IconFireAlt,
-  IconFireAltFill,
   IconFolder,
   IconFolderCheck,
   IconFolderFill,
@@ -114,11 +110,8 @@ const Icon = createIconLookup({
   'circle-check-fill': IconCircleCheckFill,
   'circle-halftone': IconCircleHalftone,
   'circle-pause': IconCirclePause,
-  'circle-pause-fill': IconCirclePauseFill,
   'circle-play': IconCirclePlay,
-  'circle-play-fill': IconCirclePlayFill,
   'circle-stop': IconCircleStop,
-  'circle-stop-fill': IconCircleStopFill,
   clock: IconClock,
   'clock-fill': IconClockFill,
   'clock-solid': IconClockSolid,
@@ -142,7 +135,6 @@ const Icon = createIconLookup({
   eyedropper: IconEyedropper,
   'file-add': IconFileAdd,
   'fire-alt': IconFireAlt,
-  'fire-alt-fill': IconFireAltFill,
   folder: IconFolder,
   'folder-check': IconFolderCheck,
   'folder-fill': IconFolderFill,
@@ -267,7 +259,7 @@ const mixedIcons = [
 
 const variants = {
   Outline: variantIcons,
-  Filled: variantIcons.map((name) => `${name}-fill`),
+  Filled: variantIcons.map((name) => `${name}-fill` as const),
   Mixed: mixedIcons,
 };
 

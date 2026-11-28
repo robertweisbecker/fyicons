@@ -84,11 +84,13 @@ function WindowControls() {
       className="group/traffic pointer-events-auto flex w-20 shrink-0 items-center justify-center gap-2"
       aria-hidden
     >
-      {[
-        ['x', 'bg-red-400'],
-        ['minus', 'bg-yellow-400'],
-        ['carets-maximize', 'bg-green-500'],
-      ].map(([icon, color]) => (
+      {(
+        [
+          ['x', 'bg-red-400'],
+          ['minus', 'bg-yellow-400'],
+          ['carets-maximize', 'bg-green-500'],
+        ] as const
+      ).map(([icon, color]) => (
         <span
           key={icon}
           className={cn(
@@ -121,9 +123,11 @@ function DesktopStatusBar() {
       </div>
       <div className="flex items-center gap-3">
         <div className="hidden items-center gap-3 @2xl/desktop:flex">
-          {['sticky-note-alt', 'keys', 'keyboard', 'bluetooth'].map((name) => (
-            <Icon key={name} name={name} />
-          ))}
+          {(['sticky-note-alt', 'keys', 'keyboard', 'bluetooth'] as const).map(
+            (name) => (
+              <Icon key={name} name={name} />
+            ),
+          )}
         </div>
         <DeviceBattery percentageClassName="hidden @sm/desktop:inline" />
         <Icon name="wifi-fill" />

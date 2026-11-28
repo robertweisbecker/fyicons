@@ -1,11 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
 import { IconWaveform } from 'fyicons';
-
-const Icon = createIconLookup({
-  waveform: IconWaveform,
-});
 
 export const tracks = [
   { title: 'Soft Signal', artist: 'The Quiet Hours', length: 222 },
@@ -39,7 +34,7 @@ export function AlbumArtwork({
       <span className="absolute -right-1/4 -bottom-1/4 size-full rounded-full bg-sky-50" />
       <span className="absolute right-0 bottom-0 size-1/2 rounded-full bg-sky-300" />
       <span className="absolute right-1/4 bottom-1/4 size-1/4 rounded-full bg-sky-200" />
-      <Icon name="waveform" className="relative" />
+      <IconWaveform className="relative" />
     </div>
   );
 }

@@ -46,7 +46,7 @@ export const viewport: Viewport = {
   themeColor: '#f5f5f5',
 };
 
-const themeScript = `try{var t=JSON.parse(localStorage.getItem('fyicons-theme-v1')||localStorage.getItem('astra-theme-v1')||'"light"');if(t==='dark'){document.documentElement.dataset.theme=t;document.querySelector('meta[name="theme-color"]').content='#0a0a0a'}}catch{}`;
+const themeScript = `try{var t=JSON.parse(localStorage.getItem('fyicons-theme-v1')||'"light"');if(t==='dark'){document.documentElement.dataset.theme=t;document.querySelector('meta[name="theme-color"]').content='#0a0a0a'}}catch{}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

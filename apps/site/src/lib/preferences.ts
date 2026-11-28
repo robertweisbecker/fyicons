@@ -18,11 +18,7 @@ export function readPreference<T>(
   validate?: (value: unknown) => value is T,
 ): T {
   try {
-    const value: unknown = JSON.parse(
-      localStorage.getItem(key) ??
-        localStorage.getItem(key.replace('fyicons-', 'astra-')) ??
-        'null',
-    );
+    const value: unknown = JSON.parse(localStorage.getItem(key) ?? 'null');
     if (value == null || (validate && !validate(value))) return fallback;
     return value as T;
   } catch {

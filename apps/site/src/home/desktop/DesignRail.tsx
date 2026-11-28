@@ -18,16 +18,18 @@ export function DesignRail() {
       aria-label="Design navigation"
       data-figma-id="732:5383"
     >
-      {[
-        ['file', 'File'],
-        ['sparkle', 'Agents'],
-        ['circle-plus', 'Assets'],
-        ['toolbox', 'Tools'],
-        ['line-horizontal', ''],
-        ['token', 'Variables'],
-        ['line-horizontal', ''],
-        ['book-open-3', 'Libraries'],
-      ].map(([icon, label], i) => (
+      {(
+        [
+          ['file', 'File'],
+          ['sparkle', 'Agents'],
+          ['circle-plus', 'Assets'],
+          ['toolbox', 'Tools'],
+          ['line-horizontal', ''],
+          ['token', 'Variables'],
+          ['line-horizontal', ''],
+          ['book-open-3', 'Libraries'],
+        ] as const
+      ).map(([icon, label], i) => (
         <div
           key={i}
           className="flex flex-col items-center gap-0"

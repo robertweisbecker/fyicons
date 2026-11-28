@@ -9,7 +9,6 @@ import {
 } from '../../apps/site/src/lib/preferences.ts';
 
 const currentKey = 'fyicons-shortlist-v1';
-const legacyKey = 'astra-shortlist-v1';
 
 function withStorage(storage, run) {
   const original = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
@@ -31,10 +30,8 @@ function readSelections(entries) {
   );
 }
 
-test('saved selections validate current data and fall back to legacy data only when absent', () => {
-  assert.deepEqual(readSelections({ [legacyKey]: '["legacy-id"]' }), [
-    'legacy-id',
-  ]);
+test('saved selections validate current data', () => {
+  assert.deepEqual(readSelections({}), []);
   for (const [current, expected] of [
     ['["current-id"]', ['current-id']],
     ['[]', []],
@@ -42,10 +39,7 @@ test('saved selections validate current data and fall back to legacy data only w
     ['["icon-id",42]', []],
     ['[broken', []],
   ]) {
-    assert.deepEqual(
-      readSelections({ [currentKey]: current, [legacyKey]: '["legacy-id"]' }),
-      expected,
-    );
+    assert.deepEqual(readSelections({ [currentKey]: current }), expected);
   }
 });
 

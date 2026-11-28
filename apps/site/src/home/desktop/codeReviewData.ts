@@ -34,7 +34,7 @@ export const reviewChanges = [
 ];
 
 export const reviewFiles: ProjectFile[] = [
-  ...reviewChanges.map(({ path }) => ({
+  ...reviewChanges.map(({ path }): ProjectFile => ({
     path,
     icon: 'atom-react',
     change: 'M',

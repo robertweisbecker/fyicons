@@ -1,11 +1,8 @@
 'use client';
 import {
   IconFileText,
-  IconMenuAlt,
   IconArrowDown,
   IconArrowLeft,
-  IconArrowRestart,
-  IconArrowRevert,
   IconArrowRight,
   IconArrowX,
   IconArrowY,
@@ -14,7 +11,6 @@ import {
   IconBookOpen,
   IconBookmark,
   IconBookmarkFill,
-  IconBorderOuter,
   IconCheck,
   IconChevronLeft,
   IconChevronRight,
@@ -26,7 +22,6 @@ import {
   IconEye,
   IconEyeClosed,
   IconFireAltFill,
-  IconFolderAdd,
   IconGhost,
   IconGlobe,
   IconGrid,
@@ -38,8 +33,6 @@ import {
   IconLayoutPin,
   IconLayoutPinned,
   IconLink,
-  IconLinkSide,
-  IconLinkSideUnlink,
   IconLock,
   IconLockOpen,
   IconNote,
@@ -47,7 +40,6 @@ import {
   IconPaperclipTilt,
   IconSearch,
   IconSend,
-  IconSettingsSmall,
   IconShadow,
   IconSortDown,
   IconTag,
@@ -59,13 +51,11 @@ import {
 import { createContext, useContext, type ComponentType } from 'react';
 import { createIconLookup, type IconProps } from './createIconLookup';
 
-const ChromeIcon = createIconLookup({
+// Shared controls pass names as plain strings, so this set stays untyped.
+const ChromeIcon = createIconLookup<string>({
   'file-text': IconFileText,
-  'menu-alt': IconMenuAlt,
   'arrow-down': IconArrowDown,
   'arrow-left': IconArrowLeft,
-  'arrow-restart': IconArrowRestart,
-  'arrow-revert': IconArrowRevert,
   'arrow-right': IconArrowRight,
   'arrow-x': IconArrowX,
   'arrow-y': IconArrowY,
@@ -74,7 +64,6 @@ const ChromeIcon = createIconLookup({
   'book-open': IconBookOpen,
   bookmark: IconBookmark,
   'bookmark-fill': IconBookmarkFill,
-  'border-outer': IconBorderOuter,
   check: IconCheck,
   'chevron-left': IconChevronLeft,
   'chevron-right': IconChevronRight,
@@ -86,7 +75,6 @@ const ChromeIcon = createIconLookup({
   eye: IconEye,
   'eye-closed': IconEyeClosed,
   'fire-alt-fill': IconFireAltFill,
-  'folder-add': IconFolderAdd,
   ghost: IconGhost,
   globe: IconGlobe,
   grid: IconGrid,
@@ -98,8 +86,6 @@ const ChromeIcon = createIconLookup({
   'layout-pin': IconLayoutPin,
   'layout-pinned': IconLayoutPinned,
   link: IconLink,
-  'link-side': IconLinkSide,
-  'link-side-unlink': IconLinkSideUnlink,
   lock: IconLock,
   'lock-open': IconLockOpen,
   note: IconNote,
@@ -107,7 +93,6 @@ const ChromeIcon = createIconLookup({
   'paperclip-tilt': IconPaperclipTilt,
   search: IconSearch,
   send: IconSend,
-  'settings-small': IconSettingsSmall,
   shadow: IconShadow,
   'sort-down': IconSortDown,
   tag: IconTag,
