@@ -237,3 +237,82 @@ test('a half-disc touching an opaque ring paints one continuous surface', async 
   ])
     assert.match(normalizeSvgExport(unsupported), /<circle\b/);
 });
+
+test('a clip that covers the whole 16 × 16 canvas is removed', async () => {
+  const body =
+    '<path stroke="black" stroke-linecap="round" d="M1.5 1.5h13v13"/><path fill="black" d="M4 4h8v8H4z"/>';
+  const svg = (inner) =>
+    `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">${inner}</svg>`;
+  const plain = normalizeSvgExport(svg(body));
+  const clipped = (shape, attrs = '') =>
+    svg(
+      `<g clip-path="url(#clip0_1_2)"${attrs}>${body}</g><defs><clipPath id="clip0_1_2">${shape}</clipPath></defs>`,
+    );
+  // Figma writes a rect; an earlier normalized source has the path form.
+  for (const shape of [
+    '<rect width="16" height="16" fill="white"/>',
+    '<path fill="white" d="M0 0h16v16H0z"/>',
+    '<path d="M16 16V0H0v16Z"/>',
+  ]) {
+    const normalized = normalizeSvgExport(clipped(shape));
+    assert.equal(normalized, plain);
+    assert.equal(normalizeSvgExport(normalized), normalized);
+  }
+  // Other group attributes stay on the group around the same children.
+  const painted = normalizeSvgExport(
+    clipped('<rect width="16" height="16"/>', ' opacity=".5"'),
+  );
+  assert.doesNotMatch(painted, /clip-path|<clipPath|<defs/);
+  assert.match(painted, /^<svg[^>]*><g opacity="\.5">/);
+  const view = { ...views[0], size: 64 };
+  assert.deepEqual(
+    (
+      await renderer.raster(
+        normalizeSvgExport(clipped('<rect width="16" height="16"/>')),
+        view,
+        true,
+      )
+    ).data,
+    (await renderer.raster(svg(body), view, true)).data,
+  );
+});
+
+test('partial, shared, transformed and styled clips are kept', () => {
+  const body = '<path fill="black" d="M0 0h16v16H0z"/>';
+  const svg = ({
+    root = 'viewBox="0 0 16 16"',
+    group = 'clip-path="url(#c)"',
+    shape = '<rect width="16" height="16"/>',
+    clip = 'id="c"',
+    extra = '',
+  } = {}) =>
+    `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" ${root}><g ${group}>${body}</g>${extra}<defs><clipPath ${clip}>${shape}</clipPath></defs></svg>`;
+  // The unmodified fixture is removable, so each case tests one guard.
+  assert.doesNotMatch(normalizeSvgExport(svg()), /clip/);
+  const kept = [
+    svg({ shape: '<rect width="15" height="16"/>' }),
+    svg({ shape: '<rect x="1" width="16" height="16"/>' }),
+    svg({ shape: '<path d="M0 0h16v15H0z"/>' }),
+    svg({ shape: '<path d="M0 0h16v16H0zm4 4h8v8H4z"/>' }),
+    svg({ shape: '<rect width="16" height="16" rx="2"/>' }),
+    svg({ shape: '<rect width="16" height="16" transform="scale(.5)"/>' }),
+    svg({
+      shape: '<rect width="16" height="16"/><rect width="1" height="1"/>',
+    }),
+    svg({ extra: `<g clip-path="url(#c)">${body}</g>` }),
+    svg({ extra: '<use href="#c"/>' }),
+    svg({ extra: '<rect width="1" height="1" clip-path="url(#\\63 )"/>' }),
+    svg({ group: 'clip-path="url(#c)" transform="translate(1)"' }),
+    svg({ clip: 'id="c" clipPathUnits="objectBoundingBox"' }),
+    svg({ clip: 'id="c" transform="scale(2)"' }),
+    svg({ root: 'viewBox="0 0 24 24"' }),
+    svg({ root: 'viewBox="0 0 16 16" overflow="visible"' }),
+    svg({ extra: '<style>g{opacity:.5}</style>' }),
+  ];
+  for (const candidate of kept)
+    assert.match(
+      normalizeSvgExport(candidate),
+      /clip-path="url\(#c\)"[\s\S]*<clipPath id="c"/,
+      candidate,
+    );
+});

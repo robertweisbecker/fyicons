@@ -1,6 +1,7 @@
 import { JSDOM } from 'jsdom';
 import paper from 'paper';
 import { optimize } from 'svgo';
+import { SVGPathData as Path } from 'svg-pathdata';
 import {
   anchorStrokeClosures,
   mergeTouchingHalfDiscs,
@@ -220,6 +221,151 @@ export function repairFillStrokeSeams(svg) {
   }
 }
 
+const canvasCorners = ['0,0', '16,0', '16,16', '0,16'];
+const hasOnly = (node, names) =>
+  Object.keys(node.attributes).every((name) => names.includes(name));
+const elements = (node) =>
+  node.children.filter((child) => child.type === 'element');
+
+/** True when a clip shape is exactly the 16 × 16 canvas rectangle. */
+function coversCanvas(shape) {
+  if (shape.children.length) return false;
+  if (shape.name === 'rect') {
+    const { x = '0', y = '0', width, height } = shape.attributes;
+    return (
+      hasOnly(shape, ['x', 'y', 'width', 'height', 'fill']) &&
+      Number(x) === 0 &&
+      Number(y) === 0 &&
+      Number(width) === 16 &&
+      Number(height) === 16
+    );
+  }
+  if (shape.name !== 'path' || !hasOnly(shape, ['d', 'fill'])) return false;
+  let commands;
+  try {
+    commands = new Path(shape.attributes.d ?? '')
+      .toAbs()
+      .normalizeHVZ().commands;
+  } catch {
+    return false;
+  }
+  if (
+    commands[0]?.type !== Path.MOVE_TO ||
+    commands.slice(1).some(({ type }) => type !== Path.LINE_TO)
+  )
+    return false;
+  const points = commands.map(({ x, y }) => `${x},${y}`);
+  if (points.length > 1 && points.at(-1) === points[0]) points.pop();
+  if (points.length !== 4) return false;
+  // Four distinct canvas corners joined by axis-aligned edges form the canvas.
+  const start = canvasCorners.indexOf(points[0]);
+  if (start < 0) return false;
+  const forward = canvasCorners.map((_, i) => canvasCorners[(start + i) % 4]);
+  const backward = canvasCorners.map(
+    (_, i) => canvasCorners[(start - i + 4) % 4],
+  );
+  return [forward, backward].some((order) =>
+    order.every((point, i) => point === points[i]),
+  );
+}
+
+/**
+ * Remove a clip that only repeats the 16 × 16 root viewport.
+ * Accept one clip shape, one group reference, and no transforms or CSS on the
+ * path to the root. Every other clip, and every other reference, stays.
+ */
+export const removeFullCanvasClips = {
+  name: 'removeFullCanvasClips',
+  fn: (root) => {
+    const svg = root.children.find(
+      (node) => node.type === 'element' && node.name === 'svg',
+    );
+    if (
+      !svg ||
+      svg.attributes.viewBox
+        ?.trim()
+        .split(/[\s,]+/)
+        .join(' ') !== '0 0 16 16' ||
+      ['overflow', 'preserveAspectRatio', 'style', 'transform'].some(
+        (name) => name in svg.attributes,
+      ) ||
+      (svg.attributes.width ?? '16') !== (svg.attributes.height ?? '16')
+    )
+      return null;
+    const parents = new Map();
+    const all = [];
+    const visit = (node) => {
+      for (const child of node.children ?? []) {
+        if (child.type !== 'element') continue;
+        parents.set(child, node);
+        all.push(child);
+        visit(child);
+      }
+    };
+    visit(svg);
+    // CSS and escaped URLs can reference clips in ways a plain match misses.
+    if (
+      all.some(
+        (node) =>
+          node.name === 'style' ||
+          'style' in node.attributes ||
+          Object.values(node.attributes).some((value) => value.includes('\\')),
+      )
+    )
+      return null;
+    for (const clip of all.filter((node) => node.name === 'clipPath')) {
+      const id = clip.attributes.id;
+      const shapes = elements(clip);
+      if (
+        !id ||
+        !hasOnly(clip, ['id', 'clipPathUnits']) ||
+        (clip.attributes.clipPathUnits ?? 'userSpaceOnUse') !==
+          'userSpaceOnUse' ||
+        clip.children.some(
+          (child) => child.type !== 'element' && child.value?.trim(),
+        ) ||
+        shapes.length !== 1 ||
+        !coversCanvas(shapes[0]) ||
+        !['defs', 'svg'].includes(parents.get(clip).name) ||
+        all.filter((node) => node.attributes.id === id).length !== 1
+      )
+        continue;
+      // Count every attribute that refers to the ID, not only clip-path values.
+      const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const reference = new RegExp(`#${escaped}(?![-\\w.:])`);
+      const mentions = all.flatMap((node) =>
+        Object.entries(node.attributes)
+          .filter(([, value]) => reference.test(value))
+          .map(([name, value]) => ({ node, name, value })),
+      );
+      if (mentions.length !== 1) continue;
+      const [{ node: group, name, value }] = mentions;
+      if (
+        group.name !== 'g' ||
+        name !== 'clip-path' ||
+        !new RegExp(`^url\\(\\s*(['"]?)#${escaped}\\1\\s*\\)$`).test(
+          value.trim(),
+        )
+      )
+        continue;
+      let safe = true;
+      for (let node = group; node !== svg; node = parents.get(node))
+        if (node.name !== 'g' || 'transform' in node.attributes) safe = false;
+      if (!safe) continue;
+      delete group.attributes['clip-path'];
+      const holder = parents.get(clip);
+      holder.children = holder.children.filter((child) => child !== clip);
+      if (!Object.keys(group.attributes).length) {
+        // Unwrap the group; its children keep their order.
+        const parent = parents.get(group);
+        const index = parent.children.indexOf(group);
+        parent.children.splice(index, 1, ...group.children);
+      }
+    }
+    return null;
+  },
+};
+
 /** Apply the color policy, repair eligible layers, then optimize for distribution. */
 export function normalizeSvgExport(svg) {
   return (
@@ -227,6 +373,7 @@ export function normalizeSvgExport(svg) {
       multipass: true,
       floatPrecision: 3,
       plugins: [
+        removeFullCanvasClips,
         mergeTouchingHalfDiscs,
         {
           name: 'preset-default',

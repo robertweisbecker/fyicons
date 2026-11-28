@@ -4,7 +4,7 @@
 
 The editable artwork is in [`icons/`](../icons/). Each icon has one SVG file and one entry in [`icons/manifest.json`](../icons/manifest.json). Category rules are in [`apps/site/public/icon-categories.json`](../apps/site/public/icon-categories.json).
 
-Normalize visible foreground paint to `currentColor` before import. The importer applies `normalizeSvgExport` from `scripts/lib/svg-export.mjs`. Keep the raw export and its checksum in local staging. This function applies the foreground color policy, repairs supported fill/stroke combinations, and runs SVGO at three decimal places. Keep the 16 × 16 viewBox, clips, and transparency. React output gives each rendered instance its own SVG definition IDs.
+Normalize visible foreground paint to `currentColor` before import. The importer applies `normalizeSvgExport` from `scripts/lib/svg-export.mjs`. Keep the raw export and its checksum in local staging. This function applies the foreground color policy, repairs supported fill/stroke combinations, removes clips that only repeat the 16 × 16 canvas, and runs SVGO at three decimal places. Keep the 16 × 16 viewBox, other clips, and transparency. React output gives each rendered instance its own SVG definition IDs.
 
 Generation adds `fy-icon` and `fy-{icon-name}` classes to the root of exported SVGs. The website catalog, copied SVGs, ZIP downloads, and npm package SVGs use these same exports. Their artwork, paint, reference IDs, and other source bytes stay unchanged. Existing root classes are retained without duplicating the defaults. Catalog and ZIP checksums describe the exported bytes. The editable `icons/*.svg` files and import timestamps stay unchanged.
 
@@ -33,6 +33,22 @@ For a mitered stroke, a relative Bézier curve can reach its starting point with
 Review the generated PNG comparison after an import, using an existing browser for SVG spot checks when needed. A vector union can change edge antialiasing and numeric path representation. A smaller file alone does not establish visual correctness. Paper.js and SVGO are development dependencies; neither is included in the icon package or website bundle.
 
 After the repair, the pinned SVGO version runs its default preset with multiple passes and three-decimal precision. ID cleanup and color conversion are disabled. This reduces path data while keeping the viewBox, reference IDs, and paint policy. It can slightly change curves and edge antialiasing, so review the 16 px and 64 px comparisons when the optimizer or its settings change. Use the same normalizer for all imported icons; do not optimize generated React files separately.
+
+## Full-canvas clips
+
+Figma can wrap artwork in a group that is clipped to the full 16 × 16 frame. That clip removes nothing, because the root viewport already clips to the same rectangle. The importer removes the clip and its definition, and unwraps the group if no other attributes remain. The children keep their order.
+
+The removal applies only when all of these conditions are true:
+
+- The root has a `0 0 16 16` viewBox, equal width and height, and no `overflow`, `preserveAspectRatio`, `transform`, or `style` attribute.
+- The `clipPath` uses user-space units and has one child: a rectangle or a straight-edged path that covers exactly `0 0 16 16`.
+- Exactly one attribute refers to the clip ID: the `clip-path` attribute of a group.
+- That group and its ancestor groups have no transform.
+- The SVG has no CSS and no escaped references.
+
+The importer keeps all other clips, including partial clips and clips that more than one element uses.
+
+Prefer plain paths for new artwork. Inline copies of an SVG with a mask, clip, or `use` element share definition IDs. `npm run generate:icons` and `npm run check:icons` print a warning that lists these source SVGs. To remove an inside-stroke mask, outline the stroke in Figma, or center the stroke and adjust the geometry. Then import the icon again.
 
 ## Identity and names
 
