@@ -8,7 +8,7 @@ import { Sidebar, Editor, Files, Table } from './Workspace';
 import { AssetMenu } from './AssetMenu';
 import { Feedback, Uploads, Notifications, Tasks } from './Activity';
 import { OrderTracking } from './OrderTracking';
-import { Share } from './Share';
+import { Weather } from './Weather';
 import { Keypad } from './keycaps/Keypad';
 
 const IconSpecs = lazy(() => import('./IconSpecs'));
@@ -92,11 +92,10 @@ const examples = [
     inset: true,
   },
   {
-    title: 'Share',
-    Content: Share,
-    field: 'bg-[#e7d4bf] text-[#4b3428]',
-    inset: true,
-    dot: 'bg-orange-700',
+    title: 'Weather',
+    Content: Weather,
+    fullBleed: true,
+    dot: 'bg-sky-500',
   },
 ];
 

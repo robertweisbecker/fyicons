@@ -37,9 +37,9 @@ test('mobile heading navigation opens the selected section', async (t) => {
   await act(async () =>
     document.querySelector('button[aria-label^="On this page:"]').click(),
   );
-  const target = [
-    ...document.querySelectorAll('[role="menuitem"], [role="option"]'),
-  ].find((element) => element.textContent.trim() === 'First');
+  const target = document.querySelector(
+    'nav[aria-label="Documentation links"] a[href="#first"]',
+  );
   assert.ok(target, 'section is available in mobile navigation');
   await act(async () => {
     const changed = once(fixture.window, 'hashchange', {

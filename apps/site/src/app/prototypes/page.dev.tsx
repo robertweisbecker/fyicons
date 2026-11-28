@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const metadata = { title: 'Prototypes' };
 
 const prototypes = [
+  { href: '/prototypes/docs-navigation/', name: 'Combined docs navigation' },
   { href: '/prototypes/app-previews/', name: 'App previews' },
   { href: '/prototypes/examples/', name: 'Icon examples' },
   { href: '/prototypes/inspector/', name: 'Inspector sheet' },

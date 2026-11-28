@@ -1,3 +1,5 @@
+export type DocSection = { id: string; title: string };
+
 export const docsNavigation = [
   {
     title: 'Documentation',
@@ -20,3 +22,18 @@ export const docsNavigation = [
     ],
   },
 ];
+
+export const docsPages = docsNavigation.flatMap(({ items }) => items);
+
+export function mobileDocSections(
+  headings: (DocSection & { level: number })[],
+  active?: string,
+) {
+  const mobileHeadings = headings.filter(({ level }) => level === 2);
+  const activeIndex = headings.findIndex(({ id }) => id === active);
+  let current = mobileHeadings[0];
+  for (let index = 0; index <= activeIndex; index++) {
+    if (headings[index].level === 2) current = headings[index];
+  }
+  return { sections: mobileHeadings, current };
+}

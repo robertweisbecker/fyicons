@@ -2,6 +2,7 @@ import { useDemoActivity } from '@/components/DeferredContent';
 import { useEffect, useState } from 'react';
 import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
+import { useMinuteClock } from '@/lib/use-minute-clock';
 import {
   IconBattery,
   IconBatteryCharging,
@@ -30,29 +31,7 @@ const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
 
 export function DeviceClock({ className }: { className?: string }) {
   const active = useDemoActivity();
-  const [now, setNow] = useState<Date | null>(null);
-
-  useEffect(() => {
-    if (!active) return;
-    let timer: number;
-    function update() {
-      window.clearTimeout(timer);
-      setNow(new Date());
-      timer = window.setTimeout(update, 60_000 - (Date.now() % 60_000));
-    }
-    function onVisibilityChange() {
-      if (document.visibilityState === 'visible') update();
-    }
-
-    update();
-    document.addEventListener('visibilitychange', onVisibilityChange);
-    window.addEventListener('focus', update);
-    return () => {
-      window.clearTimeout(timer);
-      document.removeEventListener('visibilitychange', onVisibilityChange);
-      window.removeEventListener('focus', update);
-    };
-  }, [active]);
+  const now = useMinuteClock(active);
 
   return (
     <time
