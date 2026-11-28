@@ -1,6 +1,6 @@
 import { IconRaysCorner } from 'fyicons';
 
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '../lib/utils';
@@ -53,7 +53,7 @@ export function IconTile({
             className="absolute top-1 right-[75%] size-4 text-control-accent"
           />
         )}
-        <Icon name={icon.id} className="bg-grid size-(--preview-size)" />
+        <CatalogIcon name={icon.id} className="bg-grid size-(--preview-size)" />
         <span
           className={cn(
             'tile-name hidden max-w-full truncate text-[11px] leading-none font-normal wrap-anywhere text-muted opacity-0 group-focus-within/tile:opacity-100 group-hover/tile:opacity-100 md:block',

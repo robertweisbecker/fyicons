@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Tooltip as DemoHint } from '@/components/ui/tooltip';
-import { Icon, IconRendererContext } from '@/components/UIIcon';
+import { UIIcon, IconRendererContext } from '@/components/UIIcon';
 import type { ComponentType, ComponentProps } from 'react';
 import type { IconProps } from '@/components/createIconLookup';
 import {
@@ -31,7 +31,7 @@ export function DemoIconButton({
         {...props}
         className={className}
       >
-        <Icon name={icon} />
+        <UIIcon name={icon} />
       </Button>
     </DemoHint>
   );
@@ -60,7 +60,7 @@ export function DemoToggle({
         {activeIcon ? (
           <ToggleIcon icon={icon} activeIcon={activeIcon} />
         ) : (
-          <Icon name={icon} />
+          <UIIcon name={icon} />
         )}
       </Toggle>
     </DemoHint>
@@ -132,10 +132,6 @@ export function CopyButton({
     </DemoHint>
   );
 }
-export function ControlDivider() {
-  return <span aria-hidden className="mx-1 h-4 w-px shrink-0 bg-line" />;
-}
-
 /** Bind demo controls to the feature's explicit set of icon imports. */
 export function createDemoControls(Renderer: ComponentType<IconProps>) {
   return {

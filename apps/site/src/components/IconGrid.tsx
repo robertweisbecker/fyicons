@@ -2,7 +2,7 @@ import { useState, type CSSProperties, type ReactNode } from 'react';
 import { ContextMenu } from '@base-ui/react/context-menu';
 import { byId, getIconDisplayName, type IconRecord } from '@/lib/catalog';
 import { useIconSource } from '@/lib/use-icon-source';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import {
   MenuContent,
   MenuGroup,
@@ -73,7 +73,7 @@ function TileMenu({ icon }: { icon: IconRecord }) {
         <>
           &quot;<span className="font-semibold">{name}</span>&quot; copied
         </>,
-        { id: `copy:${icon.id}:Name`, icon: <Icon name={icon.id} /> },
+        { id: `copy:${icon.id}:Name`, icon: <CatalogIcon name={icon.id} /> },
       );
     } else {
       notify('Clipboard unavailable. Please try again.');
@@ -85,15 +85,15 @@ function TileMenu({ icon }: { icon: IconRecord }) {
       <MenuGroup>
         <MenuGroupLabel>{name}</MenuGroupLabel>
         <MenuItem onClick={copyName}>
-          <Icon name="text-title" />
+          <CatalogIcon name="text-title" />
           Copy name
         </MenuItem>
         <MenuItem onClick={() => copyMenuSvg(icon, source.text)}>
-          <Icon name="copy" />
+          <CatalogIcon name="copy" />
           Copy SVG
         </MenuItem>
         <MenuItem onClick={() => downloadIcon(icon)}>
-          <Icon name="download-square" />
+          <CatalogIcon name="download-square" />
           Download
         </MenuItem>
       </MenuGroup>

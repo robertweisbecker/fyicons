@@ -4,7 +4,7 @@ import { IconRendererContext } from './UIIcon';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Popover } from '@base-ui/react/popover';
 import { cn } from '@/lib/utils';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { Button } from './ui/button';
 import { Switch } from './ui/switch';
 import {
@@ -238,7 +238,7 @@ function IconsBrowserContent() {
             key={value}
             value={value}
             data-sort-value={value}
-            leading={<Icon name={icon} className="text-muted" />}
+            leading={<CatalogIcon name={icon} className="text-muted" />}
           >
             {label}
           </SelectItem>
@@ -309,7 +309,7 @@ function IconsBrowserContent() {
                         />
                       }
                     >
-                      <Icon name="sliders" />
+                      <CatalogIcon name="sliders" />
                     </Popover.Trigger>
                     <Popover.Portal>
                       <Popover.Positioner
@@ -383,7 +383,7 @@ function IconsBrowserContent() {
                   'flex min-h-70 flex-col items-center justify-center gap-4',
                 )}
               >
-                <Icon name="search" />
+                <CatalogIcon name="search" />
                 <h2 className={cn('text-lg font-semibold')}>
                   No matching icons
                 </h2>
@@ -424,7 +424,7 @@ function IconsBrowserContent() {
 
 export function IconsBrowser() {
   return (
-    <IconRendererContext value={Icon}>
+    <IconRendererContext value={CatalogIcon}>
       <IconsBrowserContent />
     </IconRendererContext>
   );

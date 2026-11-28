@@ -1,6 +1,6 @@
 import { Autocomplete } from '@base-ui/react/autocomplete';
 import { useState, useEffect } from 'react';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { icons, getIconDisplayName, type IconRecord } from '@/lib/catalog';
 import { searchIcons } from '@/lib/icon-search';
 import { loadCategories, getCategoryReadiness } from '@/lib/category-readiness';
@@ -60,7 +60,7 @@ export function SearchResults({
           aria-label={getIconDisplayName(icon)}
           className="group/item relative flex min-h-24 min-w-0 cursor-default flex-col items-center justify-center gap-3 px-4 pt-4 pb-1 outline-none after:absolute after:inset-1 after:-z-1 after:rounded-xl after:bg-current/5 data-highlighted:after:bg-current/10 data-highlighted:after:outline-2 data-highlighted:after:-outline-offset-1 data-highlighted:after:outline-current"
         >
-          <Icon name={icon.id} size={24} />
+          <CatalogIcon name={icon.id} size={24} />
           <span className="max-w-full truncate text-[11px] leading-3 text-muted group-hover/item:text-ink">
             {getIconDisplayName(icon)}
           </span>

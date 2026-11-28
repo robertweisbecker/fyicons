@@ -117,7 +117,8 @@ const ChromeIcon = createIconLookup({
 });
 export const IconRendererContext =
   createContext<ComponentType<IconProps> | null>(null);
-export function Icon(props: IconProps) {
+/** Interface icon. A feature can supply its own renderer through the context. */
+export function UIIcon(props: IconProps) {
   const Renderer = useContext(IconRendererContext) ?? ChromeIcon;
   return <Renderer {...props} />;
 }

@@ -4,7 +4,7 @@ import { IconChevronDownSm, IconMenuAlt, IconSlashSm } from 'fyicons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
-import { Icon } from '@/components/UIIcon';
+import { UIIcon } from '@/components/UIIcon';
 import { Button } from '@/components/ui/button';
 import { docsPages, mobileDocSections } from '@/lib/docs-navigation';
 import { useMediaQuery } from '@/lib/preferences';
@@ -105,7 +105,7 @@ export function DocsMobileNavigation({
                 render={<Link href={item.href} prefetch={false} />}
                 className={docLinkClass}
               >
-                <Icon name={item.icon} className="shrink-0 text-muted" />
+                <UIIcon name={item.icon} className="shrink-0 text-muted" />
                 {item.title}
               </NavigationMenu.Link>
             </li>

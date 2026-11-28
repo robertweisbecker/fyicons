@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { IconButton } from './IconButton';
 import { Button, type ButtonProps } from './ui/button';
 import { notify } from './ui/toast';
@@ -62,7 +62,7 @@ export function IconCopyButton({
           <span className="font-semibold">{getIconDisplayName(item)}</span>
           &quot; copied
         </>,
-        { id: `copy:${item.id}`, icon: <Icon name={item.id} /> },
+        { id: `copy:${item.id}`, icon: <CatalogIcon name={item.id} /> },
       );
     } else {
       notify('Clipboard unavailable. Please try again.');
@@ -76,14 +76,14 @@ export function IconCopyButton({
 
   const icon = (
     <span className="grid size-4 shrink-0" aria-hidden="true">
-      <Icon
+      <CatalogIcon
         name="copy"
         className={cn(
           'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',
           copied && 'scale-90 opacity-0',
         )}
       />
-      <Icon
+      <CatalogIcon
         name="copied-fill"
         className={cn(
           'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',

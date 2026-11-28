@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { getIconDisplayName, type IconRecord } from '@/lib/catalog';
 import { copy } from '@/lib/downloads';
 import { loadIconSvg } from '@/lib/icon-source';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { toastManager } from './ui/toast';
 
 // The menu closes on selection. Each operation owns its toast and any retries.
@@ -23,7 +23,7 @@ export function copyMenuSvg(icon: IconRecord, readyText?: string) {
           ) : type === 'error' ? (
             <IconWarning />
           ) : (
-            <Icon name={icon.id} />
+            <CatalogIcon name={icon.id} />
           ),
       },
       timeout: type === 'error' ? 0 : undefined,

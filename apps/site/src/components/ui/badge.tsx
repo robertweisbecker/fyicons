@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import { Icon } from '@/components/UIIcon';
+import { UIIcon } from '@/components/UIIcon';
 const badgeVariants = cva(
   'inline-flex w-fit h-fit items-center rounded-full px-1 font-normal tabular-nums',
   {
@@ -58,7 +58,7 @@ export function Badge({
       children: (
         <>
           {typeof icon === 'string' ? (
-            <Icon name={icon} className={cn('-my-1', iconClass)} />
+            <UIIcon name={icon} className={cn('-my-1', iconClass)} />
           ) : (
             icon
           )}

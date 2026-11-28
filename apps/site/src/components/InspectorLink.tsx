@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { Button } from './ui/button';
 import { notify } from './ui/toast';
 import { copy } from '@/lib/downloads';
@@ -32,7 +32,7 @@ export function InspectorLink({
     if (success) link.publish();
     notify(
       success ? 'Copied link' : 'Clipboard unavailable. Please try again.',
-      { icon: success ? <Icon name="link" /> : undefined },
+      { icon: success ? <CatalogIcon name="link" /> : undefined },
     );
     if (!mounted.current) return;
     clearTimeout(reset.current);
@@ -61,7 +61,7 @@ export function InspectorLink({
         className="grid size-4 shrink-0 -translate-x-1 text-muted opacity-0 transition-[opacity,translate] duration-150 ease-out group-hover/link:translate-x-0 group-hover/link:opacity-100 group-focus-visible/link:translate-x-0 group-focus-visible/link:opacity-100 group-data-copied/link:translate-x-0 group-data-copied/link:opacity-100 motion-reduce:transition-none pointer-coarse:translate-x-0 pointer-coarse:opacity-100"
         aria-hidden="true"
       >
-        <Icon
+        <CatalogIcon
           name="link"
           size={16}
           className={cn(
@@ -69,7 +69,7 @@ export function InspectorLink({
             copied && 'scale-90 opacity-0',
           )}
         />
-        <Icon
+        <CatalogIcon
           name="circle-check"
           className={cn(
             'col-start-1 row-start-1 transition-[opacity,scale] duration-150 ease-out motion-reduce:transition-none',

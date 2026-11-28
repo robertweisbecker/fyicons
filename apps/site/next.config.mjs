@@ -27,7 +27,7 @@ const config = {
   output: 'export',
   trailingSlash: true,
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   images: { unoptimized: true },
   turbopack: {
     root: fileURLToPath(new URL('../..', import.meta.url)),

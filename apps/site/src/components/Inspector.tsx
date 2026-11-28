@@ -25,7 +25,7 @@ import {
   DrawerTitle,
   DrawerScroll,
 } from '@/components/ui/drawer';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { IconButton } from '@/components/IconButton';
@@ -79,7 +79,7 @@ function IconPreview({ item, grid }: { item: IconRecord; grid: boolean }) {
         <span className="absolute -inset-128 bg-[linear-gradient(var(--grid)_1px,transparent_1px),linear-gradient(90deg,var(--grid)_1px,transparent_1px)] bg-size-[8px_8px] group-[.no-grid]/preview:hidden" />
       </span>
       <span className="absolute inset-2 after:pointer-events-none after:absolute after:inset-0 after:outline after:outline-control-accent group-[.no-grid]/preview:after:hidden [&>svg]:relative [&>svg]:size-full">
-        <Icon name={item.id} />
+        <CatalogIcon name={item.id} />
       </span>
     </span>
   );
@@ -110,7 +110,7 @@ function PreviewGridControl({
 function NativeSizePreview({ item }: { item: IconRecord }) {
   return (
     <div className="flex items-center gap-2">
-      <Icon name={item.id} />
+      <CatalogIcon name={item.id} />
       <span className="font-mono text-xs text-muted tabular-nums">16×16</span>
     </div>
   );
@@ -220,7 +220,7 @@ function Details({
                     variant="outline"
                     aria-label={'Compare variant ' + icon.id}
                   >
-                    <Icon name={icon.id} />
+                    <CatalogIcon name={icon.id} />
                     {index + 1}
                   </Toggle>
                 ))}

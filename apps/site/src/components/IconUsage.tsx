@@ -1,6 +1,6 @@
 import { useId, type ReactNode } from 'react';
 import { CodeBlock } from '@/components/CodeBlock';
-import { Icon } from '@/components/Icon';
+import { CatalogIcon } from '@/components/CatalogIcon';
 import type { IconRecord } from '@/lib/catalog';
 import { Badge } from './ui/badge';
 
@@ -49,7 +49,7 @@ export function IconUsage({ item }: { item: IconRecord }) {
   function copyToast(label: string) {
     return {
       title: `Copied ${label}`,
-      icon: <Icon name={item.id} />,
+      icon: <CatalogIcon name={item.id} />,
     };
   }
 

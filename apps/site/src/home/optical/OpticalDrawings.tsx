@@ -49,7 +49,6 @@ export const poster: Scene = {
   dotAdjustment: 1,
   trace: 3,
 };
-export const loopInitial: Scene = { ...initial, phase: 'draft' };
 
 // Play has one open stroke. Warning's first closed contour precedes its cutouts.
 function firstContour(svg: string) {

@@ -1,4 +1,4 @@
-import { Icon } from '@/components/UIIcon';
+import { UIIcon } from '@/components/UIIcon';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { Tooltip } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
@@ -25,7 +25,7 @@ export function IconButton({
         className={cn('icon-button', className)}
         aria-label={label}
       >
-        {typeof icon === 'string' ? <Icon name={icon} /> : icon}
+        {typeof icon === 'string' ? <UIIcon name={icon} /> : icon}
       </Button>
     </Tooltip>
   );

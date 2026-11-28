@@ -2,7 +2,7 @@ import { Autocomplete } from '@base-ui/react/autocomplete';
 import { Dialog } from '@base-ui/react/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
-import { Icon } from '@/components/UIIcon';
+import { UIIcon } from '@/components/UIIcon';
 import { IconButton } from '@/components/IconButton';
 import { Button } from '@/components/ui/button';
 import type { IconRecord } from '@/lib/catalog';
@@ -39,7 +39,7 @@ export function IconSearch({
       role="search"
       className="flex h-11 min-w-0 items-center gap-3 rounded-xl bg-surface ps-3 pe-2 shadow-sm outline-1 outline-offset-[--surface-outline-offset] outline-line focus-within:ring-2 focus-within:ring-focus hover:not-focus-within:outline-border"
     >
-      <Icon name="search" />
+      <UIIcon name="search" />
       <input
         ref={inputRef}
         type="search"
@@ -122,7 +122,7 @@ function Search({
       onItemHighlighted={setHighlightedIcon}
     >
       <Autocomplete.InputGroup className="flex h-14 min-w-0 shrink-0 items-center gap-3 ps-6 pe-3">
-        <Icon name="search" size={20} />
+        <UIIcon name="search" size={20} />
         <Autocomplete.Input
           ref={inputRef}
           aria-label="Search all icons"
@@ -150,7 +150,7 @@ function Search({
       {catalog && (
         <Autocomplete.Empty className="text-center">
           <div className="flex flex-col items-center justify-center gap-3 px-4 py-12">
-            <Icon name="ghost" size={32} />
+            <UIIcon name="ghost" size={32} />
             <h3 className="text-lg font-medium">
               Boo! <span className="opacity-50">No matches.</span>
             </h3>
@@ -214,7 +214,7 @@ function Search({
                   }
                   className="data-disabled:opacity-40"
                 >
-                  <Icon name="arrow-down" size={16} />
+                  <UIIcon name="arrow-down" size={16} />
                   {moreCount > 0
                     ? `Load ${moreCount} more`
                     : 'All results shown'}
@@ -243,7 +243,7 @@ function Search({
                   </span>
                 </span>
                 <kbd aria-label="Enter" className="flex shrink-0 items-center">
-                  <Icon name="kbd-return" size={12} />
+                  <UIIcon name="kbd-return" size={12} />
                 </kbd>
               </span>
               <span aria-hidden="true" className="hidden sm:inline">
@@ -253,10 +253,10 @@ function Search({
           )}
           <span className="hidden shrink-0 items-center gap-1 sm:flex">
             <kbd aria-label="Left arrow" className="flex items-center">
-              <Icon name="arrow-left" size={12} />
+              <UIIcon name="arrow-left" size={12} />
             </kbd>
             <kbd aria-label="Right arrow" className="flex items-center">
-              <Icon name="arrow-right" size={12} />
+              <UIIcon name="arrow-right" size={12} />
             </kbd>
             <span className="ms-1">Navigate</span>
           </span>

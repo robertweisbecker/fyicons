@@ -2,7 +2,7 @@ import { useRef, useState, type MouseEvent } from 'react';
 import { Dialog } from '@base-ui/react/dialog';
 import { Tabs } from '@base-ui/react/tabs';
 import { CodeBlock } from './CodeBlock';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { IconButton } from './IconButton';
 import { Button, buttonVariants } from './ui/button';
 import { Badge } from './ui/badge';
@@ -117,7 +117,7 @@ export function SelectedIconsDialog({
         data-selection-trigger=""
         render={<Button variant="text" size="sm" />}
       >
-        <Icon name={icons.length > 0 ? 'bookmark-fill' : 'bookmark'} />
+        <CatalogIcon name={icons.length > 0 ? 'bookmark-fill' : 'bookmark'} />
         Saved
         <Badge size="sm">{icons.length}</Badge>
       </Dialog.Trigger>
@@ -146,7 +146,7 @@ export function SelectedIconsDialog({
                   onClear();
                 }}
               >
-                <Icon name="trash" />
+                <CatalogIcon name="trash" />
                 Clear
               </Button>
             </div>
@@ -161,7 +161,7 @@ export function SelectedIconsDialog({
                       key={icon.id}
                       className="flex items-center gap-3 rounded-lg px-3 py-2"
                     >
-                      <Icon name={icon.id} />
+                      <CatalogIcon name={icon.id} />
                       <span
                         className="min-w-0 flex-1 truncate text-sm"
                         title={name}
@@ -186,7 +186,7 @@ export function SelectedIconsDialog({
                         disabled={packing}
                         onClick={(event) => remove(icon.id, event)}
                       >
-                        <Icon name="x" />
+                        <CatalogIcon name="x" />
                       </Button>
                     </li>
                   );
@@ -196,7 +196,7 @@ export function SelectedIconsDialog({
             </div>
           ) : (
             <div className="flex min-h-40 flex-col items-center justify-center gap-3 pt-3 pb-6 text-sm text-muted">
-              <Icon name="view-pointer" size={24} />
+              <CatalogIcon name="view-pointer" size={24} />
               Hover and check icons to download multiple at once.
             </div>
           )}
@@ -211,7 +211,7 @@ export function SelectedIconsDialog({
                 if (await onDownload()) setOpen(false);
               }}
             >
-              <Icon
+              <CatalogIcon
                 name={packing ? 'spinner' : 'folder-zip'}
                 className={
                   packing

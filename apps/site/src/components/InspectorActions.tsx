@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { IconRecord } from '@/lib/catalog';
 import { downloadIcon } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
-import { Icon } from './Icon';
+import { CatalogIcon } from './CatalogIcon';
 import { IconCopyButton } from './IconCopyButton';
 import { ToggleIcon } from './ToggleIcon';
 import { Button } from './ui/button';
@@ -26,7 +26,7 @@ export function IconDownloadButton({
       className={cn('size-11 rounded-full p-0', className)}
       onClick={() => downloadIcon(item)}
     >
-      <Icon name="download-square" />
+      <CatalogIcon name="download-square" />
       {children}
     </Button>
   );

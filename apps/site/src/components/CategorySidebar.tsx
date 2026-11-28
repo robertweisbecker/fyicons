@@ -9,7 +9,7 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Icon } from '@/components/Icon';
+import { CatalogIcon } from '@/components/CatalogIcon';
 import { Sidebar, SidebarSection, SidebarItem } from './Sidebar';
 import { categories, icons, byName } from '@/lib/catalog';
 
@@ -38,7 +38,7 @@ type Props = {
 function CategoryLabel({ option }: { option: Props['options'][number] }) {
   return (
     <>
-      <Icon name={option.icon} />
+      <CatalogIcon name={option.icon} />
       <span className="truncate">{option.label}</span>
       <Badge size="sm" className="ms-auto">
         {option.count}
@@ -118,7 +118,7 @@ export function CategoryMenu({ options, value, onValueChange }: Props) {
           }
           title={selected.label}
         >
-          <Icon name={selected.icon} />
+          <CatalogIcon name={selected.icon} />
           <SelectValue className="truncate" />
         </SelectTrigger>
         <SelectContent aria-label="Icon categories">
@@ -128,7 +128,7 @@ export function CategoryMenu({ options, value, onValueChange }: Props) {
                 key={option.value}
                 value={option.value}
                 label={option.label}
-                leading={<Icon name={option.icon} />}
+                leading={<CatalogIcon name={option.icon} />}
                 trailing={<Badge size="sm">{option.count}</Badge>}
               >
                 {option.label}

@@ -2,7 +2,7 @@
 import { NavigationMenu } from '@base-ui/react/navigation-menu';
 import { IconMenuAlt, IconArrowRight } from 'fyicons';
 import { useId, useSyncExternalStore } from 'react';
-import { Icon } from '@/components/UIIcon';
+import { UIIcon } from '@/components/UIIcon';
 import { Button } from '@/components/ui/button';
 import {
   DocsNavigationPane,
@@ -109,7 +109,7 @@ function PagePreviews({
                   aria-current={isCurrentPage ? 'page' : undefined}
                   className="flex min-h-8 w-full items-center gap-2 rounded-md px-2 py-1.5 text-start text-[13px] leading-snug whitespace-nowrap hover:bg-hover focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus aria-[current=page]:font-medium data-popup-open:bg-ink/8"
                 >
-                  <Icon name={item.icon} className="shrink-0 text-muted" />
+                  <UIIcon name={item.icon} className="shrink-0 text-muted" />
                   {item.title}
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="flex min-h-0 flex-col">
