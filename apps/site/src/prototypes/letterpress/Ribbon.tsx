@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
-import { usePhysicalKeys } from './usePhysicalKeys';
-import { Keyboard, Display, type Model } from './Parts';
+import { prefersReducedMotion } from '@/lib/use-media-query';
+import { usePhysicalKeys } from '@/prototypes/letterpress/use-physical-keys';
+import { Keyboard, Display, type Model } from '@/prototypes/letterpress/Parts';
 
 export function Ribbon(props: Model) {
   const { pressed, inputEvents } = usePhysicalKeys();
@@ -18,11 +19,7 @@ export function Ribbon(props: Model) {
     const paper = sheet.current!;
     const added = lines - previousLines.current;
     previousLines.current = lines;
-    if (
-      added <= 0 ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    )
-      return;
+    if (added <= 0 || prefersReducedMotion()) return;
     const pitch = parseFloat(getComputedStyle(paper).lineHeight);
     const distance = Math.min(added, 3) * pitch;
     const roll = paper.animate(

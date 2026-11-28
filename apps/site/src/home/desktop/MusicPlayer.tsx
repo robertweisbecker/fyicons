@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/menu';
 import { Slider } from '@/components/ui/slider';
 import { createDemoControls, DemoHint } from '@/home/DemoControls';
-import { AlbumArtwork, tracks, trackTime } from './music-data';
+import { AlbumArtwork, tracks, trackTime } from '@/home/desktop/music-data';
 import {
   IconArrowsCollapse,
   IconArrowsExpand,

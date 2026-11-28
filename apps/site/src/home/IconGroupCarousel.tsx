@@ -14,7 +14,7 @@ import { TooltipGroup } from '@/components/ui/tooltip';
 import Link from 'next/link';
 import { prefersReducedMotion } from '@/lib/use-media-query';
 import { cn } from '@/lib/utils';
-import { iconGroups } from './icon-groups';
+import { iconGroups } from '@/home/icon-groups';
 import {
   IconAgent,
   IconAgentClank,

@@ -4,7 +4,7 @@ import { useEffect, useImperativeHandle, useState, type Ref } from 'react';
 import { DialRoot, useDialKitController, type DialConfig } from 'dialkit';
 import { icons } from '@/lib/catalog';
 import { useTheme } from '@/lib/use-theme';
-import type { IconMapping } from './model';
+import type { IconMapping } from '@/prototypes/icon-examples/model';
 import 'dialkit/styles.css';
 
 export type InspectorHandle = { assign: (name: string) => void };

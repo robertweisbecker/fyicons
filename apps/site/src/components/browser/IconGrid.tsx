@@ -13,7 +13,7 @@ import { notify } from '@/components/ui/toast';
 import { downloadIcon } from '@/lib/downloads';
 import { copy } from '@/lib/clipboard';
 import { CopiedTitle, clipboardUnavailable } from '@/components/copy-feedback';
-import { copyMenuSvg } from './copy-menu-svg';
+import { copyMenuSvg } from '@/components/browser/copy-menu-svg';
 
 function tileFor(target: EventTarget | null) {
   return target instanceof Element

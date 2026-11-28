@@ -1,4 +1,4 @@
-import { play, unlock } from './sounds';
+import { play, unlock } from '@/lib/sounds';
 
 /** Write text to the clipboard. Resolves to false when the browser refuses. */
 export async function copy(text: string | Promise<string>) {

@@ -1,6 +1,6 @@
-import type { IconRecord } from './catalog';
-import { assetPath } from './navigation';
-import { iconSourceUrl } from './icon-source';
+import type { IconRecord } from '@/lib/catalog';
+import { assetPath } from '@/lib/navigation';
+import { iconSourceUrl } from '@/lib/icon-source';
 
 export function downloadUrl(url: string, filename: string) {
   const link = document.createElement('a');
@@ -26,7 +26,7 @@ export async function downloadIcons(
     downloadUrl(assetPath('/downloads/fyicons.zip'), filename);
     return;
   }
-  const { createSelectedArchive } = await import('./download-selection');
+  const { createSelectedArchive } = await import('@/lib/download-selection');
   const bytes = await createSelectedArchive(selection);
   download(bytes.buffer as ArrayBuffer, filename, 'application/zip');
 }

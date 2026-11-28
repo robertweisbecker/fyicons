@@ -10,7 +10,7 @@ import {
 import { DialRoot, useDialKit, type DialConfig } from 'dialkit';
 import { spring } from 'motion';
 import 'dialkit/styles.css';
-import './magnetic-tools.css';
+import '@/prototypes/magnetic-tools/magnetic-tools.css';
 
 const maxColumns = 8;
 

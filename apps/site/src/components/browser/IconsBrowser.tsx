@@ -12,20 +12,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { SelectedIconsDialog } from './SelectedIconsDialog';
+import { SelectedIconsDialog } from '@/components/browser/SelectedIconsDialog';
 import { IconSearch } from '@/components/site/Search';
 import { searchIcons } from '@/lib/icon-search';
-import { IconGrid } from './IconGrid';
-import { IconTile } from './IconTile';
-import { PreviewSizeControl } from './PreviewSizeControl';
+import { IconGrid } from '@/components/browser/IconGrid';
+import { IconTile } from '@/components/browser/IconTile';
+import { PreviewSizeControl } from '@/components/browser/PreviewSizeControl';
 import { useIconFilters } from '@/lib/use-icon-filters';
 import {
   CategoryMenu,
   CategorySidebar,
   getCategoryOptions,
-} from './CategorySidebar';
+} from '@/components/browser/CategorySidebar';
 import { notify } from '@/components/ui/toast';
-import { Inspector } from './Inspector';
+import { Inspector } from '@/components/browser/Inspector';
 import { byId, icons, type IconRecord } from '@/lib/catalog';
 import { downloadIcons } from '@/lib/downloads';
 import { isBoolean, isStringArray, usePreference } from '@/lib/preferences';

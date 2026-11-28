@@ -9,11 +9,13 @@ import type { IconRecord } from '@/lib/catalog';
 import { getIconDisplayName } from '@/lib/icon-names';
 import catalogSummary from '@/data/catalog-summary.json';
 type SearchCatalog = Awaited<
-  ReturnType<typeof import('./search-catalog').loadSearchCatalog>
+  ReturnType<
+    typeof import('@/components/site/search-catalog').loadSearchCatalog
+  >
 >;
 let catalogRequest: Promise<SearchCatalog> | undefined;
 function requestCatalog() {
-  return (catalogRequest ??= import('./search-catalog')
+  return (catalogRequest ??= import('@/components/site/search-catalog')
     .then((module) => module.loadSearchCatalog())
     .catch((error) => {
       catalogRequest = undefined;

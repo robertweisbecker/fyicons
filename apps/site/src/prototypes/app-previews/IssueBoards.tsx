@@ -33,7 +33,7 @@ import { Stage } from '@/vendor/stageshow/stage';
 import { Card } from '@/vendor/stageshow/parts/Card';
 import { Row } from '@/vendor/stageshow/parts/Row';
 import { Bar, Window } from '@/vendor/stageshow/window';
-import './issue-boards.css';
+import '@/prototypes/app-previews/issue-boards.css';
 
 type Variant = 'drag' | 'merge';
 type BoardState = {

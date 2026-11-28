@@ -4,16 +4,15 @@ import { ToggleGroup } from '@/components/ui/toggle-group';
 import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
 import { createGlyph } from '@/home/Study';
-import { DesignInspector, designFills } from './DesignInspector';
-import { DesignRail } from './DesignRail';
-import { Window } from './Window';
+import { DesignInspector, designFills } from '@/home/desktop/DesignInspector';
+import { DesignRail } from '@/home/desktop/DesignRail';
+import { Window } from '@/home/desktop/Window';
 import {
   IconAppsPlus,
   IconChatRound,
   IconCode,
   IconFrame,
   IconGlobeSimple,
-  IconHeight,
   IconHome,
   IconPenTool,
   IconPlus,
@@ -22,7 +21,6 @@ import {
   IconScribble,
   IconSquare,
   IconTextTitle,
-  IconWidth,
   IconX,
 } from 'fyicons';
 
@@ -32,7 +30,6 @@ const Icon = createIconLookup({
   code: IconCode,
   frame: IconFrame,
   'globe-simple': IconGlobeSimple,
-  height: IconHeight,
   home: IconHome,
   'pen-tool': IconPenTool,
   plus: IconPlus,
@@ -41,7 +38,6 @@ const Icon = createIconLookup({
   scribble: IconScribble,
   square: IconSquare,
   'text-title': IconTextTitle,
-  width: IconWidth,
   x: IconX,
 });
 

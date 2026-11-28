@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Slider, SliderControl } from '@/components/ui/slider';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
-import { getProgressPreviews, RatingStars } from './progress-previews';
+import { getProgressPreviews, RatingStars } from '@/home/progress-previews';
 import { play } from '@/lib/sounds';
 
 export function ProgressIcons() {

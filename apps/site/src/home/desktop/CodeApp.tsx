@@ -4,24 +4,21 @@ import { FileTree, fileFolders } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
 import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { Window } from './Window';
-import { CodeChanges } from './CodeChanges';
-import { reviewFiles } from './code-review-data';
+import { Window } from '@/home/desktop/Window';
+import { CodeChanges } from '@/home/desktop/CodeChanges';
+import { reviewFiles } from '@/home/desktop/code-review-data';
 import {
   IconAgent,
   IconArrowsRotate,
-  IconAtomReact,
   IconBookBookmark,
   IconBug,
   IconChevronDownSm,
   IconEllipsis,
   IconFileSearch,
-  IconFileText,
   IconFolderTree,
   IconFolderTreeFill,
   IconFolders,
   IconFoldersFill,
-  IconGhost,
   IconGitBranch,
   IconGitPullRequest,
   IconLayoutRows,
@@ -29,27 +26,22 @@ import {
   IconLineWrap,
   IconListCollapse,
   IconListExpand,
-  IconMarkdownFill,
   IconSearchSimple,
   IconSlash,
-  IconX,
 } from 'fyicons';
 
 const Icon = createIconLookup({
   agent: IconAgent,
   'arrows-rotate': IconArrowsRotate,
-  'atom-react': IconAtomReact,
   'book-bookmark': IconBookBookmark,
   bug: IconBug,
   'chevron-down-sm': IconChevronDownSm,
   ellipsis: IconEllipsis,
   'file-search': IconFileSearch,
-  'file-text': IconFileText,
   'folder-tree': IconFolderTree,
   'folder-tree-fill': IconFolderTreeFill,
   folders: IconFolders,
   'folders-fill': IconFoldersFill,
-  ghost: IconGhost,
   'git-branch': IconGitBranch,
   'git-pull-request': IconGitPullRequest,
   'layout-rows': IconLayoutRows,
@@ -57,10 +49,8 @@ const Icon = createIconLookup({
   'line-wrap': IconLineWrap,
   'list-collapse': IconListCollapse,
   'list-expand': IconListExpand,
-  'markdown-fill': IconMarkdownFill,
   'search-simple': IconSearchSimple,
   slash: IconSlash,
-  x: IconX,
 });
 
 export function CodeApp() {

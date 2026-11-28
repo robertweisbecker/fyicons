@@ -8,31 +8,25 @@ import {
 import { Button } from '@/components/ui/button';
 import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { reviewChanges } from './code-review-data';
+import { reviewChanges } from '@/home/desktop/code-review-data';
 import {
   IconArrowRight,
-  IconAtomReact,
   IconChevronDownSm,
   IconChevronRightSm,
   IconEye,
   IconEyeCheck,
-  IconFileText,
   IconGitBranch,
   IconGitCommit,
-  IconMarkdownFill,
 } from 'fyicons';
 
 const Icon = createIconLookup({
   'arrow-right': IconArrowRight,
-  'atom-react': IconAtomReact,
   'chevron-down-sm': IconChevronDownSm,
   'chevron-right-sm': IconChevronRightSm,
   eye: IconEye,
   'eye-check': IconEyeCheck,
-  'file-text': IconFileText,
   'git-branch': IconGitBranch,
   'git-commit': IconGitCommit,
-  'markdown-fill': IconMarkdownFill,
 });
 
 export function CodeChanges({

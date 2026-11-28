@@ -5,7 +5,7 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 import { play } from '@/lib/sounds';
-import { palettes, type PaletteName } from './palettes';
+import { palettes, type PaletteName } from '@/examples/keycaps/palettes';
 
 const items = (Object.keys(palettes) as PaletteName[]).map((name) => ({
   label: name,

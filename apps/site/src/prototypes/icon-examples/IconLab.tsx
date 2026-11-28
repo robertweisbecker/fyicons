@@ -1,7 +1,7 @@
 'use client';
 
-import { Gallery } from './icon-examples/Gallery';
-import { IconPlayground } from './icon-examples/IconPlayground';
+import { Gallery } from '@/prototypes/icon-examples/Gallery';
+import { IconPlayground } from '@/prototypes/icon-examples/IconPlayground';
 
 export function IconLab() {
   return (

@@ -10,12 +10,12 @@ import { docsPages, mobileDocSections } from '@/lib/docs-navigation';
 import { isSameRoute } from '@/lib/navigation';
 import { useMediaQuery } from '@/lib/use-media-query';
 import { cn } from '@/lib/utils';
-import type { DocHeading } from './TableOfContents';
+import type { DocHeading } from '@/components/docs/TableOfContents';
 import {
   DocsNavigationPane,
   DocSectionLinks,
   docLinkClass,
-} from './DocsNavigationPane';
+} from '@/components/docs/DocsNavigationPane';
 
 // Shared popup motion and viewport sizing from Base UI's Tailwind Navigation Menu demo.
 const splitMenuClasses = {

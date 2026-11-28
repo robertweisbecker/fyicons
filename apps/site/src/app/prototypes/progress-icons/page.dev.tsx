@@ -1,4 +1,4 @@
-import { ProgressPad } from '@/prototypes/ProgressPad';
+import { ProgressPad } from '@/prototypes/progress-icons/ProgressPad';
 
 export const metadata = { title: 'Progress icons' };
 

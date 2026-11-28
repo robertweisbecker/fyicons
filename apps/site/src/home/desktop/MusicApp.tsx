@@ -4,9 +4,9 @@ import { createIconLookup } from '@/components/icon-lookup';
 import { Button } from '@/components/ui/button';
 import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { Window } from './Window';
-import { MusicPlayer } from './MusicPlayer';
-import { AlbumArtwork, tracks, trackTime } from './music-data';
+import { Window } from '@/home/desktop/Window';
+import { MusicPlayer } from '@/home/desktop/MusicPlayer';
+import { AlbumArtwork, tracks, trackTime } from '@/home/desktop/music-data';
 import {
   IconBlock,
   IconCircleCheckFill,

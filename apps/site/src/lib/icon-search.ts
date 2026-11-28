@@ -2,7 +2,7 @@ import {
   getIconCategoryLabel,
   getIconDisplayName,
   type IconRecord,
-} from './catalog';
+} from '@/lib/catalog';
 
 const byName = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
 

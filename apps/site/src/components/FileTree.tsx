@@ -1,7 +1,7 @@
 import { Collapsible } from '@base-ui/react/collapsible';
 import type { ComponentProps } from 'react';
-import { createIconLookup } from './icon-lookup';
-import { Button } from './ui/button';
+import { createIconLookup } from '@/components/icon-lookup';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
   IconAtomReact,

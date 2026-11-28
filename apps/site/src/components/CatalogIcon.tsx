@@ -1,6 +1,6 @@
 import { byId, byName } from '@/lib/catalog';
 import { iconBySourceId } from '@/icons/registry';
-import { createIconRenderer } from './icon-lookup';
+import { createIconRenderer } from '@/components/icon-lookup';
 
 /** Catalog lookup wrapper. Use named exports from fyicons for static imports. */
 export const CatalogIcon = createIconRenderer((name) => {

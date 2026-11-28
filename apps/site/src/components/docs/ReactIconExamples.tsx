@@ -18,7 +18,7 @@ import {
 } from 'fyicons/client';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { DocsExample } from './DocsExample';
+import { DocsExample } from '@/components/docs/DocsExample';
 
 const colors = [
   { label: 'Inherited', value: undefined },

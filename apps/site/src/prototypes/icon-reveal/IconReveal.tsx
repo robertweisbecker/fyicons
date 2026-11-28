@@ -5,7 +5,7 @@ import { motion, useMotionTemplate, useTransform } from 'motion/react';
 import { IconCaretsX } from 'fyicons';
 import { VariantIconGrid } from '@/home/IconVariants';
 
-import { useTrackedAxis } from './useTrackedAxis';
+import { useTrackedAxis } from '@/prototypes/use-tracked-axis';
 
 const restingSplit = 50;
 

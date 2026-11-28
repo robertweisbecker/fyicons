@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { MDXComponents } from 'mdx/types';
 import type { ComponentProps, ReactNode } from 'react';
-import { GitHubIcon, NpmIcon } from './components/site/BrandIcons';
+import { GitHubIcon, NpmIcon } from '@/components/site/BrandIcons';
 import { CodeBlock } from '@/components/CodeBlock';
 import {
   TableOfContents,

@@ -15,7 +15,7 @@ import {
   MotionConfig,
 } from 'motion/react';
 import { DeviceBattery, DeviceClock } from '@/home/DeviceStatus';
-import './DesktopShowcase.css';
+import '@/home/desktop/DesktopShowcase.css';
 import {
   IconPenTool,
   IconCaretsMaximize,
@@ -70,12 +70,17 @@ const apps = [
 ] as const;
 
 const appLoaders: Record<string, () => Promise<ComponentType>> = {
-  design: () => import('./DesignApp').then((module) => module.DesignApp),
-  files: () => import('./FilesApp').then((module) => module.FilesApp),
-  code: () => import('./CodeApp').then((module) => module.CodeApp),
-  music: () => import('./MusicApp').then((module) => module.MusicApp),
-  social: () => import('./SocialApp').then((module) => module.SocialApp),
-  agents: () => import('./AgentsApp').then((module) => module.AgentsApp),
+  design: () =>
+    import('@/home/desktop/DesignApp').then((module) => module.DesignApp),
+  files: () =>
+    import('@/home/desktop/FilesApp').then((module) => module.FilesApp),
+  code: () => import('@/home/desktop/CodeApp').then((module) => module.CodeApp),
+  music: () =>
+    import('@/home/desktop/MusicApp').then((module) => module.MusicApp),
+  social: () =>
+    import('@/home/desktop/SocialApp').then((module) => module.SocialApp),
+  agents: () =>
+    import('@/home/desktop/AgentsApp').then((module) => module.AgentsApp),
 };
 
 function WindowControls() {

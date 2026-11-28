@@ -3,7 +3,7 @@ import { createIconLookup } from '@/components/icon-lookup';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { Window } from './Window';
+import { Window } from '@/home/desktop/Window';
 import { Badge } from '@/components/ui/badge';
 import {
   IconAlert,
@@ -46,7 +46,6 @@ import {
   IconUsersThreeFill,
   IconUsersTwo,
   IconVideo,
-  IconX,
 } from 'fyicons';
 
 const Icon = createIconLookup({
@@ -90,7 +89,6 @@ const Icon = createIconLookup({
   'users-three-fill': IconUsersThreeFill,
   'users-two': IconUsersTwo,
   video: IconVideo,
-  x: IconX,
 });
 
 const locations = [

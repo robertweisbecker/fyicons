@@ -1,4 +1,4 @@
-import { IconReveal } from '@/prototypes/IconReveal';
+import { IconReveal } from '@/prototypes/icon-reveal/IconReveal';
 
 export const metadata = { title: 'Outline and filled' };
 

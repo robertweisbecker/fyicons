@@ -60,8 +60,8 @@ import { AlbumArtwork, tracks, trackTime } from '@/home/desktop/music-data';
 import '@/vendor/stageshow/stage.css';
 import { Window } from '@/vendor/stageshow/window';
 import { Row } from '@/vendor/stageshow/parts/Row';
-import './previews.css';
-import { IssueBoard } from './IssueBoards';
+import '@/prototypes/app-previews/previews.css';
+import { IssueBoard } from '@/prototypes/app-previews/IssueBoards';
 
 function Design() {
   return (

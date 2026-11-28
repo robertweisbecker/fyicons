@@ -26,9 +26,9 @@ import {
   IconSquareMinus,
   IconSquareMinusFill,
 } from 'fyicons';
-import type { usePhysicalKeys } from './usePhysicalKeys';
-import type { Edit, Glyph } from './printText';
-import { alphabets } from './alphabet';
+import type { usePhysicalKeys } from '@/prototypes/letterpress/use-physical-keys';
+import type { Edit, Glyph } from '@/prototypes/letterpress/print-text';
+import { alphabets } from '@/prototypes/letterpress/alphabet';
 
 export type Family = keyof typeof alphabets;
 export type Model = {

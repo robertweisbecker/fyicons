@@ -3,13 +3,12 @@ import { Field } from '@base-ui/react/field';
 import { createIconLookup } from '@/components/icon-lookup';
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from './DemoControls';
-import { OpticalStudy, StudyTile } from './optical/OpticalStudy';
-import { formatPixels } from './optical/OpticalDrawings';
+import { createDemoControls } from '@/home/DemoControls';
+import { OpticalStudy, StudyTile } from '@/home/optical/OpticalStudy';
+import { formatPixels } from '@/home/optical/OpticalDrawings';
 import {
   IconApps,
   IconFont,
-  IconGhost,
   IconGrid,
   IconMath,
   IconPointerSwarm,
@@ -19,7 +18,6 @@ import {
 const Icon = createIconLookup({
   apps: IconApps,
   font: IconFont,
-  ghost: IconGhost,
   grid: IconGrid,
   math: IconMath,
   'pointer-swarm': IconPointerSwarm,

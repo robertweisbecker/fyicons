@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { SiteShell } from '@/components/site/SiteShell';
 import { assetPath, siteUrl } from '@/lib/navigation';
 import { themeStorageKey } from '@/lib/theme';
-import { allo, alloObliques, paperMono } from './fonts';
+import { allo, alloObliques, paperMono } from '@/app/fonts';
 import '@/styles.css';
 
 export const metadata: Metadata = {

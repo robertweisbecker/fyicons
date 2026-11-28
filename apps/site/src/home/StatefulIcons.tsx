@@ -3,10 +3,10 @@ import { useRef, useState } from 'react';
 import { Field } from '@base-ui/react/field';
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from './DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
 import { play } from '@/lib/sounds';
-import { statefulIconPairs } from './stateful-icon-pairs';
+import { statefulIconPairs } from '@/home/stateful-icon-pairs';
 import {
   IconTextTitle,
   IconArrowCounterClockwise,

@@ -2,19 +2,19 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { byId, categories, icons } from './catalog';
+import { byId, categories, icons } from '@/lib/catalog';
 import {
   getCategoryReadiness,
   useCategoryReadiness,
-} from './category-readiness';
-import { assetPath } from './navigation';
-import { useIconInspection, type IconShareLink } from './icon-inspection';
+} from '@/lib/category-readiness';
+import { assetPath } from '@/lib/navigation';
+import { useIconInspection, type IconShareLink } from '@/lib/icon-inspection';
 import {
   emptyIconFilters,
   iconFilterSearch,
   readIconFilters,
   type IconFilters,
-} from './icon-filters';
+} from '@/lib/icon-filters';
 
 const names = new Set(icons.map(({ name }) => name));
 function read(search: string) {

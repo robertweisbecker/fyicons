@@ -23,9 +23,9 @@ import { buttonVariants } from '@/components/ui/button';
 import { byId } from '@/lib/catalog';
 import { getIconReleases } from '@/lib/icon-releases';
 import { cn } from '@/lib/utils';
-import { bindInspectorWheel } from './inspector-wheel';
-import { samples, type Sample } from './samples';
-import styles from './inspector.module.css';
+import { bindInspectorWheel } from '@/prototypes/inspector/inspector-wheel';
+import { samples, type Sample } from '@/prototypes/inspector/samples';
+import styles from '@/prototypes/inspector/inspector.module.css';
 
 const peek = '6rem';
 const medium = 0.5;

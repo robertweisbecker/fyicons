@@ -1,8 +1,8 @@
 import { clipboardUnavailable, useCopied } from '@/components/copy-feedback';
-import { createIconLookup } from './icon-lookup';
-import { IconButton } from './IconButton';
-import { Button, type ButtonProps } from './ui/button';
-import { notify } from './ui/toast';
+import { createIconLookup } from '@/components/icon-lookup';
+import { IconButton } from '@/components/IconButton';
+import { Button, type ButtonProps } from '@/components/ui/button';
+import { notify } from '@/components/ui/toast';
 import { copy } from '@/lib/clipboard';
 import { cn } from '@/lib/utils';
 import {

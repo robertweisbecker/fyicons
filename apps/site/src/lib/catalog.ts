@@ -1,16 +1,16 @@
 import compact from '@/data/catalog-runtime.json';
-import { decodeCatalog } from './catalog-codec';
+import { decodeCatalog } from '@/lib/catalog-codec';
 import {
   categorizeIcons,
   parseIconCategories,
   uncategorized,
   type IconCategory,
-} from './icon-categories';
-import { assetPath } from './navigation';
+} from '@/lib/icon-categories';
+import { assetPath } from '@/lib/navigation';
 
 const { icons: catalogIcons, ...catalogMetadata } = decodeCatalog(compact);
 export { catalogMetadata };
-export { getIconDisplayName } from './icon-names';
+export { getIconDisplayName } from '@/lib/icon-names';
 
 export type IconRecord = (typeof catalogIcons)[number] & {
   categories: string[];

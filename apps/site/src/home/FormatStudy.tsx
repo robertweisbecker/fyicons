@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from './DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { createGlyph, panel } from './Study';
+import { createGlyph, panel } from '@/home/Study';
 import { createIconLookup } from '@/components/icon-lookup';
 import {
   IconTextBold,

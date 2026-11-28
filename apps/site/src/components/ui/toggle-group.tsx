@@ -1,6 +1,6 @@
 import { ToggleGroup as ToggleGroupPrimitive } from '@base-ui/react/toggle-group';
 import { cn } from '@/lib/utils';
-import { TooltipGroup } from './tooltip';
+import { TooltipGroup } from '@/components/ui/tooltip';
 
 export function ToggleGroup({
   className,

@@ -22,9 +22,12 @@ import { Badge } from '@/components/ui/badge';
 import { byName } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
 import { copy as copyText } from '@/lib/clipboard';
-import { Choice } from './Choice';
-import { IconPicker } from './IconPicker';
-import { IconInspector, type InspectorHandle } from './IconInspector';
+import { Choice } from '@/prototypes/icon-examples/Choice';
+import { IconPicker } from '@/prototypes/icon-examples/IconPicker';
+import {
+  IconInspector,
+  type InspectorHandle,
+} from '@/prototypes/icon-examples/IconInspector';
 import {
   layouts,
   emptyWorkspace,
@@ -37,7 +40,7 @@ import {
   type LayoutId,
   type IconMapping,
   type Remix,
-} from './model';
+} from '@/prototypes/icon-examples/model';
 
 export type PlaygroundHandle = { load: (remix: Remix) => void };
 const compactLabels: Record<string, string> = {

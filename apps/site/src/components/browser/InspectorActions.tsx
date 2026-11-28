@@ -3,7 +3,7 @@ import type { IconRecord } from '@/lib/catalog';
 import { downloadIcon } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
 import { CatalogIcon } from '@/components/CatalogIcon';
-import { IconCopyButton } from './IconCopyButton';
+import { IconCopyButton } from '@/components/browser/IconCopyButton';
 import { ToggleIcon } from '@/components/ToggleIcon';
 import { Button } from '@/components/ui/button';
 import { Toggle } from '@/components/ui/toggle';

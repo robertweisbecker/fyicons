@@ -28,7 +28,7 @@ import {
 } from 'fyicons';
 
 import type { ComponentProps, ReactElement } from 'react';
-import { createIconLookup } from './icon-lookup';
+import { createIconLookup } from '@/components/icon-lookup';
 
 /** Interface icon for the site chrome and the shared controls. */
 export const UIIcon = createIconLookup({

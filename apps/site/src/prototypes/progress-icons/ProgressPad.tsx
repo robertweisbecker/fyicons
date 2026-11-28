@@ -16,7 +16,7 @@ import {
   IconContrastHigh,
 } from 'fyicons';
 import { getProgressPreviews, RatingStars } from '@/home/progress-previews';
-import { useTrackedAxis } from './useTrackedAxis';
+import { useTrackedAxis } from '@/prototypes/use-tracked-axis';
 
 const sequences = [
   ['Cost', [IconCostLow, IconCostMedium, IconCostHigh]],

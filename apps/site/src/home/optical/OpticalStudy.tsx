@@ -13,8 +13,8 @@ import {
   DrawingStage,
   PlayDrawing,
   WarningDrawing,
-} from './OpticalDrawings';
-import './OpticalStudy.css';
+} from '@/home/optical/OpticalDrawings';
+import '@/home/optical/OpticalStudy.css';
 
 export function StudyTile({
   title,

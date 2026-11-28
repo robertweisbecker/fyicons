@@ -1,5 +1,5 @@
 import { useEffect, useSyncExternalStore } from 'react';
-import { loadIconCategories } from './catalog';
+import { loadIconCategories } from '@/lib/catalog';
 
 export type CategoryReadiness =
   | { status: 'loading'; version: 0; error?: undefined }

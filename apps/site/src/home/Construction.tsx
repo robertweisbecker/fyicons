@@ -10,7 +10,7 @@ import {
   GuideShape,
   PixelGrid,
   type Guide,
-} from './construction-guides';
+} from '@/home/construction-guides';
 
 const constructionIcons = {
   circle: { Icon: IconVectorPath, name: 'VectorPath' },

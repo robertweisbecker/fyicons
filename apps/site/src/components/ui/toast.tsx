@@ -4,7 +4,7 @@ import { IconX } from 'fyicons';
 import { Button } from '@/components/ui/button';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import './toast.css';
+import '@/components/ui/toast.css';
 
 type ToastData = { icon?: ReactNode };
 export const toastManager = Toast.createToastManager<ToastData>();

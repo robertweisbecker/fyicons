@@ -12,8 +12,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { useMinuteClock } from '@/lib/use-minute-clock';
 import { cn } from '@/lib/utils';
-import { conditions, forecasts } from './weather-forecasts';
-import { getSunTimes, weatherTimeZone } from './weather-sun';
+import { conditions, forecasts } from '@/examples/weather-forecasts';
+import { getSunTimes, weatherTimeZone } from '@/examples/weather-sun';
 
 const time = new Intl.DateTimeFormat('en-US', {
   timeZone: weatherTimeZone,

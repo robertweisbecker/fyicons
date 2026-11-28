@@ -30,9 +30,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { IconButton } from '@/components/IconButton';
 import { Tooltip } from '@/components/ui/tooltip';
-import { IconUsage } from './IconUsage';
-import { IconReleaseInfo } from './IconReleaseInfo';
-import { InspectorResizeHandle } from './InspectorResizeHandle';
+import { IconUsage } from '@/components/browser/IconUsage';
+import { IconReleaseInfo } from '@/components/browser/IconReleaseInfo';
+import { InspectorResizeHandle } from '@/components/browser/InspectorResizeHandle';
 import {
   getIconDisplayName,
   categories,
@@ -44,10 +44,13 @@ import { usePreference } from '@/lib/preferences';
 import { useMobile, useReducedMotionPreference } from '@/lib/use-media-query';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
 import type { IconShareLink } from '@/lib/icon-inspection';
-import { IconCopyButton } from './IconCopyButton';
-import { IconDownloadButton, InspectorActions } from './InspectorActions';
-import { InspectorLink } from './InspectorLink';
-import './MobileInspector.css';
+import { IconCopyButton } from '@/components/browser/IconCopyButton';
+import {
+  IconDownloadButton,
+  InspectorActions,
+} from '@/components/browser/InspectorActions';
+import { InspectorLink } from '@/components/browser/InspectorLink';
+import '@/components/browser/MobileInspector.css';
 
 type Props = {
   item: IconRecord | null;

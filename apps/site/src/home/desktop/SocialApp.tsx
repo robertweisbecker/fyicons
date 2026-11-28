@@ -5,7 +5,7 @@ import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
 import { createDemoControls } from '@/home/DemoControls';
 import { createGlyph } from '@/home/Study';
-import { Window } from './Window';
+import { Window } from '@/home/desktop/Window';
 import {
   IconArrowLeft,
   IconArrowsRepost,
@@ -39,7 +39,6 @@ import {
   IconUsersTwoFill,
   IconVerifiedFill,
   IconVideos,
-  IconX,
 } from 'fyicons';
 
 const Icon = createIconLookup({
@@ -75,7 +74,6 @@ const Icon = createIconLookup({
   'users-two-fill': IconUsersTwoFill,
   'verified-fill': IconVerifiedFill,
   videos: IconVideos,
-  x: IconX,
 });
 
 function SocialPost() {

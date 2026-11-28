@@ -10,15 +10,15 @@ import {
 } from 'react';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
-import { Player, Chat, ControlCenter } from './Media';
-import { Sidebar, Editor, Files, Table } from './Workspace';
-import { AssetMenu } from './AssetMenu';
-import { Feedback, Uploads, Notifications, Tasks } from './Activity';
-import { OrderTracking } from './OrderTracking';
-import { Weather } from './Weather';
-import { Keypad } from './keycaps/Keypad';
+import { Player, Chat, ControlCenter } from '@/examples/Media';
+import { Sidebar, Editor, Files, Table } from '@/examples/Workspace';
+import { AssetMenu } from '@/examples/AssetMenu';
+import { Feedback, Uploads, Notifications, Tasks } from '@/examples/Activity';
+import { OrderTracking } from '@/examples/OrderTracking';
+import { Weather } from '@/examples/Weather';
+import { Keypad } from '@/examples/keycaps/Keypad';
 
-const IconSpecs = lazy(() => import('./IconSpecs'));
+const IconSpecs = lazy(() => import('@/examples/IconSpecs'));
 
 type Example = {
   title: string;

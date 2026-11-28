@@ -1,6 +1,6 @@
-import { catalogMetadata, type IconRecord } from './catalog';
-import { resolveIconSources } from './icon-source';
-import { createIconArchive } from './icon-archive';
+import { catalogMetadata, type IconRecord } from '@/lib/catalog';
+import { resolveIconSources } from '@/lib/icon-source';
+import { createIconArchive } from '@/lib/icon-archive';
 import readme from '@/data/README.txt?raw';
 import license from '../../../../LICENSE?raw';
 

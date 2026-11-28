@@ -1,5 +1,5 @@
-import { assetPath } from './navigation';
-import type { CatalogIcon } from './catalog-codec';
+import { assetPath } from '@/lib/navigation';
+import type { CatalogIcon } from '@/lib/catalog-codec';
 
 type SourceIcon = Pick<CatalogIcon, 'sha256' | 'filename'>;
 const pending = new Map<string, Promise<string>>();
@@ -25,7 +25,9 @@ export function loadIconSvg(icon: SourceIcon): Promise<string> {
     ).join('');
     if (hash !== icon.sha256)
       throw new Error('SVG checksum mismatch. Refresh and retry.');
-    return new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes);
+    return new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(
+      bytes,
+    );
   })();
   pending.set(icon.sha256, request);
   request.catch(() => {

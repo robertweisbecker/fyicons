@@ -7,7 +7,7 @@ const resolver = registerHooks({
   resolve(specifier, context, next) {
     if (
       context.parentURL?.endsWith('/icon-source.ts') &&
-      specifier === './navigation'
+      specifier === '@/lib/navigation'
     )
       return next('./navigation.ts', context);
     return next(specifier, context);

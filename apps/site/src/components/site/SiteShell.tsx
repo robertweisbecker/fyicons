@@ -3,10 +3,10 @@
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
-import { SiteHeader } from './SiteHeader';
-import { SiteFooter } from './SiteFooter';
-import { GlobalSearch } from './Search';
-import { SearchTriggerContext } from './SearchTrigger';
+import { SiteHeader } from '@/components/site/SiteHeader';
+import { SiteFooter } from '@/components/site/SiteFooter';
+import { GlobalSearch } from '@/components/site/Search';
+import { SearchTriggerContext } from '@/components/site/SearchTrigger';
 import { ToastProvider } from '@/components/ui/toast';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { usePreference } from '@/lib/preferences';

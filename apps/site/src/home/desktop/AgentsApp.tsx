@@ -9,13 +9,12 @@ import {
 } from '@/components/ui/message';
 import { createDemoControls, CopyButton } from '@/home/DemoControls';
 import { createGlyph } from '@/home/Study';
-import { AgentActivity, AgentComposer } from './AgentComposer';
-import { BrowserWindow } from './Window';
+import { AgentActivity, AgentComposer } from '@/home/desktop/AgentComposer';
+import { BrowserWindow } from '@/home/desktop/Window';
 import {
   IconChatRoundPlus,
   IconEllipsis,
   IconForkHorizontal,
-  IconGhost,
   IconNotebook,
   IconPanelLeftClosed,
   IconShare,
@@ -24,14 +23,12 @@ import {
   IconThumbsUp,
   IconThumbsUpFill,
   IconVolumeHigh,
-  IconX,
 } from 'fyicons';
 
 const Icon = createIconLookup({
   'chat-round-plus': IconChatRoundPlus,
   ellipsis: IconEllipsis,
   'fork-horizontal': IconForkHorizontal,
-  ghost: IconGhost,
   notebook: IconNotebook,
   'panel-left-closed': IconPanelLeftClosed,
   share: IconShare,
@@ -40,7 +37,6 @@ const Icon = createIconLookup({
   'thumbs-up': IconThumbsUp,
   'thumbs-up-fill': IconThumbsUpFill,
   'volume-high': IconVolumeHigh,
-  x: IconX,
 });
 
 const response = "It'll take two weeks to skirt the wall of mountains.";

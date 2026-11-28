@@ -18,8 +18,8 @@ import {
   GuideShape,
   PixelGrid,
   type Guide,
-} from './construction-guides';
-import './IconSpecimen.css';
+} from '@/home/construction-guides';
+import '@/home/IconSpecimen.css';
 import {
   IconBlocks,
   IconChatRoundEdit,

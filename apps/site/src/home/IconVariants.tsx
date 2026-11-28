@@ -1,5 +1,5 @@
 import { createIconLookup } from '@/components/icon-lookup';
-import { IconExampleCard } from './IconExampleCard';
+import { IconExampleCard } from '@/home/IconExampleCard';
 import {
   IconAppNotification,
   IconAppearance,

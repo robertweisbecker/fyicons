@@ -12,10 +12,10 @@ import {
   IconSquare,
   IconSquareFill,
 } from 'fyicons';
-import { createDraft, editDraft } from './printText';
-import { Ribbon } from './Ribbon';
-import type { Family } from './Parts';
-import './letterpress.css';
+import { createDraft, editDraft } from '@/prototypes/letterpress/print-text';
+import { Ribbon } from '@/prototypes/letterpress/Ribbon';
+import type { Family } from '@/prototypes/letterpress/Parts';
+import '@/prototypes/letterpress/letterpress.css';
 
 const styles = [
   ['Letter', IconFont],

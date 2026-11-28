@@ -35,6 +35,41 @@ Documentation-only changes need formatting, relative-link, and source checks. Th
 
 ## Change the website
 
+### Source layout
+
+All paths in this list are in `apps/site/src/`.
+
+- `app/`: routes. A `page.dev.tsx` file is a development-only route.
+- `components/ui/`: the shared controls.
+- `components/browser/`: the icon browser at `/icons/`, including the inspector.
+- `components/site/`: the header, footer, shell, and global search.
+- `components/docs/`: documentation navigation and examples.
+- `components/`: components that more than one of these areas uses.
+- `home/`: the homepage. `examples/`: the `/examples/` page.
+- `prototypes/`: internal studies for the development-only routes. Each study is in a folder with the name of its route, `/prototypes/<name>/`.
+- `lib/`: logic without markup. A file that exports only hooks has the `use-` prefix.
+- `vendor/`: third-party source with its license.
+
+Use PascalCase file names for components and kebab-case for other modules. Import site source with the `@/` alias, also from the same folder, so that a file can move without changes to its own imports. Use a relative path only for a file outside `apps/site/src/`. Vendored source in `vendor/` keeps its own imports.
+
+Use the shared controls in `apps/site/src/components/ui/`. Keep Tailwind utilities with their components. Keep conditional class names complete so Tailwind can detect them. `apps/site/src/styles.css` contains theme tokens and base rules.
+
+Use the shared Badge as a button or link for interactive category badges. Keep accessible names and keyboard behavior when changing controls.
+
+Routes live in `apps/site/src/app/`. The public pages are `/`, `/icons/`, `/examples/`, and `/docs/`. Add a docs page as `apps/site/src/app/docs/topic/page.mdx`; nesting another folder creates a subpage. Set its exported `metadata` title and description, then add its link to `apps/site/src/lib/docs-navigation.ts`. The shared docs layout keeps the sidebar mounted between pages. The Sidebar components also render the icon category filters.
+
+Use the Prototypes link in the local development header, or open `/prototypes/` directly, to review internal studies. The link and `page.dev.tsx` routes are included only in development.
+
+Keep browser APIs inside Client Components and effects. Docs content renders as static HTML. Icon filters use query parameters (`category`, `q`, and `icon`), and Next.js handles page navigation. Test direct entry, refresh, and Back/Forward for nested pages in the static preview, not only in the dev server.
+
+The website uses local font files. Keep their notices in `apps/site/public/licenses/`. The icon package uses the root MIT license; the fonts have separate licenses.
+
+Interface text uses the original webfonts from [Allo 1.1.0 by Josh Puckett](https://github.com/joshpuckett/allo/releases/tag/v1.1.0). `AlloVariable.woff2` is the upright font. CSS sets roundness to its maximum (`ROND=100`), with variable weight and automatic optical sizing. The regular and bold obliques use separate files. Code uses Paper Mono.
+
+Configure fonts with `next/font/local` in `src/app/fonts.ts` and apply their classes in the root layout. Upright Allo is preloaded. Oblique styles and Paper Mono load when used. The wordmarks use the shared `public/brand-wordmarks.svg` symbols; their lettering inherits the current text color in both themes.
+
+Development startup and production builds generate `public/downloads/fyicons.zip` from the current catalog and package SVGs. Full-library downloads use this static file. Custom selections are packaged in the browser. The generated ZIP is ignored by Git. After icon edits during a running development session, run `node scripts/build-site-archive.mjs` from the repository root to refresh it. Verify archive contents with `node --test tests/site/icon-archive.test.mjs`.
+
 ## Edit category rules
 
 Follow [Icon sources](../../docs/icon-sources.md#category-rules) for rule syntax and generation. The browser fetches category rules on page load without caching. Save and refresh to use edited rules; a running dev or preview server needs no restart. If category loading fails, the library keeps all icons available and shows a notice. Production builds minify the category JSON without changing its data.
@@ -59,7 +94,7 @@ node scripts/generate-icon-releases.mjs --check
 
 [The Pages workflow](../../.github/workflows/pages.yml) builds, tests, and deploys `apps/site/out/` from `main`. Pull requests run checks without deployment. Root documentation changes do not trigger a site build. Files under `apps/site/`, including this guide, match the workflow’s build paths. Changes to the ZIP README do trigger a build because downloads include that file.
 
-For a new GitHub Pages deployment, select **GitHub Actions** as the deployment source in the repository settings. The Next.js app uses static export with trailing slashes. For a project subpath, set `NEXT_PUBLIC_BASE_PATH=/project-name` when building and previewing. All routes must be known at build time; server actions and runtime API routes are not available. The build checks exported routes and docs links. It reports the total export size and warns above 7.25 MiB, including pre-rendered HTML and Next.js route payloads. This warning does not block deployment. Demo backdrops use static CSS mesh gradients and make no image requests. Release artifacts stay outside `apps/site/out/`.
+For a new GitHub Pages deployment, select **GitHub Actions** as the deployment source in the repository settings. The Next.js app uses static export with trailing slashes. For a project subpath, set `NEXT_PUBLIC_BASE_PATH=/project-name` when building and previewing. All routes must be known at build time; server actions and runtime API routes are not available. The build checks exported routes and docs links. It reports the total export size and warns above 7.25 MiB, including pre-rendered HTML and Next.js route payloads. This warning does not block deployment. Demo backdrops use static CSS gradients and make no image requests. Release artifacts stay outside `apps/site/out/`.
 
 Keep host credentials, DNS account details, and personal setup notes outside the repository. Use the host's documentation for domain setup.
 

@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import type { Theme } from './theme';
+import type { Theme } from '@/lib/theme';
 
 function subscribe(onChange: () => void) {
   const observer = new MutationObserver(onChange);

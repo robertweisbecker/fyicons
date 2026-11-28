@@ -5,9 +5,12 @@ import { usePathname } from 'next/navigation';
 import { IconSunFill, IconMoon, IconBeaker } from 'fyicons';
 
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
-import { BrandWordmark, BrandWordmarkMobile } from './BrandWordmark';
-import { GitHubIcon, NpmIcon } from './BrandIcons';
-import { SoundToggle } from './SoundToggle';
+import {
+  BrandWordmark,
+  BrandWordmarkMobile,
+} from '@/components/site/BrandWordmark';
+import { GitHubIcon, NpmIcon } from '@/components/site/BrandIcons';
+import { SoundToggle } from '@/components/site/SoundToggle';
 import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';

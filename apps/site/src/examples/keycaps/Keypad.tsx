@@ -21,14 +21,14 @@ import {
   IconSlash,
 } from 'fyicons';
 import { prefersReducedMotion } from '@/lib/use-media-query';
-import { palettes, type PaletteName } from './palettes';
-import { PalettePicker } from './PalettePicker';
+import { palettes, type PaletteName } from '@/examples/keycaps/palettes';
+import { PalettePicker } from '@/examples/keycaps/PalettePicker';
 import {
   play,
   press as pressSound,
   release as releaseSound,
 } from '@/lib/sounds';
-import './keycaps.css';
+import '@/examples/keycaps/keycaps.css';
 
 const keys = [
   { label: 'ctrl', name: 'Control', Glyph: IconKbdCtrl },

@@ -1,4 +1,4 @@
-import { CombinedDocsNavigation } from '@/prototypes/CombinedDocsNavigation';
+import { CombinedDocsNavigation } from '@/prototypes/docs-navigation/CombinedDocsNavigation';
 
 export const metadata = { title: 'Combined docs navigation' };
 
