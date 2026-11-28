@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useId, useState, type ReactNode } from 'react';
-import { Icon } from '@/components/Icon';
+import { CatalogIcon } from '@/components/CatalogIcon';
 import { Button } from '@/components/ui/button';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup } from '@/components/ui/toggle-group';
@@ -59,7 +59,7 @@ function IconToggle({
         onPressedChange={setActive}
         aria-label={labels ? undefined : label}
       >
-        <Icon name={icons[+active]} />
+        <CatalogIcon name={icons[+active]} />
         {labels?.[+active]}
       </Toggle>
     </Tooltip>
@@ -91,7 +91,7 @@ function Options({
       {options.map(([icon, name, activeIcon]) => (
         <Tooltip key={name} label={name}>
           <Toggle value={name} variant="elevated" size="icon" aria-label={name}>
-            <Icon
+            <CatalogIcon
               name={selected.includes(name) && activeIcon ? activeIcon : icon}
             />
           </Toggle>
@@ -135,7 +135,7 @@ function Playback({
             aria-label={'Back 10 seconds'}
             onClick={() => setPosition((p) => Math.max(0, p - 10))}
           >
-            <Icon
+            <CatalogIcon
               name={`${video ? 'fast-backward' : 'skip-backward'}${suffix}`}
             />
           </Button>
@@ -147,7 +147,7 @@ function Playback({
             aria-label={playing ? 'Pause' : 'Play'}
             onClick={() => setPlaying(!playing)}
           >
-            <Icon name={playing ? pause : play} />
+            <CatalogIcon name={playing ? pause : play} />
           </Button>
         </Tooltip>
         <Tooltip label={'Forward 10 seconds'}>
@@ -157,7 +157,7 @@ function Playback({
             aria-label={'Forward 10 seconds'}
             onClick={() => setPosition((p) => Math.min(59, p + 10))}
           >
-            <Icon
+            <CatalogIcon
               name={`${video ? 'fast-forward' : 'skip-forward'}${suffix}`}
             />
           </Button>
@@ -209,9 +209,9 @@ function SettingSlider({
         </Slider.Value>
       </div>
       <div className="flex items-center gap-3">
-        <Icon name={endpoints?.[0] ?? icon!} />
+        <CatalogIcon name={endpoints?.[0] ?? icon!} />
         <SliderControl />
-        {endpoints && <Icon name={endpoints[1]} />}
+        {endpoints && <CatalogIcon name={endpoints[1]} />}
       </div>
     </Slider.Root>
   );

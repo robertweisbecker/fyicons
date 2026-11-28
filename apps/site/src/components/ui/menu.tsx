@@ -1,14 +1,7 @@
 import { Menu as MenuPrimitive } from '@base-ui/react/menu';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { createIconLookup } from '@/components/createIconLookup';
 import { cn } from '@/lib/utils';
-import { IconAnchor, IconCheck, IconDotFill } from 'fyicons';
-
-const Icon = createIconLookup({
-  anchor: IconAnchor,
-  check: IconCheck,
-  'dot-fill': IconDotFill,
-});
+import { IconCheck, IconDotFill } from 'fyicons';
 
 export function Menu<Payload = unknown>({
   modal = false,
@@ -121,7 +114,7 @@ export function MenuLinkItem({
       {children}
       {current && (
         <span className="absolute right-2 flex size-4 items-center justify-center">
-          <Icon name="dot-fill" />
+          <IconDotFill />
         </span>
       )}
     </MenuPrimitive.LinkItem>
@@ -154,7 +147,7 @@ export function MenuRadioItem({
     >
       {children}
       <MenuPrimitive.RadioItemIndicator className="absolute right-2 flex size-4 items-center justify-center">
-        <Icon name="check" />
+        <IconCheck />
       </MenuPrimitive.RadioItemIndicator>
     </MenuPrimitive.RadioItem>
   );

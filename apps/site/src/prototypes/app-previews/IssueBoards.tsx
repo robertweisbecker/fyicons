@@ -30,10 +30,10 @@ import {
 import { Button } from '@/components/ui/button';
 import type { Act } from '@/vendor/stageshow/act';
 import { Stage } from '@/vendor/stageshow/stage';
-import { Card } from './kit/parts/Card';
-import { Row } from './kit/parts/Row';
-import { Bar, Window } from './kit/window';
-import './issue-boards.css';
+import { Card } from '@/vendor/stageshow/parts/Card';
+import { Row } from '@/vendor/stageshow/parts/Row';
+import { Bar, Window } from '@/vendor/stageshow/window';
+import '@/prototypes/app-previews/issue-boards.css';
 
 type Variant = 'drag' | 'merge';
 type BoardState = {

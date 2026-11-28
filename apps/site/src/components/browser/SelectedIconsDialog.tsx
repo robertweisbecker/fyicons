@@ -1,0 +1,229 @@
+import { useRef, useState, type MouseEvent } from 'react';
+import { Dialog } from '@base-ui/react/dialog';
+import { Tabs } from '@base-ui/react/tabs';
+import { CodeBlock } from '@/components/CodeBlock';
+import { CatalogIcon } from '@/components/CatalogIcon';
+import { IconButton } from '@/components/IconButton';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { getIconDisplayName, type IconRecord } from '@/lib/catalog';
+import { downloadIcon } from '@/lib/downloads';
+
+const codeTabClassName = buttonVariants({
+  variant: 'text',
+  size: 'sm',
+  className: 'data-active:text-ink',
+});
+
+function SelectedIconsCode({ icons }: { icons: IconRecord[] }) {
+  const names = icons.map((icon) => icon.componentName);
+  const singleLineImport = `import { ${names.join(', ')} } from 'fyicons';`;
+  const importStatement =
+    singleLineImport.length <= 80
+      ? singleLineImport
+      : [
+          'import {',
+          ...names.map((name) => `  ${name},`),
+          "} from 'fyicons';",
+        ].join('\n');
+  const jsx = [
+    importStatement,
+    '',
+    'export function SavedIcons() {',
+    '  return (',
+    '    <>',
+    ...names.map((name) => `      <${name} />`),
+    '    </>',
+    '  );',
+    '}',
+  ].join('\n');
+  const registryItems = icons.map(
+    (icon) => `robertweisbecker/fyicons/${icon.name}`,
+  );
+  const shadcnCommand = `npx shadcn@latest add ${registryItems.join(' ')}`;
+
+  return (
+    <Tabs.Root
+      defaultValue="jsx"
+      className="flex flex-col gap-2 px-3 pt-2 pb-3"
+    >
+      <Tabs.List
+        aria-label="Selected icon code"
+        activateOnFocus
+        className="group/code-tabs relative isolate grid w-fit grid-cols-2 gap-1"
+      >
+        <Tabs.Tab value="jsx" className={codeTabClassName}>
+          React JSX
+        </Tabs.Tab>
+        <Tabs.Tab value="shadcn" className={codeTabClassName}>
+          shadcn CLI
+        </Tabs.Tab>
+        <Tabs.Indicator
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 left-0 -z-10 h-full w-(--active-tab-width) translate-x-(--active-tab-left) rounded-md bg-inset transition-[translate] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-has-focus-visible/code-tabs:transition-none motion-reduce:transition-none"
+        />
+      </Tabs.List>
+      <Tabs.Panel value="jsx">
+        <CodeBlock
+          key={jsx}
+          aria-label="React JSX for selected icons"
+          className="text-xs leading-5"
+        >
+          <code>{jsx}</code>
+        </CodeBlock>
+      </Tabs.Panel>
+      <Tabs.Panel value="shadcn">
+        <CodeBlock
+          key={shadcnCommand}
+          aria-label="shadcn command for selected icons"
+          className="text-xs leading-5 wrap-anywhere whitespace-pre-wrap"
+        >
+          <code>{shadcnCommand}</code>
+        </CodeBlock>
+      </Tabs.Panel>
+    </Tabs.Root>
+  );
+}
+
+export function SelectedIconsDialog({
+  icons,
+  onRemove,
+  onClear,
+  onDownload,
+  packing,
+}: {
+  icons: IconRecord[];
+  onRemove: (id: string) => void;
+  onClear: () => void;
+  onDownload: () => Promise<boolean>;
+  packing: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const title = useRef<HTMLHeadingElement>(null);
+  const cancel = useRef<HTMLButtonElement>(null);
+
+  function remove(id: string, event: MouseEvent<HTMLButtonElement>) {
+    const row = event.currentTarget.closest('li');
+    const next = (
+      row?.nextElementSibling ?? row?.previousElementSibling
+    )?.querySelector<HTMLButtonElement>('[data-remove-icon]');
+    (next ?? cancel.current)?.focus();
+    onRemove(id);
+  }
+
+  return (
+    <Dialog.Root open={open} onOpenChange={setOpen}>
+      <Dialog.Trigger
+        data-selection-trigger=""
+        render={<Button variant="text" size="sm" />}
+      >
+        <CatalogIcon name={icons.length > 0 ? 'bookmark-fill' : 'bookmark'} />
+        Saved
+        <Badge size="sm">{icons.length}</Badge>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Backdrop className="fixed inset-0 z-70 bg-black/20 transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
+        <Dialog.Popup
+          data-selection-dialog=""
+          initialFocus={title}
+          className="fixed top-[min(4rem,10dvh)] left-1/2 z-70 flex max-h-[min(40rem,85dvh)] w-[min(30rem,calc(100%-2rem))] origin-top -translate-x-1/2 flex-col overflow-hidden rounded-2xl bg-surface text-ink shadow-xl outline-1 outline-ink/10 transition-[opacity,scale] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none"
+        >
+          <div className="shrink-0 border-b border-line p-5">
+            <div className="flex items-center justify-between gap-4">
+              <Dialog.Title
+                ref={title}
+                tabIndex={-1}
+                className="text-base font-semibold outline-none"
+              >
+                {icons.length} {icons.length === 1 ? 'icon' : 'icons'} selected
+              </Dialog.Title>
+              <Button
+                variant="ghost"
+                className="text-red-500 dark:text-red-400"
+                disabled={!icons.length || packing}
+                onClick={() => {
+                  cancel.current?.focus();
+                  onClear();
+                }}
+              >
+                <CatalogIcon name="trash" />
+                Clear
+              </Button>
+            </div>
+          </div>
+          {icons.length ? (
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2">
+              <ul role="list" aria-label="Selected icons">
+                {icons.map((icon) => {
+                  const name = getIconDisplayName(icon);
+                  return (
+                    <li
+                      key={icon.id}
+                      className="flex items-center gap-3 rounded-lg px-3 py-2"
+                    >
+                      <CatalogIcon name={icon.id} />
+                      <span
+                        className="min-w-0 flex-1 truncate text-sm"
+                        title={name}
+                      >
+                        {name} ∙{' '}
+                        <span className="font-mono text-xs text-muted">
+                          {icon.name}-16.svg
+                        </span>
+                      </span>
+                      <IconButton
+                        icon="download-square"
+                        label={`Download ${name}`}
+                        size="icon-sm"
+                        disabled={packing}
+                        onClick={() => downloadIcon(icon)}
+                      />
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        data-remove-icon=""
+                        aria-label={`Remove ${name}`}
+                        disabled={packing}
+                        onClick={(event) => remove(icon.id, event)}
+                      >
+                        <CatalogIcon name="x" />
+                      </Button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <SelectedIconsCode icons={icons} />
+            </div>
+          ) : (
+            <div className="flex min-h-40 flex-col items-center justify-center gap-3 pt-3 pb-6 text-sm text-muted">
+              <CatalogIcon name="view-pointer" size={24} />
+              Hover and check icons to download multiple at once.
+            </div>
+          )}
+          <div className="flex shrink-0 justify-end gap-2 border-t border-line p-4">
+            <Dialog.Close render={<Button ref={cancel} variant="outline" />}>
+              Close
+            </Dialog.Close>
+            <Button
+              data-download-icons="selected"
+              disabled={!icons.length || packing}
+              onClick={async () => {
+                if (await onDownload()) setOpen(false);
+              }}
+            >
+              <CatalogIcon
+                name={packing ? 'spinner' : 'folder-zip'}
+                className={
+                  packing
+                    ? 'animate-spin motion-reduce:animate-none'
+                    : undefined
+                }
+              />
+              {packing ? 'Preparing…' : 'Download zip'}
+            </Button>
+          </div>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}

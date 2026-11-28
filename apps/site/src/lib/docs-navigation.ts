@@ -1,6 +1,15 @@
+import type { UIIconName } from '@/components/UIIcon';
+
 export type DocSection = { id: string; title: string };
 
-export const docsNavigation = [
+type DocPage = {
+  title: string;
+  href: string;
+  icon: UIIconName;
+  separatorBefore?: boolean;
+};
+
+export const docsNavigation: { title: string; items: DocPage[] }[] = [
   {
     title: 'Documentation',
     items: [

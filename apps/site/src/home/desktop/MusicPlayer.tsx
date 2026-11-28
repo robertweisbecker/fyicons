@@ -1,6 +1,12 @@
-import { useRef, useState, type ReactNode, type Ref } from 'react';
+import {
+  useRef,
+  useState,
+  type ComponentProps,
+  type ReactNode,
+  type Ref,
+} from 'react';
 import { Popover } from '@base-ui/react/popover';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Button } from '@/components/ui/button';
 import {
   Menu,
@@ -11,19 +17,17 @@ import {
   MenuTrigger,
 } from '@/components/ui/menu';
 import { Slider } from '@/components/ui/slider';
-import { createDemoControls, DemoHint } from '@/demos/components/DemoControls';
-import { AlbumArtwork, tracks, trackTime } from './musicData';
+import { createDemoControls, DemoHint } from '@/home/DemoControls';
+import { AlbumArtwork, tracks, trackTime } from '@/home/desktop/music-data';
 import {
   IconArrowsCollapse,
   IconArrowsExpand,
   IconCircleCheckFill,
   IconCirclePlus,
-  IconCirclePlusFill,
-  IconComputer,
   IconGhost,
   IconHeadphones,
   IconMicrophoneMusic,
-  IconMicrophoneMusicFill,
+  IconLaptop,
   IconPauseFill,
   IconPictureInPicture,
   IconPictureInPictureExit,
@@ -36,16 +40,10 @@ import {
   IconSkipForwardFill,
   IconSpeakers,
   IconVideo,
-  IconVideoFill,
   IconVolumeHigh,
-  IconVolumeHighFill,
   IconVolumeLow,
-  IconVolumeLowFill,
   IconVolumeNone,
-  IconVolumeNoneFill,
   IconVolumeSlash,
-  IconVolumeSlashFill,
-  IconWaveform,
 } from 'fyicons';
 
 const Icon = createIconLookup({
@@ -53,12 +51,10 @@ const Icon = createIconLookup({
   'arrows-expand': IconArrowsExpand,
   'circle-check-fill': IconCircleCheckFill,
   'circle-plus': IconCirclePlus,
-  'circle-plus-fill': IconCirclePlusFill,
-  computer: IconComputer,
+  laptop: IconLaptop,
   ghost: IconGhost,
   headphones: IconHeadphones,
   'microphone-music': IconMicrophoneMusic,
-  'microphone-music-fill': IconMicrophoneMusicFill,
   'pause-fill': IconPauseFill,
   'picture-in-picture': IconPictureInPicture,
   'picture-in-picture-exit': IconPictureInPictureExit,
@@ -71,23 +67,17 @@ const Icon = createIconLookup({
   'skip-forward-fill': IconSkipForwardFill,
   speakers: IconSpeakers,
   video: IconVideo,
-  'video-fill': IconVideoFill,
   'volume-high': IconVolumeHigh,
-  'volume-high-fill': IconVolumeHighFill,
   'volume-low': IconVolumeLow,
-  'volume-low-fill': IconVolumeLowFill,
   'volume-none': IconVolumeNone,
-  'volume-none-fill': IconVolumeNoneFill,
   'volume-slash': IconVolumeSlash,
-  'volume-slash-fill': IconVolumeSlashFill,
-  waveform: IconWaveform,
 });
 
 const playbackDevices = [
   { value: 'headphones', label: 'Headphones', icon: 'headphones' },
   { value: 'speakers', label: 'Speaker group', icon: 'speakers' },
-  { value: 'computer', label: 'Computer', icon: 'computer' },
-];
+  { value: 'computer', label: 'MacBob Air', icon: 'laptop' },
+] as const;
 
 function PlayerSlider({
   label,
@@ -132,7 +122,7 @@ function PlayerPopover({
   children,
 }: {
   label: string;
-  icon: string;
+  icon: ComponentProps<typeof Icon>['name'];
   children: ReactNode;
 }) {
   return (

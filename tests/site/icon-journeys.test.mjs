@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { act } from 'react';
 import { unzipSync, strFromU8 } from 'fflate';
+import releaseHistory from '../../apps/site/src/data/icon-releases.json' with { type: 'json' };
 import { mountApp } from './helpers/app-readiness-harness.mjs';
 
 function captureDownloads(t, window) {
@@ -96,28 +97,49 @@ function waitForCopyButton(h) {
   });
 }
 
-test('Newest shows the same recent additions as tile indicators and other sorting restores older icons', async (t) => {
-  const h = await mountApp(t, 'https://example.test/icons/');
-  await h.resolveCategories();
-  const allIds = h.tiles.map((tile) => tile.dataset.id);
-  const recentIds = h.tiles
-    .filter((tile) => tile.hasAttribute('aria-description'))
-    .map((tile) => tile.dataset.id);
-  assert.ok(recentIds.length > 0 && recentIds.length < allIds.length);
-  await click(h.document.querySelector('[data-icon-sort]'));
-  await click(h.document.querySelector('[data-sort-value="addedAt"]'));
-  assert.deepEqual(
-    h.tiles.map((tile) => tile.dataset.id).sort(),
-    recentIds.sort(),
-  );
-  assert.ok(h.tiles.every((tile) => tile.hasAttribute('aria-description')));
-  await click(h.document.querySelector('[data-icon-sort]'));
-  await click(h.document.querySelector('[data-sort-value="alphabetical"]'));
-  assert.deepEqual(
-    h.tiles.map((tile) => tile.dataset.id).sort(),
-    allIds.sort(),
-  );
-});
+for (const [sort, label, field] of [
+  ['addedAt', 'Newest', 'added'],
+  ['updatedAt', 'Last updated', 'updated'],
+]) {
+  test(`${label} keeps all icons and orders them by descending ${field} release`, async (t) => {
+    const h = await mountApp(t, 'https://example.test/icons/');
+    await h.resolveCategories();
+    const allIds = h.tiles.map((tile) => tile.dataset.id);
+    const recentIds = h.tiles
+      .filter((tile) => tile.hasAttribute('aria-description'))
+      .map((tile) => tile.dataset.id);
+    assert.ok(recentIds.length > 0 && recentIds.length < allIds.length);
+
+    const releaseOrder = new Map();
+    releaseHistory.releases.forEach((release, index) => {
+      for (const id of release[field]) releaseOrder.set(id, index);
+    });
+    const rank = (id) => releaseOrder.get(id) ?? -1;
+    const expectedIds = allIds.toSorted((a, b) => rank(b) - rank(a));
+
+    await click(h.document.querySelector('[data-icon-sort]'));
+    await click(h.document.querySelector(`[data-sort-value="${sort}"]`));
+    assert.equal(h.tiles.length, allIds.length);
+    assert.deepEqual(
+      h.tiles.map((tile) => tile.dataset.id),
+      expectedIds,
+    );
+    assert.deepEqual(
+      h.tiles
+        .filter((tile) => tile.hasAttribute('aria-description'))
+        .map((tile) => tile.dataset.id)
+        .sort(),
+      recentIds.sort(),
+    );
+
+    await click(h.document.querySelector('[data-icon-sort]'));
+    await click(h.document.querySelector('[data-sort-value="alphabetical"]'));
+    assert.deepEqual(
+      h.tiles.map((tile) => tile.dataset.id),
+      allIds,
+    );
+  });
+}
 
 for (const mobile of [false, true]) {
   test(`${mobile ? 'mobile' : 'desktop'} users can find, inspect, copy and download an icon`, async (t) => {
@@ -254,6 +276,95 @@ test('the grid context menu copies from the tile that opened it', async (t) => {
     );
     assert.equal(copied.at(-1), name);
   }
+});
+
+test('a pending SVG copy closes the menu and retries from the same toast', async (t) => {
+  const h = await mountApp(t, 'https://example.test/icons/?q=home');
+  await h.resolveCategories();
+  const tile = h.tiles[0];
+  const icon = h.catalog.byId.get(tile.dataset.id);
+  const expected = await readFile(
+    new URL(`../../packages/fyicons/svg/${icon.filename}`, import.meta.url),
+    'utf8',
+  );
+  const sourceGate = Promise.withResolvers();
+  let writeStarted = false;
+  const writeFailed = Promise.withResolvers();
+  const fetchSource = globalThis.fetch;
+  t.mock.method(globalThis, 'fetch', async (...args) => {
+    await sourceGate.promise;
+    return fetchSource(...args);
+  });
+  const originalItem = Object.getOwnPropertyDescriptor(
+    globalThis,
+    'ClipboardItem',
+  );
+  globalThis.ClipboardItem = class {
+    constructor(data) {
+      this.data = data;
+    }
+  };
+  t.after(() => {
+    if (originalItem)
+      Object.defineProperty(globalThis, 'ClipboardItem', originalItem);
+    else delete globalThis.ClipboardItem;
+  });
+  let copied;
+  Object.defineProperty(h.window.navigator, 'clipboard', {
+    value: {
+      async write([item]) {
+        writeStarted = true;
+        await item.data['text/plain'];
+        writeFailed.resolve();
+        throw new Error('Clipboard access denied');
+      },
+      async writeText(text) {
+        copied = text;
+      },
+    },
+  });
+  await act(async () =>
+    tile.dispatchEvent(
+      new h.window.MouseEvent('contextmenu', {
+        bubbles: true,
+        cancelable: true,
+        button: 2,
+      }),
+    ),
+  );
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  await click(
+    [...h.document.querySelectorAll('[role="menuitem"]')].find(
+      (item) => item.textContent === 'Copy SVG',
+    ),
+  );
+  assert.equal(writeStarted, true);
+  assert.equal(
+    h.document.querySelector('[role="menu"]:not([data-ending-style])'),
+    null,
+  );
+  await act(async () => t.mock.timers.tick(149));
+  const currentToast = () => h.document.querySelector('[data-slot="toast"]');
+  assert.equal(currentToast(), null);
+  await act(async () => t.mock.timers.tick(1));
+  const toast = currentToast();
+  assert.match(toast.textContent, /Copying/);
+
+  await act(async () => {
+    sourceGate.resolve();
+    await writeFailed.promise;
+  });
+  assert.equal(currentToast(), toast);
+  assert.match(toast.textContent, /clipboard/);
+  await click(
+    [...toast.querySelectorAll('button')].find(
+      (button) => button.textContent === 'Retry',
+    ),
+  );
+  assert.equal(copied, expected);
+  assert.equal(currentToast(), toast);
+  assert.match(toast.textContent, /copied/);
+  assert.doesNotMatch(toast.textContent, /Retry/);
 });
 
 test('users can filter, save and remove icons, then export the selection or full library', async (t) => {

@@ -1,119 +1,79 @@
 import { useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
-import { createDemoControls } from '@/demos/components/DemoControls';
-import { createGlyph } from '../Study';
-import { Window } from './Window';
+import { createDemoControls } from '@/home/DemoControls';
+import { createGlyph } from '@/home/Study';
+import { Window } from '@/home/desktop/Window';
 import {
-  IconArrowClockwise,
   IconArrowLeft,
-  IconArrowRight,
   IconArrowsRepost,
   IconAtSign,
   IconBell,
-  IconBellFill,
   IconBellSlash,
   IconBird,
   IconBookmark,
   IconBookmarkFill,
   IconBriefcase,
   IconCalendarSimpleDays,
-  IconCaretsMaximize,
   IconChartHistogram,
   IconChatRound,
   IconCheck,
   IconChevronRight,
-  IconCircleUserFill,
-  IconCircleXFill,
   IconEllipsis,
-  IconEllipsisV,
   IconEmojiMelt,
-  IconEmojiMeltFill,
-  IconGas,
-  IconGasFill,
   IconHeartAlt,
   IconHeartAltFill,
   IconHomeBirdhouse,
-  IconHomeBirdhouseFill,
   IconImages,
-  IconInfo,
-  IconInfoFill,
   IconLink,
   IconMapMarkerRound,
-  IconMinus,
   IconPlus,
   IconPosts,
-  IconPuzzlePiece,
   IconQuill,
   IconSearch,
   IconShare,
   IconSparkles,
-  IconSparklesFill,
-  IconStarFill,
   IconUsersThreeFill,
   IconUsersTwoFill,
   IconVerifiedFill,
-  IconVideoFill,
   IconVideos,
-  IconX,
-  IconZoomIn,
 } from 'fyicons';
 
 const Icon = createIconLookup({
-  'arrow-clockwise': IconArrowClockwise,
   'arrow-left': IconArrowLeft,
-  'arrow-right': IconArrowRight,
   'arrows-repost': IconArrowsRepost,
   'at-sign': IconAtSign,
   bell: IconBell,
-  'bell-fill': IconBellFill,
   'bell-slash': IconBellSlash,
   bird: IconBird,
   bookmark: IconBookmark,
   'bookmark-fill': IconBookmarkFill,
   briefcase: IconBriefcase,
   'calendar-simple-days': IconCalendarSimpleDays,
-  'carets-maximize': IconCaretsMaximize,
   'chart-histogram': IconChartHistogram,
   'chat-round': IconChatRound,
   check: IconCheck,
   'chevron-right': IconChevronRight,
-  'circle-user-fill': IconCircleUserFill,
-  'circle-x-fill': IconCircleXFill,
   ellipsis: IconEllipsis,
-  'ellipsis-v': IconEllipsisV,
   'emoji-melt': IconEmojiMelt,
-  'emoji-melt-fill': IconEmojiMeltFill,
-  gas: IconGas,
-  'gas-fill': IconGasFill,
   'heart-alt': IconHeartAlt,
   'heart-alt-fill': IconHeartAltFill,
   'home-birdhouse': IconHomeBirdhouse,
-  'home-birdhouse-fill': IconHomeBirdhouseFill,
   images: IconImages,
-  info: IconInfo,
-  'info-fill': IconInfoFill,
   link: IconLink,
   'map-marker-round': IconMapMarkerRound,
-  minus: IconMinus,
   plus: IconPlus,
   posts: IconPosts,
-  'puzzle-piece': IconPuzzlePiece,
   quill: IconQuill,
   search: IconSearch,
   share: IconShare,
   sparkles: IconSparkles,
-  'sparkles-fill': IconSparklesFill,
-  'star-fill': IconStarFill,
   'users-three-fill': IconUsersThreeFill,
   'users-two-fill': IconUsersTwoFill,
   'verified-fill': IconVerifiedFill,
-  'video-fill': IconVideoFill,
   videos: IconVideos,
-  x: IconX,
-  'zoom-in': IconZoomIn,
 });
 
 function SocialPost() {
@@ -178,7 +138,6 @@ export function SocialApp() {
           <Icon name="bird" /> Bird App
         </>
       }
-      className="max-w-2xl"
     >
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain p-4 text-muted">
         <div className="mb-4 flex items-center gap-2 text-base font-semibold text-ink">
@@ -268,12 +227,14 @@ export function SocialApp() {
           aria-label="Profile view"
           className="gap-0 border-b border-line"
         >
-          {[
-            ['posts', 'Posts'],
-            ['chat-round', 'Replies'],
-            ['videos', 'Videos'],
-            ['images', 'Photos'],
-          ].map(([icon, label]) => (
+          {(
+            [
+              ['posts', 'Posts'],
+              ['chat-round', 'Replies'],
+              ['videos', 'Videos'],
+              ['images', 'Photos'],
+            ] as const
+          ).map(([icon, label]) => (
             <Toggle
               key={icon}
               value={icon}

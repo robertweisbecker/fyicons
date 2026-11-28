@@ -9,7 +9,7 @@ import {
   useState,
   type Ref,
 } from 'react';
-import { Icon } from '@/components/Icon';
+import { CatalogIcon } from '@/components/CatalogIcon';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
@@ -21,10 +21,13 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { byName } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
-import { copy as copyText } from '@/lib/downloads';
-import { Choice } from './Choice';
-import { IconPicker } from './IconPicker';
-import { IconInspector, type InspectorHandle } from './IconInspector';
+import { copy as copyText } from '@/lib/clipboard';
+import { Choice } from '@/prototypes/icon-examples/Choice';
+import { IconPicker } from '@/prototypes/icon-examples/IconPicker';
+import {
+  IconInspector,
+  type InspectorHandle,
+} from '@/prototypes/icon-examples/IconInspector';
 import {
   layouts,
   emptyWorkspace,
@@ -37,7 +40,7 @@ import {
   type LayoutId,
   type IconMapping,
   type Remix,
-} from './model';
+} from '@/prototypes/icon-examples/model';
 
 export type PlaygroundHandle = { load: (remix: Remix) => void };
 const compactLabels: Record<string, string> = {
@@ -279,13 +282,13 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
           )}
         >
           {icon.icon ? (
-            <Icon
+            <CatalogIcon
               name={icon.icon}
               size={icon.size}
               style={mappingStyle(icon)}
             />
           ) : (
-            <Icon name="plus" className="text-muted" />
+            <CatalogIcon name="plus" className="text-muted" />
           )}
         </span>
         {(labels || mode === 'edit') && (
@@ -330,7 +333,7 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
       <div className="overflow-hidden rounded-2xl border border-border bg-surface">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3 sm:px-5">
           <div className="flex items-center gap-3">
-            <Icon name={layout.icon} className="text-muted" />
+            <CatalogIcon name={layout.icon} className="text-muted" />
             <Choice
               label="Playground layout"
               value={layoutId}
@@ -357,11 +360,11 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
             className="rounded-lg bg-bg p-1"
           >
             <Toggle value="edit" size="sm" variant="elevated">
-              <Icon name="cursor" />
+              <CatalogIcon name="cursor" />
               Edit icons
             </Toggle>
             <Toggle value="try" size="sm" variant="elevated" disabled={!filled}>
-              <Icon name="play" />
+              <CatalogIcon name="play" />
               Try it
             </Toggle>
           </ToggleGroup>
@@ -381,7 +384,7 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
                   onPressedChange={setLabels}
                   aria-label="Show control labels"
                 >
-                  <Icon name="text-title" />
+                  <CatalogIcon name="text-title" />
                 </Toggle>
                 <Toggle
                   size="icon-xs"
@@ -389,7 +392,7 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
                   onPressedChange={setPreviewDark}
                   aria-label="Dark canvas"
                 >
-                  <Icon name={previewDark ? 'moon' : 'sun'} />
+                  <CatalogIcon name={previewDark ? 'moon' : 'sun'} />
                 </Toggle>
               </div>
             </div>
@@ -406,7 +409,7 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
                   <>
                     <div className="mb-6 flex items-center gap-4 px-1">
                       <div className="grid size-16 shrink-0 place-items-center rounded-xl bg-teal-900 text-teal-100">
-                        <Icon name="waveform" size={32} />
+                        <CatalogIcon name="waveform" size={32} />
                       </div>
                       <div>
                         <p className="text-sm font-medium">
@@ -464,7 +467,7 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
                 {layoutId === 'toolbar' && (
                   <>
                     <div className="px-3 pt-4 pb-6">
-                      <Icon
+                      <CatalogIcon
                         name="file-text"
                         size={36}
                         className="mb-4 text-muted"
@@ -488,7 +491,7 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
                   <>
                     <div className="mb-5 flex items-center gap-2 px-2">
                       <span className="grid size-8 place-items-center rounded-full bg-violet-100 text-violet-900">
-                        <Icon name="user" />
+                        <CatalogIcon name="user" />
                       </span>
                       <p className="text-xs text-muted">Message to the team</p>
                     </div>
@@ -519,7 +522,7 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
                   size="sm"
                   onClick={() => populate(false)}
                 >
-                  <Icon name="sparkles" />
+                  <CatalogIcon name="sparkles" />
                   Fill with example
                 </Button>
                 <Button
@@ -538,11 +541,11 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
                   disabled={!filled}
                   onClick={() => copy('react')}
                 >
-                  <Icon name="code" />
+                  <CatalogIcon name="code" />
                   Copy React
                 </Button>
                 <Button variant="text" size="sm" onClick={() => copy('link')}>
-                  <Icon name="link" />
+                  <CatalogIcon name="link" />
                   Copy link
                 </Button>
               </div>
@@ -605,12 +608,12 @@ export function IconPlayground({ ref }: { ref: Ref<PlaygroundHandle> }) {
                 }}
               >
                 <span className="flex min-w-0 items-center gap-2">
-                  <Icon name={mapping.icon || 'plus'} />
+                  <CatalogIcon name={mapping.icon || 'plus'} />
                   <span className="truncate">
                     {mapping.icon || 'Choose an icon'}
                   </span>
                 </span>
-                <Icon name="grid" />
+                <CatalogIcon name="grid" />
               </Button>
             </div>
             <div data-docked-dialkit>

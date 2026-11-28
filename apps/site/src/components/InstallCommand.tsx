@@ -1,32 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
-import { IconButton } from './IconButton';
-import { Button, type ButtonProps } from './ui/button';
-import { notify } from './ui/toast';
-import { copy } from '@/lib/downloads';
+import { clipboardUnavailable, useCopied } from '@/components/copy-feedback';
+import { createIconLookup } from '@/components/icon-lookup';
+import { IconButton } from '@/components/IconButton';
+import { Button, type ButtonProps } from '@/components/ui/button';
+import { notify } from '@/components/ui/toast';
+import { copy } from '@/lib/clipboard';
 import { cn } from '@/lib/utils';
 import {
-  IconCode,
   IconCopiedFill,
   IconCopy,
-  IconGhost,
   IconTerminalBash,
   IconTerminalSquare,
-  IconTerminalSquareFill,
-  IconTextTitle,
-  IconTextTitleFill,
 } from 'fyicons';
 
 const Icon = createIconLookup({
-  code: IconCode,
   'copied-fill': IconCopiedFill,
   copy: IconCopy,
-  ghost: IconGhost,
   'terminal-bash': IconTerminalBash,
   'terminal-square': IconTerminalSquare,
-  'terminal-square-fill': IconTerminalSquareFill,
-  text: IconTextTitle,
-  'text-fill': IconTextTitleFill,
 });
 
 export function InstallCommand({
@@ -42,32 +32,16 @@ export function InstallCommand({
   appearance?: 'code' | 'button';
   variant?: ButtonProps['variant'];
 }) {
-  const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
-  const reset = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const mounted = useRef(false);
+  const [copiedCommand, markCopied] = useCopied<string>();
   const copied = copiedCommand === command;
-
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-      clearTimeout(reset.current);
-    };
-  }, []);
 
   async function copyCommand() {
     const success = await copy(command);
-    notify(
-      success ? 'Copied command' : 'Clipboard unavailable. Please try again.',
-      {
-        id: `install:${command}`,
-        icon: success ? <Icon name="terminal-square" /> : undefined,
-      },
-    );
-    if (!mounted.current) return;
-    clearTimeout(reset.current);
-    setCopiedCommand(success ? command : null);
-    if (success) reset.current = setTimeout(() => setCopiedCommand(null), 2200);
+    notify(success ? 'Copied command' : clipboardUnavailable, {
+      id: `install:${command}`,
+      icon: success ? <Icon name="terminal-square" /> : undefined,
+    });
+    markCopied(success ? command : null);
   }
 
   const copyIcon = (

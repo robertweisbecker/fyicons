@@ -56,12 +56,12 @@ import {
   IconWaveform,
   IconX,
 } from 'fyicons';
-import { AlbumArtwork, tracks, trackTime } from '@/home/desktop/musicData';
-import './kit/stage.css';
-import { Window } from './kit/window';
-import { Row } from './kit/parts/Row';
-import './previews.css';
-import { IssueBoard } from './IssueBoards';
+import { AlbumArtwork, tracks, trackTime } from '@/home/desktop/music-data';
+import '@/vendor/stageshow/stage.css';
+import { Window } from '@/vendor/stageshow/window';
+import { Row } from '@/vendor/stageshow/parts/Row';
+import '@/prototypes/app-previews/previews.css';
+import { IssueBoard } from '@/prototypes/app-previews/IssueBoards';
 
 function Design() {
   return (

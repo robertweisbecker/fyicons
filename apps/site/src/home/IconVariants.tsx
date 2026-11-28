@@ -1,5 +1,5 @@
-import { createIconLookup } from '@/components/createIconLookup';
-import { IconExampleCard } from './IconExampleCard';
+import { createIconLookup } from '@/components/icon-lookup';
+import { IconExampleCard } from '@/home/IconExampleCard';
 import {
   IconAppNotification,
   IconAppearance,
@@ -17,16 +17,12 @@ import {
   IconCircleCheckFill,
   IconCircleHalftone,
   IconCirclePause,
-  IconCirclePauseFill,
   IconCirclePlay,
-  IconCirclePlayFill,
   IconCircleStop,
-  IconCircleStopFill,
   IconClock,
   IconClockFill,
   IconClockSolid,
   IconCompass,
-  IconCompassFill,
   IconCookieBite,
   IconCookieBiteFill,
   IconCreditCard,
@@ -36,6 +32,8 @@ import {
   IconCursorFill,
   IconDiamond,
   IconDiamondFill,
+  IconDie,
+  IconDieFill,
   IconEditSolid,
   IconError,
   IconErrorFill,
@@ -44,7 +42,6 @@ import {
   IconEyedropper,
   IconFileAdd,
   IconFireAlt,
-  IconFireAltFill,
   IconFolder,
   IconFolderCheck,
   IconFolderFill,
@@ -113,16 +110,12 @@ const Icon = createIconLookup({
   'circle-check-fill': IconCircleCheckFill,
   'circle-halftone': IconCircleHalftone,
   'circle-pause': IconCirclePause,
-  'circle-pause-fill': IconCirclePauseFill,
   'circle-play': IconCirclePlay,
-  'circle-play-fill': IconCirclePlayFill,
   'circle-stop': IconCircleStop,
-  'circle-stop-fill': IconCircleStopFill,
   clock: IconClock,
   'clock-fill': IconClockFill,
   'clock-solid': IconClockSolid,
   compass: IconCompass,
-  'compass-fill': IconCompassFill,
   'cookie-bite': IconCookieBite,
   'cookie-bite-fill': IconCookieBiteFill,
   'credit-card': IconCreditCard,
@@ -132,6 +125,8 @@ const Icon = createIconLookup({
   'cursor-fill': IconCursorFill,
   diamond: IconDiamond,
   'diamond-fill': IconDiamondFill,
+  die: IconDie,
+  'die-fill': IconDieFill,
   'edit-solid': IconEditSolid,
   error: IconError,
   'error-fill': IconErrorFill,
@@ -140,7 +135,6 @@ const Icon = createIconLookup({
   eyedropper: IconEyedropper,
   'file-add': IconFileAdd,
   'fire-alt': IconFireAlt,
-  'fire-alt-fill': IconFireAltFill,
   folder: IconFolder,
   'folder-check': IconFolderCheck,
   'folder-fill': IconFolderFill,
@@ -223,6 +217,7 @@ const variantIcons = [
   'stop',
   'circle-check',
   'clock',
+  'die',
 ] as const;
 
 const mixedIcons = [
@@ -262,33 +257,40 @@ const mixedIcons = [
   'progress-task-done',
 ] as const;
 
-const variants = [
-  { label: 'Outline', icons: variantIcons },
-  {
-    label: 'Filled',
-    icons: variantIcons.map((name) => `${name}-fill`),
-  },
-  { label: 'Mixed', icons: mixedIcons },
-] as const;
+const variants = {
+  Outline: variantIcons,
+  Filled: variantIcons.map((name) => `${name}-fill` as const),
+  Mixed: mixedIcons,
+};
+
+export function VariantIconGrid({
+  variant,
+}: {
+  variant: keyof typeof variants;
+}) {
+  return (
+    <ul
+      aria-label={`${variant} icons`}
+      role="list"
+      className="grid aspect-square min-h-26 w-full flex-1 auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
+    >
+      {variants[variant].map((name) => (
+        <li key={name} className="flex min-w-0 items-center justify-center">
+          <Icon
+            name={name}
+            className="size-4 sm:size-6"
+            aria-label={name.replaceAll('-', ' ')}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export function IconVariants() {
-  return variants.map(({ label, icons }) => (
+  return (['Outline', 'Filled', 'Mixed'] as const).map((label) => (
     <IconExampleCard key={label} label={label} className="sm:col-span-2">
-      <ul
-        aria-label={`${label} icons`}
-        role="list"
-        className="grid aspect-square min-h-26 w-full flex-1 auto-rows-fr grid-cols-5 place-items-center rounded-xl bg-surface p-1 sm:rounded-2xl sm:p-3"
-      >
-        {icons.map((name) => (
-          <li key={name} className="flex min-w-0 items-center justify-center">
-            <Icon
-              name={name}
-              className="size-4 sm:size-6"
-              aria-label={name.replaceAll('-', ' ')}
-            />
-          </li>
-        ))}
-      </ul>
+      <VariantIconGrid variant={label} />
     </IconExampleCard>
   ));
 }

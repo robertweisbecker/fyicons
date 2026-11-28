@@ -8,9 +8,9 @@ import {
   useState,
   type MouseEvent,
 } from 'react';
-import './docs-navigation.css';
+import '@/components/docs/docs-navigation.css';
 import { usePathname } from 'next/navigation';
-import { DocsMobileNavigation } from './DocsMobileNavigation';
+import { DocsMobileNavigation } from '@/components/docs/DocsMobileNavigation';
 import { isEditableTarget } from '@/lib/keyboard';
 
 export type DocHeading = { id: string; title: string; level: number };

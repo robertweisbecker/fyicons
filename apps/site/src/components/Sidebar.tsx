@@ -3,7 +3,7 @@
 import { Button } from '@base-ui/react/button';
 import Link from 'next/link';
 import type { ComponentProps, ReactNode } from 'react';
-import { Icon } from '@/components/UIIcon';
+import { UIIcon, type IconSlot } from '@/components/UIIcon';
 import { cn } from '@/lib/utils';
 
 export function Sidebar({
@@ -42,7 +42,7 @@ export function SidebarSection({
 type ItemProps = {
   active?: boolean;
   nested?: boolean;
-  icon?: string | ReactNode;
+  icon?: IconSlot;
   children: ReactNode;
   'aria-label'?: string;
 } & (
@@ -65,7 +65,10 @@ export function SidebarItem({
   const content = (
     <>
       {typeof icon === 'string' ? (
-        <Icon name={icon} className={cn('text-muted', active && 'text-ink')} />
+        <UIIcon
+          name={icon}
+          className={cn('text-muted', active && 'text-ink')}
+        />
       ) : (
         icon
       )}

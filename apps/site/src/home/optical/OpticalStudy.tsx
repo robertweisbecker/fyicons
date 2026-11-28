@@ -5,7 +5,7 @@ import { IconReplay } from 'fyicons';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { useReducedMotion } from '@/vendor/stageshow/reduced-motion';
+import { useReducedMotionPreference } from '@/lib/use-media-query';
 import {
   centerStudy,
   warningStudy,
@@ -13,8 +13,8 @@ import {
   DrawingStage,
   PlayDrawing,
   WarningDrawing,
-} from './OpticalDrawings';
-import './OpticalStudy.css';
+} from '@/home/optical/OpticalDrawings';
+import '@/home/optical/OpticalStudy.css';
 
 export function StudyTile({
   title,
@@ -74,7 +74,7 @@ export function OpticalStudy({
 }) {
   const [centerRun, setCenterRun] = useState(0);
   const [warningRun, setWarningRun] = useState(0);
-  const animate = !useReducedMotion();
+  const animate = !useReducedMotionPreference();
   const warningScript = warningRun > 0 ? soloWarningStudy : warningStudy;
   const replayCenter = () => setCenterRun((value) => value + 1);
   const replayWarning = () => setWarningRun((value) => value + 1);

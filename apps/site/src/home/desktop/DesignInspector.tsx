@@ -1,11 +1,11 @@
 import { type ComponentProps } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { FormatControls, TextAlignment } from '../FormatStudy';
-import { createGlyph } from '../Study';
+import { FormatControls, TextAlignment } from '@/home/FormatStudy';
+import { createGlyph } from '@/home/Study';
 import {
   IconAngle,
   IconApps,
@@ -13,33 +13,21 @@ import {
   IconBucket,
   IconCheckSm,
   IconChevronDownSm,
-  IconChevronRightSm,
   IconComponent,
   IconEye,
-  IconEyeFill,
   IconEyeSlash,
-  IconEyeSlashFill,
   IconFont,
   IconFrame,
   IconHeight,
-  IconItalic,
   IconLetterSpacing,
   IconLineHeight,
   IconLinkUnlink,
-  IconListBullet,
-  IconListOrdered,
   IconLockOpen,
-  IconLockOpenFill,
   IconMinus,
   IconPlus,
   IconShadow,
-  IconSlidersV,
   IconSwatches,
-  IconTextBold,
-  IconTextStrikethrough,
   IconTextTitle,
-  IconTextTitleFill,
-  IconTextUnderline,
   IconWidth,
 } from 'fyicons';
 
@@ -50,33 +38,21 @@ const Icon = createIconLookup({
   bucket: IconBucket,
   'check-sm': IconCheckSm,
   'chevron-down-sm': IconChevronDownSm,
-  'chevron-right-sm': IconChevronRightSm,
   component: IconComponent,
   eye: IconEye,
-  'eye-fill': IconEyeFill,
   'eye-slash': IconEyeSlash,
-  'eye-slash-fill': IconEyeSlashFill,
   font: IconFont,
   frame: IconFrame,
   height: IconHeight,
-  italic: IconItalic,
   'letter-spacing': IconLetterSpacing,
   'line-height': IconLineHeight,
   'link-unlink': IconLinkUnlink,
-  'list-bullet': IconListBullet,
-  'list-ordered': IconListOrdered,
   'lock-open': IconLockOpen,
-  'lock-open-fill': IconLockOpenFill,
   minus: IconMinus,
   plus: IconPlus,
   shadow: IconShadow,
-  'sliders-v': IconSlidersV,
   swatches: IconSwatches,
-  'text-bold': IconTextBold,
-  'text-strikethrough': IconTextStrikethrough,
   'text-title': IconTextTitle,
-  'text-title-fill': IconTextTitleFill,
-  'text-underline': IconTextUnderline,
   width: IconWidth,
 });
 
@@ -94,7 +70,7 @@ function PropertyValue({
   value,
 }: {
   label: string;
-  icon?: string;
+  icon?: ComponentProps<typeof Icon>['name'];
   value: string;
 }) {
   return (

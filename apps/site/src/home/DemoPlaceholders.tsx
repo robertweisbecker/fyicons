@@ -1,5 +1,5 @@
-import { IconExampleCard, VariantExampleGrid } from './IconExampleCard';
-import { guides, guideStrokeWidth } from './construction-guides';
+import { IconExampleCard, VariantExampleGrid } from '@/home/IconExampleCard';
+import { guides, guideStrokeWidth } from '@/home/construction-guides';
 
 export function VariantPlaceholder() {
   return (

@@ -5,6 +5,12 @@ import { mountApp } from './helpers/app-readiness-harness.mjs';
 const config = {
   categories: [
     { id: 'buildings', name: 'Buildings', icon: 'home', keywords: ['home'] },
+    {
+      id: 'vehicles',
+      name: 'Aircraft',
+      icon: 'airplane',
+      keywords: ['airplane'],
+    },
   ],
 };
 
@@ -43,6 +49,12 @@ test('icon browser remains useful while a linked category loads', async (t) => {
   );
   assert.equal(categoryLabel('Buildings'), `Buildings${categorized.length}`);
   assert.equal(categoryLabel('All'), `All${h.catalog.icons.length}`);
+  assert.deepEqual(
+    [
+      ...h.document.querySelectorAll('[aria-label="Icon categories"] button'),
+    ].map((button) => button.getAttribute('aria-label')),
+    ['All', 'Aircraft', 'Buildings', 'Uncategorized'],
+  );
   assert.deepEqual(
     h.tiles.map((tile) => tile.dataset.id).sort(),
     categorized.map(({ id }) => id).sort(),

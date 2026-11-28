@@ -269,10 +269,21 @@ function coversCanvas(shape) {
   );
 }
 
+const escapeId = (id) => id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+/** Every attribute, on any element, that refers to `#id`. */
+function referencesTo(nodes, id) {
+  const reference = new RegExp(`#${escapeId(id)}(?![-\\w.:])`);
+  return nodes.flatMap((node) =>
+    Object.entries(node.attributes)
+      .filter(([, value]) => reference.test(value))
+      .map(([name, value]) => ({ node, name, value })),
+  );
+}
+
 /**
  * Remove a clip that only repeats the 16 × 16 root viewport.
- * Accept one clip shape, one group reference, and no transforms or CSS on the
- * path to the root. Every other clip, and every other reference, stays.
+ * Accept one clip shape, one group reference, and no transforms, filters,
+ * reuse, or CSS on the path to the root. Every other clip stays.
  */
 export const removeFullCanvasClips = {
   name: 'removeFullCanvasClips',
@@ -286,7 +297,7 @@ export const removeFullCanvasClips = {
         ?.trim()
         .split(/[\s,]+/)
         .join(' ') !== '0 0 16 16' ||
-      ['overflow', 'preserveAspectRatio', 'style', 'transform'].some(
+      ['filter', 'overflow', 'preserveAspectRatio', 'style', 'transform'].some(
         (name) => name in svg.attributes,
       ) ||
       (svg.attributes.width ?? '16') !== (svg.attributes.height ?? '16')
@@ -331,13 +342,8 @@ export const removeFullCanvasClips = {
       )
         continue;
       // Count every attribute that refers to the ID, not only clip-path values.
-      const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const reference = new RegExp(`#${escaped}(?![-\\w.:])`);
-      const mentions = all.flatMap((node) =>
-        Object.entries(node.attributes)
-          .filter(([, value]) => reference.test(value))
-          .map(([name, value]) => ({ node, name, value })),
-      );
+      const escaped = escapeId(id);
+      const mentions = referencesTo(all, id);
       if (mentions.length !== 1) continue;
       const [{ node: group, name, value }] = mentions;
       if (
@@ -348,9 +354,18 @@ export const removeFullCanvasClips = {
         )
       )
         continue;
+      // The group must render once, in root coordinates, with nothing between
+      // it and the viewport that moves pixels: no transform, no filter, and
+      // no ID reference (such as <use>) that draws it somewhere else.
       let safe = true;
       for (let node = group; node !== svg; node = parents.get(node))
-        if (node.name !== 'g' || 'transform' in node.attributes) safe = false;
+        if (
+          node.name !== 'g' ||
+          'transform' in node.attributes ||
+          'filter' in node.attributes ||
+          (node.attributes.id && referencesTo(all, node.attributes.id).length)
+        )
+          safe = false;
       if (!safe) continue;
       delete group.attributes['clip-path'];
       const holder = parents.get(clip);

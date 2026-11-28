@@ -1,3 +1,10 @@
+/* A number that the page-layer script can read back as it changes. */
+@property --inspector-dim {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
 .study {
   max-width: 68rem;
   margin: auto;
@@ -5,264 +12,351 @@
     38dvh;
 }
 
-.intro p,
-.summary p,
-.details dt,
-.intro > span {
-  color: var(--text-secondary);
-}
-
-.intro p {
-  font-size: 0.8125rem;
-}
-.intro h1 {
-  font-size: clamp(2.75rem, 6vw, 5rem);
-  line-height: 1.1;
-  letter-spacing: -0.055em;
-  font-weight: 580;
-  margin: 0.3rem 0 0.6rem;
-}
-.intro > span {
-  font-size: 0.95rem;
-}
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.75rem 1rem;
-  margin-top: 2rem;
-}
-.card {
-  display: grid;
-  gap: 0.5rem;
-  text-align: left;
-  font-size: 0.9375rem;
-  font-weight: 550;
-  border-radius: 0.75rem;
-  touch-action: manipulation;
-}
-.study [data-color='moss'] {
+:is(.study, .sheet) [data-color='moss'] {
   --paper: #dce7c9;
   --print: #354b20;
 }
-.study [data-color='sand'] {
+:is(.study, .sheet) [data-color='sand'] {
   --paper: #f3ddb1;
   --print: #64471f;
 }
-.study [data-color='lilac'] {
+:is(.study, .sheet) [data-color='lilac'] {
   --paper: #e2dcf2;
   --print: #51406c;
 }
-.study [data-color='sky'] {
+:is(.study, .sheet) [data-color='sky'] {
   --paper: #d4e7eb;
   --print: #2c515c;
 }
-.tile,
-.stamp,
-.preview {
-  background-color: var(--paper);
-  color: var(--print);
-  display: grid;
-  place-items: center;
+:global([data-theme='dark']) :is(.study, .sheet) [data-color='moss'] {
+  --paper: #2a3620;
+  --print: #cfe0b4;
 }
-.tile {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1.65;
-  border-radius: 0.875rem;
+:global([data-theme='dark']) :is(.study, .sheet) [data-color='sand'] {
+  --paper: #3d2f1a;
+  --print: #f0d9a8;
 }
-.card[aria-pressed='true'] .tile {
-  box-shadow: inset 0 0 0 2px var(--print);
+:global([data-theme='dark']) :is(.study, .sheet) [data-color='lilac'] {
+  --paper: #322a42;
+  --print: #d9d0ee;
 }
-.check {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  padding: 2px;
-  border-radius: 50%;
-  background: var(--print);
-  color: var(--paper);
+:global([data-theme='dark']) :is(.study, .sheet) [data-color='sky'] {
+  --paper: #1f373e;
+  --print: #c6e0e6;
 }
 
-.backdrop {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  pointer-events: none;
-}
-.backdrop[data-modal='true'] {
-  pointer-events: auto;
-}
-.shade {
-  position: fixed;
-  inset: 0;
-  z-index: 70;
-  pointer-events: none;
-  background: #171820;
-  opacity: calc(var(--drawer-expand, 0) * 0.45);
-  @supports (opacity: calc(1px / 1px)) {
-    /* The driver rounds progress to four decimal places at rest. */
-    --clear-height: calc(var(--peek-height) + 0.5px);
-    opacity: clamp(
-      0,
-      calc(
-        (var(--drawer-progress, 0) * 100dvh - var(--clear-height)) /
-          (100dvh - var(--clear-height)) * 0.45
-      ),
-      0.45
-    );
-  }
-}
 .sheet {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: min(100%, 44rem);
+  --full-height: calc(100dvh - env(safe-area-inset-top) - 0.5rem);
+  /* With the peek undimmed, the SDK dims from peek to medium and reports
+     expansion from medium to full. Both follow its drag and release spring. */
+  --reveal: var(--drawer-dim, 0);
+  --expand: var(--drawer-expand, 0);
+  --extent: calc(
+    var(--peek-height) + (var(--medium-height) - var(--peek-height)) *
+      var(--reveal) + (var(--full-height) - var(--medium-height)) *
+      var(--expand)
+  );
+  /* The measurements come from a system sheet on iOS 26. Below full height it
+     floats 8 points from the sides and the bottom. Its top corners keep a
+     38-point radius, and its bottom corners square off as it reaches the edges. */
+  --gap: calc(0.5rem * (1 - var(--expand)));
+  --radius: 2.375rem;
+  /* A system sheet on iOS 26 leaves the page undimmed at a partial height, and
+     dims it lightly as the sheet reaches full height. */
+  --inspector-dim: var(--expand);
+  --lift: clamp(0, calc(var(--reveal) * 3), 1);
+  --spread: clamp(0, calc((var(--reveal) - 0.18) / 0.82), 1);
+  height: var(--full-height);
+  width: min(100%, 40rem);
   margin-inline: auto;
-  height: 100dvh;
-  max-height: 100dvh;
-  color: var(--text);
-  background: var(--surface);
-  border-radius: calc(8px + 26px * var(--drawer-progress, 0))
-    calc(8px + 26px * var(--drawer-progress, 0)) 0 0;
-  box-shadow: 0 -4px 40px #13151c1a;
-  padding-top: calc(var(--drawer-expand, 0) * env(safe-area-inset-top, 0px));
   outline: none;
+  color: var(--text);
+  /* The SDK's full-height drag surface sets pointer-events inline. Let taps
+     in the floating frame's transparent margins reach the backdrop. */
+  pointer-events: none !important;
 }
-.sheet::after {
+
+.sheet::before {
   content: '';
   position: absolute;
-  inset: 100% 0 auto;
-  height: 8rem;
-  background: inherit;
-}
-.handle {
-  display: grid;
-  place-items: center;
-  width: min(100%, 18rem);
-  height: 1.75rem;
-  flex: none;
-  margin: 0 auto;
-  cursor: grab;
-  touch-action: none;
-  border-radius: 1rem;
-}
-.handle:active {
-  cursor: grabbing;
-}
-.handle span {
-  width: 2.5rem;
-  height: 0.3125rem;
-  border-radius: 1rem;
-  background: var(--track);
-}
-.summary,
-.body {
-  width: 100%;
-  padding-left: max(0.75rem, env(safe-area-inset-left));
-  padding-right: max(0.75rem, env(safe-area-inset-right));
-}
-.summary {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding-bottom: 1rem;
-  flex: none;
-}
-.summary h2 {
-  font-size: 1.3125rem;
-  font-weight: 600;
-  letter-spacing: -0.035em;
-}
-.summary p {
-  font-size: 0.8125rem;
-}
-.stamp {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.75rem;
-}
-.summary button {
-  margin-inline-start: auto;
-}
-.scroll {
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-  min-height: 0;
-  flex: 1;
-}
-.body {
-  padding-bottom: max(2rem, env(safe-area-inset-bottom));
-}
-.preview {
-  position: relative;
-  height: clamp(12rem, 38dvh, 21rem);
-  border-radius: 1rem;
-}
-.preview[data-grid='true'] {
-  background-image:
-    linear-gradient(to right, #323c4610 1px, transparent 1px),
-    linear-gradient(to bottom, #323c4610 1px, transparent 1px);
-  background-size: 8px 8px;
-  background-position: center;
-}
-.preview button {
-  position: absolute;
-  inset: 0.75rem 0.75rem auto auto;
-  color: var(--print);
-}
-.sectionTitle {
-  margin: 1.5rem 0 0.5rem;
-  font-weight: 600;
-}
-.details > div {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 0.9rem;
-}
-.details dd {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.code {
-  padding: 1rem;
-  background: var(--canvas);
-  border-radius: 0.75rem;
-  font-size: 0.8125rem;
-  overflow-x: auto;
-}
-@media (max-width: 42rem) {
-  .gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem 0.625rem;
-  }
-  .tile {
-    aspect-ratio: 1.12;
-  }
-  .tile > svg {
-    width: 2rem;
-    height: 2rem;
-  }
+  inset: -100vmax;
+  z-index: -1;
+  background: #000;
+  opacity: calc(var(--dim-strength) * var(--inspector-dim));
+  pointer-events: none;
 }
 
-.sizes {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background: var(--bg);
-  border-radius: 0.75rem;
+.sheet[data-wheel-height] {
+  --extent: var(--wheel-height);
+  --reveal: clamp(
+    0,
+    tan(
+      atan2(
+        var(--extent) - var(--peek-height),
+        var(--medium-height) - var(--peek-height)
+      )
+    ),
+    1
+  );
+  --expand: clamp(
+    0,
+    tan(
+      atan2(
+        var(--extent) - var(--medium-height),
+        var(--full-height) - var(--medium-height)
+      )
+    ),
+    1
+  );
+  /* Override the SDK's resting translation only while the wheel owns the sheet. */
+  translate: 0 calc(var(--full-height) - var(--extent)) !important;
 }
-.sizes figure {
+
+.frame {
+  --compact-copy: 2.75rem;
+  --close-space: 3.25rem;
+  --pad: max(1rem, env(safe-area-inset-left), env(safe-area-inset-right));
+  --footer-pad: max(var(--pad), env(safe-area-inset-bottom));
+  --header: calc(1.25rem + 3.75rem * var(--lift));
+  --footer: calc((3.75rem + var(--footer-pad)) * var(--lift));
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  pointer-events: auto;
+  height: max(0px, calc(var(--extent) - var(--gap)));
+  margin-inline: var(--gap);
+  background: var(--surface);
+  border-radius: var(--radius) var(--radius)
+    calc(var(--radius) * (1 - var(--expand)))
+    calc(var(--radius) * (1 - var(--expand)));
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 5px 32px #15131c26;
+  /* Give scroll chaining a boundary even in the compact header, outside
+     the body scroller. The gallery remains scrollable beside the frame. */
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+.sheet:not([data-expanded]) :is(.frame, .scroll) {
+  touch-action: pinch-zoom;
+}
+.sheet:not([data-expanded]) .scroll {
+  overflow-y: hidden;
+}
+
+/* The bar rises under the grabber as it opens. Its buttons then sit 38px from
+   the top and the side, on the center of the corner curve. */
+.bar {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  height: calc(4.125rem * var(--lift));
+  margin: calc(-0.375rem * var(--lift)) var(--pad) 0;
+}
+.title {
+  --close-inset: calc(var(--close-space) + 0.25rem);
+  position: absolute;
+  inset-inline: calc(3.75rem + (var(--close-inset) - 3.75rem) * var(--spread))
+    calc(
+      var(--close-inset) + (var(--compact-copy) + 0.25rem) * (1 - var(--lift))
+    );
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.title > * {
+  max-width: 100%;
+  margin-inline-start: calc(50% * var(--spread));
+  translate: calc(-50% * var(--spread)) 0;
+}
+.title:dir(rtl) > * {
+  translate: calc(50% * var(--spread)) 0;
+}
+/* The details scroll under the header and the footer, and fade out as they
+   pass under each. At rest nothing is under either, so the fade does not show.
+   The stops follow a sine ease, so neither end of a fade has a visible edge. */
+.scroll {
+  --edge: calc(1.25rem + 1.75rem * var(--lift));
+  --fade: calc(2.5rem * var(--lift));
+  margin-block: calc(-1 * var(--header)) calc(-1 * var(--footer));
+  padding: var(--header) var(--pad) var(--footer);
+  scrollbar-width: thin;
+  overflow-anchor: none;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent calc(var(--header) - var(--edge)),
+    rgb(0 0 0 / 0.024) calc(var(--header) - var(--edge) * 0.9),
+    rgb(0 0 0 / 0.095) calc(var(--header) - var(--edge) * 0.8),
+    rgb(0 0 0 / 0.206) calc(var(--header) - var(--edge) * 0.7),
+    rgb(0 0 0 / 0.345) calc(var(--header) - var(--edge) * 0.6),
+    rgb(0 0 0 / 0.5) calc(var(--header) - var(--edge) * 0.5),
+    rgb(0 0 0 / 0.655) calc(var(--header) - var(--edge) * 0.4),
+    rgb(0 0 0 / 0.794) calc(var(--header) - var(--edge) * 0.3),
+    rgb(0 0 0 / 0.905) calc(var(--header) - var(--edge) * 0.2),
+    rgb(0 0 0 / 0.976) calc(var(--header) - var(--edge) * 0.1),
+    #000 var(--header),
+    #000 calc(100% - var(--footer) - var(--fade) * 0.75),
+    rgb(0 0 0 / 0.976) calc(100% - var(--footer) - var(--fade) * 0.65),
+    rgb(0 0 0 / 0.905) calc(100% - var(--footer) - var(--fade) * 0.55),
+    rgb(0 0 0 / 0.794) calc(100% - var(--footer) - var(--fade) * 0.45),
+    rgb(0 0 0 / 0.655) calc(100% - var(--footer) - var(--fade) * 0.35),
+    rgb(0 0 0 / 0.5) calc(100% - var(--footer) - var(--fade) * 0.25),
+    rgb(0 0 0 / 0.345) calc(100% - var(--footer) - var(--fade) * 0.15),
+    rgb(0 0 0 / 0.206) calc(100% - var(--footer) - var(--fade) * 0.05),
+    rgb(0 0 0 / 0.095) calc(100% - var(--footer) - var(--fade) * -0.05),
+    rgb(0 0 0 / 0.024) calc(100% - var(--footer) - var(--fade) * -0.15),
+    transparent calc(100% - var(--footer) - var(--fade) * -0.25)
+  );
+}
+/* One persistent Copy control travels from the compact header into the footer.
+   Both its position and the space for Download come from the live sheet height. */
+.actions {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 var(--footer);
+}
+.actionRow {
+  position: absolute;
+  z-index: 2;
+  inset-inline-start: calc(
+    var(--pad) +
+      (100% - 2 * var(--pad) - var(--compact-copy) - var(--close-space)) *
+      (1 - var(--spread))
+  );
+  inset-inline-end: calc(var(--pad) + var(--close-space) * (1 - var(--spread)));
+  bottom: calc(1.375rem + (var(--footer-pad) - 1.375rem) * var(--spread));
   display: grid;
-  grid-template-rows: 3rem auto;
+  grid-template-columns: minmax(0, 1fr) calc((50% - 0.25rem) * var(--spread));
+  gap: calc(0.5rem * var(--spread));
+}
+/* Both actions keep a 44px touch height and reach the site's large size in
+   the footer. */
+.actionRow :global(button) {
+  height: calc(2.75rem + 0.25rem * var(--spread));
+  font-size: calc(0.875rem + 0.0625rem * var(--spread));
+}
+/* In the compact sheet Copy is a round icon button beside the close button,
+   as bar buttons are on iOS. Its label arrives once the footer has room. */
+.copyLabel {
+  max-width: calc(6rem * var(--spread));
+  margin-inline-start: calc(-0.375rem * (1 - var(--spread)));
+  overflow: hidden;
+  opacity: clamp(0, calc(var(--spread) * 2 - 1), 1);
+}
+.download {
+  min-width: 0;
+  opacity: var(--spread);
+  clip-path: inset(-4px 0 round 2rem);
+}
+.download:focus-within {
+  clip-path: none;
+}
+.preview {
+  --glyph-scale: calc(2 / 9 + 4 / 9 * var(--spread) + var(--expand) / 3);
+  position: relative;
+  display: grid;
   place-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 0;
+  isolation: isolate;
+  overflow: clip;
+  width: calc(3rem + (100% - 3rem) * var(--spread));
+  height: calc(
+    3rem + clamp(4rem, 14dvh, 8.5rem) * var(--spread) +
+      clamp(4rem, 16dvh, 10rem) * var(--expand)
+  );
+  border-radius: calc(0.875rem + 0.375rem * var(--spread));
+  background: var(--paper);
+  color: var(--print);
 }
-.sizes figcaption {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
+.art {
+  position: absolute;
+  width: 9rem;
+  height: 9rem;
+  max-width: none;
+  transform: scale(var(--glyph-scale));
+}
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  --pixel: calc(0.5625rem * var(--glyph-scale));
+  background-size: var(--pixel) var(--pixel);
+  background-position: calc(50% + var(--pixel) / 2) calc(50% + var(--pixel) / 2);
+  opacity: calc(0.1 * var(--spread));
+}
+.preview:has([aria-pressed='false']) .grid {
+  visibility: hidden;
+}
+.gridButton {
+  position: absolute;
+  inset: 0.625rem 0.625rem auto auto;
+  opacity: var(--spread);
+  color: var(--print);
+}
+
+/* Without the top layer, the drawer needs a place above the site header. The
+   top layer ignores these where the drawer does use it. */
+/* The dim is the sheet's own layer, so this only takes presses beside it. */
+.backdrop {
+  z-index: 50;
+}
+.sheet,
+.tint {
+  --dim-strength: 0.06;
+}
+.backdrop[popover]:not([hidden]) {
+  display: block;
+}
+[data-slot='drawer-viewport']:has(> .sheet) {
+  z-index: 52;
+}
+/* Safari colors a bar from the visible pinned box at that edge, and then hides
+   the page behind the bar. A hidden wrapper and a backdrop in the document do
+   not count, so the page stays visible behind the toolbar. Safari
+   does not draw pinned boxes there. The body is the backdrop's containing box. */
+:global([data-inspector-layer]) [data-slot='drawer-viewport']:has(> .sheet) {
+  visibility: hidden;
+}
+:global([data-inspector-layer]) .sheet {
+  visibility: visible;
+}
+:global([data-inspector-layer]) .backdrop {
+  position: absolute;
+  min-height: 100dvh;
+}
+/* Each box is a color for Safari to read. Safari takes the frontmost pinned
+   box at the middle of an edge. Clipping the color to absent text paints nothing. */
+.tint,
+.floor {
+  position: fixed;
+  inset-inline: 0;
+  z-index: 53;
+  height: 12px;
+  pointer-events: none;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+/* The site header is pinned, so Safari gives the status bar its color. This
+   box carries the dim there. */
+.tint {
+  top: 0;
+  background-color: color-mix(
+    in srgb,
+    black calc(var(--dim, 0) * var(--dim-strength) * 100%),
+    var(--canvas)
+  );
+}
+/* At full height the sheet meets the bottom edge, so the toolbar takes the
+   sheet color. At the other stops this box is hidden and the page shows. */
+.floor {
+  bottom: 0;
+  visibility: hidden;
+  background-color: var(--surface);
+}
+.floor:has(~ [data-slot='drawer-viewport'] > .sheet[data-expanded]) {
+  visibility: visible;
 }

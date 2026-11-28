@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Bento from '@/demos/bento/Bento';
+import Bento from '@/examples/Bento';
 
 export const metadata: Metadata = {
   title: 'Examples',

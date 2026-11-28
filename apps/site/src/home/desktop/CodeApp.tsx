@@ -1,110 +1,56 @@
 import { useId, useRef, useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { FileTree, fileFolders } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { Window } from './Window';
-import { CodeChanges } from './CodeChanges';
-import { reviewFiles } from './codeReviewData';
+import { Window } from '@/home/desktop/Window';
+import { CodeChanges } from '@/home/desktop/CodeChanges';
+import { reviewFiles } from '@/home/desktop/code-review-data';
 import {
   IconAgent,
-  IconArrowClockwise,
-  IconArrowLeft,
-  IconArrowRight,
   IconArrowsRotate,
-  IconAtomReact,
   IconBookBookmark,
   IconBug,
-  IconCaretsMaximize,
   IconChevronDownSm,
-  IconChevronRightSm,
-  IconCircleUserFill,
-  IconCircleXFill,
   IconEllipsis,
-  IconEllipsisV,
-  IconEye,
-  IconEyeCheck,
-  IconEyeFill,
   IconFileSearch,
-  IconFileText,
   IconFolderTree,
   IconFolderTreeFill,
   IconFolders,
   IconFoldersFill,
-  IconGas,
-  IconGasFill,
-  IconGhost,
   IconGitBranch,
-  IconGitCommit,
   IconGitPullRequest,
-  IconInfo,
-  IconInfoFill,
   IconLayoutRows,
   IconLineOverflow,
   IconLineWrap,
   IconListCollapse,
   IconListExpand,
-  IconMarkdownFill,
-  IconMinus,
-  IconPlus,
-  IconPuzzlePiece,
   IconSearchSimple,
   IconSlash,
-  IconStarFill,
-  IconVideoFill,
-  IconX,
-  IconZoomIn,
 } from 'fyicons';
 
 const Icon = createIconLookup({
   agent: IconAgent,
-  'arrow-clockwise': IconArrowClockwise,
-  'arrow-left': IconArrowLeft,
-  'arrow-right': IconArrowRight,
   'arrows-rotate': IconArrowsRotate,
-  'atom-react': IconAtomReact,
   'book-bookmark': IconBookBookmark,
   bug: IconBug,
-  'carets-maximize': IconCaretsMaximize,
   'chevron-down-sm': IconChevronDownSm,
-  'chevron-right-sm': IconChevronRightSm,
-  'circle-user-fill': IconCircleUserFill,
-  'circle-x-fill': IconCircleXFill,
   ellipsis: IconEllipsis,
-  'ellipsis-v': IconEllipsisV,
-  eye: IconEye,
-  'eye-check': IconEyeCheck,
-  'eye-fill': IconEyeFill,
   'file-search': IconFileSearch,
-  'file-text': IconFileText,
   'folder-tree': IconFolderTree,
   'folder-tree-fill': IconFolderTreeFill,
   folders: IconFolders,
   'folders-fill': IconFoldersFill,
-  gas: IconGas,
-  'gas-fill': IconGasFill,
-  ghost: IconGhost,
   'git-branch': IconGitBranch,
-  'git-commit': IconGitCommit,
   'git-pull-request': IconGitPullRequest,
-  info: IconInfo,
-  'info-fill': IconInfoFill,
   'layout-rows': IconLayoutRows,
   'line-overflow': IconLineOverflow,
   'line-wrap': IconLineWrap,
   'list-collapse': IconListCollapse,
   'list-expand': IconListExpand,
-  'markdown-fill': IconMarkdownFill,
-  minus: IconMinus,
-  plus: IconPlus,
-  'puzzle-piece': IconPuzzlePiece,
   'search-simple': IconSearchSimple,
   slash: IconSlash,
-  'star-fill': IconStarFill,
-  'video-fill': IconVideoFill,
-  x: IconX,
-  'zoom-in': IconZoomIn,
 });
 
 export function CodeApp() {
@@ -254,11 +200,13 @@ export function CodeApp() {
             />
           </nav>
           <div className="flex shrink-0 flex-wrap gap-1 border-t border-line p-2 text-xs">
-            {[
-              ['agent', 'Ask'],
-              ['bug', 'Review'],
-              ['git-pull-request', 'Create PR'],
-            ].map(([icon, label]) => (
+            {(
+              [
+                ['agent', 'Ask'],
+                ['bug', 'Review'],
+                ['git-pull-request', 'Create PR'],
+              ] as const
+            ).map(([icon, label]) => (
               <span
                 key={label}
                 className="inline-flex h-7 items-center gap-1 rounded-md bg-inset px-1.5"

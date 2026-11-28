@@ -1,10 +1,8 @@
 'use client';
 
 import {
-  useEffect,
   useId,
   useRef,
-  useState,
   type ComponentPropsWithoutRef,
   type ReactNode,
 } from 'react';
@@ -12,8 +10,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { IconCopySm, IconCheck } from 'fyicons';
 
 import { IconButton } from '@/components/IconButton';
+import { useCopied } from '@/components/copy-feedback';
 import { notify } from '@/components/ui/toast';
-import { copy } from '@/lib/downloads';
+import { copy } from '@/lib/clipboard';
 import { cn } from '@/lib/utils';
 
 export function CodeBlock({
@@ -26,17 +25,13 @@ export function CodeBlock({
 }) {
   const toastId = useId();
   const pre = useRef<HTMLPreElement>(null);
-  const reset = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => () => clearTimeout(reset.current), []);
+  const [copied, markCopied] = useCopied();
 
   async function copyCode() {
     if (!pre.current) return;
     const success = await copy(pre.current.textContent ?? '');
     if (!pre.current) return;
-    clearTimeout(reset.current);
-    setCopied(success);
+    markCopied(success || null);
     notify(
       success
         ? (copyToast?.title ?? 'Copied code')
@@ -46,7 +41,6 @@ export function CodeBlock({
         icon: success ? copyToast?.icon : undefined,
       },
     );
-    if (success) reset.current = setTimeout(() => setCopied(false), 2200);
   }
 
   return (

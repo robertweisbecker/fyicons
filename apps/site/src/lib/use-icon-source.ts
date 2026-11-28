@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { loadIconSvg } from './icon-source';
-import type { CatalogIcon } from './catalog-codec';
+import { loadIconSvg } from '@/lib/icon-source';
+import type { CatalogIcon } from '@/lib/catalog-codec';
 
 type Icon = Pick<CatalogIcon, 'sha256' | 'filename'>;
 export function useIconSource(icon: Icon, enabled = true) {

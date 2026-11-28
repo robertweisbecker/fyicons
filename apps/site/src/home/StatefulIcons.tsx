@@ -1,13 +1,12 @@
-import { createIconLookup } from '@/components/createIconLookup';
-import { IconRendererContext } from '@/components/UIIcon';
+import { createIconLookup } from '@/components/icon-lookup';
 import { useRef, useState } from 'react';
 import { Field } from '@base-ui/react/field';
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
 import { play } from '@/lib/sounds';
-import { statefulIconPairs } from './statefulIconPairs';
+import { statefulIconPairs } from '@/home/stateful-icon-pairs';
 import {
   IconTextTitle,
   IconArrowCounterClockwise,
@@ -109,7 +108,7 @@ const pairs = statefulIconPairs.map(([icon, activeIcon]) => ({
 }));
 const pairIds = pairs.map(({ id }) => id);
 
-function StatefulIconsContent() {
+export function StatefulIcons() {
   const toggleAllRef = useRef<HTMLSpanElement>(null);
   const [flipped, setFlipped] = useState(false);
   const [activePairs, setActivePairs] = useState<string[]>([]);
@@ -181,14 +180,6 @@ function StatefulIconsContent() {
         />
       </div>
     </div>
-  );
-}
-
-export function StatefulIcons() {
-  return (
-    <IconRendererContext value={Icon}>
-      <StatefulIconsContent />
-    </IconRendererContext>
   );
 }
 
