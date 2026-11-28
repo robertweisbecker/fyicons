@@ -36,8 +36,8 @@ import {
   IconPalette,
   IconPhone,
   IconPhoneFill,
-  IconSettingsSmall,
-  IconSettingsSmallFill,
+  IconSettingsSm,
+  IconSettingsSmFill,
   IconUsers,
   IconUsersFill,
 } from 'fyicons';
@@ -70,8 +70,8 @@ const Icon = createIconLookup({
   palette: IconPalette,
   phone: IconPhone,
   'phone-fill': IconPhoneFill,
-  'settings-small': IconSettingsSmall,
-  'settings-small-fill': IconSettingsSmallFill,
+  'settings-sm': IconSettingsSm,
+  'settings-sm-fill': IconSettingsSmFill,
   users: IconUsers,
   'users-fill': IconUsersFill,
 });
@@ -178,7 +178,7 @@ export function SidebarDemo() {
         <span className="text-xs">Jamie Davis</span>
         <DemoIconButton
           label="Workspace settings"
-          icon="settings-small"
+          icon="settings-sm"
           className="ml-auto"
           onClick={() => setValue(['Settings'])}
         />

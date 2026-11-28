@@ -1,0 +1,8 @@
+import * as React from 'react';
+import type { IconProps } from './types';
+import SvgRoot, { useIdPrefix } from './base';
+const IconSquareNumber2Fill = /* @__PURE__ */React.forwardRef<SVGSVGElement, IconProps>(function IconSquareNumber2Fill(props, ref) {
+  const idPrefix = useIdPrefix();
+  return <SvgRoot fill="none" viewBox="0 0 16 16" {...props} ref={ref} idPrefix={idPrefix} iconName="square-number-2-fill"><path fill="currentColor" d="M11.5 2A2.5 2.5 0 0 1 14 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 11.5v-7A2.5 2.5 0 0 1 4.5 2zM8.17 5.004a1.995 1.995 0 0 0-2.147 1.335.5.5 0 0 0 .948.322 1 1 0 0 1 1.082-.666l.02.003c.627.063.977.51.927.945-.026.225-.142.413-.374.614-.248.214-.566.394-.953.627-.708.425-1.676 1.04-1.676 2.316a.5.5 0 0 0 .5.5l3-.001a.5.5 0 0 0 0-1H7.104c.174-.367.552-.639 1.084-.959.34-.205.761-.44 1.092-.727.347-.3.65-.699.714-1.256.128-1.12-.776-1.94-1.804-2.051l.001-.001-.017-.001-.002-.001z" />{props.children}</SvgRoot>;
+});
+export default IconSquareNumber2Fill;

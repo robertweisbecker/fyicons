@@ -17,7 +17,7 @@ export const statefulIconPairs = [
   ['footer-collapsed', 'footer-expanded'],
   ['lightbulb-simple', 'lightbulb-simple-on'],
   ['brightness-low', 'brightness-high'],
-  ['flashlight-off-fill', 'flashlight-on-fill'],
+  ['flashlight-sm', 'flashlight-on-fill'],
   ['lock-open', 'lock-fill'],
   ['switch-off', 'switch-on'],
 ] as const;

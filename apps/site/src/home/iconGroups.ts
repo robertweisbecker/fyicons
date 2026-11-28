@@ -209,7 +209,7 @@ export const iconGroups = [
     colorClassName:
       'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-950 dark:text-fuchsia-300',
     rows: [
-      ['pound-sign', 'at-sign', 'asterisk', 'asterisk-simple', 'star'],
+      ['number-sign', 'at-sign', 'asterisk', 'asterisk-simple', 'star'],
       ['sparkle', 'kbd-command', 'kbd-ctrl', 'kbd-del', 'kbd-opt'],
       ['kbd-return', 'eject', 'kbd-shift', 'kbd-caps-lock', 'power'],
       ['parentheses', 'brackets', 'braces', 'heart', 'ampersand'],
