@@ -7,6 +7,7 @@ import type { ReactNode } from 'react';
 import { UIIcon } from '@/components/UIIcon';
 import { Button } from '@/components/ui/button';
 import { docsPages, mobileDocSections } from '@/lib/docs-navigation';
+import { isSameRoute } from '@/lib/navigation';
 import { useMediaQuery } from '@/lib/preferences';
 import { cn } from '@/lib/utils';
 import type { DocHeading } from './TableOfContents';
@@ -73,12 +74,10 @@ export function DocsMobileNavigation({
   active: string | undefined;
   onHeadingSelect: (id: string) => void;
 }) {
-  const pathname = usePathname().replace(/\/$/, '');
+  const pathname = usePathname();
   const desktop = useMediaQuery('(width >= 64rem)');
   if (desktop) return null;
-  const page = docsPages.find(
-    ({ href }) => href.replace(/\/$/, '') === pathname,
-  );
+  const page = docsPages.find(({ href }) => isSameRoute(pathname, href));
   const { sections, current } = mobileDocSections(headings, active);
   const title = page?.title ?? 'Documentation';
   return (

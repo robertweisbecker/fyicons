@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import { cn } from '../lib/utils';
+import type { Theme } from '../lib/theme';
 import {
   githubHref,
   npmHref,
@@ -35,7 +36,7 @@ export function SiteHeader({
   theme,
   toggleTheme,
 }: {
-  theme: string;
+  theme: Theme;
   toggleTheme: () => void;
 }) {
   const pathname = usePathname();

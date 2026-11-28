@@ -6,8 +6,8 @@ import { UIIcon } from '@/components/UIIcon';
 import { IconButton } from '@/components/IconButton';
 import { Button } from '@/components/ui/button';
 import type { IconRecord } from '@/lib/catalog';
+import { getIconDisplayName } from '@/lib/icon-names';
 import catalogSummary from '@/data/catalog-summary.json';
-const getIconDisplayName = (icon: IconRecord) => icon.componentName.slice(4);
 type SearchCatalog = Awaited<
   ReturnType<typeof import('./search-catalog').loadSearchCatalog>
 >;

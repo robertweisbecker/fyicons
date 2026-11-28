@@ -12,6 +12,7 @@ import { IconButton } from '@/components/IconButton';
 import { buttonVariants } from '@/components/ui/button';
 import { TooltipGroup } from '@/components/ui/tooltip';
 import Link from 'next/link';
+import { prefersReducedMotion } from '@/lib/preferences';
 import { cn } from '@/lib/utils';
 import { iconGroups } from './iconGroups';
 import {
@@ -565,9 +566,7 @@ export function IconGroupCarousel() {
           : current + (direction === 'next' ? 1 : -1);
     element.scrollTo({
       left: Math.max(0, Math.min(cards.length - 1, index)) * step,
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        ? 'instant'
-        : behavior,
+      behavior: prefersReducedMotion() ? 'instant' : behavior,
     });
   }
 

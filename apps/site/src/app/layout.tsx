@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { SiteShell } from '@/components/SiteShell';
 import { assetPath, siteUrl } from '@/lib/navigation';
+import { themeStorageKey } from '@/lib/theme';
 import { allo, alloObliques, paperMono } from './fonts';
 import '../styles.css';
 
@@ -46,7 +47,7 @@ export const viewport: Viewport = {
   themeColor: '#f5f5f5',
 };
 
-const themeScript = `try{var t=JSON.parse(localStorage.getItem('fyicons-theme-v1')||'"light"');if(t==='dark'){document.documentElement.dataset.theme=t;document.querySelector('meta[name="theme-color"]').content='#0a0a0a'}}catch{}`;
+const themeScript = `try{var t=JSON.parse(localStorage.getItem('${themeStorageKey}')||'"light"');if(t==='dark'){document.documentElement.dataset.theme=t;document.querySelector('meta[name="theme-color"]').content='#0a0a0a'}}catch{}`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

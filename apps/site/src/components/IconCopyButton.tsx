@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { CatalogIcon } from './CatalogIcon';
 import { IconButton } from './IconButton';
 import { Button, type ButtonProps } from './ui/button';
+import { CopiedTitle, clipboardUnavailable, useCopied } from './copy-feedback';
 import { notify } from './ui/toast';
 import { getIconDisplayName, type IconRecord } from '@/lib/catalog';
 import { copy } from '@/lib/downloads';
@@ -25,17 +26,8 @@ export function IconCopyButton({
   className?: string;
   children?: ReactNode;
 }) {
-  const [copiedText, setCopiedText] = useState<string | null>(null);
+  const [copiedText, markCopied] = useCopied<string>();
   const [pending, setPending] = useState(false);
-  const reset = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const mounted = useRef(false);
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-      clearTimeout(reset.current);
-    };
-  }, []);
   const source = useIconSource(item, text === undefined);
   const value = text ?? source.text;
   const sourceError = text === undefined ? source.error : undefined;
@@ -56,22 +48,15 @@ export function IconCopyButton({
     setPending(true);
     const success = await copy(value);
     if (success) {
-      notify(
-        <>
-          &quot;
-          <span className="font-semibold">{getIconDisplayName(item)}</span>
-          &quot; copied
-        </>,
-        { id: `copy:${item.id}`, icon: <CatalogIcon name={item.id} /> },
-      );
+      notify(<CopiedTitle name={getIconDisplayName(item)} />, {
+        id: `copy:${item.id}`,
+        icon: <CatalogIcon name={item.id} />,
+      });
     } else {
-      notify('Clipboard unavailable. Please try again.');
+      notify(clipboardUnavailable);
     }
-    if (!mounted.current) return;
-    clearTimeout(reset.current);
     setPending(false);
-    setCopiedText(success ? value : null);
-    if (success) reset.current = setTimeout(() => setCopiedText(null), 2200);
+    markCopied(success ? value : null);
   }
 
   const icon = (

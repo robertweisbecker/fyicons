@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/menu';
 import { notify } from '@/components/ui/toast';
 import { copy, downloadIcon } from '@/lib/downloads';
+import { CopiedTitle, clipboardUnavailable } from './copy-feedback';
 import { copyMenuSvg } from './copy-menu-svg';
 
 function tileFor(target: EventTarget | null) {
@@ -69,14 +70,12 @@ function TileMenu({ icon }: { icon: IconRecord }) {
   const name = getIconDisplayName(icon);
   async function copyName() {
     if (await copy(name)) {
-      notify(
-        <>
-          &quot;<span className="font-semibold">{name}</span>&quot; copied
-        </>,
-        { id: `copy:${icon.id}:Name`, icon: <CatalogIcon name={icon.id} /> },
-      );
+      notify(<CopiedTitle name={name} />, {
+        id: `copy:${icon.id}:Name`,
+        icon: <CatalogIcon name={icon.id} />,
+      });
     } else {
-      notify('Clipboard unavailable. Please try again.');
+      notify(clipboardUnavailable);
     }
   }
 

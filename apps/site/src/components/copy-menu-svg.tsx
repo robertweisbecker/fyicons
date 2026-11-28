@@ -4,6 +4,7 @@ import { getIconDisplayName, type IconRecord } from '@/lib/catalog';
 import { copy } from '@/lib/downloads';
 import { loadIconSvg } from '@/lib/icon-source';
 import { CatalogIcon } from './CatalogIcon';
+import { CopiedTitle } from './copy-feedback';
 import { toastManager } from './ui/toast';
 
 // The menu closes on selection. Each operation owns its toast and any retries.
@@ -67,12 +68,7 @@ export function copyMenuSvg(icon: IconRecord, readyText?: string) {
         }
       }
       if (await copy(value)) {
-        show(
-          'success',
-          <>
-            &quot;<span className="font-semibold">{name}</span>&quot; copied
-          </>,
-        );
+        show('success', <CopiedTitle name={name} />);
         return;
       }
     } catch {

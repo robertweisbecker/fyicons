@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Tooltip as DemoHint } from '@/components/ui/tooltip';
 import { UIIcon, IconRendererContext } from '@/components/UIIcon';
 import type { ComponentType, ComponentProps } from 'react';
@@ -9,6 +9,7 @@ import {
   IconAlert as AlertGlyph,
 } from 'fyicons';
 
+import { useCopied } from '@/components/copy-feedback';
 import { ToggleIcon } from '@/components/ToggleIcon';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { Toggle, type ToggleProps } from '@/components/ui/toggle';
@@ -77,25 +78,15 @@ export function CopyButton({
   showLabel?: boolean;
   className?: string;
 }) {
-  const [state, setState] = useState<'idle' | 'pending' | 'copied' | 'error'>(
-    'idle',
-  );
-  const reset = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const mounted = useRef(false);
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-      clearTimeout(reset.current);
-    };
-  }, []);
+  const [pending, setPending] = useState(false);
+  const [result, markResult] = useCopied<'copied' | 'error'>();
+  const state = pending ? 'pending' : (result ?? 'idle');
   async function handleCopy() {
-    clearTimeout(reset.current);
-    setState('pending');
+    markResult(null);
+    setPending(true);
     const success = await copy(getText());
-    if (!mounted.current) return;
-    setState(success ? 'copied' : 'error');
-    reset.current = setTimeout(() => setState('idle'), 2200);
+    setPending(false);
+    markResult(success ? 'copied' : 'error');
   }
   const StatusIcon =
     state === 'copied'

@@ -20,6 +20,7 @@ import {
   IconKbdShift,
   IconSlash,
 } from 'fyicons';
+import { prefersReducedMotion } from '@/lib/preferences';
 import { palettes, type PaletteName } from './palettes';
 import { PalettePicker } from './PalettePicker';
 import {
@@ -253,8 +254,7 @@ export function Keypad({ heading }: { heading?: ReactNode }) {
 
   function strike(button: HTMLButtonElement, index: number) {
     const root = field.current;
-    if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-      return;
+    if (!root || prefersReducedMotion()) return;
     shakeNeighbors(
       Array.from(root.querySelectorAll<HTMLButtonElement>('.keycap-switch')),
       button,
@@ -280,7 +280,7 @@ export function Keypad({ heading }: { heading?: ReactNode }) {
     const streamStart = performance.now();
     const radialHeading = Math.random() * 2 * Math.PI;
     function pulse() {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (prefersReducedMotion()) return;
       const elapsed = Math.max(0, performance.now() - streamStart);
       const ramp = Math.min(1, elapsed / rampTime);
       const count = Math.ceil(peakCount * (0.2 + 0.8 * ramp));

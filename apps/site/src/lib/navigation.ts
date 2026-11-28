@@ -12,6 +12,12 @@ export const siteNavigation = [
 export const assetPath = (path: string) =>
   `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${path}`;
 
+const withoutTrailingSlash = (path: string) => path.replace(/\/$/, '');
+
+/** The same page, with or without a trailing slash. */
+export const isSameRoute = (pathname: string, href: string) =>
+  withoutTrailingSlash(pathname) === withoutTrailingSlash(href);
+
+/** The same page, or a page beneath `href`. */
 export const isActiveRoute = (pathname: string, href: string) =>
-  pathname.replace(/\/$/, '') === href.replace(/\/$/, '') ||
-  (href !== '/' && pathname.startsWith(href));
+  isSameRoute(pathname, href) || (href !== '/' && pathname.startsWith(href));

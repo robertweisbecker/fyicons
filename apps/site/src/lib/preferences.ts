@@ -6,6 +6,9 @@ import {
   useSyncExternalStore,
 } from 'react';
 
+export const isBoolean = (value: unknown): value is boolean =>
+  typeof value === 'boolean';
+
 export function isStringArray(value: unknown): value is string[] {
   return (
     Array.isArray(value) && value.every((item) => typeof item === 'string')
@@ -67,5 +70,9 @@ export function useMediaQuery(query: string) {
   );
 }
 export const useMobile = () => useMediaQuery('(width < 768px)');
+const reducedMotionQuery = '(prefers-reduced-motion: reduce)';
 export const useReducedMotionPreference = () =>
-  useMediaQuery('(prefers-reduced-motion: reduce)');
+  useMediaQuery(reducedMotionQuery);
+/** A single read for event handlers and effects. Use the hook to render. */
+export const prefersReducedMotion = () =>
+  matchMedia(reducedMotionQuery).matches;

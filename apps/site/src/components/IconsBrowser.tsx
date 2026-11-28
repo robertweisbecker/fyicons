@@ -30,8 +30,13 @@ import { notify } from './ui/toast';
 import { Inspector } from './Inspector';
 import { byId, icons, type IconRecord } from '@/lib/catalog';
 import { downloadIcons } from '@/lib/downloads';
-import { isStringArray, useMobile, usePreference } from '@/lib/preferences';
-import { isEditableTarget } from '@/lib/keyboard';
+import {
+  isBoolean,
+  isStringArray,
+  useMobile,
+  usePreference,
+} from '@/lib/preferences';
+import { arrowKeyStep, isEditableTarget } from '@/lib/keyboard';
 import { getIconReleaseOrder } from '@/lib/icon-releases';
 
 const sortOptions = {
@@ -67,7 +72,7 @@ function IconsBrowserContent() {
   const [inspectorDocked, setInspectorDocked] = usePreference<boolean>(
     'fyicons-inspector-docked-v1',
     false,
-    (value): value is boolean => typeof value === 'boolean',
+    isBoolean,
   );
   const gridAnchor = useRef<{ element: HTMLElement; top: number } | null>(null);
   // Retain the legacy storage key so existing saved choices remain selected.
@@ -108,7 +113,7 @@ function IconsBrowserContent() {
   const current = byId.get(inspectedId ?? '') ?? null;
   // Keep the inspected tile visible when only the icon grid changes columns.
   function preserveGridPosition(preferredId = inspectedId) {
-    if (!matchMedia('(min-width: 768px)').matches) return;
+    if (mobile) return;
     const headerBottom =
       document.querySelector('.icon-browser-tools')?.getBoundingClientRect()
         .bottom ?? 0;
@@ -160,7 +165,7 @@ function IconsBrowserContent() {
     const next = visible[index + step];
     if (next) {
       select(next);
-      if (matchMedia('(min-width: 768px)').matches)
+      if (!mobile)
         document
           .querySelector<HTMLElement>('[data-id="' + next.id + '"]')
           ?.scrollIntoView({ block: 'nearest' });
@@ -205,12 +210,10 @@ function IconsBrowserContent() {
         isEditableTarget(event.target)
       )
         return;
-      if (
-        inspectedId &&
-        ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)
-      ) {
+      const step = arrowKeyStep(event.key);
+      if (inspectedId && step) {
         event.preventDefault();
-        navigate(event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1 : 1);
+        navigate(step);
       }
     };
     document.addEventListener('keydown', key);

@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { CatalogIcon } from './CatalogIcon';
 import { Button } from './ui/button';
+import { clipboardUnavailable, useCopied } from './copy-feedback';
 import { notify } from './ui/toast';
 import { copy } from '@/lib/downloads';
 import { cn } from '@/lib/utils';
@@ -13,32 +14,19 @@ export function InspectorLink({
   name: string;
   share: () => IconShareLink;
 }) {
-  const [copied, setCopied] = useState(false);
+  const [copied, markCopied] = useCopied(1600);
   const [pending, setPending] = useState(false);
-  const reset = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const mounted = useRef(false);
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-      clearTimeout(reset.current);
-    };
-  }, []);
 
   async function copyLink() {
     setPending(true);
     const link = share();
     const success = await copy(link.url);
     if (success) link.publish();
-    notify(
-      success ? 'Copied link' : 'Clipboard unavailable. Please try again.',
-      { icon: success ? <CatalogIcon name="link" /> : undefined },
-    );
-    if (!mounted.current) return;
-    clearTimeout(reset.current);
+    notify(success ? 'Copied link' : clipboardUnavailable, {
+      icon: success ? <CatalogIcon name="link" /> : undefined,
+    });
     setPending(false);
-    setCopied(success);
-    if (success) reset.current = setTimeout(() => setCopied(false), 1600);
+    markCopied(success || null);
   }
 
   return (

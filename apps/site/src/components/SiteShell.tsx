@@ -11,13 +11,12 @@ import { ToastProvider } from './ui/toast';
 import { TooltipProvider } from './ui/tooltip';
 import { usePreference } from '@/lib/preferences';
 import { isEditableTarget } from '@/lib/keyboard';
+import { isSameRoute } from '@/lib/navigation';
+import { isTheme, themeStorageKey, type Theme } from '@/lib/theme';
 import {
   IconInspectionProvider,
   useIconInspection,
 } from '@/lib/icon-inspection';
-
-const isTheme = (value: unknown): value is 'light' | 'dark' =>
-  value === 'light' || value === 'dark';
 
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
@@ -31,8 +30,8 @@ function SiteContent({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const inspection = useIconInspection();
-  const [theme, setTheme] = usePreference<'light' | 'dark'>(
-    'fyicons-theme-v1',
+  const [theme, setTheme] = usePreference<Theme>(
+    themeStorageKey,
     'light',
     isTheme,
   );
@@ -99,8 +98,7 @@ function SiteContent({ children }: { children: ReactNode }) {
             returnFocusRef={returnFocus}
             select={(icon) => {
               inspection.inspect(icon.id);
-              if (pathname.replace(/\/$/, '') !== '/icons')
-                router.push('/icons/');
+              if (!isSameRoute(pathname, '/icons/')) router.push('/icons/');
             }}
           />
           <main id="main-content" tabIndex={-1}>

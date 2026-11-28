@@ -2,6 +2,7 @@ import { useId, type ReactNode } from 'react';
 import { CodeBlock } from '@/components/CodeBlock';
 import { CatalogIcon } from '@/components/CatalogIcon';
 import type { IconRecord } from '@/lib/catalog';
+import { arrowKeyStep } from '@/lib/keyboard';
 import { Badge } from './ui/badge';
 
 function UsageSection({
@@ -19,12 +20,7 @@ function UsageSection({
     <div
       className="flex min-w-0 flex-col gap-1 p-1"
       onKeyDown={(event) => {
-        if (
-          ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(
-            event.key,
-          )
-        )
-          event.stopPropagation();
+        if (arrowKeyStep(event.key)) event.stopPropagation();
       }}
     >
       <Badge

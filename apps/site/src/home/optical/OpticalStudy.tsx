@@ -5,7 +5,7 @@ import { IconReplay } from 'fyicons';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { useReducedMotion } from '@/vendor/stageshow/reduced-motion';
+import { useReducedMotionPreference } from '@/lib/preferences';
 import {
   centerStudy,
   warningStudy,
@@ -74,7 +74,7 @@ export function OpticalStudy({
 }) {
   const [centerRun, setCenterRun] = useState(0);
   const [warningRun, setWarningRun] = useState(0);
-  const animate = !useReducedMotion();
+  const animate = !useReducedMotionPreference();
   const warningScript = warningRun > 0 ? soloWarningStudy : warningStudy;
   const replayCenter = () => setCenterRun((value) => value + 1);
   const replayWarning = () => setWarningRun((value) => value + 1);

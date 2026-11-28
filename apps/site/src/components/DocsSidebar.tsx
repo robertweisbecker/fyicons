@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import { usePathname } from 'next/navigation';
 import { Sidebar, SidebarItem, SidebarSection } from './Sidebar';
 import { docsNavigation } from '@/lib/docs-navigation';
+import { isSameRoute } from '@/lib/navigation';
 
 export function DocsSidebar() {
   const pathname = usePathname();
@@ -17,9 +18,7 @@ export function DocsSidebar() {
           <SidebarItem
             href={item.href}
             icon={item.icon}
-            active={
-              pathname.replace(/\/$/, '') === item.href.replace(/\/$/, '')
-            }
+            active={isSameRoute(pathname, item.href)}
             nested={'nested' in item && item.nested === true}
           >
             {item.title}

@@ -10,13 +10,11 @@ import { assetPath } from './navigation';
 
 const { icons: catalogIcons, ...catalogMetadata } = decodeCatalog(compact);
 export { catalogMetadata };
+export { getIconDisplayName } from './icon-names';
 
 export type IconRecord = (typeof catalogIcons)[number] & {
   categories: string[];
 };
-export function getIconDisplayName(icon: IconRecord) {
-  return icon.componentName.slice('Icon'.length);
-}
 export const icons: IconRecord[] = catalogIcons.map((icon) => ({
   ...icon,
   categories: [uncategorized.id],

@@ -1,14 +1,9 @@
 'use client';
 
-import {
-  useEffect,
-  useImperativeHandle,
-  useState,
-  useSyncExternalStore,
-  type Ref,
-} from 'react';
+import { useEffect, useImperativeHandle, useState, type Ref } from 'react';
 import { DialRoot, useDialKitController, type DialConfig } from 'dialkit';
 import { icons } from '@/lib/catalog';
+import { useTheme } from '@/lib/use-theme';
 import type { IconMapping } from './model';
 import 'dialkit/styles.css';
 
@@ -19,17 +14,6 @@ const iconOptions = [
     .map((icon) => ({ value: icon.name, label: icon.name }))
     .sort((a, b) => a.label.localeCompare(b.label)),
 ];
-function subscribeToTheme(onChange: () => void) {
-  const observer = new MutationObserver(onChange);
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme'],
-  });
-  return () => observer.disconnect();
-}
-function readTheme() {
-  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-}
 
 export function IconInspector({
   id,
@@ -63,11 +47,7 @@ export function IconInspector({
       }) satisfies DialConfig,
   );
   const dial = useDialKitController(name, config, { id });
-  const theme = useSyncExternalStore<'light' | 'dark'>(
-    subscribeToTheme,
-    readTheme,
-    () => 'light',
-  );
+  const theme = useTheme();
   useImperativeHandle(
     ref,
     () => ({ assign: (name: string) => dial.setValue('icon', name) }),

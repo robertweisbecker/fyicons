@@ -5,11 +5,8 @@ import { IconVolumeHighFill, IconVolumeNone } from 'fyicons';
 import { Button } from '@/components/ui/button';
 import { Tooltip } from '@/components/ui/tooltip';
 import { notify } from '@/components/ui/toast';
-import { usePreference } from '@/lib/preferences';
+import { isBoolean, usePreference } from '@/lib/preferences';
 import { play, setEnabled, unlock } from '@/lib/sounds';
-
-const isBoolean = (value: unknown): value is boolean =>
-  typeof value === 'boolean';
 
 export function SoundToggle() {
   const [enabled, setPreference] = usePreference(

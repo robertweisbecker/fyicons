@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   useCallback,
   useEffect,
@@ -39,7 +39,12 @@ import {
   icons,
   type IconRecord,
 } from '@/lib/catalog';
-import { useMobile, usePreference } from '@/lib/preferences';
+import { arrowKeyStep, isEditableTarget } from '@/lib/keyboard';
+import {
+  useMobile,
+  usePreference,
+  useReducedMotionPreference,
+} from '@/lib/preferences';
 import { useDrawerPresentation } from '@/lib/use-drawer-presentation';
 import type { IconShareLink } from '@/lib/icon-inspection';
 import { IconCopyButton } from './IconCopyButton';
@@ -345,7 +350,7 @@ function InspectorView(
   const [snapPoint, setSnapPoint] = useState<string | number | null>(
     snapPoints[0],
   );
-  const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotionPreference();
   const inLayout = docked && !mobile && !!item;
   const expanded = snapPoint !== null && snapPoint !== snapPoints[0];
   useDrawerPresentation(
@@ -388,17 +393,13 @@ function InspectorView(
       event.metaKey ||
       event.ctrlKey ||
       event.altKey ||
-      (event.target instanceof HTMLElement &&
-        event.target.closest(
-          'input,textarea,[role=slider],[role=separator],[data-slot="toggle-group"]',
-        ))
+      isEditableTarget(event.target)
     )
       return;
-    if (
-      ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)
-    ) {
+    const step = arrowKeyStep(event.key);
+    if (step) {
       event.preventDefault();
-      navigate(event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1 : 1);
+      navigate(step);
     }
   }
   if (mobile)
