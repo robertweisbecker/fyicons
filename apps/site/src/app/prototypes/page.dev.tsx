@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const metadata = { title: 'Prototypes' };
 
 const prototypes = [
+  { href: '/prototypes/design-guidelines/', name: 'Design guidelines' },
   { href: '/prototypes/docs-navigation/', name: 'Combined docs navigation' },
   { href: '/prototypes/progress-icons/', name: 'Progress icons' },
   { href: '/prototypes/icon-reveal/', name: 'Outline and filled' },
