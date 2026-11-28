@@ -1,5 +1,19 @@
 # fyicons
 
+## 0.7.1
+
+### Patch Changes
+
+- f9b0b92: Update the `cursor-default-solid` (`IconCursorDefaultSolid`) and `lady-bug` (`IconLadyBug`) artwork. The cursor has a redrawn tail and outline. The lady bug has new spot positions and a larger lower wedge. Both icons now use plain paths instead of SVG masks or `use` elements.
+- 0cb7bad: Remove SVG clips, masks, and `use` elements that 20 icons did not need. The artwork does not change.
+
+  - 13 icons no longer have a clip that covers the full 16 × 16 canvas: `arrow-clockwise`, `arrow-counter-clockwise`, `bookmark-check`, `file-article`, `file-check`, `file-code`, `file-down`, `fish`, `fox-face`, `link-unlink`, `scribble`, `sunrise`, and `sunset`.
+  - 7 icons now use plain paths instead of masked inside strokes: `file-image`, `penguin`, `picture-in-picture`, `projector`, `projector-on`, `thermometer-min`, and `wallet-fold`. `file-image` also no longer uses a `use` element.
+
+  When you place these SVGs inline more than once on a page, the copies no longer share clip or mask IDs.
+
+- 8f9f243: Refresh the artwork for 37 existing icons, including document, folder, media, and letter icons.
+
 ## 0.7.0
 
 ### Minor Changes
