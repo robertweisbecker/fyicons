@@ -23,13 +23,7 @@ const watcher = watch(new URL('../icons/', import.meta.url), (_event, name) => {
 
 const child = spawn(
   process.execPath,
-  [
-    require.resolve('next/dist/bin/next'),
-    'dev',
-    '--hostname',
-    '127.0.0.1',
-    ...process.argv.slice(2),
-  ],
+  [require.resolve('next/dist/bin/next'), 'dev', ...process.argv.slice(2)],
   { cwd: site, stdio: 'inherit' },
 );
 for (const signal of ['SIGINT', 'SIGTERM']) {

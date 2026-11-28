@@ -13,7 +13,7 @@ npm ci
 npm run dev
 ```
 
-`dev` generates the icons, builds the icon package, and starts Next.js at http://127.0.0.1:3000. After an SVG edit during a running development session, run `npm run generate:icons` again.
+`dev` generates the icons, builds the icon package, and starts Next.js at http://localhost:3000. Next.js also prints a network address. Use it to open the site on another device on the same network. After an SVG edit during a running development session, run `npm run generate:icons` again.
 
 `npm run build` generates the icons, builds the icon package, checks TypeScript, and exports the static website to `apps/site/out/`. `npm run preview` serves that export at http://127.0.0.1:4173. For a TypeScript check without a full site build, use `npm run typecheck`.
 
