@@ -1,4 +1,4 @@
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { IconExampleCard } from './IconExampleCard';
 import {
   IconAppNotification,

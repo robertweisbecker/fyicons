@@ -2,7 +2,7 @@
 import { NavigationMenu } from '@base-ui/react/navigation-menu';
 import { IconMenuAlt, IconArrowRight } from 'fyicons';
 import { useId, useSyncExternalStore } from 'react';
-import { UIIcon } from '@/components/UIIcon';
+import { UIIcon, type UIIconName } from '@/components/UIIcon';
 import { Button } from '@/components/ui/button';
 import {
   DocsNavigationPane,
@@ -67,7 +67,7 @@ const pages = [
     description: 'FYIcons is distributed under the MIT license.',
     sections: ['MIT license', 'Colophon'],
   },
-];
+] satisfies { icon: UIIconName; [key: string]: unknown }[];
 
 type SamplePage = (typeof pages)[number];
 

@@ -8,7 +8,7 @@ import { UIIcon } from '@/components/UIIcon';
 import { Button } from '@/components/ui/button';
 import { docsPages, mobileDocSections } from '@/lib/docs-navigation';
 import { isSameRoute } from '@/lib/navigation';
-import { useMediaQuery } from '@/lib/preferences';
+import { useMediaQuery } from '@/lib/use-media-query';
 import { cn } from '@/lib/utils';
 import type { DocHeading } from './TableOfContents';
 import {

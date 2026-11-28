@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { SiteShell } from '@/components/SiteShell';
+import { SiteShell } from '@/components/site/SiteShell';
 import { assetPath, siteUrl } from '@/lib/navigation';
 import { themeStorageKey } from '@/lib/theme';
 import { allo, alloObliques, paperMono } from './fonts';
-import '../styles.css';
+import '@/styles.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

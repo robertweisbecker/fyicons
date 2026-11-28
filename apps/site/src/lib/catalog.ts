@@ -1,4 +1,4 @@
-import compact from '../data/catalog-runtime.json';
+import compact from '@/data/catalog-runtime.json';
 import { decodeCatalog } from './catalog-codec';
 import {
   categorizeIcons,

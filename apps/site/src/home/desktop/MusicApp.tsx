@@ -1,12 +1,12 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { useDemoActivity } from '@/components/DeferredContent';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Button } from '@/components/ui/button';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
 import { MusicPlayer } from './MusicPlayer';
-import { AlbumArtwork, tracks, trackTime } from './musicData';
+import { AlbumArtwork, tracks, trackTime } from './music-data';
 import {
   IconBlock,
   IconCircleCheckFill,

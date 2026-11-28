@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
 import { Badge } from '@/components/ui/badge';

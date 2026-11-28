@@ -1,6 +1,6 @@
 import { Collapsible } from '@base-ui/react/collapsible';
 import type { ComponentProps } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from './icon-lookup';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import {

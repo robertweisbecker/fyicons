@@ -1,4 +1,4 @@
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { cn } from '@/lib/utils';
 import {
   DemoActivityBoundary,
@@ -14,7 +14,7 @@ import {
   motion,
   MotionConfig,
 } from 'motion/react';
-import { DeviceBattery, DeviceClock } from '../DeviceStatus';
+import { DeviceBattery, DeviceClock } from '@/home/DeviceStatus';
 import './DesktopShowcase.css';
 import {
   IconPenTool,

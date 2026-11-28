@@ -1,5 +1,5 @@
 'use client';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { DeferredContent } from '@/components/DeferredContent';
 import {
   VariantPlaceholder,
@@ -9,15 +9,15 @@ import {
 } from './DemoPlaceholders';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ShadcnIcon } from '@/components/BrandIcons';
+import { ShadcnIcon } from '@/components/site/BrandIcons';
 import { DownloadIconsButton } from '@/components/DownloadIconsButton';
 import { InstallCommand } from '@/components/InstallCommand';
-import { SearchTrigger } from '@/components/SearchTrigger';
+import { SearchTrigger } from '@/components/site/SearchTrigger';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { buttonVariants } from '@/components/ui/button';
 import catalogSummary from '@/data/catalog-summary.json';
 import { assetPath } from '@/lib/navigation';
-import { useReducedMotionPreference } from '@/lib/preferences';
+import { useReducedMotionPreference } from '@/lib/use-media-query';
 import { DesktopShowcase } from './desktop/DesktopShowcase';
 import { IconExampleCard } from './IconExampleCard';
 import { IconSpecimen } from './IconSpecimen';

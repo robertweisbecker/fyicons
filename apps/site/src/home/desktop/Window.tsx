@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { cn } from '@/lib/utils';
 import { TooltipGroup } from '@/components/ui/tooltip';
 import {

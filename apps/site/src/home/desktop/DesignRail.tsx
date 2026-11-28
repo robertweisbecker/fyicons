@@ -1,5 +1,5 @@
-import { createIconLookup } from '@/components/createIconLookup';
-import { createGlyph } from '../Study';
+import { createIconLookup } from '@/components/icon-lookup';
+import { createGlyph } from '@/home/Study';
 import {
   IconFile,
   IconSparkle,

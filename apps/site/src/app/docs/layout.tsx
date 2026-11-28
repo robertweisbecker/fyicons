@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { DocsSidebar } from '@/components/DocsSidebar';
+import { DocsSidebar } from '@/components/docs/DocsSidebar';
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (

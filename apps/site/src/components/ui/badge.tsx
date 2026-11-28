@@ -1,8 +1,7 @@
-import type { ReactNode } from 'react';
 import { useRender } from '@base-ui/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import { UIIcon } from '@/components/UIIcon';
+import { UIIcon, type IconSlot } from '@/components/UIIcon';
 const badgeVariants = cva(
   'inline-flex w-fit h-fit items-center rounded-full px-1 font-normal tabular-nums',
   {
@@ -45,7 +44,7 @@ export function Badge({
   ...props
 }: useRender.ComponentProps<'span'> &
   VariantProps<typeof badgeVariants> & {
-    icon?: ReactNode;
+    icon?: IconSlot;
     iconClass?: string;
   }) {
   return useRender({

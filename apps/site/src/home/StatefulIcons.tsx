@@ -1,12 +1,12 @@
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { useRef, useState } from 'react';
 import { Field } from '@base-ui/react/field';
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from './DemoControls';
 import { cn } from '@/lib/utils';
 import { play } from '@/lib/sounds';
-import { statefulIconPairs } from './statefulIconPairs';
+import { statefulIconPairs } from './stateful-icon-pairs';
 import {
   IconTextTitle,
   IconArrowCounterClockwise,

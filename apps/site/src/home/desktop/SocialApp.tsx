@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
-import { createDemoControls } from '@/demos/components/DemoControls';
-import { createGlyph } from '../Study';
+import { createDemoControls } from '@/home/DemoControls';
+import { createGlyph } from '@/home/Study';
 import { Window } from './Window';
 import {
   IconArrowLeft,

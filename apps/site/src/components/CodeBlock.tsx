@@ -12,7 +12,7 @@ import { IconCopySm, IconCheck } from 'fyicons';
 import { IconButton } from '@/components/IconButton';
 import { useCopied } from '@/components/copy-feedback';
 import { notify } from '@/components/ui/toast';
-import { copy } from '@/lib/downloads';
+import { copy } from '@/lib/clipboard';
 import { cn } from '@/lib/utils';
 
 export function CodeBlock({

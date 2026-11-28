@@ -66,8 +66,10 @@ test('hydration preserves saved preferences and applies browser media queries wi
     ...originalMatchMedia(query),
     matches: true,
   });
-  const { usePreference, useMobile, useReducedMotionPreference } =
-    await fixture.load('lib/preferences.ts');
+  const { usePreference } = await fixture.load('lib/preferences.ts');
+  const { useMobile, useReducedMotionPreference } = await fixture.load(
+    'lib/use-media-query.ts',
+  );
   function Preferences() {
     const [theme] = usePreference('fyicons-theme-v1', 'light');
     return createElement('output', {

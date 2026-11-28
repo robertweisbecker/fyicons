@@ -1,9 +1,9 @@
 import { useId, useState, type ReactNode } from 'react';
 import { Field } from '@base-ui/react/field';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Switch } from '@/components/ui/switch';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from './DemoControls';
 import { OpticalStudy, StudyTile } from './optical/OpticalStudy';
 import { formatPixels } from './optical/OpticalDrawings';
 import {

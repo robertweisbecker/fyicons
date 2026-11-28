@@ -16,7 +16,7 @@ import type { Act } from '@/vendor/stageshow/act';
 import { ThemedStage } from '@/components/ThemedStage';
 import { cn } from '@/lib/utils';
 import { easeInOutCubic } from '@/vendor/stageshow/util';
-import { GuideShape } from '../construction-guides';
+import { GuideShape } from '@/home/construction-guides';
 
 export type Scene = {
   phase:

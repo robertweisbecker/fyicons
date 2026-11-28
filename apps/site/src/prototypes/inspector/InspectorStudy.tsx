@@ -17,8 +17,8 @@ import {
 } from '@ui-sdk/react/drawer';
 import { Toggle } from '@ui-sdk/react/toggle';
 import { IconCheck, IconGrid, IconX } from 'fyicons';
-import { IconCopyButton } from '@/components/IconCopyButton';
-import { IconDownloadButton } from '@/components/InspectorActions';
+import { IconCopyButton } from '@/components/browser/IconCopyButton';
+import { IconDownloadButton } from '@/components/browser/InspectorActions';
 import { buttonVariants } from '@/components/ui/button';
 import { byId } from '@/lib/catalog';
 import { getIconReleases } from '@/lib/icon-releases';

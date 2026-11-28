@@ -1,11 +1,11 @@
 import { type ComponentProps } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Toggle } from '@/components/ui/toggle';
 import { ToggleGroup } from '@/components/ui/toggle-group';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { FormatControls, TextAlignment } from '../FormatStudy';
-import { createGlyph } from '../Study';
+import { FormatControls, TextAlignment } from '@/home/FormatStudy';
+import { createGlyph } from '@/home/Study';
 import {
   IconAngle,
   IconApps,

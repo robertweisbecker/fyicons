@@ -1,4 +1,4 @@
-import { UIIcon } from '@/components/UIIcon';
+import { UIIcon, type IconSlot } from '@/components/UIIcon';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { Tooltip } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
@@ -12,7 +12,7 @@ export function IconButton({
   tooltipSide,
   ...props
 }: ButtonProps & {
-  icon: string | React.ReactNode;
+  icon: IconSlot;
   label: string;
   tooltipSide?: React.ComponentProps<typeof Tooltip>['side'];
 }) {

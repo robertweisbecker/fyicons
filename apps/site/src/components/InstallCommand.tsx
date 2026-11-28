@@ -1,24 +1,20 @@
 import { clipboardUnavailable, useCopied } from '@/components/copy-feedback';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from './icon-lookup';
 import { IconButton } from './IconButton';
 import { Button, type ButtonProps } from './ui/button';
 import { notify } from './ui/toast';
-import { copy } from '@/lib/downloads';
+import { copy } from '@/lib/clipboard';
 import { cn } from '@/lib/utils';
 import {
-  IconCode,
   IconCopiedFill,
   IconCopy,
-  IconGhost,
   IconTerminalBash,
   IconTerminalSquare,
 } from 'fyicons';
 
 const Icon = createIconLookup({
-  code: IconCode,
   'copied-fill': IconCopiedFill,
   copy: IconCopy,
-  ghost: IconGhost,
   'terminal-bash': IconTerminalBash,
   'terminal-square': IconTerminalSquare,
 });

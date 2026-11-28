@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { ToggleGroup } from '@/components/ui/toggle-group';
 import { Bubble, BubbleContent } from '@/components/ui/bubble';
 import {
@@ -7,11 +7,8 @@ import {
   MessageContent,
   MessageFooter,
 } from '@/components/ui/message';
-import {
-  createDemoControls,
-  CopyButton,
-} from '@/demos/components/DemoControls';
-import { createGlyph } from '../Study';
+import { createDemoControls, CopyButton } from '@/home/DemoControls';
+import { createGlyph } from '@/home/Study';
 import { AgentActivity, AgentComposer } from './AgentComposer';
 import { BrowserWindow } from './Window';
 import {

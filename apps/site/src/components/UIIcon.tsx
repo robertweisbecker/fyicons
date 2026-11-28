@@ -4,106 +4,62 @@ import {
   IconArrowDown,
   IconArrowLeft,
   IconArrowRight,
-  IconArrowX,
-  IconArrowY,
   IconAtom,
   IconAtomReact,
   IconBookOpen,
   IconBookmark,
   IconBookmarkFill,
-  IconCheck,
   IconChevronLeft,
   IconChevronRight,
   IconCircleXFill,
-  IconCopiedFill,
-  IconCopy,
-  IconDownload,
   IconDownloadSquare,
   IconEye,
   IconEyeClosed,
-  IconFireAltFill,
   IconGhost,
-  IconGlobe,
-  IconGrid,
-  IconGridFill,
-  IconHistory,
-  IconHome,
   IconInfo,
   IconKbdReturn,
   IconLayoutPin,
   IconLayoutPinned,
-  IconLink,
-  IconLock,
-  IconLockOpen,
   IconNote,
   IconPalette,
-  IconPaperclipTilt,
   IconSearch,
-  IconSend,
-  IconShadow,
-  IconSortDown,
-  IconTag,
   IconTerminal,
-  IconTerminalSquare,
   IconX,
 } from 'fyicons';
 
-import { createContext, useContext, type ComponentType } from 'react';
-import { createIconLookup, type IconProps } from './createIconLookup';
+import type { ComponentProps, ReactElement } from 'react';
+import { createIconLookup } from './icon-lookup';
 
-// Shared controls pass names as plain strings, so this set stays untyped.
-const ChromeIcon = createIconLookup<string>({
+/** Interface icon for the site chrome and the shared controls. */
+export const UIIcon = createIconLookup({
   'file-text': IconFileText,
   'arrow-down': IconArrowDown,
   'arrow-left': IconArrowLeft,
   'arrow-right': IconArrowRight,
-  'arrow-x': IconArrowX,
-  'arrow-y': IconArrowY,
   atom: IconAtom,
   'atom-react': IconAtomReact,
   'book-open': IconBookOpen,
   bookmark: IconBookmark,
   'bookmark-fill': IconBookmarkFill,
-  check: IconCheck,
   'chevron-left': IconChevronLeft,
   'chevron-right': IconChevronRight,
   'circle-x-fill': IconCircleXFill,
-  'copied-fill': IconCopiedFill,
-  copy: IconCopy,
-  download: IconDownload,
   'download-square': IconDownloadSquare,
   eye: IconEye,
   'eye-closed': IconEyeClosed,
-  'fire-alt-fill': IconFireAltFill,
   ghost: IconGhost,
-  globe: IconGlobe,
-  grid: IconGrid,
-  'grid-fill': IconGridFill,
-  history: IconHistory,
-  home: IconHome,
   info: IconInfo,
   'kbd-return': IconKbdReturn,
   'layout-pin': IconLayoutPin,
   'layout-pinned': IconLayoutPinned,
-  link: IconLink,
-  lock: IconLock,
-  'lock-open': IconLockOpen,
   note: IconNote,
   palette: IconPalette,
-  'paperclip-tilt': IconPaperclipTilt,
   search: IconSearch,
-  send: IconSend,
-  shadow: IconShadow,
-  'sort-down': IconSortDown,
-  tag: IconTag,
   terminal: IconTerminal,
-  'terminal-square': IconTerminalSquare,
   x: IconX,
 });
-export const IconRendererContext =
-  createContext<ComponentType<IconProps> | null>(null);
-/** Interface icon. A feature can supply its own renderer through the context. */
-export function UIIcon(props: IconProps) {
-  const Renderer = useContext(IconRendererContext) ?? ChromeIcon;
-  return <Renderer {...props} />;
-}
+
+export type UIIconName = ComponentProps<typeof UIIcon>['name'];
+
+/** A `UIIcon` name, or an element for an icon outside that set. */
+export type IconSlot = UIIconName | ReactElement;

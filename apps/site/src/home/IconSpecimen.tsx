@@ -9,8 +9,8 @@ import {
   type PointerEvent,
 } from 'react';
 import { motion, MotionConfig } from 'motion/react';
-import { useReducedMotionPreference } from '@/lib/preferences';
-import { createIconLookup } from '@/components/createIconLookup';
+import { useReducedMotionPreference } from '@/lib/use-media-query';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Tooltip, TooltipGroup } from '@/components/ui/tooltip';
 import {
   guides,

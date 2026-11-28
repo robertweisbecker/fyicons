@@ -6,7 +6,7 @@ import {
   type Ref,
 } from 'react';
 import { Popover } from '@base-ui/react/popover';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Button } from '@/components/ui/button';
 import {
   Menu,
@@ -17,8 +17,8 @@ import {
   MenuTrigger,
 } from '@/components/ui/menu';
 import { Slider } from '@/components/ui/slider';
-import { createDemoControls, DemoHint } from '@/demos/components/DemoControls';
-import { AlbumArtwork, tracks, trackTime } from './musicData';
+import { createDemoControls, DemoHint } from '@/home/DemoControls';
+import { AlbumArtwork, tracks, trackTime } from './music-data';
 import {
   IconArrowsCollapse,
   IconArrowsExpand,

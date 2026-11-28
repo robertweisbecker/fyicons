@@ -7,14 +7,14 @@ import {
   type KeyboardEvent,
 } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { IconButton } from '@/components/IconButton';
 import { buttonVariants } from '@/components/ui/button';
 import { TooltipGroup } from '@/components/ui/tooltip';
 import Link from 'next/link';
-import { prefersReducedMotion } from '@/lib/preferences';
+import { prefersReducedMotion } from '@/lib/use-media-query';
 import { cn } from '@/lib/utils';
-import { iconGroups } from './iconGroups';
+import { iconGroups } from './icon-groups';
 import {
   IconAgent,
   IconAgentClank,
@@ -501,7 +501,7 @@ const Icon = createIconLookup({
   'thought-bubble': IconThoughtBubble,
   'thumbs-down': IconThumbsDown,
   'thumbs-up': IconThumbsUp,
-  'thumbs': IconThumbs,
+  thumbs: IconThumbs,
   ticket: IconTicket,
   'top-hat': IconTopHat,
   translate: IconTranslate,

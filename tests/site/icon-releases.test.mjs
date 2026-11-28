@@ -9,9 +9,9 @@ test('icon tiles announce additions in the latest two minor release lines and in
   const fixture = createDomFixture(t, 'https://example.test/icons/');
   const { icons } = await fixture.load('lib/catalog.ts');
   const { default: history } = await fixture.load('data/icon-releases.json');
-  const { IconTile } = await fixture.load('components/IconTile.tsx');
+  const { IconTile } = await fixture.load('components/browser/IconTile.tsx');
   const { IconReleaseInfo } = await fixture.load(
-    'components/IconReleaseInfo.tsx',
+    'components/browser/IconReleaseInfo.tsx',
   );
   const minor = packageInfo.version.split('.').slice(0, 2).join('.') + '.';
   const previous = history.releases.findLast(

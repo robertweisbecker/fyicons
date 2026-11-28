@@ -3,7 +3,7 @@
 import { Button } from '@base-ui/react/button';
 import Link from 'next/link';
 import type { ComponentProps, ReactNode } from 'react';
-import { UIIcon } from '@/components/UIIcon';
+import { UIIcon, type IconSlot } from '@/components/UIIcon';
 import { cn } from '@/lib/utils';
 
 export function Sidebar({
@@ -42,7 +42,7 @@ export function SidebarSection({
 type ItemProps = {
   active?: boolean;
   nested?: boolean;
-  icon?: string | ReactNode;
+  icon?: IconSlot;
   children: ReactNode;
   'aria-label'?: string;
 } & (

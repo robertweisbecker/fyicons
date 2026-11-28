@@ -1,12 +1,12 @@
 import { useId, useRef, useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { FileTree, fileFolders } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
 import { Window } from './Window';
 import { CodeChanges } from './CodeChanges';
-import { reviewFiles } from './codeReviewData';
+import { reviewFiles } from './code-review-data';
 import {
   IconAgent,
   IconArrowsRotate,

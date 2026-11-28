@@ -5,7 +5,7 @@ import { IconReplay } from 'fyicons';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { useReducedMotionPreference } from '@/lib/preferences';
+import { useReducedMotionPreference } from '@/lib/use-media-query';
 import {
   centerStudy,
   warningStudy,

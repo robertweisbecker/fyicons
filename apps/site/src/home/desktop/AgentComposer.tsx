@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Collapsible } from '@base-ui/react/collapsible';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { Button } from '@/components/ui/button';
 import {
   Menu,
@@ -9,7 +9,7 @@ import {
   MenuRadioGroup,
   MenuRadioItem,
 } from '@/components/ui/menu';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import {
   IconAgent,
   IconArrowUp,

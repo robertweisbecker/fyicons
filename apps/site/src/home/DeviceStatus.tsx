@@ -1,6 +1,6 @@
 import { useDemoActivity } from '@/components/DeferredContent';
 import { useEffect, useState } from 'react';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import { cn } from '@/lib/utils';
 import { useMinuteClock } from '@/lib/use-minute-clock';
 import {

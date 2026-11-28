@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { IconsBrowser } from '@/components/IconsBrowser';
+import { IconsBrowser } from '@/components/browser/IconsBrowser';
 
 export const metadata: Metadata = {
   title: 'Icons',

@@ -21,7 +21,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { byName } from '@/lib/catalog';
 import { cn } from '@/lib/utils';
-import { copy as copyText } from '@/lib/downloads';
+import { copy as copyText } from '@/lib/clipboard';
 import { Choice } from './Choice';
 import { IconPicker } from './IconPicker';
 import { IconInspector, type InspectorHandle } from './IconInspector';

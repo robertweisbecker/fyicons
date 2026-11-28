@@ -56,7 +56,7 @@ import {
   IconWaveform,
   IconX,
 } from 'fyicons';
-import { AlbumArtwork, tracks, trackTime } from '@/home/desktop/musicData';
+import { AlbumArtwork, tracks, trackTime } from '@/home/desktop/music-data';
 import '@/vendor/stageshow/stage.css';
 import { Window } from '@/vendor/stageshow/window';
 import { Row } from '@/vendor/stageshow/parts/Row';

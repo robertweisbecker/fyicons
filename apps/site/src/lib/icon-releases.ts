@@ -1,4 +1,4 @@
-import history from '../data/icon-releases.json';
+import history from '@/data/icon-releases.json';
 import packageInfo from 'fyicons/package.json' with { type: 'json' };
 
 const [currentMajor, currentMinor] = packageInfo.version.split('.').map(Number);

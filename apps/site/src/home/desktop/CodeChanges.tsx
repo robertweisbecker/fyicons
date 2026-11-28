@@ -1,14 +1,14 @@
 import { Collapsible } from '@base-ui/react/collapsible';
-import { createIconLookup } from '@/components/createIconLookup';
+import { createIconLookup } from '@/components/icon-lookup';
 import {
   FileIcon,
   fileIconColors,
   type ProjectFile,
 } from '@/components/FileTree';
 import { Button } from '@/components/ui/button';
-import { createDemoControls } from '@/demos/components/DemoControls';
+import { createDemoControls } from '@/home/DemoControls';
 import { cn } from '@/lib/utils';
-import { reviewChanges } from './codeReviewData';
+import { reviewChanges } from './code-review-data';
 import {
   IconArrowRight,
   IconAtomReact,
